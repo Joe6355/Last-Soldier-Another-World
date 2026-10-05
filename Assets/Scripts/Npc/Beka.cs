@@ -1,3 +1,4 @@
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -235,7 +236,8 @@ public class Beka : MonoBehaviour
                 player.IncreaseMoveSpeed(item.itemValue);
                 break;
             case UpgradeItemType.ArrowDamage:
-                int dmgAdd = Mathf.RoundToInt(item.itemValue);
+                int dmgAdd = Mathf.RoundToInt(item.itemValue * (item.purchaseCount + 1))
+                    - Mathf.RoundToInt(item.itemValue * item.purchaseCount);
                 player.IncreaseArrowDamage(dmgAdd);
                 break;
             default:
@@ -244,38 +246,10 @@ public class Beka : MonoBehaviour
         }
     }
 
-    // Применяем все апгрейды, если уже были куплены
     private void ReapplyUpgrades()
     {
-        foreach (var item in upgradeItems)
-        {
-            // Если item.purchaseCount>0, значит мы уже покупали
-            // Нужно применить (purchaseCount) раз? 
-            // Но мы не разово прибавляем, а price растёт...
-            // Проще сказать, что итоговое увеличение = itemValue*purchaseCount 
-            // (кроме цены). 
-            float totalValue = item.itemValue * item.purchaseCount;
-
-            switch (item.itemType)
-            {
-                case UpgradeItemType.MaxHP:
-                    player.IncreaseMaxHP(totalValue);
-                    break;
-                case UpgradeItemType.ShieldMax:
-                    player.IncreaseShieldMax(totalValue);
-                    break;
-                case UpgradeItemType.StaminaMax:
-                    player.IncreaseMaxStamina(totalValue);
-                    break;
-                case UpgradeItemType.MoveSpeed:
-                    player.IncreaseMoveSpeed(totalValue);
-                    break;
-                case UpgradeItemType.ArrowDamage:
-                    int dmgAdd = Mathf.RoundToInt(totalValue);
-                    player.IncreaseArrowDamage(dmgAdd);
-                    break;
-            }
-        }
+        // Counts are the source of truth. Restore from base, without healing twice.
+        player.RestoreUpgrades(upgradeItems);
     }
 
     // ========================
@@ -289,8 +263,8 @@ public class Beka : MonoBehaviour
             string key = "UpgradeShop_Item" + i.ToString() + "_Count";
             PlayerPrefs.SetInt(key, upgradeItems[i].purchaseCount);
         }
-        PlayerPrefs.Save();
-        Debug.Log("UpgradeShop: улучшения сохранены!");
+        GameProgress.RequestSave();
+
     }
 
     public void LoadUpgrades()

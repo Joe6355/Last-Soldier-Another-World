@@ -183,6 +183,7 @@ public class Slime : Sounds
     {
         PlaySound(sounds[2], volume: 1, destroyed: true);
         stats.countEnemyDead++;
+        stats.SaveInfo();
         stats.UpdateUI();
 
         // Спавн ядовитого пятна

@@ -13,6 +13,12 @@
 # Local database connection settings
 /database.local.txt
 
+# SDK editor simulations and local plugin preferences
+/Assets/PluginYourGames/Editor/SavesEditorYG2*.json
+/Assets/PluginYourGames/Editor/SavesEditorYG2*.json.meta
+/Assets/PluginYourGames/Editor/PluginPrefs.json
+/Assets/PluginYourGames/Editor/PluginPrefs.json.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/

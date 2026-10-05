@@ -1,20 +1,17 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using YG;
 
 public class UserDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI userInfoText;
-
-    void Start()
+    private void OnEnable() => GameProgress.Changed += Refresh;
+    private void OnDisable() => GameProgress.Changed -= Refresh;
+    private void Start() => Refresh();
+    private void Refresh()
     {
-        // Проверяем, сохранены ли данные
-        if (UserData.username != null && userInfoText != null)
-        {
-            userInfoText.text = $"ID: {UserData.userId}\nИмя: {UserData.username}";
-        }
-        else
-        {
-            userInfoText.text = "Данные пользователя не найдены!";
-        }
+        if (userInfoText == null) return;
+        userInfoText.richText = false;
+        userInfoText.text = YG2.player.auth ? "РРіСЂРѕРє: " + YG2.player.name : "Р“РѕСЃС‚СЊ";
     }
 }

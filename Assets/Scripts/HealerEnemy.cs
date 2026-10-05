@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
@@ -376,6 +376,7 @@ public class HealerEnemy : Sounds
     private void Die()
     {
         stats.countElitEnemyDead++;
+        stats.SaveInfo();
         stats.UpdateUI();
         DropLoot();
         Destroy(gameObject);

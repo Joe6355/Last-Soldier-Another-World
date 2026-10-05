@@ -1,76 +1,87 @@
-using UnityEngine;
-using TMPro;
-using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using YG;
+using YG.Utils.LB;
 
 public class TopPlayersPanel : MonoBehaviour
 {
-    [Header("UI Elements")]
     [SerializeField] private Transform contentParent;
     [SerializeField] private TextMeshProUGUI playerEntryPrefab;
+    private readonly List<TextMeshProUGUI> entries = new List<TextMeshProUGUI>();
+    private float nextRefresh, deadline;
+    private bool waiting;
 
-    private string ConnectionString => MySQLConnector.GetConnectionString();
-
-    void Start()
+    private void OnEnable()
     {
-        LoadTopPlayers();
+        YG2.onGetLeaderboard += OnLeaderboard;
+        GameProgress.Changed += LoadTopPlayers;
     }
 
-    void LoadTopPlayers()
+    private void OnDisable()
     {
-        // Œ˜Ë˘‡ÂÏ ÒÚ‡˚Â Á‡ÔËÒË
-        foreach (Transform child in contentParent)
+        YG2.onGetLeaderboard -= OnLeaderboard;
+        GameProgress.Changed -= LoadTopPlayers;
+    }
+
+    private void Start() => LoadTopPlayers();
+
+    private void Update()
+    {
+        if (waiting && Time.unscaledTime >= deadline)
         {
-            Destroy(child.gameObject);
+            waiting = false;
+            ShowStatus("–†–µ–π—Ç–∏–Ω–≥ –≤—Ä–µ–º–µ–Ω–Ω–æ –Ω–µ–¥–æ—Å—Ç—É–ø–µ–Ω");
         }
+        if (!waiting && contentParent.gameObject.activeInHierarchy && Time.unscaledTime >= nextRefresh)
+            LoadTopPlayers();
+    }
 
-        string query = @"
-            SELECT u.username,
-                   IF(r.player_deaths = 0, r.enemy_kills, r.enemy_kills / r.player_deaths) AS rating
-            FROM ratings r
-            JOIN users u ON r.user_id = u.id
-            ORDER BY rating DESC
-            LIMIT 15;";
+    public void LoadTopPlayers()
+    {
+        if (!GameProgress.IsReady || waiting) return;
+        waiting = true;
+        deadline = Time.unscaledTime + 12f;
+        nextRefresh = Time.unscaledTime + 60f;
+        ShowStatus("–ó–∞–≥—Ä—É–∑–∫–∞ —Ä–µ–π—Ç–∏–Ω–≥–∞‚Ä¶");
+        YG2.GetLeaderboard(GameProgress.LeaderboardName, 15, 1, "small");
+    }
 
-        List<(string username, float rating)> topPlayers = new List<(string, float)>();
-
-        try
+    private void OnLeaderboard(LBData data)
+    {
+        if (data == null || data.technoName != GameProgress.LeaderboardName) return;
+        waiting = false;
+        Clear();
+        if (data.players == null || data.players.Length == 0)
         {
-            using (MySqlConnection conn = new MySqlConnection(ConnectionString))
-            {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string username = reader["username"].ToString();
-                            float rating = 0;
-                            float.TryParse(reader["rating"].ToString(), out rating);
-                            topPlayers.Add((username, rating));
-                        }
-                    }
-                }
-            }
-        }
-        catch (System.Exception ex) when (ex is MySqlException || ex is System.InvalidOperationException)
-        {
-            Debug.LogError("Œ¯Ë·Í‡ Á‡„ÛÁÍË ÚÓÔ Ë„ÓÍÓ‚: " + ex.Message);
-            CreateEntry("Œ¯Ë·Í‡ Á‡„ÛÁÍË", 0);
+            AddEntry("–í —Ä–µ–π—Ç–∏–Ω–≥–µ –ø–æ–∫–∞ –Ω–µ—Ç –∏–≥—Ä–æ–∫–æ–≤");
             return;
         }
-
-        // —ÓÁ‰‡ÂÏ UI-ÒÚÓÍË
-        foreach (var player in topPlayers)
+        foreach (LBPlayerData player in data.players)
         {
-            CreateEntry(player.username, player.rating);
+            if (player == null || player.name == InfoYG.NO_DATA || player.rank > 15) continue;
+            string name = string.IsNullOrEmpty(player.name) || player.name == InfoYG.ANONYMOUS
+                ? "–ò–≥—Ä–æ–∫" : player.name;
+            // The console leaderboard must use decimalOffset = 2.
+            AddEntry($"{player.rank}. {name} ‚Äî –†–µ–π—Ç–∏–Ω–≥: {player.score / 100d:F2}");
         }
+        if (entries.Count == 0) AddEntry("–†–µ–π—Ç–∏–Ω–≥ –≤—Ä–µ–º–µ–Ω–Ω–æ –Ω–µ–¥–æ—Å—Ç—É–ø–µ–Ω");
     }
 
-    void CreateEntry(string username, float rating)
+    private void ShowStatus(string text) { Clear(); AddEntry(text); }
+
+    private void Clear()
+    {
+        foreach (Transform child in contentParent) Destroy(child.gameObject);
+        entries.Clear();
+    }
+
+    private void AddEntry(string text)
     {
         var entry = Instantiate(playerEntryPrefab, contentParent);
-        entry.text = $"{username} - –ÂÈÚËÌ„: {rating:F2}";
+        entry.richText = false;
+        entry.text = text;
+        entries.Add(entry);
     }
 }

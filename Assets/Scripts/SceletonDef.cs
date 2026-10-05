@@ -243,6 +243,7 @@ public class SceletonDef : Sounds
     private void Die()
     {
         stats.countEnemyDead++;
+        stats.SaveInfo();
         stats.UpdateUI();
 
         DropLoot();

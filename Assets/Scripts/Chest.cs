@@ -1,3 +1,4 @@
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,7 @@ public class Chest : Sounds
 
                 // Сохраняем в PlayerPrefs
                 PlayerPrefs.SetInt("CoinsSpawned", coinsSpawned);
+                GameProgress.RequestSave();
 
                 // Отладочная информация
                 Debug.Log($"Coins spawned: {coinsSpawned}/{maxCoins}");

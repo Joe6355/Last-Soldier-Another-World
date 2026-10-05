@@ -1,3 +1,4 @@
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +40,11 @@ public class CrossbowController : Sounds
     private void Update()
     {
         UpdateArrowCountsUI();
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale == 0f)
+        {
+            StopAutoShooting();
+            return;
+        }
 
         // Смена режима стрельбы
         if (Input.GetKeyDown(KeyCode.Alpha1)) { shootingMode = 1; UpdateModeText(); }
@@ -61,12 +67,13 @@ public class CrossbowController : Sounds
 
     public void Shoot()
     {
-        if (!canShoot || arrowCounts[selectedArrowIndex] <= 0) return;
+        if (!canShoot || YG.YG2.isPauseGame || Time.timeScale == 0f || arrowCounts[selectedArrowIndex] <= 0) return;
 
         switch (shootingMode)
         {
             case 1:
                 arrowCounts[selectedArrowIndex]--;
+                SaveArrowCounts();
                 FireArrow(firePoint.position, firePoint.up);
                 UpdateArrowCountsUI();
                 break;
@@ -84,6 +91,7 @@ public class CrossbowController : Sounds
         yield return new WaitForSeconds(shotgunDelay);
 
         arrowCounts[selectedArrowIndex] -= 3;
+        SaveArrowCounts();
         FireShotgun();
         UpdateArrowCountsUI();
         canShoot = true;
@@ -92,10 +100,11 @@ public class CrossbowController : Sounds
     private IEnumerator AutoShoot()
     {
         isAutoShooting = true;
-        while (Input.GetMouseButton(0) && arrowCounts[selectedArrowIndex] > 0)
+        while (canShoot && !YG.YG2.isPauseGame && Time.timeScale > 0f && Input.GetMouseButton(0) && arrowCounts[selectedArrowIndex] > 0)
         {
             FireArrow(firePoint.position, firePoint.up);
             arrowCounts[selectedArrowIndex]--;
+            SaveArrowCounts();
             UpdateArrowCountsUI();
             yield return new WaitForSeconds(0.2f);
         }
@@ -186,6 +195,7 @@ public class CrossbowController : Sounds
         if (typeIndex >= 0 && typeIndex < arrowCounts.Length)
         {
             arrowCounts[typeIndex] += amount;
+            SaveArrowCounts();
             UpdateArrowCountsUI();
         }
     }
@@ -204,7 +214,7 @@ public class CrossbowController : Sounds
     {
         string arrowCountsString = string.Join(",", arrowCounts);
         PlayerPrefs.SetString("ArrowCounts", arrowCountsString);
-        PlayerPrefs.Save();
+        GameProgress.RequestSave();
     }
 
     public void LoadArrowCounts()

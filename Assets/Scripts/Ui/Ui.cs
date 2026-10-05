@@ -84,7 +84,7 @@ public class Ui : MonoBehaviour
     private void Update()
     {
         // Открытие/закрытие меню по нажатию клавиши Esc
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!YG.YG2.isPauseGame && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
 
@@ -94,6 +94,8 @@ public class Ui : MonoBehaviour
     private void PauseGame()
     {
         crossbowController.SetShootingState(false);
+        YG.YG2.GameplayStop();
+        GameProgress.SaveNow();
         // Останавливаем время
         Time.timeScale = 0f;
 
@@ -116,6 +118,7 @@ public class Ui : MonoBehaviour
 
     private void ResumeGame()
     {
+        YG.YG2.GameplayStart();
         // Возобновляем время
         Time.timeScale = 1f;
 
@@ -138,6 +141,7 @@ public class Ui : MonoBehaviour
 
     public void StartGame()
     {
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame) return;
         // Выключаем меню
         menuPanel.SetActive(false);
         settingsPanel.SetActive(false);
@@ -159,6 +163,7 @@ public class Ui : MonoBehaviour
 
     public void ExitGame()
     {
+        GameProgress.SaveNow();
         // Закрываем приложение
         Application.Quit();
 
@@ -170,6 +175,7 @@ public class Ui : MonoBehaviour
 
     public void ToggleMenu()
     {
+        if (YG.YG2.isPauseGame) return;
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen)
@@ -248,12 +254,14 @@ public class Ui : MonoBehaviour
 
         // Сохраняем значение
         PlayerPrefs.SetFloat("MusicVolume", volume);
+        PlayerPrefs.Save();
     }
 
     public void SetSFXVolume(float volume)
     {
         sfxVolume = volume; // Обновляем глобальную громкость
-        PlayerPrefs.SetFloat("SFXVolume", volume); // Сохраняем в PlayerPrefs
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        PlayerPrefs.Save(); // Сохраняем в PlayerPrefs
 
         // Теперь передаем громкость во все источники звука
         foreach (var sfx in sfxSources)

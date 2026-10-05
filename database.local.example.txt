@@ -1,1 +1,0 @@
-Server=localhost;Database=game;Uid=game_user;Pwd=CHANGE_ME;SslMode=none;

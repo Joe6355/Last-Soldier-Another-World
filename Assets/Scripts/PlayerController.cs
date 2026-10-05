@@ -1,9 +1,11 @@
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(-500)]
 public class PlayerController : Sounds
 {
     [Header("Щит и всё, что за него отвечает")]
@@ -99,6 +101,7 @@ public class PlayerController : Sounds
         baseMaxStamina = maxStamina;
         baseMoveSpeed = originalMoveSpeed;
 
+        crossbowController = FindObjectOfType<CrossbowController>();
         LoadPlayerData();
         hpBar.fillAmount = hp / maxHp;
         mirrorCountText.text = mirrorRemainder.ToString();
@@ -132,10 +135,17 @@ public class PlayerController : Sounds
         }
         if (staminaBar != null)
             staminaBar.fillAmount = stamina / maxStamina;
+        var upgradeShop = FindObjectOfType<Beka>(true);
+        if (upgradeShop != null)
+        {
+            upgradeShop.LoadUpgrades();
+            RestoreUpgrades(upgradeShop.upgradeItems);
+        }
     }
 
     private void Update()
     {
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale == 0f) return;
         CrossBowController();
         MirrorHome();
         HealPoition();
@@ -213,6 +223,7 @@ public class PlayerController : Sounds
                 mirrorCountText.text = mirrorRemainder.ToString();
                 Debug.Log($"Заряд зеркала: {mirrorRemainder}");
                 ResetMirrorState();
+                SavePlayerData();
             }
         }
         else
@@ -304,8 +315,7 @@ public class PlayerController : Sounds
     {
         if (Input.GetMouseButtonDown(0))
             crossbowController.Shoot();
-        if (Input.GetKeyDown(KeyCode.Q))
-            crossbowController.SwitchArrowType();
+
     }
 
     // ===========================
@@ -333,6 +343,8 @@ public class PlayerController : Sounds
             Debug.Log("Игрок умер. Монеты после штрафа: " + totalCoins);
             PlayerPrefs.SetInt("Coins", totalCoins);
             PlayerPrefs.SetFloat("PlayerHP", hp);
+            stats.SaveInfo();
+            SavePlayerData();
         }
     }
 
@@ -349,6 +361,7 @@ public class PlayerController : Sounds
     {
         totalCoins += amount;
         PlayerPrefs.SetInt("Coins", totalCoins);
+        GameProgress.RequestSave();
         Debug.Log("Собрано монеток: " + totalCoins);
     }
 
@@ -399,11 +412,15 @@ public class PlayerController : Sounds
 
         PlayerPrefs.SetInt("Coins", totalCoins);
 
-        // Если стрелы прокачивались - сбрасываем
-        PlayerPrefs.SetInt("ArrowDamageUpgrade", 2);
+        // Сохраняем фактический урон стрел.
+        if (crossbowController != null && crossbowController.arrowPrefabs.Length > 0)
+        {
+            var arrow = crossbowController.arrowPrefabs[0].GetComponent<ArrowDef>();
+            if (arrow != null) PlayerPrefs.SetInt("ArrowDamageUpgrade", arrow.damage);
+        }
 
-        PlayerPrefs.Save();
-        Debug.Log("Данные игрока сохранены (PlayerController).");
+        GameProgress.RequestSave();
+
     }
 
     public void LoadPlayerData()
@@ -449,12 +466,14 @@ public class PlayerController : Sounds
     {
         mirrorRemainder += amount;
         mirrorCountText.text = mirrorRemainder.ToString();
+        SavePlayerData();
     }
 
     public void AddPoitonHeal(int amount)
     {
         potionCount += amount;
         textCountPotionHeal.text = potionCount.ToString();
+        SavePlayerData();
     }
 
     // ===========================
@@ -482,6 +501,7 @@ public class PlayerController : Sounds
                 PlaySound(sounds[2], volume: 1, destroyed: true);
                 if (hp > maxHp) hp = maxHp;
                 textCountPotionHeal.text = potionCount.ToString();
+                SavePlayerData();
             }
         }
     }
@@ -562,6 +582,39 @@ public class PlayerController : Sounds
                 arrowDef.damage += amount;
             }
         }
+    }
+
+    public void RestoreUpgrades(Beka.UpgradeItem[] items)
+    {
+        float savedHp = hp, savedShield = shieldValue, savedStamina = stamina;
+        maxHp = baseMaxHp;
+        shieldMaxValue = baseShieldMaxValue;
+        maxStamina = baseMaxStamina;
+        originalMoveSpeed = baseMoveSpeed;
+        foreach (var arrowPrefab in crossbowController.arrowPrefabs)
+        {
+            var arrow = arrowPrefab.GetComponent<ArrowDef>();
+            if (arrow != null) arrow.damage = 2;
+        }
+        foreach (var item in items)
+        {
+            float total = item.itemValue * item.purchaseCount;
+            switch (item.itemType)
+            {
+                case Beka.UpgradeItemType.MaxHP: IncreaseMaxHP(total); break;
+                case Beka.UpgradeItemType.ShieldMax: IncreaseShieldMax(total); break;
+                case Beka.UpgradeItemType.StaminaMax: IncreaseMaxStamina(total); break;
+                case Beka.UpgradeItemType.MoveSpeed: IncreaseMoveSpeed(total); break;
+                case Beka.UpgradeItemType.ArrowDamage:
+                    IncreaseArrowDamage(Mathf.RoundToInt(total)); break;
+            }
+        }
+        hp = Mathf.Clamp(savedHp, 0f, maxHp);
+        shieldValue = Mathf.Clamp(savedShield, 0f, shieldMaxValue);
+        stamina = Mathf.Clamp(savedStamina, 0f, maxStamina);
+        hpBar.fillAmount = hp / maxHp;
+        shieldImage.fillAmount = shieldValue / shieldMaxValue;
+        if (staminaBar != null) staminaBar.fillAmount = stamina / maxStamina;
     }
 
     public void ResetAllStatsToBase()

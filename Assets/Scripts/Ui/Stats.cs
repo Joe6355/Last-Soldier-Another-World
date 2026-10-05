@@ -1,3 +1,4 @@
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,7 +37,7 @@ public class Stats : MonoBehaviour
         PlayerPrefs.SetInt("countPlayerDead", countPlayerDead);
         PlayerPrefs.SetInt("countBossDead", countBossDead);
         PlayerPrefs.SetInt("countElitEnemyDead", countElitEnemyDead);
-        PlayerPrefs.Save();
+        GameProgress.RequestSave();
     }
 
     /// <summary>

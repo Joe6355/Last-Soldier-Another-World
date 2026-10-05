@@ -225,6 +225,7 @@ public class SlimeBoss : Sounds
         if (stats != null)
         {
             stats.countBossDead++;
+        stats.SaveInfo();
             stats.UpdateUI();
         }
 

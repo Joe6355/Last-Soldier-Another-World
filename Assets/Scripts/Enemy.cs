@@ -217,6 +217,7 @@ public class Enemy : Sounds
     private void Die()
     {
         stats.countEnemyDead++;
+        stats.SaveInfo();
         stats.UpdateUI();
         DropLoot();
         Destroy(gameObject);

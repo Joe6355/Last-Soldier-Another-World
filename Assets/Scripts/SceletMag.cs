@@ -302,6 +302,7 @@ public class SceletMag : Sounds
     private void Die()
     {
         stats.countElitEnemyDead++;
+        stats.SaveInfo();
         stats.UpdateUI();
         DropLoot();
         Destroy(gameObject);
