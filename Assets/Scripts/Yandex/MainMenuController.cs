@@ -12,6 +12,8 @@ public sealed class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject titlePanel;
     [SerializeField] private GameObject ratingPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject profilePanel;
     [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private TextMeshProUGUI authLabel;
     private bool loading;
@@ -60,6 +62,8 @@ public sealed class MainMenuController : MonoBehaviour
         GameProgress.SaveNow();
         if (menuPanel != null) menuPanel.SetActive(false);
         if (titlePanel != null) titlePanel.SetActive(false);
+        if (profilePanel != null) profilePanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
         ratingPanel.SetActive(true);
     }
 
@@ -68,11 +72,29 @@ public sealed class MainMenuController : MonoBehaviour
         if (ratingPanel != null) ratingPanel.SetActive(false);
         if (menuPanel != null) menuPanel.SetActive(true);
         if (titlePanel != null) titlePanel.SetActive(true);
+        if (profilePanel != null) profilePanel.SetActive(true);
+    }
+
+    public void ShowSettings()
+    {
+        if (loading || settingsPanel == null) return;
+        CloseRating();
+        if (menuPanel != null) menuPanel.SetActive(false);
+        if (titlePanel != null) titlePanel.SetActive(false);
+        if (profilePanel != null) profilePanel.SetActive(false);
+        settingsPanel.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        CloseRating();
     }
 
     private void Update()
     {
-        if (!YG2.isPauseGame && ratingPanel != null && ratingPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-            CloseRating();
+        if (YG2.isPauseGame || !Input.GetKeyDown(KeyCode.Escape)) return;
+        if (settingsPanel != null && settingsPanel.activeSelf) CloseSettings();
+        else if (ratingPanel != null && ratingPanel.activeSelf) CloseRating();
     }
 }

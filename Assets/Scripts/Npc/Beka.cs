@@ -133,7 +133,7 @@ public class Beka : MonoBehaviour
             {
                 int price = upgradeItems[i].CurrentPrice;
                 float val = upgradeItems[i].itemValue;
-                buttonText.text = $"{upgradeItems[i].itemName}\n{price} монет (+{val})";
+                buttonText.text = $"{price:N0} монет";
             }
         }
     }

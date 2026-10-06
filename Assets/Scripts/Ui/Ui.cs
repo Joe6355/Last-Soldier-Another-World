@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using TMPro;
 
 public class Ui : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class Ui : MonoBehaviour
     [Header("Слайдеры")]
     [SerializeField] private Slider musicSlider; // Слайдер громкости музыки
     [SerializeField] private Slider sfxSlider; // Слайдер громкости эффектов
+    [SerializeField] private TextMeshProUGUI musicValueText;
+    [SerializeField] private TextMeshProUGUI sfxValueText;
 
     [Header("Кнопки")]
     [SerializeField] private Button playButton;
@@ -44,6 +47,13 @@ public class Ui : MonoBehaviour
         //crossbowController.SetShootingState(false);
         crossbowController  = FindObjectOfType<CrossbowController>();
         playerController = FindObjectOfType<PlayerController>();
+        // Главное меню использует те же настройки звука без запуска игрового уровня.
+        if (playerController == null)
+        {
+            BindAudioSettings();
+            if (menuMusic != null) menuMusic.Play();
+            return;
+        }
         // Останавливаем игру при запуске
         PauseGame();
 
@@ -57,23 +67,13 @@ public class Ui : MonoBehaviour
         playButton.onClick.AddListener(StartGame);
         ratingButton.onClick.AddListener(ShowRating);
 
-        // Привязываем слайдеры
-        musicSlider.onValueChanged.AddListener(SetMusicVolume);
-        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        BindAudioSettings();
 
         // Привязываем кнопку для открытия меню
         if (openMenuButton != null)
         {
             openMenuButton.onClick.AddListener(ToggleMenu);
         }
-
-        // Устанавливаем начальные значения слайдеров
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-
-        // Устанавливаем начальные громкости
-        SetMusicVolume(musicSlider.value);
-        SetSFXVolume(sfxSlider.value);
 
         // Убедиться, что музыка игры не играет при запуске
         PauseGameMusic();
@@ -87,7 +87,7 @@ public class Ui : MonoBehaviour
     private void Update()
     {
         // Открытие/закрытие меню по нажатию клавиши Esc
-        if (!YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
+        if (playerController != null && !YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
 
@@ -182,12 +182,32 @@ public class Ui : MonoBehaviour
         if (ratingPanel != null) ratingPanel.SetActive(false);
     }
 
+    public void ShowSettings()
+    {
+        if (playerController == null || YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
+        isMenuOpen = true;
+        menuPanel.SetActive(true);
+        if (ratingPanel != null) ratingPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+        PauseGame();
+    }
+
+    public void CloseSettings()
+    {
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+    }
+
     public void ToggleMenu()
     {
         if (YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
         if (ratingPanel != null && ratingPanel.activeSelf)
         {
             CloseRating();
+            return;
+        }
+        if (settingsPanel != null && settingsPanel.activeSelf)
+        {
+            CloseSettings();
             return;
         }
         isMenuOpen = !isMenuOpen;
@@ -282,7 +302,7 @@ public class Ui : MonoBehaviour
             menuMusic.volume = volume;
 
         // Устанавливаем громкость для музыки игры
-        foreach (var musicSource in gameMusicSources)
+        foreach (var musicSource in gameMusicSources ?? System.Array.Empty<AudioSource>())
         {
             if (musicSource != null)
                 musicSource.volume = volume;
@@ -291,6 +311,7 @@ public class Ui : MonoBehaviour
         // Сохраняем значение
         PlayerPrefs.SetFloat("MusicVolume", volume);
         PlayerPrefs.Save();
+        if (musicValueText != null) musicValueText.text = Mathf.RoundToInt(volume * 100f) + "%";
     }
 
     public void SetSFXVolume(float volume)
@@ -298,13 +319,36 @@ public class Ui : MonoBehaviour
         sfxVolume = volume; // Обновляем глобальную громкость
         PlayerPrefs.SetFloat("SFXVolume", volume);
         PlayerPrefs.Save(); // Сохраняем в PlayerPrefs
+        if (sfxValueText != null) sfxValueText.text = Mathf.RoundToInt(volume * 100f) + "%";
 
         // Теперь передаем громкость во все источники звука
-        foreach (var sfx in sfxSources)
+        foreach (var sfx in sfxSources ?? System.Array.Empty<AudioSource>())
         {
             if (sfx != null)
                 sfx.volume = volume;
         }
+    }
+
+    private void BindAudioSettings()
+    {
+        if (musicSlider != null)
+        {
+            musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("MusicVolume", 0.5f));
+            musicSlider.onValueChanged.AddListener(SetMusicVolume);
+            SetMusicVolume(musicSlider.value);
+        }
+        if (sfxSlider != null)
+        {
+            sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume", 0.5f));
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+            SetSFXVolume(sfxSlider.value);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (musicSlider != null) musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
+        if (sfxSlider != null) sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
     }
 
     public void KillPlayer()

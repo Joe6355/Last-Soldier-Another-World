@@ -12,6 +12,8 @@ public sealed class LeaderboardRow : MonoBehaviour
     [SerializeField] private Image medal;
     [SerializeField] private TextMeshProUGUI mmr;
     [SerializeField] private Image background;
+    [SerializeField] private Color normalColor = new Color(0.08f, 0.17f, 0.15f, 1f);
+    [SerializeField] private Color currentPlayerColor = new Color(0.14f, 0.27f, 0.23f, 1f);
 
     public void Bind(LBPlayerData player, Stats localStats)
     {
@@ -34,6 +36,6 @@ public sealed class LeaderboardRow : MonoBehaviour
             medal.sprite = localStats.MedalForKills(0);
         }
         bool isCurrent = YG2.player.auth && player.uniqueID == YG2.player.id;
-        background.color = isCurrent ? new Color(0.1f, 0.36f, 0.49f, 1f) : new Color(0.055f, 0.12f, 0.18f, 0.97f);
+        background.color = isCurrent ? currentPlayerColor : normalColor;
     }
 }

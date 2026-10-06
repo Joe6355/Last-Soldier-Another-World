@@ -116,7 +116,7 @@ public class Shop : Sounds
             Text buttonText = buyButtons[i].GetComponentInChildren<Text>();
             if (buttonText != null)
             {
-                buttonText.text = $"{shopItems[i].itemPrice} монет за {shopItems[i].itemValue}";
+                buttonText.text = $"{shopItems[i].itemPrice:N0} монет";
             }
         }
     }

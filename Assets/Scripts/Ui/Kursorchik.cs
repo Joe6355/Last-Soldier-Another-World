@@ -11,6 +11,8 @@ public class Kursorchik : MonoBehaviour
     [SerializeField] private Slider cursorSlider; // Слайдер состояния курсора (0 - выключен, 1 - включен)
     [SerializeField] private GameObject menuPanel; // Панель меню
 
+    [SerializeField] private GameObject[] menuOverlays;
+
     private bool isCursorVisible = true; // Текущее состояние курсора
     private bool isMenuOpen = false; // Состояние меню (открыто/закрыто)
 
@@ -34,17 +36,15 @@ public class Kursorchik : MonoBehaviour
             ToggleCursor();
         }
 
-        // Если нажато Esc, переключаем меню
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Ui управляет меню и паузой; здесь только состояние курсора.
+        bool menuOpen = menuPanel != null && menuPanel.activeInHierarchy;
+        if (!menuOpen && menuOverlays != null)
+            foreach (var panel in menuOverlays)
+                if (panel != null && panel.activeInHierarchy) menuOpen = true;
+        if (isMenuOpen != menuOpen)
         {
-            if (isMenuOpen)
-            {
-                CloseMenu(); // Закрыть меню
-            }
-            else
-            {
-                OpenMenu(); // Открыть меню
-            }
+            isMenuOpen = menuOpen;
+            UpdateCursorState();
         }
     }
 
@@ -107,7 +107,7 @@ public class Kursorchik : MonoBehaviour
     private void UpdateCursorState()
     {
         // Управляем видимостью курсора
-        Cursor.visible = isCursorVisible;
+        Cursor.visible = isMenuOpen || isCursorVisible;
 
         // Гарантируем, что курсор не будет заблокирован
         Cursor.lockState = CursorLockMode.None;
@@ -120,7 +120,7 @@ public class Kursorchik : MonoBehaviour
         // Сохраняем состояние курсора при возвращении в приложение
         if (!isMenuOpen)
         {
-            Cursor.visible = isCursorVisible;
+            Cursor.visible = isMenuOpen || isCursorVisible;
         }
     }
 

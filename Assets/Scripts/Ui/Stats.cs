@@ -13,6 +13,11 @@ public class Stats : MonoBehaviour
     [Header("Medal Sprites")]
     [SerializeField] private TextMeshProUGUI summaryText;
     [SerializeField] private TextMeshProUGUI mmrText;
+    [Header("Карточка в меню")]
+    [SerializeField] private TextMeshProUGUI profileWavesText;
+    [SerializeField] private TextMeshProUGUI profileKillsText;
+    [SerializeField] private TextMeshProUGUI profileMmrText;
+    [SerializeField] private Image profileMedal;
     [SerializeField] private Sprite bronzeMedal;
     [SerializeField] private Sprite silverMedal;
     [SerializeField] private Sprite goldMedal;
@@ -90,6 +95,10 @@ public class Stats : MonoBehaviour
         }
         if (summaryText != null) summaryText.text = FormatSummary(completedWaves, TotalKills, countElitEnemyDead, countBossDead, countPlayerDead);
         if (mmrText != null) mmrText.text = "MMR " + Mmr.ToString("N0");
+        if (profileWavesText != null) profileWavesText.text = completedWaves.ToString("N0");
+        if (profileKillsText != null) profileKillsText.text = TotalKills.ToString("N0");
+        if (profileMmrText != null) profileMmrText.text = Mmr.ToString("N0");
+        if (profileMedal != null) profileMedal.sprite = MedalForKills(TotalKills);
 
         CheckMedal();
     }

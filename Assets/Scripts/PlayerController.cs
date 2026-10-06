@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [DefaultExecutionOrder(-500)]
 public class PlayerController : Sounds
@@ -33,6 +34,7 @@ public class PlayerController : Sounds
 
     [Header("Монеты и UI")]
     [SerializeField] private Text coinValueText;
+    [SerializeField] private TextMeshProUGUI[] additionalCoinTexts;
     public int totalCoins = 0;
 
     public CrossbowController crossbowController;
@@ -380,6 +382,7 @@ public class PlayerController : Sounds
     public void AddCoin(int amount)
     {
         totalCoins += amount;
+        UpdateCoinText();
         PlayerPrefs.SetInt("Coins", totalCoins);
         GameProgress.RequestSave();
         Debug.Log("Собрано монеток: " + totalCoins);
@@ -405,6 +408,9 @@ public class PlayerController : Sounds
     private void UpdateCoinText()
     {
         coinValueText.text = totalCoins.ToString();
+        if (additionalCoinTexts != null)
+            foreach (var text in additionalCoinTexts)
+                if (text != null) text.text = totalCoins.ToString("N0") + " монет";
         textCountPotionHeal.text = potionCount.ToString();
         mirrorCountText.text = mirrorRemainder.ToString();
     }
