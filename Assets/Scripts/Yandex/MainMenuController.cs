@@ -8,6 +8,10 @@ public sealed class MainMenuController : MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private Button authButton;
+    [SerializeField] private Button ratingButton;
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject titlePanel;
+    [SerializeField] private GameObject ratingPanel;
     [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private TextMeshProUGUI authLabel;
     private bool loading;
@@ -26,6 +30,7 @@ public sealed class MainMenuController : MonoBehaviour
     private void Refresh()
     {
         playButton.interactable = GameProgress.IsReady && !loading;
+        if (ratingButton != null) ratingButton.interactable = GameProgress.IsReady && !loading;
         authButton.interactable = GameProgress.IsReady && !YG2.player.auth && !loading;
         authLabel.text = YG2.player.auth ? "Яндекс ID подключён" : "Войти через Яндекс ID";
         statusText.richText = false;
@@ -48,4 +53,26 @@ public sealed class MainMenuController : MonoBehaviour
     }
 
     public void SignIn() => GameProgress.BeginAuthorization();
+
+    public void ShowRating()
+    {
+        if (!GameProgress.IsReady || loading || ratingPanel == null) return;
+        GameProgress.SaveNow();
+        if (menuPanel != null) menuPanel.SetActive(false);
+        if (titlePanel != null) titlePanel.SetActive(false);
+        ratingPanel.SetActive(true);
+    }
+
+    public void CloseRating()
+    {
+        if (ratingPanel != null) ratingPanel.SetActive(false);
+        if (menuPanel != null) menuPanel.SetActive(true);
+        if (titlePanel != null) titlePanel.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (!YG2.isPauseGame && ratingPanel != null && ratingPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+            CloseRating();
+    }
 }

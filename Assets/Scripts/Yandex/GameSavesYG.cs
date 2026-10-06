@@ -17,5 +17,6 @@ namespace YG.Insides
         public void GameAuthClosed() => GameProgress.AuthorizationClosed();
         public void GameRatingSaved(string score) => GameProgress.RatingSaved(score);
         public void GameRatingFailed() => GameProgress.RatingFailed();
+        public void GameLeaderboardFailed(string name) => GameProgress.ReportLeaderboardFailure(name);
     }
 }

@@ -12,7 +12,7 @@ using CloudPrefs = RedefineYG.PlayerPrefs;
 [DefaultExecutionOrder(-31000)]
 public sealed class GameProgress : MonoBehaviour
 {
-    public const string LeaderboardName = "rating";
+    public const string LeaderboardName = "mmr";
     private const string BackupPrefix = "LastSoldier.Progress.v1.";
     private const float CloudInterval = 10f;
     private static GameProgress instance;
@@ -20,6 +20,7 @@ public sealed class GameProgress : MonoBehaviour
     public static bool AuthPending { get; private set; }
     public static bool CloudAvailable { get; private set; }
     public static event Action Changed;
+    public static event Action<string> LeaderboardLoadFailed;
     private bool localDirty, cloudDirty, sending, capturing, wasGuest;
     private float nextCloudSave, nextCapture;
     private string owner;
@@ -40,6 +41,7 @@ public sealed class GameProgress : MonoBehaviour
         instance = null;
         IsReady = AuthPending = CloudAvailable = false;
         Changed = null;
+        LeaderboardLoadFailed = null;
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -117,6 +119,7 @@ public sealed class GameProgress : MonoBehaviour
         CommitLocal();
         LocalStorage.SetKey(BackupPrefix + owner, JsonUtility.ToJson(YG2.saves));
         submittedRating = -1;
+        ratingSending = false;
         Changed?.Invoke();
     }
 
@@ -262,6 +265,7 @@ public sealed class GameProgress : MonoBehaviour
             FindObjectOfType<PlayerController>()?.SavePlayerData();
             FindObjectOfType<CrossbowController>()?.SaveArrowCounts();
             FindObjectOfType<Stats>()?.SaveInfo();
+            FindObjectOfType<WaveSpawner>()?.SaveCheckpoint();
             FindObjectOfType<Beka>(true)?.SaveUpgrades();
         }
         finally { capturing = false; }
@@ -319,12 +323,12 @@ public sealed class GameProgress : MonoBehaviour
     private void SendRating()
     {
         if (!YG2.player.auth || !CloudAvailable || ratingSending || Time.unscaledTime < nextRating) return;
-        int kills = CloudPrefs.GetInt("countEnemyDead", 0);
-        int score = RatingScore(kills, CloudPrefs.GetInt("countPlayerDead", 0));
-        if (kills == 0 || score == submittedRating) return;
+        var summary = Stats.ReadLeaderboardSummary();
+        int score = MmrScore(summary.waves, summary.kills);
+        if (score == 0 || score == submittedRating) return;
         nextRating = Time.unscaledTime + 30f;
         ratingSending = true;
-        YG2.SetLeaderboard(LeaderboardName, score);
+        YG2.SetLeaderboard(LeaderboardName, score, JsonUtility.ToJson(summary));
 #if UNITY_EDITOR
         RatingSaved(score.ToString());
 #endif
@@ -344,11 +348,13 @@ public sealed class GameProgress : MonoBehaviour
 
     [Serializable] private sealed class SaveReceipt { public string ownerId; public int idSave; }
 
-    public static int RatingScore(int kills, int deaths)
+    public static int MmrScore(int completedWaves, int kills)
     {
-        double rating = Math.Max(0, kills) * 100d / Math.Max(1, deaths);
-        return (int)Math.Min(int.MaxValue, Math.Round(rating, MidpointRounding.AwayFromZero));
+        long rating = Math.Max(0, completedWaves) * 100L + Math.Max(0, kills);
+        return (int)Math.Min(int.MaxValue, rating);
     }
+
+    public static void ReportLeaderboardFailure(string name) => LeaderboardLoadFailed?.Invoke(name);
 
     private void OnSdkPause(bool paused) { if (paused) SaveNow(); }
     private void OnApplicationFocus(bool focused) { if (!focused) SaveNow(); }

@@ -10,8 +10,7 @@ public class UserDisplay : MonoBehaviour
     private void Start() => Refresh();
     private void Refresh()
     {
-        if (userInfoText == null) return;
-        userInfoText.richText = false;
-        userInfoText.text = YG2.player.auth ? "Игрок: " + YG2.player.name : "Гость";
+        string name = YG2.player.auth ? YG2.player.name : "Гость";
+        if (userInfoText != null) { userInfoText.richText = false; userInfoText.text = name; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -495,6 +495,7 @@ public class Roberto : Sounds
     private void Die()
     {
         currentState = BossState.Dead;
+        FindObjectOfType<Stats>()?.AddBossDead();
         animator.SetTrigger("Dead");
         if (hpBarContainer != null)
             hpBarContainer.SetActive(false);

@@ -2,75 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 [System.Serializable]
 public class WaveConfig
 {
-    [Header("Длительность волны (сек)")]
-    public float waveDuration = 30f;    // Сколько идёт волна
+    [Header("Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РІРѕР»РЅС‹ (СЃРµРє)")]
+    public float waveDuration = 30f;    // РЎРєРѕР»СЊРєРѕ РёРґС‘С‚ РІРѕР»РЅР°
 
-    [Header("Диапазон уровней врагов (для Prefabs)")]
-    public int minDifficulty = 0;       // Индекс минимального врага
-    public int maxDifficulty = 1;       // Индекс максимального врага
+    [Header("Р”РёР°РїР°Р·РѕРЅ СѓСЂРѕРІРЅРµР№ РІСЂР°РіРѕРІ (РґР»СЏ Prefabs)")]
+    public int minDifficulty = 0;       // РРЅРґРµРєСЃ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ РІСЂР°РіР°
+    public int maxDifficulty = 1;       // РРЅРґРµРєСЃ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РІСЂР°РіР°
 
-    [Header("Максимум врагов в волне")]
+    [Header("РњР°РєСЃРёРјСѓРј РІСЂР°РіРѕРІ РІ РІРѕР»РЅРµ")]
     public int maxEnemies = 10;
 
-    [Header("Перерыв после волны (сек)")]
-    public float breakDuration = 15f;   // Отдых между волнами
+    [Header("РџРµСЂРµСЂС‹РІ РїРѕСЃР»Рµ РІРѕР»РЅС‹ (СЃРµРє)")]
+    public float breakDuration = 15f;   // РћС‚РґС‹С… РјРµР¶РґСѓ РІРѕР»РЅР°РјРё
 }
 
 public class WaveSpawner : MonoBehaviour
 {
-    #region Спавн врагов и UI
+    #region РЎРїР°РІРЅ РІСЂР°РіРѕРІ Рё UI
 
-    [Header("Точки спавна врагов")]
+    [Header("РўРѕС‡РєРё СЃРїР°РІРЅР° РІСЂР°РіРѕРІ")]
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
-    [Header("Префабы врагов (индекс = сложность)")]
+    [Header("РџСЂРµС„Р°Р±С‹ РІСЂР°РіРѕРІ (РёРЅРґРµРєСЃ = СЃР»РѕР¶РЅРѕСЃС‚СЊ)")]
     [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
 
-    [Header("Список волн")]
+    [Header("РЎРїРёСЃРѕРє РІРѕР»РЅ")]
     [SerializeField] private List<WaveConfig> waves = new List<WaveConfig>();
 
-    [Header("Интервал спавна во время волны")]
+    [Header("РРЅС‚РµСЂРІР°Р» СЃРїР°РІРЅР° РІРѕ РІСЂРµРјСЏ РІРѕР»РЅС‹")]
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private Vector2 spawnOffsetRange = new Vector2(2f, 2f);
 
-    [Header("UI для таймера (необязательно)")]
+    [Header("UI РґР»СЏ С‚Р°Р№РјРµСЂР° (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)")]
     [SerializeField] private Text waveTimerText;
     [SerializeField] private Image waveTimerImage;
     [SerializeField] private Text waveNumberText;
 
-    [Header("Объект, который появляется во время перерыва")]
+    [Header("РћР±СЉРµРєС‚, РєРѕС‚РѕСЂС‹Р№ РїРѕСЏРІР»СЏРµС‚СЃСЏ РІРѕ РІСЂРµРјСЏ РїРµСЂРµСЂС‹РІР°")]
     [SerializeField] private GameObject breakIndicator;
 
-    // Список для хранения всех заспавненных врагов
+    // РЎРїРёСЃРѕРє РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РІСЃРµС… Р·Р°СЃРїР°РІРЅРµРЅРЅС‹С… РІСЂР°РіРѕРІ
     private List<GameObject> activeEnemies = new List<GameObject>();
 
     #endregion
 
-    #region Босс на 10-й и 15-й волнах
+    #region Р‘РѕСЃСЃ РЅР° 10-Р№ Рё 15-Р№ РІРѕР»РЅР°С…
 
-    [Header("Босс на 10-й волне (Слизь)")]
-    [Tooltip("Босс-слизь, который появляется на 10-й волне")]
+    [Header("Р‘РѕСЃСЃ РЅР° 10-Р№ РІРѕР»РЅРµ (РЎР»РёР·СЊ)")]
+    [Tooltip("Р‘РѕСЃСЃ-СЃР»РёР·СЊ, РєРѕС‚РѕСЂС‹Р№ РїРѕСЏРІР»СЏРµС‚СЃСЏ РЅР° 10-Р№ РІРѕР»РЅРµ")]
     [SerializeField] private GameObject bossWave10;
-    [Tooltip("HP-бар босса-слизи (панель) на 10-й волне")]
+    [Tooltip("HP-Р±Р°СЂ Р±РѕСЃСЃР°-СЃР»РёР·Рё (РїР°РЅРµР»СЊ) РЅР° 10-Р№ РІРѕР»РЅРµ")]
     [SerializeField] private GameObject bossHPBar10;
-    [Tooltip("Заглушка (например, UI-элемент) для босса-слизи на 10-й волне")]
+    [Tooltip("Р—Р°РіР»СѓС€РєР° (РЅР°РїСЂРёРјРµСЂ, UI-СЌР»РµРјРµРЅС‚) РґР»СЏ Р±РѕСЃСЃР°-СЃР»РёР·Рё РЅР° 10-Р№ РІРѕР»РЅРµ")]
     [SerializeField] private GameObject bossPlaceholder10;
 
-    [Header("Босс на 15-й волне (Ассассин)")]
-    [Tooltip("Босс-ассассин, который появляется на 15-й волне")]
+    [Header("Р‘РѕСЃСЃ РЅР° 15-Р№ РІРѕР»РЅРµ (РђСЃСЃР°СЃСЃРёРЅ)")]
+    [Tooltip("Р‘РѕСЃСЃ-Р°СЃСЃР°СЃСЃРёРЅ, РєРѕС‚РѕСЂС‹Р№ РїРѕСЏРІР»СЏРµС‚СЃСЏ РЅР° 15-Р№ РІРѕР»РЅРµ")]
     [SerializeField] private GameObject bossWave15;
-    [Tooltip("HP-бар босса-ассассина (панель) на 15-й волне")]
+    [Tooltip("HP-Р±Р°СЂ Р±РѕСЃСЃР°-Р°СЃСЃР°СЃСЃРёРЅР° (РїР°РЅРµР»СЊ) РЅР° 15-Р№ РІРѕР»РЅРµ")]
     [SerializeField] private GameObject bossHPBar15;
-    [Tooltip("Заглушка (например, UI-элемент) для босса-ассассина на 15-й волне")]
+    [Tooltip("Р—Р°РіР»СѓС€РєР° (РЅР°РїСЂРёРјРµСЂ, UI-СЌР»РµРјРµРЅС‚) РґР»СЏ Р±РѕСЃСЃР°-Р°СЃСЃР°СЃСЃРёРЅР° РЅР° 15-Р№ РІРѕР»РЅРµ")]
     [SerializeField] private GameObject bossPlaceholder15;
 
     #endregion
 
-    #region Внутренние переменные волны
+    #region Р’РЅСѓС‚СЂРµРЅРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹Рµ РІРѕР»РЅС‹
 
     private int currentWaveIndex = 0;
     private float waveTimeLeft = 0f;
@@ -79,20 +80,25 @@ public class WaveSpawner : MonoBehaviour
     private bool isBreakActive = false;
     private bool playerInsideZone = false;
     private int enemiesSpawnedInWave = 0;
+    private bool bossActivated;
+    public int CurrentWaveNumber => currentWaveIndex + 1;
+    public bool IsRunning => playerInsideZone && (isWaveActive || isBreakActive);
+    public int ActiveEnemyCount => activeEnemies.Count;
+    public float RemainingWaveTime => waveTimeLeft;
 
     #endregion
 
-    #region Старт и Update
+    #region РЎС‚Р°СЂС‚ Рё Update
 
     private void Start()
     {
-        // Скрываем UI, пока игрок не зайдёт
+        // РЎРєСЂС‹РІР°РµРј UI, РїРѕРєР° РёРіСЂРѕРє РЅРµ Р·Р°Р№РґС‘С‚
         HideSpawnerUI();
 
         if (breakIndicator != null)
             breakIndicator.SetActive(false);
 
-        // Скрываем объекты босса для 10-й и 15-й волн
+        // РЎРєСЂС‹РІР°РµРј РѕР±СЉРµРєС‚С‹ Р±РѕСЃСЃР° РґР»СЏ 10-Р№ Рё 15-Р№ РІРѕР»РЅ
         if (bossWave10 != null) bossWave10.SetActive(false);
         if (bossHPBar10 != null) bossHPBar10.SetActive(false);
         if (bossPlaceholder10 != null) bossPlaceholder10.SetActive(false);
@@ -104,53 +110,49 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!playerInsideZone) return;  // Игрок ещё не в зоне — ничего не делаем
+        if (!playerInsideZone || Time.timeScale == 0f || YG.YG2.isPauseGame) return;  // РРіСЂРѕРє РµС‰С‘ РЅРµ РІ Р·РѕРЅРµ вЂ” РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј
 
         if (isWaveActive)
         {
-            // Удаляем из списка уничтожённых врагов (null)
+            // РЈРґР°Р»СЏРµРј РёР· СЃРїРёСЃРєР° СѓРЅРёС‡С‚РѕР¶С‘РЅРЅС‹С… РІСЂР°РіРѕРІ (null)
             activeEnemies.RemoveAll(enemy => enemy == null);
             WaveConfig currentWave = waves[currentWaveIndex];
 
-            // Если это боссовая волна, не учитываем обычные условия окончания волны
+            // Р•СЃР»Рё СЌС‚Рѕ Р±РѕСЃСЃРѕРІР°СЏ РІРѕР»РЅР°, РЅРµ СѓС‡РёС‚С‹РІР°РµРј РѕР±С‹С‡РЅС‹Рµ СѓСЃР»РѕРІРёСЏ РѕРєРѕРЅС‡Р°РЅРёСЏ РІРѕР»РЅС‹
             if (currentWaveIndex == 9)
             {
-                // Для волны с боссом-слизью
-                if (bossWave10 == null || !bossWave10.activeInHierarchy)
+                // Р”Р»СЏ РІРѕР»РЅС‹ СЃ Р±РѕСЃСЃРѕРј-СЃР»РёР·СЊСЋ
+                if (bossActivated && (bossWave10 == null || !bossWave10.activeInHierarchy))
                 {
-                    isWaveActive = false;
-                    StartBreak();
+                    CompleteWave(true);
                     return;
                 }
-                // Можно обновлять UI по-другому или просто выводить номер волны
+                // РњРѕР¶РЅРѕ РѕР±РЅРѕРІР»СЏС‚СЊ UI РїРѕ-РґСЂСѓРіРѕРјСѓ РёР»Рё РїСЂРѕСЃС‚Рѕ РІС‹РІРѕРґРёС‚СЊ РЅРѕРјРµСЂ РІРѕР»РЅС‹
                 UpdateWaveUI(0, currentWave.waveDuration, true);
             }
             else if (currentWaveIndex == 14)
             {
-                // Для волны с боссом-ассассином
-                if (bossWave15 == null || !bossWave15.activeInHierarchy)
+                // Р”Р»СЏ РІРѕР»РЅС‹ СЃ Р±РѕСЃСЃРѕРј-Р°СЃСЃР°СЃСЃРёРЅРѕРј
+                if (bossActivated && (bossWave15 == null || !bossWave15.activeInHierarchy))
                 {
-                    isWaveActive = false;
-                    StartBreak();
+                    CompleteWave(true);
                     return;
                 }
                 UpdateWaveUI(0, currentWave.waveDuration, true);
             }
             else
             {
-                // Обычная логика для обычных волн:
+                // РћР±С‹С‡РЅР°СЏ Р»РѕРіРёРєР° РґР»СЏ РѕР±С‹С‡РЅС‹С… РІРѕР»РЅ:
                 if (enemiesSpawnedInWave >= currentWave.maxEnemies && activeEnemies.Count == 0)
                 {
-                    isWaveActive = false;
-                    StartBreak();
+                    CompleteWave(true);
                     return;
                 }
 
                 waveTimeLeft -= Time.deltaTime;
                 if (waveTimeLeft <= 0f)
                 {
-                    isWaveActive = false;
-                    StartBreak();
+                    CompleteWave(false);
                 }
                 else
                 {
@@ -179,13 +181,15 @@ public class WaveSpawner : MonoBehaviour
 
     #endregion
 
-    #region Волновая логика
+    #region Р’РѕР»РЅРѕРІР°СЏ Р»РѕРіРёРєР°
 
     private void StartWave(int waveIndex)
     {
+        StopAllCoroutines();
+        bossActivated = false;
         if (waveIndex < 0 || waveIndex >= waves.Count)
         {
-            Debug.LogWarning("Нет такой волны: " + waveIndex);
+            Debug.LogWarning("РќРµС‚ С‚Р°РєРѕР№ РІРѕР»РЅС‹: " + waveIndex);
             return;
         }
 
@@ -198,14 +202,15 @@ public class WaveSpawner : MonoBehaviour
         WaveConfig wave = waves[waveIndex];
         waveTimeLeft = wave.waveDuration;
         enemiesSpawnedInWave = 0;
+        SaveCheckpoint();
 
-        // Очистка заспавненных врагов (если игрок ранее покидал арену)
+        // РћС‡РёСЃС‚РєР° Р·Р°СЃРїР°РІРЅРµРЅРЅС‹С… РІСЂР°РіРѕРІ (РµСЃР»Рё РёРіСЂРѕРє СЂР°РЅРµРµ РїРѕРєРёРґР°Р» Р°СЂРµРЅСѓ)
         ClearActiveEnemies();
 
-        // Логика выбора:
-        // Если волна 10 (индекс 9) — активируется босс-слизь,
-        // если волна 15 (индекс 14) — активируется босс-ассассин,
-        // иначе спавнятся обычные враги.
+        // Р›РѕРіРёРєР° РІС‹Р±РѕСЂР°:
+        // Р•СЃР»Рё РІРѕР»РЅР° 10 (РёРЅРґРµРєСЃ 9) вЂ” Р°РєС‚РёРІРёСЂСѓРµС‚СЃСЏ Р±РѕСЃСЃ-СЃР»РёР·СЊ,
+        // РµСЃР»Рё РІРѕР»РЅР° 15 (РёРЅРґРµРєСЃ 14) вЂ” Р°РєС‚РёРІРёСЂСѓРµС‚СЃСЏ Р±РѕСЃСЃ-Р°СЃСЃР°СЃСЃРёРЅ,
+        // РёРЅР°С‡Рµ СЃРїР°РІРЅСЏС‚СЃСЏ РѕР±С‹С‡РЅС‹Рµ РІСЂР°РіРё.
         if (waveIndex == 9)
         {
             StartCoroutine(ActivateBossWave10());
@@ -224,7 +229,7 @@ public class WaveSpawner : MonoBehaviour
     {
         WaveConfig wave = waves[waveIndex];
 
-        while (isWaveActive)
+        while (isWaveActive && currentWaveIndex == waveIndex)
         {
             if (enemiesSpawnedInWave < wave.maxEnemies)
             {
@@ -256,6 +261,16 @@ public class WaveSpawner : MonoBehaviour
         activeEnemies.Add(enemy);
     }
 
+    private void CompleteWave(bool cleared)
+    {
+        if (!isWaveActive) return;
+        isWaveActive = false;
+        StopAllCoroutines();
+        if (cleared) FindObjectOfType<Stats>()?.AddCompletedWave();
+        StartBreak();
+        SaveCheckpoint();
+    }
+
     private void StartBreak()
     {
         isBreakActive = true;
@@ -270,8 +285,8 @@ public class WaveSpawner : MonoBehaviour
         currentWaveIndex++;
         if (currentWaveIndex >= waves.Count)
         {
-            Debug.Log("Все волны пройдены!");
-            // Можно зациклить или остановить спавн.
+            Debug.Log("Р’СЃРµ РІРѕР»РЅС‹ РїСЂРѕР№РґРµРЅС‹!");
+            // РњРѕР¶РЅРѕ Р·Р°С†РёРєР»РёС‚СЊ РёР»Рё РѕСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРїР°РІРЅ.
             currentWaveIndex = 0;
         }
         StartWave(currentWaveIndex);
@@ -279,11 +294,11 @@ public class WaveSpawner : MonoBehaviour
 
     #endregion
 
-    #region Triggerы и сброс
+    #region TriggerС‹ Рё СЃР±СЂРѕСЃ
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !playerInsideZone)
         {
             playerInsideZone = true;
             ShowSpawnerUI();
@@ -303,7 +318,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void ResetWavesAndStart()
     {
-        currentWaveIndex = 0;
+        currentWaveIndex = PlayerPrefs.GetInt("ArenaRunActive", 0) == 1
+            ? Mathf.Clamp(PlayerPrefs.GetInt("ArenaWaveIndex", 0), 0, waves.Count - 1) : 0;
         isWaveActive = false;
         isBreakActive = false;
         StartWave(currentWaveIndex);
@@ -311,6 +327,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void ResetSpawnerCompletely()
     {
+        PlayerPrefs.SetInt("ArenaRunActive", 0);
+        GameProgress.RequestSave();
         StopAllCoroutines();
         currentWaveIndex = 0;
         isWaveActive = false;
@@ -321,15 +339,46 @@ public class WaveSpawner : MonoBehaviour
 
         ClearActiveEnemies();
 
-        // Скрываем объекты босса для 10-й волны
+        // РЎРєСЂС‹РІР°РµРј РѕР±СЉРµРєС‚С‹ Р±РѕСЃСЃР° РґР»СЏ 10-Р№ РІРѕР»РЅС‹
         if (bossWave10 != null) bossWave10.SetActive(false);
         if (bossHPBar10 != null) bossHPBar10.SetActive(false);
         if (bossPlaceholder10 != null) bossPlaceholder10.SetActive(false);
 
-        // Скрываем босса для 15-й волны и его UI
+        // РЎРєСЂС‹РІР°РµРј Р±РѕСЃСЃР° РґР»СЏ 15-Р№ РІРѕР»РЅС‹ Рё РµРіРѕ UI
         if (bossWave15 != null) bossWave15.SetActive(false);
         if (bossHPBar15 != null) bossHPBar15.SetActive(false);
         if (bossPlaceholder15 != null) bossPlaceholder15.SetActive(false);
+    }
+
+    public void AbandonRun()
+    {
+        playerInsideZone = false;
+        ResetSpawnerCompletely();
+        HideSpawnerUI();
+    }
+
+    public void SaveCheckpoint()
+    {
+        if (!IsRunning || waves.Count == 0) return;
+        PlayerPrefs.SetInt("ArenaRunActive", 1);
+        PlayerPrefs.SetInt("ArenaWaveIndex", isBreakActive ? (currentWaveIndex + 1) % waves.Count : currentWaveIndex);
+        var player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            PlayerPrefs.SetFloat("ArenaPlayerX", player.transform.position.x);
+            PlayerPrefs.SetFloat("ArenaPlayerY", player.transform.position.y);
+        }
+        GameProgress.RequestSave();
+    }
+
+    public void RestoreCheckpointPosition(PlayerController player)
+    {
+        if (PlayerPrefs.GetInt("ArenaRunActive", 0) != 1 || !PlayerPrefs.HasKey("ArenaPlayerX")) return;
+        var zone = GetComponent<Collider2D>();
+        var point = new Vector3(PlayerPrefs.GetFloat("ArenaPlayerX"), PlayerPrefs.GetFloat("ArenaPlayerY"), player.transform.position.z);
+        if (zone != null && zone.bounds.Contains(new Vector3(point.x, point.y, zone.bounds.center.z)))
+            player.transform.position = point;
+        else PlayerPrefs.SetInt("ArenaRunActive", 0);
     }
 
     private void ClearActiveEnemies()
@@ -344,7 +393,7 @@ public class WaveSpawner : MonoBehaviour
 
     #endregion
 
-    #region UI Методы
+    #region UI РњРµС‚РѕРґС‹
 
     private void ShowSpawnerUI()
     {
@@ -381,36 +430,40 @@ public class WaveSpawner : MonoBehaviour
 
     #endregion
 
-    #region Boss на 10-й и 15-й волнах
+    #region Boss РЅР° 10-Р№ Рё 15-Р№ РІРѕР»РЅР°С…
 
-    // Босс на 10-й волне (Слизь)
+    // Р‘РѕСЃСЃ РЅР° 10-Р№ РІРѕР»РЅРµ (РЎР»РёР·СЊ)
     private IEnumerator ActivateBossWave10()
     {
-        // Подождём 1 секунду для визуального эффекта
+        // РџРѕРґРѕР¶РґС‘Рј 1 СЃРµРєСѓРЅРґСѓ РґР»СЏ РІРёР·СѓР°Р»СЊРЅРѕРіРѕ СЌС„С„РµРєС‚Р°
         yield return new WaitForSeconds(1f);
 
         if (bossWave10 != null)
             bossWave10.SetActive(true);
+        bossActivated = true;
+        if (bossWave10 == null) { CompleteWave(false); yield break; }
         if (bossHPBar10 != null)
             bossHPBar10.SetActive(true);
         if (bossPlaceholder10 != null)
             bossPlaceholder10.SetActive(true);
 
-        // Вместо спавна врагов просто ждём окончания волны
+        // Р’РјРµСЃС‚Рѕ СЃРїР°РІРЅР° РІСЂР°РіРѕРІ РїСЂРѕСЃС‚Рѕ Р¶РґС‘Рј РѕРєРѕРЅС‡Р°РЅРёСЏ РІРѕР»РЅС‹
         while (isWaveActive)
         {
             yield return null;
         }
     }
 
-    // Босс на 15-й волне (Ассассин)
+    // Р‘РѕСЃСЃ РЅР° 15-Р№ РІРѕР»РЅРµ (РђСЃСЃР°СЃСЃРёРЅ)
     private IEnumerator ActivateBossWave15()
     {
-        // Подождём 1 секунду для визуального эффекта
+        // РџРѕРґРѕР¶РґС‘Рј 1 СЃРµРєСѓРЅРґСѓ РґР»СЏ РІРёР·СѓР°Р»СЊРЅРѕРіРѕ СЌС„С„РµРєС‚Р°
         yield return new WaitForSeconds(1f);
 
         if (bossWave15 != null)
             bossWave15.SetActive(true);
+        bossActivated = true;
+        if (bossWave15 == null) { CompleteWave(false); yield break; }
         if (bossHPBar15 != null)
             bossHPBar15.SetActive(true);
         if (bossPlaceholder15 != null)

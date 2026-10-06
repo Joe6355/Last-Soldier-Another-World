@@ -8,7 +8,7 @@ using UnityEngine.UI;
 [DefaultExecutionOrder(-500)]
 public class PlayerController : Sounds
 {
-    [Header("Щит и всё, что за него отвечает")]
+    [Header("Р©РёС‚ Рё РІСЃС‘, С‡С‚Рѕ Р·Р° РЅРµРіРѕ РѕС‚РІРµС‡Р°РµС‚")]
     [SerializeField] private float shieldValue = 100f;
     [SerializeField] private float shieldMaxValue = 100f;
     [SerializeField] private float shieldDrainRate = 10f;
@@ -18,26 +18,26 @@ public class PlayerController : Sounds
     [SerializeField] private Image shieldImage;
     [SerializeField] private GameObject shieldVisual;
 
-    [Header("Настройки скорости")]
-    public float originalMoveSpeed = 2f;      // начальная скорость
+    [Header("РќР°СЃС‚СЂРѕР№РєРё СЃРєРѕСЂРѕСЃС‚Рё")]
+    public float originalMoveSpeed = 2f;      // РЅР°С‡Р°Р»СЊРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ
     [HideInInspector] public float shieldMultiplier = 1f;
     [HideInInspector] public float mirrorMultiplier = 1f;
     [HideInInspector] public float cameraMultiplier = 1f;
 
     private float finalSpeed;
 
-    [Header("Ссылки на объекты")]
+    [Header("РЎСЃС‹Р»РєРё РЅР° РѕР±СЉРµРєС‚С‹")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Camera cam;
     [SerializeField] private Animator anim;
 
-    [Header("Монеты и UI")]
+    [Header("РњРѕРЅРµС‚С‹ Рё UI")]
     [SerializeField] private Text coinValueText;
     public int totalCoins = 0;
 
     public CrossbowController crossbowController;
 
-    [Header("Зеркало (телепорт)")]
+    [Header("Р—РµСЂРєР°Р»Рѕ (С‚РµР»РµРїРѕСЂС‚)")]
     [SerializeField] private Transform mirrorHome;
     private KeyCode keyToHold = KeyCode.E;
     public float holdDuration = 3f;
@@ -49,12 +49,12 @@ public class PlayerController : Sounds
     [SerializeField] private Image progressBarImage;
     [SerializeField] private GameObject progressBarContainer;
 
-    [Header("Здоровье и хп бар")]
+    [Header("Р—РґРѕСЂРѕРІСЊРµ Рё С…Рї Р±Р°СЂ")]
     [SerializeField] private Image hpBar;
     public float hp = 100;
-    public float maxHp = 100;                // изначальное макс. хп
+    public float maxHp = 100;                // РёР·РЅР°С‡Р°Р»СЊРЅРѕРµ РјР°РєСЃ. С…Рї
 
-    // Зелья
+    // Р—РµР»СЊСЏ
     private KeyCode keyHeal = KeyCode.H;
     [SerializeField] private int potionCount = 4;
     [SerializeField] private float heal = 55f;
@@ -63,7 +63,7 @@ public class PlayerController : Sounds
 
     private SpriteRenderer sprite;
 
-    // Параметры яда
+    // РџР°СЂР°РјРµС‚СЂС‹ СЏРґР°
     private float poisDamage = 1;
     private float poisTicks = 5;
     private float poisTickInterval = 1;
@@ -74,15 +74,15 @@ public class PlayerController : Sounds
     [Header("Dash / Stamina Settings")]
     [SerializeField] private float dashDistance = 2f;
     [SerializeField] private float dashCost = 25f;
-    [SerializeField] public float maxStamina = 100f;      // изначальная стамина
+    [SerializeField] public float maxStamina = 100f;      // РёР·РЅР°С‡Р°Р»СЊРЅР°СЏ СЃС‚Р°РјРёРЅР°
     [SerializeField] private float staminaRegenRate = 5f;
     [SerializeField] private Image staminaBar;
 
-    // Текущее значение стамины
+    // РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ СЃС‚Р°РјРёРЅС‹
     [HideInInspector] public float stamina;
 
-    // ====== Дополнительные поля для сохранения базовых значений ======
-    // (чтобы ResetAllUpgrades мог вернуть к исходным)
+    // ====== Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ Р±Р°Р·РѕРІС‹С… Р·РЅР°С‡РµРЅРёР№ ======
+    // (С‡С‚РѕР±С‹ ResetAllUpgrades РјРѕРі РІРµСЂРЅСѓС‚СЊ Рє РёСЃС…РѕРґРЅС‹Рј)
     private float baseMaxHp;
     private float baseShieldMaxValue;
     private float baseMaxStamina;
@@ -90,12 +90,14 @@ public class PlayerController : Sounds
     // --------------------------------------------------
 
     private Stats stats;
+    public bool IsAwaitingRevive { get; private set; }
+    private float invulnerableUntil;
 
     private void Start()
     {
         stats = FindObjectOfType<Stats>();
 
-        // Сохраняем базовые нач. значения (для сброса апгрейдов)
+        // РЎРѕС…СЂР°РЅСЏРµРј Р±Р°Р·РѕРІС‹Рµ РЅР°С‡. Р·РЅР°С‡РµРЅРёСЏ (РґР»СЏ СЃР±СЂРѕСЃР° Р°РїРіСЂРµР№РґРѕРІ)
         baseMaxHp = maxHp;
         baseShieldMaxValue = shieldMaxValue;
         baseMaxStamina = maxStamina;
@@ -107,13 +109,13 @@ public class PlayerController : Sounds
         mirrorCountText.text = mirrorRemainder.ToString();
 
         totalCoins = PlayerPrefs.GetInt("Coins", 0);
-        Debug.Log("Монеты игрока: " + totalCoins);
+        Debug.Log("РњРѕРЅРµС‚С‹ РёРіСЂРѕРєР°: " + totalCoins);
         UpdateCoinText();
 
         crossbowController = FindObjectOfType<CrossbowController>();
         if (crossbowController == null)
         {
-            Debug.LogError("CrossbowController не привязан!");
+            Debug.LogError("CrossbowController РЅРµ РїСЂРёРІСЏР·Р°РЅ!");
         }
 
         progressBarContainer.SetActive(false);
@@ -121,12 +123,12 @@ public class PlayerController : Sounds
 
         sprite = GetComponent<SpriteRenderer>();
 
-        // Инициализируем стамину
+        // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЃС‚Р°РјРёРЅСѓ
         if (PlayerPrefs.HasKey("PlayerStamina"))
         {
-            // загружаем сохранённую стамину
+            // Р·Р°РіСЂСѓР¶Р°РµРј СЃРѕС…СЂР°РЅС‘РЅРЅСѓСЋ СЃС‚Р°РјРёРЅСѓ
             stamina = PlayerPrefs.GetFloat("PlayerStamina");
-            // clamp, если вдруг больше max
+            // clamp, РµСЃР»Рё РІРґСЂСѓРі Р±РѕР»СЊС€Рµ max
             if (stamina > maxStamina) stamina = maxStamina;
         }
         else
@@ -141,6 +143,8 @@ public class PlayerController : Sounds
             upgradeShop.LoadUpgrades();
             RestoreUpgrades(upgradeShop.upgradeItems);
         }
+        IsAwaitingRevive = PlayerPrefs.GetInt("PlayerDeathPending", 0) == 1 && hp <= 0;
+        FindObjectOfType<WaveSpawner>()?.RestoreCheckpointPosition(this);
     }
 
     private void Update()
@@ -150,11 +154,12 @@ public class PlayerController : Sounds
         MirrorHome();
         HealPoition();
         HandleShield();
-        HandleDash();  // логика дэша со стаминой
+        HandleDash();  // Р»РѕРіРёРєР° РґСЌС€Р° СЃРѕ СЃС‚Р°РјРёРЅРѕР№
     }
 
     private void FixedUpdate()
     {
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale == 0f || IsAwaitingRevive) return;
         finalSpeed = originalMoveSpeed * shieldMultiplier * mirrorMultiplier * cameraMultiplier;
         Movement();
 
@@ -165,7 +170,7 @@ public class PlayerController : Sounds
     }
 
     // =========================
-    //       ЛОГИКА СЧИТА
+    //       Р›РћР“РРљРђ РЎР§РРўРђ
     // =========================
     private void HandleShield()
     {
@@ -174,7 +179,7 @@ public class PlayerController : Sounds
             shieldActive = true;
             shieldVisual.SetActive(true);
 
-            shieldMultiplier = 0.5f; // замедление при щите
+            shieldMultiplier = 0.5f; // Р·Р°РјРµРґР»РµРЅРёРµ РїСЂРё С‰РёС‚Рµ
             shieldValue -= shieldDrainRate * Time.deltaTime;
             if (shieldValue < 0f) shieldValue = 0f;
            
@@ -194,7 +199,7 @@ public class PlayerController : Sounds
         shieldImage.fillAmount = shieldValue / shieldMaxValue;
     }
     // ===========================
-    //     ЗЕРКАЛО / ТЕЛЕПОРТ
+    //     Р—Р•Р РљРђР›Рћ / РўР•Р›Р•РџРћР Рў
     // ===========================
     private void MirrorHome()
     {
@@ -218,10 +223,10 @@ public class PlayerController : Sounds
             if (holdTimer >= holdDuration)
             {
                 TeleportPlayerHome();
-                PlaySound(sounds[0], volume: 1, destroyed: false);//звук зеркала
+                PlaySound(sounds[0], volume: 1, destroyed: false);//Р·РІСѓРє Р·РµСЂРєР°Р»Р°
                 mirrorRemainder--;
                 mirrorCountText.text = mirrorRemainder.ToString();
-                Debug.Log($"Заряд зеркала: {mirrorRemainder}");
+                Debug.Log($"Р—Р°СЂСЏРґ Р·РµСЂРєР°Р»Р°: {mirrorRemainder}");
                 ResetMirrorState();
                 SavePlayerData();
             }
@@ -243,11 +248,12 @@ public class PlayerController : Sounds
     }
 
     // ===========================
-    //    ПОЛУЧЕНИЕ УРОНА
+    //    РџРћР›РЈР§Р•РќРР• РЈР РћРќРђ
     // ===========================
     public void TakeDamage(float damage)
     {
-        // Если щит есть
+        if (IsAwaitingRevive || Time.time < invulnerableUntil || Time.timeScale == 0f || YG.YG2.isPauseGame) return;
+        // Р•СЃР»Рё С‰РёС‚ РµСЃС‚СЊ
         if (shieldActive && shieldValue > 0f)
         {
             shieldValue -= damage;
@@ -255,21 +261,21 @@ public class PlayerController : Sounds
             return;
         }
 
-        // Прерываем телепортацию, если она шла
+        // РџСЂРµСЂС‹РІР°РµРј С‚РµР»РµРїРѕСЂС‚Р°С†РёСЋ, РµСЃР»Рё РѕРЅР° С€Р»Р°
         if (isHolding)
         {
-            Debug.Log("Урон получен, телепортация прервана!");
+            Debug.Log("РЈСЂРѕРЅ РїРѕР»СѓС‡РµРЅ, С‚РµР»РµРїРѕСЂС‚Р°С†РёСЏ РїСЂРµСЂРІР°РЅР°!");
             ResetMirrorState();
         }
 
-        // Урон по HP
+        // РЈСЂРѕРЅ РїРѕ HP
         hp -= damage;
         PlaySound(sounds[1], volume: 1, destroyed: true);
         SetTransparence(0.5f);
         Invoke(nameof(ResetTransparency), 0.1f);
     }
 
-    // пример яда
+    // РїСЂРёРјРµСЂ СЏРґР°
     private IEnumerator ApplyPoisonDamage()
     {
         for (int i = 0; i < poisTicks; i++)
@@ -295,7 +301,7 @@ public class PlayerController : Sounds
     }
 
     // ===========================
-    //     ДВИЖЕНИЕ / РОТАЦИЯ
+    //     Р”Р’РР–Р•РќРР• / Р РћРўРђР¦РРЇ
     // ===========================
     private void Movement()
     {
@@ -328,41 +334,55 @@ public class PlayerController : Sounds
 
     private void DeadPlayer()
     {
-        if (hp <= 0)
-        {
-            stats.countPlayerDead++;
-            stats.UpdateUI();
+        if (hp > 0 || IsAwaitingRevive) return;
+        hp = 0;
+        IsAwaitingRevive = true;
+        StopAllCoroutines();
+        ResetMirrorState();
+        stats.AddPlayerDead();
+        PlaySound(sounds[4], volume: 1, destroyed: true);
+        SavePlayerData();
+        if (!GameMonetization.HandleDeath(this)) ReturnToCampAfterDeath();
+    }
 
-            TeleportPlayerHome();
-            hp += 25;
-            totalCoins /= 2;
-            if (totalCoins < 0) totalCoins = 0;
+    public void ReviveAfterVideo()
+    {
+        if (!IsAwaitingRevive) return;
+        hp = maxHp;
+        IsAwaitingRevive = false;
+        invulnerableUntil = Time.time + 2f;
+        HpBar();
+        SavePlayerData();
+    }
 
-            PlaySound(sounds[4], volume: 1, destroyed: true);
-
-            Debug.Log("Игрок умер. Монеты после штрафа: " + totalCoins);
-            PlayerPrefs.SetInt("Coins", totalCoins);
-            PlayerPrefs.SetFloat("PlayerHP", hp);
-            stats.SaveInfo();
-            SavePlayerData();
-        }
+    public void ReturnToCampAfterDeath()
+    {
+        if (!IsAwaitingRevive) return;
+        FindObjectOfType<WaveSpawner>()?.AbandonRun();
+        TeleportPlayerHome();
+        hp = Mathf.Min(maxHp, 25f);
+        totalCoins = Mathf.Max(0, totalCoins / 2);
+        IsAwaitingRevive = false;
+        HpBar();
+        UpdateCoinText();
+        SavePlayerData();
     }
 
     public void TeleportPlayerHome()
     {
         transform.position = mirrorHome.position;
-        Debug.Log("Вы дома");
+        Debug.Log("Р’С‹ РґРѕРјР°");
     }
 
     // ===========================
-    //       МОНЕТЫ
+    //       РњРћРќР•РўР«
     // ===========================
     public void AddCoin(int amount)
     {
         totalCoins += amount;
         PlayerPrefs.SetInt("Coins", totalCoins);
         GameProgress.RequestSave();
-        Debug.Log("Собрано монеток: " + totalCoins);
+        Debug.Log("РЎРѕР±СЂР°РЅРѕ РјРѕРЅРµС‚РѕРє: " + totalCoins);
     }
 
     public void ResetCoins()
@@ -394,6 +414,7 @@ public class PlayerController : Sounds
     // ===========================
     public void SavePlayerData()
     {
+        PlayerPrefs.SetInt("PlayerDeathPending", IsAwaitingRevive ? 1 : 0);
         PlayerPrefs.SetFloat("PlayerHP", hp);
         PlayerPrefs.SetFloat("PlayerMaxHP", maxHp);
 
@@ -412,7 +433,7 @@ public class PlayerController : Sounds
 
         PlayerPrefs.SetInt("Coins", totalCoins);
 
-        // Сохраняем фактический урон стрел.
+        // РЎРѕС…СЂР°РЅСЏРµРј С„Р°РєС‚РёС‡РµСЃРєРёР№ СѓСЂРѕРЅ СЃС‚СЂРµР».
         if (crossbowController != null && crossbowController.arrowPrefabs.Length > 0)
         {
             var arrow = crossbowController.arrowPrefabs[0].GetComponent<ArrowDef>();
@@ -440,7 +461,7 @@ public class PlayerController : Sounds
         potionCount = PlayerPrefs.GetInt("potionCount", 1);
         totalCoins = PlayerPrefs.GetInt("Coins", 0);
 
-        // Загружаем урон стрел (если не было сохранения, ставим 2)
+        // Р—Р°РіСЂСѓР¶Р°РµРј СѓСЂРѕРЅ СЃС‚СЂРµР» (РµСЃР»Рё РЅРµ Р±С‹Р»Рѕ СЃРѕС…СЂР°РЅРµРЅРёСЏ, СЃС‚Р°РІРёРј 2)
         int arrowDamage = PlayerPrefs.GetInt("ArrowDamageUpgrade", 2);
         foreach (var arrowPrefab in crossbowController.arrowPrefabs)
         {
@@ -451,7 +472,7 @@ public class PlayerController : Sounds
             }
         }
 
-        Debug.Log("Данные игрока загружены (PlayerController).");
+        Debug.Log("Р”Р°РЅРЅС‹Рµ РёРіСЂРѕРєР° Р·Р°РіСЂСѓР¶РµРЅС‹ (PlayerController).");
     }
 
     private void OnApplicationQuit()
@@ -460,7 +481,7 @@ public class PlayerController : Sounds
     }
 
     // ===========================
-    //       ЗЕРКАЛО / ЗЕЛЬЯ
+    //       Р—Р•Р РљРђР›Рћ / Р—Р•Р›Р¬РЇ
     // ===========================
     public void AddMirorr(int amount)
     {
@@ -477,7 +498,7 @@ public class PlayerController : Sounds
     }
 
     // ===========================
-    //        ВИЗ. ЭФФЕКТ
+    //        Р’РР—. Р­Р¤Р¤Р•РљРў
     // ===========================
     private void SetTransparence(float alpha)
     {
@@ -507,30 +528,30 @@ public class PlayerController : Sounds
     }
 
     // =====================================
-    //    ЛОГИКА ДЭША (STAMINA)
+    //    Р›РћР“РРљРђ Р”Р­РЁРђ (STAMINA)
     // =====================================
     private void HandleDash()
     {
-        // Восстанавливаем стамину
+        // Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃС‚Р°РјРёРЅСѓ
         if (stamina < maxStamina)
         {
             stamina += staminaRegenRate * Time.deltaTime;
             if (stamina > maxStamina) stamina = maxStamina;
         }
 
-        // Проверяем нажатие Shift
+        // РџСЂРѕРІРµСЂСЏРµРј РЅР°Р¶Р°С‚РёРµ Shift
         if (Input.GetKeyDown(KeyCode.LeftShift) && stamina >= dashCost)
         {
             Vector2 dashDirection = ((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rb.position).normalized;
             rb.position += dashDirection * dashDistance;
 
-            // Тратим стамину
+            // РўСЂР°С‚РёРј СЃС‚Р°РјРёРЅСѓ
             stamina -= dashCost;
             if (stamina < 0f) stamina = 0f;
             PlaySound(sounds[3], volume: 1, destroyed: true);
         }
 
-        // Обновляем UI стамины
+        // РћР±РЅРѕРІР»СЏРµРј UI СЃС‚Р°РјРёРЅС‹
         if (staminaBar != null)
         {
             staminaBar.fillAmount = stamina / maxStamina;
@@ -538,12 +559,12 @@ public class PlayerController : Sounds
     }
 
     // ===========================
-    //    МЕТОДЫ ДЛЯ АПГРЕЙДОВ
+    //    РњР•РўРћР”Р« Р”Р›РЇ РђРџР“Р Р•Р™Р”РћР’
     // ===========================
     public void IncreaseMaxHP(float amount)
     {
         maxHp += amount;
-        hp += amount; // сразу лечим до нового макс.
+        hp += amount; // СЃСЂР°Р·Сѓ Р»РµС‡РёРј РґРѕ РЅРѕРІРѕРіРѕ РјР°РєСЃ.
         if (hp > maxHp) hp = maxHp;
         hpBar.fillAmount = hp / maxHp;
     }
@@ -568,12 +589,12 @@ public class PlayerController : Sounds
     public void IncreaseMoveSpeed(float amount)
     {
         originalMoveSpeed += amount;
-        // Или умножать: originalMoveSpeed *= (1+ amount*0.01f) ...
+        // РР»Рё СѓРјРЅРѕР¶Р°С‚СЊ: originalMoveSpeed *= (1+ amount*0.01f) ...
     }
 
     public void IncreaseArrowDamage(int amount)
     {
-        // Увеличим damage у всех префабов в crossbowController
+        // РЈРІРµР»РёС‡РёРј damage Сѓ РІСЃРµС… РїСЂРµС„Р°Р±РѕРІ РІ crossbowController
         foreach (var arrowPrefab in crossbowController.arrowPrefabs)
         {
             ArrowDef arrowDef = arrowPrefab.GetComponent<ArrowDef>();
@@ -619,7 +640,7 @@ public class PlayerController : Sounds
 
     public void ResetAllStatsToBase()
     {
-        // Устанавливаем базовые значения
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р±Р°Р·РѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
         maxHp = 100;
         hp = Mathf.Min(hp, maxHp);
 
@@ -631,31 +652,31 @@ public class PlayerController : Sounds
 
         originalMoveSpeed = 2f;
 
-        // Сбрасываем урон стрел (по умолчанию = 2)
+        // РЎР±СЂР°СЃС‹РІР°РµРј СѓСЂРѕРЅ СЃС‚СЂРµР» (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = 2)
         foreach (var arrowPrefab in crossbowController.arrowPrefabs)
         {
             ArrowDef arrowDef = arrowPrefab.GetComponent<ArrowDef>();
             if (arrowDef != null)
             {
-                arrowDef.damage = 2; // Вернуть стандартный урон
+                arrowDef.damage = 2; // Р’РµСЂРЅСѓС‚СЊ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ СѓСЂРѕРЅ
             }
         }
 
-        // Удаляем сохранённые апгрейды, если они были
+        // РЈРґР°Р»СЏРµРј СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рµ Р°РїРіСЂРµР№РґС‹, РµСЃР»Рё РѕРЅРё Р±С‹Р»Рё
         PlayerPrefs.DeleteKey("PlayerMaxHP");
         PlayerPrefs.DeleteKey("ShieldMaxValue");
         PlayerPrefs.DeleteKey("PlayerMaxStamina");
         PlayerPrefs.DeleteKey("PlayerSpeed");
-        PlayerPrefs.DeleteKey("ArrowDamageUpgrade"); // Если было сохранение урона стрел
+        PlayerPrefs.DeleteKey("ArrowDamageUpgrade"); // Р•СЃР»Рё Р±С‹Р»Рѕ СЃРѕС…СЂР°РЅРµРЅРёРµ СѓСЂРѕРЅР° СЃС‚СЂРµР»
 
-        // Сохраняем новые базовые параметры в PlayerPrefs
+        // РЎРѕС…СЂР°РЅСЏРµРј РЅРѕРІС‹Рµ Р±Р°Р·РѕРІС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РІ PlayerPrefs
         SavePlayerData();
 
-        // Обновляем UI
+        // РћР±РЅРѕРІР»СЏРµРј UI
         if (hpBar != null) hpBar.fillAmount = hp / maxHp;
         if (shieldImage != null) shieldImage.fillAmount = shieldValue / shieldMaxValue;
         if (staminaBar != null) staminaBar.fillAmount = stamina / maxStamina;
 
-        Debug.Log("Все апгрейды сброшены и сохранены.");
+        Debug.Log("Р’СЃРµ Р°РїРіСЂРµР№РґС‹ СЃР±СЂРѕС€РµРЅС‹ Рё СЃРѕС…СЂР°РЅРµРЅС‹.");
     }
 }

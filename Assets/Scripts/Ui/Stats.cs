@@ -1,27 +1,40 @@
 using PlayerPrefs = RedefineYG.PlayerPrefs;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class Stats : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private Text[] texts;         // [0] = враги, [1] = игрок, [2] = боссы, [3] = элитные
-    [SerializeField] private Image LvlMedalki;       // UI-Image, куда ставим медаль
+    [SerializeField] private Text[] texts;         // [0] = РІСЂР°РіРё, [1] = РёРіСЂРѕРє, [2] = Р±РѕСЃСЃС‹, [3] = СЌР»РёС‚РЅС‹Рµ
+    [SerializeField] private Image LvlMedalki;       // UI-Image, РєСѓРґР° СЃС‚Р°РІРёРј РјРµРґР°Р»СЊ
 
     [Header("Medal Sprites")]
+    [SerializeField] private TextMeshProUGUI summaryText;
+    [SerializeField] private TextMeshProUGUI mmrText;
     [SerializeField] private Sprite bronzeMedal;
     [SerializeField] private Sprite silverMedal;
     [SerializeField] private Sprite goldMedal;
     [SerializeField] private Sprite diamondMedal;
 
     [Header("Stats Counters")]
-    public int countEnemyDead;       // Убито обычных врагов
-    public int countPlayerDead;      // Смертей игрока
-    public int countBossDead;        // Убито боссов
-    public int countElitEnemyDead;   // Убито элитных врагов
+    public int countEnemyDead;       // РЈР±РёС‚Рѕ РѕР±С‹С‡РЅС‹С… РІСЂР°РіРѕРІ
+    public int countPlayerDead;      // РЎРјРµСЂС‚РµР№ РёРіСЂРѕРєР°
+    public int countBossDead;        // РЈР±РёС‚Рѕ Р±РѕСЃСЃРѕРІ
+    public int countElitEnemyDead;   // РЈР±РёС‚Рѕ СЌР»РёС‚РЅС‹С… РІСЂР°РіРѕРІ
 
-    private void Start()
+    public int completedWaves;
+    public int TotalKills => (int)Math.Min(int.MaxValue, (long)countEnemyDead + countElitEnemyDead + countBossDead);
+    public int Mmr => GameProgress.MmrScore(completedWaves, TotalKills);
+
+    private void OnEnable() => GameProgress.Changed += RefreshFromSave;
+    private void OnDisable() => GameProgress.Changed -= RefreshFromSave;
+    private void Start() => RefreshFromSave();
+
+    private void RefreshFromSave()
     {
+        if (!GameProgress.IsReady) return;
         LoadInfo();
         UpdateUI();
     }
@@ -37,11 +50,12 @@ public class Stats : MonoBehaviour
         PlayerPrefs.SetInt("countPlayerDead", countPlayerDead);
         PlayerPrefs.SetInt("countBossDead", countBossDead);
         PlayerPrefs.SetInt("countElitEnemyDead", countElitEnemyDead);
+        PlayerPrefs.SetInt("CompletedWaves", completedWaves);
         GameProgress.RequestSave();
     }
 
     /// <summary>
-    /// Загружаем счётчики из PlayerPrefs (если ключей нет, вернутся 0).
+    /// Р—Р°РіСЂСѓР¶Р°РµРј СЃС‡С‘С‚С‡РёРєРё РёР· PlayerPrefs (РµСЃР»Рё РєР»СЋС‡РµР№ РЅРµС‚, РІРµСЂРЅСѓС‚СЃСЏ 0).
     /// </summary>
     public void LoadInfo()
     {
@@ -49,11 +63,12 @@ public class Stats : MonoBehaviour
         countPlayerDead = PlayerPrefs.GetInt("countPlayerDead", 0);
         countBossDead = PlayerPrefs.GetInt("countBossDead", 0);
         countElitEnemyDead = PlayerPrefs.GetInt("countElitEnemyDead", 0);
+        completedWaves = PlayerPrefs.GetInt("CompletedWaves", 0);
     }
 
     /// <summary>
-    /// Вызывается автоматически при закрытии игры/сцены. 
-    /// Гарантирует, что данные сохранятся.
+    /// Р’С‹Р·С‹РІР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРё Р·Р°РєСЂС‹С‚РёРё РёРіСЂС‹/СЃС†РµРЅС‹.
+    /// Р“Р°СЂР°РЅС‚РёСЂСѓРµС‚, С‡С‚Рѕ РґР°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЃСЏ.
     /// </summary>
     private void OnApplicationQuit()
     {
@@ -61,42 +76,80 @@ public class Stats : MonoBehaviour
     }
 
     /// <summary>
-    /// Обновляем UI-текст и картинку медали.
-    /// Вызывайте этот метод после изменения статистики.
+    /// РћР±РЅРѕРІР»СЏРµРј UI-С‚РµРєСЃС‚ Рё РєР°СЂС‚РёРЅРєСѓ РјРµРґР°Р»Рё.
+    /// Р’С‹Р·С‹РІР°Р№С‚Рµ СЌС‚РѕС‚ РјРµС‚РѕРґ РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ СЃС‚Р°С‚РёСЃС‚РёРєРё.
     /// </summary>
     public void UpdateUI()
     {
-        texts[0].text = countEnemyDead.ToString();
-        texts[1].text = countPlayerDead.ToString();
-        texts[2].text = countBossDead.ToString();
-        texts[3].text = countElitEnemyDead.ToString();
+        if (texts != null && texts.Length >= 4)
+        {
+            texts[0].text = countEnemyDead.ToString();
+            texts[1].text = countPlayerDead.ToString();
+            texts[2].text = countBossDead.ToString();
+            texts[3].text = countElitEnemyDead.ToString();
+        }
+        if (summaryText != null) summaryText.text = FormatSummary(completedWaves, TotalKills, countElitEnemyDead, countBossDead, countPlayerDead);
+        if (mmrText != null) mmrText.text = "MMR " + Mmr.ToString("N0");
 
         CheckMedal();
     }
 
     /// <summary>
-    /// Логика выбора медали. 
-    /// Изменяет LvlMedalki.sprite в зависимости от countEnemyDead.
+    /// Р›РѕРіРёРєР° РІС‹Р±РѕСЂР° РјРµРґР°Р»Рё.
+    /// РР·РјРµРЅСЏРµС‚ LvlMedalki.sprite РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ countEnemyDead.
     /// </summary>
     private void CheckMedal()
     {
-        if (countEnemyDead >= 1000)
+        if (LvlMedalki != null) LvlMedalki.sprite = MedalForKills(TotalKills);
+    }
+
+    public Sprite MedalForKills(int kills)
+    {
+        if (kills >= 1000)
         {
-            LvlMedalki.sprite = diamondMedal;
+            return diamondMedal;
         }
-        else if (countEnemyDead >= 500)
+        else if (kills >= 500)
         {
-            LvlMedalki.sprite = goldMedal;
+            return goldMedal;
         }
-        else if (countEnemyDead >= 100)
+        else if (kills >= 100)
         {
-            LvlMedalki.sprite = silverMedal;
+            return silverMedal;
         }
         else
         {
-            LvlMedalki.sprite = bronzeMedal;
+            return bronzeMedal;
         }
     }
+
+    public void AddCompletedWave()
+    {
+        if (completedWaves < int.MaxValue) completedWaves++;
+        UpdateUI();
+        SaveInfo();
+    }
+
+    public static string FormatSummary(int waves, int kills, int elite, int bosses, int deaths) =>
+        $"Р’РѕР»РЅС‹: {waves:N0}    Р’СЂР°РіРё: {kills:N0}\nР­Р»РёС‚Р°: {elite:N0}    Р‘РѕСЃСЃС‹: {bosses:N0}    РЎРјРµСЂС‚Рё: {deaths:N0}";
+
+    [Serializable]
+    public sealed class LeaderboardSummary
+    {
+        public int version = 1;
+        public int waves, kills, elite, bosses, deaths;
+        public bool IsValid => version == 1 && waves >= 0 && kills >= 0 && elite >= 0 && bosses >= 0 && deaths >= 0;
+    }
+
+    public static LeaderboardSummary ReadLeaderboardSummary() => new LeaderboardSummary
+    {
+        waves = PlayerPrefs.GetInt("CompletedWaves", 0),
+        kills = (int)Math.Min(int.MaxValue, (long)PlayerPrefs.GetInt("countEnemyDead", 0)
+            + PlayerPrefs.GetInt("countElitEnemyDead", 0) + PlayerPrefs.GetInt("countBossDead", 0)),
+        elite = PlayerPrefs.GetInt("countElitEnemyDead", 0),
+        bosses = PlayerPrefs.GetInt("countBossDead", 0),
+        deaths = PlayerPrefs.GetInt("countPlayerDead", 0)
+    };
 
     public void AddEnemyKill()
     {

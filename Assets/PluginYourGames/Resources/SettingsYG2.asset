@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa747916aa66674d96ea40ca8a480b2, type: 3}
   m_Name: SettingsYG2
   m_EditorClassIdentifier: 
+  InterstitialAdv:
+    showFirstAdv: 0
+    interAdvInterval: 60
+    postponeCallByFail: 1
+    postponeCallTimer: 10
+    labelAdvSimLabel: 0
+  RewardedAdv:
+    skipInterAdvAfterReward: 1
+    labelAdvSimLabel: 0
   Authorization:
     playerPhotoSize: 0
     authorized: 0
@@ -23,11 +32,11 @@ MonoBehaviour:
     enable: 1
     saveScoreAnonymousPlayers: 1
     listLBSim:
-    - technoName: rating
+    - technoName: mmr
       entries: 
       isDefault: 0
       isInvertSortOrder: 0
-      decimalOffset: 2
+      decimalOffset: 0
       type: numeric
       players: []
       currentPlayer:
@@ -56,7 +65,7 @@ MonoBehaviour:
   Simulation:
     device: 0
     language: ru
-    enableInterAdv: 0
+    enableInterAdv: 1
     advIntervalSimulation: 60
     durationAdv: 0.5
     loadAdv: 0
@@ -78,7 +87,7 @@ MonoBehaviour:
       height: 24
       color1: {r: 0.25, g: 0.6392, b: 1, a: 1}
       color2: {r: 1, g: 0.831, b: 0.149, a: 0.7}
-    fixedAspectRatio: 0
+    fixedAspectRatio: 1
     aspectRatio: 16/9
     disableForMobile: 1
     fillBackground: 0

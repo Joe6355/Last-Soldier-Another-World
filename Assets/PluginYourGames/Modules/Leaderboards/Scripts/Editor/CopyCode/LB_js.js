@@ -1,6 +1,8 @@
 async function SetLeaderboard(name, score, extraData) {
     try {
         if (!ysdk) throw new Error('SDK is unavailable');
+        if (ysdk.isAvailableMethod && !(await ysdk.isAvailableMethod('leaderboards.setScore')))
+            throw new Error('Leaderboard submission is unavailable');
         await ysdk.leaderboards.setScore(name, score, extraData);
         YG2Instance('GameRatingSaved', String(score));
     } catch (e) {
@@ -10,7 +12,7 @@ async function SetLeaderboard(name, score, extraData) {
 }
 
 function GetLeaderboard(nameLB, quantityTop, quantityAround, photoSize, auth) {
-    if (!ysdk) return;
+    if (!ysdk) { YG2Instance('GameLeaderboardFailed', nameLB); return; }
 
     var jsonEntries = {
         technoName: '',
@@ -24,9 +26,9 @@ function GetLeaderboard(nameLB, quantityTop, quantityAround, photoSize, auth) {
         .then(res => {
             jsonEntries.technoName = nameLB;
             jsonEntries.isDefault = res.default;
-            jsonEntries.isInvertSortOrder = res.description.invert_sort_order;
+            jsonEntries.isInvertSortOrder = res.description.sort_order === 'ASC' || res.description.invert_sort_order === true;
             jsonEntries.decimalOffset = res.description.score_format.options.decimal_offset;
-            jsonEntries.type = res.description.type;
+            jsonEntries.type = res.description.score_format.type || res.description.type;
 
             return ysdk.leaderboards.getEntries(nameLB, {
                 quantityTop: quantityTop,
@@ -44,6 +46,7 @@ function GetLeaderboard(nameLB, quantityTop, quantityAround, photoSize, auth) {
             if (err.code === 'LEADERBOARD_PLAYER_NOT_PRESENT')
                LogStyledMessage('Leaderboard player not present');
             console.error(err);
+            YG2Instance('GameLeaderboardFailed', nameLB);
         });
 }
 

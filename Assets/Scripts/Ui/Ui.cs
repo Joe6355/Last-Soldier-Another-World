@@ -2,32 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Ui : MonoBehaviour
 {
-    [Header("Основные элементы")]
-    [SerializeField] private GameObject menuPanel; // Главная панель меню
-    [SerializeField] private GameObject settingsPanel; // Панель настроек
+    [Header("РћСЃРЅРѕРІРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹")]
+    [SerializeField] private GameObject menuPanel; // Р“Р»Р°РІРЅР°СЏ РїР°РЅРµР»СЊ РјРµРЅСЋ
+    [SerializeField] private GameObject settingsPanel; // РџР°РЅРµР»СЊ РЅР°СЃС‚СЂРѕРµРє
+    [SerializeField] private GameObject ratingPanel;
 
-    [Header("Музыка")]
-    [SerializeField] private AudioSource menuMusic; // Музыка в меню
-    [SerializeField] private AudioSource[] gameMusicSources; // Массив источников музыки для игры
+    [Header("РњСѓР·С‹РєР°")]
+    [SerializeField] private AudioSource menuMusic; // РњСѓР·С‹РєР° РІ РјРµРЅСЋ
+    [SerializeField] private AudioSource[] gameMusicSources; // РњР°СЃСЃРёРІ РёСЃС‚РѕС‡РЅРёРєРѕРІ РјСѓР·С‹РєРё РґР»СЏ РёРіСЂС‹
 
-    [Header("Эффекты")]
-    [SerializeField] private AudioSource[] sfxSources; // Массив источников эффектов
+    [Header("Р­С„С„РµРєС‚С‹")]
+    [SerializeField] private AudioSource[] sfxSources; // РњР°СЃСЃРёРІ РёСЃС‚РѕС‡РЅРёРєРѕРІ СЌС„С„РµРєС‚РѕРІ
 
-    [Header("Слайдеры")]
-    [SerializeField] private Slider musicSlider; // Слайдер громкости музыки
-    [SerializeField] private Slider sfxSlider; // Слайдер громкости эффектов
+    [Header("РЎР»Р°Р№РґРµСЂС‹")]
+    [SerializeField] private Slider musicSlider; // РЎР»Р°Р№РґРµСЂ РіСЂРѕРјРєРѕСЃС‚Рё РјСѓР·С‹РєРё
+    [SerializeField] private Slider sfxSlider; // РЎР»Р°Р№РґРµСЂ РіСЂРѕРјРєРѕСЃС‚Рё СЌС„С„РµРєС‚РѕРІ
 
-    [Header("Кнопки")]
+    [Header("РљРЅРѕРїРєРё")]
     [SerializeField] private Button playButton;
-    [SerializeField] private Button exitButton;
-    [SerializeField] private Button openMenuButton; // Кнопка для открытия меню вне его
+    [FormerlySerializedAs("exitButton")]
+    [SerializeField] private Button ratingButton;
+    [SerializeField] private Button openMenuButton; // РљРЅРѕРїРєР° РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ РјРµРЅСЋ РІРЅРµ РµРіРѕ
 
-    private bool isMenuOpen = false; // Состояние меню (открыто/закрыто)
-    private bool isGameMusicPlaying = false; // Проверка, играет ли музыка игры
+    private bool isMenuOpen = false; // РЎРѕСЃС‚РѕСЏРЅРёРµ РјРµРЅСЋ (РѕС‚РєСЂС‹С‚Рѕ/Р·Р°РєСЂС‹С‚Рѕ)
+    private bool isGameMusicPlaying = false; // РџСЂРѕРІРµСЂРєР°, РёРіСЂР°РµС‚ Р»Рё РјСѓР·С‹РєР° РёРіСЂС‹
 
     private PlayerController playerController;
 
@@ -40,51 +43,51 @@ public class Ui : MonoBehaviour
     {
         //crossbowController.SetShootingState(false);
         crossbowController  = FindObjectOfType<CrossbowController>();
-        playerController = GetComponent<PlayerController>();
-        // Останавливаем игру при запуске
+        playerController = FindObjectOfType<PlayerController>();
+        // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј РёРіСЂСѓ РїСЂРё Р·Р°РїСѓСЃРєРµ
         PauseGame();
 
-        // Включаем музыку меню
+        // Р’РєР»СЋС‡Р°РµРј РјСѓР·С‹РєСѓ РјРµРЅСЋ
         if (menuMusic != null)
         {
             menuMusic.Play();
         }
 
-        // Привязываем кнопки
+        // РџСЂРёРІСЏР·С‹РІР°РµРј РєРЅРѕРїРєРё
         playButton.onClick.AddListener(StartGame);
-        exitButton.onClick.AddListener(ExitGame);
+        ratingButton.onClick.AddListener(ShowRating);
 
-        // Привязываем слайдеры
+        // РџСЂРёРІСЏР·С‹РІР°РµРј СЃР»Р°Р№РґРµСЂС‹
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
 
-        // Привязываем кнопку для открытия меню
+        // РџСЂРёРІСЏР·С‹РІР°РµРј РєРЅРѕРїРєСѓ РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ РјРµРЅСЋ
         if (openMenuButton != null)
         {
             openMenuButton.onClick.AddListener(ToggleMenu);
         }
 
-        // Устанавливаем начальные значения слайдеров
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅР°С‡Р°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ СЃР»Р°Р№РґРµСЂРѕРІ
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
 
-        // Устанавливаем начальные громкости
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅР°С‡Р°Р»СЊРЅС‹Рµ РіСЂРѕРјРєРѕСЃС‚Рё
         SetMusicVolume(musicSlider.value);
         SetSFXVolume(sfxSlider.value);
 
-        // Убедиться, что музыка игры не играет при запуске
+        // РЈР±РµРґРёС‚СЊСЃСЏ, С‡С‚Рѕ РјСѓР·С‹РєР° РёРіСЂС‹ РЅРµ РёРіСЂР°РµС‚ РїСЂРё Р·Р°РїСѓСЃРєРµ
         PauseGameMusic();
 
         if (isGameMusicPlaying)
         {
-            Debug.Log("Музыка игры играет");
+            Debug.Log("РњСѓР·С‹РєР° РёРіСЂС‹ РёРіСЂР°РµС‚");
         }
     }
 
     private void Update()
     {
-        // Открытие/закрытие меню по нажатию клавиши Esc
-        if (!YG.YG2.isPauseGame && Input.GetKeyDown(KeyCode.Escape))
+        // РћС‚РєСЂС‹С‚РёРµ/Р·Р°РєСЂС‹С‚РёРµ РјРµРЅСЋ РїРѕ РЅР°Р¶Р°С‚РёСЋ РєР»Р°РІРёС€Рё Esc
+        if (!YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
 
@@ -96,20 +99,20 @@ public class Ui : MonoBehaviour
         crossbowController.SetShootingState(false);
         YG.YG2.GameplayStop();
         GameProgress.SaveNow();
-        // Останавливаем время
+        // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІСЂРµРјСЏ
         Time.timeScale = 0f;
 
-        // Ставим музыку игры на паузу
+        // РЎС‚Р°РІРёРј РјСѓР·С‹РєСѓ РёРіСЂС‹ РЅР° РїР°СѓР·Сѓ
         PauseGameMusic();
 
-        // Останавливаем эффекты
+        // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЌС„С„РµРєС‚С‹
         foreach (var sfx in sfxSources)
         {
             if (sfx != null)
                 sfx.Pause();
         }
 
-        // Включаем музыку меню
+        // Р’РєР»СЋС‡Р°РµРј РјСѓР·С‹РєСѓ РјРµРЅСЋ
         if (menuMusic != null && !menuMusic.isPlaying)
         {
             menuMusic.Play();
@@ -119,87 +122,120 @@ public class Ui : MonoBehaviour
     private void ResumeGame()
     {
         YG.YG2.GameplayStart();
-        // Возобновляем время
+        // Р’РѕР·РѕР±РЅРѕРІР»СЏРµРј РІСЂРµРјСЏ
         Time.timeScale = 1f;
 
-        // Возобновляем эффекты
+        // Р’РѕР·РѕР±РЅРѕРІР»СЏРµРј СЌС„С„РµРєС‚С‹
         foreach (var sfx in sfxSources)
         {
             if (sfx != null)
                 sfx.UnPause();
         }
 
-        // Останавливаем музыку меню
+        // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј РјСѓР·С‹РєСѓ РјРµРЅСЋ
         if (menuMusic != null)
         {
             menuMusic.Stop();
         }
 
-        // Возобновляем музыку игры
+        // Р’РѕР·РѕР±РЅРѕРІР»СЏРµРј РјСѓР·С‹РєСѓ РёРіСЂС‹
         ResumeGameMusic();
     }
 
     public void StartGame()
     {
-        if (!GameProgress.IsReady || YG.YG2.isPauseGame) return;
-        // Выключаем меню
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
+        AudioListener.pause = false;
+        // Р’С‹РєР»СЋС‡Р°РµРј РјРµРЅСЋ
         menuPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        if (ratingPanel != null) ratingPanel.SetActive(false);
         isMenuOpen = false;
         crossbowController.SetShootingState(true);
 
-        // Останавливаем музыку меню
+        // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј РјСѓР·С‹РєСѓ РјРµРЅСЋ
         if (menuMusic != null)
         {
             menuMusic.Stop();
         }
 
-        // Включаем игровую музыку
+        // Р’РєР»СЋС‡Р°РµРј РёРіСЂРѕРІСѓСЋ РјСѓР·С‹РєСѓ
         PlayGameMusic();
 
-        // Возобновляем игру
+        // Р’РѕР·РѕР±РЅРѕРІР»СЏРµРј РёРіСЂСѓ
         ResumeGame();
     }
 
-    public void ExitGame()
+    public void ShowRating()
     {
-        GameProgress.SaveNow();
-        // Закрываем приложение
-        Application.Quit();
+        if (ratingPanel == null || YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
+        isMenuOpen = true;
+        menuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+        PauseGame();
+        FindObjectOfType<Stats>()?.UpdateUI();
+        ratingPanel.SetActive(true);
+    }
 
-        // Для редактора
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+    public void CloseRating()
+    {
+        if (ratingPanel != null) ratingPanel.SetActive(false);
     }
 
     public void ToggleMenu()
     {
-        if (YG.YG2.isPauseGame) return;
+        if (YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
+        if (ratingPanel != null && ratingPanel.activeSelf)
+        {
+            CloseRating();
+            return;
+        }
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen)
         {
-            // Открываем меню
+            // РћС‚РєСЂС‹РІР°РµРј РјРµРЅСЋ
             menuPanel.SetActive(true);
             PauseGame();
             crossbowController.SetShootingState(false);
         }
         else
         {
-            // Закрываем меню
+            // Р—Р°РєСЂС‹РІР°РµРј РјРµРЅСЋ
             menuPanel.SetActive(false);
             ResumeGame();
             crossbowController.SetShootingState(true);
         }
     }
 
+    public void PauseForDeath()
+    {
+        menuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        if (ratingPanel != null) ratingPanel.SetActive(false);
+        isMenuOpen = false;
+        PauseGame();
+        AudioListener.pause = true;
+    }
+
+    public void ContinueAfterDeath() => StartGame();
+
+    public void ShowMenuAfterDeath()
+    {
+        AudioListener.pause = false;
+        menuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+        if (ratingPanel != null) ratingPanel.SetActive(false);
+        isMenuOpen = true;
+        PauseGame();
+    }
+
     private void PlayGameMusic()
     {
-        // Проверяем, если массив пустой
+        // РџСЂРѕРІРµСЂСЏРµРј, РµСЃР»Рё РјР°СЃСЃРёРІ РїСѓСЃС‚РѕР№
         if (gameMusicSources.Length == 0) return;
 
-        // Включаем все треки в массиве
+        // Р’РєР»СЋС‡Р°РµРј РІСЃРµ С‚СЂРµРєРё РІ РјР°СЃСЃРёРІРµ
         foreach (var musicSource in gameMusicSources)
         {
             if (musicSource != null && !musicSource.isPlaying)
@@ -213,7 +249,7 @@ public class Ui : MonoBehaviour
 
     private void PauseGameMusic()
     {
-        // Ставим на паузу все треки в массиве
+        // РЎС‚Р°РІРёРј РЅР° РїР°СѓР·Сѓ РІСЃРµ С‚СЂРµРєРё РІ РјР°СЃСЃРёРІРµ
         foreach (var musicSource in gameMusicSources)
         {
             if (musicSource != null && musicSource.isPlaying)
@@ -227,7 +263,7 @@ public class Ui : MonoBehaviour
 
     private void ResumeGameMusic()
     {
-        // Возобновляем все треки в массиве
+        // Р’РѕР·РѕР±РЅРѕРІР»СЏРµРј РІСЃРµ С‚СЂРµРєРё РІ РјР°СЃСЃРёРІРµ
         foreach (var musicSource in gameMusicSources)
         {
             if (musicSource != null && !musicSource.isPlaying)
@@ -241,29 +277,29 @@ public class Ui : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        // Устанавливаем громкость для музыки в меню
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РіСЂРѕРјРєРѕСЃС‚СЊ РґР»СЏ РјСѓР·С‹РєРё РІ РјРµРЅСЋ
         if (menuMusic != null)
             menuMusic.volume = volume;
 
-        // Устанавливаем громкость для музыки игры
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РіСЂРѕРјРєРѕСЃС‚СЊ РґР»СЏ РјСѓР·С‹РєРё РёРіСЂС‹
         foreach (var musicSource in gameMusicSources)
         {
             if (musicSource != null)
                 musicSource.volume = volume;
         }
 
-        // Сохраняем значение
+        // РЎРѕС…СЂР°РЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ
         PlayerPrefs.SetFloat("MusicVolume", volume);
         PlayerPrefs.Save();
     }
 
     public void SetSFXVolume(float volume)
     {
-        sfxVolume = volume; // Обновляем глобальную громкость
+        sfxVolume = volume; // РћР±РЅРѕРІР»СЏРµРј РіР»РѕР±Р°Р»СЊРЅСѓСЋ РіСЂРѕРјРєРѕСЃС‚СЊ
         PlayerPrefs.SetFloat("SFXVolume", volume);
-        PlayerPrefs.Save(); // Сохраняем в PlayerPrefs
+        PlayerPrefs.Save(); // РЎРѕС…СЂР°РЅСЏРµРј РІ PlayerPrefs
 
-        // Теперь передаем громкость во все источники звука
+        // РўРµРїРµСЂСЊ РїРµСЂРµРґР°РµРј РіСЂРѕРјРєРѕСЃС‚СЊ РІРѕ РІСЃРµ РёСЃС‚РѕС‡РЅРёРєРё Р·РІСѓРєР°
         foreach (var sfx in sfxSources)
         {
             if (sfx != null)
@@ -279,7 +315,7 @@ public class Ui : MonoBehaviour
         playerController.totalCoins /= 2;
 
 
-        // Убедимся, что количество монет не может быть меньше 0
+        // РЈР±РµРґРёРјСЃСЏ, С‡С‚Рѕ РєРѕР»РёС‡РµСЃС‚РІРѕ РјРѕРЅРµС‚ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ 0
         if (playerController.totalCoins <= 0)
         {
             playerController.totalCoins = 0;

@@ -1,0 +1,14 @@
+{
+  "archive": "Builds/LastSoldierYandex.zip",
+  "zipBytes": 17385563,
+  "unpackedBytes": 17615337,
+  "sha256": "49da6c582a1859c51115c918988a710f4f1f6b47ee15f6d2f5886c9cbb85a7f0",
+  "files": [
+    "index.html",
+    "style.css",
+    "Build/YandexGames.data.unityweb",
+    "Build/YandexGames.framework.js.unityweb",
+    "Build/YandexGames.loader.js",
+    "Build/YandexGames.wasm.unityweb"
+  ]
+}
