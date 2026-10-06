@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Shop : Sounds
 {
@@ -14,7 +15,39 @@ public class Shop : Sounds
     private bool isPlayerInRange = false;
     private Animator anim;
 
-    private bool isBuying = false; // Флаг: идёт ли автопокупка
+    [Header("РўРѕРІР°СЂС‹ Рё СЃСѓС‰РµСЃС‚РІСѓСЋС‰Р°СЏ РїСЂРѕРєР°С‡РєР°")]
+    [SerializeField] private Beka upgradeShop;
+    [SerializeField] private GameObject goodsContent;
+    [SerializeField] private GameObject upgradesContent;
+    [SerializeField] private Button goodsTab;
+    [SerializeField] private Button upgradesTab;
+
+    [Header("РџРѕРєСѓРїРєР° РЅРµСЃРєРѕР»СЊРєРёС… РЅР°Р±РѕСЂРѕРІ")]
+    [SerializeField] private GameObject quantityPanel;
+    [SerializeField] private Image quantityIcon;
+    [SerializeField] private TextMeshProUGUI quantityTitle;
+    [SerializeField] private TextMeshProUGUI quantityInfo;
+    [SerializeField] private TextMeshProUGUI quantityValueText;
+    [SerializeField] private TextMeshProUGUI quantityTotalText;
+    [SerializeField] private TextMeshProUGUI quantityBalanceText;
+    [SerializeField] private TextMeshProUGUI quantityStatusText;
+    [SerializeField] private Slider quantitySlider;
+    [SerializeField] private TMP_InputField quantityInput;
+    [SerializeField] private Button confirmButton;
+    [SerializeField] private Button decreaseButton;
+    [SerializeField] private Button increaseButton;
+    [SerializeField] private Button maximumButton;
+
+    private Ui gameUi;
+    private Beka currentTrainer;
+    private int selectedItem = -1;
+    private int selectedQuantity = 1;
+    private int lastCoins = -1;
+    public bool IsOpen => panelShop != null && panelShop.activeInHierarchy;
+    private bool InTradingRange => currentTrainer != null ? currentTrainer.IsPlayerInRange : isPlayerInRange;
+    private bool CanTrade => IsOpen && InTradingRange && GameProgress.IsReady && !YG.YG2.isPauseGame && !player.IsAwaitingRevive;
+    public bool CanPurchaseUpgrades => CanTrade && upgradesContent != null && upgradesContent.activeInHierarchy && !quantityPanel.activeSelf;
+    public bool IsTradingWith(Beka trainer) => IsOpen && currentTrainer == trainer;
 
     [System.Serializable]
     public class ShopItem
@@ -22,7 +55,7 @@ public class Shop : Sounds
         public string itemName;
         public int itemPrice;
         public ItemType itemType;
-        public int itemValue; // Количество или значение предмета
+        public int itemValue; // РљРѕР»РёС‡РµСЃС‚РІРѕ РёР»Рё Р·РЅР°С‡РµРЅРёРµ РїСЂРµРґРјРµС‚Р°
     }
 
     public enum ItemType
@@ -33,7 +66,8 @@ public class Shop : Sounds
         MaxHealth,
         ArrowPoison,
         ArrowHoly,
-        originalMoveSpeed
+        originalMoveSpeed,
+        ArrowPiercing
     }
 
     public ShopItem[] shopItems;
@@ -48,25 +82,33 @@ public class Shop : Sounds
         crossbowController = FindObjectOfType<CrossbowController>();
         if (crossbowController == null)
         {
-            Debug.LogError("CrossbowController не привязан!");
+            Debug.LogError("CrossbowController РЅРµ РїСЂРёРІСЏР·Р°РЅ!");
         }
 
         UpdateButtonPrices();
 
         anim = GetComponent<Animator>();
+        gameUi = FindObjectOfType<Ui>();
+        if (quantityPanel != null) quantityPanel.SetActive(false);
+        if (quantitySlider != null) quantitySlider.onValueChanged.AddListener(OnQuantitySliderChanged);
+        if (quantityInput != null) quantityInput.onEndEdit.AddListener(OnQuantityInputChanged);
     }
 
     private void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || player.IsAwaitingRevive) return;
+        if (IsOpen && !InTradingRange) CloseShop();
+        if (isPlayerInRange && currentTrainer == null && Input.GetKeyDown(KeyCode.F))
         {
-            OpenShop();
+            if (IsOpen) CloseTopPanel();
+            else OpenShop();
         }
-
-        //if (Input.GetKeyUp(KeyCode.F) && panelShop.activeSelf) // Закрытие магазина
-        //{
-        //    CloseShop();
-        //}
+        if (IsOpen && lastCoins != player.totalCoins)
+        {
+            lastCoins = player.totalCoins;
+            upgradeShop?.RefreshOffers();
+            if (quantityPanel.activeSelf) RefreshQuantity();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
@@ -87,145 +129,223 @@ public class Shop : Sounds
             isPlayerInRange = false;
             wellcomeText.SetActive(false);
             interactivButton.SetActive(false);
-            CloseShop(); // Закрыть магазин, если игрок вышел из зоны
+            if (currentTrainer == null) CloseShop();
             anim.SetTrigger("IdeVar");
         }
     }
 
     public void OpenShop()
     {
-        if (isPlayerInRange)
-        {
-            panelShop.SetActive(true);
-            crossbowController.SetShootingState(false); // Запрещаем стрельбу
-            Debug.Log("Магазин открыт");
-        }
+        if (!isPlayerInRange || IsOpen || !gameUi.BeginTrade(this)) return;
+        currentTrainer = null;
+        panelShop.SetActive(true);
+        ShowGoods();
+    }
+
+    public void OpenFromTrainer(Beka trainer)
+    {
+        if (trainer != upgradeShop || !trainer.IsPlayerInRange || IsOpen || !gameUi.BeginTrade(this)) return;
+        currentTrainer = trainer;
+        panelShop.SetActive(true);
+        ShowUpgrades();
     }
 
     public void CloseShop()
     {
+        if (!IsOpen) return;
+        CloseQuantity();
         panelShop.SetActive(false);
-        crossbowController.SetShootingState(true); // Разрешаем стрельбу
-        Debug.Log("Магазин закрыт");
+        currentTrainer = null;
+        gameUi.EndTrade(this);
+    }
+
+    public void CloseTopPanel()
+    {
+        if (quantityPanel.activeSelf) CloseQuantity();
+        else CloseShop();
+    }
+
+    public void ShowGoods()
+    {
+        CloseQuantity();
+        goodsContent.SetActive(true);
+        upgradesContent.SetActive(false);
+        RefreshTabs(false);
+    }
+
+    public void ShowUpgrades()
+    {
+        if (upgradeShop == null) return;
+        CloseQuantity();
+        goodsContent.SetActive(false);
+        upgradesContent.SetActive(true);
+        upgradeShop.ShowHeroUpgrades();
+        RefreshTabs(true);
+    }
+
+    private void RefreshTabs(bool upgrades)
+    {
+        goodsTab.GetComponent<Image>().color = upgrades ? new Color32(35, 68, 59, 255) : new Color32(227, 186, 101, 255);
+        upgradesTab.GetComponent<Image>().color = upgrades ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
+        goodsTab.GetComponentInChildren<TextMeshProUGUI>().color = upgrades ? new Color32(244, 240, 223, 255) : new Color32(20, 43, 38, 255);
+        upgradesTab.GetComponentInChildren<TextMeshProUGUI>().color = upgrades ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
     }
 
     private void UpdateButtonPrices()
     {
         for (int i = 0; i < shopItems.Length && i < buyButtons.Length; i++)
         {
-            Text buttonText = buyButtons[i].GetComponentInChildren<Text>();
+            Text buttonText = buyButtons[i].GetComponentInChildren<Text>(true);
             if (buttonText != null)
             {
-                buttonText.text = $"{shopItems[i].itemPrice:N0} монет";
+                buttonText.text = $"{shopItems[i].itemPrice:N0} РјРѕРЅРµС‚";
             }
         }
     }
 
     public void BuyItem(int itemIndex)
     {
-        if (itemIndex < 0 || itemIndex >= shopItems.Length) return;
-
-        // Если зажат Ctrl — автопокупка
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            // Запускаем автопокупку, если она ещё не идёт
-            if (!isBuying)
-            {
-                StartCoroutine(AutoBuyCoroutine(itemIndex));
-            }
-        }
-        else
-        {
-            // Обычная покупка
-            AttemptSinglePurchase(itemIndex);
-        }
+        if (!CanTrade || itemIndex < 0 || itemIndex >= shopItems.Length || !goodsContent.activeSelf) return;
+        var item = shopItems[itemIndex];
+        selectedItem = itemIndex;
+        selectedQuantity = 1;
+        quantityTitle.text = ItemTitle(item.itemType);
+        var icon = buyButtons[itemIndex].transform.parent.Find("ItemIcon")?.GetComponent<Image>();
+        if (icon != null) quantityIcon.sprite = icon.sprite;
+        quantityPanel.SetActive(true);
+        RefreshQuantity();
     }
 
-    private void AttemptSinglePurchase(int itemIndex)
+    private static string ItemTitle(ItemType type)
     {
-        ShopItem item = shopItems[itemIndex];
-
-        if (player.totalCoins >= item.itemPrice)
-        {
-            // Покупаем
-            player.AddCoin(-item.itemPrice);
-            Debug.Log($"Куплен {item.itemName} за {item.itemPrice} монет!");
-
-            // Применяем покупку
-            ApplyItemEffect(item);
-
-            // Проигрываем звук покупки
-            PlaySound(sounds[0], volume: 1, destroyed: false);
-        }
-        else
-        {
-            // Недостаточно монет
-            PlaySound(sounds[1], volume: 1, destroyed: false);
-            Debug.Log("Недостаточно монет для покупки " + item.itemName);
-            anim.SetTrigger("Event");
-        }
+        return type == ItemType.Arrow ? "РћР±С‹С‡РЅС‹Рµ СЃС‚СЂРµР»С‹" : type == ItemType.ArrowPoison ? "РЇРґРѕРІРёС‚С‹Рµ СЃС‚СЂРµР»С‹"
+            : type == ItemType.ArrowHoly ? "РЎРІСЏС‚С‹Рµ СЃС‚СЂРµР»С‹" : type == ItemType.ArrowPiercing ? "РџСЂРѕР±РёРІРЅС‹Рµ СЃС‚СЂРµР»С‹" : type == ItemType.Mirorr ? "Р—РµСЂРєР°Р»Рѕ" : "Р—РµР»СЊРµ Р»РµС‡РµРЅРёСЏ";
     }
 
-    private IEnumerator AutoBuyCoroutine(int itemIndex)
+    private static string PackCount(int count)
     {
-        isBuying = true; // Флаг: покупка началась
-
-        ShopItem item = shopItems[itemIndex];
-        bool wasSuccessful = false; // Флаг: была ли хотя бы одна успешная покупка
-
-        while (Input.GetKey(KeyCode.LeftControl) && player.totalCoins >= item.itemPrice)
-        {
-            // Покупаем предмет
-            player.AddCoin(-item.itemPrice);
-            Debug.Log($"Куплен {item.itemName} за {item.itemPrice} монет (автопокупка)");
-
-            // Применяем покупку
-            ApplyItemEffect(item);
-
-            wasSuccessful = true; // Фиксируем, что покупка произошла
-
-            yield return new WaitForSeconds(0.1f); // Небольшая задержка между покупками
-        }
-
-        // Если хотя бы одна покупка была успешной, проигрываем звук покупки
-        if (wasSuccessful)
-        {
-            PlaySound(sounds[0], volume: 1, destroyed: false);
-        }
-
-        // Если цикл прервался из-за нехватки монет
-        if (player.totalCoins < item.itemPrice)
-        {
-            PlaySound(sounds[1], volume: 1, destroyed: false);
-            Debug.Log("Недостаточно монет для покупки " + item.itemName);
-            anim.SetTrigger("Event");
-        }
-
-        isBuying = false; // Покупка завершена
+        int lastTwo = count % 100, last = count % 10;
+        string word = lastTwo >= 11 && lastTwo <= 14 ? "РЅР°Р±РѕСЂРѕРІ" : last == 1 ? "РЅР°Р±РѕСЂ" : last >= 2 && last <= 4 ? "РЅР°Р±РѕСЂР°" : "РЅР°Р±РѕСЂРѕРІ";
+        return $"{count:N0} {word}";
     }
 
-    private void ApplyItemEffect(ShopItem item)
+    private int Stock(ShopItem item)
+    {
+        return item.itemType == ItemType.Arrow ? crossbowController.GetArrowCount(0)
+            : item.itemType == ItemType.ArrowPoison ? crossbowController.GetArrowCount(1)
+            : item.itemType == ItemType.ArrowHoly ? crossbowController.GetArrowCount(2)
+            : item.itemType == ItemType.ArrowPiercing ? crossbowController.GetArrowCount(3)
+            : item.itemType == ItemType.Mirorr ? player.MirrorCount : player.PotionCount;
+    }
+
+    public int MaximumQuantity()
+    {
+        if (selectedItem < 0) return 0;
+        var item = shopItems[selectedItem];
+        if (item.itemPrice <= 0 || item.itemValue <= 0) return 0;
+        return Mathf.Min(player.totalCoins / item.itemPrice, (int)(((long)int.MaxValue - Stock(item)) / item.itemValue));
+    }
+
+    private void RefreshQuantity()
+    {
+        if (selectedItem < 0) return;
+        var item = shopItems[selectedItem];
+        int maximum = MaximumQuantity();
+        selectedQuantity = Mathf.Clamp(selectedQuantity, 1, Mathf.Max(1, maximum));
+        quantitySlider.wholeNumbers = true;
+        quantitySlider.minValue = 1;
+        quantitySlider.maxValue = Mathf.Max(2, maximum);
+        quantitySlider.interactable = maximum > 1;
+        quantitySlider.SetValueWithoutNotify(selectedQuantity);
+        quantityInput.SetTextWithoutNotify(selectedQuantity.ToString());
+        long received = (long)item.itemValue * selectedQuantity;
+        long cost = (long)item.itemPrice * selectedQuantity;
+        quantityInfo.text = $"Р’ РЅР°Р±РѕСЂРµ: {item.itemValue:N0} С€С‚. В· {item.itemPrice:N0} РјРѕРЅРµС‚\nРЈ С‚РµР±СЏ: {Stock(item):N0} С€С‚.";
+        quantityValueText.text = $"{PackCount(selectedQuantity)} В· {received:N0} С€С‚.";
+        quantityTotalText.text = $"РС‚РѕРіРѕ: {cost:N0} РјРѕРЅРµС‚";
+        quantityBalanceText.text = $"РћСЃС‚Р°РЅРµС‚СЃСЏ: {System.Math.Max(0L, (long)player.totalCoins - cost):N0}";
+        quantityStatusText.text = maximum > 0 ? $"РњРѕР¶РЅРѕ РєСѓРїРёС‚СЊ: {PackCount(maximum)}"
+            : item.itemPrice <= 0 || item.itemValue <= 0 ? "РўРѕРІР°СЂ РЅРµРґРѕСЃС‚СѓРїРµРЅ"
+            : (long)Stock(item) + item.itemValue > int.MaxValue ? "РќРµС‚ РјРµСЃС‚Р° РґР»СЏ РµС‰С‘ РѕРґРЅРѕРіРѕ РЅР°Р±РѕСЂР°" : "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРѕРЅРµС‚";
+        confirmButton.interactable = CanTrade && maximum > 0;
+        decreaseButton.interactable = maximum > 0 && selectedQuantity > 1;
+        increaseButton.interactable = maximum > selectedQuantity;
+        maximumButton.interactable = maximum > 0;
+        quantityInput.interactable = maximum > 0;
+    }
+
+    private void OnQuantitySliderChanged(float value)
+    {
+        selectedQuantity = Mathf.RoundToInt(value);
+        RefreshQuantity();
+    }
+
+    private void OnQuantityInputChanged(string value)
+    {
+        if (int.TryParse(value, out int quantity)) selectedQuantity = quantity;
+        RefreshQuantity();
+    }
+
+    public void DecreaseQuantity() { selectedQuantity--; RefreshQuantity(); }
+    public void IncreaseQuantity() { if (selectedQuantity < int.MaxValue) selectedQuantity++; RefreshQuantity(); }
+    public void SelectMaximum() { selectedQuantity = MaximumQuantity(); RefreshQuantity(); }
+
+    public void CloseQuantity()
+    {
+        if (quantityPanel != null) quantityPanel.SetActive(false);
+        selectedItem = -1;
+    }
+
+    public void ConfirmPurchase()
+    {
+        if (!CanTrade || selectedItem < 0 || !quantityPanel.activeSelf) return;
+        if (!int.TryParse(quantityInput.text, out int quantity) || quantity < 1 || quantity > MaximumQuantity())
+        {
+            RefreshQuantity();
+            return;
+        }
+        var item = shopItems[selectedItem];
+        long totalPrice = (long)item.itemPrice * quantity;
+        int received = (int)((long)item.itemValue * quantity);
+        player.AddCoin(-(int)totalPrice);
+        ApplyItemEffect(item, received);
+        PlaySound(sounds.Length > 0 ? sounds[0] : null, volume:1, destroyed:false);
+        GameProgress.SaveNow();
+        CloseQuantity();
+        upgradeShop?.RefreshOffers();
+    }
+
+    private void ApplyItemEffect(ShopItem item, int amount)
     {
         switch (item.itemType)
         {
             case ItemType.Arrow:
-                crossbowController.AddArrows(0, item.itemValue);
+                crossbowController.AddArrows(0, amount);
                 break;
             case ItemType.ArrowPoison:
-                crossbowController.AddArrows(1, item.itemValue);
+                crossbowController.AddArrows(1, amount);
                 break;
             case ItemType.ArrowHoly:
-                crossbowController.AddArrows(2, item.itemValue);
+                crossbowController.AddArrows(2, amount);
+                break;
+            case ItemType.ArrowPiercing:
+                crossbowController.AddArrows(3, amount);
                 break;
             case ItemType.Mirorr:
-                player.AddMirorr(item.itemValue);
+                player.AddMirorr(amount);
                 break;
             case ItemType.PoitionHeal:
-                player.AddPoitonHeal(item.itemValue);
+                player.AddPoitonHeal(amount);
                 break;
             default:
-                Debug.LogWarning("Неизвестный тип предмета");
+                Debug.LogWarning("РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїСЂРµРґРјРµС‚Р°");
                 break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (quantitySlider != null) quantitySlider.onValueChanged.RemoveListener(OnQuantitySliderChanged);
+        if (quantityInput != null) quantityInput.onEndEdit.RemoveListener(OnQuantityInputChanged);
     }
 }

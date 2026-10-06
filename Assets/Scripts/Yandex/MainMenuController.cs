@@ -34,14 +34,15 @@ public sealed class MainMenuController : MonoBehaviour
         playButton.interactable = GameProgress.IsReady && !loading;
         if (ratingButton != null) ratingButton.interactable = GameProgress.IsReady && !loading;
         authButton.interactable = GameProgress.IsReady && !YG2.player.auth && !loading;
-        authLabel.text = YG2.player.auth ? "Яндекс ID подключён" : "Войти через Яндекс ID";
+        authButton.gameObject.SetActive(!YG2.player.auth);
+        authLabel.text = "Войти в Яндекс";
         statusText.richText = false;
         statusText.text = GameProgress.AuthPending ? "Вход через Яндекс ID…"
             : !GameProgress.IsReady ? "Загрузка сохранения…"
-            : YG2.player.auth ? "Игрок: " + YG2.player.name
-            : "Можно играть без регистрации.\nЯндекс ID — прогресс на других устройствах и участие в рейтинге.";
+            : YG2.player.auth ? "Облачное сохранение"
+            : "Вход сохранит прогресс в облаке";
         if (GameProgress.IsReady && !GameProgress.CloudAvailable)
-            statusText.text += "\nОблако недоступно. Прогресс сохраняется на этом устройстве.";
+            statusText.text = "Сохранение на этом устройстве";
         if (GameProgress.IsReady) YG2.GameReadyAPI();
     }
 

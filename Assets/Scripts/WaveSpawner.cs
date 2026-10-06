@@ -42,6 +42,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private Text waveTimerText;
     [SerializeField] private Image waveTimerImage;
     [SerializeField] private Text waveNumberText;
+    [SerializeField] private GameObject waveHudPanel;
 
     [Header("Объект, который появляется во время перерыва")]
     [SerializeField] private GameObject breakIndicator;
@@ -397,6 +398,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void ShowSpawnerUI()
     {
+        if (waveHudPanel != null) waveHudPanel.SetActive(true);
         if (waveTimerText != null) waveTimerText.gameObject.SetActive(true);
         if (waveTimerImage != null) waveTimerImage.gameObject.SetActive(true);
         if (waveNumberText != null) waveNumberText.gameObject.SetActive(true);
@@ -404,6 +406,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void HideSpawnerUI()
     {
+        if (waveHudPanel != null) waveHudPanel.SetActive(false);
         if (waveTimerText != null) waveTimerText.gameObject.SetActive(false);
         if (waveTimerImage != null) waveTimerImage.gameObject.SetActive(false);
         if (waveNumberText != null) waveNumberText.gameObject.SetActive(false);
@@ -413,11 +416,12 @@ public class WaveSpawner : MonoBehaviour
     {
         if (waveTimerText != null)
         {
-            waveTimerText.text = Mathf.CeilToInt(timeLeft).ToString();
-            waveTimerText.color = isWave ? Color.red : Color.white;
+            int seconds = Mathf.Max(0, Mathf.CeilToInt(timeLeft));
+            waveTimerText.text = $"{seconds / 60}:{seconds % 60:00}";
+            waveTimerText.color = new Color32(227, 186, 101, 255);
 
             if (waveNumberText != null)
-                waveNumberText.text = $"{currentWaveIndex + 1} / {waves.Count}";
+                waveNumberText.text = $"Волна {currentWaveIndex + 1}";
         }
 
         if (waveTimerImage != null)

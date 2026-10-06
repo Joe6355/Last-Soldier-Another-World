@@ -55,6 +55,12 @@ public class PlayerController : Sounds
     [SerializeField] private Image hpBar;
     public float hp = 100;
     public float maxHp = 100;                // изначальное макс. хп
+    [SerializeField] private TextMeshProUGUI hpValueText;
+    [SerializeField] private TextMeshProUGUI shieldValueText;
+    [SerializeField] private TextMeshProUGUI staminaValueText;
+    public float ShieldMaxValue => shieldMaxValue;
+    public int MirrorCount => mirrorRemainder;
+    public int PotionCount => potionCount;
 
     // Зелья
     private KeyCode keyHeal = KeyCode.H;
@@ -151,12 +157,20 @@ public class PlayerController : Sounds
 
     private void Update()
     {
+        UpdateHudValues();
         if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale == 0f) return;
         CrossBowController();
         MirrorHome();
         HealPoition();
         HandleShield();
         HandleDash();  // логика дэша со стаминой
+    }
+
+    private void UpdateHudValues()
+    {
+        if (hpValueText != null) hpValueText.text = $"{Mathf.CeilToInt(hp)} / {Mathf.CeilToInt(maxHp)}";
+        if (shieldValueText != null) shieldValueText.text = $"{Mathf.CeilToInt(shieldValue)} / {Mathf.CeilToInt(shieldMaxValue)}";
+        if (staminaValueText != null) staminaValueText.text = $"{Mathf.CeilToInt(stamina)} / {Mathf.CeilToInt(maxStamina)}";
     }
 
     private void FixedUpdate()
@@ -407,7 +421,7 @@ public class PlayerController : Sounds
 
     private void UpdateCoinText()
     {
-        coinValueText.text = totalCoins.ToString();
+        coinValueText.text = totalCoins.ToString("N0");
         if (additionalCoinTexts != null)
             foreach (var text in additionalCoinTexts)
                 if (text != null) text.text = totalCoins.ToString("N0") + " монет";
@@ -491,14 +505,14 @@ public class PlayerController : Sounds
     // ===========================
     public void AddMirorr(int amount)
     {
-        mirrorRemainder += amount;
+        mirrorRemainder = (int)System.Math.Min(int.MaxValue, System.Math.Max(0L, (long)mirrorRemainder + amount));
         mirrorCountText.text = mirrorRemainder.ToString();
         SavePlayerData();
     }
 
     public void AddPoitonHeal(int amount)
     {
-        potionCount += amount;
+        potionCount = (int)System.Math.Min(int.MaxValue, System.Math.Max(0L, (long)potionCount + amount));
         textCountPotionHeal.text = potionCount.ToString();
         SavePlayerData();
     }
@@ -636,6 +650,7 @@ public class PlayerController : Sounds
                     IncreaseArrowDamage(Mathf.RoundToInt(total)); break;
             }
         }
+        crossbowController.RestoreWeaponUpgrades(items);
         hp = Mathf.Clamp(savedHp, 0f, maxHp);
         shieldValue = Mathf.Clamp(savedShield, 0f, shieldMaxValue);
         stamina = Mathf.Clamp(savedStamina, 0f, maxStamina);
@@ -657,6 +672,7 @@ public class PlayerController : Sounds
         stamina = Mathf.Min(stamina, maxStamina);
 
         originalMoveSpeed = 2f;
+        crossbowController.RestoreWeaponUpgrades(System.Array.Empty<Beka.UpgradeItem>());
 
         // Сбрасываем урон стрел (по умолчанию = 2)
         foreach (var arrowPrefab in crossbowController.arrowPrefabs)

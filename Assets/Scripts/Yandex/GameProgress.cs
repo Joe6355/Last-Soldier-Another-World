@@ -159,7 +159,7 @@ public sealed class GameProgress : MonoBehaviour
         if (arrowKey >= 0)
         {
             string[] counts = (data.stringValues[arrowKey] ?? "").Split(',');
-            if (counts.Length != 3) return false;
+            if (counts.Length != 3 && counts.Length != 4) return false;
             foreach (string count in counts)
                 if (!int.TryParse(count, out int value) || value < 0) return false;
         }

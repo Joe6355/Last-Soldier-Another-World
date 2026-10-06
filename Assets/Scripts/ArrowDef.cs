@@ -7,42 +7,70 @@ public class ArrowDef : MonoBehaviour
 {
     public float lifeTime = 2f;
     public int damage = 1;
+    [Min(1)] public int maxEnemyHits = 1;
+    private readonly HashSet<int> hitEnemies = new HashSet<int>();
 
-    // Списки тегов для врагов (добавим "Healer" сюда, если хотите бить и хилера)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (maxEnemyHits <= 1 || hitEnemies.Count >= maxEnemyHits || other.isTrigger || other.CompareTag("Player") || other.CompareTag("Projectile")) return;
+        MonoBehaviour target = other.GetComponentInParent<Roberto>();
+        if (target == null) target = other.GetComponentInParent<Enemy>();
+        if (target == null) target = other.GetComponentInParent<SceletonDef>();
+        if (target == null) target = other.GetComponentInParent<SceletMag>();
+        if (target == null) target = other.GetComponentInParent<Slime>();
+        if (target == null) target = other.GetComponentInParent<HealerEnemy>();
+        if (target == null) target = other.GetComponentInParent<SlimeBoss>();
+        if (target == null)
+        {
+            Destroy(gameObject); // РЎС‚РµРЅС‹ Рё РїСЂРѕС‡РёРµ С‚РІС‘СЂРґС‹Рµ РїСЂРµРїСЏС‚СЃС‚РІРёСЏ.
+            return;
+        }
+        if (!hitEnemies.Add(target.GetInstanceID())) return;
+        if (target is Roberto assassin) assassin.TakeDamage(damage);
+        else if (target is Enemy enemy) enemy.TakeDamage(damage, false);
+        else if (target is SceletonDef skeleton) skeleton.TakeDamage(damage, false);
+        else if (target is SceletMag mage) mage.TakeDamage(damage, false);
+        else if (target is Slime slime) slime.TakeDamage(damage, false);
+        else if (target is HealerEnemy healer) healer.TakeDamage(damage, false);
+        else if (target is SlimeBoss boss) boss.TakeDamage(damage, false);
+        if (hitEnemies.Count >= maxEnemyHits) Destroy(gameObject);
+    }
+
+    // РЎРїРёСЃРєРё С‚РµРіРѕРІ РґР»СЏ РІСЂР°РіРѕРІ (РґРѕР±Р°РІРёРј "Healer" СЃСЋРґР°, РµСЃР»Рё С…РѕС‚РёС‚Рµ Р±РёС‚СЊ Рё С…РёР»РµСЂР°)
     protected string[] enemyTeg = { "Slime", "Skeleton", "Healer" };
     protected string[] enemyTegHoly = { "HolyEnemy" };
 
-    // Публичные свойства для доступа (если где-то ещё используются)
+    // РџСѓР±Р»РёС‡РЅС‹Рµ СЃРІРѕР№СЃС‚РІР° РґР»СЏ РґРѕСЃС‚СѓРїР° (РµСЃР»Рё РіРґРµ-С‚Рѕ РµС‰С‘ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ)
     public string[] EnemyTags => enemyTeg;
     public string[] HolyEnemyTags => enemyTegHoly;
     
     protected virtual void Update()
     {
-        // Уничтожаем стрелу через указанное время
+        // РЈРЅРёС‡С‚РѕР¶Р°РµРј СЃС‚СЂРµР»Сѓ С‡РµСЂРµР· СѓРєР°Р·Р°РЅРЅРѕРµ РІСЂРµРјСЏ
         Destroy(gameObject, lifeTime);
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D coll)
     {
-        // Проверяем, есть ли на объекте компонент ассассина (Roberto)
+        // РџСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё РЅР° РѕР±СЉРµРєС‚Рµ РєРѕРјРїРѕРЅРµРЅС‚ Р°СЃСЃР°СЃСЃРёРЅР° (Roberto)
         Roberto assassin = coll.gameObject.GetComponent<Roberto>();
         if (assassin != null)
         {
-            // Если компонент найден, наносим ассассину урон
+            // Р•СЃР»Рё РєРѕРјРїРѕРЅРµРЅС‚ РЅР°Р№РґРµРЅ, РЅР°РЅРѕСЃРёРј Р°СЃСЃР°СЃСЃРёРЅСѓ СѓСЂРѕРЅ
             assassin.TakeDamage(damage);
             Destroy(gameObject);
             return;
         }
 
-        // Если тег объекта входит в список вражеских тегов
+        // Р•СЃР»Рё С‚РµРі РѕР±СЉРµРєС‚Р° РІС…РѕРґРёС‚ РІ СЃРїРёСЃРѕРє РІСЂР°Р¶РµСЃРєРёС… С‚РµРіРѕРІ
         if (enemyTeg.Contains(coll.gameObject.tag))
         {
-            // Проверяем наличие различных компонентов врагов и наносим урон
+            // РџСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ СЂР°Р·Р»РёС‡РЅС‹С… РєРѕРјРїРѕРЅРµРЅС‚РѕРІ РІСЂР°РіРѕРІ Рё РЅР°РЅРѕСЃРёРј СѓСЂРѕРЅ
             Enemy enemy = coll.gameObject.GetComponent<Enemy>();
             SceletonDef skeletonDef = coll.gameObject.GetComponent<SceletonDef>();
             SceletMag sceletMag = coll.gameObject.GetComponent<SceletMag>();
             Slime slime = coll.gameObject.GetComponent<Slime>();
-            HealerEnemy healer = coll.gameObject.GetComponent<HealerEnemy>(); // <-- Добавлено
+            HealerEnemy healer = coll.gameObject.GetComponent<HealerEnemy>(); // <-- Р”РѕР±Р°РІР»РµРЅРѕ
 
             if (enemy != null)
             {
@@ -66,10 +94,10 @@ public class ArrowDef : MonoBehaviour
             }
         }
 
-        Destroy(gameObject); // Уничтожаем стрелу после попадания
+        Destroy(gameObject); // РЈРЅРёС‡С‚РѕР¶Р°РµРј СЃС‚СЂРµР»Сѓ РїРѕСЃР»Рµ РїРѕРїР°РґР°РЅРёСЏ
     }
     // else 
     // {
-    //     // Это не враг, можно просто уничтожить стрелу или что-то ещё
+    //     // Р­С‚Рѕ РЅРµ РІСЂР°Рі, РјРѕР¶РЅРѕ РїСЂРѕСЃС‚Рѕ СѓРЅРёС‡С‚РѕР¶РёС‚СЊ СЃС‚СЂРµР»Сѓ РёР»Рё С‡С‚Рѕ-С‚Рѕ РµС‰С‘
     // }
 }

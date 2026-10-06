@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Beka : MonoBehaviour
 {
     [SerializeField] private GameObject wellcomeText;
@@ -11,29 +12,42 @@ public class Beka : MonoBehaviour
     [SerializeField] private GameObject panelShop;
     [SerializeField] private PlayerController player;
     [SerializeField] private Button[] buyButtons;
+    [SerializeField] private Shop market;
+    [SerializeField] private TextMeshProUGUI[] upgradeDetails = System.Array.Empty<TextMeshProUGUI>();
+    [SerializeField] private GameObject[] upgradeCards = System.Array.Empty<GameObject>();
+    [SerializeField] private GameObject arrowUpgradeSelector;
+    [SerializeField] private Button heroUpgradeTab, weaponUpgradeTab;
+    [SerializeField] private Button[] arrowUpgradeTabs = System.Array.Empty<Button>();
+    private bool weaponPage;
+    private int selectedArrow;
+    public bool IsPlayerInRange => isPlayerInRange;
 
     private bool isPlayerInRange = false;
     private Animator anim;
 
-    private bool isBuying = false; // флаг автопокупки
+    private bool isBuying = false; // С„Р»Р°Рі Р°РІС‚РѕРїРѕРєСѓРїРєРё
 
     private CrossbowController crossbowController;
 
     [System.Serializable]
     public class UpgradeItem
     {
-        public string itemName;       // Название в UI
+        public string itemName;       // РќР°Р·РІР°РЅРёРµ РІ UI
         public UpgradeItemType itemType;
 
-        public int basePrice;         // Базовая цена
-        public int priceIncrement;    // Насколько дорожает после каждой покупки
-        public float itemValue;       // Насколько увеличивает параметр
-        public int purchaseCount;     // Сколько раз куплено
+        public int basePrice;         // Р‘Р°Р·РѕРІР°СЏ С†РµРЅР°
+        public int priceIncrement;    // РќР°СЃРєРѕР»СЊРєРѕ РґРѕСЂРѕР¶Р°РµС‚ РїРѕСЃР»Рµ РєР°Р¶РґРѕР№ РїРѕРєСѓРїРєРё
+        public float itemValue;       // РќР°СЃРєРѕР»СЊРєРѕ СѓРІРµР»РёС‡РёРІР°РµС‚ РїР°СЂР°РјРµС‚СЂ
+        public int purchaseCount;     // РЎРєРѕР»СЊРєРѕ СЂР°Р· РєСѓРїР»РµРЅРѕ
+        public int maxPurchases;      // 0 вЂ” Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёСЏ
+        public int arrowType;
+        public bool IsMaxed => purchaseCount >= (maxPurchases > 0 ? maxPurchases : int.MaxValue);
 
         public int CurrentPrice
         {
-            get { return basePrice + purchaseCount * priceIncrement; }
+            get { return (int)System.Math.Min(int.MaxValue, ExactPrice); }
         }
+        public long ExactPrice => (long)basePrice + (long)purchaseCount * priceIncrement;
     }
 
     public enum UpgradeItemType
@@ -42,12 +56,17 @@ public class Beka : MonoBehaviour
         ShieldMax,
         StaminaMax,
         MoveSpeed,
-        ArrowDamage
+        ArrowDamage,
+        Shotgun,
+        Automatic,
+        TypeDamage,
+        ArrowSpeed,
+        ReloadSpeed
     }
 
     public UpgradeItem[] upgradeItems;
 
-    [Header("Звуки (опционально)")]
+    [Header("Р—РІСѓРєРё (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)")]
     [SerializeField] private AudioClip soundPurchase;
     [SerializeField] private AudioClip soundFail;
 
@@ -60,9 +79,9 @@ public class Beka : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        // Загрузим ранее купленные улучшения
+        // Р—Р°РіСЂСѓР·РёРј СЂР°РЅРµРµ РєСѓРїР»РµРЅРЅС‹Рµ СѓР»СѓС‡С€РµРЅРёСЏ
         LoadUpgrades();
-        // Применим их сразу к игроку
+        // РџСЂРёРјРµРЅРёРј РёС… СЃСЂР°Р·Сѓ Рє РёРіСЂРѕРєСѓ
         ReapplyUpgrades();
 
         UpdateButtonPrices();
@@ -80,7 +99,6 @@ public class Beka : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-            crossbowController.canShoot = false;
             isPlayerInRange = true;
             wellcomeText.SetActive(true);
             interactivButton.SetActive(true);
@@ -92,7 +110,6 @@ public class Beka : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-            crossbowController.canShoot = true;
             isPlayerInRange = false;
             wellcomeText.SetActive(false);
             interactivButton.SetActive(false);
@@ -103,13 +120,18 @@ public class Beka : MonoBehaviour
 
     public void OpenShop()
     {
+        if (market != null)
+        {
+            market.OpenFromTrainer(this);
+            return;
+        }
         if (isPlayerInRange)
         {
             crossbowController.canShoot = false;
             panelShop.SetActive(true);
             if (player.crossbowController != null)
                 player.crossbowController.SetShootingState(false);
-            Debug.Log("Магазин улучшений открыт");
+            Debug.Log("РњР°РіР°Р·РёРЅ СѓР»СѓС‡С€РµРЅРёР№ РѕС‚РєСЂС‹С‚");
 
             UpdateButtonPrices();
         }
@@ -117,33 +139,97 @@ public class Beka : MonoBehaviour
 
     public void CloseShop()
     {
+        if (market != null)
+        {
+            if (market.IsTradingWith(this)) market.CloseShop();
+            return;
+        }
         crossbowController.canShoot = true;
         panelShop.SetActive(false);
         if (player.crossbowController != null)
             player.crossbowController.SetShootingState(true);
-        Debug.Log("Магазин улучшений закрыт");
+        Debug.Log("РњР°РіР°Р·РёРЅ СѓР»СѓС‡С€РµРЅРёР№ Р·Р°РєСЂС‹С‚");
     }
 
     private void UpdateButtonPrices()
     {
         for (int i = 0; i < upgradeItems.Length && i < buyButtons.Length; i++)
         {
-            Text buttonText = buyButtons[i].GetComponentInChildren<Text>();
+            Text buttonText = buyButtons[i].GetComponentInChildren<Text>(true);
             if (buttonText != null)
             {
-                int price = upgradeItems[i].CurrentPrice;
-                float val = upgradeItems[i].itemValue;
-                buttonText.text = $"{price:N0} монет";
+                long price = upgradeItems[i].ExactPrice;
+                buttonText.text = upgradeItems[i].IsMaxed
+                    ? upgradeItems[i].itemType == UpgradeItemType.Shotgun || upgradeItems[i].itemType == UpgradeItemType.Automatic ? "РР·СѓС‡РµРЅРѕ" : "РњР°РєСЃРёРјСѓРј"
+                    : $"{price:N0} РјРѕРЅРµС‚";
             }
+            if (i < upgradeDetails.Length && upgradeDetails[i] != null)
+                upgradeDetails[i].text = UpgradeSummary(upgradeItems[i]);
+            buyButtons[i].interactable = !upgradeItems[i].IsMaxed && upgradeItems[i].ExactPrice > 0 && upgradeItems[i].ExactPrice <= player.totalCoins;
         }
     }
 
-    // Покупка по нажатию на кнопку
+    public void RefreshOffers()
+    {
+        for (int i = 0; i < upgradeCards.Length && i < upgradeItems.Length; i++)
+        {
+            var item = upgradeItems[i];
+            bool weapon = (int)item.itemType >= (int)UpgradeItemType.Shotgun;
+            bool perArrow = (int)item.itemType >= (int)UpgradeItemType.TypeDamage;
+            upgradeCards[i].SetActive(weapon == weaponPage && (!perArrow || item.arrowType == selectedArrow));
+        }
+        if (arrowUpgradeSelector != null) arrowUpgradeSelector.SetActive(weaponPage);
+        Highlight(heroUpgradeTab, !weaponPage);
+        Highlight(weaponUpgradeTab, weaponPage);
+        for (int i = 0; i < arrowUpgradeTabs.Length; i++) Highlight(arrowUpgradeTabs[i], i == selectedArrow);
+        UpdateButtonPrices();
+    }
+
+    private static void Highlight(Button button, bool selected)
+    {
+        if (button == null) return;
+        button.GetComponent<Image>().color = selected ? new Color32(227,186,101,255) : new Color32(35,68,59,255);
+        var label = button.GetComponentInChildren<TextMeshProUGUI>();
+        if (label != null) label.color = selected ? new Color32(20,43,38,255) : new Color32(244,240,223,255);
+    }
+
+    public void ShowHeroUpgrades() { weaponPage = false; RefreshOffers(); }
+    public void ShowWeaponUpgrades() { weaponPage = true; RefreshOffers(); }
+    public void SelectArrowUpgrades(int type) { if (type < 0 || type >= arrowUpgradeTabs.Length) return; selectedArrow = type; RefreshOffers(); }
+
+    private bool OfferVisible(int index) => upgradeCards.Length == 0 || index < upgradeCards.Length && upgradeCards[index].activeInHierarchy;
+
+    private string UpgradeSummary(UpgradeItem item)
+    {
+        if (item.itemType == UpgradeItemType.Shotgun || item.itemType == UpgradeItemType.Automatic)
+            return item.IsMaxed ? "Р РµР¶РёРј СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅ"
+                : item.itemType == UpgradeItemType.Shotgun ? "3 СЃС‚СЂРµР»С‹ Р·Р° РІС‹СЃС‚СЂРµР»\nРљР»Р°РІРёС€Р° 2 РїРѕСЃР»Рµ РїРѕРєСѓРїРєРё" : "РћРіРѕРЅСЊ РїСЂРё СѓРґРµСЂР¶Р°РЅРёРё Р›РљРњ\nРљР»Р°РІРёС€Р° 3 РїРѕСЃР»Рµ РїРѕРєСѓРїРєРё";
+        if (item.itemType == UpgradeItemType.TypeDamage || item.itemType == UpgradeItemType.ArrowSpeed || item.itemType == UpgradeItemType.ReloadSpeed)
+        {
+            var bow = player.crossbowController;
+            int next = item.IsMaxed ? 0 : 1;
+            string values = item.itemType == UpgradeItemType.TypeDamage ? $"{bow.ArrowDamage(item.arrowType)} в†’ {bow.ArrowDamage(item.arrowType) + next}"
+                : item.itemType == UpgradeItemType.ArrowSpeed ? $"{bow.ArrowSpeed(item.arrowType):0.##} в†’ {bow.ArrowSpeed(item.arrowType,next):0.##}"
+                : $"{bow.ShotInterval(item.arrowType):0.000} в†’ {bow.ShotInterval(item.arrowType,1,next):0.000} СЃ";
+            return $"{values}\nРЈСЂРѕРІРµРЅСЊ {item.purchaseCount} / {item.maxPurchases}";
+        }
+        float current = item.itemType == UpgradeItemType.MaxHP ? player.maxHp
+            : item.itemType == UpgradeItemType.ShieldMax ? player.ShieldMaxValue
+            : item.itemType == UpgradeItemType.StaminaMax ? player.maxStamina
+            : item.itemType == UpgradeItemType.MoveSpeed ? player.originalMoveSpeed
+            : player.crossbowController.arrowPrefabs[0].GetComponent<ArrowDef>().damage;
+        float increment = item.itemType == UpgradeItemType.ArrowDamage
+            ? Mathf.RoundToInt(item.itemValue * (item.purchaseCount + 1)) - Mathf.RoundToInt(item.itemValue * item.purchaseCount)
+            : item.itemValue;
+        return $"{current:0.##} в†’ {current + increment:0.##}\nРЈСЂРѕРІРµРЅСЊ {item.purchaseCount:N0} В· +{item.itemValue:0.##}";
+    }
+
+    // РџРѕРєСѓРїРєР° РїРѕ РЅР°Р¶Р°С‚РёСЋ РЅР° РєРЅРѕРїРєСѓ
     public void BuyItem(int itemIndex)
     {
-        if (itemIndex < 0 || itemIndex >= upgradeItems.Length) return;
+        if (itemIndex < 0 || itemIndex >= upgradeItems.Length || !CanPurchase() || !OfferVisible(itemIndex)) return;
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (isActiveAndEnabled && Input.GetKey(KeyCode.LeftControl))
         {
             if (!isBuying) StartCoroutine(AutoBuyCoroutine(itemIndex));
         }
@@ -155,30 +241,32 @@ public class Beka : MonoBehaviour
 
     private void AttemptSinglePurchase(int itemIndex)
     {
+        if (!CanPurchase() || !OfferVisible(itemIndex)) return;
         UpgradeItem item = upgradeItems[itemIndex];
-        int price = item.CurrentPrice;
+        long price = item.ExactPrice;
 
-        if (player.totalCoins >= price)
+        if (price > 0 && price <= player.totalCoins && !item.IsMaxed)
         {
-            player.AddCoin(-price);
-            Debug.Log($"Куплено улучшение: {item.itemName} за {price} монет.");
+            player.AddCoin(-(int)price);
+            Debug.Log($"РљСѓРїР»РµРЅРѕ СѓР»СѓС‡С€РµРЅРёРµ: {item.itemName} Р·Р° {price} РјРѕРЅРµС‚.");
 
             ApplyUpgrade(item);
             item.purchaseCount++;
+            player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
 
             PlaySoundPurchase();
             UpdateButtonPrices();
 
-            // Сохраняем апгрейды
+            // РЎРѕС…СЂР°РЅСЏРµРј Р°РїРіСЂРµР№РґС‹
             SaveUpgrades();
-            // Сохраняем статы игрока
+            // РЎРѕС…СЂР°РЅСЏРµРј СЃС‚Р°С‚С‹ РёРіСЂРѕРєР°
             player.SavePlayerData();
         }
         else
         {
             PlaySoundFail();
-            Debug.Log($"Недостаточно монет для {item.itemName}");
-            anim.SetTrigger("Event");
+            Debug.Log($"РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРѕРЅРµС‚ РґР»СЏ {item.itemName}");
+            if (anim != null) anim.SetTrigger("Event");
         }
     }
 
@@ -188,16 +276,17 @@ public class Beka : MonoBehaviour
         UpgradeItem item = upgradeItems[itemIndex];
         bool purchasedSomething = false;
 
-        while (Input.GetKey(KeyCode.LeftControl))
+        while (Input.GetKey(KeyCode.LeftControl) && CanPurchase() && OfferVisible(itemIndex))
         {
-            int price = item.CurrentPrice;
-            if (player.totalCoins >= price)
+            long price = item.ExactPrice;
+            if (price > 0 && price <= player.totalCoins && !item.IsMaxed)
             {
-                player.AddCoin(-price);
-                Debug.Log($"(Авто) Куплено улучшение: {item.itemName} за {price} монет!");
+                player.AddCoin(-(int)price);
+                Debug.Log($"(РђРІС‚Рѕ) РљСѓРїР»РµРЅРѕ СѓР»СѓС‡С€РµРЅРёРµ: {item.itemName} Р·Р° {price} РјРѕРЅРµС‚!");
 
                 ApplyUpgrade(item);
                 item.purchaseCount++;
+                player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
 
                 purchasedSomething = true;
                 UpdateButtonPrices();
@@ -207,18 +296,24 @@ public class Beka : MonoBehaviour
             else
             {
                 PlaySoundFail();
-                anim.SetTrigger("Event");
-                Debug.Log($"Недостаточно монет для {item.itemName}");
+                if (anim != null) anim.SetTrigger("Event");
+                Debug.Log($"РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРѕРЅРµС‚ РґР»СЏ {item.itemName}");
                 break;
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
 
         if (purchasedSomething) PlaySoundPurchase();
         isBuying = false;
     }
 
-    // Применяем улучшение к игроку
+    private bool CanPurchase()
+    {
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || player.IsAwaitingRevive) return false;
+        return market != null ? market.CanPurchaseUpgrades : isPlayerInRange && panelShop.activeInHierarchy;
+    }
+
+    // РџСЂРёРјРµРЅСЏРµРј СѓР»СѓС‡С€РµРЅРёРµ Рє РёРіСЂРѕРєСѓ
     private void ApplyUpgrade(UpgradeItem item)
     {
         switch (item.itemType)
@@ -240,8 +335,14 @@ public class Beka : MonoBehaviour
                     - Mathf.RoundToInt(item.itemValue * item.purchaseCount);
                 player.IncreaseArrowDamage(dmgAdd);
                 break;
+            case UpgradeItemType.Shotgun:
+            case UpgradeItemType.Automatic:
+            case UpgradeItemType.TypeDamage:
+            case UpgradeItemType.ArrowSpeed:
+            case UpgradeItemType.ReloadSpeed:
+                break; // РџР°СЂР°РјРµС‚СЂС‹ РѕСЂСѓР¶РёСЏ РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚СЃСЏ РїРѕ СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рј СѓСЂРѕРІРЅСЏРј.
             default:
-                Debug.LogWarning("Неизвестный апгрейд: " + item.itemType);
+                Debug.LogWarning("РќРµРёР·РІРµСЃС‚РЅС‹Р№ Р°РїРіСЂРµР№Рґ: " + item.itemType);
                 break;
         }
     }
@@ -257,7 +358,7 @@ public class Beka : MonoBehaviour
     // ========================
     public void SaveUpgrades()
     {
-        // Сохраняем количество покупок у каждого upgradeItems[i]
+        // РЎРѕС…СЂР°РЅСЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРєСѓРїРѕРє Сѓ РєР°Р¶РґРѕРіРѕ upgradeItems[i]
         for (int i = 0; i < upgradeItems.Length; i++)
         {
             string key = "UpgradeShop_Item" + i.ToString() + "_Count";
@@ -274,40 +375,40 @@ public class Beka : MonoBehaviour
             string key = "UpgradeShop_Item" + i.ToString() + "_Count";
             if (PlayerPrefs.HasKey(key))
             {
-                upgradeItems[i].purchaseCount = PlayerPrefs.GetInt(key);
+                upgradeItems[i].purchaseCount = Mathf.Clamp(PlayerPrefs.GetInt(key), 0, upgradeItems[i].maxPurchases > 0 ? upgradeItems[i].maxPurchases : int.MaxValue);
             }
         }
-        Debug.Log("UpgradeShop: улучшения загружены!");
+        Debug.Log("UpgradeShop: СѓР»СѓС‡С€РµРЅРёСЏ Р·Р°РіСЂСѓР¶РµРЅС‹!");
     }
 
     // ========================
-    //   МЕТОД СБРОСА
+    //   РњР•РўРћР” РЎР‘Р РћРЎРђ
     // ========================
     /// <summary>
-    /// Сбрасывает все апгрейды (purchaseCount=0), 
-    /// обнуляет статы игрока к базовым. 
+    /// РЎР±СЂР°СЃС‹РІР°РµС‚ РІСЃРµ Р°РїРіСЂРµР№РґС‹ (purchaseCount=0), 
+    /// РѕР±РЅСѓР»СЏРµС‚ СЃС‚Р°С‚С‹ РёРіСЂРѕРєР° Рє Р±Р°Р·РѕРІС‹Рј. 
     /// </summary>
     public void ResetAllUpgrades()
     {
-        // 1) Обнуляем счётчики покупок
+        // 1) РћР±РЅСѓР»СЏРµРј СЃС‡С‘С‚С‡РёРєРё РїРѕРєСѓРїРѕРє
         for (int i = 0; i < upgradeItems.Length; i++)
         {
             upgradeItems[i].purchaseCount = 0;
         }
 
-        // 2) Сохраняем (purchaseCount=0)
+        // 2) РЎРѕС…СЂР°РЅСЏРµРј (purchaseCount=0)
         SaveUpgrades();
 
-        // 3) Сбрасываем статы игрока
+        // 3) РЎР±СЂР°СЃС‹РІР°РµРј СЃС‚Р°С‚С‹ РёРіСЂРѕРєР°
         player.ResetAllStatsToBase();
 
-        // 4) Сохраняем новые статы
+        // 4) РЎРѕС…СЂР°РЅСЏРµРј РЅРѕРІС‹Рµ СЃС‚Р°С‚С‹
         player.SavePlayerData();
 
-        // 5) Обновляем UI (цены станут базовыми)
+        // 5) РћР±РЅРѕРІР»СЏРµРј UI (С†РµРЅС‹ СЃС‚Р°РЅСѓС‚ Р±Р°Р·РѕРІС‹РјРё)
         UpdateButtonPrices();
 
-        Debug.Log("Все апгрейды сброшены! Статы игрока возвращены к базовым.");
+        Debug.Log("Р’СЃРµ Р°РїРіСЂРµР№РґС‹ СЃР±СЂРѕС€РµРЅС‹! РЎС‚Р°С‚С‹ РёРіСЂРѕРєР° РІРѕР·РІСЂР°С‰РµРЅС‹ Рє Р±Р°Р·РѕРІС‹Рј.");
     }
 
     // ========================

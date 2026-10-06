@@ -33,7 +33,6 @@ public class Ui : MonoBehaviour
     [SerializeField] private Button openMenuButton; // Кнопка для открытия меню вне его
 
     private bool isMenuOpen = false; // Состояние меню (открыто/закрыто)
-    private bool isGameMusicPlaying = false; // Проверка, играет ли музыка игры
 
     private PlayerController playerController;
 
@@ -42,6 +41,10 @@ public class Ui : MonoBehaviour
     private CrossbowController crossbowController;
 
     public static float sfxVolume = 1f;
+    private bool startWhenReady;
+    private Shop activeShop;
+    public bool IsMenuOpen => isMenuOpen;
+    public bool IsTradeOpen => activeShop != null;
     private void Start()
     {
         //crossbowController.SetShootingState(false);
@@ -54,15 +57,6 @@ public class Ui : MonoBehaviour
             if (menuMusic != null) menuMusic.Play();
             return;
         }
-        // Останавливаем игру при запуске
-        PauseGame();
-
-        // Включаем музыку меню
-        if (menuMusic != null)
-        {
-            menuMusic.Play();
-        }
-
         // Привязываем кнопки
         playButton.onClick.AddListener(StartGame);
         ratingButton.onClick.AddListener(ShowRating);
@@ -75,23 +69,49 @@ public class Ui : MonoBehaviour
             openMenuButton.onClick.AddListener(ToggleMenu);
         }
 
-        // Убедиться, что музыка игры не играет при запуске
+        // Игровая сцена открывается сразу; Esc остаётся обычной паузой.
         PauseGameMusic();
-
-        if (isGameMusicPlaying)
-        {
-            Debug.Log("Музыка игры играет");
-        }
+        menuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        if (ratingPanel != null) ratingPanel.SetActive(false);
+        startWhenReady = true;
+        if (GameProgress.IsReady) BeginLoadedGame();
     }
 
     private void Update()
     {
+        if (startWhenReady && GameProgress.IsReady) BeginLoadedGame();
         // Открытие/закрытие меню по нажатию клавиши Esc
         if (playerController != null && !YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
 
         }
+    }
+
+    private void BeginLoadedGame()
+    {
+        if (YG.YG2.isPauseGame) return;
+        startWhenReady = false;
+        if (playerController.IsAwaitingRevive) PauseForDeath();
+        else StartGame();
+    }
+
+    public bool BeginTrade(Shop shop)
+    {
+        if (activeShop != null || isMenuOpen || !GameProgress.IsReady || YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return false;
+        activeShop = shop;
+        PauseGame();
+        return true;
+    }
+
+    public void EndTrade(Shop shop)
+    {
+        if (activeShop != shop) return;
+        activeShop = null;
+        if (isMenuOpen || playerController.IsAwaitingRevive || YG.YG2.isPauseGame) return;
+        crossbowController.SetShootingState(true);
+        ResumeGame();
     }
 
     private void PauseGame()
@@ -200,6 +220,11 @@ public class Ui : MonoBehaviour
     public void ToggleMenu()
     {
         if (YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
+        if (activeShop != null)
+        {
+            activeShop.CloseTopPanel();
+            return;
+        }
         if (ratingPanel != null && ratingPanel.activeSelf)
         {
             CloseRating();
@@ -230,6 +255,7 @@ public class Ui : MonoBehaviour
 
     public void PauseForDeath()
     {
+        if (activeShop != null) activeShop.CloseShop();
         menuPanel.SetActive(false);
         settingsPanel.SetActive(false);
         if (ratingPanel != null) ratingPanel.SetActive(false);
@@ -264,7 +290,6 @@ public class Ui : MonoBehaviour
             }
         }
 
-        isGameMusicPlaying = true;
     }
 
     private void PauseGameMusic()
@@ -278,7 +303,6 @@ public class Ui : MonoBehaviour
             }
         }
 
-        isGameMusicPlaying = false;
     }
 
     private void ResumeGameMusic()
@@ -292,7 +316,6 @@ public class Ui : MonoBehaviour
             }
         }
 
-        isGameMusicPlaying = true;
     }
 
     public void SetMusicVolume(float volume)

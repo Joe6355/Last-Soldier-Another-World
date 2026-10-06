@@ -140,7 +140,7 @@ public sealed class GameMonetization : MonoBehaviour
         deadPlayer.ReturnToCampAfterDeath();
         deadPlayer = null;
         deathPanel.SetActive(false);
-        gameUi.ShowMenuAfterDeath();
+        gameUi.ContinueAfterDeath();
         GameProgress.SaveNow();
         // Natural break after death; the SDK controls display frequency and availability.
         YG2.InterstitialAdvShow();
