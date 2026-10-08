@@ -25,6 +25,7 @@ public class Ui : MonoBehaviour
     [SerializeField] private Slider sfxSlider; // Слайдер громкости эффектов
     [SerializeField] private TextMeshProUGUI musicValueText;
     [SerializeField] private TextMeshProUGUI sfxValueText;
+    [SerializeField] private Toggle damageNumbersToggle;
 
     [Header("Кнопки")]
     [SerializeField] private Button playButton;
@@ -47,6 +48,11 @@ public class Ui : MonoBehaviour
     public bool IsTradeOpen => activeShop != null;
     private void Start()
     {
+        if (damageNumbersToggle != null)
+        {
+            damageNumbersToggle.SetIsOnWithoutNotify(DamageNumbers.IsEnabled);
+            damageNumbersToggle.onValueChanged.AddListener(DamageNumbers.SetEnabled);
+        }
         //crossbowController.SetShootingState(false);
         crossbowController  = FindObjectOfType<CrossbowController>();
         playerController = FindObjectOfType<PlayerController>();
@@ -370,6 +376,7 @@ public class Ui : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (damageNumbersToggle != null) damageNumbersToggle.onValueChanged.RemoveListener(DamageNumbers.SetEnabled);
         if (musicSlider != null) musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
         if (sfxSlider != null) sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
     }

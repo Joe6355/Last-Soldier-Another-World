@@ -163,6 +163,7 @@ public class Enemy : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        double previousHealth = health;
         if (deathHandled) return;
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
@@ -195,6 +196,7 @@ public class Enemy : Sounds
         }
 
         // Ёффект попадани€ (мигаем полупрозрачным)
+        DamageNumbers.Show(transform, previousHealth, health);
         SetTransparence(0.5f);
         Invoke(nameof(ResetTransparency), 0.1f);
 

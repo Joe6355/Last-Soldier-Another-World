@@ -28,6 +28,7 @@ public class Slime : Sounds
     private float lastAttackTime = 0;
     private bool isAttacking = false;
     private float currentSpeed;
+    private int walkTrigger, attackTrigger, idleTrigger;
 
     private Stats stats;
     private void Start()
@@ -44,10 +45,24 @@ public class Slime : Sounds
         }
 
         currentSpeed = defSpeed;
+        lastAttackTime = Time.time;
+        if (anim != null)
+            foreach (var parameter in anim.parameters)
+            {
+                if (parameter.type != AnimatorControllerParameterType.Trigger) continue;
+                if (parameter.name == "Walk" || parameter.name == "GoRun") walkTrigger = parameter.nameHash;
+                if (parameter.name == "Attack" || parameter.name == "GoAt") attackTrigger = parameter.nameHash;
+                if (parameter.name == "NoRun") idleTrigger = parameter.nameHash;
+            }
     }
 
     private void FixedUpdate()
     {
+        if (deathHandled || player == null)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         if (isAttacking) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -57,13 +72,15 @@ public class Slime : Sounds
             // Игрок далеко, слизень стоит
             currentSpeed = 0;
             rb.velocity = Vector2.zero;
+            if (idleTrigger != 0) anim.SetTrigger(idleTrigger);
         }
         else
         {
             // Игрок в радиусе агра, слизень движется к нему
+            currentSpeed = defSpeed;
             MoveTowardsPlayer();
             
-            anim.SetTrigger("Walk");
+            if (walkTrigger != 0) anim.SetTrigger(walkTrigger);
 
             if (Time.time >= lastAttackTime + attackCooldown)
             {
@@ -87,7 +104,7 @@ public class Slime : Sounds
         rb.velocity = Vector2.zero; // Остановить движение
         currentSpeed = 0;
 
-        anim.SetTrigger("Attack");
+        if (attackTrigger != 0) anim.SetTrigger(attackTrigger);
 
         yield return new WaitForSeconds(0.5f); // Небольшая задержка перед атакой
 
@@ -97,9 +114,8 @@ public class Slime : Sounds
             Instantiate(projectilePrefab, firePosition.position, Quaternion.identity);
         }
 
-        lastAttackTime = Time.time;
-
         yield return new WaitForSeconds(2.0f); // Ожидание после выстрела
+        lastAttackTime = Time.time;
         isAttacking = false;
         currentSpeed = defSpeed; // Возвращаем скорость
     }
@@ -132,6 +148,7 @@ public class Slime : Sounds
 
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        double previousHealth = health;
         if (deathHandled) return;
         // Получаем ссылку на стрелу
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
@@ -163,6 +180,7 @@ public class Slime : Sounds
             //Debug.Log($"Враг получил обычный урон: {amount}. Текущее здоровье: {health}");
         }
 
+        DamageNumbers.Show(transform, previousHealth, health);
         SetTransparence(0.5f);
 
         if (health <= 0)

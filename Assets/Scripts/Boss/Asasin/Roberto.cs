@@ -451,6 +451,7 @@ public class Roberto : Sounds
 
     public void TakeDamage(float damage)
     {
+        double previousHealth = currentHP;
         if (sprite != null && sprite.color.a <= 0.1f)
             damage *= 0.5f;
 
@@ -460,6 +461,7 @@ public class Roberto : Sounds
             animator.SetTrigger("Run");
         }
         currentHP -= damage;
+        DamageNumbers.Show(transform, previousHealth, currentHP);
         PlaySound(sounds[1], volume: 1, destroyed: true);
 
         if (currentState != BossState.SpecialAttack && currentState != BossState.Casting)

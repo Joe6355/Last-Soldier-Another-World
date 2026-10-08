@@ -138,6 +138,8 @@ public class Shop : Sounds
 
     private void OnTriggerExit2D(Collider2D coll)
     {
+        // Trigger exits can arrive while the scene's UI is already being destroyed.
+        if (wellcomeText == null || interactivButton == null || panelShop == null || anim == null) return;
         if (coll.CompareTag("Player"))
         {
             isPlayerInRange = false;
@@ -185,7 +187,18 @@ public class Shop : Sounds
         if (bonusesContent != null) bonusesContent.SetActive(false);
         goodsContent.SetActive(true);
         upgradesContent.SetActive(false);
+        RefreshGoodsDetails();
         RefreshTabs(0);
+    }
+
+    private void RefreshGoodsDetails()
+    {
+        for (int i = 0; i < shopItems.Length && i < buyButtons.Length; i++)
+        {
+            if (shopItems[i].itemType != ItemType.PoitionHeal || buyButtons[i] == null) continue;
+            var info = buyButtons[i].transform.parent.Find("ItemInfo")?.GetComponent<TextMeshProUGUI>();
+            if (info != null) info.text = $"Восстановление {player.PotionHealAmount:0.##} HP · {shopItems[i].itemValue}";
+        }
     }
 
     public void ShowUpgrades()
@@ -341,6 +354,8 @@ public class Shop : Sounds
         long received = (long)item.itemValue * selectedQuantity;
         long cost = (long)item.itemPrice * selectedQuantity;
         quantityInfo.text = $"В наборе: {item.itemValue:N0} шт. · {item.itemPrice:N0} монет\nУ тебя: {Stock(item):N0} шт.";
+        if (item.itemType == ItemType.PoitionHeal)
+            quantityInfo.text += $" · Лечение {player.PotionHealAmount:0.##} HP";
         quantityValueText.text = $"{PackCount(selectedQuantity)} · {received:N0} шт.";
         quantityTotalText.text = $"Итого: {cost:N0} монет";
         quantityBalanceText.text = $"Останется: {System.Math.Max(0L, (long)player.totalCoins - cost):N0}";

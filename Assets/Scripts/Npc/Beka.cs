@@ -66,6 +66,7 @@ public class Beka : MonoBehaviour
         TypeDamage,
         ArrowSpeed,
         ReloadSpeed,
+        // Legacy arena values keep their IDs for existing serialized data and saves.
         TowerPower,
         TowerRange,
         TowerRate,
@@ -75,7 +76,8 @@ public class Beka : MonoBehaviour
         OutpostReward,
         OutpostCapture,
         Roots,
-        Altar
+        Altar,
+        PotionHealing
     }
 
     public UpgradeItem[] upgradeItems;
@@ -122,6 +124,7 @@ public class Beka : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D coll)
     {
+        if (wellcomeText == null || interactivButton == null || panelShop == null || anim == null) return;
         if (coll.CompareTag("Player"))
         {
             isPlayerInRange = false;
@@ -169,6 +172,7 @@ public class Beka : MonoBehaviour
     {
         for (int i = 0; i < upgradeItems.Length && i < buyButtons.Length; i++)
         {
+            if (buyButtons[i] == null) continue;
             Text buttonText = buyButtons[i].GetComponentInChildren<Text>(true);
             if (buttonText != null)
             {
@@ -188,10 +192,11 @@ public class Beka : MonoBehaviour
     {
         for (int i = 0; i < upgradeCards.Length && i < upgradeItems.Length; i++)
         {
+            if (upgradeCards[i] == null) continue;
             var item = upgradeItems[i];
-            bool arena = (int)item.itemType >= (int)UpgradeItemType.TowerPower;
-            bool weapon = !arena && (int)item.itemType >= (int)UpgradeItemType.Shotgun;
-            bool perArrow = !arena && (int)item.itemType >= (int)UpgradeItemType.TypeDamage;
+            bool arena = IsArenaUpgrade(item.itemType);
+            bool weapon = (int)item.itemType >= (int)UpgradeItemType.Shotgun && (int)item.itemType <= (int)UpgradeItemType.ReloadSpeed;
+            bool perArrow = (int)item.itemType >= (int)UpgradeItemType.TypeDamage && (int)item.itemType <= (int)UpgradeItemType.ReloadSpeed;
             upgradeCards[i].SetActive(arenaPage ? arena && ArenaFeature.UpgradeGroup(item.itemType) == selectedArena
                 : !arena && weapon == weaponPage && (!perArrow || item.arrowType == selectedArrow));
         }
@@ -220,12 +225,16 @@ public class Beka : MonoBehaviour
     public void SelectArenaUpgrades(int type) { if (type < 0 || type >= arenaUpgradeTabs.Length) return; selectedArena = type; RefreshOffers(); }
     public void SelectArrowUpgrades(int type) { if (type < 0 || type >= arrowUpgradeTabs.Length) return; selectedArrow = type; RefreshOffers(); }
 
-    private bool OfferVisible(int index) => upgradeCards.Length == 0 || index < upgradeCards.Length && upgradeCards[index].activeInHierarchy;
+    private bool OfferVisible(int index) => upgradeCards.Length == 0 || index < upgradeCards.Length && upgradeCards[index] != null && upgradeCards[index].activeInHierarchy;
+
+    private static bool IsArenaUpgrade(UpgradeItemType type) => (int)type >= (int)UpgradeItemType.TowerPower && (int)type <= (int)UpgradeItemType.Altar;
 
     private string UpgradeSummary(UpgradeItem item)
     {
-        if ((int)item.itemType >= (int)UpgradeItemType.TowerPower)
+        if (IsArenaUpgrade(item.itemType))
             return ArenaFeature.UpgradeSummary(item.itemType, item.purchaseCount, item.maxPurchases, upgradeItems);
+        if (item.itemType == UpgradeItemType.PotionHealing)
+            return $"Лечение {player.PotionHealAmount:0.##} → {player.PotionHealAmount + item.itemValue:0.##} HP\nУровень {item.purchaseCount:N0} · +{item.itemValue:0.##} HP";
         if (item.itemType == UpgradeItemType.Shotgun || item.itemType == UpgradeItemType.Automatic)
             return item.IsMaxed ? "Режим разблокирован"
                 : item.itemType == UpgradeItemType.Shotgun ? "3 стрелы за выстрел\nКлавиша 2 после покупки" : "Огонь при удержании ЛКМ\nКлавиша 3 после покупки";
@@ -354,6 +363,9 @@ public class Beka : MonoBehaviour
                 break;
             case UpgradeItemType.MoveSpeed:
                 player.IncreaseMoveSpeed(item.itemValue);
+                break;
+            case UpgradeItemType.PotionHealing:
+                player.IncreasePotionHealing(item.itemValue);
                 break;
             case UpgradeItemType.ArrowDamage:
                 int dmgAdd = Mathf.RoundToInt(item.itemValue * (item.purchaseCount + 1))

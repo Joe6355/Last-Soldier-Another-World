@@ -61,11 +61,12 @@ public class PlayerController : Sounds
     public float ShieldMaxValue => shieldMaxValue;
     public int MirrorCount => mirrorRemainder;
     public int PotionCount => potionCount;
+    public float PotionHealAmount => heal;
 
     // Зелья
     private KeyCode keyHeal = KeyCode.H;
     [SerializeField] private int potionCount = 4;
-    [SerializeField] private float heal = 55f;
+    [SerializeField] private float heal = 25f;
     [SerializeField] private Image imagePotionHeal;
     [SerializeField] private Text textCountPotionHeal;
 
@@ -95,6 +96,7 @@ public class PlayerController : Sounds
     private float baseShieldMaxValue;
     private float baseMaxStamina;
     private float baseMoveSpeed;
+    private float basePotionHeal;
     // --------------------------------------------------
 
     private Stats stats;
@@ -110,6 +112,7 @@ public class PlayerController : Sounds
         baseShieldMaxValue = shieldMaxValue;
         baseMaxStamina = maxStamina;
         baseMoveSpeed = originalMoveSpeed;
+        basePotionHeal = heal;
 
         crossbowController = FindObjectOfType<CrossbowController>();
         LoadPlayerData();
@@ -541,18 +544,19 @@ public class PlayerController : Sounds
 
     private void HealPoition()
     {
-        if (Input.GetKeyDown(keyHeal))
-        {
-            if (potionCount > 0 && hp < maxHp)
-            {
-                potionCount--;
-                hp += heal;
-                PlaySound(sounds[2], volume: 1, destroyed: true);
-                if (hp > maxHp) hp = maxHp;
-                textCountPotionHeal.text = potionCount.ToString();
-                SavePlayerData();
-            }
-        }
+        if (Input.GetKeyDown(keyHeal)) UseHealingPotion();
+    }
+
+    public bool UseHealingPotion()
+    {
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale <= 0 || IsAwaitingRevive
+            || potionCount <= 0 || hp <= 0 || hp >= maxHp) return false;
+        potionCount--;
+        hp = Mathf.Min(maxHp, hp + heal);
+        PlaySound(sounds[2], volume: 1, destroyed: true);
+        textCountPotionHeal.text = potionCount.ToString();
+        SavePlayerData();
+        return true;
     }
 
     // =====================================
@@ -620,6 +624,11 @@ public class PlayerController : Sounds
         // Или умножать: originalMoveSpeed *= (1+ amount*0.01f) ...
     }
 
+    public void IncreasePotionHealing(float amount)
+    {
+        heal += amount;
+    }
+
     public void IncreaseArrowDamage(int amount)
     {
         // Увеличим damage у всех префабов в crossbowController
@@ -640,6 +649,7 @@ public class PlayerController : Sounds
         shieldMaxValue = baseShieldMaxValue;
         maxStamina = baseMaxStamina;
         originalMoveSpeed = baseMoveSpeed;
+        heal = basePotionHeal;
         foreach (var arrowPrefab in crossbowController.arrowPrefabs)
         {
             var arrow = arrowPrefab.GetComponent<ArrowDef>();
@@ -654,6 +664,7 @@ public class PlayerController : Sounds
                 case Beka.UpgradeItemType.ShieldMax: IncreaseShieldMax(total); break;
                 case Beka.UpgradeItemType.StaminaMax: IncreaseMaxStamina(total); break;
                 case Beka.UpgradeItemType.MoveSpeed: IncreaseMoveSpeed(total); break;
+                case Beka.UpgradeItemType.PotionHealing: IncreasePotionHealing(total); break;
                 case Beka.UpgradeItemType.ArrowDamage:
                     IncreaseArrowDamage(Mathf.RoundToInt(total)); break;
             }
@@ -680,6 +691,7 @@ public class PlayerController : Sounds
         stamina = Mathf.Min(stamina, maxStamina);
 
         originalMoveSpeed = 2f;
+        heal = basePotionHeal;
         crossbowController.RestoreWeaponUpgrades(System.Array.Empty<Beka.UpgradeItem>());
 
         // Сбрасываем урон стрел (по умолчанию = 2)

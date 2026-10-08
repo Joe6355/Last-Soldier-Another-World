@@ -319,6 +319,7 @@ public class HealerEnemy : Sounds
     // ======================================
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        double previousHealth = health;
         if (deathHandled) return;
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
@@ -339,6 +340,7 @@ public class HealerEnemy : Sounds
             PlaySound(sounds[0], volume: 1, destroyed: true);
         }
 
+        DamageNumbers.Show(transform, previousHealth, health);
         SetTransparency(0.5f);
         Invoke(nameof(ResetTransparency), 0.1f);
 

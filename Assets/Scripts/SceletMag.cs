@@ -256,6 +256,7 @@ public class SceletMag : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        double previousHealth = health;
         if (deathHandled) return;
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
@@ -280,6 +281,7 @@ public class SceletMag : Sounds
         }
 
         // Визуальный эффект попадания
+        DamageNumbers.Show(transform, previousHealth, health);
         SetTransparence(0.5f);
         Invoke(nameof(ResetTransparency), 0.1f);
 

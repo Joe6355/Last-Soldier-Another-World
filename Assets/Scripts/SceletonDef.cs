@@ -7,6 +7,13 @@ public class SceletonDef : Sounds
 {
     private bool deathHandled;
     [SerializeField] private int health = 10;
+
+    [Header("\u0423\u0441\u0438\u043b\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u043b\u0435 \u0441\u043f\u0430\u0432\u043d\u0430")]
+    [SerializeField, Min(0)] private float reinforcementDelay = 10f;
+    [SerializeField] private ParticleSystem reinforcementEffect;
+    private static readonly int ReinforcedShaderId = Shader.PropertyToID("_Reinforced");
+    private float reinforcementElapsed;
+    private bool reinforced;
     private Transform player;            // —сылка на Transform игрока (назначаетс€ в Start)
     private PlayerController playerController;
 
@@ -63,11 +70,32 @@ public class SceletonDef : Sounds
 
     private void Update()
     {
+        if (!reinforced && !deathHandled && health > 0 && GameProgress.IsReady && !YG.YG2.isPauseGame
+            && playerController != null && playerController.hp > 0 && !playerController.IsAwaitingRevive)
+        {
+            reinforcementElapsed += Time.deltaTime;
+            if (reinforcementElapsed >= reinforcementDelay) Reinforce();
+        }
         // ≈сли игрок существует, поворачиваемс€ к нему и можно делать любую логику, не св€занную с физикой
         if (player != null)
         {
             FacePlayerWithFlip();
         }
+    }
+
+    private void Reinforce()
+    {
+        if (reinforced || deathHandled || health <= 0) return;
+        reinforced = true;
+        health = (int)System.Math.Min(int.MaxValue, (long)health + (health + 1L) / 2L);
+        if (sprite != null)
+        {
+            var properties = new MaterialPropertyBlock();
+            sprite.GetPropertyBlock(properties);
+            properties.SetFloat(ReinforcedShaderId, 1f);
+            sprite.SetPropertyBlock(properties);
+        }
+        if (reinforcementEffect != null) reinforcementEffect.Play(true);
     }
 
     private void FixedUpdate()
@@ -170,6 +198,7 @@ public class SceletonDef : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        double previousHealth = health;
         if (deathHandled) return;
         // —сылка на скрипт ArrowDef (если он есть на сцене)
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
@@ -196,6 +225,7 @@ public class SceletonDef : Sounds
         }
 
         // Ёффект Ђполупрозрачностиї на короткое врем€
+        DamageNumbers.Show(transform, previousHealth, health);
         SetTransparency(0.5f);
         Invoke(nameof(ResetTransparency), 0.1f);
 

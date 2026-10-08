@@ -29,6 +29,11 @@ public sealed class ArenaFeature : MonoBehaviour
     [SerializeField] private float radius = 1.5f;
     [SerializeField] private int environmentHealth = 6;
 
+    [Header("Взрыв бочки")]
+    [SerializeField] private ParticleSystem explosionEffect;
+    [SerializeField] private AudioSource explosionAudio;
+    private bool explosionAudioPaused;
+
     private readonly List<MonoBehaviour> targets = new List<MonoBehaviour>();
     private readonly Dictionary<MonoBehaviour, Vector3> roots = new Dictionary<MonoBehaviour, Vector3>();
     private readonly List<MonoBehaviour> expiredRoots = new List<MonoBehaviour>();
@@ -76,15 +81,12 @@ public sealed class ArenaFeature : MonoBehaviour
     public static int UpgradeGroup(Upgrade type)
     {
         if (type == Upgrade.OutpostReward || type == Upgrade.OutpostCapture) return 0;
-        if (type == Upgrade.TowerPower || type == Upgrade.TowerRange || type == Upgrade.TowerRate) return 1;
-        if (type == Upgrade.RunePower || type == Upgrade.RuneRadius || type == Upgrade.RuneDuration) return 2;
-        return 3;
+        return type == Upgrade.Altar ? 1 : -1;
     }
     public static bool CanUpgrade(Upgrade type, Beka.UpgradeItem[] items)
     {
-        if (type == Upgrade.TowerRange || type == Upgrade.TowerRate) return Level(Upgrade.TowerPower, items) > 0;
-        if (type == Upgrade.RuneRadius || type == Upgrade.RuneDuration) return Level(Upgrade.RunePower, items) > 0;
-        return true;
+        return type != Upgrade.TowerPower && type != Upgrade.TowerRange && type != Upgrade.TowerRate
+            && type != Upgrade.RunePower && type != Upgrade.RuneRadius && type != Upgrade.RuneDuration && type != Upgrade.Roots;
     }
     public static string UpgradeSummary(Upgrade type, int level, int max, Beka.UpgradeItem[] items)
     {
@@ -115,6 +117,7 @@ public sealed class ArenaFeature : MonoBehaviour
 
     public void BeginWave(bool activeOutpost, bool restore)
     {
+        ClearExplosion();
         selected = activeOutpost;
         capture = kind == FeatureKind.Outpost && selected && restore ? Mathf.Clamp(PlayerPrefs.GetFloat("ArenaOutpostCapture", 0), 0, CaptureDuration) : 0;
         claimed = kind == FeatureKind.Outpost && selected && restore && PlayerPrefs.GetInt("ArenaOutpostClaimed", 0) == 1;
@@ -131,6 +134,7 @@ public sealed class ArenaFeature : MonoBehaviour
 
     public void EndRun()
     {
+        ClearExplosion();
         selected = placed = spent = claimed = destroyed = false;
         capture = cooldown = effectTime = warningTime = tickTime = flashTime = 0;
         remainingHealth = environmentHealth;
@@ -160,6 +164,7 @@ public sealed class ArenaFeature : MonoBehaviour
 
     private void Update()
     {
+        UpdateExplosionPause();
         if (CanAct)
         {
             float dt = Time.deltaTime;
@@ -336,7 +341,17 @@ public sealed class ArenaFeature : MonoBehaviour
             if (warningTime == 0)
             {
                 destroyed = true;
-                if (kind == FeatureKind.Barrel) { DamageArea(18, radius, true); flashTime = .4f; }
+                if (kind == FeatureKind.Barrel)
+                {
+                    if (explosionEffect != null) explosionEffect.Play(true);
+                    if (explosionAudio != null)
+                    {
+                        explosionAudio.volume = Mathf.Clamp01(Ui.sfxVolume) * .7f;
+                        explosionAudio.Play();
+                    }
+                    DamageArea(18, radius, true);
+                    flashTime = .4f;
+                }
                 else { effectTime = 6f; tickTime = 0; }
             }
         }
@@ -355,6 +370,36 @@ public sealed class ArenaFeature : MonoBehaviour
         if (friendlyFire && Near(distance)) player.TakeDamage(kind == FeatureKind.Barrel ? 8 : 1);
     }
 
+    private void UpdateExplosionPause()
+    {
+        if (explosionEffect != null)
+        {
+            if (!CanAct && explosionEffect.isPlaying) explosionEffect.Pause(true);
+            else if (CanAct && explosionEffect.isPaused) explosionEffect.Play(true);
+        }
+        if (explosionAudio == null) return;
+        explosionAudio.volume = Mathf.Clamp01(Ui.sfxVolume) * .7f;
+        if (!CanAct && explosionAudio.isPlaying)
+        {
+            explosionAudio.Pause();
+            explosionAudioPaused = true;
+        }
+        else if (CanAct && explosionAudioPaused)
+        {
+            explosionAudio.UnPause();
+            explosionAudioPaused = false;
+        }
+    }
+
+    private void ClearExplosion()
+    {
+        if (explosionEffect != null) explosionEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (explosionAudio != null) explosionAudio.Stop();
+        explosionAudioPaused = false;
+    }
+
+    private void OnDisable() { ClearExplosion(); }
+
     private void RefreshVisuals()
     {
         bool running = spawner != null && spawner.IsRunning;
@@ -372,7 +417,13 @@ public sealed class ArenaFeature : MonoBehaviour
         if (kind == FeatureKind.Barrel || kind == FeatureKind.Mushroom)
             ring &= warningTime > 0 || effectTime > 0 || flashTime > 0;
         float ringRadius = kind == FeatureKind.GravityRune && !spent ? .8f : EffectRadius;
-        DrawRing(zoneRing, ringRadius, 1, ring, new Color(color.r, color.g, color.b, claimed ? .25f : .65f));
+        float ringAlpha = claimed ? .25f : .65f;
+        if (kind == FeatureKind.Barrel && destroyed && flashTime > 0)
+        {
+            ringRadius *= 1f - flashTime / .4f;
+            ringAlpha *= flashTime / .4f;
+        }
+        DrawRing(zoneRing, ringRadius, 1, ring, new Color(color.r, color.g, color.b, ringAlpha));
         float progress = kind == FeatureKind.Outpost ? claimed ? 1f : capture / CaptureDuration
             : kind == FeatureKind.Altar ? capture / 2f
             : effectTime > 0 ? effectTime / (kind == FeatureKind.GravityRune ? RuneDuration(Level(Upgrade.RuneDuration))

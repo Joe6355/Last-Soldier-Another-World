@@ -170,6 +170,7 @@ public class SlimeBoss : Sounds
 
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        double previousHealth = currentHealth;
         if (isDead) return;
 
         isAggroed = true;
@@ -200,6 +201,7 @@ public class SlimeBoss : Sounds
             }
         }
 
+        DamageNumbers.Show(transform, previousHealth, currentHealth);
         SetTransparence(0.5f);
         Invoke(nameof(ResetTransparency), 0.1f);
 
