@@ -5,6 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 public class HealerEnemy : Sounds
 {
+    private bool deathHandled;
     [Header("=== ПАРАМЕТРЫ ЗДОРОВЬЯ ===")]
     [SerializeField] private int health = 10;
 
@@ -318,6 +319,7 @@ public class HealerEnemy : Sounds
     // ======================================
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled) return;
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
         if (isHolyArrow && arrowDef != null)
@@ -375,6 +377,8 @@ public class HealerEnemy : Sounds
     private Stats stats;
     private void Die()
     {
+        if (deathHandled) return;
+        deathHandled = true;
         stats.countElitEnemyDead++;
         stats.SaveInfo();
         stats.UpdateUI();

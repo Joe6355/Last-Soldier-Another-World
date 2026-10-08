@@ -18,7 +18,11 @@ public class Beka : MonoBehaviour
     [SerializeField] private GameObject arrowUpgradeSelector;
     [SerializeField] private Button heroUpgradeTab, weaponUpgradeTab;
     [SerializeField] private Button[] arrowUpgradeTabs = System.Array.Empty<Button>();
+    [SerializeField] private GameObject arenaUpgradeSelector;
+    [SerializeField] private Button[] arenaUpgradeTabs = System.Array.Empty<Button>();
     private bool weaponPage;
+    private bool arenaPage;
+    private int selectedArena;
     private int selectedArrow;
     public bool IsPlayerInRange => isPlayerInRange;
 
@@ -61,7 +65,17 @@ public class Beka : MonoBehaviour
         Automatic,
         TypeDamage,
         ArrowSpeed,
-        ReloadSpeed
+        ReloadSpeed,
+        TowerPower,
+        TowerRange,
+        TowerRate,
+        RunePower,
+        RuneRadius,
+        RuneDuration,
+        OutpostReward,
+        OutpostCapture,
+        Roots,
+        Altar
     }
 
     public UpgradeItem[] upgradeItems;
@@ -165,7 +179,8 @@ public class Beka : MonoBehaviour
             }
             if (i < upgradeDetails.Length && upgradeDetails[i] != null)
                 upgradeDetails[i].text = UpgradeSummary(upgradeItems[i]);
-            buyButtons[i].interactable = !upgradeItems[i].IsMaxed && upgradeItems[i].ExactPrice > 0 && upgradeItems[i].ExactPrice <= player.totalCoins;
+            buyButtons[i].interactable = !upgradeItems[i].IsMaxed && ArenaFeature.CanUpgrade(upgradeItems[i].itemType, upgradeItems)
+                && upgradeItems[i].ExactPrice > 0 && upgradeItems[i].ExactPrice <= player.totalCoins;
         }
     }
 
@@ -174,14 +189,20 @@ public class Beka : MonoBehaviour
         for (int i = 0; i < upgradeCards.Length && i < upgradeItems.Length; i++)
         {
             var item = upgradeItems[i];
-            bool weapon = (int)item.itemType >= (int)UpgradeItemType.Shotgun;
-            bool perArrow = (int)item.itemType >= (int)UpgradeItemType.TypeDamage;
-            upgradeCards[i].SetActive(weapon == weaponPage && (!perArrow || item.arrowType == selectedArrow));
+            bool arena = (int)item.itemType >= (int)UpgradeItemType.TowerPower;
+            bool weapon = !arena && (int)item.itemType >= (int)UpgradeItemType.Shotgun;
+            bool perArrow = !arena && (int)item.itemType >= (int)UpgradeItemType.TypeDamage;
+            upgradeCards[i].SetActive(arenaPage ? arena && ArenaFeature.UpgradeGroup(item.itemType) == selectedArena
+                : !arena && weapon == weaponPage && (!perArrow || item.arrowType == selectedArrow));
         }
-        if (arrowUpgradeSelector != null) arrowUpgradeSelector.SetActive(weaponPage);
+        if (heroUpgradeTab != null) heroUpgradeTab.gameObject.SetActive(!arenaPage);
+        if (weaponUpgradeTab != null) weaponUpgradeTab.gameObject.SetActive(!arenaPage);
+        if (arrowUpgradeSelector != null) arrowUpgradeSelector.SetActive(!arenaPage && weaponPage);
+        if (arenaUpgradeSelector != null) arenaUpgradeSelector.SetActive(arenaPage);
         Highlight(heroUpgradeTab, !weaponPage);
         Highlight(weaponUpgradeTab, weaponPage);
         for (int i = 0; i < arrowUpgradeTabs.Length; i++) Highlight(arrowUpgradeTabs[i], i == selectedArrow);
+        for (int i = 0; i < arenaUpgradeTabs.Length; i++) Highlight(arenaUpgradeTabs[i], i == selectedArena);
         UpdateButtonPrices();
     }
 
@@ -193,14 +214,18 @@ public class Beka : MonoBehaviour
         if (label != null) label.color = selected ? new Color32(20,43,38,255) : new Color32(244,240,223,255);
     }
 
-    public void ShowHeroUpgrades() { weaponPage = false; RefreshOffers(); }
-    public void ShowWeaponUpgrades() { weaponPage = true; RefreshOffers(); }
+    public void ShowHeroUpgrades() { arenaPage = false; weaponPage = false; RefreshOffers(); }
+    public void ShowWeaponUpgrades() { arenaPage = false; weaponPage = true; RefreshOffers(); }
+    public void ShowArenaUpgrades() { arenaPage = true; RefreshOffers(); }
+    public void SelectArenaUpgrades(int type) { if (type < 0 || type >= arenaUpgradeTabs.Length) return; selectedArena = type; RefreshOffers(); }
     public void SelectArrowUpgrades(int type) { if (type < 0 || type >= arrowUpgradeTabs.Length) return; selectedArrow = type; RefreshOffers(); }
 
     private bool OfferVisible(int index) => upgradeCards.Length == 0 || index < upgradeCards.Length && upgradeCards[index].activeInHierarchy;
 
     private string UpgradeSummary(UpgradeItem item)
     {
+        if ((int)item.itemType >= (int)UpgradeItemType.TowerPower)
+            return ArenaFeature.UpgradeSummary(item.itemType, item.purchaseCount, item.maxPurchases, upgradeItems);
         if (item.itemType == UpgradeItemType.Shotgun || item.itemType == UpgradeItemType.Automatic)
             return item.IsMaxed ? "Режим разблокирован"
                 : item.itemType == UpgradeItemType.Shotgun ? "3 стрелы за выстрел\nКлавиша 2 после покупки" : "Огонь при удержании ЛКМ\nКлавиша 3 после покупки";
@@ -245,7 +270,7 @@ public class Beka : MonoBehaviour
         UpgradeItem item = upgradeItems[itemIndex];
         long price = item.ExactPrice;
 
-        if (price > 0 && price <= player.totalCoins && !item.IsMaxed)
+        if (price > 0 && price <= player.totalCoins && !item.IsMaxed && ArenaFeature.CanUpgrade(item.itemType, upgradeItems))
         {
             player.AddCoin(-(int)price);
             Debug.Log($"Куплено улучшение: {item.itemName} за {price} монет.");
@@ -255,7 +280,7 @@ public class Beka : MonoBehaviour
             player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
 
             PlaySoundPurchase();
-            UpdateButtonPrices();
+            RefreshOffers();
 
             // Сохраняем апгрейды
             SaveUpgrades();
@@ -279,7 +304,7 @@ public class Beka : MonoBehaviour
         while (Input.GetKey(KeyCode.LeftControl) && CanPurchase() && OfferVisible(itemIndex))
         {
             long price = item.ExactPrice;
-            if (price > 0 && price <= player.totalCoins && !item.IsMaxed)
+            if (price > 0 && price <= player.totalCoins && !item.IsMaxed && ArenaFeature.CanUpgrade(item.itemType, upgradeItems))
             {
                 player.AddCoin(-(int)price);
                 Debug.Log($"(Авто) Куплено улучшение: {item.itemName} за {price} монет!");
@@ -289,7 +314,7 @@ public class Beka : MonoBehaviour
                 player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
 
                 purchasedSomething = true;
-                UpdateButtonPrices();
+                RefreshOffers();
                 SaveUpgrades();
                 player.SavePlayerData();
             }
@@ -340,6 +365,16 @@ public class Beka : MonoBehaviour
             case UpgradeItemType.TypeDamage:
             case UpgradeItemType.ArrowSpeed:
             case UpgradeItemType.ReloadSpeed:
+            case UpgradeItemType.TowerPower:
+            case UpgradeItemType.TowerRange:
+            case UpgradeItemType.TowerRate:
+            case UpgradeItemType.RunePower:
+            case UpgradeItemType.RuneRadius:
+            case UpgradeItemType.RuneDuration:
+            case UpgradeItemType.OutpostReward:
+            case UpgradeItemType.OutpostCapture:
+            case UpgradeItemType.Roots:
+            case UpgradeItemType.Altar:
                 break; // Параметры оружия восстанавливаются по сохранённым уровням.
             default:
                 Debug.LogWarning("Неизвестный апгрейд: " + item.itemType);

@@ -6,6 +6,8 @@ using YG;
 public sealed class GameMonetization : MonoBehaviour
 {
     public const string ContinueRewardId = "continue_wave_full_heal";
+    public const string MerchantCoinsRewardId = "merchant_bonus_coins";
+    public enum CoinsRewardResult { Granted, Cancelled, Unavailable }
     private static GameMonetization instance;
 
     [Header("Смерть игрока — продолжение за видео")]
@@ -23,7 +25,12 @@ public sealed class GameMonetization : MonoBehaviour
 
     private PlayerController player, deadPlayer;
     private bool rewardPending, rewardGranted, rewardError, bannerVisible;
+    private PlayerController coinsRecipient;
+    private int coinsAmount, coinsGranted;
+    private bool coinsPending, coinsRewarded, coinsError;
+    private System.Action<CoinsRewardResult, int> coinsCompleted;
     public bool IsAwaitingContinue => deadPlayer != null;
+    public bool IsRewardedAdPending => rewardPending || coinsPending;
 
     private void Awake() => instance = this;
 
@@ -97,7 +104,7 @@ public sealed class GameMonetization : MonoBehaviour
 
     public void ContinueForVideo()
     {
-        if (deadPlayer == null || rewardPending || rewardGranted || !GameProgress.IsReady || YG2.nowAdsShow || YG2.isPauseGame) return;
+        if (deadPlayer == null || IsRewardedAdPending || rewardGranted || !GameProgress.IsReady || YG2.nowAdsShow || YG2.isPauseGame) return;
         rewardPending = true;
         rewardError = false;
         SetButtons(false);
@@ -105,8 +112,33 @@ public sealed class GameMonetization : MonoBehaviour
         YG2.RewardedAdvShow(ContinueRewardId);
     }
 
+    public bool RequestCoinsForVideo(PlayerController recipient, int amount, System.Action<CoinsRewardResult, int> completed)
+    {
+        if (recipient == null || recipient.hp <= 0 || recipient.IsAwaitingRevive || deadPlayer != null
+            || amount <= 0 || recipient.totalCoins > int.MaxValue - amount || IsRewardedAdPending
+            || !GameProgress.IsReady || !YG2.isSDKEnabled || YG2.nowAdsShow || YG2.isPauseGame) return false;
+        coinsRecipient = recipient;
+        coinsAmount = amount;
+        coinsGranted = 0;
+        coinsRewarded = coinsError = false;
+        coinsCompleted = completed;
+        coinsPending = true;
+        YG2.RewardedAdvShow(MerchantCoinsRewardId);
+        return true;
+    }
+
     private void OnReward(string id)
     {
+        if (id == MerchantCoinsRewardId)
+        {
+            if (!coinsPending || coinsRewarded || coinsRecipient == null) return;
+            coinsRewarded = true;
+            int before = coinsRecipient.totalCoins;
+            coinsRecipient.AddCoin(coinsAmount);
+            coinsGranted = coinsRecipient.totalCoins - before;
+            GameProgress.SaveNow();
+            return;
+        }
         if (id != ContinueRewardId || !rewardPending || rewardGranted || deadPlayer == null) return;
         rewardGranted = true;
         deadPlayer.ReviveAfterVideo();
@@ -116,6 +148,16 @@ public sealed class GameMonetization : MonoBehaviour
 
     private void OnRewardClosed()
     {
+        if (coinsPending)
+        {
+            var result = coinsRewarded ? CoinsRewardResult.Granted : coinsError ? CoinsRewardResult.Unavailable : CoinsRewardResult.Cancelled;
+            var completed = coinsCompleted;
+            int granted = coinsGranted;
+            coinsPending = false;
+            coinsRecipient = null;
+            coinsCompleted = null;
+            completed?.Invoke(result, granted);
+        }
         if (!rewardPending) return;
         rewardPending = false;
         if (!rewardGranted)
@@ -128,6 +170,7 @@ public sealed class GameMonetization : MonoBehaviour
 
     private void OnRewardError()
     {
+        if (coinsPending && !coinsRewarded) coinsError = true;
         if (deadPlayer == null || !rewardPending || rewardGranted) return;
         rewardError = true;
         deathStatus.text = "Видео сейчас недоступно. Попробуйте позже или вернитесь в лагерь";

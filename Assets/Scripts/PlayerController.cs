@@ -395,11 +395,19 @@ public class PlayerController : Sounds
     // ===========================
     public void AddCoin(int amount)
     {
-        totalCoins += amount;
+        totalCoins = (int)System.Math.Max(0L, System.Math.Min(int.MaxValue, (long)totalCoins + amount));
         UpdateCoinText();
         PlayerPrefs.SetInt("Coins", totalCoins);
         GameProgress.RequestSave();
         Debug.Log("Собрано монеток: " + totalCoins);
+    }
+
+    public void HealFromArena(float amount)
+    {
+        if (IsAwaitingRevive || hp <= 0 || amount <= 0) return;
+        hp = Mathf.Min(maxHp, hp + amount);
+        HpBar();
+        SavePlayerData();
     }
 
     public void ResetCoins()

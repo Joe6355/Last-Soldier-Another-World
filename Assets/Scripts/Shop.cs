@@ -21,6 +21,17 @@ public class Shop : Sounds
     [SerializeField] private GameObject upgradesContent;
     [SerializeField] private Button goodsTab;
     [SerializeField] private Button upgradesTab;
+    [SerializeField] private Button arenaTab;
+
+    [Header("Бонус за просмотр видео")]
+    [SerializeField] private GameMonetization monetization;
+    [SerializeField] private GameObject bonusesContent;
+    [SerializeField] private Button bonusesTab;
+    [SerializeField] private Button bonusVideoButton;
+    [SerializeField] private TextMeshProUGUI bonusRewardText;
+    [SerializeField] private TextMeshProUGUI bonusStatusText;
+    [SerializeField, Min(1)] private int videoCoinsReward = 100;
+    private string bonusMessage = "Награда за полный просмотр видео";
 
     [Header("Покупка нескольких наборов")]
     [SerializeField] private GameObject quantityPanel;
@@ -89,6 +100,8 @@ public class Shop : Sounds
 
         anim = GetComponent<Animator>();
         gameUi = FindObjectOfType<Ui>();
+        if (monetization == null) monetization = FindObjectOfType<GameMonetization>();
+        if (bonusesContent != null) bonusesContent.SetActive(false);
         if (quantityPanel != null) quantityPanel.SetActive(false);
         if (quantitySlider != null) quantitySlider.onValueChanged.AddListener(OnQuantitySliderChanged);
         if (quantityInput != null) quantityInput.onEndEdit.AddListener(OnQuantityInputChanged);
@@ -96,6 +109,7 @@ public class Shop : Sounds
 
     private void Update()
     {
+        if (IsOpen && bonusesContent != null && bonusesContent.activeInHierarchy) RefreshBonuses();
         if (!GameProgress.IsReady || YG.YG2.isPauseGame || player.IsAwaitingRevive) return;
         if (IsOpen && !InTradingRange) CloseShop();
         if (isPlayerInRange && currentTrainer == null && Input.GetKeyDown(KeyCode.F))
@@ -168,27 +182,93 @@ public class Shop : Sounds
     public void ShowGoods()
     {
         CloseQuantity();
+        if (bonusesContent != null) bonusesContent.SetActive(false);
         goodsContent.SetActive(true);
         upgradesContent.SetActive(false);
-        RefreshTabs(false);
+        RefreshTabs(0);
     }
 
     public void ShowUpgrades()
     {
         if (upgradeShop == null) return;
         CloseQuantity();
+        if (bonusesContent != null) bonusesContent.SetActive(false);
         goodsContent.SetActive(false);
         upgradesContent.SetActive(true);
         upgradeShop.ShowHeroUpgrades();
-        RefreshTabs(true);
+        RefreshTabs(1);
     }
 
-    private void RefreshTabs(bool upgrades)
+    public void ShowArena()
     {
-        goodsTab.GetComponent<Image>().color = upgrades ? new Color32(35, 68, 59, 255) : new Color32(227, 186, 101, 255);
+        if (upgradeShop == null) return;
+        CloseQuantity();
+        if (bonusesContent != null) bonusesContent.SetActive(false);
+        goodsContent.SetActive(false);
+        upgradesContent.SetActive(true);
+        upgradeShop.ShowArenaUpgrades();
+        RefreshTabs(2);
+    }
+
+    public void ShowBonuses()
+    {
+        if (bonusesContent == null) return;
+        CloseQuantity();
+        goodsContent.SetActive(false);
+        upgradesContent.SetActive(false);
+        bonusesContent.SetActive(true);
+        RefreshTabs(3);
+        RefreshBonuses();
+    }
+
+    public void WatchVideoForCoins()
+    {
+        if (!CanTrade || bonusesContent == null || !bonusesContent.activeInHierarchy || monetization == null) return;
+        bonusMessage = "Загрузка видео…";
+        if (!monetization.RequestCoinsForVideo(player, videoCoinsReward, OnCoinsVideoCompleted)
+            && !monetization.IsRewardedAdPending) bonusMessage = "Видео сейчас недоступно. Попробуй позже";
+        RefreshBonuses();
+    }
+
+    private void OnCoinsVideoCompleted(GameMonetization.CoinsRewardResult result, int coins)
+    {
+        if (this == null) return;
+        bonusMessage = result == GameMonetization.CoinsRewardResult.Granted ? $"Получено {coins:N0} монет!"
+            : result == GameMonetization.CoinsRewardResult.Cancelled ? "Просмотр не завершён. Награда не получена"
+            : "Видео сейчас недоступно. Попробуй позже";
+        upgradeShop?.RefreshOffers();
+        RefreshBonuses();
+    }
+
+    private void RefreshBonuses()
+    {
+        bool ready = GameProgress.IsReady && YG.YG2.isSDKEnabled && monetization != null;
+        bool pending = monetization != null && monetization.IsRewardedAdPending;
+        bool room = videoCoinsReward > 0 && player.totalCoins <= int.MaxValue - videoCoinsReward;
+        if (bonusRewardText != null) bonusRewardText.text = $"+{videoCoinsReward:N0} монет";
+        if (bonusVideoButton != null) bonusVideoButton.interactable = CanTrade && ready && !pending && room && !YG.YG2.nowAdsShow;
+        if (bonusStatusText != null) bonusStatusText.text = pending ? "Загрузка и просмотр видео…"
+            : !room ? "Бонус недоступен: достигнут предел монет"
+            : !ready ? "Ждём подключения рекламы…" : bonusMessage;
+    }
+
+    private void RefreshTabs(int page)
+    {
+        bool upgrades = page == 1;
+        goodsTab.GetComponent<Image>().color = page != 0 ? new Color32(35, 68, 59, 255) : new Color32(227, 186, 101, 255);
         upgradesTab.GetComponent<Image>().color = upgrades ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
-        goodsTab.GetComponentInChildren<TextMeshProUGUI>().color = upgrades ? new Color32(244, 240, 223, 255) : new Color32(20, 43, 38, 255);
+        goodsTab.GetComponentInChildren<TextMeshProUGUI>().color = page != 0 ? new Color32(244, 240, 223, 255) : new Color32(20, 43, 38, 255);
         upgradesTab.GetComponentInChildren<TextMeshProUGUI>().color = upgrades ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        if (arenaTab != null)
+        {
+            arenaTab.GetComponent<Image>().color = page == 2 ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
+            arenaTab.GetComponentInChildren<TextMeshProUGUI>().color = page == 2 ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        }
+        if (bonusesTab != null)
+        {
+            bonusesTab.GetComponent<Image>().color = page == 3 ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
+            bonusesTab.GetComponentInChildren<TextMeshProUGUI>().color = page == 3 ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        }
     }
 
     private void UpdateButtonPrices()

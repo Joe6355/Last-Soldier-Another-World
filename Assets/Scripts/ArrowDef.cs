@@ -8,32 +8,48 @@ public class ArrowDef : MonoBehaviour
     public float lifeTime = 2f;
     public int damage = 1;
     [Min(1)] public int maxEnemyHits = 1;
+    public bool triggerProjectile;
     private readonly HashSet<int> hitEnemies = new HashSet<int>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (maxEnemyHits <= 1 || hitEnemies.Count >= maxEnemyHits || other.isTrigger || other.CompareTag("Player") || other.CompareTag("Projectile")) return;
-        MonoBehaviour target = other.GetComponentInParent<Roberto>();
-        if (target == null) target = other.GetComponentInParent<Enemy>();
-        if (target == null) target = other.GetComponentInParent<SceletonDef>();
-        if (target == null) target = other.GetComponentInParent<SceletMag>();
-        if (target == null) target = other.GetComponentInParent<Slime>();
-        if (target == null) target = other.GetComponentInParent<HealerEnemy>();
-        if (target == null) target = other.GetComponentInParent<SlimeBoss>();
+        if ((!triggerProjectile && maxEnemyHits <= 1) || hitEnemies.Count >= maxEnemyHits || other.isTrigger || other.CompareTag("Player") || other.CompareTag("Projectile")) return;
+        MonoBehaviour target = FindEnemy(other);
         if (target == null)
         {
+            other.GetComponentInParent<ArenaFeature>()?.TakeEnvironmentDamage(damage);
             Destroy(gameObject); // Стены и прочие твёрдые препятствия.
             return;
         }
         if (!hitEnemies.Add(target.GetInstanceID())) return;
-        if (target is Roberto assassin) assassin.TakeDamage(damage);
-        else if (target is Enemy enemy) enemy.TakeDamage(damage, false);
-        else if (target is SceletonDef skeleton) skeleton.TakeDamage(damage, false);
-        else if (target is SceletMag mage) mage.TakeDamage(damage, false);
-        else if (target is Slime slime) slime.TakeDamage(damage, false);
-        else if (target is HealerEnemy healer) healer.TakeDamage(damage, false);
-        else if (target is SlimeBoss boss) boss.TakeDamage(damage, false);
+        DamageEnemy(target, damage);
         if (hitEnemies.Count >= maxEnemyHits) Destroy(gameObject);
+    }
+
+    // Общий путь урона для пробивных стрел и укреплений арены.
+    public static MonoBehaviour FindEnemy(Component source)
+    {
+        if (source == null) return null;
+        MonoBehaviour target = source.GetComponentInParent<Roberto>();
+        if (target == null) target = source.GetComponentInParent<Enemy>();
+        if (target == null) target = source.GetComponentInParent<SceletonDef>();
+        if (target == null) target = source.GetComponentInParent<SceletMag>();
+        if (target == null) target = source.GetComponentInParent<Slime>();
+        if (target == null) target = source.GetComponentInParent<HealerEnemy>();
+        if (target == null) target = source.GetComponentInParent<SlimeBoss>();
+        return target;
+    }
+
+    public static void DamageEnemy(MonoBehaviour target, int amount)
+    {
+        if (target == null || !target.gameObject.activeInHierarchy || amount <= 0) return;
+        if (target is Roberto assassin) assassin.TakeDamage(amount);
+        else if (target is Enemy enemy) enemy.TakeDamage(amount, false);
+        else if (target is SceletonDef skeleton) skeleton.TakeDamage(amount, false);
+        else if (target is SceletMag mage) mage.TakeDamage(amount, false);
+        else if (target is Slime slime) slime.TakeDamage(amount, false);
+        else if (target is HealerEnemy healer) healer.TakeDamage(amount, false);
+        else if (target is SlimeBoss boss) boss.TakeDamage(amount, false);
     }
 
     // Списки тегов для врагов (добавим "Healer" сюда, если хотите бить и хилера)

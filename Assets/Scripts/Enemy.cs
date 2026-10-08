@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Enemy : Sounds
 {
+    private bool deathHandled;
     [Header("Параметры врага")]
     public int health = 5;           // Здоровье врага
     public int damageTouch = 3;      // Урон при столкновении
@@ -162,6 +163,7 @@ public class Enemy : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled) return;
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
         if (arrowDef == null)
@@ -216,6 +218,8 @@ public class Enemy : Sounds
     /// </summary>
     private void Die()
     {
+        if (deathHandled) return;
+        deathHandled = true;
         stats.countEnemyDead++;
         stats.SaveInfo();
         stats.UpdateUI();

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SceletonDef : Sounds
 {
+    private bool deathHandled;
     [SerializeField] private int health = 10;
     private Transform player;            // —сылка на Transform игрока (назначаетс€ в Start)
     private PlayerController playerController;
@@ -169,6 +170,7 @@ public class SceletonDef : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled) return;
         // —сылка на скрипт ArrowDef (если он есть на сцене)
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
@@ -242,6 +244,8 @@ public class SceletonDef : Sounds
     /// </summary>
     private void Die()
     {
+        if (deathHandled) return;
+        deathHandled = true;
         stats.countEnemyDead++;
         stats.SaveInfo();
         stats.UpdateUI();

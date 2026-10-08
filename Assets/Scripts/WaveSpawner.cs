@@ -47,6 +47,13 @@ public class WaveSpawner : MonoBehaviour
     [Header("Объект, который появляется во время перерыва")]
     [SerializeField] private GameObject breakIndicator;
 
+    [Header("Укрепления лесного гарнизона")]
+    [SerializeField] private ArenaFeature[] arenaFeatures = System.Array.Empty<ArenaFeature>();
+    [SerializeField] private TMPro.TextMeshProUGUI arenaHint;
+    private float hintTime;
+    private SpriteRenderer arenaPlayerSprite;
+    private int previousPlayerSort;
+
     // Список для хранения всех заспавненных врагов
     private List<GameObject> activeEnemies = new List<GameObject>();
 
@@ -84,6 +91,7 @@ public class WaveSpawner : MonoBehaviour
     private bool bossActivated;
     public int CurrentWaveNumber => currentWaveIndex + 1;
     public bool IsRunning => playerInsideZone && (isWaveActive || isBreakActive);
+    public bool IsCombatActive => playerInsideZone && isWaveActive;
     public int ActiveEnemyCount => activeEnemies.Count;
     public float RemainingWaveTime => waveTimeLeft;
 
@@ -112,6 +120,8 @@ public class WaveSpawner : MonoBehaviour
     private void Update()
     {
         if (!playerInsideZone || Time.timeScale == 0f || YG.YG2.isPauseGame) return;  // Игрок ещё не в зоне — ничего не делаем
+        hintTime = Mathf.Max(0, hintTime - Time.deltaTime);
+        if (arenaHint != null) arenaHint.gameObject.SetActive(hintTime > 0 && isWaveActive);
 
         if (isWaveActive)
         {
@@ -184,7 +194,7 @@ public class WaveSpawner : MonoBehaviour
 
     #region Волновая логика
 
-    private void StartWave(int waveIndex)
+    private void StartWave(int waveIndex, bool restoreArena = false)
     {
         StopAllCoroutines();
         bossActivated = false;
@@ -203,10 +213,21 @@ public class WaveSpawner : MonoBehaviour
         WaveConfig wave = waves[waveIndex];
         waveTimeLeft = wave.waveDuration;
         enemiesSpawnedInWave = 0;
-        SaveCheckpoint();
 
         // Очистка заспавненных врагов (если игрок ранее покидал арену)
         ClearActiveEnemies();
+        if (arenaPlayerSprite == null)
+        {
+            arenaPlayerSprite = FindObjectOfType<PlayerController>()?.GetComponent<SpriteRenderer>();
+            if (arenaPlayerSprite != null) previousPlayerSort = arenaPlayerSprite.sortingOrder;
+        }
+        if (arenaPlayerSprite != null) arenaPlayerSprite.sortingOrder = Mathf.Max(8, previousPlayerSort);
+        int outposts = 0;
+        foreach (var feature in arenaFeatures) if (feature != null && feature.Kind == ArenaFeature.FeatureKind.Outpost) outposts++;
+        foreach (var feature in arenaFeatures)
+            if (feature != null) feature.BeginWave(outposts > 0 && feature.SlotIndex == waveIndex % outposts, restoreArena);
+        hintTime = 7f;
+        SaveCheckpoint();
 
         // Логика выбора:
         // Если волна 10 (индекс 9) — активируется босс-слизь,
@@ -309,7 +330,10 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        // Выгрузка сцены удаляет коллайдер игрока: это не отказ от сохранённой волны.
+        if (isActiveAndEnabled && gameObject.scene.isLoaded && collision != null && collision.enabled
+            && collision.gameObject.activeInHierarchy && collision.gameObject.scene.isLoaded
+            && collision.GetComponentInParent<PlayerController>() != null && collision.CompareTag("Player"))
         {
             playerInsideZone = false;
             HideSpawnerUI();
@@ -319,11 +343,12 @@ public class WaveSpawner : MonoBehaviour
 
     private void ResetWavesAndStart()
     {
-        currentWaveIndex = PlayerPrefs.GetInt("ArenaRunActive", 0) == 1
+        bool restore = PlayerPrefs.GetInt("ArenaRunActive", 0) == 1;
+        currentWaveIndex = restore
             ? Mathf.Clamp(PlayerPrefs.GetInt("ArenaWaveIndex", 0), 0, waves.Count - 1) : 0;
         isWaveActive = false;
         isBreakActive = false;
-        StartWave(currentWaveIndex);
+        StartWave(currentWaveIndex, restore);
     }
 
     private void ResetSpawnerCompletely()
@@ -334,6 +359,11 @@ public class WaveSpawner : MonoBehaviour
         currentWaveIndex = 0;
         isWaveActive = false;
         isBreakActive = false;
+        foreach (var feature in arenaFeatures) if (feature != null) feature.EndRun();
+        if (arenaPlayerSprite != null) arenaPlayerSprite.sortingOrder = previousPlayerSort;
+        arenaPlayerSprite = null;
+        ClearArenaCheckpoint();
+        if (arenaHint != null) arenaHint.gameObject.SetActive(false);
 
         if (breakIndicator != null)
             breakIndicator.SetActive(false);
@@ -363,6 +393,8 @@ public class WaveSpawner : MonoBehaviour
         if (!IsRunning || waves.Count == 0) return;
         PlayerPrefs.SetInt("ArenaRunActive", 1);
         PlayerPrefs.SetInt("ArenaWaveIndex", isBreakActive ? (currentWaveIndex + 1) % waves.Count : currentWaveIndex);
+        if (isBreakActive) ClearArenaCheckpoint();
+        else foreach (var feature in arenaFeatures) if (feature != null) feature.SaveCheckpoint();
         var player = FindObjectOfType<PlayerController>();
         if (player != null)
         {
@@ -370,6 +402,38 @@ public class WaveSpawner : MonoBehaviour
             PlayerPrefs.SetFloat("ArenaPlayerY", player.transform.position.y);
         }
         GameProgress.RequestSave();
+    }
+
+    private static void ClearArenaCheckpoint()
+    {
+        PlayerPrefs.SetInt("ArenaOutpostClaimed", 0);
+        PlayerPrefs.SetFloat("ArenaOutpostCapture", 0);
+        PlayerPrefs.SetInt("ArenaRuneSpent", 0);
+        PlayerPrefs.SetInt("ArenaRunePlaced", 0);
+    }
+
+    public bool ContainsArenaPoint(Vector2 point, float inset = 0)
+    {
+        var zone = GetComponent<Collider2D>();
+        if (zone == null || !zone.OverlapPoint(point)) return false;
+        var bounds = zone.bounds;
+        return point.x >= bounds.min.x + inset && point.x <= bounds.max.x - inset
+            && point.y >= bounds.min.y + inset && point.y <= bounds.max.y - inset;
+    }
+
+    public void FillArenaTargets(List<MonoBehaviour> result, Vector2 point, float radius)
+    {
+        result.Clear();
+        foreach (var enemy in activeEnemies) AddArenaTarget(result, enemy, point, radius);
+        if (currentWaveIndex == 9) AddArenaTarget(result, bossWave10, point, radius);
+        if (currentWaveIndex == 14) AddArenaTarget(result, bossWave15, point, radius);
+    }
+
+    private static void AddArenaTarget(List<MonoBehaviour> result, GameObject enemy, Vector2 point, float radius)
+    {
+        if (enemy == null || !enemy.activeInHierarchy || ((Vector2)enemy.transform.position - point).sqrMagnitude > radius * radius) return;
+        var target = ArrowDef.FindEnemy(enemy.transform);
+        if (target != null && !result.Contains(target)) result.Add(target);
     }
 
     public void RestoreCheckpointPosition(PlayerController player)

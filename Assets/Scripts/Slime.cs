@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Slime : Sounds
 {
+    private bool deathHandled;
     [SerializeField] private int health;
     [SerializeField] private float agrDist;
     [SerializeField] private float defSpeed;
@@ -131,6 +132,7 @@ public class Slime : Sounds
 
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled) return;
         // Получаем ссылку на стрелу
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
@@ -181,6 +183,8 @@ public class Slime : Sounds
 
     private void Die()
     {
+        if (deathHandled) return;
+        deathHandled = true;
         PlaySound(sounds[2], volume: 1, destroyed: true);
         stats.countEnemyDead++;
         stats.SaveInfo();

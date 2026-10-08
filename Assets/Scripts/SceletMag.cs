@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SceletMag : Sounds
 {
+    private bool deathHandled;
     [SerializeField] private int health;
     [SerializeField] private float agrDist = 6f;
     [SerializeField] private float backDist = 1.5f;
@@ -255,6 +256,7 @@ public class SceletMag : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled) return;
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
         if (isHolyArrow && arrowDef != null)
@@ -301,6 +303,8 @@ public class SceletMag : Sounds
     /// </summary>
     private void Die()
     {
+        if (deathHandled) return;
+        deathHandled = true;
         stats.countElitEnemyDead++;
         stats.SaveInfo();
         stats.UpdateUI();
