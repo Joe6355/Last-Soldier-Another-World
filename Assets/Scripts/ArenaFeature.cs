@@ -181,6 +181,7 @@ public sealed class ArenaFeature : MonoBehaviour
                             claimed = true;
                             flashTime = 2f;
                             player.AddCoin(CaptureReward);
+                            FindObjectOfType<Stats>()?.RecordAchievementEvent(Stats.AchievementMetric.Outposts);
                             spawner.SaveCheckpoint();
                         }
                     }
@@ -192,7 +193,13 @@ public sealed class ArenaFeature : MonoBehaviour
                     if (Level(Upgrade.Altar) > 0 && cooldown <= 0 && Near(radius) && player.hp < player.maxHp)
                     {
                         capture += dt;
-                        if (capture >= 2f) { player.HealFromArena(15 + Level(Upgrade.Altar) * 5); capture = 0; cooldown = AltarCooldown(Level(Upgrade.Altar)); }
+                        if (capture >= 2f)
+                        {
+                            player.HealFromArena(15 + Level(Upgrade.Altar) * 5);
+                            FindObjectOfType<Stats>()?.RecordAchievementEvent(Stats.AchievementMetric.Altar);
+                            capture = 0;
+                            cooldown = AltarCooldown(Level(Upgrade.Altar));
+                        }
                     }
                     else capture = 0;
                     break;
@@ -343,6 +350,7 @@ public sealed class ArenaFeature : MonoBehaviour
                 destroyed = true;
                 if (kind == FeatureKind.Barrel)
                 {
+                    FindObjectOfType<Stats>()?.RecordAchievementEvent(Stats.AchievementMetric.Barrels);
                     if (explosionEffect != null) explosionEffect.Play(true);
                     if (explosionAudio != null)
                     {

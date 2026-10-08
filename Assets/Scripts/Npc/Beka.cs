@@ -287,6 +287,7 @@ public class Beka : MonoBehaviour
             ApplyUpgrade(item);
             item.purchaseCount++;
             player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
+            FindObjectOfType<Stats>()?.RecordUpgradePurchase(item.itemType);
 
             PlaySoundPurchase();
             RefreshOffers();
@@ -321,6 +322,7 @@ public class Beka : MonoBehaviour
                 ApplyUpgrade(item);
                 item.purchaseCount++;
                 player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
+                FindObjectOfType<Stats>()?.RecordUpgradePurchase(item.itemType);
 
                 purchasedSomething = true;
                 RefreshOffers();

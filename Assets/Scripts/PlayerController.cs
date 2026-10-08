@@ -555,6 +555,7 @@ public class PlayerController : Sounds
         hp = Mathf.Min(maxHp, hp + heal);
         PlaySound(sounds[2], volume: 1, destroyed: true);
         textCountPotionHeal.text = potionCount.ToString();
+        stats?.RecordAchievementEvent(Stats.AchievementMetric.Potions);
         SavePlayerData();
         return true;
     }

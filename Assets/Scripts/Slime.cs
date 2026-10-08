@@ -204,9 +204,7 @@ public class Slime : Sounds
         if (deathHandled) return;
         deathHandled = true;
         PlaySound(sounds[2], volume: 1, destroyed: true);
-        stats.countEnemyDead++;
-        stats.SaveInfo();
-        stats.UpdateUI();
+        stats.AddEnemyKill(Stats.EnemyKind.Slime);
 
         // Спавн ядовитого пятна
         Instantiate(poisonPrefab, transform.position, Quaternion.identity);

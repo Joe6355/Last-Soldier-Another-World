@@ -276,9 +276,7 @@ public class SceletonDef : Sounds
     {
         if (deathHandled) return;
         deathHandled = true;
-        stats.countEnemyDead++;
-        stats.SaveInfo();
-        stats.UpdateUI();
+        stats.AddEnemyKill(Stats.EnemyKind.Skeleton);
 
         DropLoot();
         Destroy(gameObject);

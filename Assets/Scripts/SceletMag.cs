@@ -307,9 +307,7 @@ public class SceletMag : Sounds
     {
         if (deathHandled) return;
         deathHandled = true;
-        stats.countElitEnemyDead++;
-        stats.SaveInfo();
-        stats.UpdateUI();
+        stats.AddElitEnemyDead(Stats.EnemyKind.Skeleton);
         DropLoot();
         Destroy(gameObject);
     }

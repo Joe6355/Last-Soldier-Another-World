@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -32,6 +33,29 @@ public class Shop : Sounds
     [SerializeField] private TextMeshProUGUI bonusStatusText;
     [SerializeField, Min(1)] private int videoCoinsReward = 100;
     private string bonusMessage = "Награда за полный просмотр видео";
+
+    [Header("Достижения")]
+    [SerializeField] private GameObject achievementsContent;
+    [SerializeField] private Button achievementsTab;
+    [SerializeField] private ScrollRect achievementsScroll;
+    [SerializeField] private GameObject achievementCardPrefab;
+    [SerializeField] private TextMeshProUGUI achievementsSummary;
+    [SerializeField] private TextMeshProUGUI achievementsStatus;
+    private Stats stats;
+    private GridLayoutGroup achievementsGrid;
+    private readonly List<AchievementView> achievementViews = new List<AchievementView>();
+    private int achievementCoins = -1;
+    private bool achievementTradingReady;
+    private string achievementMessage;
+
+    private sealed class AchievementView
+    {
+        public int Index;
+        public GameObject Card;
+        public TextMeshProUGUI Title, Description, Progress, Reward, ButtonText;
+        public RectTransform Fill;
+        public Button Button;
+    }
 
     [Header("Покупка нескольких наборов")]
     [SerializeField] private GameObject quantityPanel;
@@ -100,8 +124,11 @@ public class Shop : Sounds
 
         anim = GetComponent<Animator>();
         gameUi = FindObjectOfType<Ui>();
+        stats = FindObjectOfType<Stats>();
+        if (stats != null) stats.AchievementsChanged += OnAchievementsChanged;
         if (monetization == null) monetization = FindObjectOfType<GameMonetization>();
         if (bonusesContent != null) bonusesContent.SetActive(false);
+        if (achievementsContent != null) achievementsContent.SetActive(false);
         if (quantityPanel != null) quantityPanel.SetActive(false);
         if (quantitySlider != null) quantitySlider.onValueChanged.AddListener(OnQuantitySliderChanged);
         if (quantityInput != null) quantityInput.onEndEdit.AddListener(OnQuantityInputChanged);
@@ -110,6 +137,11 @@ public class Shop : Sounds
     private void Update()
     {
         if (IsOpen && bonusesContent != null && bonusesContent.activeInHierarchy) RefreshBonuses();
+        if (IsOpen && achievementsContent != null && achievementsContent.activeInHierarchy)
+        {
+            UpdateAchievementLayout();
+            if (achievementCoins != player.totalCoins || achievementTradingReady != CanTrade) RefreshAchievements();
+        }
         if (!GameProgress.IsReady || YG.YG2.isPauseGame || player.IsAwaitingRevive) return;
         if (IsOpen && !InTradingRange) CloseShop();
         if (isPlayerInRange && currentTrainer == null && Input.GetKeyDown(KeyCode.F))
@@ -184,6 +216,7 @@ public class Shop : Sounds
     public void ShowGoods()
     {
         CloseQuantity();
+        if (achievementsContent != null) achievementsContent.SetActive(false);
         if (bonusesContent != null) bonusesContent.SetActive(false);
         goodsContent.SetActive(true);
         upgradesContent.SetActive(false);
@@ -205,6 +238,7 @@ public class Shop : Sounds
     {
         if (upgradeShop == null) return;
         CloseQuantity();
+        if (achievementsContent != null) achievementsContent.SetActive(false);
         if (bonusesContent != null) bonusesContent.SetActive(false);
         goodsContent.SetActive(false);
         upgradesContent.SetActive(true);
@@ -216,6 +250,7 @@ public class Shop : Sounds
     {
         if (upgradeShop == null) return;
         CloseQuantity();
+        if (achievementsContent != null) achievementsContent.SetActive(false);
         if (bonusesContent != null) bonusesContent.SetActive(false);
         goodsContent.SetActive(false);
         upgradesContent.SetActive(true);
@@ -227,11 +262,124 @@ public class Shop : Sounds
     {
         if (bonusesContent == null) return;
         CloseQuantity();
+        if (achievementsContent != null) achievementsContent.SetActive(false);
         goodsContent.SetActive(false);
         upgradesContent.SetActive(false);
         bonusesContent.SetActive(true);
         RefreshTabs(3);
         RefreshBonuses();
+    }
+
+    public void ShowAchievements()
+    {
+        if (achievementsContent == null || stats == null) return;
+        CloseQuantity();
+        goodsContent.SetActive(false);
+        upgradesContent.SetActive(false);
+        if (bonusesContent != null) bonusesContent.SetActive(false);
+        achievementsContent.SetActive(true);
+        achievementMessage = null;
+        BuildAchievementViews();
+        RefreshTabs(4);
+        RefreshAchievements();
+        Canvas.ForceUpdateCanvases();
+        UpdateAchievementLayout();
+        if (achievementsScroll != null) achievementsScroll.verticalNormalizedPosition = 1;
+    }
+
+    private void BuildAchievementViews()
+    {
+        if (achievementViews.Count > 0 || achievementCardPrefab == null || achievementsScroll == null) return;
+        achievementsGrid = achievementsScroll.content.GetComponent<GridLayoutGroup>();
+        for (int i = 0; i < Stats.Achievements.Count; i++)
+        {
+            int index = i;
+            var card = Instantiate(achievementCardPrefab, achievementsScroll.content);
+            card.name = "Achievement_" + index.ToString("D2");
+            var view = new AchievementView
+            {
+                Index = index, Card = card,
+                Title = card.transform.Find("Title").GetComponent<TextMeshProUGUI>(),
+                Description = card.transform.Find("Description").GetComponent<TextMeshProUGUI>(),
+                Progress = card.transform.Find("Progress").GetComponent<TextMeshProUGUI>(),
+                Reward = card.transform.Find("Reward").GetComponent<TextMeshProUGUI>(),
+                Fill = card.transform.Find("ProgressTrack/Fill").GetComponent<RectTransform>(),
+                Button = card.transform.Find("Claim").GetComponent<Button>()
+            };
+            view.ButtonText = view.Button.GetComponentInChildren<TextMeshProUGUI>();
+            view.Button.onClick.AddListener(() => ClaimAchievement(index));
+            achievementViews.Add(view);
+        }
+    }
+
+    private void UpdateAchievementLayout()
+    {
+        if (achievementsGrid == null) return;
+        float width = (achievementsScroll.content.rect.width - achievementsGrid.padding.horizontal - achievementsGrid.spacing.x) / 2f;
+        if (width > 0 && Mathf.Abs(width - achievementsGrid.cellSize.x) > .1f)
+        {
+            achievementsGrid.cellSize = new Vector2(width, achievementsGrid.cellSize.y);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(achievementsScroll.content);
+        }
+    }
+
+    private void OnAchievementsChanged()
+    {
+        if (IsOpen && achievementsContent != null && achievementsContent.activeInHierarchy) RefreshAchievements();
+    }
+
+    private int AchievementPriority(AchievementView view)
+    {
+        if (stats.IsAchievementClaimed(view.Index)) return 2;
+        var goal = Stats.Achievements[view.Index];
+        return stats.AchievementProgress(goal.Metric) >= goal.Target ? 0 : 1;
+    }
+
+    private void RefreshAchievements()
+    {
+        if (stats == null) return;
+        int claimedCount = 0, readyCount = 0;
+        foreach (var view in achievementViews)
+        {
+            var goal = Stats.Achievements[view.Index];
+            bool claimed = stats.IsAchievementClaimed(view.Index);
+            int progress = claimed ? goal.Target : Mathf.Min(goal.Target, stats.AchievementProgress(goal.Metric));
+            bool complete = progress >= goal.Target;
+            bool canClaim = CanTrade && stats.CanClaimAchievement(view.Index, player);
+            if (claimed) claimedCount++;
+            if (canClaim) readyCount++;
+            view.Title.text = goal.Title;
+            view.Description.text = goal.Description;
+            view.Progress.text = $"{progress:N0} / {goal.Target:N0}";
+            view.Reward.text = $"+{goal.Reward:N0} монет";
+            view.Fill.anchorMax = new Vector2(progress / (float)goal.Target, 1);
+            view.Button.interactable = canClaim;
+            view.ButtonText.text = claimed ? "Получено" : complete ? "Забрать" : "В процессе";
+            view.Button.GetComponent<Image>().color = canClaim ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
+            view.ButtonText.color = canClaim ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        }
+        achievementViews.Sort((left, right) =>
+        {
+            int priority = AchievementPriority(left).CompareTo(AchievementPriority(right));
+            return priority != 0 ? priority : left.Index.CompareTo(right.Index);
+        });
+        for (int i = 0; i < achievementViews.Count; i++) achievementViews[i].Card.transform.SetSiblingIndex(i);
+        if (achievementsSummary != null) achievementsSummary.text = $"Получено {claimedCount} / {Stats.Achievements.Count} · Можно забрать: {readyCount}";
+        if (achievementsStatus != null) achievementsStatus.text = !string.IsNullOrEmpty(achievementMessage) ? achievementMessage
+            : player.totalCoins > int.MaxValue - 5000 ? "Для наград освободи место в кошельке"
+            : "Выполняй цели и забирай монеты здесь. Каждая награда выдаётся один раз";
+        achievementCoins = player.totalCoins;
+        achievementTradingReady = CanTrade;
+    }
+
+    public void ClaimAchievement(int index)
+    {
+        if (!CanTrade || achievementsContent == null || !achievementsContent.activeInHierarchy
+            || quantityPanel.activeSelf || stats == null || !stats.TryClaimAchievement(index, player)) return;
+        achievementMessage = $"Получено +{Stats.Achievements[index].Reward:N0} монет";
+        PlaySound(sounds.Length > 0 ? sounds[0] : null, volume: 1, destroyed: false);
+        upgradeShop?.RefreshOffers();
+        RefreshAchievements();
     }
 
     public void WatchVideoForCoins()
@@ -281,6 +429,11 @@ public class Shop : Sounds
         {
             bonusesTab.GetComponent<Image>().color = page == 3 ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
             bonusesTab.GetComponentInChildren<TextMeshProUGUI>().color = page == 3 ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        }
+        if (achievementsTab != null)
+        {
+            achievementsTab.GetComponent<Image>().color = page == 4 ? new Color32(227, 186, 101, 255) : new Color32(35, 68, 59, 255);
+            achievementsTab.GetComponentInChildren<TextMeshProUGUI>().color = page == 4 ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
         }
     }
 
@@ -404,6 +557,7 @@ public class Shop : Sounds
         int received = (int)((long)item.itemValue * quantity);
         player.AddCoin(-(int)totalPrice);
         ApplyItemEffect(item, received);
+        stats?.RecordAchievementEvent(Stats.AchievementMetric.ShopPacks, quantity);
         PlaySound(sounds.Length > 0 ? sounds[0] : null, volume:1, destroyed:false);
         GameProgress.SaveNow();
         CloseQuantity();
@@ -440,6 +594,7 @@ public class Shop : Sounds
 
     private void OnDestroy()
     {
+        if (stats != null) stats.AchievementsChanged -= OnAchievementsChanged;
         if (quantitySlider != null) quantitySlider.onValueChanged.RemoveListener(OnQuantitySliderChanged);
         if (quantityInput != null) quantityInput.onEndEdit.RemoveListener(OnQuantityInputChanged);
     }
