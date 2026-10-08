@@ -18,11 +18,8 @@ public class Beka : MonoBehaviour
     [SerializeField] private GameObject arrowUpgradeSelector;
     [SerializeField] private Button heroUpgradeTab, weaponUpgradeTab;
     [SerializeField] private Button[] arrowUpgradeTabs = System.Array.Empty<Button>();
-    [SerializeField] private GameObject arenaUpgradeSelector;
-    [SerializeField] private Button[] arenaUpgradeTabs = System.Array.Empty<Button>();
     private bool weaponPage;
     private bool arenaPage;
-    private int selectedArena;
     private int selectedArrow;
     public bool IsPlayerInRange => isPlayerInRange;
 
@@ -197,17 +194,15 @@ public class Beka : MonoBehaviour
             bool arena = IsArenaUpgrade(item.itemType);
             bool weapon = (int)item.itemType >= (int)UpgradeItemType.Shotgun && (int)item.itemType <= (int)UpgradeItemType.ReloadSpeed;
             bool perArrow = (int)item.itemType >= (int)UpgradeItemType.TypeDamage && (int)item.itemType <= (int)UpgradeItemType.ReloadSpeed;
-            upgradeCards[i].SetActive(arenaPage ? arena && ArenaFeature.UpgradeGroup(item.itemType) == selectedArena
+            upgradeCards[i].SetActive(arenaPage ? arena && ArenaFeature.CanUpgrade(item.itemType, upgradeItems)
                 : !arena && weapon == weaponPage && (!perArrow || item.arrowType == selectedArrow));
         }
         if (heroUpgradeTab != null) heroUpgradeTab.gameObject.SetActive(!arenaPage);
         if (weaponUpgradeTab != null) weaponUpgradeTab.gameObject.SetActive(!arenaPage);
         if (arrowUpgradeSelector != null) arrowUpgradeSelector.SetActive(!arenaPage && weaponPage);
-        if (arenaUpgradeSelector != null) arenaUpgradeSelector.SetActive(arenaPage);
         Highlight(heroUpgradeTab, !weaponPage);
         Highlight(weaponUpgradeTab, weaponPage);
         for (int i = 0; i < arrowUpgradeTabs.Length; i++) Highlight(arrowUpgradeTabs[i], i == selectedArrow);
-        for (int i = 0; i < arenaUpgradeTabs.Length; i++) Highlight(arenaUpgradeTabs[i], i == selectedArena);
         UpdateButtonPrices();
     }
 
@@ -222,7 +217,8 @@ public class Beka : MonoBehaviour
     public void ShowHeroUpgrades() { arenaPage = false; weaponPage = false; RefreshOffers(); }
     public void ShowWeaponUpgrades() { arenaPage = false; weaponPage = true; RefreshOffers(); }
     public void ShowArenaUpgrades() { arenaPage = true; RefreshOffers(); }
-    public void SelectArenaUpgrades(int type) { if (type < 0 || type >= arenaUpgradeTabs.Length) return; selectedArena = type; RefreshOffers(); }
+    // Legacy UI callbacks now open the same combined arena offers.
+    public void SelectArenaUpgrades(int type) { ShowArenaUpgrades(); }
     public void SelectArrowUpgrades(int type) { if (type < 0 || type >= arrowUpgradeTabs.Length) return; selectedArrow = type; RefreshOffers(); }
 
     private bool OfferVisible(int index) => upgradeCards.Length == 0 || index < upgradeCards.Length && upgradeCards[index] != null && upgradeCards[index].activeInHierarchy;
