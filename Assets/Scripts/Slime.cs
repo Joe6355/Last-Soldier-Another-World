@@ -7,6 +7,14 @@ using UnityEngine;
 public class Slime : Sounds
 {
     private bool deathHandled;
+    private float waveDamageMultiplier = 1f;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    {
+        health = Mathf.CeilToInt(health * healthMultiplier);
+        defSpeed *= speedMultiplier;
+        collisionDamage *= damageMultiplier;
+        waveDamageMultiplier = damageMultiplier;
+    }
     [SerializeField] private int health;
     [SerializeField] private float agrDist;
     [SerializeField] private float defSpeed;
@@ -111,7 +119,7 @@ public class Slime : Sounds
         // Стреляем
         foreach (var firePosition in firePositions)
         {
-            Instantiate(projectilePrefab, firePosition.position, Quaternion.identity);
+            WaveSpawner.ScaleEnemyProjectile(Instantiate(projectilePrefab, firePosition.position, Quaternion.identity), waveDamageMultiplier);
         }
 
         yield return new WaitForSeconds(2.0f); // Ожидание после выстрела

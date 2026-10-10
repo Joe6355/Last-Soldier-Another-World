@@ -77,6 +77,7 @@ public sealed class ArenaFeature : MonoBehaviour
     public static float RuneDuration(int level) => 1.8f + .3f * level;
     public static float RootRadius(int level) => 1.5f + .15f * level;
     public static float AltarCooldown(int level) => Mathf.Max(10f, 25f - 2f * level);
+    public static float LootRadius(int level) => 2f + .5f * Mathf.Clamp(level, 0, 8);
 
     public static int UpgradeGroup(Upgrade type)
     {
@@ -85,7 +86,8 @@ public sealed class ArenaFeature : MonoBehaviour
     }
     public static bool CanUpgrade(Upgrade type, Beka.UpgradeItem[] items)
     {
-        return type != Upgrade.TowerPower && type != Upgrade.TowerRange && type != Upgrade.TowerRate
+        return (type != Upgrade.LootAttractionRange || Level(Upgrade.LootAttraction, items) > 0)
+            && type != Upgrade.TowerPower && type != Upgrade.TowerRange && type != Upgrade.TowerRate
             && type != Upgrade.RunePower && type != Upgrade.RuneRadius && type != Upgrade.RuneDuration && type != Upgrade.Roots;
     }
     public static string UpgradeSummary(Upgrade type, int level, int max, Beka.UpgradeItem[] items)
@@ -106,9 +108,13 @@ public sealed class ArenaFeature : MonoBehaviour
             case Upgrade.RuneDuration: detail = $"Стяжка {RuneDuration(level):0.#} → {RuneDuration(next):0.#} с"; break;
             case Upgrade.Roots: detail = level == 0 ? "Открыть две ловушки из корней\nУдержание и шипы" : $"Удержание {1 + level * .4f:0.#} → {1 + next * .4f:0.#} с\nРадиус {RootRadius(level):0.##} → {RootRadius(next):0.##}\nШипы: {level} → {next} урона"; break;
             case Upgrade.Altar: detail = level == 0 ? "Восстановить алтарь\nСтой рядом 2 с для лечения" : $"Лечение {15 + level * 5} → {15 + next * 5} HP\nВосстановление {AltarCooldown(level):0} → {AltarCooldown(next):0} с"; break;
+            case Upgrade.LootAttraction: detail = level == 0 ? "Автоподбор монет и стрел\nРадиус 2 · действует постоянно" : "Монеты и стрелы притягиваются\nДействует постоянно"; break;
+            case Upgrade.LootAttractionRange:
+                if (Level(Upgrade.LootAttraction, items) == 0) return "Сначала открой притяжение\nРадиус до 6 · 8 уровней";
+                detail = $"Радиус {LootRadius(level):0.#} → {LootRadius(next):0.#}\nМонеты и стрелы рядом с героем"; break;
             default: return "";
         }
-        if (!CanUpgrade(type, items)) detail += type == Upgrade.TowerRange || type == Upgrade.TowerRate
+        if (!CanUpgrade(type, items)) detail += type == Upgrade.LootAttractionRange ? "\nСначала изучи притяжение лута" : type == Upgrade.TowerRange || type == Upgrade.TowerRate
             ? "\nСначала построй башню" : "\nСначала открой руну";
         return $"{detail}\nУровень {level} / {max}";
     }

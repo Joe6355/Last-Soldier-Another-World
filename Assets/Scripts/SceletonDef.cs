@@ -6,6 +6,11 @@ using UnityEngine;
 public class SceletonDef : Sounds
 {
     private bool deathHandled;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    {
+        health = Mathf.CeilToInt(health * healthMultiplier);
+        defSpeed *= speedMultiplier;
+    }
     [SerializeField] private int health = 10;
 
     [Header("\u0423\u0441\u0438\u043b\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u043b\u0435 \u0441\u043f\u0430\u0432\u043d\u0430")]

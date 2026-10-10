@@ -10,6 +10,8 @@ public class Chest : Sounds
     public int maxCoins = 10; // Максимальное количество монеток
     public int coinsSpawned; // Текущее количество заспавненных монеток
     private Animator anim;
+    private bool isPlayerInRange;
+    public bool CanInteract => isPlayerInRange && coinsSpawned < maxCoins;
     private bool isChestOpened = false; // Флаг, указывающий, открыт ли сундук
 
     private void Start()
@@ -22,40 +24,52 @@ public class Chest : Sounds
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Проверяем, что игрок взаимодействует с сундуком
-        if (collision.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
+        if (collision.CompareTag("Player"))
         {
-            // Если сундук уже открыт, не выполняем повторное открытие
-            if (!isChestOpened)
-            {
-                PlaySound(sounds[1], volume: 1, destroyed: false); // Проигрываем звук открытия
-                anim.SetTrigger("Open"); // Запускаем анимацию открытия
-                isChestOpened = true; // Отмечаем, что сундук открыт
-            }
+            isPlayerInRange = true;
+            if (Input.GetKeyDown(KeyCode.F)) Interact();
+        }
+    }
 
-            // Если общее количество монеток меньше максимума
-            if (coinsSpawned < maxCoins)
-            {
-                // Спавним монетку
-                Instantiate(coinPrefab, spawnPoint.position, Quaternion.identity);
-                PlaySound(sounds[0], volume: 1, destroyed: false); // Звук монетки
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")) isPlayerInRange = false;
+    }
 
-                // Увеличиваем счетчик заспавненных монеток
-                coinsSpawned++;
+    public void Interact()
+    {
+        if (!isPlayerInRange || !GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale <= 0f) return;
+        // Если сундук уже открыт, не выполняем повторное открытие
+        if (!isChestOpened)
+        {
+            PlaySound(sounds[1], volume: 1, destroyed: false); // Проигрываем звук открытия
+            anim.SetTrigger("Open"); // Запускаем анимацию открытия
+            isChestOpened = true; // Отмечаем, что сундук открыт
+        }
 
-                // Сохраняем в PlayerPrefs
-                PlayerPrefs.SetInt("CoinsSpawned", coinsSpawned);
-                GameProgress.RequestSave();
+        // Если общее количество монеток меньше максимума
+        if (coinsSpawned < maxCoins)
+        {
+            // Спавним монетку
+            Instantiate(coinPrefab, spawnPoint.position, Quaternion.identity);
+            PlaySound(sounds[0], volume: 1, destroyed: false); // Звук монетки
 
-                // Отладочная информация
-                Debug.Log($"Coins spawned: {coinsSpawned}/{maxCoins}");
-            }
-            else
-            {
-                // Если достигнут лимит монеток, сундук закрывается
-                anim.SetTrigger("Close"); // Запускаем анимацию закрытия
-                PlaySound(sounds[2], volume: 1, destroyed: false); // Звук закрытия
-                Debug.Log("Maximum number of coins spawned!");
-            }
+            // Увеличиваем счетчик заспавненных монеток
+            coinsSpawned++;
+
+            // Сохраняем в PlayerPrefs
+            PlayerPrefs.SetInt("CoinsSpawned", coinsSpawned);
+            GameProgress.RequestSave();
+
+            // Отладочная информация
+            Debug.Log($"Coins spawned: {coinsSpawned}/{maxCoins}");
+        }
+        else
+        {
+            // Если достигнут лимит монеток, сундук закрывается
+            anim.SetTrigger("Close"); // Запускаем анимацию закрытия
+            PlaySound(sounds[2], volume: 1, destroyed: false); // Звук закрытия
+            Debug.Log("Maximum number of coins spawned!");
         }
     }
 }

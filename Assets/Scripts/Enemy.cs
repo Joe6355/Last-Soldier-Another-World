@@ -5,6 +5,12 @@ using System.Collections;
 public class Enemy : Sounds
 {
     private bool deathHandled;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    {
+        health = Mathf.CeilToInt(health * healthMultiplier);
+        defSpeed *= speedMultiplier;
+        damageTouch = Mathf.CeilToInt(damageTouch * damageMultiplier);
+    }
     [Header("Параметры врага")]
     public int health = 5;           // Здоровье врага
     public int damageTouch = 3;      // Урон при столкновении

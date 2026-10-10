@@ -38,6 +38,16 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private Vector2 spawnOffsetRange = new Vector2(2f, 2f);
 
+    [Header("Усиление врагов с 16-й волны")]
+    [SerializeField, Min(16)] private int reinforcementFirstWave = 16;
+    [SerializeField, Min(1)] private int reinforcementWaveStep = 5;
+    [SerializeField, Min(0)] private float healthBoostPerStep = .25f;
+    [SerializeField, Min(0)] private float damageBoostPerStep = .15f;
+    [SerializeField, Min(0)] private float movementBoostPerStep = .1f;
+    [SerializeField, Min(0)] private float spawnRateBoostPerStep = .3f;
+    [SerializeField, Min(0)] private float enemyCountBoostPerStep = .35f;
+    [SerializeField, Min(1)] private int maxConcurrentLateEnemies = 60;
+
     [Header("UI для таймера (необязательно)")]
     [SerializeField] private Text waveTimerText;
     [SerializeField] private Image waveTimerImage;
@@ -94,6 +104,11 @@ public class WaveSpawner : MonoBehaviour
     public bool IsCombatActive => playerInsideZone && isWaveActive;
     public int ActiveEnemyCount => activeEnemies.Count;
     public float RemainingWaveTime => waveTimeLeft;
+    public int ReinforcementLevel => CurrentWaveNumber < reinforcementFirstWave ? 0
+        : Mathf.Min(10, 1 + (CurrentWaveNumber - reinforcementFirstWave) / Mathf.Max(1, reinforcementWaveStep));
+    public float EffectiveSpawnInterval => Mathf.Max(.01f, spawnInterval) / (1f + spawnRateBoostPerStep * ReinforcementLevel);
+    public int EffectiveEnemyLimit => waves.Count > currentWaveIndex && currentWaveIndex >= 0
+        ? Mathf.CeilToInt(waves[currentWaveIndex].maxEnemies * (1f + enemyCountBoostPerStep * ReinforcementLevel)) : 0;
 
     #endregion
 
@@ -154,7 +169,7 @@ public class WaveSpawner : MonoBehaviour
             else
             {
                 // Обычная логика для обычных волн:
-                if (enemiesSpawnedInWave >= currentWave.maxEnemies && activeEnemies.Count == 0)
+                if (enemiesSpawnedInWave >= EffectiveEnemyLimit && activeEnemies.Count == 0)
                 {
                     CompleteWave(true);
                     return;
@@ -253,20 +268,21 @@ public class WaveSpawner : MonoBehaviour
 
         while (isWaveActive && currentWaveIndex == waveIndex)
         {
-            if (enemiesSpawnedInWave < wave.maxEnemies)
+            if (GameProgress.IsReady && !YG.YG2.isPauseGame && enemiesSpawnedInWave < EffectiveEnemyLimit
+                && (ReinforcementLevel == 0 || activeEnemies.Count < maxConcurrentLateEnemies))
             {
-                SpawnEnemy(wave);
-                enemiesSpawnedInWave++;
+                if (SpawnEnemy(wave)) enemiesSpawnedInWave++;
             }
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(EffectiveSpawnInterval);
         }
     }
 
-    private void SpawnEnemy(WaveConfig wave)
+    private bool SpawnEnemy(WaveConfig wave)
     {
-        if (spawnPoints.Count == 0 || enemyPrefabs.Count == 0) return;
+        if (spawnPoints.Count == 0 || enemyPrefabs.Count == 0) return false;
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        if (spawnPoint == null) return false;
         float offsetX = Random.Range(-spawnOffsetRange.x, spawnOffsetRange.x);
         float offsetY = Random.Range(-spawnOffsetRange.y, spawnOffsetRange.y);
 
@@ -278,9 +294,33 @@ public class WaveSpawner : MonoBehaviour
 
         int enemyLevel = Random.Range(wave.minDifficulty, wave.maxDifficulty + 1);
         enemyLevel = Mathf.Clamp(enemyLevel, 0, enemyPrefabs.Count - 1);
+        if (enemyPrefabs[enemyLevel] == null) return false;
 
         GameObject enemy = Instantiate(enemyPrefabs[enemyLevel], spawnPos, Quaternion.identity);
+        ApplyEnemyReinforcement(enemy);
         activeEnemies.Add(enemy);
+        return true;
+    }
+
+    private void ApplyEnemyReinforcement(GameObject enemy)
+    {
+        int level = ReinforcementLevel;
+        if (level == 0) return;
+        float health = 1f + healthBoostPerStep * level;
+        float damage = 1f + damageBoostPerStep * level;
+        float speed = 1f + movementBoostPerStep * level;
+        var target = ArrowDef.FindEnemy(enemy.transform);
+        if (target is Enemy melee) melee.ApplyWaveScaling(health, damage, speed);
+        else if (target is Slime slime) slime.ApplyWaveScaling(health, damage, speed);
+        else if (target is SceletonDef skeleton) skeleton.ApplyWaveScaling(health, damage, speed);
+        else if (target is SceletMag mage) mage.ApplyWaveScaling(health, damage, speed);
+        else if (target is HealerEnemy healer) healer.ApplyWaveScaling(health, damage, speed);
+    }
+
+    public static void ScaleEnemyProjectile(GameObject projectile, float damageMultiplier)
+    {
+        if (projectile.TryGetComponent<EnemyProgject>(out var shot)) shot.damage *= damageMultiplier;
+        if (projectile.TryGetComponent<EnemyProgjectVAR>(out var otherShot)) otherShot.damage *= damageMultiplier;
     }
 
     private void CompleteWave(bool cleared)

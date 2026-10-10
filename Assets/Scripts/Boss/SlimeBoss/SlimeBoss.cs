@@ -8,6 +8,7 @@ public class SlimeBoss : Sounds
     [Header("=== ПАРАМЕТРЫ ЗДОРОВЬЯ ===")]
     [SerializeField] private float maxHealth = 50f;
     private float currentHealth;
+    public bool IsAlive => currentHealth > 0f && !isDead;
 
     [Header("=== ССЫЛКА НА HP-БАР (ОТДЕЛЬНЫЙ ОБЪЕКТ) ===")]
     [Tooltip("Здесь мы получаем ссылку на 'HpSlimeBoss' (объект в сцене), обычно выключенный.")]

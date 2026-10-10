@@ -6,23 +6,23 @@ public class AddHolyArrow : MonoBehaviour
 {
     public float lifeTime = 4f;
     private Rigidbody2D rb;
+    private PlayerController lootPlayer;
+    private bool collected;
+    private bool beingAttracted;
     public int rotSpeed = 1;
 
     public CrossbowController crossbowController;
 
     [SerializeField] private int countArrow;
     [SerializeField] private int typeArrow;
-    private void Update()
-    {
-        Destroy(gameObject, lifeTime);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (!collected && crossbowController != null && collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            collected = true;
             crossbowController.AddArrows(typeArrow, countArrow);
+            Destroy(gameObject);
         }
     }
 
@@ -32,6 +32,9 @@ public class AddHolyArrow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         rb.AddForce(randomDirection * 2, ForceMode2D.Impulse);
+        lootPlayer = FindObjectOfType<PlayerController>();
+        Invoke(nameof(Stop), .5f);
+        Destroy(gameObject, lifeTime);
 
         crossbowController = FindObjectOfType<CrossbowController>();
 
@@ -52,8 +55,7 @@ public class AddHolyArrow : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Rotate(new Vector3(0, rotSpeed, 0));
-        Invoke("Stop", 0.5f);
-        Destroy(gameObject, lifeTime);
+        if (lootPlayer != null) beingAttracted = lootPlayer.TryAttractLoot(rb, beingAttracted);
 
         SetController(crossbowController);
 

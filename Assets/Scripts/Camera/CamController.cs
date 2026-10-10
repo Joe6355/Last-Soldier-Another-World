@@ -20,6 +20,7 @@ public class CamController : MonoBehaviour
     [Header("Размер камеры при зажатой ПКМ")]
     [SerializeField] private float overrideCamSize = 6f;
 
+    [SerializeField] private MobileControls mobileControls;
     private bool isOverrideByMouse = false;
     private float normalCamSize;
     private float camSize;
@@ -51,7 +52,8 @@ public class CamController : MonoBehaviour
     private void Update()
     {
         // При нажатии ПКМ
-        if (Input.GetMouseButtonDown(1))
+        bool preview = mobileControls != null && mobileControls.UseTouch ? mobileControls.ViewHeld : Input.GetMouseButton(1);
+        if (preview && !isOverrideByMouse)
         {
             isOverrideByMouse = true;
 
@@ -69,7 +71,7 @@ public class CamController : MonoBehaviour
                 playerController.cameraMultiplier = ratio;
             }
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (!preview && isOverrideByMouse)
         {
             isOverrideByMouse = false;
             // Плавно возвращаем к normalCamSize

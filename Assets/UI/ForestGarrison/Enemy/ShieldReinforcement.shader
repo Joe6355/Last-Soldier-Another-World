@@ -38,15 +38,15 @@ Shader "LastSoldier/ShieldReinforcement"
             #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
             #include "UnitySprites.cginc"
 
-            fixed4 _ShieldColor;
-            fixed _Reinforced;
+            float4 _ShieldColor;
+            float _Reinforced;
 
-            fixed4 ReinforcementFrag(v2f IN) : SV_Target
+            float4 ReinforcementFrag(v2f IN) : SV_Target
             {
-                fixed4 c = SampleSpriteTexture(IN.texcoord);
+                float4 c = SampleSpriteTexture(IN.texcoord);
                 // These brown hues belong only to the wooden shield in all eight existing frames.
                 // Keep the bone, metal and black outline pixels unchanged.
-                fixed wood = step(c.g * 1.35, c.r) * step(c.b * 1.5, c.g) * step(0.05, c.r);
+                float wood = step(c.g * 1.35, c.r) * step(c.b * 1.5, c.g) * step(0.05, c.r);
                 c.rgb = lerp(c.rgb, c.r * 1.2 * _ShieldColor.rgb, wood * saturate(_Reinforced));
                 c *= IN.color;
                 c.rgb *= c.a;

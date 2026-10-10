@@ -14,6 +14,7 @@ public class Shop : Sounds
     [SerializeField] private Button[] buyButtons;
 
     private bool isPlayerInRange = false;
+    public bool IsPlayerInRange => isPlayerInRange;
     private Animator anim;
 
     [Header("Товары и существующая прокачка")]

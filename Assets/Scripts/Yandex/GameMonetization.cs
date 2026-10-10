@@ -24,6 +24,7 @@ public sealed class GameMonetization : MonoBehaviour
     [SerializeField] private GameObject editorInterstitialMarker;
 
     private PlayerController player, deadPlayer;
+    private MobileControls mobileControls;
     private bool rewardPending, rewardGranted, rewardError, bannerVisible;
     private PlayerController coinsRecipient;
     private int coinsAmount, coinsGranted;
@@ -37,6 +38,7 @@ public sealed class GameMonetization : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerController>();
+        mobileControls = FindObjectOfType<MobileControls>();
         if (continueButton != null && continueButton.onClick.GetPersistentEventCount() == 0) continueButton.onClick.AddListener(ContinueForVideo);
         if (returnButton != null && returnButton.onClick.GetPersistentEventCount() == 0) returnButton.onClick.AddListener(ReturnToCamp);
         YG2.onRewardAdv += OnReward;
@@ -73,7 +75,8 @@ public sealed class GameMonetization : MonoBehaviour
         if (bannerMenuPanels != null)
             foreach (var panel in bannerMenuPanels)
                 if (panel != null && panel.activeInHierarchy) showBanner = true;
-        showBanner &= !YG2.nowAdsShow && deadPlayer == null;
+        showBanner &= !YG2.nowAdsShow && deadPlayer == null
+            && (mobileControls == null || !mobileControls.IsControlsSettingsOpen);
 #if UNITY_EDITOR
         if (editorBannerPreview != null) editorBannerPreview.SetActive(showBanner);
 #endif

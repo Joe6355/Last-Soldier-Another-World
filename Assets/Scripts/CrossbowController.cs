@@ -26,12 +26,14 @@ public class CrossbowController : Sounds
     public int ShootingMode => shootingMode;
     public int GetArrowCount(int typeIndex) => typeIndex >= 0 && typeIndex < arrowCounts.Length ? arrowCounts[typeIndex] : 0;
 
+    [SerializeField] private MobileControls mobileControls;
     public bool canShoot = true;         // Разрешение на стрельбу
     private int shootingMode = 1;        // 1 - обычный, 2 - дробовик, 3 - автомат
     private int selectedArrowIndex = 0;  // Текущий тип стрелы
     private bool shotgunUnlocked, automaticUnlocked;
     private int[] damageLevels = new int[4], speedLevels = new int[4], reloadLevels = new int[4];
     private float nextShotTime;
+    private Transform firingPivot;
     public static string ArrowTitle(int index) => index == 0 ? "Обычные стрелы" : index == 1 ? "Ядовитые стрелы" : index == 2 ? "Святые стрелы" : "Пробивные стрелы";
     public bool IsModeUnlocked(int mode) => mode == 1 || mode == 2 && shotgunUnlocked || mode == 3 && automaticUnlocked;
     public float ArrowSpeed(int type, int extraLevels = 0) => fireForce * (1f + .1f * (speedLevels[type] + extraLevels));
@@ -42,6 +44,7 @@ public class CrossbowController : Sounds
 
     private void Start()
     {
+        firingPivot = GetComponentInParent<PlayerController>()?.transform;
         LoadArrowCounts();
         UpdateArrowCountsUI();
         UpdateArrowTypeIndicator();
@@ -52,7 +55,7 @@ public class CrossbowController : Sounds
     private void Update()
     {
         UpdateArrowCountsUI();
-        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale == 0f)
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale == 0f || mobileControls != null && mobileControls.UseTouch)
         {
             return;
         }
@@ -69,9 +72,11 @@ public class CrossbowController : Sounds
         if (shootingMode == 3 && Input.GetMouseButton(0)) Shoot();
     }
 
-    public void Shoot()
+    public void Shoot(Vector2? aimDirection = null)
     {
         if (!GameProgress.IsReady || !canShoot || !IsModeUnlocked(shootingMode) || YG.YG2.isPauseGame || Time.timeScale == 0f || Time.time < nextShotTime || arrowCounts[selectedArrowIndex] <= 0) return;
+        Vector2 direction = aimDirection.HasValue && aimDirection.Value.sqrMagnitude > .0001f
+            ? aimDirection.Value.normalized : (Vector2)firePoint.up;
 
         switch (shootingMode)
         {
@@ -80,43 +85,53 @@ public class CrossbowController : Sounds
                 nextShotTime = Time.time + ShotInterval(selectedArrowIndex, shootingMode);
                 arrowCounts[selectedArrowIndex]--;
                 SaveArrowCounts();
-                FireArrow(firePoint.position, firePoint.up, selectedArrowIndex);
+                FireArrow(ShotOrigin(direction), direction, selectedArrowIndex);
                 UpdateArrowCountsUI();
                 break;
 
             case 2:
                 if (arrowCounts[selectedArrowIndex] < 3) return;
                 nextShotTime = Time.time + shotgunDelay + ShotInterval(selectedArrowIndex);
-                StartCoroutine(ShotgunRoutine(selectedArrowIndex));
+                StartCoroutine(ShotgunRoutine(selectedArrowIndex, direction));
                 break;
         }
     }
 
-    private IEnumerator ShotgunRoutine(int type)
+    private IEnumerator ShotgunRoutine(int type, Vector2 direction)
     {
         canShoot = false;
         arrowCounts[type] -= 3;
         SaveArrowCounts();
         UpdateArrowCountsUI();
         yield return new WaitForSeconds(shotgunDelay);
-        FireShotgun(type);
+        FireShotgun(type, direction);
         canShoot = true;
     }
 
     private void FireArrow(Vector3 spawnPos, Vector2 direction, int type)
     {
-        GameObject arrow = Instantiate(arrowPrefabs[type], spawnPos, firePoint.rotation);
+        GameObject arrow = Instantiate(arrowPrefabs[type], spawnPos, Quaternion.FromToRotation(Vector3.up, direction));
         arrow.GetComponent<ArrowDef>().damage = ArrowDamage(type);
         PlaySound(sounds.Length > 0 ? sounds[0] : null, volume: 1, destroyed: true);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * ArrowSpeed(type), ForceMode2D.Impulse);
     }
 
-    private void FireShotgun(int type)
+    private void FireShotgun(int type, Vector2 direction)
     {
-        FireArrow(firePoint.position + firePoint.right * -offsetX, Quaternion.Euler(0, 0, +10) * firePoint.up, type);
-        FireArrow(firePoint.position, firePoint.up, type);
-        FireArrow(firePoint.position + firePoint.right * offsetX, Quaternion.Euler(0, 0, -10) * firePoint.up, type);
+        Vector3 right = new Vector2(direction.y, -direction.x);
+        Vector3 origin = ShotOrigin(direction);
+        FireArrow(origin - right * offsetX, Quaternion.Euler(0, 0, +10) * direction, type);
+        FireArrow(origin, direction, type);
+        FireArrow(origin + right * offsetX, Quaternion.Euler(0, 0, -10) * direction, type);
+    }
+
+    private Vector3 ShotOrigin(Vector2 direction)
+    {
+        if (firingPivot == null) return firePoint.position;
+        // Rigidbody interpolation may display the old facing during a quick touch.
+        return firingPivot.position + Quaternion.FromToRotation(firePoint.up, direction)
+            * (firePoint.position - firingPivot.position);
     }
 
     public bool TrySelectMode(int mode)
@@ -151,12 +166,20 @@ public class CrossbowController : Sounds
 
     public void SwitchArrowType()
     {
-        selectedArrowIndex--;
-        if (selectedArrowIndex < 0)
-            selectedArrowIndex = arrowPrefabs.Length - 1;
-
-        UpdateArrowTypeIndicator();
+        TrySelectArrowType((selectedArrowIndex + arrowPrefabs.Length - 1) % arrowPrefabs.Length);
     }
+
+    public bool TrySelectArrowType(int index)
+    {
+        if (index < 0 || index >= arrowPrefabs.Length) return false;
+        selectedArrowIndex = index;
+        UpdateArrowTypeIndicator();
+        return true;
+    }
+
+    public static string FormatArrowCount(int count) => count >= 1_000_000
+        ? $"{count / 1_000_000:N0}\n{count / 1_000 % 1_000:000} {count % 1_000:000}"
+        : count.ToString("N0");
 
     private void UpdateModeText()
     {
@@ -202,10 +225,7 @@ public class CrossbowController : Sounds
     {
         for (int i = 0; i < arrowCounts.Length; i++)
         {
-            int count = arrowCounts[i];
-            arrowCountsText[i].text = count >= 1_000_000
-                ? $"{count / 1_000_000:N0}\n{count / 1_000 % 1_000:000} {count % 1_000:000}"
-                : count.ToString("N0");
+            arrowCountsText[i].text = FormatArrowCount(arrowCounts[i]);
         }
     }
 

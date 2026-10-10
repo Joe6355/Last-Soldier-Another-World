@@ -9,6 +9,29 @@ using TMPro;
 [DefaultExecutionOrder(-500)]
 public class PlayerController : Sounds
 {
+    public float LootAttractionRadius { get; private set; }
+
+    public void RefreshLootAttraction(Beka.UpgradeItem[] items)
+    {
+        LootAttractionRadius = ArenaFeature.Level(Beka.UpgradeItemType.LootAttraction, items) > 0
+            ? ArenaFeature.LootRadius(ArenaFeature.Level(Beka.UpgradeItemType.LootAttractionRange, items)) : 0f;
+    }
+
+    public bool TryAttractLoot(Rigidbody2D loot, bool wasAttracted = false)
+    {
+        Vector2 target = transform.position;
+        if (loot == null || LootAttractionRadius <= 0f || !GameProgress.IsReady || YG.YG2.isPauseGame
+            || Time.timeScale <= 0f || IsAwaitingRevive || hp <= 0f
+            || (loot.position - target).sqrMagnitude > LootAttractionRadius * LootAttractionRadius)
+        {
+            if (loot != null && wasAttracted) loot.velocity = Vector2.zero;
+            return false;
+        }
+        loot.velocity = Vector2.zero;
+        loot.angularVelocity = 0f;
+        loot.MovePosition(Vector2.MoveTowards(loot.position, target, 8f * Time.fixedDeltaTime));
+        return true;
+    }
     [Header("Щит и всё, что за него отвечает")]
     [SerializeField] private float shieldValue = 100f;
     [SerializeField] private float shieldMaxValue = 100f;
@@ -38,6 +61,8 @@ public class PlayerController : Sounds
     public int totalCoins = 0;
 
     public CrossbowController crossbowController;
+    [SerializeField] private MobileControls mobileControls;
+    public bool CanDash => stamina >= dashCost;
 
     [Header("Зеркало (телепорт)")]
     [SerializeField] private Transform mirrorHome;
@@ -59,6 +84,7 @@ public class PlayerController : Sounds
     [SerializeField] private TextMeshProUGUI shieldValueText;
     [SerializeField] private TextMeshProUGUI staminaValueText;
     public float ShieldMaxValue => shieldMaxValue;
+    public float ShieldValue => shieldValue;
     public int MirrorCount => mirrorRemainder;
     public int PotionCount => potionCount;
     public float PotionHealAmount => heal;
@@ -193,7 +219,7 @@ public class PlayerController : Sounds
     // =========================
     private void HandleShield()
     {
-        if (Input.GetKey(KeyCode.Space) && shieldValue > 0f)
+        if ((Input.GetKey(KeyCode.Space) || mobileControls != null && mobileControls.ShieldHeld) && shieldValue > 0f)
         {
             shieldActive = true;
             shieldVisual.SetActive(true);
@@ -224,7 +250,7 @@ public class PlayerController : Sounds
     {
         if (mirrorRemainder <= 0) return;
 
-        if (Input.GetKey(keyToHold))
+        if (Input.GetKey(keyToHold) || mobileControls != null && mobileControls.MirrorHeld)
         {
             mirrorMultiplier = 0.5f;
 
@@ -324,22 +350,41 @@ public class PlayerController : Sounds
     // ===========================
     private void Movement()
     {
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 movement = mobileControls != null && mobileControls.UseTouch ? mobileControls.Movement
+            : new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector2 rbPos = rb.position;
         rb.MovePosition(rbPos + movement * finalSpeed * Time.fixedDeltaTime);
 
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 lookDir = mousePos - rbPos;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90f;
-        rb.rotation = angle;
+        Vector2 lookDir = mobileControls != null && mobileControls.UseTouch ? mobileControls.AimDirection
+            : (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rbPos;
+        FaceDirection(lookDir);
+    }
+
+    private void FaceDirection(Vector2 direction)
+    {
+        rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
+    }
+
+    public void CancelTouchActions()
+    {
+        if (progressBarImage != null && progressBarContainer != null) ResetMirrorState();
+        shieldActive = false; shieldMultiplier = 1f;
+        if (shieldVisual != null) shieldVisual.SetActive(false);
     }
 
     private void MousePosition() { }
 
     private void CrossBowController()
     {
-        if (Input.GetMouseButtonDown(0))
-            crossbowController.Shoot();
+        if (mobileControls != null && mobileControls.UseTouch)
+        {
+            if (!mobileControls.CanControl) return;
+            Vector2 direction = mobileControls.AimDirection;
+            FaceDirection(direction);
+            if (mobileControls.ConsumeFirePress() || crossbowController.ShootingMode == 3 && mobileControls.FireHeld)
+                crossbowController.Shoot(direction);
+        }
+        else if (Input.GetMouseButtonDown(0)) crossbowController.Shoot();
 
     }
 
@@ -573,22 +618,25 @@ public class PlayerController : Sounds
         }
 
         // Проверяем нажатие Shift
-        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina >= dashCost)
-        {
-            Vector2 dashDirection = ((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rb.position).normalized;
-            rb.position += dashDirection * dashDistance;
+        if (Input.GetKeyDown(KeyCode.LeftShift)) TryDash();
 
-            // Тратим стамину
-            stamina -= dashCost;
-            if (stamina < 0f) stamina = 0f;
-            PlaySound(sounds[3], volume: 1, destroyed: true);
-        }
+        if (staminaBar != null) staminaBar.fillAmount = stamina / maxStamina;
+    }
 
-        // Обновляем UI стамины
-        if (staminaBar != null)
-        {
-            staminaBar.fillAmount = stamina / maxStamina;
-        }
+    public bool TryDash()
+    {
+        if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale <= 0f || IsAwaitingRevive || hp <= 0f || !CanDash) return false;
+        Vector2 dashDirection = mobileControls != null && mobileControls.UseTouch
+            ? (mobileControls.Movement.sqrMagnitude > .001f ? mobileControls.Movement.normalized : mobileControls.AimDirection)
+            : ((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rb.position).normalized;
+        rb.position += dashDirection * dashDistance;
+
+        // Тратим стамину
+        stamina -= dashCost;
+        if (stamina < 0f) stamina = 0f;
+        PlaySound(sounds[3], volume: 1, destroyed: true);
+        if (staminaBar != null) staminaBar.fillAmount = stamina / maxStamina;
+        return true;
     }
 
     // ===========================
@@ -671,6 +719,7 @@ public class PlayerController : Sounds
             }
         }
         crossbowController.RestoreWeaponUpgrades(items);
+        RefreshLootAttraction(items);
         hp = Mathf.Clamp(savedHp, 0f, maxHp);
         shieldValue = Mathf.Clamp(savedShield, 0f, shieldMaxValue);
         stamina = Mathf.Clamp(savedStamina, 0f, maxStamina);
@@ -694,6 +743,7 @@ public class PlayerController : Sounds
         originalMoveSpeed = 2f;
         heal = basePotionHeal;
         crossbowController.RestoreWeaponUpgrades(System.Array.Empty<Beka.UpgradeItem>());
+        LootAttractionRadius = 0f;
 
         // Сбрасываем урон стрел (по умолчанию = 2)
         foreach (var arrowPrefab in crossbowController.arrowPrefabs)

@@ -298,6 +298,9 @@
                 if (IsLocalHost()) return;
 
                 ysdk = await YaGames.init();
+                if (ysdk.deviceInfo && (ysdk.deviceInfo.isMobile() || ysdk.deviceInfo.isTablet())) {
+                    container.className = "unity-mobile";
+                }
                 ysdk.on('game_api_pause', PauseCallback);
                 ysdk.on('game_api_resume', ResumeCallback);
 

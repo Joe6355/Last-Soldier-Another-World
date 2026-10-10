@@ -6,6 +6,12 @@ using UnityEngine;
 public class HealerEnemy : Sounds
 {
     private bool deathHandled;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    {
+        health = Mathf.CeilToInt(health * healthMultiplier);
+        damageToPlayer = Mathf.CeilToInt(damageToPlayer * damageMultiplier);
+        defSpeed *= speedMultiplier;
+    }
     [Header("=== ПАРАМЕТРЫ ЗДОРОВЬЯ ===")]
     [SerializeField] private int health = 10;
 

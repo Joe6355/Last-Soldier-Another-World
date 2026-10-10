@@ -6,6 +6,13 @@ using UnityEngine;
 public class SceletMag : Sounds
 {
     private bool deathHandled;
+    private float waveDamageMultiplier = 1f;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    {
+        health = Mathf.CeilToInt(health * healthMultiplier);
+        defSpeed *= speedMultiplier;
+        waveDamageMultiplier = damageMultiplier;
+    }
     [SerializeField] private int health;
     [SerializeField] private float agrDist = 6f;
     [SerializeField] private float backDist = 1.5f;
@@ -170,14 +177,14 @@ public class SceletMag : Sounds
             .ToList();
 
         // Спавним первый снаряд на первой позиции
-        Instantiate(projectilePrefab1, selectedPositions[0].position, Quaternion.identity);
+        WaveSpawner.ScaleEnemyProjectile(Instantiate(projectilePrefab1, selectedPositions[0].position, Quaternion.identity), waveDamageMultiplier);
 
         // В момент атаки можем сбрасывать скорость, чтобы враг стоял
         speed = 0;
         anim.SetTrigger("GoAt");
 
         // Спавним второй снаряд на второй позиции
-        Instantiate(projectilePrefab2, selectedPositions[1].position, Quaternion.identity);
+        WaveSpawner.ScaleEnemyProjectile(Instantiate(projectilePrefab2, selectedPositions[1].position, Quaternion.identity), waveDamageMultiplier);
         PlaySound(sounds[1], volume: 1, destroyed: true);
     }
 

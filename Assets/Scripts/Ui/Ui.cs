@@ -46,6 +46,8 @@ public class Ui : MonoBehaviour
     private Shop activeShop;
     public bool IsMenuOpen => isMenuOpen;
     public bool IsTradeOpen => activeShop != null;
+    private bool mobileOrientationPaused, orientationResumePending;
+    public bool IsMobileOrientationPaused => mobileOrientationPaused;
     private void Start()
     {
         if (damageNumbersToggle != null)
@@ -86,6 +88,15 @@ public class Ui : MonoBehaviour
 
     private void Update()
     {
+        if (mobileOrientationPaused && playerController != null && GameProgress.IsReady && !YG.YG2.isPauseGame && Time.timeScale > 0f) PauseGame();
+        if (orientationResumePending && playerController != null && GameProgress.IsReady && !YG.YG2.isPauseGame)
+        {
+            orientationResumePending = false;
+            if (!isMenuOpen && activeShop == null && !playerController.IsAwaitingRevive)
+            {
+                crossbowController.SetShootingState(true); ResumeGame();
+            }
+        }
         if (startWhenReady && GameProgress.IsReady) BeginLoadedGame();
         // Открытие/закрытие меню по нажатию клавиши Esc
         if (playerController != null && !YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
@@ -145,8 +156,17 @@ public class Ui : MonoBehaviour
         }
     }
 
+    public void SetMobileOrientationPause(bool paused)
+    {
+        if (mobileOrientationPaused == paused) return;
+        mobileOrientationPaused = paused;
+        orientationResumePending = !paused;
+        if (paused && playerController != null && !YG.YG2.isPauseGame) PauseGame();
+    }
+
     private void ResumeGame()
     {
+        if (mobileOrientationPaused) { PauseGame(); return; }
         YG.YG2.GameplayStart();
         // Возобновляем время
         Time.timeScale = 1f;
@@ -226,6 +246,9 @@ public class Ui : MonoBehaviour
     public void ToggleMenu()
     {
         if (YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
+        var mobile = FindObjectOfType<MobileControls>();
+        if (mobile != null && mobile.IsControlsSettingsOpen)
+        { mobile.CloseControlsSettings(); return; }
         if (activeShop != null)
         {
             activeShop.CloseTopPanel();

@@ -74,7 +74,9 @@ public class Beka : MonoBehaviour
         OutpostCapture,
         Roots,
         Altar,
-        PotionHealing
+        PotionHealing,
+        LootAttraction,
+        LootAttractionRange
     }
 
     public UpgradeItem[] upgradeItems;
@@ -175,7 +177,7 @@ public class Beka : MonoBehaviour
             {
                 long price = upgradeItems[i].ExactPrice;
                 buttonText.text = upgradeItems[i].IsMaxed
-                    ? upgradeItems[i].itemType == UpgradeItemType.Shotgun || upgradeItems[i].itemType == UpgradeItemType.Automatic ? "Изучено" : "Максимум"
+                    ? upgradeItems[i].itemType == UpgradeItemType.Shotgun || upgradeItems[i].itemType == UpgradeItemType.Automatic || upgradeItems[i].itemType == UpgradeItemType.LootAttraction ? "Изучено" : "Максимум"
                     : $"{price:N0} монет";
             }
             if (i < upgradeDetails.Length && upgradeDetails[i] != null)
@@ -194,7 +196,7 @@ public class Beka : MonoBehaviour
             bool arena = IsArenaUpgrade(item.itemType);
             bool weapon = (int)item.itemType >= (int)UpgradeItemType.Shotgun && (int)item.itemType <= (int)UpgradeItemType.ReloadSpeed;
             bool perArrow = (int)item.itemType >= (int)UpgradeItemType.TypeDamage && (int)item.itemType <= (int)UpgradeItemType.ReloadSpeed;
-            upgradeCards[i].SetActive(arenaPage ? arena && ArenaFeature.CanUpgrade(item.itemType, upgradeItems)
+            upgradeCards[i].SetActive(arenaPage ? arena && (ArenaFeature.CanUpgrade(item.itemType, upgradeItems) || item.itemType == UpgradeItemType.LootAttractionRange)
                 : !arena && weapon == weaponPage && (!perArrow || item.arrowType == selectedArrow));
         }
         if (heroUpgradeTab != null) heroUpgradeTab.gameObject.SetActive(!arenaPage);
@@ -223,7 +225,8 @@ public class Beka : MonoBehaviour
 
     private bool OfferVisible(int index) => upgradeCards.Length == 0 || index < upgradeCards.Length && upgradeCards[index] != null && upgradeCards[index].activeInHierarchy;
 
-    private static bool IsArenaUpgrade(UpgradeItemType type) => (int)type >= (int)UpgradeItemType.TowerPower && (int)type <= (int)UpgradeItemType.Altar;
+    private static bool IsArenaUpgrade(UpgradeItemType type) => (int)type >= (int)UpgradeItemType.TowerPower && (int)type <= (int)UpgradeItemType.Altar
+        || type == UpgradeItemType.LootAttraction || type == UpgradeItemType.LootAttractionRange;
 
     private string UpgradeSummary(UpgradeItem item)
     {
@@ -282,6 +285,7 @@ public class Beka : MonoBehaviour
 
             ApplyUpgrade(item);
             item.purchaseCount++;
+            player.RefreshLootAttraction(upgradeItems);
             player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
             FindObjectOfType<Stats>()?.RecordUpgradePurchase(item.itemType);
 
@@ -317,6 +321,7 @@ public class Beka : MonoBehaviour
 
                 ApplyUpgrade(item);
                 item.purchaseCount++;
+                player.RefreshLootAttraction(upgradeItems);
                 player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
                 FindObjectOfType<Stats>()?.RecordUpgradePurchase(item.itemType);
 
@@ -385,6 +390,8 @@ public class Beka : MonoBehaviour
             case UpgradeItemType.OutpostCapture:
             case UpgradeItemType.Roots:
             case UpgradeItemType.Altar:
+            case UpgradeItemType.LootAttraction:
+            case UpgradeItemType.LootAttractionRange:
                 break; // Параметры оружия восстанавливаются по сохранённым уровням.
             default:
                 Debug.LogWarning("Неизвестный апгрейд: " + item.itemType);
