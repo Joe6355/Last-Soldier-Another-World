@@ -283,8 +283,8 @@ MonoBehaviour:
   - {fileID: 3527721918412744384, guid: 911ebdbe57690084bb09f434aa53c908, type: 3}
   - {fileID: 3527721918412744384, guid: 911ebdbe57690084bb09f434aa53c908, type: 3}
   - {fileID: 3527721918412744384, guid: 911ebdbe57690084bb09f434aa53c908, type: 3}
-  dropChanceMin: 0.25
-  dropChanceMax: 0.5
+  dropChanceMin: 0.3125
+  dropChanceMax: 0.625
   lootDropCount: 3
   deathAnimationTime: 3
   damageTouch: 50

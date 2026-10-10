@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using YG;
 using YG.Utils.LB;
 
@@ -13,6 +14,7 @@ public class TopPlayersPanel : MonoBehaviour
     private readonly List<LeaderboardRow> entries = new List<LeaderboardRow>();
     private float nextRefresh, deadline;
     private bool waiting;
+    private bool resetScrollPosition;
 
     private void OnEnable()
     {
@@ -34,6 +36,20 @@ public class TopPlayersPanel : MonoBehaviour
         if (waiting && Time.unscaledTime >= deadline) OnFailure(GameProgress.LeaderboardName);
         if (!waiting && contentParent != null && contentParent.gameObject.activeInHierarchy && Time.unscaledTime >= nextRefresh)
             LoadTopPlayers();
+    }
+
+    private void LateUpdate()
+    {
+        if (!resetScrollPosition || contentParent == null || !contentParent.gameObject.activeInHierarchy) return;
+        var scroll = contentParent.GetComponentInParent<ScrollRect>();
+        if (scroll != null && contentParent is RectTransform content)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+            Canvas.ForceUpdateCanvases();
+            scroll.StopMovement();
+            scroll.verticalNormalizedPosition = 1f;
+        }
+        resetScrollPosition = false;
     }
 
     private void OnProfileChanged()
@@ -71,6 +87,7 @@ public class TopPlayersPanel : MonoBehaviour
             }
         bool hasPlayers = entries.Count > 0;
         if (!hasPlayers) ShowPlaceholders();
+        resetScrollPosition = true;
         ShowStatus(hasPlayers ? "Общий рейтинг" : "Рейтинг пока пуст");
     }
 
@@ -93,6 +110,7 @@ public class TopPlayersPanel : MonoBehaviour
             row.BindPlaceholder(statistics);
             entries.Add(row);
         }
+        resetScrollPosition = true;
     }
 
     private void Clear()

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 using TMPro;
 public class Beka : MonoBehaviour
 {
-    [SerializeField] private GameObject wellcomeText;
-    [SerializeField] private GameObject interactivButton;
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private GameObject panelShop;
     [SerializeField] private PlayerController player;
@@ -88,8 +86,6 @@ public class Beka : MonoBehaviour
     private void Start()
     {
         crossbowController = FindObjectOfType<CrossbowController>();
-        wellcomeText.SetActive(false);
-        interactivButton.SetActive(false);
         panelShop.SetActive(false);
 
         anim = GetComponent<Animator>();
@@ -115,20 +111,16 @@ public class Beka : MonoBehaviour
         if (coll.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            wellcomeText.SetActive(true);
-            interactivButton.SetActive(true);
             anim.SetTrigger("Ide");
         }
     }
 
     private void OnTriggerExit2D(Collider2D coll)
     {
-        if (wellcomeText == null || interactivButton == null || panelShop == null || anim == null) return;
+        if (panelShop == null || anim == null) return;
         if (coll.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            wellcomeText.SetActive(false);
-            interactivButton.SetActive(false);
             CloseShop();
             anim.SetTrigger("IdeVar");
         }

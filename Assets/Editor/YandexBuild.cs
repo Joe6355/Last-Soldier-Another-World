@@ -8,8 +8,8 @@ using UnityEngine.Rendering;
 
 public static class YandexBuild
 {
-    public const string AndroidTestVersion = "1.0.2";
-    public const int AndroidTestVersionCode = 3;
+    public const string AndroidTestVersion = "1.0.4";
+    public const int AndroidTestVersionCode = 5;
     public const string AndroidTestDefines = "PLUGIN_YG_2;Storage_yg;Authorization_yg;Leaderboards_yg;EnvirData_yg;RedefinePlayerPrefs_yg;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;StickyAdv_yg;LAST_SOLDIER_ANDROID_TEST";
 
     [MenuItem("Tools/Last Soldier/Build Android Test APK")]

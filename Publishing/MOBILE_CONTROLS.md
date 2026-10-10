@@ -56,5 +56,5 @@
 - `Assets/Scripts/PlayerController.cs`, `CrossbowController.cs`: направление быстрого выстрела без ожидания визуального поворота героя, сохранение направления залпа.
 - `Assets/Scripts/Ui/Ui.cs`, `Yandex/GameMonetization.cs`: возврат из настроек управления и скрытие баннера в них.
 - `Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs`: автоприцел пропускает погибшего босса.
-- `Assets/Editor/YandexBuild.cs`: версия тестового APK 1.0.2, код 3.
+- `Assets/Editor/YandexBuild.cs`: версия тестового APK 1.0.4, код 5.
 - `Publishing/MOBILE_CONTROLS.md`, `ANDROID_TEST.md` и превью: описание управления и проверок.

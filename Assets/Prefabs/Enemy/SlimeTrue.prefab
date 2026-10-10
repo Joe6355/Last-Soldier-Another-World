@@ -242,8 +242,8 @@ MonoBehaviour:
   - {fileID: 5488903047714652814, guid: 52da76fec2fb01f4699a6749daf2abfc, type: 3}
   - {fileID: 5211204924593737934, guid: ab591c8d1b96d1a48bc71282cd4e35bd, type: 3}
   - {fileID: 7640446452702800322, guid: 1cd2b0866804dc34783c617af520fa47, type: 3}
-  dropChanceMin: 0.25
-  dropChanceMax: 0.5
+  dropChanceMin: 0.3125
+  dropChanceMax: 0.625
   lootDropCount: 3
   collisionDamage: 3
 --- !u!1 &5734840551673545868

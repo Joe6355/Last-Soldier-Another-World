@@ -251,8 +251,8 @@ MonoBehaviour:
   - {fileID: 7869823337138493920, guid: 25f2db3adc4c16f418df4863acbe538c, type: 3}
   - {fileID: 7120226835536113636, guid: 859c0dfda05868a44acc823dc64d0d3f, type: 3}
   - {fileID: 7120226835536113636, guid: 859c0dfda05868a44acc823dc64d0d3f, type: 3}
-  dropChanceMin: 0.25
-  dropChanceMax: 0.32
+  dropChanceMin: 0.3125
+  dropChanceMax: 0.4
   lootDropCount: 3
   frontPoint: {fileID: 7520967644375190425}
 --- !u!50 &5103743688736778904

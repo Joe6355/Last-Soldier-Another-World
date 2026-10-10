@@ -6,8 +6,6 @@ using TMPro;
 
 public class Shop : Sounds
 {
-    [SerializeField] private GameObject wellcomeText;
-    [SerializeField] private GameObject interactivButton;
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private GameObject panelShop;
     [SerializeField] private PlayerController player;
@@ -32,7 +30,7 @@ public class Shop : Sounds
     [SerializeField] private Button bonusVideoButton;
     [SerializeField] private TextMeshProUGUI bonusRewardText;
     [SerializeField] private TextMeshProUGUI bonusStatusText;
-    [SerializeField, Min(1)] private int videoCoinsReward = 100;
+    [SerializeField, Min(1)] private int videoCoinsReward = 500;
     private string bonusMessage = "Награда за полный просмотр видео";
 
     [Header("Достижения")]
@@ -111,8 +109,6 @@ public class Shop : Sounds
 
     private void Start()
     {
-        wellcomeText.SetActive(false);
-        interactivButton.SetActive(false);
         panelShop.SetActive(false);
 
         crossbowController = FindObjectOfType<CrossbowController>();
@@ -163,8 +159,6 @@ public class Shop : Sounds
         if (coll.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            wellcomeText.SetActive(true);
-            interactivButton.SetActive(true);
             anim.SetTrigger("Ide");
         }
     }
@@ -172,12 +166,10 @@ public class Shop : Sounds
     private void OnTriggerExit2D(Collider2D coll)
     {
         // Trigger exits can arrive while the scene's UI is already being destroyed.
-        if (wellcomeText == null || interactivButton == null || panelShop == null || anim == null) return;
+        if (panelShop == null || anim == null) return;
         if (coll.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            wellcomeText.SetActive(false);
-            interactivButton.SetActive(false);
             if (currentTrainer == null) CloseShop();
             anim.SetTrigger("IdeVar");
         }
