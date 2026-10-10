@@ -75,6 +75,9 @@ public class CrossbowController : Sounds
     public void Shoot(Vector2? aimDirection = null)
     {
         if (!GameProgress.IsReady || !canShoot || !IsModeUnlocked(shootingMode) || YG.YG2.isPauseGame || Time.timeScale == 0f || Time.time < nextShotTime || arrowCounts[selectedArrowIndex] <= 0) return;
+        // UI reacts on mouse release; also block the press used to open the shop.
+        if (!aimDirection.HasValue && mobileControls != null && !mobileControls.UseTouch
+            && mobileControls.IsPointerOverInteraction(Input.mousePosition)) return;
         Vector2 direction = aimDirection.HasValue && aimDirection.Value.sqrMagnitude > .0001f
             ? aimDirection.Value.normalized : (Vector2)firePoint.up;
 

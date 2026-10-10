@@ -75,10 +75,18 @@ public class MobileControls : MonoBehaviour
 
     public static bool IsTouchDevice => Application.isMobilePlatform || YG2.envir.isMobile || YG2.envir.isTablet;
     public bool UseTouch => IsTouchDevice;
-    public bool CanControl => UseTouch && GameProgress.IsReady && focused && !applicationPaused
+    private bool CanUseGameplayUi => GameProgress.IsReady && focused && !applicationPaused
         && !YG2.isPauseGame && !YG2.nowAdsShow && Time.timeScale > 0f
         && player != null && player.crossbowController != null && player.hp > 0f && !player.IsAwaitingRevive && !gameUi.IsMobileOrientationPaused
         && !gameUi.IsMenuOpen && !gameUi.IsTradeOpen && !editingLayout;
+    public bool CanControl => UseTouch && CanUseGameplayUi;
+    public bool IsPointerOverInteraction(Vector2 screenPoint)
+    {
+        if (interactButton == null || !interactButton.gameObject.activeInHierarchy) return false;
+        var rootCanvas = interactButton.GetComponentInParent<Canvas>().rootCanvas;
+        return RectTransformUtility.RectangleContainsScreenPoint(interactButton.GetComponent<RectTransform>(),
+            screenPoint, rootCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : rootCanvas.worldCamera);
+    }
     public Vector2 Movement => CanControl ? movement.Value : Vector2.zero;
     public bool IsEditingLayout => editingLayout;
     public bool IsControlsSettingsOpen => controlsSettingsPanel != null && controlsSettingsPanel.activeInHierarchy;
@@ -193,7 +201,12 @@ public class MobileControls : MonoBehaviour
             && (!touch || portrait || !gameUi.IsMenuOpen)) CloseControlsSettings();
         bool active = CanControl && !portrait;
         if (!active && !editingLayout) ResetInput();
-        gameplayControls.SetActive(active || editingLayout && touch && !portrait);
+        bool editing = editingLayout && touch && !portrait;
+        gameplayControls.SetActive(active || editing);
+        bool merchant = shop.IsPlayerInRange || trainer.IsPlayerInRange;
+        var chest = touch ? AvailableChest() : null;
+        interactButton.gameObject.SetActive(editing || CanUseGameplayUi && !portrait && (merchant || chest != null));
+        interactLabel.text = merchant ? "Торговец" : "Открыть сундук";
         if (!active) return;
         dashButton.interactable = player.CanDash;
         healButton.interactable = player.PotionCount > 0 && player.hp < player.maxHp;
@@ -209,10 +222,6 @@ public class MobileControls : MonoBehaviour
         healCountLabel.text = player.PotionCount.ToString("N0");
         mirrorCountLabel.text = player.MirrorCount.ToString("N0");
         modeLabel.text = bow.ShootingMode == 1 ? "Одиночный" : bow.ShootingMode == 2 ? "Дробовик" : "Автоогонь";
-        bool merchant = shop.IsPlayerInRange || trainer.IsPlayerInRange;
-        var chest = AvailableChest();
-        interactButton.gameObject.SetActive(merchant || chest != null);
-        interactLabel.text = merchant ? "Торговец" : "Открыть сундук";
     }
     private Chest AvailableChest()
     {
@@ -239,11 +248,11 @@ public class MobileControls : MonoBehaviour
     }
     private void Interact()
     {
-        if (!CanControl) return;
+        if (!CanUseGameplayUi) return;
         ResetInput();
         if (shop.IsPlayerInRange) shop.OpenShop();
         else if (trainer.IsPlayerInRange) trainer.OpenShop();
-        else AvailableChest()?.Interact();
+        else if (UseTouch) AvailableChest()?.Interact();
     }
     private void OpenPause()
     {
@@ -347,7 +356,7 @@ public class MobileControls : MonoBehaviour
         else if (editSnapshot != null)
             for (int i = 0; i < editableControls.Length; i++) editableControls[i].anchoredPosition = editSnapshot[i];
         editingLayout = false; draggedControl = null;
-        ResetInput(); gameplayControls.SetActive(false);
+        ResetInput(); gameplayControls.SetActive(false); interactButton.gameObject.SetActive(false);
         controlsSettingsDialog.SetActive(true); settingsBackdrop.SetActive(true); layoutToolbar.SetActive(false);
         ApplyAppearance();
     }
