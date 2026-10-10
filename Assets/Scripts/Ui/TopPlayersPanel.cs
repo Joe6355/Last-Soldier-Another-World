@@ -19,6 +19,7 @@ public class TopPlayersPanel : MonoBehaviour
         YG2.onGetLeaderboard += OnLeaderboard;
         GameProgress.Changed += OnProfileChanged;
         GameProgress.LeaderboardLoadFailed += OnFailure;
+        ShowPlaceholders();
     }
 
     private void OnDisable()
@@ -40,6 +41,7 @@ public class TopPlayersPanel : MonoBehaviour
         waiting = false;
         nextRefresh = 0f;
         Clear();
+        ShowPlaceholders();
         LoadTopPlayers();
     }
 
@@ -49,6 +51,7 @@ public class TopPlayersPanel : MonoBehaviour
         waiting = true;
         deadline = Time.unscaledTime + 12f;
         nextRefresh = Time.unscaledTime + 60f;
+        ShowPlaceholders();
         ShowStatus("Загрузка рейтинга…");
         YG2.GetLeaderboard(GameProgress.LeaderboardName, 15, 1, "small");
     }
@@ -66,22 +69,36 @@ public class TopPlayersPanel : MonoBehaviour
                 row.Bind(player, statistics);
                 entries.Add(row);
             }
-        ShowStatus(entries.Count == 0 ? "В рейтинге пока нет игроков" : YG2.player.auth
-            ? "Больше зачищенных волн и побед — выше MMR" : "Войдите через Яндекс ID в главном меню, чтобы попасть в рейтинг");
+        bool hasPlayers = entries.Count > 0;
+        if (!hasPlayers) ShowPlaceholders();
+        ShowStatus(hasPlayers ? "Общий рейтинг" : "Рейтинг пока пуст");
     }
 
     private void OnFailure(string name)
     {
         if (name != GameProgress.LeaderboardName) return;
         waiting = false;
-        ShowStatus("Рейтинг временно недоступен. Ваш прогресс сохранён");
+        ShowPlaceholders();
+        ShowStatus("Рейтинг недоступен");
     }
 
     private void ShowStatus(string text) { if (statusText != null) statusText.text = text; }
 
+    private void ShowPlaceholders()
+    {
+        if (entries.Count > 0 || contentParent == null || rowPrefab == null) return;
+        for (int i = 0; i < 4; i++)
+        {
+            var row = Instantiate(rowPrefab, contentParent);
+            row.BindPlaceholder(statistics);
+            entries.Add(row);
+        }
+    }
+
     private void Clear()
     {
-        foreach (var row in entries) if (row != null) Destroy(row.gameObject);
+        foreach (var row in entries)
+            if (row != null) { row.gameObject.SetActive(false); Destroy(row.gameObject); }
         entries.Clear();
     }
 }

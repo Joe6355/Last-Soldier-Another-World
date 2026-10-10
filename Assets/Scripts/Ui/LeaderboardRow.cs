@@ -21,6 +21,7 @@ public sealed class LeaderboardRow : MonoBehaviour
         nickname.richText = false;
         nickname.text = player.rank + ". " + name;
         mmr.text = "MMR " + Math.Max(0, player.score).ToString("N0");
+        medal.color = Color.white;
         Stats.LeaderboardSummary summary = null;
         if (!string.IsNullOrEmpty(player.extraData) && player.extraData.Length <= 1024)
             try { summary = JsonUtility.FromJson<Stats.LeaderboardSummary>(player.extraData); }
@@ -37,5 +38,16 @@ public sealed class LeaderboardRow : MonoBehaviour
         }
         bool isCurrent = YG2.player.auth && player.uniqueID == YG2.player.id;
         background.color = isCurrent ? currentPlayerColor : normalColor;
+    }
+
+    public void BindPlaceholder(Stats localStats)
+    {
+        nickname.richText = false;
+        nickname.text = "—  Игрок";
+        statistics.text = "Волны: —   Враги: —\nЭлита: —   Боссы: —";
+        mmr.text = "MMR —";
+        medal.sprite = localStats != null ? localStats.MedalForKills(0) : null;
+        medal.color = new Color(1f, 1f, 1f, .25f);
+        background.color = normalColor;
     }
 }

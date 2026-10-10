@@ -32,6 +32,8 @@ public class MobileControls : MonoBehaviour
     [SerializeField] private GameObject[] desktopHints = System.Array.Empty<GameObject>();
     [Header("Настройка управления на этом устройстве")]
     [SerializeField] private Button controlsSettingsButton, closeControlsSettingsButton, editLayoutButton, resetControlsButton;
+    [SerializeField] private Button pauseControlsSettingsButton;
+    [SerializeField] private GameObject desktopControlBindings, mobileControlsCard;
     [SerializeField] private Button finishLayoutButton, cancelLayoutButton, resetLayoutButton;
     [SerializeField] private GameObject gameMenuPanel, gameSettingsPanel, controlsSettingsPanel, controlsSettingsDialog, settingsBackdrop, layoutToolbar;
     [SerializeField] private Slider sizeSlider, opacitySlider;
@@ -71,7 +73,8 @@ public class MobileControls : MonoBehaviour
         progressPosition = mirrorProgress.anchoredPosition;
     }
 
-    public bool UseTouch => Application.isMobilePlatform || YG2.envir.isMobile || YG2.envir.isTablet;
+    public static bool IsTouchDevice => Application.isMobilePlatform || YG2.envir.isMobile || YG2.envir.isTablet;
+    public bool UseTouch => IsTouchDevice;
     public bool CanControl => UseTouch && GameProgress.IsReady && focused && !applicationPaused
         && !YG2.isPauseGame && !YG2.nowAdsShow && Time.timeScale > 0f
         && player != null && player.crossbowController != null && player.hp > 0f && !player.IsAwaitingRevive && !gameUi.IsMobileOrientationPaused
@@ -111,6 +114,7 @@ public class MobileControls : MonoBehaviour
             directArrowButtons[i].onClick.AddListener(() => SelectArrows(index));
         }
         controlsSettingsButton.onClick.AddListener(OpenControlsSettings);
+        if (pauseControlsSettingsButton != null) pauseControlsSettingsButton.onClick.AddListener(OpenControlsFromPause);
         closeControlsSettingsButton.onClick.AddListener(CloseControlsSettings);
         editLayoutButton.onClick.AddListener(BeginLayoutEdit);
         resetControlsButton.onClick.AddListener(ResetControls);
@@ -182,6 +186,9 @@ public class MobileControls : MonoBehaviour
             layoutDimensions = safeArea.rect.size;
         }
         if (controlsSettingsButton != null) controlsSettingsButton.gameObject.SetActive(touch);
+        if (pauseControlsSettingsButton != null) pauseControlsSettingsButton.gameObject.SetActive(touch);
+        if (desktopControlBindings != null) desktopControlBindings.SetActive(!touch);
+        if (mobileControlsCard != null) mobileControlsCard.SetActive(touch);
         if (controlsSettingsPanel != null && controlsSettingsPanel.activeSelf
             && (!touch || portrait || !gameUi.IsMenuOpen)) CloseControlsSettings();
         bool active = CanControl && !portrait;
@@ -295,6 +302,13 @@ public class MobileControls : MonoBehaviour
             if (enemy == null && collider.transform != target.transform) return false;
         }
         return true;
+    }
+
+    private void OpenControlsFromPause()
+    {
+        if (!UseTouch || !gameUi.IsMenuOpen) return;
+        gameUi.ShowSettings();
+        OpenControlsSettings();
     }
 
     public void OpenControlsSettings()

@@ -14,6 +14,8 @@ public sealed class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject ratingPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject profilePanel;
+    [SerializeField] private GameObject desktopControlBindings;
+    [SerializeField] private GameObject mobileControlsInfo;
     [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private TextMeshProUGUI authLabel;
     private bool loading;
@@ -83,6 +85,8 @@ public sealed class MainMenuController : MonoBehaviour
         if (menuPanel != null) menuPanel.SetActive(false);
         if (titlePanel != null) titlePanel.SetActive(false);
         if (profilePanel != null) profilePanel.SetActive(false);
+        if (desktopControlBindings != null) desktopControlBindings.SetActive(!MobileControls.IsTouchDevice);
+        if (mobileControlsInfo != null) mobileControlsInfo.SetActive(MobileControls.IsTouchDevice);
         settingsPanel.SetActive(true);
     }
 
