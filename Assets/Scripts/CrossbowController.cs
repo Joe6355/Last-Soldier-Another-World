@@ -33,6 +33,7 @@ public class CrossbowController : Sounds
     private bool shotgunUnlocked, automaticUnlocked;
     private int[] damageLevels = new int[4], speedLevels = new int[4], reloadLevels = new int[4];
     private float nextShotTime;
+    private Collider2D[] ownerColliders;
     private Transform firingPivot;
     public static string ArrowTitle(int index) => index == 0 ? "Обычные стрелы" : index == 1 ? "Ядовитые стрелы" : index == 2 ? "Святые стрелы" : "Пробивные стрелы";
     public bool IsModeUnlocked(int mode) => mode == 1 || mode == 2 && shotgunUnlocked || mode == 3 && automaticUnlocked;
@@ -74,6 +75,7 @@ public class CrossbowController : Sounds
 
     public void Shoot(Vector2? aimDirection = null)
     {
+        if (!TipsManager.Allows(TipsManager.GuideAction.Fire) || !aimDirection.HasValue && TipsManager.BlocksShot(Input.mousePosition)) return;
         if (!GameProgress.IsReady || !canShoot || !IsModeUnlocked(shootingMode) || YG.YG2.isPauseGame || Time.timeScale == 0f || Time.time < nextShotTime || arrowCounts[selectedArrowIndex] <= 0) return;
         // UI reacts on mouse release; also block the press used to open the shop.
         if (!aimDirection.HasValue && mobileControls != null && !mobileControls.UseTouch
@@ -114,6 +116,15 @@ public class CrossbowController : Sounds
     private void FireArrow(Vector3 spawnPos, Vector2 direction, int type)
     {
         GameObject arrow = Instantiate(arrowPrefabs[type], spawnPos, Quaternion.FromToRotation(Vector3.up, direction));
+        // A quick aim change can spawn the bolt inside the interpolated owner collider.
+        if (ownerColliders == null)
+        {
+            var owner = firingPivot != null ? firingPivot.GetComponentInParent<PlayerController>() : GetComponentInParent<PlayerController>();
+            ownerColliders = owner != null ? owner.GetComponentsInChildren<Collider2D>(true) : System.Array.Empty<Collider2D>();
+        }
+        foreach (var boltCollider in arrow.GetComponentsInChildren<Collider2D>())
+            foreach (var ownerCollider in ownerColliders)
+                if (ownerCollider != null) Physics2D.IgnoreCollision(boltCollider, ownerCollider);
         arrow.GetComponent<ArrowDef>().damage = ArrowDamage(type);
         PlaySound(sounds.Length > 0 ? sounds[0] : null, volume: 1, destroyed: true);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
@@ -139,6 +150,7 @@ public class CrossbowController : Sounds
 
     public bool TrySelectMode(int mode)
     {
+        if (!TipsManager.Allows(TipsManager.GuideAction.Mode)) return false;
         if (mode < 1 || mode > 3 || !IsModeUnlocked(mode)) return false;
         shootingMode = mode;
         UpdateModeText();
@@ -174,10 +186,18 @@ public class CrossbowController : Sounds
 
     public bool TrySelectArrowType(int index)
     {
+        if (!TipsManager.Allows(TipsManager.GuideAction.Arrow)) return false;
         if (index < 0 || index >= arrowPrefabs.Length) return false;
         selectedArrowIndex = index;
         UpdateArrowTypeIndicator();
+        TipsManager.Report(TipsManager.GuideAction.Arrow);
         return true;
+    }
+
+    public void RestoreTutorialSelection()
+    {
+        shootingMode = 1; selectedArrowIndex = 0;
+        UpdateArrowTypeIndicator(); UpdateModeText();
     }
 
     public static string FormatArrowCount(int count) => count >= 1_000_000

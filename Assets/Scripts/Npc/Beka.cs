@@ -78,6 +78,8 @@ public class Beka : MonoBehaviour
     }
 
     public UpgradeItem[] upgradeItems;
+    public RectTransform GuideTarget(int index) => index >= 0 && index < upgradeCards.Length && upgradeCards[index] != null
+        ? upgradeCards[index].GetComponent<RectTransform>() : null;
 
     [Header("Звуки (опционально)")]
     [SerializeField] private AudioClip soundPurchase;
@@ -252,6 +254,7 @@ public class Beka : MonoBehaviour
     // Покупка по нажатию на кнопку
     public void BuyItem(int itemIndex)
     {
+        if (!TipsManager.AllowsUpgrade(itemIndex)) return;
         if (itemIndex < 0 || itemIndex >= upgradeItems.Length || !CanPurchase() || !OfferVisible(itemIndex)) return;
 
         if (isActiveAndEnabled && Input.GetKey(KeyCode.LeftControl))
@@ -266,6 +269,7 @@ public class Beka : MonoBehaviour
 
     private void AttemptSinglePurchase(int itemIndex)
     {
+        if (!TipsManager.AllowsUpgrade(itemIndex)) return;
         if (!CanPurchase() || !OfferVisible(itemIndex)) return;
         UpgradeItem item = upgradeItems[itemIndex];
         long price = item.ExactPrice;
@@ -288,6 +292,7 @@ public class Beka : MonoBehaviour
             SaveUpgrades();
             // Сохраняем статы игрока
             player.SavePlayerData();
+            TipsManager.Report(TipsManager.GuideAction.Upgrade);
         }
         else
         {
@@ -303,7 +308,7 @@ public class Beka : MonoBehaviour
         UpgradeItem item = upgradeItems[itemIndex];
         bool purchasedSomething = false;
 
-        while (Input.GetKey(KeyCode.LeftControl) && CanPurchase() && OfferVisible(itemIndex))
+        while (Input.GetKey(KeyCode.LeftControl) && CanPurchase() && OfferVisible(itemIndex) && TipsManager.AllowsUpgrade(itemIndex))
         {
             long price = item.ExactPrice;
             if (price > 0 && price <= player.totalCoins && !item.IsMaxed && ArenaFeature.CanUpgrade(item.itemType, upgradeItems))
@@ -321,6 +326,7 @@ public class Beka : MonoBehaviour
                 RefreshOffers();
                 SaveUpgrades();
                 player.SavePlayerData();
+                TipsManager.Report(TipsManager.GuideAction.Upgrade);
             }
             else
             {

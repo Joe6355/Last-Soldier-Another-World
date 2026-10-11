@@ -219,7 +219,7 @@ public class PlayerController : Sounds
     // =========================
     private void HandleShield()
     {
-        if ((Input.GetKey(KeyCode.Space) || mobileControls != null && mobileControls.ShieldHeld) && shieldValue > 0f)
+        if (TipsManager.Allows(TipsManager.GuideAction.Shield) && (Input.GetKey(KeyCode.Space) || mobileControls != null && mobileControls.ShieldHeld) && shieldValue > 0f)
         {
             shieldActive = true;
             shieldVisual.SetActive(true);
@@ -227,6 +227,7 @@ public class PlayerController : Sounds
             shieldMultiplier = 0.5f; // замедление при щите
             shieldValue -= shieldDrainRate * Time.deltaTime;
             if (shieldValue < 0f) shieldValue = 0f;
+            TipsManager.Report(TipsManager.GuideAction.Shield);
            
         }
         else
@@ -250,7 +251,7 @@ public class PlayerController : Sounds
     {
         if (mirrorRemainder <= 0) return;
 
-        if (Input.GetKey(keyToHold) || mobileControls != null && mobileControls.MirrorHeld)
+        if (TipsManager.Allows(TipsManager.GuideAction.Mirror) && (Input.GetKey(keyToHold) || mobileControls != null && mobileControls.MirrorHeld))
         {
             mirrorMultiplier = 0.5f;
 
@@ -274,6 +275,7 @@ public class PlayerController : Sounds
                 Debug.Log($"Заряд зеркала: {mirrorRemainder}");
                 ResetMirrorState();
                 SavePlayerData();
+                TipsManager.Report(TipsManager.GuideAction.Mirror);
             }
         }
         else
@@ -297,6 +299,7 @@ public class PlayerController : Sounds
     // ===========================
     public void TakeDamage(float damage)
     {
+        if (TipsManager.IsGuideActive) return;
         if (IsAwaitingRevive || Time.time < invulnerableUntil || Time.timeScale == 0f || YG.YG2.isPauseGame) return;
         // Если щит есть
         if (shieldActive && shieldValue > 0f)
@@ -350,6 +353,13 @@ public class PlayerController : Sounds
     // ===========================
     private void Movement()
     {
+        if (!TipsManager.Allows(TipsManager.GuideAction.Move))
+        {
+            rb.velocity = Vector2.zero;
+            if (mobileControls == null || !mobileControls.UseTouch)
+                FaceDirection((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rb.position);
+            return;
+        }
         Vector2 movement = mobileControls != null && mobileControls.UseTouch ? mobileControls.Movement
             : new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector2 rbPos = rb.position;
@@ -594,6 +604,7 @@ public class PlayerController : Sounds
 
     public bool UseHealingPotion()
     {
+        if (!TipsManager.Allows(TipsManager.GuideAction.Heal)) return false;
         if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale <= 0 || IsAwaitingRevive
             || potionCount <= 0 || hp <= 0 || hp >= maxHp) return false;
         potionCount--;
@@ -602,6 +613,7 @@ public class PlayerController : Sounds
         textCountPotionHeal.text = potionCount.ToString();
         stats?.RecordAchievementEvent(Stats.AchievementMetric.Potions);
         SavePlayerData();
+        TipsManager.Report(TipsManager.GuideAction.Heal);
         return true;
     }
 
@@ -625,6 +637,7 @@ public class PlayerController : Sounds
 
     public bool TryDash()
     {
+        if (!TipsManager.Allows(TipsManager.GuideAction.Dash)) return false;
         if (!GameProgress.IsReady || YG.YG2.isPauseGame || Time.timeScale <= 0f || IsAwaitingRevive || hp <= 0f || !CanDash) return false;
         Vector2 dashDirection = mobileControls != null && mobileControls.UseTouch
             ? (mobileControls.Movement.sqrMagnitude > .001f ? mobileControls.Movement.normalized : mobileControls.AimDirection)
@@ -636,6 +649,7 @@ public class PlayerController : Sounds
         if (stamina < 0f) stamina = 0f;
         PlaySound(sounds[3], volume: 1, destroyed: true);
         if (staminaBar != null) staminaBar.fillAmount = stamina / maxStamina;
+        TipsManager.Report(TipsManager.GuideAction.Dash);
         return true;
     }
 

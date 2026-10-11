@@ -10,14 +10,31 @@ public class Coin: Sounds
     private PlayerController lootPlayer;
     private bool collected;
     private bool beingAttracted;
+    private bool trainingCoin;
+    private System.Action trainingCollected;
+
+    // Configure immediately after spawning, before Start schedules the normal expiry.
+    public void ConfigureTrainingCoin(int value, System.Action callback)
+    {
+        coinValue = Mathf.Max(0, value);
+        trainingCoin = true;
+        trainingCollected = callback;
+        rb = GetComponent<Rigidbody2D>();
+        if (rb != null) Stop();
+    }
     public int rotSpeed = 1;   
     private void Start()
     {
           
         rb = GetComponent<Rigidbody2D>();
+        lootPlayer = FindObjectOfType<PlayerController>();
+        if (trainingCoin)
+        {
+            Stop();
+            return;
+        }
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         rb.AddForce(randomDirection * 2, ForceMode2D.Impulse);
-        lootPlayer = FindObjectOfType<PlayerController>();
         Invoke(nameof(Stop), .5f);
         Destroy(gameObject, lifeTime);
 
@@ -45,7 +62,8 @@ public class Coin: Sounds
             {
                 collected = true;
                 PlaySound(sounds[0], volume: 1, destroyed: true);
-                player.AddCoin(coinValue);           
+                player.AddCoin(coinValue);
+                if (trainingCoin) trainingCollected?.Invoke();
             }
 
             Destroy(gameObject);

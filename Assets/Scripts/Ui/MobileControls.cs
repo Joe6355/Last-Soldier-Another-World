@@ -87,7 +87,7 @@ public class MobileControls : MonoBehaviour
         return RectTransformUtility.RectangleContainsScreenPoint(interactButton.GetComponent<RectTransform>(),
             screenPoint, rootCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : rootCanvas.worldCamera);
     }
-    public Vector2 Movement => CanControl ? movement.Value : Vector2.zero;
+    public Vector2 Movement => CanControl && TipsManager.Allows(TipsManager.GuideAction.Move) ? movement.Value : Vector2.zero;
     public bool IsEditingLayout => editingLayout;
     public bool IsControlsSettingsOpen => controlsSettingsPanel != null && controlsSettingsPanel.activeInHierarchy;
     public bool AutomaticSelected => player != null && player.crossbowController != null
@@ -248,7 +248,7 @@ public class MobileControls : MonoBehaviour
     }
     private void Interact()
     {
-        if (!CanUseGameplayUi) return;
+        if (!CanUseGameplayUi || !TipsManager.Allows(TipsManager.GuideAction.Interact)) return;
         ResetInput();
         if (shop.IsPlayerInRange) shop.OpenShop();
         else if (trainer.IsPlayerInRange) trainer.OpenShop();
@@ -261,9 +261,29 @@ public class MobileControls : MonoBehaviour
     }
     private void ToggleUtilities()
     {
-        if (!CanControl) return;
+        if (!CanControl || !TipsManager.Allows(TipsManager.GuideAction.Utilities)) return;
         utilitiesPanel.SetActive(!utilitiesPanel.activeSelf);
         mirror.ResetControl(); view.ResetControl();
+        if (utilitiesPanel.activeSelf) TipsManager.Report(TipsManager.GuideAction.Utilities);
+    }
+
+    public void ShowTutorialUtilities() => utilitiesPanel.SetActive(true);
+    public RectTransform GuideTarget(TipsManager.GuideAction action)
+    {
+        Transform target = action switch
+        {
+            TipsManager.GuideAction.Move => movement.transform,
+            TipsManager.GuideAction.Fire => aim.transform,
+            TipsManager.GuideAction.Arrow => directArrowButtons.Length > 1 ? directArrowButtons[1].transform : null,
+            TipsManager.GuideAction.Dash => dashButton.transform,
+            TipsManager.GuideAction.Shield => shield.transform,
+            TipsManager.GuideAction.Heal => healButton.transform,
+            TipsManager.GuideAction.Utilities => utilityButton.transform,
+            TipsManager.GuideAction.Mirror => mirror.transform,
+            TipsManager.GuideAction.Interact => interactButton.transform,
+            _ => null
+        };
+        return target != null && target.gameObject.activeInHierarchy ? target.GetComponent<RectTransform>() : null;
     }
 
     private Vector2 AutoAimDirection()

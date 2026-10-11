@@ -99,7 +99,13 @@ public class WaveSpawner : MonoBehaviour
     private bool playerInsideZone = false;
     private int enemiesSpawnedInWave = 0;
     private bool bossActivated;
-    public int CurrentWaveNumber => currentWaveIndex + 1;
+    private bool tutorialWave;
+    private int tutorialEnemiesLeft;
+    public int CurrentWaveNumber => tutorialWave ? 0 : currentWaveIndex + 1;
+    public bool IsTutorialWave => tutorialWave;
+    public Transform TutorialExit => breakIndicator != null ? breakIndicator.transform : null;
+    public RectTransform TutorialHud => waveHudPanel != null ? waveHudPanel.GetComponent<RectTransform>()
+        : waveNumberText != null ? waveNumberText.rectTransform : null;
     public bool IsRunning => playerInsideZone && (isWaveActive || isBreakActive);
     public bool IsCombatActive => playerInsideZone && isWaveActive;
     public int ActiveEnemyCount => activeEnemies.Count;
@@ -135,6 +141,7 @@ public class WaveSpawner : MonoBehaviour
     private void Update()
     {
         if (!playerInsideZone || Time.timeScale == 0f || YG.YG2.isPauseGame) return;  // Игрок ещё не в зоне — ничего не делаем
+        if (tutorialWave) { UpdateTutorialUI(); return; }
         hintTime = Mathf.Max(0, hintTime - Time.deltaTime);
         if (arenaHint != null) arenaHint.gameObject.SetActive(hintTime > 0 && isWaveActive);
 
@@ -231,12 +238,7 @@ public class WaveSpawner : MonoBehaviour
 
         // Очистка заспавненных врагов (если игрок ранее покидал арену)
         ClearActiveEnemies();
-        if (arenaPlayerSprite == null)
-        {
-            arenaPlayerSprite = FindObjectOfType<PlayerController>()?.GetComponent<SpriteRenderer>();
-            if (arenaPlayerSprite != null) previousPlayerSort = arenaPlayerSprite.sortingOrder;
-        }
-        if (arenaPlayerSprite != null) arenaPlayerSprite.sortingOrder = Mathf.Max(8, previousPlayerSort);
+        ShowArenaPlayer();
         int outposts = 0;
         foreach (var feature in arenaFeatures) if (feature != null && feature.Kind == ArenaFeature.FeatureKind.Outpost) outposts++;
         foreach (var feature in arenaFeatures)
@@ -360,12 +362,19 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (TipsManager.IsGuideActive) return;
         if (collision.CompareTag("Player") && !playerInsideZone)
         {
             playerInsideZone = true;
             ShowSpawnerUI();
             ResetWavesAndStart();
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        // A player may already be inside the zone when the lesson is skipped.
+        if (!playerInsideZone && !TipsManager.IsGuideActive) OnTriggerEnter2D(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -375,6 +384,7 @@ public class WaveSpawner : MonoBehaviour
             && collision.gameObject.activeInHierarchy && collision.gameObject.scene.isLoaded
             && collision.GetComponentInParent<PlayerController>() != null && collision.CompareTag("Player"))
         {
+            if (tutorialWave) return;
             playerInsideZone = false;
             HideSpawnerUI();
             ResetSpawnerCompletely();
@@ -400,8 +410,7 @@ public class WaveSpawner : MonoBehaviour
         isWaveActive = false;
         isBreakActive = false;
         foreach (var feature in arenaFeatures) if (feature != null) feature.EndRun();
-        if (arenaPlayerSprite != null) arenaPlayerSprite.sortingOrder = previousPlayerSort;
-        arenaPlayerSprite = null;
+        RestoreArenaPlayer();
         ClearArenaCheckpoint();
         if (arenaHint != null) arenaHint.gameObject.SetActive(false);
 
@@ -430,7 +439,7 @@ public class WaveSpawner : MonoBehaviour
 
     public void SaveCheckpoint()
     {
-        if (!IsRunning || waves.Count == 0) return;
+        if (tutorialWave || TipsManager.IsGuideActive || !IsRunning || waves.Count == 0) return;
         PlayerPrefs.SetInt("ArenaRunActive", 1);
         PlayerPrefs.SetInt("ArenaWaveIndex", isBreakActive ? (currentWaveIndex + 1) % waves.Count : currentWaveIndex);
         if (isBreakActive) ClearArenaCheckpoint();
@@ -499,6 +508,74 @@ public class WaveSpawner : MonoBehaviour
     #endregion
 
     #region UI Методы
+
+    // Wave zero uses the existing arena HUD/exit, without normal spawning or rating credit.
+    public void BeginTutorialWave(int enemiesLeft)
+    {
+        if (IsRunning && !tutorialWave) return;
+        tutorialWave = true; playerInsideZone = true;
+        isWaveActive = enemiesLeft > 0; isBreakActive = false;
+        tutorialEnemiesLeft = enemiesLeft;
+        ShowArenaPlayer();
+        if (breakIndicator != null) breakIndicator.SetActive(false);
+        if (arenaHint != null) arenaHint.gameObject.SetActive(false);
+        ShowSpawnerUI(); UpdateTutorialUI();
+    }
+
+    public void SetTutorialEnemiesLeft(int count)
+    {
+        if (!tutorialWave) return;
+        tutorialEnemiesLeft = Mathf.Max(0, count); UpdateTutorialUI();
+    }
+
+    public void BeginTutorialBreak()
+    {
+        if (!tutorialWave) BeginTutorialWave(0);
+        isWaveActive = false; isBreakActive = true; tutorialEnemiesLeft = 0;
+        // The teaching break waits for the player; ordinary breaks retain their timer.
+        if (breakIndicator != null) breakIndicator.SetActive(true);
+        UpdateTutorialUI();
+    }
+
+    public void EndTutorialWave()
+    {
+        if (!tutorialWave) return;
+        tutorialWave = false; playerInsideZone = isWaveActive = isBreakActive = false;
+        RestoreArenaPlayer();
+        if (breakIndicator != null) breakIndicator.SetActive(false);
+        HideSpawnerUI();
+    }
+
+    private void UpdateTutorialUI()
+    {
+        if (waveNumberText != null) waveNumberText.text = "Волна 0";
+        if (waveTimerText != null)
+        {
+            waveTimerText.text = isBreakActive ? "Перерыв" : isWaveActive ? $"Враги: {tutorialEnemiesLeft}" : "Готов";
+            waveTimerText.color = new Color32(227, 186, 101, 255);
+        }
+        if (waveTimerImage != null)
+        {
+            waveTimerImage.fillAmount = isBreakActive ? 1 : 1 - tutorialEnemiesLeft / 3f;
+            waveTimerImage.color = isBreakActive ? Color.gray : Color.red;
+        }
+    }
+
+    private void ShowArenaPlayer()
+    {
+        if (arenaPlayerSprite == null)
+        {
+            arenaPlayerSprite = FindObjectOfType<PlayerController>()?.GetComponent<SpriteRenderer>();
+            if (arenaPlayerSprite != null) previousPlayerSort = arenaPlayerSprite.sortingOrder;
+        }
+        if (arenaPlayerSprite != null) arenaPlayerSprite.sortingOrder = Mathf.Max(8, previousPlayerSort);
+    }
+
+    private void RestoreArenaPlayer()
+    {
+        if (arenaPlayerSprite != null) arenaPlayerSprite.sortingOrder = previousPlayerSort;
+        arenaPlayerSprite = null;
+    }
 
     private void ShowSpawnerUI()
     {

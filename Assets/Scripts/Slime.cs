@@ -7,6 +7,35 @@ using UnityEngine;
 public class Slime : Sounds
 {
     private bool deathHandled;
+    private bool trainingTarget;
+    private bool movingTrainingTarget;
+    private System.Action<int, bool> trainingDamage;
+
+    // An opt-in target uses the normal projectile hit path without combat rewards.
+    public void ConfigureTrainingTarget(System.Action<int, bool> callback, int targetHealth = 6, bool moving = false)
+    {
+        trainingTarget = true;
+        movingTrainingTarget = moving;
+        trainingDamage = callback;
+        health = Mathf.Max(1, targetHealth);
+        deathHandled = false;
+        isAttacking = false;
+        StopAllCoroutines();
+        CancelInvoke();
+        rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.constraints = moving ? RigidbodyConstraints2D.FreezeRotation : RigidbodyConstraints2D.FreezeAll;
+        }
+        var targetPlayer = FindObjectOfType<PlayerController>();
+        if (targetPlayer != null)
+            foreach (var ownCollider in GetComponentsInChildren<Collider2D>())
+                foreach (var playerCollider in targetPlayer.GetComponentsInChildren<Collider2D>())
+                    Physics2D.IgnoreCollision(ownCollider, playerCollider);
+    }
     private float waveDamageMultiplier = 1f;
     public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
     {
@@ -62,10 +91,28 @@ public class Slime : Sounds
                 if (parameter.name == "Attack" || parameter.name == "GoAt") attackTrigger = parameter.nameHash;
                 if (parameter.name == "NoRun") idleTrigger = parameter.nameHash;
             }
+        if (trainingTarget && idleTrigger != 0) anim.SetTrigger(idleTrigger);
     }
 
     private void FixedUpdate()
     {
+        if (trainingTarget)
+        {
+            if (rb == null) return;
+            bool canMove = movingTrainingTarget && player != null && TipsManager.Allows(TipsManager.GuideAction.Fire);
+            if (canMove && Vector2.Distance(transform.position, player.position) > 1.1f)
+            {
+                rb.velocity = ((Vector2)player.position - rb.position).normalized * Mathf.Min(defSpeed, .7f);
+                if (walkTrigger != 0) anim.SetTrigger(walkTrigger);
+                FacePlayer();
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                if (idleTrigger != 0) anim.SetTrigger(idleTrigger);
+            }
+            return;
+        }
         if (deathHandled || player == null)
         {
             rb.velocity = Vector2.zero;
@@ -142,6 +189,7 @@ public class Slime : Sounds
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (trainingTarget) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             var playerController = collision.gameObject.GetComponent<PlayerController>();
@@ -158,6 +206,20 @@ public class Slime : Sounds
     {
         double previousHealth = health;
         if (deathHandled) return;
+        if (trainingTarget)
+        {
+            if (amount <= 0) return;
+            int actualDamage = Mathf.Min(health, amount);
+            health -= actualDamage;
+            DamageNumbers.Show(transform, previousHealth, health);
+            PlaySound(sounds.Length > 1 ? sounds[1] : null, volume: 1, destroyed: true);
+            if (sprite != null) SetTransparence(0.5f);
+            bool defeated = health <= 0;
+            if (defeated) Die();
+            else if (sprite != null) Invoke(nameof(ResetTransparency), 0.1f);
+            trainingDamage?.Invoke(actualDamage, defeated);
+            return;
+        }
         // Получаем ссылку на стрелу
         ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
 
@@ -211,6 +273,12 @@ public class Slime : Sounds
     {
         if (deathHandled) return;
         deathHandled = true;
+        if (trainingTarget)
+        {
+            PlaySound(sounds.Length > 2 ? sounds[2] : null, volume: 1, destroyed: true);
+            Destroy(gameObject);
+            return;
+        }
         PlaySound(sounds[2], volume: 1, destroyed: true);
         stats.AddEnemyKill(Stats.EnemyKind.Slime);
 

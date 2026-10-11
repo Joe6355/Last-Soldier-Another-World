@@ -164,7 +164,7 @@ public sealed class ArenaFeature : MonoBehaviour
         }
     }
 
-    private bool CanAct => spawner != null && spawner.IsCombatActive && player != null && player.hp > 0 && !player.IsAwaitingRevive
+    private bool CanAct => spawner != null && spawner.IsCombatActive && !spawner.IsTutorialWave && player != null && player.hp > 0 && !player.IsAwaitingRevive
         && GameProgress.IsReady && Time.timeScale > 0 && !YG.YG2.isPauseGame;
     private bool Near(float distance) => player != null && Vector2.Distance(player.transform.position, transform.position) <= distance;
 

@@ -71,6 +71,7 @@ public class Shop : Sounds
     [SerializeField] private Button decreaseButton;
     [SerializeField] private Button increaseButton;
     [SerializeField] private Button maximumButton;
+    [SerializeField] private RectTransform guideQuantityControls;
 
     private Ui gameUi;
     private Beka currentTrainer;
@@ -78,6 +79,12 @@ public class Shop : Sounds
     private int selectedQuantity = 1;
     private int lastCoins = -1;
     public bool IsOpen => panelShop != null && panelShop.activeInHierarchy;
+    public bool IsQuantityOpen => quantityPanel != null && quantityPanel.activeInHierarchy;
+    public int SelectedItemIndex => selectedItem;
+    public int SelectedQuantity => selectedQuantity;
+    public long SelectedPrice => selectedItem >= 0 ? (long)shopItems[selectedItem].itemPrice * selectedQuantity : 0;
+    public long SelectedAmount => selectedItem >= 0 ? (long)shopItems[selectedItem].itemValue * selectedQuantity : 0;
+    private bool preparingGuide;
     private bool InTradingRange => currentTrainer != null ? currentTrainer.IsPlayerInRange : isPlayerInRange;
     private bool CanTrade => IsOpen && InTradingRange && GameProgress.IsReady && !YG.YG2.isPauseGame && !player.IsAwaitingRevive;
     public bool CanPurchaseUpgrades => CanTrade && upgradesContent != null && upgradesContent.activeInHierarchy && !quantityPanel.activeSelf;
@@ -143,7 +150,7 @@ public class Shop : Sounds
         if (IsOpen && !InTradingRange) CloseShop();
         if (isPlayerInRange && currentTrainer == null && Input.GetKeyDown(KeyCode.F))
         {
-            if (IsOpen) CloseTopPanel();
+            if (IsOpen && !TipsManager.IsGuideActive) CloseTopPanel();
             else OpenShop();
         }
         if (IsOpen && lastCoins != player.totalCoins)
@@ -177,14 +184,17 @@ public class Shop : Sounds
 
     public void OpenShop()
     {
+        if (!preparingGuide && !TipsManager.Allows(TipsManager.GuideAction.Interact)) return;
         if (!isPlayerInRange || IsOpen || !gameUi.BeginTrade(this)) return;
         currentTrainer = null;
         panelShop.SetActive(true);
         ShowGoods();
+        TipsManager.Report(TipsManager.GuideAction.Interact);
     }
 
     public void OpenFromTrainer(Beka trainer)
     {
+        if (TipsManager.IsGuideActive) return;
         if (trainer != upgradeShop || !trainer.IsPlayerInRange || IsOpen || !gameUi.BeginTrade(this)) return;
         currentTrainer = trainer;
         panelShop.SetActive(true);
@@ -202,6 +212,7 @@ public class Shop : Sounds
 
     public void CloseTopPanel()
     {
+        if (TipsManager.IsGuideActive) return;
         if (quantityPanel.activeSelf) CloseQuantity();
         else CloseShop();
     }
@@ -229,6 +240,7 @@ public class Shop : Sounds
 
     public void ShowUpgrades()
     {
+        if (!preparingGuide && !TipsManager.Allows(TipsManager.GuideAction.Upgrades)) return;
         if (upgradeShop == null) return;
         CloseQuantity();
         if (achievementsContent != null) achievementsContent.SetActive(false);
@@ -237,10 +249,12 @@ public class Shop : Sounds
         upgradesContent.SetActive(true);
         upgradeShop.ShowHeroUpgrades();
         RefreshTabs(1);
+        if (!preparingGuide) TipsManager.Report(TipsManager.GuideAction.Upgrades);
     }
 
     public void ShowArena()
     {
+        if (TipsManager.IsGuideActive) return;
         if (upgradeShop == null) return;
         CloseQuantity();
         if (achievementsContent != null) achievementsContent.SetActive(false);
@@ -253,6 +267,7 @@ public class Shop : Sounds
 
     public void ShowBonuses()
     {
+        if (TipsManager.IsGuideActive) return;
         if (bonusesContent == null) return;
         CloseQuantity();
         if (achievementsContent != null) achievementsContent.SetActive(false);
@@ -265,6 +280,7 @@ public class Shop : Sounds
 
     public void ShowAchievements()
     {
+        if (TipsManager.IsGuideActive) return;
         if (achievementsContent == null || stats == null) return;
         CloseQuantity();
         goodsContent.SetActive(false);
@@ -444,6 +460,7 @@ public class Shop : Sounds
 
     public void BuyItem(int itemIndex)
     {
+        if (!TipsManager.AllowsGoods(itemIndex)) return;
         if (!CanTrade || itemIndex < 0 || itemIndex >= shopItems.Length || !goodsContent.activeSelf) return;
         var item = shopItems[itemIndex];
         selectedItem = itemIndex;
@@ -453,6 +470,7 @@ public class Shop : Sounds
         if (icon != null) quantityIcon.sprite = icon.sprite;
         quantityPanel.SetActive(true);
         RefreshQuantity();
+        TipsManager.Report(TipsManager.GuideAction.Goods);
     }
 
     private static string ItemTitle(ItemType type)
@@ -508,7 +526,7 @@ public class Shop : Sounds
         quantityStatusText.text = maximum > 0 ? $"Можно купить: {PackCount(maximum)}"
             : item.itemPrice <= 0 || item.itemValue <= 0 ? "Товар недоступен"
             : (long)Stock(item) + item.itemValue > int.MaxValue ? "Нет места для ещё одного набора" : "Недостаточно монет";
-        confirmButton.interactable = CanTrade && maximum > 0;
+        confirmButton.interactable = CanTrade && maximum > 0 && TipsManager.AllowsQuantity(selectedQuantity);
         decreaseButton.interactable = maximum > 0 && selectedQuantity > 1;
         increaseButton.interactable = maximum > selectedQuantity;
         maximumButton.interactable = maximum > 0;
@@ -545,6 +563,7 @@ public class Shop : Sounds
             RefreshQuantity();
             return;
         }
+        if (!TipsManager.AllowsQuantity(quantity)) return;
         var item = shopItems[selectedItem];
         long totalPrice = (long)item.itemPrice * quantity;
         int received = (int)((long)item.itemValue * quantity);
@@ -555,6 +574,25 @@ public class Shop : Sounds
         GameProgress.SaveNow();
         CloseQuantity();
         upgradeShop?.RefreshOffers();
+        TipsManager.Report(TipsManager.GuideAction.Purchase);
+    }
+
+    public RectTransform GuideTarget(TipsManager.GuideAction action)
+    {
+        if (action == TipsManager.GuideAction.Goods) return buyButtons[0].transform.parent.GetComponent<RectTransform>();
+        if (action == TipsManager.GuideAction.Upgrades) return upgradesTab.GetComponent<RectTransform>();
+        if (action == TipsManager.GuideAction.Quantity) return selectedQuantity == 2 ? confirmButton.GetComponent<RectTransform>() : guideQuantityControls;
+        return null;
+    }
+    public void OpenShopForGuide()
+    {
+        preparingGuide = true;
+        try { OpenShop(); } finally { preparingGuide = false; }
+    }
+    public void ShowUpgradesForGuide()
+    {
+        preparingGuide = true;
+        try { ShowUpgrades(); } finally { preparingGuide = false; }
     }
 
     private void ApplyItemEffect(ShopItem item, int amount)
