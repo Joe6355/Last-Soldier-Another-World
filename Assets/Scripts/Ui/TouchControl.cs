@@ -5,7 +5,8 @@ using UnityEngine.UI;
 // Each control owns one finger; dragging another control cannot release it.
 public class TouchControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    public enum Kind { Move, Aim, Hold, Toggle, Layout }
+    // Preserve serialized value 1 used by the existing fire control.
+    public enum Kind { Move, Fire, Hold, Toggle, Layout }
     [SerializeField] private Kind kind;
     [SerializeField] private RectTransform thumb;
     [SerializeField] private RectTransform baseVisual;
@@ -13,25 +14,28 @@ public class TouchControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
     [SerializeField] private bool floating;
     [SerializeField, Min(1f)] private float joystickRadius = 64f;
     [SerializeField, Range(0f, .5f)] private float deadZone = .15f;
+    [SerializeField, Min(.1f)] private float manualAimHoldDelay = .2f;
     private int pointerId = int.MinValue;
-    private bool pressQueued, dragged, layoutDrag, queuedManualAim;
-    private Vector2 origin, queuedDirection, basePosition, thumbPosition;
+    private bool pressQueued, layoutDrag;
+    private Vector2 origin, basePosition, thumbPosition;
     private float pressedAt;
+    private bool automaticPress, manualAim, queuedManualAim;
+    private Vector2 queuedDirection;
     public bool IsHeld => pointerId != int.MinValue;
     public Vector2 Value { get; private set; }
     public Vector2 LastDirection { get; private set; } = Vector2.down;
-    public bool IsManualAim => kind == Kind.Aim && Value.sqrMagnitude > 0f;
     public bool HasQueuedPress => pressQueued;
-    public bool QueuedManualAim => queuedManualAim;
+    public bool IsManualAim => kind == Kind.Fire && IsHeld && manualAim && !layoutDrag;
+    public bool QueuedManualAim => pressQueued && queuedManualAim;
     public Vector2 QueuedDirection => queuedDirection;
-    public bool IsRepeating => kind == Kind.Aim && IsHeld && !layoutDrag && layoutOwner != null
-        && layoutOwner.AutomaticSelected && Time.unscaledTime - pressedAt >= .18f;
+    public bool IsRepeating => kind == Kind.Fire && IsHeld && !layoutDrag && layoutOwner != null
+        && automaticPress && layoutOwner.AutomaticSelected && Time.unscaledTime - pressedAt >= .18f;
 
     private void Awake()
     {
         if (baseVisual != null) basePosition = baseVisual.anchoredPosition;
         if (thumb != null) thumbPosition = thumb.anchoredPosition;
-        if (kind == Kind.Aim && thumb != null) thumb.gameObject.SetActive(false);
+        if (kind == Kind.Fire && thumb != null) thumb.gameObject.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData data)
@@ -45,13 +49,22 @@ public class TouchControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
         }
         var selectable = GetComponent<Selectable>();
         if (selectable != null && !selectable.IsInteractable()) return;
-        if (kind == Kind.Layout || layoutOwner != null && !layoutOwner.CanControl) return;
-        pointerId = data.pointerId; dragged = false; pressedAt = Time.unscaledTime;
-        if (kind == Kind.Aim && thumb != null) thumb.gameObject.SetActive(true);
-        if (kind == Kind.Move || kind == Kind.Aim)
+        if (kind == Kind.Layout || layoutOwner != null && !layoutOwner.CanControl
+            || kind == Kind.Fire && (!TipsManager.Allows(TipsManager.GuideAction.Fire) || pressQueued)) return;
+        pointerId = data.pointerId; pressedAt = Time.unscaledTime;
+        if (kind == Kind.Fire)
+        {
+            if (!LocalPoint(data, out origin)) { ResetControl(); return; }
+            automaticPress = layoutOwner != null && layoutOwner.AutomaticSelected;
+            manualAim = false;
+            if (layoutOwner != null) LastDirection = layoutOwner.ResolveShotDirection();
+            // Одиночный выстрел ждёт отпускания, чтобы удержание не тратило стрелу.
+            if (automaticPress) pressQueued = true;
+        }
+        if (kind == Kind.Move)
         {
             if (!LocalPoint(data, out var point)) { ResetControl(); return; }
-            origin = floating || kind == Kind.Aim ? point : ((RectTransform)transform).rect.center;
+            origin = floating ? point : ((RectTransform)transform).rect.center;
             if (floating && baseVisual != null) baseVisual.anchoredPosition = origin;
             UpdateValue(data);
         }
@@ -71,19 +84,32 @@ public class TouchControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
         }
         for (int i = 0; i < Input.touchCount; i++)
             if (Input.GetTouch(i).fingerId == pointerId && Input.GetTouch(i).phase == TouchPhase.Canceled) { ResetControl(); return; }
-        if (kind == Kind.Aim)
+        if (layoutOwner != null && !layoutOwner.CanControl) { ResetControl(); return; }
+        if (kind == Kind.Fire && !automaticPress)
         {
             UpdateValue(data);
-            // Returning a dragged aim to its origin cancels the shot.
-            if (!IsRepeating && (!dragged || IsManualAim))
-            {
-                queuedManualAim = IsManualAim;
-                queuedDirection = LastDirection;
-                pressQueued = true;
-            }
+            if (Time.unscaledTime - pressedAt >= manualAimHoldDelay) BeginManualAim();
+            queuedManualAim = manualAim;
+            queuedDirection = LastDirection;
+            pressQueued = true;
         }
-        else if (kind == Kind.Toggle) pressQueued = true;
+        if (kind == Kind.Toggle) pressQueued = true;
         Release(false);
+    }
+    private void Update()
+    {
+        if (kind != Kind.Fire || !IsHeld || layoutDrag) return;
+        if (layoutOwner != null && !layoutOwner.CanControl) { ResetControl(); return; }
+        if (!automaticPress && Time.unscaledTime - pressedAt >= manualAimHoldDelay) BeginManualAim();
+    }
+    private void BeginManualAim()
+    {
+        manualAim = true;
+        if (thumb != null)
+        {
+            thumb.gameObject.SetActive(true);
+            thumb.anchoredPosition = thumbPosition + LastDirection * joystickRadius * .58f;
+        }
     }
     private bool LocalPoint(PointerEventData data, out Vector2 point) =>
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform,
@@ -91,27 +117,28 @@ public class TouchControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
 
     private void UpdateValue(PointerEventData data)
     {
-        if (kind != Kind.Move && kind != Kind.Aim || !LocalPoint(data, out var local)) return;
+        if (kind != Kind.Move && (kind != Kind.Fire || automaticPress) || !LocalPoint(data, out var local)) return;
         var raw = Vector2.ClampMagnitude((local - origin) / joystickRadius, 1f);
         Value = raw.magnitude <= deadZone ? Vector2.zero : raw;
         if (Value != Vector2.zero)
         {
             LastDirection = Value.normalized;
-            dragged = true;
+            if (kind == Kind.Fire) BeginManualAim();
         }
+        if (kind == Kind.Fire) return;
         if (thumb != null) thumb.anchoredPosition = (floating ? origin : thumbPosition) + raw * joystickRadius * .58f;
     }
     public bool ConsumePress()
     {
-        bool result = pressQueued; pressQueued = false; return result;
+        bool result = pressQueued; pressQueued = queuedManualAim = false; return result;
     }
     public void ResetControl() => Release(true);
     private void Release(bool cancelPress)
     {
-        pointerId = int.MinValue; Value = Vector2.zero; layoutDrag = false;
-        if (cancelPress) pressQueued = false;
+        pointerId = int.MinValue; Value = Vector2.zero; layoutDrag = manualAim = automaticPress = false;
+        if (cancelPress) { pressQueued = queuedManualAim = false; queuedDirection = Vector2.zero; }
         if (thumb != null) thumb.anchoredPosition = thumbPosition;
-        if (kind == Kind.Aim && thumb != null) thumb.gameObject.SetActive(false);
+        if (kind == Kind.Fire && thumb != null) thumb.gameObject.SetActive(false);
         if (baseVisual != null) baseVisual.anchoredPosition = basePosition;
     }
     private void OnDisable() => ResetControl();

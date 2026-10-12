@@ -40,14 +40,18 @@ public class MobileControls : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sizeValueText, opacityValueText, layoutHint;
     [SerializeField] private RectTransform[] editableControls = System.Array.Empty<RectTransform>();
     [SerializeField] private Vector2[] defaultPositions = System.Array.Empty<Vector2>();
-    [Header("Автоприцел")]
-    [SerializeField, Min(1f)] private float autoAimRange = 9f;
+    [Header("Автонаводка на видимых врагов")]
+    [Tooltip("Резервный радиус, если игровая камера недоступна. С камерой поиск охватывает весь экран.")]
+    [SerializeField, Min(.1f)] private float autoAimRange = 9f;
     private Collider2D[] aimCandidates = new Collider2D[128];
     private readonly RaycastHit2D[] sightHits = new RaycastHit2D[32];
     private readonly List<TouchControl> layoutTouches = new List<TouchControl>();
     private Camera gameCamera;
     private Transform autoAimTarget;
-    private Vector2 autoAimPoint;
+    private Collider2D autoAimCollider;
+    private Vector2 lastMovementDirection = Vector2.down;
+    private Vector2 lastFacingDirection = Vector2.down;
+    private float shotFacingUntil;
     private float nextAimSearch, controlSize = 1f, controlOpacity = .82f;
     private bool shieldLatched, editingLayout, initialized;
     private Vector3 statusScale;
@@ -65,6 +69,8 @@ public class MobileControls : MonoBehaviour
     private void Awake()
     {
         gameCamera = Camera.main;
+        if (player != null) lastMovementDirection = -(Vector2)player.transform.up;
+        lastFacingDirection = lastMovementDirection;
         if (combatStatus != null) { statusScale = combatStatus.localScale; statusPosition = combatStatus.anchoredPosition; }
         foreach (var rect in editableControls)
             if (rect != null) layoutTouches.AddRange(rect.GetComponentsInChildren<TouchControl>(true));
@@ -96,12 +102,39 @@ public class MobileControls : MonoBehaviour
     {
         get
         {
-            if (aim.HasQueuedPress && aim.QueuedManualAim) return aim.QueuedDirection;
-            if (aim.IsHeld && aim.IsManualAim) return aim.LastDirection;
-            if (aim.IsHeld || aim.HasQueuedPress) return AutoAimDirection();
-            return Movement.sqrMagnitude > .001f ? Movement.normalized : aim.LastDirection;
+            Vector2 direction = Movement;
+            if (direction.sqrMagnitude > .001f) lastMovementDirection = direction.normalized;
+            return lastMovementDirection;
         }
     }
+    public Vector2 FacingDirection
+    {
+        get
+        {
+            Vector2 movementDirection = AimDirection;
+            if (!CanControl) return lastFacingDirection;
+            if (aim.IsManualAim) return aim.LastDirection;
+            if (aim.QueuedManualAim) return aim.QueuedDirection;
+            if (aim.IsHeld && TipsManager.Allows(TipsManager.GuideAction.Fire))
+                return AutoAimDirection(Movement.sqrMagnitude > .001f ? movementDirection : lastFacingDirection);
+            if (Movement.sqrMagnitude > .001f && Time.unscaledTime >= shotFacingUntil)
+                lastFacingDirection = movementDirection;
+            return lastFacingDirection;
+        }
+    }
+    public Vector2 ResolveShotDirection()
+    {
+        if (aim.QueuedManualAim) return aim.QueuedDirection;
+        if (aim.IsManualAim) return aim.LastDirection;
+        return AutoAimDirection(Movement.sqrMagnitude > .001f ? AimDirection : lastFacingDirection);
+    }
+    public void RecordShotDirection(Vector2 direction)
+    {
+        lastFacingDirection = direction.normalized;
+        shotFacingUntil = Time.unscaledTime + .25f;
+    }
+    public bool HasFirePress => CanControl && aim.HasQueuedPress;
+    public void CancelFireInput() => aim.ResetControl();
     public bool FireHeld => CanControl && aim.IsRepeating;
     public bool ShieldHeld => CanControl && shieldLatched;
     public bool MirrorHeld => CanControl && mirror.IsHeld;
@@ -232,7 +265,7 @@ public class MobileControls : MonoBehaviour
     {
         movement?.ResetControl(); aim?.ResetControl(); shield?.ResetControl(); mirror?.ResetControl(); view?.ResetControl();
         foreach (var control in layoutTouches) if (control != null) control.ResetControl();
-        shieldLatched = false; autoAimTarget = null; nextAimSearch = 0f;
+        shieldLatched = false; autoAimTarget = null; autoAimCollider = null; nextAimSearch = 0f;
         if (utilitiesPanel != null) utilitiesPanel.SetActive(false);
         if ((UseTouch || touchWasEnabled) && player != null) player.CancelTouchActions();
     }
@@ -286,37 +319,55 @@ public class MobileControls : MonoBehaviour
         return target != null && target.gameObject.activeInHierarchy ? target.GetComponent<RectTransform>() : null;
     }
 
-    private Vector2 AutoAimDirection()
+    private Vector2 AutoAimDirection(Vector2 facing)
     {
         Vector2 origin = player.transform.position;
+        float searchRadius = autoAimRange;
+        if (gameCamera != null && gameCamera.orthographic)
+            searchRadius = Vector2.Distance(origin, gameCamera.transform.position)
+                + gameCamera.orthographicSize * Mathf.Sqrt(1f + gameCamera.aspect * gameCamera.aspect);
+        bool hadTarget = !object.ReferenceEquals(autoAimTarget, null);
+        if (autoAimTarget != null && IsAimCandidate(autoAimCollider, origin, searchRadius, out var lockedEnemy, out var lockedPoint)
+            && lockedEnemy.transform == autoAimTarget)
+            return (lockedPoint - origin).normalized;
+        if (hadTarget) nextAimSearch = 0f;
+        autoAimTarget = null; autoAimCollider = null;
         if (Time.unscaledTime >= nextAimSearch)
         {
             nextAimSearch = Time.unscaledTime + .12f;
             autoAimTarget = null;
             int count;
-            while ((count = Physics2D.OverlapCircleNonAlloc(origin, autoAimRange, aimCandidates)) == aimCandidates.Length
+            while ((count = Physics2D.OverlapCircleNonAlloc(origin, searchRadius, aimCandidates)) == aimCandidates.Length
                 && aimCandidates.Length < 4096) System.Array.Resize(ref aimCandidates, aimCandidates.Length * 2);
-            float nearest = autoAimRange * autoAimRange;
+            float nearest = searchRadius * searchRadius;
             for (int i = 0; i < count; i++)
             {
                 var collider = aimCandidates[i];
-                var enemy = ArrowDef.FindEnemy(collider);
-                if (enemy == null || !enemy.isActiveAndEnabled) continue;
-                if (enemy is SlimeBoss boss && !boss.IsAlive) continue;
-                Vector2 point = collider.bounds.center;
+                if (!IsAimCandidate(collider, origin, searchRadius, out var enemy, out var point)) continue;
                 float distance = (point - origin).sqrMagnitude;
                 if (distance >= nearest) continue;
-                if (gameCamera != null)
-                {
-                    var screen = gameCamera.WorldToViewportPoint(point);
-                    if (screen.z <= 0 || screen.x < 0 || screen.x > 1 || screen.y < 0 || screen.y > 1) continue;
-                }
-                if (!ClearShot(origin, point, enemy)) continue;
-                nearest = distance; autoAimTarget = enemy.transform; autoAimPoint = point - (Vector2)enemy.transform.position;
+                nearest = distance; autoAimTarget = enemy.transform; autoAimCollider = collider;
             }
         }
-        Vector2 direction = autoAimTarget != null ? (Vector2)autoAimTarget.position + autoAimPoint - origin : aim.LastDirection;
-        return direction.sqrMagnitude > .0001f ? direction.normalized : Vector2.down;
+        Vector2 direction = autoAimCollider != null ? (Vector2)autoAimCollider.bounds.center - origin : facing;
+        return direction.sqrMagnitude > .0001f ? direction.normalized : facing;
+    }
+
+    private bool IsAimCandidate(Collider2D collider, Vector2 origin, float searchRadius, out MonoBehaviour enemy, out Vector2 point)
+    {
+        enemy = null; point = Vector2.zero;
+        if (collider == null || !collider.enabled || !collider.gameObject.activeInHierarchy) return false;
+        enemy = ArrowDef.FindEnemy(collider);
+        if (enemy == null || !enemy.isActiveAndEnabled || enemy is SlimeBoss boss && !boss.IsAlive) return false;
+        point = collider.bounds.center;
+        float distance = (point - origin).sqrMagnitude;
+        if (distance < .0001f || distance > searchRadius * searchRadius) return false;
+        if (gameCamera != null)
+        {
+            var screen = gameCamera.WorldToViewportPoint(point);
+            if (screen.z <= 0 || screen.x < 0 || screen.x > 1 || screen.y < 0 || screen.y > 1) return false;
+        }
+        return ClearShot(origin, point, enemy);
     }
 
     private bool ClearShot(Vector2 origin, Vector2 point, MonoBehaviour target)

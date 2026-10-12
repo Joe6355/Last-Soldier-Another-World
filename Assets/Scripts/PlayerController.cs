@@ -365,7 +365,7 @@ public class PlayerController : Sounds
         Vector2 rbPos = rb.position;
         rb.MovePosition(rbPos + movement * finalSpeed * Time.fixedDeltaTime);
 
-        Vector2 lookDir = mobileControls != null && mobileControls.UseTouch ? mobileControls.AimDirection
+        Vector2 lookDir = mobileControls != null && mobileControls.UseTouch ? mobileControls.FacingDirection
             : (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rbPos;
         FaceDirection(lookDir);
     }
@@ -373,6 +373,13 @@ public class PlayerController : Sounds
     private void FaceDirection(Vector2 direction)
     {
         rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
+    }
+
+    public void FaceTouchShot(Vector2 direction)
+    {
+        if (mobileControls == null || !mobileControls.UseTouch) return;
+        mobileControls.RecordShotDirection(direction);
+        FaceDirection(direction);
     }
 
     public void CancelTouchActions()
@@ -389,10 +396,14 @@ public class PlayerController : Sounds
         if (mobileControls != null && mobileControls.UseTouch)
         {
             if (!mobileControls.CanControl) return;
-            Vector2 direction = mobileControls.AimDirection;
-            FaceDirection(direction);
-            if (mobileControls.ConsumeFirePress() || crossbowController.ShootingMode == 3 && mobileControls.FireHeld)
-                crossbowController.Shoot(direction);
+            if (mobileControls.HasFirePress || mobileControls.FireHeld)
+            {
+                // Направление ручного отпускания читаем до очистки очереди.
+                Vector2 direction = mobileControls.ResolveShotDirection();
+                if (mobileControls.ConsumeFirePress() || crossbowController.ShootingMode == 3 && mobileControls.FireHeld)
+                    crossbowController.Shoot(direction);
+            }
+            FaceDirection(mobileControls.FacingDirection);
         }
         else if (Input.GetMouseButtonDown(0)) crossbowController.Shoot();
 

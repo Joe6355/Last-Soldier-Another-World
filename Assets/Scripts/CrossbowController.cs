@@ -35,6 +35,7 @@ public class CrossbowController : Sounds
     private float nextShotTime;
     private Collider2D[] ownerColliders;
     private Transform firingPivot;
+    private PlayerController firingOwner;
     public static string ArrowTitle(int index) => index == 0 ? "Обычные стрелы" : index == 1 ? "Ядовитые стрелы" : index == 2 ? "Святые стрелы" : "Пробивные стрелы";
     public bool IsModeUnlocked(int mode) => mode == 1 || mode == 2 && shotgunUnlocked || mode == 3 && automaticUnlocked;
     public float ArrowSpeed(int type, int extraLevels = 0) => fireForce * (1f + .1f * (speedLevels[type] + extraLevels));
@@ -45,7 +46,8 @@ public class CrossbowController : Sounds
 
     private void Start()
     {
-        firingPivot = GetComponentInParent<PlayerController>()?.transform;
+        firingOwner = GetComponentInParent<PlayerController>();
+        firingPivot = firingOwner != null ? firingOwner.transform : null;
         LoadArrowCounts();
         UpdateArrowCountsUI();
         UpdateArrowTypeIndicator();
@@ -90,6 +92,7 @@ public class CrossbowController : Sounds
                 nextShotTime = Time.time + ShotInterval(selectedArrowIndex, shootingMode);
                 arrowCounts[selectedArrowIndex]--;
                 SaveArrowCounts();
+                firingOwner?.FaceTouchShot(direction);
                 FireArrow(ShotOrigin(direction), direction, selectedArrowIndex);
                 UpdateArrowCountsUI();
                 break;
@@ -116,16 +119,15 @@ public class CrossbowController : Sounds
     private void FireArrow(Vector3 spawnPos, Vector2 direction, int type)
     {
         GameObject arrow = Instantiate(arrowPrefabs[type], spawnPos, Quaternion.FromToRotation(Vector3.up, direction));
-        // A quick aim change can spawn the bolt inside the interpolated owner collider.
+        // Сохраняем и неактивный щит: стрела восстановит игнорирование при его включении.
         if (ownerColliders == null)
         {
             var owner = firingPivot != null ? firingPivot.GetComponentInParent<PlayerController>() : GetComponentInParent<PlayerController>();
             ownerColliders = owner != null ? owner.GetComponentsInChildren<Collider2D>(true) : System.Array.Empty<Collider2D>();
         }
-        foreach (var boltCollider in arrow.GetComponentsInChildren<Collider2D>())
-            foreach (var ownerCollider in ownerColliders)
-                if (ownerCollider != null) Physics2D.IgnoreCollision(boltCollider, ownerCollider);
-        arrow.GetComponent<ArrowDef>().damage = ArrowDamage(type);
+        var projectile = arrow.GetComponent<ArrowDef>();
+        projectile.IgnoreOwnerCollisions(ownerColliders);
+        projectile.damage = ArrowDamage(type);
         PlaySound(sounds.Length > 0 ? sounds[0] : null, volume: 1, destroyed: true);
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * ArrowSpeed(type), ForceMode2D.Impulse);
@@ -133,6 +135,7 @@ public class CrossbowController : Sounds
 
     private void FireShotgun(int type, Vector2 direction)
     {
+        firingOwner?.FaceTouchShot(direction);
         Vector3 right = new Vector2(direction.y, -direction.x);
         Vector3 origin = ShotOrigin(direction);
         FireArrow(origin - right * offsetX, Quaternion.Euler(0, 0, +10) * direction, type);
@@ -152,6 +155,7 @@ public class CrossbowController : Sounds
     {
         if (!TipsManager.Allows(TipsManager.GuideAction.Mode)) return false;
         if (mode < 1 || mode > 3 || !IsModeUnlocked(mode)) return false;
+        if (mode != shootingMode) mobileControls?.CancelFireInput();
         shootingMode = mode;
         UpdateModeText();
         return true;

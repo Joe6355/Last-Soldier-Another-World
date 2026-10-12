@@ -135314,10 +135314,14 @@ MonoBehaviour:
   profileKillsText: {fileID: 1054736689}
   profileMmrText: {fileID: 336199833}
   profileMedal: {fileID: 1519627330}
-  bronzeMedal: {fileID: 1225026077, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
-  silverMedal: {fileID: -1383855738, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
+  bronzeMedal: {fileID: -1383855738, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
+  silverMedal: {fileID: 1225026077, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
   goldMedal: {fileID: -636806416, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
   diamondMedal: {fileID: 2049737883, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
+  emeraldMedal: {fileID: 21300000, guid: d5fca12697ef4d5087c7e01821fbd605, type: 3}
+  sapphireMedal: {fileID: 21300000, guid: 2b5dfaa9c9684718869d157834994926, type: 3}
+  amethystMedal: {fileID: 21300000, guid: f8f4941dd0b5447991dfca0275c12c18, type: 3}
+  rubyMedal: {fileID: 21300000, guid: 2ae31502d9aa4219bc8ae8a108d15150, type: 3}
   countEnemyDead: 0
   countPlayerDead: 0
   countBossDead: 0
@@ -173936,10 +173940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041A\u0430\u0441\u0430\u043D\u0438\u0435 \u2014 \u0430\u0432\u0442\u043E\u043F\u0440\u0438\u0446\u0435\u043B
-    \xB7 \u0436\u0435\u0441\u0442 \u2014 \u0440\u0443\u0447\u043D\u043E\u0435 \u043D\u0430\u0432\u0435\u0434\u0435\u043D\u0438\u0435\n\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438
-    \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u044E\u0442\u0441\u044F \u043D\u0430
-    \u044D\u0442\u043E\u043C \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435"
+  m_text: "Касание — автонаводка · удержание — ручной прицел\nОтпусти для выстрела · автоогонь стреляет при удержании"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -23,6 +23,10 @@ public class Stats : MonoBehaviour
     [SerializeField] private Sprite silverMedal;
     [SerializeField] private Sprite goldMedal;
     [SerializeField] private Sprite diamondMedal;
+    [SerializeField] private Sprite emeraldMedal;
+    [SerializeField] private Sprite sapphireMedal;
+    [SerializeField] private Sprite amethystMedal;
+    [SerializeField] private Sprite rubyMedal;
 
     [Header("Stats Counters")]
     public int countEnemyDead;       // Убито обычных врагов
@@ -263,38 +267,30 @@ public class Stats : MonoBehaviour
         if (profileWavesText != null) profileWavesText.text = completedWaves.ToString("N0");
         if (profileKillsText != null) profileKillsText.text = TotalKills.ToString("N0");
         if (profileMmrText != null) profileMmrText.text = Mmr.ToString("N0");
-        if (profileMedal != null) profileMedal.sprite = MedalForKills(TotalKills);
+        if (profileMedal != null) profileMedal.sprite = MedalForMmr(Mmr);
 
         CheckMedal();
     }
 
     /// <summary>
     /// Логика выбора медали.
-    /// Изменяет LvlMedalki.sprite в зависимости от countEnemyDead.
+    /// Изменяет LvlMedalki.sprite в зависимости от MMR.
     /// </summary>
     private void CheckMedal()
     {
-        if (LvlMedalki != null) LvlMedalki.sprite = MedalForKills(TotalKills);
+        if (LvlMedalki != null) LvlMedalki.sprite = MedalForMmr(Mmr);
     }
 
-    public Sprite MedalForKills(int kills)
+    public Sprite MedalForMmr(int mmr)
     {
-        if (kills >= 1000)
-        {
-            return diamondMedal;
-        }
-        else if (kills >= 500)
-        {
-            return goldMedal;
-        }
-        else if (kills >= 100)
-        {
-            return silverMedal;
-        }
-        else
-        {
-            return bronzeMedal;
-        }
+        if (mmr >= 20000) return rubyMedal;
+        if (mmr >= 10000) return amethystMedal;
+        if (mmr >= 5000) return sapphireMedal;
+        if (mmr >= 2500) return emeraldMedal;
+        if (mmr >= 1000) return diamondMedal;
+        if (mmr >= 500) return goldMedal;
+        if (mmr >= 100) return silverMedal;
+        return bronzeMedal;
     }
 
     public void AddCompletedWave()

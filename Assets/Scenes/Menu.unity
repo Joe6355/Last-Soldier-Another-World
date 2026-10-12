@@ -4563,10 +4563,14 @@ MonoBehaviour:
   profileKillsText: {fileID: 1221181015}
   profileMmrText: {fileID: 772178631}
   profileMedal: {fileID: 733522504}
-  bronzeMedal: {fileID: 1225026077, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
-  silverMedal: {fileID: -1383855738, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
+  bronzeMedal: {fileID: -1383855738, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
+  silverMedal: {fileID: 1225026077, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
   goldMedal: {fileID: -636806416, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
   diamondMedal: {fileID: 2049737883, guid: 6888682517c9f3b4e8b56beba362c4d2, type: 3}
+  emeraldMedal: {fileID: 21300000, guid: d5fca12697ef4d5087c7e01821fbd605, type: 3}
+  sapphireMedal: {fileID: 21300000, guid: 2b5dfaa9c9684718869d157834994926, type: 3}
+  amethystMedal: {fileID: 21300000, guid: f8f4941dd0b5447991dfca0275c12c18, type: 3}
+  rubyMedal: {fileID: 21300000, guid: 2ae31502d9aa4219bc8ae8a108d15150, type: 3}
   countEnemyDead: 0
   countPlayerDead: 0
   countBossDead: 0

@@ -10,6 +10,34 @@ public class ArrowDef : MonoBehaviour
     [Min(1)] public int maxEnemyHits = 1;
     public bool triggerProjectile;
     private readonly HashSet<int> hitEnemies = new HashSet<int>();
+    private Collider2D[] ownerColliders;
+    private Collider2D[] projectileColliders;
+
+    public void IgnoreOwnerCollisions(Collider2D[] colliders)
+    {
+        ownerColliders = colliders;
+        projectileColliders = GetComponentsInChildren<Collider2D>(true);
+        RestoreOwnerCollisionIgnores();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        // Выключение щита сбрасывает IgnoreCollision; восстановить пары до симуляции.
+        RestoreOwnerCollisionIgnores();
+    }
+
+    private void RestoreOwnerCollisionIgnores()
+    {
+        if (ownerColliders == null || projectileColliders == null) return;
+        foreach (var projectileCollider in projectileColliders)
+        {
+            if (projectileCollider == null || !projectileCollider.isActiveAndEnabled) continue;
+            foreach (var ownerCollider in ownerColliders)
+                if (ownerCollider != null && ownerCollider.isActiveAndEnabled
+                    && !Physics2D.GetIgnoreCollision(projectileCollider, ownerCollider))
+                    Physics2D.IgnoreCollision(projectileCollider, ownerCollider);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -22,6 +22,7 @@ public sealed class LeaderboardRow : MonoBehaviour
         nickname.text = player.rank + ". " + name;
         mmr.text = "MMR " + Math.Max(0, player.score).ToString("N0");
         medal.color = Color.white;
+        medal.sprite = localStats != null ? localStats.MedalForMmr(Math.Max(0, player.score)) : null;
         Stats.LeaderboardSummary summary = null;
         if (!string.IsNullOrEmpty(player.extraData) && player.extraData.Length <= 1024)
             try { summary = JsonUtility.FromJson<Stats.LeaderboardSummary>(player.extraData); }
@@ -29,12 +30,10 @@ public sealed class LeaderboardRow : MonoBehaviour
         if (summary != null && summary.IsValid)
         {
             statistics.text = Stats.FormatSummary(summary.waves, summary.kills, summary.elite, summary.bosses, summary.deaths);
-            medal.sprite = localStats.MedalForKills(summary.kills);
         }
         else
         {
             statistics.text = "Статистика не предоставлена";
-            medal.sprite = localStats.MedalForKills(0);
         }
         bool isCurrent = YG2.player.auth && player.uniqueID == YG2.player.id;
         background.color = isCurrent ? currentPlayerColor : normalColor;
@@ -46,7 +45,7 @@ public sealed class LeaderboardRow : MonoBehaviour
         nickname.text = "—  Игрок";
         statistics.text = "Волны: —   Враги: —\nЭлита: —   Боссы: —";
         mmr.text = "MMR —";
-        medal.sprite = localStats != null ? localStats.MedalForKills(0) : null;
+        medal.sprite = localStats != null ? localStats.MedalForMmr(0) : null;
         medal.color = new Color(1f, 1f, 1f, .25f);
         background.color = normalColor;
     }
