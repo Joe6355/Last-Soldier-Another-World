@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 public class SlimeBoss : Sounds
@@ -46,6 +47,38 @@ public class SlimeBoss : Sounds
     private bool isDead = false;
 
     private Stats stats;
+    private bool regularEnemy;
+    private WaveSpawner waveOwner;
+    private float waveDamageMultiplier = 1f;
+    private float waveProjectileSpeedMultiplier = 1f;
+    private readonly List<GameObject> ownedProjectiles = new List<GameObject>();
+    public bool IsRegularEnemy => regularEnemy;
+    private bool CanAct => !isDead && (!regularEnemy || (waveOwner != null && waveOwner.IsCombatActive && Time.timeScale > 0f && !YG.YG2.isPauseGame));
+
+    // Configure an inactive clone before Start; the wave-10 boss stays unchanged.
+    public void ConfigureAsRegularEnemy(WaveSpawner owner, float healthMultiplier, float damageMultiplier,
+        float movementMultiplier, float projectileSpeedMultiplier)
+    {
+        if (regularEnemy) return;
+        regularEnemy = true;
+        waveOwner = owner;
+        maxHealth *= Mathf.Max(1f, healthMultiplier);
+        damageTouch = Mathf.CeilToInt(damageTouch * Mathf.Max(1f, damageMultiplier));
+        moveSpeed *= Mathf.Max(1f, movementMultiplier);
+        waveDamageMultiplier = Mathf.Max(1f, damageMultiplier);
+        waveProjectileSpeedMultiplier = Mathf.Max(1f, projectileSpeedMultiplier);
+        // A regular clone must never toggle shared scene HP UI.
+        bossHpBarObject = null;
+        bossHpBar = null;
+        if (anim != null && !anim.transform.IsChildOf(transform)) anim = GetComponent<Animator>();
+        if (sprite != null && !sprite.transform.IsChildOf(transform)) sprite = GetComponent<SpriteRenderer>();
+        if (firePoint == null || !firePoint.IsChildOf(transform))
+        {
+            var point = new GameObject("RegularSlimeFirePoint").transform;
+            point.SetParent(transform, false);
+            firePoint = point;
+        }
+    }
 
     private void Start()
     {
@@ -64,7 +97,7 @@ public class SlimeBoss : Sounds
                 bossHpBar = bossHpBarObject.GetComponentInChildren<Image>();
             }
         }
-        else
+        else if (!regularEnemy)
         {
             Debug.LogWarning("BossHpBarObject не прив€зан к SlimeBoss!");
         }
@@ -87,11 +120,12 @@ public class SlimeBoss : Sounds
         // 5) ѕровер€ем Animator, Sprite
         if (anim == null) anim = GetComponent<Animator>();
         if (sprite == null) sprite = GetComponent<SpriteRenderer>();
+        if (regularEnemy && player != null) isAggroed = true;
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (!CanAct) return;
 
         if (isAggroed && player != null)
         {
@@ -131,15 +165,45 @@ public class SlimeBoss : Sounds
 
     private void Attack()
     {
+        if (!CanAct || player == null) return;
         if (firePoint == null)
         {
             Debug.LogWarning("firePoint не задан у босса!");
             return;
         }
 
-        Instantiate(projectile1, firePoint.position, firePoint.rotation);
-        Instantiate(projectile2, firePoint.position, firePoint.rotation);
+        SpawnProjectile(projectile1);
+        SpawnProjectile(projectile2);
         PlaySound(sounds[2], volume: 1, destroyed: true);
+    }
+
+    private void SpawnProjectile(GameObject prefab)
+    {
+        if (prefab == null) return;
+        GameObject shot = Instantiate(prefab, firePoint.position, firePoint.rotation);
+        if (!regularEnemy) return;
+        WaveSpawner.ScaleEnemyProjectile(shot, waveDamageMultiplier, waveProjectileSpeedMultiplier);
+        ownedProjectiles.RemoveAll(projectile => projectile == null);
+        ownedProjectiles.Add(shot);
+        waveOwner?.TrackEnemyProjectile(shot);
+    }
+
+    private void ClearOwnedProjectiles()
+    {
+        foreach (var shot in ownedProjectiles) if (shot != null) Destroy(shot);
+        ownedProjectiles.Clear();
+    }
+
+    private void OnDisable()
+    {
+        if (!regularEnemy) return;
+        CancelInvoke();
+        ClearOwnedProjectiles();
+    }
+
+    private void OnDestroy()
+    {
+        if (regularEnemy) ClearOwnedProjectiles();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -152,7 +216,7 @@ public class SlimeBoss : Sounds
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isDead) return;
+        if (!CanAct) return;
 
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -217,6 +281,7 @@ public class SlimeBoss : Sounds
     private IEnumerator DeathSequence()
     {
         isDead = true;
+        if (regularEnemy) ClearOwnedProjectiles();
         anim.SetTrigger("Dead");
 
         yield return new WaitForSeconds(deathAnimationTime);
@@ -227,7 +292,8 @@ public class SlimeBoss : Sounds
 
         if (stats != null)
         {
-            stats.AddBossDead(Stats.EnemyKind.SlimeBoss);
+            if (regularEnemy) stats.AddEnemyKill(Stats.EnemyKind.Slime);
+            else stats.AddBossDead(Stats.EnemyKind.SlimeBoss);
         }
 
         DropLoot();

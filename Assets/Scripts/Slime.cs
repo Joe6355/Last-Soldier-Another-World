@@ -37,12 +37,14 @@ public class Slime : Sounds
                     Physics2D.IgnoreCollision(ownCollider, playerCollider);
     }
     private float waveDamageMultiplier = 1f;
-    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    private float waveProjectileSpeedMultiplier = 1f;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier, float projectileSpeedMultiplier = 1f)
     {
         health = Mathf.CeilToInt(health * healthMultiplier);
         defSpeed *= speedMultiplier;
         collisionDamage *= damageMultiplier;
         waveDamageMultiplier = damageMultiplier;
+        waveProjectileSpeedMultiplier = projectileSpeedMultiplier;
     }
     [SerializeField] private int health;
     [SerializeField] private float agrDist;
@@ -166,7 +168,7 @@ public class Slime : Sounds
         // Стреляем
         foreach (var firePosition in firePositions)
         {
-            WaveSpawner.ScaleEnemyProjectile(Instantiate(projectilePrefab, firePosition.position, Quaternion.identity), waveDamageMultiplier);
+            WaveSpawner.ScaleEnemyProjectile(Instantiate(projectilePrefab, firePosition.position, Quaternion.identity), waveDamageMultiplier, waveProjectileSpeedMultiplier);
         }
 
         yield return new WaitForSeconds(2.0f); // Ожидание после выстрела

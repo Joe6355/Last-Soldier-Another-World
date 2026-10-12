@@ -9,6 +9,7 @@ public class EnemyProgjectVAR : MonoBehaviour
     public float lifeTime = 5f;
     private Vector3 targetPosition;
     private bool isLaunched = false;
+    private bool hitHandled;
     public float damage = 5;
 
     private PlayerController playerController;
@@ -58,8 +59,9 @@ public class EnemyProgjectVAR : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.CompareTag("Player"))
+        if (!hitHandled && playerController != null && coll.gameObject.CompareTag("Player"))
         {
+            hitHandled = true;
             playerController.TakeDamage(damage);
             Destroy(gameObject);
 

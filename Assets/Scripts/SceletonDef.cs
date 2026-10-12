@@ -6,7 +6,7 @@ using UnityEngine;
 public class SceletonDef : Sounds
 {
     private bool deathHandled;
-    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier, float projectileSpeedMultiplier = 1f)
     {
         health = Mathf.CeilToInt(health * healthMultiplier);
         defSpeed *= speedMultiplier;

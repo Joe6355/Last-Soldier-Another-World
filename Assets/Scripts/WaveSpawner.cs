@@ -17,6 +17,9 @@ public class WaveConfig
     [Header("Максимум врагов в волне")]
     public int maxEnemies = 10;
 
+    [Header("Интервал спавна (0 — общая настройка)")]
+    [Min(0)] public float spawnInterval;
+
     [Header("Перерыв после волны (сек)")]
     public float breakDuration = 15f;   // Отдых между волнами
 }
@@ -44,9 +47,20 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField, Min(0)] private float healthBoostPerStep = .25f;
     [SerializeField, Min(0)] private float damageBoostPerStep = .15f;
     [SerializeField, Min(0)] private float movementBoostPerStep = .1f;
+    [SerializeField, Min(0)] private float projectileSpeedBoostPerStep = .1f;
     [SerializeField, Min(0)] private float spawnRateBoostPerStep = .3f;
     [SerializeField, Min(0)] private float enemyCountBoostPerStep = .35f;
     [SerializeField, Min(1)] private int maxConcurrentLateEnemies = 60;
+
+    [Header("Боссы в общем спавне с 21-й волны")]
+    [SerializeField, Min(21)] private int regularBossFirstWave = 21;
+    [SerializeField, Min(2)] private int regularBossSpawnEvery = 30;
+    [SerializeField, Min(1)] private int maxConcurrentRegularBosses = 2;
+    [SerializeField] private GameObject regularBossLoot;
+    private readonly List<GameObject> regularBosses = new List<GameObject>();
+    private readonly List<GameObject> enemyProjectiles = new List<GameObject>();
+    private int regularBossesSpawned;
+    private GameObject regularSlimeTemplate, regularAssassinTemplate;
 
     [Header("UI для таймера (необязательно)")]
     [SerializeField] private Text waveTimerText;
@@ -112,7 +126,19 @@ public class WaveSpawner : MonoBehaviour
     public float RemainingWaveTime => waveTimeLeft;
     public int ReinforcementLevel => CurrentWaveNumber < reinforcementFirstWave ? 0
         : Mathf.Min(10, 1 + (CurrentWaveNumber - reinforcementFirstWave) / Mathf.Max(1, reinforcementWaveStep));
-    public float EffectiveSpawnInterval => Mathf.Max(.01f, spawnInterval) / (1f + spawnRateBoostPerStep * ReinforcementLevel);
+    public float ProjectileSpeedMultiplier => 1f + projectileSpeedBoostPerStep * ReinforcementLevel;
+    public float BarrelDamageMultiplier => 1f + healthBoostPerStep * ReinforcementLevel;
+    public bool CanSpawnRegularBossMinion => IsCombatActive && !tutorialWave && GameProgress.IsReady && !YG.YG2.isPauseGame
+        && Time.timeScale > 0 && activeEnemies.Count < maxConcurrentLateEnemies;
+    public float EffectiveSpawnInterval
+    {
+        get
+        {
+            float interval = waves.Count > currentWaveIndex && currentWaveIndex >= 0 && waves[currentWaveIndex].spawnInterval > 0
+                ? waves[currentWaveIndex].spawnInterval : spawnInterval;
+            return Mathf.Max(.01f, interval) / (1f + spawnRateBoostPerStep * ReinforcementLevel);
+        }
+    }
     public int EffectiveEnemyLimit => waves.Count > currentWaveIndex && currentWaveIndex >= 0
         ? Mathf.CeilToInt(waves[currentWaveIndex].maxEnemies * (1f + enemyCountBoostPerStep * ReinforcementLevel)) : 0;
 
@@ -136,6 +162,21 @@ public class WaveSpawner : MonoBehaviour
         if (bossWave15 != null) bossWave15.SetActive(false);
         if (bossHPBar15 != null) bossHPBar15.SetActive(false);
         if (bossPlaceholder15 != null) bossPlaceholder15.SetActive(false);
+
+        // The dedicated bosses destroy themselves on death. Preserve inactive
+        // templates before waves 10/15 so their later ordinary copies remain available.
+        if (bossWave10 != null)
+        {
+            regularSlimeTemplate = Instantiate(bossWave10, transform);
+            regularSlimeTemplate.name = "LateWaveSlimeTemplate";
+            regularSlimeTemplate.SetActive(false);
+        }
+        if (bossWave15 != null)
+        {
+            regularAssassinTemplate = Instantiate(bossWave15, transform);
+            regularAssassinTemplate.name = "LateWaveAssassinTemplate";
+            regularAssassinTemplate.SetActive(false);
+        }
     }
 
     private void Update()
@@ -231,6 +272,7 @@ public class WaveSpawner : MonoBehaviour
 
         isWaveActive = true;
         isBreakActive = false;
+        regularBossesSpawned = 0;
 
         WaveConfig wave = waves[waveIndex];
         waveTimeLeft = wave.waveDuration;
@@ -294,6 +336,11 @@ public class WaveSpawner : MonoBehaviour
             spawnPoint.position.z
         );
 
+        regularBosses.RemoveAll(enemy => enemy == null || !enemy.activeInHierarchy);
+        if (CurrentWaveNumber >= regularBossFirstWave
+            && (enemiesSpawnedInWave + 1) % Mathf.Max(2, regularBossSpawnEvery) == 0
+            && regularBosses.Count < maxConcurrentRegularBosses && SpawnRegularBoss(spawnPos)) return true;
+
         int enemyLevel = Random.Range(wave.minDifficulty, wave.maxDifficulty + 1);
         enemyLevel = Mathf.Clamp(enemyLevel, 0, enemyPrefabs.Count - 1);
         if (enemyPrefabs[enemyLevel] == null) return false;
@@ -302,6 +349,47 @@ public class WaveSpawner : MonoBehaviour
         ApplyEnemyReinforcement(enemy);
         activeEnemies.Add(enemy);
         return true;
+    }
+
+    private bool SpawnRegularBoss(Vector3 position)
+    {
+        bool slimeTurn = regularBossesSpawned % 2 == 0;
+        GameObject source = slimeTurn ? regularSlimeTemplate : regularAssassinTemplate;
+        if (source == null || (slimeTurn ? source.GetComponent<SlimeBoss>() == null : source.GetComponent<Roberto>() == null)) return false;
+        // The original scene bosses are inactive outside their dedicated waves.
+        // Configure the clone before Start can show shared UI or launch attacks.
+        GameObject enemy = Instantiate(source, position, source.transform.rotation);
+        enemy.SetActive(false);
+        float health = 1f + healthBoostPerStep * ReinforcementLevel;
+        float damage = 1f + damageBoostPerStep * ReinforcementLevel;
+        float movement = 1f + movementBoostPerStep * ReinforcementLevel;
+        if (slimeTurn) enemy.GetComponent<SlimeBoss>().ConfigureAsRegularEnemy(this, health, damage, movement, ProjectileSpeedMultiplier);
+        else
+        {
+            var assassin = enemy.GetComponent<Roberto>();
+            assassin.ConfigureAsRegularEnemy(this, health, damage, movement, ProjectileSpeedMultiplier);
+            assassin.ConfigureRegularLoot(regularBossLoot);
+        }
+        activeEnemies.Add(enemy);
+        regularBosses.Add(enemy);
+        regularBossesSpawned++;
+        enemy.SetActive(true);
+        return true;
+    }
+
+    public bool RegisterSpawnedEnemy(GameObject enemy)
+    {
+        if (enemy == null || !CanSpawnRegularBossMinion || activeEnemies.Contains(enemy)) return false;
+        ApplyEnemyReinforcement(enemy);
+        activeEnemies.Add(enemy);
+        return true;
+    }
+
+    public void TrackEnemyProjectile(GameObject projectile)
+    {
+        if (projectile == null || !IsCombatActive || tutorialWave) return;
+        enemyProjectiles.RemoveAll(item => item == null);
+        if (!enemyProjectiles.Contains(projectile)) enemyProjectiles.Add(projectile);
     }
 
     private void ApplyEnemyReinforcement(GameObject enemy)
@@ -313,16 +401,18 @@ public class WaveSpawner : MonoBehaviour
         float speed = 1f + movementBoostPerStep * level;
         var target = ArrowDef.FindEnemy(enemy.transform);
         if (target is Enemy melee) melee.ApplyWaveScaling(health, damage, speed);
-        else if (target is Slime slime) slime.ApplyWaveScaling(health, damage, speed);
+        else if (target is Slime slime) slime.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
         else if (target is SceletonDef skeleton) skeleton.ApplyWaveScaling(health, damage, speed);
-        else if (target is SceletMag mage) mage.ApplyWaveScaling(health, damage, speed);
+        else if (target is SceletMag mage) mage.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
         else if (target is HealerEnemy healer) healer.ApplyWaveScaling(health, damage, speed);
     }
 
-    public static void ScaleEnemyProjectile(GameObject projectile, float damageMultiplier)
+    public static void ScaleEnemyProjectile(GameObject projectile, float damageMultiplier, float speedMultiplier = 1f)
     {
-        if (projectile.TryGetComponent<EnemyProgject>(out var shot)) shot.damage *= damageMultiplier;
-        if (projectile.TryGetComponent<EnemyProgjectVAR>(out var otherShot)) otherShot.damage *= damageMultiplier;
+        if (projectile == null) return;
+        if (projectile.TryGetComponent<EnemyProgject>(out var shot)) { shot.damage *= damageMultiplier; shot.speed *= speedMultiplier; }
+        if (projectile.TryGetComponent<EnemyProgjectVAR>(out var otherShot)) { otherShot.damage *= damageMultiplier; otherShot.speed *= speedMultiplier; }
+        FindObjectOfType<WaveSpawner>()?.TrackEnemyProjectile(projectile);
     }
 
     private void CompleteWave(bool cleared)
@@ -497,12 +587,15 @@ public class WaveSpawner : MonoBehaviour
 
     private void ClearActiveEnemies()
     {
+        foreach (GameObject projectile in enemyProjectiles) if (projectile != null) Destroy(projectile);
+        enemyProjectiles.Clear();
         foreach (GameObject enemy in activeEnemies)
         {
             if (enemy != null)
                 Destroy(enemy);
         }
         activeEnemies.Clear();
+        regularBosses.Clear();
     }
 
     #endregion

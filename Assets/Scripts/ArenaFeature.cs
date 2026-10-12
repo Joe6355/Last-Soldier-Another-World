@@ -32,6 +32,7 @@ public sealed class ArenaFeature : MonoBehaviour
     [Header("Взрыв бочки")]
     [SerializeField] private ParticleSystem explosionEffect;
     [SerializeField] private AudioSource explosionAudio;
+    [SerializeField] private int barrelEnemyDamage = 45;
     private bool explosionAudioPaused;
 
     private readonly List<MonoBehaviour> targets = new List<MonoBehaviour>();
@@ -54,6 +55,7 @@ public sealed class ArenaFeature : MonoBehaviour
     public bool IsSpent => spent;
     public bool IsDestroyed => destroyed;
     public float EffectRemaining => effectTime;
+    public int BarrelDamage => Mathf.CeilToInt(barrelEnemyDamage * (spawner != null ? spawner.BarrelDamageMultiplier : 1f));
     public float CaptureDuration => CaptureSeconds(Level(Upgrade.OutpostCapture));
     public int CaptureReward => Reward(Level(Upgrade.OutpostReward));
     public float EffectRadius => kind == FeatureKind.GravityRune ? RuneRadius(Level(Upgrade.RuneRadius))
@@ -363,7 +365,7 @@ public sealed class ArenaFeature : MonoBehaviour
                         explosionAudio.volume = Mathf.Clamp01(Ui.sfxVolume) * .7f;
                         explosionAudio.Play();
                     }
-                    DamageArea(18, radius, true);
+                    DamageArea(BarrelDamage, radius, true);
                     flashTime = .4f;
                 }
                 else { effectTime = 6f; tickTime = 0; }

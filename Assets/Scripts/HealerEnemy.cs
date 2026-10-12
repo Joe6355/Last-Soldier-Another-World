@@ -6,7 +6,7 @@ using UnityEngine;
 public class HealerEnemy : Sounds
 {
     private bool deathHandled;
-    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier, float projectileSpeedMultiplier = 1f)
     {
         health = Mathf.CeilToInt(health * healthMultiplier);
         damageToPlayer = Mathf.CeilToInt(damageToPlayer * damageMultiplier);
