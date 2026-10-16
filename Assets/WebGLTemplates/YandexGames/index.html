@@ -39,8 +39,8 @@
     <div id="orientation-cover" role="status" aria-live="polite" hidden>
         <div class="orientation-card">
             <div class="orientation-phone" aria-hidden="true"><span>↻</span></div>
-            <h1>Поверните телефон</h1>
-            <p>Для игры нужен альбомный режим.</p>
+            <h1 id="orientation-title">Поверните телефон</h1>
+            <p id="orientation-description">Для игры нужен альбомный режим.</p>
         </div>
     </div>
 
@@ -124,6 +124,27 @@
         let isPausedGame = false;
         let isOrientationBlocked = false;
         const NO_DATA = 'no data';
+
+        let gameLanguageChoice = 'auto';
+        try { gameLanguageChoice = localStorage.getItem('LastSoldier.Language') || 'auto'; } catch (_) { }
+        function SetGameLanguage(choice, resolved) {
+            gameLanguageChoice = choice === 'ru' || choice === 'en' ? choice : 'auto';
+            let automatic = ysdk && ysdk.environment && ysdk.environment.i18n && ysdk.environment.i18n.lang;
+            if (!automatic && typeof URLSearchParams !== 'undefined')
+                automatic = new URLSearchParams(window.location.search || '').get('lang');
+            automatic = automatic || navigator.language || 'ru';
+            const language = gameLanguageChoice === 'auto'
+                ? resolved || (/^(ru|be|kk|uk|uz)(-|_|$)/i.test(automatic) ? 'ru' : 'en') : gameLanguageChoice;
+            const title = document.querySelector('#orientation-title');
+            const description = document.querySelector('#orientation-description');
+            if (title) title.textContent = language === 'en' ? 'Rotate your phone' : 'Поверните телефон';
+            if (description) description.textContent = language === 'en'
+                ? 'Play in landscape mode.' : 'Для игры нужен альбомный режим.';
+            if (document.documentElement) document.documentElement.lang = language;
+            document.title = language === 'en' ? 'The Last Soldier: Another World' : 'Последний солдат: другой мир';
+        }
+        window.SetGameLanguage = SetGameLanguage;
+        SetGameLanguage(gameLanguageChoice);
 
         function IsMobileOrientationDevice() {
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
@@ -352,6 +373,7 @@
                 if (IsLocalHost()) return;
 
                 ysdk = await YaGames.init();
+                SetGameLanguage(gameLanguageChoice);
                 if (ysdk.deviceInfo && (ysdk.deviceInfo.isMobile() || ysdk.deviceInfo.isTablet())) {
                     container.className = "unity-mobile";
                 }

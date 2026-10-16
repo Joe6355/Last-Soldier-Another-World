@@ -35,6 +35,7 @@ public class Portal : Sounds
         label.outlineWidth = .15f;
         label.rectTransform.sizeDelta = new Vector2(3.6f, .7f);
         label.GetComponent<MeshRenderer>().sortingOrder = 20;
+        GameLocalization.Register(label);
     }
 
     private void OnTriggerEnter2D(Collider2D other) => TryTeleport(other);

@@ -1,0 +1,1824 @@
+{
+  "entries": [
+    {
+      "ru": "{0} → {1} монет за захват",
+      "en": "{0} → {1} coins per capture"
+    },
+    {
+      "ru": "{0} → {1} с удержания",
+      "en": "{0} → {1} s to capture"
+    },
+    {
+      "ru": "Построить арбалетную башню\nВторая башня на уровне 3",
+      "en": "Build a crossbow tower\nSecond tower at level 3"
+    },
+    {
+      "ru": "Урон {0} → {1}\nБашен: {2} / 2",
+      "en": "Damage {0} → {1}\nTowers: {2} / 2"
+    },
+    {
+      "ru": "Дальность {0} → {1}",
+      "en": "Range {0} → {1}"
+    },
+    {
+      "ru": "Выстрел: {0} → {1} с",
+      "en": "Shot interval: {0} → {1} s"
+    },
+    {
+      "ru": "Открыть руну притяжения\nR: поставить · 1 за волну",
+      "en": "Unlock the pull rune\nR: place · 1 per wave"
+    },
+    {
+      "ru": "Взрыв: {0} → {1} урона\nОдна руна за волну",
+      "en": "Explosion: {0} → {1} damage\nOne rune per wave"
+    },
+    {
+      "ru": "Радиус {0} → {1}",
+      "en": "Radius {0} → {1}"
+    },
+    {
+      "ru": "Стяжка {0} → {1} с",
+      "en": "Pull duration {0} → {1} s"
+    },
+    {
+      "ru": "Открыть две ловушки из корней\nУдержание и шипы",
+      "en": "Unlock two root traps\nRoots and thorns"
+    },
+    {
+      "ru": "Удержание {0} → {1} с\nРадиус {2} → {3}\nШипы: {4} → {5} урона",
+      "en": "Root duration {0} → {1} s\nRadius {2} → {3}\nThorns: {4} → {5} damage"
+    },
+    {
+      "ru": "Восстановить алтарь\nСтой рядом 2 с для лечения",
+      "en": "Restore the altar\nStand nearby for 2 s to heal"
+    },
+    {
+      "ru": "Лечение {0} → {1} HP\nВосстановление {2} → {3} с",
+      "en": "Healing {0} → {1} HP\nCooldown {2} → {3} s"
+    },
+    {
+      "ru": "Автоподбор монет и стрел\nРадиус 2 · действует постоянно",
+      "en": "Automatically collect coins and arrows\nRadius 2 · always active"
+    },
+    {
+      "ru": "Монеты и стрелы притягиваются\nДействует постоянно",
+      "en": "Coins and arrows are pulled towards you\nAlways active"
+    },
+    {
+      "ru": "Сначала открой притяжение\nРадиус до 6 · 8 уровней",
+      "en": "Unlock loot attraction first\nRadius up to 6 · 8 levels"
+    },
+    {
+      "ru": "Радиус {0} → {1}\nМонеты и стрелы рядом с героем",
+      "en": "Radius {0} → {1}\nCollect coins and arrows near the hero"
+    },
+    {
+      "ru": "\nСначала изучи притяжение лута",
+      "en": "\nUnlock loot attraction first"
+    },
+    {
+      "ru": "\nСначала построй башню",
+      "en": "\nBuild a tower first"
+    },
+    {
+      "ru": "\nСначала открой руну",
+      "en": "\nUnlock the rune first"
+    },
+    {
+      "ru": "{0}\nУровень {1} / {2}",
+      "en": "{0}\nLevel {1} / {2}"
+    },
+    {
+      "ru": "+{0} монет",
+      "en": "+{0} coins"
+    },
+    {
+      "ru": "Аванпост захвачен",
+      "en": "Outpost captured"
+    },
+    {
+      "ru": "Аванпост · {0} / {1} с",
+      "en": "Outpost · {0} / {1} s"
+    },
+    {
+      "ru": "Руна · ждёт врага",
+      "en": "Rune · waiting for an enemy"
+    },
+    {
+      "ru": "Стяжка",
+      "en": "Pull"
+    },
+    {
+      "ru": "Арбалетная башня",
+      "en": "Crossbow tower"
+    },
+    {
+      "ru": "Корни · {0} с",
+      "en": "Roots · {0} s"
+    },
+    {
+      "ru": "Корни",
+      "en": "Roots"
+    },
+    {
+      "ru": "Алтарь · {0} с",
+      "en": "Altar · {0} s"
+    },
+    {
+      "ru": "Алтарь · лечение за 2 с",
+      "en": "Altar · stand nearby for 2 s to heal"
+    },
+    {
+      "ru": "Отойди! Взрыв",
+      "en": "Move away! Explosion"
+    },
+    {
+      "ru": "Отойди! Яд",
+      "en": "Move away! Poison"
+    },
+    {
+      "ru": "Обычные стрелы",
+      "en": "Normal arrows"
+    },
+    {
+      "ru": "Ядовитые стрелы",
+      "en": "Poison arrows"
+    },
+    {
+      "ru": "Святые стрелы",
+      "en": "Holy arrows"
+    },
+    {
+      "ru": "Пробивные стрелы",
+      "en": "Piercing arrows"
+    },
+    {
+      "ru": "Обычный режим",
+      "en": "Single shot"
+    },
+    {
+      "ru": "Дробовик",
+      "en": "Spread shot"
+    },
+    {
+      "ru": "Автоматический режим",
+      "en": "Automatic fire"
+    },
+    {
+      "ru": "Неизвестный режим",
+      "en": "Unknown mode"
+    },
+    {
+      "ru": "видит игрока",
+      "en": "sees the player"
+    },
+    {
+      "ru": "Изучено",
+      "en": "Unlocked"
+    },
+    {
+      "ru": "Максимум",
+      "en": "Max"
+    },
+    {
+      "ru": "{0} монет",
+      "en": "{0} coins"
+    },
+    {
+      "ru": "Лечение {0} → {1} HP\nУровень {2} · +{3} HP",
+      "en": "Healing {0} → {1} HP\nLevel {2} · +{3} HP"
+    },
+    {
+      "ru": "Режим разблокирован",
+      "en": "Fire mode unlocked"
+    },
+    {
+      "ru": "3 стрелы за выстрел\nКлавиша 2 после покупки",
+      "en": "3 arrows per shot\nPress 2 after unlocking"
+    },
+    {
+      "ru": "Огонь при удержании ЛКМ\nКлавиша 3 после покупки",
+      "en": "Hold Fire to keep shooting\nPress 3 on PC after unlocking"
+    },
+    {
+      "ru": "{0} → {1} с",
+      "en": "{0} → {1} s"
+    },
+    {
+      "ru": "{0} → {1}\nУровень {2} · +{3}",
+      "en": "{0} → {1}\nLevel {2} · +{3}"
+    },
+    {
+      "ru": " монет",
+      "en": " coins"
+    },
+    {
+      "ru": "Награда за полный просмотр видео",
+      "en": "Watch the full video to receive the reward"
+    },
+    {
+      "ru": "Восстановление {0} HP · {1}",
+      "en": "Restores {0} HP · {1}"
+    },
+    {
+      "ru": "Получено",
+      "en": "Claimed"
+    },
+    {
+      "ru": "Забрать",
+      "en": "Claim"
+    },
+    {
+      "ru": "В процессе",
+      "en": "In progress"
+    },
+    {
+      "ru": "Получено {0} / {1} · Можно забрать: {2}",
+      "en": "Claimed {0} / {1} · Ready: {2}"
+    },
+    {
+      "ru": "Для наград освободи место в кошельке",
+      "en": "Make room in your wallet to claim rewards"
+    },
+    {
+      "ru": "Выполняй цели и забирай монеты здесь. Каждая награда выдаётся один раз",
+      "en": "Complete goals and claim coins here. Each reward can be claimed once"
+    },
+    {
+      "ru": "Получено +{0} монет",
+      "en": "Received +{0} coins"
+    },
+    {
+      "ru": "Загрузка видео…",
+      "en": "Loading video…"
+    },
+    {
+      "ru": "Видео сейчас недоступно. Попробуй позже",
+      "en": "Video unavailable. Try again later"
+    },
+    {
+      "ru": "Получено {0} монет!",
+      "en": "Received {0} coins!"
+    },
+    {
+      "ru": "Просмотр не завершён. Награда не получена",
+      "en": "Video not completed. No reward received"
+    },
+    {
+      "ru": "Загрузка и просмотр видео…",
+      "en": "Loading and playing video…"
+    },
+    {
+      "ru": "Бонус недоступен: достигнут предел монет",
+      "en": "Bonus unavailable: coin limit reached"
+    },
+    {
+      "ru": "Ждём подключения рекламы…",
+      "en": "Connecting to the ad service…"
+    },
+    {
+      "ru": "Зеркало",
+      "en": "Mirror"
+    },
+    {
+      "ru": "Зелье лечения",
+      "en": "Healing potion"
+    },
+    {
+      "ru": "наборов",
+      "en": "packs"
+    },
+    {
+      "ru": "набор",
+      "en": "pack"
+    },
+    {
+      "ru": "набора",
+      "en": "packs"
+    },
+    {
+      "ru": "В наборе: {0} шт. · {1} монет\nУ тебя: {2} шт.",
+      "en": "Per pack: {0} items · {1} coins\nYou have: {2} items"
+    },
+    {
+      "ru": " · Лечение {0} HP",
+      "en": " · Healing {0} HP"
+    },
+    {
+      "ru": "{0} · {1} шт.",
+      "en": "{0} · {1} items"
+    },
+    {
+      "ru": "Итого: {0} монет",
+      "en": "Total: {0} coins"
+    },
+    {
+      "ru": "Останется: {0}",
+      "en": "Remaining: {0}"
+    },
+    {
+      "ru": "Можно купить: {0}",
+      "en": "You can buy: {0}"
+    },
+    {
+      "ru": "Товар недоступен",
+      "en": "Item unavailable"
+    },
+    {
+      "ru": "Нет места для ещё одного набора",
+      "en": "Not enough inventory space for another pack"
+    },
+    {
+      "ru": "Недостаточно монет",
+      "en": "Not enough coins"
+    },
+    {
+      "ru": "Русский",
+      "en": "Русский"
+    },
+    {
+      "ru": "Игрок",
+      "en": "Player"
+    },
+    {
+      "ru": "Статистика не предоставлена",
+      "en": "Statistics unavailable"
+    },
+    {
+      "ru": "Волны: —   Враги: —\nЭлита: —   Боссы: —",
+      "en": "Waves: —   Enemies: —\nElites: —   Bosses: —"
+    },
+    {
+      "ru": "Торговец",
+      "en": "Merchant"
+    },
+    {
+      "ru": "Открыть сундук",
+      "en": "Open chest"
+    },
+    {
+      "ru": "Одиночный",
+      "en": "Single"
+    },
+    {
+      "ru": "Автоогонь",
+      "en": "Auto fire"
+    },
+    {
+      "ru": "Перетаскивай кнопки. Бой на паузе.",
+      "en": "Drag the buttons. Combat is paused."
+    },
+    {
+      "ru": "Кнопки пересекаются. Выбери свободное место.",
+      "en": "Buttons overlap. Choose a free spot."
+    },
+    {
+      "ru": "Первые победы",
+      "en": "First victories"
+    },
+    {
+      "ru": "Убить 25 врагов любого типа",
+      "en": "Defeat 25 enemies of any type"
+    },
+    {
+      "ru": "Защитник лагеря",
+      "en": "Camp defender"
+    },
+    {
+      "ru": "Убить 100 врагов любого типа",
+      "en": "Defeat 100 enemies of any type"
+    },
+    {
+      "ru": "Опытный боец",
+      "en": "Seasoned fighter"
+    },
+    {
+      "ru": "Убить 250 врагов любого типа",
+      "en": "Defeat 250 enemies of any type"
+    },
+    {
+      "ru": "Гроза арены",
+      "en": "Arena scourge"
+    },
+    {
+      "ru": "Убить 500 врагов любого типа",
+      "en": "Defeat 500 enemies of any type"
+    },
+    {
+      "ru": "Тысяча побед",
+      "en": "A thousand victories"
+    },
+    {
+      "ru": "Убить 1 000 врагов любого типа",
+      "en": "Defeat 1,000 enemies of any type"
+    },
+    {
+      "ru": "Неудержимый",
+      "en": "Unstoppable"
+    },
+    {
+      "ru": "Убить 2 500 врагов любого типа",
+      "en": "Defeat 2,500 enemies of any type"
+    },
+    {
+      "ru": "Легенда гарнизона",
+      "en": "Garrison legend"
+    },
+    {
+      "ru": "Убить 5 000 врагов любого типа",
+      "en": "Defeat 5,000 enemies of any type"
+    },
+    {
+      "ru": "Первые слаймы",
+      "en": "First slimes"
+    },
+    {
+      "ru": "Убить 25 слаймов",
+      "en": "Defeat 25 slimes"
+    },
+    {
+      "ru": "Чистые сапоги",
+      "en": "Clean boots"
+    },
+    {
+      "ru": "Убить 100 слаймов",
+      "en": "Defeat 100 slimes"
+    },
+    {
+      "ru": "Охотник на слизь",
+      "en": "Slime hunter"
+    },
+    {
+      "ru": "Убить 250 слаймов",
+      "en": "Defeat 250 slimes"
+    },
+    {
+      "ru": "Гроза слаймов",
+      "en": "Slime scourge"
+    },
+    {
+      "ru": "Убить 500 слаймов",
+      "en": "Defeat 500 slimes"
+    },
+    {
+      "ru": "Без следа слизи",
+      "en": "No slime left behind"
+    },
+    {
+      "ru": "Убить 1 000 слаймов",
+      "en": "Defeat 1,000 slimes"
+    },
+    {
+      "ru": "Кости врозь",
+      "en": "Scattered bones"
+    },
+    {
+      "ru": "Убить 25 скелетов, включая магов",
+      "en": "Defeat 25 skeletons, including mages"
+    },
+    {
+      "ru": "Костолом",
+      "en": "Bone breaker"
+    },
+    {
+      "ru": "Убить 100 скелетов, включая магов",
+      "en": "Defeat 100 skeletons, including mages"
+    },
+    {
+      "ru": "Враг нежити",
+      "en": "Enemy of the undead"
+    },
+    {
+      "ru": "Убить 250 скелетов, включая магов",
+      "en": "Defeat 250 skeletons, including mages"
+    },
+    {
+      "ru": "Покой для нежити",
+      "en": "Rest for the restless"
+    },
+    {
+      "ru": "Убить 500 скелетов, включая магов",
+      "en": "Defeat 500 skeletons, including mages"
+    },
+    {
+      "ru": "Опасные противники",
+      "en": "Dangerous foes"
+    },
+    {
+      "ru": "Убить 10 элитных врагов",
+      "en": "Defeat 10 elite enemies"
+    },
+    {
+      "ru": "Охотник на элиту",
+      "en": "Elite hunter"
+    },
+    {
+      "ru": "Убить 25 элитных врагов",
+      "en": "Defeat 25 elite enemies"
+    },
+    {
+      "ru": "Лучше лучших",
+      "en": "Best of the best"
+    },
+    {
+      "ru": "Убить 100 элитных врагов",
+      "en": "Defeat 100 elite enemies"
+    },
+    {
+      "ru": "Первая большая победа",
+      "en": "First great victory"
+    },
+    {
+      "ru": "Убить любого босса",
+      "en": "Defeat any boss"
+    },
+    {
+      "ru": "Пять трофеев",
+      "en": "Five trophies"
+    },
+    {
+      "ru": "Убить 5 боссов",
+      "en": "Defeat 5 bosses"
+    },
+    {
+      "ru": "Победитель великанов",
+      "en": "Giant slayer"
+    },
+    {
+      "ru": "Убить 10 боссов",
+      "en": "Defeat 10 bosses"
+    },
+    {
+      "ru": "Большая слизь",
+      "en": "One big slime"
+    },
+    {
+      "ru": "Победить босса-слайма",
+      "en": "Defeat the slime boss"
+    },
+    {
+      "ru": "Повелитель слизи",
+      "en": "Slime lord"
+    },
+    {
+      "ru": "Победить босса-слайма 5 раз",
+      "en": "Defeat the slime boss 5 times"
+    },
+    {
+      "ru": "Вижу тебя",
+      "en": "I see you"
+    },
+    {
+      "ru": "Победить босса-ассасина",
+      "en": "Defeat the assassin boss"
+    },
+    {
+      "ru": "Охотник на тени",
+      "en": "Shadow hunter"
+    },
+    {
+      "ru": "Победить босса-ассасина 5 раз",
+      "en": "Defeat the assassin boss 5 times"
+    },
+    {
+      "ru": "Первая зачистка",
+      "en": "First clear"
+    },
+    {
+      "ru": "Полностью зачистить 1 волну",
+      "en": "Fully clear 1 wave"
+    },
+    {
+      "ru": "На страже",
+      "en": "On guard"
+    },
+    {
+      "ru": "Полностью зачистить 5 волн",
+      "en": "Fully clear 5 waves"
+    },
+    {
+      "ru": "Десять рубежей",
+      "en": "Ten lines of defence"
+    },
+    {
+      "ru": "Полностью зачистить 10 волн",
+      "en": "Fully clear 10 waves"
+    },
+    {
+      "ru": "Долгая служба",
+      "en": "Long service"
+    },
+    {
+      "ru": "Полностью зачистить 25 волн",
+      "en": "Fully clear 25 waves"
+    },
+    {
+      "ru": "Стойкий гарнизон",
+      "en": "Steadfast garrison"
+    },
+    {
+      "ru": "Полностью зачистить 50 волн",
+      "en": "Fully clear 50 waves"
+    },
+    {
+      "ru": "Ветеран другого мира",
+      "en": "Veteran of another world"
+    },
+    {
+      "ru": "Полностью зачистить 100 волн",
+      "en": "Fully clear 100 waves"
+    },
+    {
+      "ru": "Запасливый",
+      "en": "Well stocked"
+    },
+    {
+      "ru": "Купить 5 наборов товаров у торговца",
+      "en": "Buy 5 item packs from the merchant"
+    },
+    {
+      "ru": "Постоянный покупатель",
+      "en": "Regular customer"
+    },
+    {
+      "ru": "Купить 25 наборов товаров у торговца",
+      "en": "Buy 25 item packs from the merchant"
+    },
+    {
+      "ru": "Снабженец",
+      "en": "Quartermaster"
+    },
+    {
+      "ru": "Купить 100 наборов товаров у торговца",
+      "en": "Buy 100 item packs from the merchant"
+    },
+    {
+      "ru": "Первое улучшение",
+      "en": "First upgrade"
+    },
+    {
+      "ru": "Купить 1 улучшение героя, оружия или арены",
+      "en": "Buy 1 hero, weapon or arena upgrade"
+    },
+    {
+      "ru": "Работа над собой",
+      "en": "Self-improvement"
+    },
+    {
+      "ru": "Купить 5 улучшений героя, оружия или арены",
+      "en": "Buy 5 hero, weapon or arena upgrades"
+    },
+    {
+      "ru": "Новая сила",
+      "en": "New strength"
+    },
+    {
+      "ru": "Купить 10 улучшений героя, оружия или арены",
+      "en": "Buy 10 hero, weapon or arena upgrades"
+    },
+    {
+      "ru": "Хорошо подготовлен",
+      "en": "Well prepared"
+    },
+    {
+      "ru": "Купить 25 улучшений героя, оружия или арены",
+      "en": "Buy 25 hero, weapon or arena upgrades"
+    },
+    {
+      "ru": "Мастер развития",
+      "en": "Master of upgrades"
+    },
+    {
+      "ru": "Купить 50 улучшений героя, оружия или арены",
+      "en": "Buy 50 hero, weapon or arena upgrades"
+    },
+    {
+      "ru": "Тройной залп",
+      "en": "Triple volley"
+    },
+    {
+      "ru": "Разблокировать дробовик у торговца",
+      "en": "Unlock spread shot at the merchant"
+    },
+    {
+      "ru": "Без остановки",
+      "en": "Never stop firing"
+    },
+    {
+      "ru": "Разблокировать автоогонь у торговца",
+      "en": "Unlock automatic fire at the merchant"
+    },
+    {
+      "ru": "Второе дыхание",
+      "en": "Second wind"
+    },
+    {
+      "ru": "Использовать зелье лечения",
+      "en": "Use a healing potion"
+    },
+    {
+      "ru": "Полевая медицина",
+      "en": "Field medicine"
+    },
+    {
+      "ru": "Использовать 10 зелий лечения",
+      "en": "Use 10 healing potions"
+    },
+    {
+      "ru": "Всегда в строю",
+      "en": "Always ready"
+    },
+    {
+      "ru": "Использовать 50 зелий лечения",
+      "en": "Use 50 healing potions"
+    },
+    {
+      "ru": "Новый рубеж",
+      "en": "A new frontier"
+    },
+    {
+      "ru": "Захватить аванпост",
+      "en": "Capture an outpost"
+    },
+    {
+      "ru": "Расширение гарнизона",
+      "en": "Expanding the garrison"
+    },
+    {
+      "ru": "Захватить 5 аванпостов",
+      "en": "Capture 5 outposts"
+    },
+    {
+      "ru": "Хозяин арены",
+      "en": "Master of the arena"
+    },
+    {
+      "ru": "Захватить 25 аванпостов",
+      "en": "Capture 25 outposts"
+    },
+    {
+      "ru": "Благословение",
+      "en": "Blessing"
+    },
+    {
+      "ru": "Восстановить здоровье у алтаря",
+      "en": "Restore health at an altar"
+    },
+    {
+      "ru": "Взрывной характер",
+      "en": "Explosive personality"
+    },
+    {
+      "ru": "Взорвать 10 бочек",
+      "en": "Explode 10 barrels"
+    },
+    {
+      "ru": "Волны: {0}    Враги: {1}\nЭлита: {2}    Боссы: {3}    Смерти: {4}",
+      "en": "Waves: {0}    Enemies: {1}\nElites: {2}    Bosses: {3}    Deaths: {4}"
+    },
+    {
+      "ru": "Ты на арене. Здесь начинается учебная волна 0 — обычные волны пока ждут.",
+      "en": "Welcome to the arena. Training wave 0 starts here; regular waves will wait."
+    },
+    {
+      "ru": "Ты вернулся в лагерь бесплатно. Зеркала: {0} → {1}.",
+      "en": "You returned to camp for free. Mirrors: {0} → {1}."
+    },
+    {
+      "ru": "Ты управляешь героем. Движение помогает уходить от атак и собирать добычу.",
+      "en": "You're in control. Move to dodge attacks and collect loot."
+    },
+    {
+      "ru": "Стрелы закончились. Их можно пополнить у торговца; этот шаг можно пройти позже.",
+      "en": "You're out of arrows. Buy more from the merchant; you can return to this step later."
+    },
+    {
+      "ru": "Стрелы закончились. Пополни их у торговца; учебный бой можно пропустить.",
+      "en": "You're out of arrows. Buy more from the merchant; you can skip this practice fight."
+    },
+    {
+      "ru": "Действие уже выполнено. Продолжим обучение.",
+      "en": "You've already done this. Let's continue."
+    },
+    {
+      "ru": "Зелье восстанавливает здоровье. Сейчас упражнение недоступно: пополни зелья у торговца.",
+      "en": "Potions restore health. You can't practise right now: buy more from the merchant."
+    },
+    {
+      "ru": "Зеркало возвращает в лагерь. Удерживай E до заполнения полосы; урон или отпускание прерывают перенос.",
+      "en": "The mirror returns you to camp. Hold E until the bar fills; taking damage or releasing the key cancels the teleport."
+    },
+    {
+      "ru": "Зеркала закончились. Купи их у торговца. Для переноса нужно удерживать кнопку.",
+      "en": "You're out of mirrors. Buy more from the merchant. Hold the mirror button to teleport."
+    },
+    {
+      "ru": "Для двух наборов нужны монеты и место в запасе. Здесь выбирается количество и показана общая цена.",
+      "en": "You need coins and inventory space for two packs. Choose a quantity here and check the total price."
+    },
+    {
+      "ru": "Улучшения покупаются за монеты. Здоровье увеличивает максимум HP; сейчас покупка недоступна.",
+      "en": "Upgrades cost coins. Health increases your maximum HP; you can't afford this upgrade right now."
+    },
+    {
+      "ru": "Портал арены не настроен. Урок можно пропустить.",
+      "en": "The arena portal is unavailable. You can skip this lesson."
+    },
+    {
+      "ru": "Волна 0 зачищена. В обычном бою зачистка даёт MMR и начинается перерыв. Сейчас открылся бесплатный портал в лагерь.",
+      "en": "Wave 0 cleared. In regular combat, clearing a wave awards MMR and starts a break. A free portal to camp is now open."
+    },
+    {
+      "ru": "Цель поражена. Попаданий: {0}. Стрелы расходуются при выстреле; урон показан над целью.",
+      "en": "Target defeated. Hits: {0}. Each shot uses arrows; damage numbers appear above the target."
+    },
+    {
+      "ru": "+10 монет. В кошельке: {0}. Добыча нужна для покупки снаряжения.",
+      "en": "+10 coins. In your wallet: {0}. Use loot to buy supplies."
+    },
+    {
+      "ru": "Добыча собирается при приближении. Повторный урок не выдаёт монеты.",
+      "en": "Walk up to loot to collect it. Replaying a lesson doesn't award coins."
+    },
+    {
+      "ru": "Выбраны ядовитые стрелы. Они отравляют обычных врагов; каждый тип имеет отдельный запас.",
+      "en": "Poison arrows selected. They poison regular enemies; each arrow type has its own stock."
+    },
+    {
+      "ru": "Рывок выполнен. Выносливость: {0} / {1}; она восстанавливается сама.",
+      "en": "Dash complete. Stamina: {0} / {1}. It regenerates automatically."
+    },
+    {
+      "ru": "Щит поднят. Он поглощает урон, расходует запас щита и замедляет героя.",
+      "en": "Shield raised. It absorbs damage, uses shield energy and slows you down."
+    },
+    {
+      "ru": "Зелье использовано. Здоровье: {0} → {1}. Осталось зелий: {2}.",
+      "en": "Potion used. Health: {0} → {1}. Potions left: {2}."
+    },
+    {
+      "ru": "В быстрых предметах находится зеркало. Удерживай его кнопку до заполнения полосы переноса.",
+      "en": "Your mirror is in quick items. Hold its button until the teleport bar fills."
+    },
+    {
+      "ru": "Ты снова в лагере. Потрачено одно зеркало; осталось: {0}.",
+      "en": "You're back at camp. One mirror used; {0} left."
+    },
+    {
+      "ru": "Торговец открыт. Во время торговли бой на паузе. Здесь есть товары, улучшения, арена, бонусы и достижения.",
+      "en": "Merchant opened. Combat pauses while you shop. Browse supplies, upgrades, arena improvements, bonuses and achievements."
+    },
+    {
+      "ru": "Открылось окно покупки. Цена набора и общий итог видны до подтверждения.",
+      "en": "The purchase window is open. Check the pack price and total before confirming."
+    },
+    {
+      "ru": "Куплено {0} стрел за {1} монет. Запас: {2}.",
+      "en": "Bought {0} arrows for {1} coins. Arrows in stock: {2}."
+    },
+    {
+      "ru": "Открыты улучшения героя. Карточки показывают текущий параметр, прирост и цену.",
+      "en": "Hero upgrades opened. Each card shows the current stat, increase and price."
+    },
+    {
+      "ru": "Здоровье улучшено. Максимум: {0} HP. Покупка и новый уровень сохранены.",
+      "en": "Health upgraded. Maximum: {0} HP. Your purchase and new level are saved."
+    },
+    {
+      "ru": "Добро пожаловать!",
+      "en": "Welcome!"
+    },
+    {
+      "ru": "Движение",
+      "en": "Movement"
+    },
+    {
+      "ru": "Первый бой",
+      "en": "Your first fight"
+    },
+    {
+      "ru": "Собери добычу",
+      "en": "Collect loot"
+    },
+    {
+      "ru": "Выбор стрел",
+      "en": "Choose arrows"
+    },
+    {
+      "ru": "Рывок",
+      "en": "Dash"
+    },
+    {
+      "ru": "Защита",
+      "en": "Defence"
+    },
+    {
+      "ru": "Быстрые предметы",
+      "en": "Quick items"
+    },
+    {
+      "ru": "Возвращение в лагерь",
+      "en": "Return to camp"
+    },
+    {
+      "ru": "Познакомься с торговцем",
+      "en": "Meet the merchant"
+    },
+    {
+      "ru": "Покупка стрел",
+      "en": "Buy arrows"
+    },
+    {
+      "ru": "Количество и цена",
+      "en": "Quantity and price"
+    },
+    {
+      "ru": "Улучшения героя",
+      "en": "Hero upgrades"
+    },
+    {
+      "ru": "Стань сильнее",
+      "en": "Get stronger"
+    },
+    {
+      "ru": "Теперь на арену!",
+      "en": "On to the arena!"
+    },
+    {
+      "ru": "Портал на арену",
+      "en": "Arena portal"
+    },
+    {
+      "ru": "Учебная волна 0",
+      "en": "Training wave 0"
+    },
+    {
+      "ru": "Зачисти волну",
+      "en": "Clear the wave"
+    },
+    {
+      "ru": "Добыча после боя",
+      "en": "Loot after combat"
+    },
+    {
+      "ru": "Между волнами",
+      "en": "Between waves"
+    },
+    {
+      "ru": "Бесплатно в лагерь",
+      "en": "Back to camp for free"
+    },
+    {
+      "ru": "Обучение завершено!",
+      "en": "Training complete!"
+    },
+    {
+      "ru": "Повторим управление, магазин и учебную волну 0. Припасы повторно не выдаются; покупки расходуют твои монеты.",
+      "en": "Let's practise controls, shopping and wave 0 again. Supplies won't be awarded twice; purchases cost your coins."
+    },
+    {
+      "ru": "Покажу лагерь, управление и арену. Для первого урока получишь 200 монет и недостающие припасы. Обычные волны пока ждут.",
+      "en": "I'll show you the camp, controls and arena. You'll receive 200 coins and any missing supplies for your first lesson. Regular waves will wait."
+    },
+    {
+      "ru": "Потяни левый джойстик и пройди немного. Герой движется в выбранную сторону.",
+      "en": "Drag the left joystick and walk a short distance. Your hero moves in the chosen direction."
+    },
+    {
+      "ru": "Нажми W, A, S или D и пройди немного. Движение помогает уходить от врагов.",
+      "en": "Press W, A, S or D and walk a short distance. Movement helps you avoid enemies."
+    },
+    {
+      "ru": "Коснись «Огонь» — выстрел с автонаводкой. Зажми и веди палец для ручного прицела, отпусти для выстрела.",
+      "en": "Tap Fire for an auto-aimed shot. Hold and drag to aim manually, then release to shoot."
+    },
+    {
+      "ru": "Наведи мышь на учебного слайма и нажми левую кнопку мыши.",
+      "en": "Aim at the training slime with your mouse and press the left mouse button."
+    },
+    {
+      "ru": "\nПопадания: {0} / 3. Цель не атакует.",
+      "en": "\nHits: {0} / 3. The target won't attack."
+    },
+    {
+      "ru": "Джойстиком подойди к золотой монете. Добыча пополняет кошелёк.",
+      "en": "Use the joystick to approach the gold coin. Loot adds to your wallet."
+    },
+    {
+      "ru": "Подойди к золотой монете с помощью WASD. Добыча пополняет кошелёк.",
+      "en": "Walk up to the gold coin using WASD. Loot adds to your wallet."
+    },
+    {
+      "ru": "Нажми зелёную стрелу. Тип меняет эффект выстрела; количество указано под иконкой.",
+      "en": "Tap the green arrow. Each type has a different effect; its quantity is shown below the icon."
+    },
+    {
+      "ru": "Нажимай Q до выбора ядовитых стрел. Тип и запас показаны слева вверху.",
+      "en": "Press Q until poison arrows are selected. Their type and stock are shown at the top left."
+    },
+    {
+      "ru": "Нажми «Рывок». Он быстро перемещает героя и тратит выносливость.",
+      "en": "Tap Dash to move quickly. Dashing uses stamina."
+    },
+    {
+      "ru": "Направь мышь в нужную сторону и нажми Shift. Рывок тратит выносливость.",
+      "en": "Point the mouse where you want to go and press Shift. Dashing uses stamina."
+    },
+    {
+      "ru": "Нажми «Щит», чтобы поднять его. Повторное нажатие опускает щит.",
+      "en": "Tap Shield to raise it. Tap again to lower it."
+    },
+    {
+      "ru": "Удерживай Space, чтобы поднять щит. Он поглощает урон и замедляет движение.",
+      "en": "Hold Space to raise your shield. It absorbs damage and slows your movement."
+    },
+    {
+      "ru": "Для упражнения немного снизилось HP. Нажми кнопку зелья — здоровье восстановится.",
+      "en": "Your HP was lowered a little for this exercise. Tap the potion button to restore health."
+    },
+    {
+      "ru": "Для упражнения немного снизилось HP. Нажми H — зелье восстановит здоровье.",
+      "en": "Your HP was lowered a little for this exercise. Press H to drink a healing potion."
+    },
+    {
+      "ru": "Нажми «•••», чтобы открыть быстрые предметы. Здесь находится зеркало переноса.",
+      "en": "Tap ••• to open quick items. Your teleport mirror is here."
+    },
+    {
+      "ru": "Удерживай кнопку зеркала до заполнения полоски. Это вернёт тебя в лагерь.",
+      "en": "Hold the mirror button until the bar fills. You'll return to camp."
+    },
+    {
+      "ru": "Удерживай E до заполнения полоски. Это вернёт тебя в лагерь.",
+      "en": "Hold E until the bar fills. You'll return to camp."
+    },
+    {
+      "ru": "Нажми плашку «Торговец». Магазин откроется, бой остановится.",
+      "en": "Tap Merchant to open the shop and pause combat."
+    },
+    {
+      "ru": "Нажми плашку «Торговец» мышкой или клавишу F. Магазин откроется на паузе.",
+      "en": "Click Merchant or press F. The shop opens and combat pauses."
+    },
+    {
+      "ru": "Нажми цену обычных стрел. Откроется выбор количества наборов.",
+      "en": "Tap the price of normal arrows to choose how many packs to buy."
+    },
+    {
+      "ru": "Выбрано 2 набора: {0} стрел за {1} монет. Нажми «Купить»; деньги спишутся, стрелы пополнятся.",
+      "en": "2 packs selected: {0} arrows for {1} coins. Tap Buy to pay and receive your arrows."
+    },
+    {
+      "ru": "Выбери 2 набора ползунком или кнопкой «+». Сейчас: {0} набор(а), {1} стрел за {2} монет.",
+      "en": "Select 2 packs with the slider or + button. Current: {0} packs, {1} arrows for {2} coins."
+    },
+    {
+      "ru": "Нажми вкладку «Улучшения». Здесь повышаются характеристики героя и оружия.",
+      "en": "Tap Upgrades to improve your hero and weapon."
+    },
+    {
+      "ru": "Нажми цену в карточке «Здоровье». Покупка увеличит максимум HP; новый уровень сохранится.",
+      "en": "Tap the price on the Health card. Your maximum HP will increase and the new level will be saved."
+    },
+    {
+      "ru": "Лагерь освоен. Теперь покажу настоящий портал на арену, учебную волну 0 и бесплатный возврат между волнами.",
+      "en": "You've learnt the camp basics. Now I'll show you the arena portal, training wave 0 and the free return between waves."
+    },
+    {
+      "ru": "Иди джойстиком к отмеченному порталу «АРЕНА» и зайди внутрь. Указатель у края экрана ведёт к нему.",
+      "en": "Use the joystick to enter the marked ARENA portal. The pointer at the screen edge shows the way."
+    },
+    {
+      "ru": "Иди по указателю с помощью WASD к порталу «АРЕНА» и зайди внутрь. Нажимать F не нужно.",
+      "en": "Follow the pointer using WASD and enter the ARENA portal. You don't need to press F."
+    },
+    {
+      "ru": "Ты на боевой арене. Сверху — номер волны и её состояние. В волне 0 встретишь трёх слаймов; урок безопасен и не даёт MMR. Начнём?",
+      "en": "You're in the arena. The wave number and status are at the top. Wave 0 has three slimes; this lesson is safe and doesn't award MMR. Ready?"
+    },
+    {
+      "ru": "Двигайся джойстиком, коснись «Огонь» для автонаводки. Зажми и веди палец для ручного прицела, отпусти — выстрел.",
+      "en": "Move with the joystick and tap Fire to auto-aim. Hold and drag for manual aim, then release to shoot."
+    },
+    {
+      "ru": "Двигайся WASD, целься мышью и стреляй ЛКМ.",
+      "en": "Move with WASD, aim with the mouse and left-click to shoot."
+    },
+    {
+      "ru": " Слаймы приближаются: отходи от них.\nПобеждено: {0} / 3.",
+      "en": " Slimes are approaching: keep your distance.\nDefeated: {0} / 3."
+    },
+    {
+      "ru": "После зачистки подойди джойстиком к монете. Добыча нужна для улучшений и снаряжения.",
+      "en": "After clearing the wave, use the joystick to collect the coin. Spend loot on upgrades and supplies."
+    },
+    {
+      "ru": "После зачистки подойди к монете с помощью WASD. Добыча нужна для улучшений и снаряжения.",
+      "en": "After clearing the wave, use WASD to collect the coin. Spend loot on upgrades and supplies."
+    },
+    {
+      "ru": "Между волнами идёт перерыв: портал «В ЛАГЕРЬ» открыт. Войди в него — зеркало не потратится. В обычной игре успей до конца таймера; учебный перерыв ждёт тебя.",
+      "en": "There's a break between waves: the TO CAMP portal is open. Enter it without using a mirror. In normal combat, return before the timer runs out; this training break waits for you."
+    },
+    {
+      "ru": "Иди джойстиком",
+      "en": "Use the joystick to walk"
+    },
+    {
+      "ru": "Иди с помощью WASD",
+      "en": "Use WASD to walk"
+    },
+    {
+      "ru": " в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.",
+      "en": " into the marked TO CAMP portal. Returning is free during a break. The portal closes during combat; use a mirror to retreat."
+    },
+    {
+      "ru": "Ты знаешь путь на арену и бесплатный выход между волнами. Снова войди в портал «АРЕНА» — начнётся настоящая волна 1. Повторить обучение можно в меню.",
+      "en": "You know how to reach the arena and return for free between waves. Enter the ARENA portal again to start real wave 1. You can replay training from the menu."
+    },
+    {
+      "ru": "АРЕНА · {0} / 7",
+      "en": "ARENA · {0} / 7"
+    },
+    {
+      "ru": "НАСТАВНИК ЛАГЕРЯ",
+      "en": "CAMP MENTOR"
+    },
+    {
+      "ru": "ЛАГЕРЬ · {0} / 14",
+      "en": "CAMP · {0} / 14"
+    },
+    {
+      "ru": "Начать обучение",
+      "en": "Start training"
+    },
+    {
+      "ru": "Покажи портал",
+      "en": "Show the portal"
+    },
+    {
+      "ru": "Начать волну 0",
+      "en": "Start wave 0"
+    },
+    {
+      "ru": "Готово",
+      "en": "Done"
+    },
+    {
+      "ru": "Пропустить шаг",
+      "en": "Skip step"
+    },
+    {
+      "ru": "Дальше",
+      "en": "Next"
+    },
+    {
+      "ru": "Пропустить",
+      "en": "Skip"
+    },
+    {
+      "ru": "АРЕНА",
+      "en": "ARENA"
+    },
+    {
+      "ru": "ЛАГЕРЬ",
+      "en": "CAMP"
+    },
+    {
+      "ru": "\n{0} м",
+      "en": "\n{0} m"
+    },
+    {
+      "ru": "Загрузка рейтинга…",
+      "en": "Loading leaderboard…"
+    },
+    {
+      "ru": "Общий рейтинг",
+      "en": "Global leaderboard"
+    },
+    {
+      "ru": "Рейтинг пока пуст",
+      "en": "Leaderboard is empty"
+    },
+    {
+      "ru": "Рейтинг недоступен",
+      "en": "Leaderboard unavailable"
+    },
+    {
+      "ru": "Гость",
+      "en": "Guest"
+    },
+    {
+      "ru": "Волна 0",
+      "en": "Wave 0"
+    },
+    {
+      "ru": "Перерыв",
+      "en": "Break"
+    },
+    {
+      "ru": "Враги: {0}",
+      "en": "Enemies: {0}"
+    },
+    {
+      "ru": "Готов",
+      "en": "Ready"
+    },
+    {
+      "ru": "Волна {0}",
+      "en": "Wave {0}"
+    },
+    {
+      "ru": "Тестовое видео",
+      "en": "Test video"
+    },
+    {
+      "ru": "Тестовая реклама",
+      "en": "Test ad"
+    },
+    {
+      "ru": "В этом APK используется симуляция рекламы",
+      "en": "This APK uses simulated ads"
+    },
+    {
+      "ru": "Получить награду",
+      "en": "Get reward"
+    },
+    {
+      "ru": "Закрыть",
+      "en": "Close"
+    },
+    {
+      "ru": "Закрыть без награды",
+      "en": "Close without reward"
+    },
+    {
+      "ru": "Подождите ",
+      "en": "Wait "
+    },
+    {
+      "ru": " сек.",
+      "en": " s"
+    },
+    {
+      "ru": "Проверка завершена",
+      "en": "Check complete"
+    },
+    {
+      "ru": "Волна ",
+      "en": "Wave "
+    },
+    {
+      "ru": " сохранена. ",
+      "en": " saved. "
+    },
+    {
+      "ru": "Посмотрите видео, чтобы продолжить с полным здоровьем",
+      "en": "Watch a video to continue with full health"
+    },
+    {
+      "ru": "Здоровье восстановлено. Продолжаем…",
+      "en": "Health restored. Let's continue…"
+    },
+    {
+      "ru": "Видео сейчас недоступно. Попробуйте позже или вернитесь в лагерь",
+      "en": "Video unavailable. Try again later or return to camp"
+    },
+    {
+      "ru": "Просмотр не завершён. Можно попробовать ещё раз или вернуться в лагерь",
+      "en": "Video not completed. Try again or return to camp"
+    },
+    {
+      "ru": "Войти в Яндекс",
+      "en": "Sign in with Yandex"
+    },
+    {
+      "ru": "Вход через Яндекс ID…",
+      "en": "Signing in with Yandex ID…"
+    },
+    {
+      "ru": "Загрузка сохранения…",
+      "en": "Loading saved game…"
+    },
+    {
+      "ru": "Облачное сохранение",
+      "en": "Cloud save"
+    },
+    {
+      "ru": "Вход сохранит прогресс в облаке",
+      "en": "Sign in to save progress to the cloud"
+    },
+    {
+      "ru": "Сохранение на этом устройстве",
+      "en": "Saved on this device"
+    },
+    {
+      "ru": "Рейтинг",
+      "en": "Leaderboard"
+    },
+    {
+      "ru": "Личный результат",
+      "en": "Personal best"
+    },
+    {
+      "ru": "Играть",
+      "en": "Play"
+    },
+    {
+      "ru": "БАННЕР\n\nЯндекс Игры\nТолько в меню",
+      "en": "BANNER\n\nYandex Games\nMenu only"
+    },
+    {
+      "ru": "ЛЕСНОЙ ГАРНИЗОН",
+      "en": "FOREST GARRISON"
+    },
+    {
+      "ru": "Последний\nсолдат",
+      "en": "The Last\nSoldier"
+    },
+    {
+      "ru": "Цифры урона",
+      "en": "Damage numbers"
+    },
+    {
+      "ru": "Волн пройдено",
+      "en": "Waves cleared"
+    },
+    {
+      "ru": "Другой мир",
+      "en": "Another World"
+    },
+    {
+      "ru": "Во время настройки бой на паузе",
+      "en": "Combat is paused while you customise"
+    },
+    {
+      "ru": "Настройки",
+      "en": "Settings"
+    },
+    {
+      "ru": "Настройка доступна в игре:\nМеню → Настроить кнопки",
+      "en": "Available in-game:\nMenu → Customise buttons"
+    },
+    {
+      "ru": "Кнопки на экране",
+      "en": "On-screen buttons"
+    },
+    {
+      "ru": "Врагов убито",
+      "en": "Enemies defeated"
+    },
+    {
+      "ru": "Меню",
+      "en": "Menu"
+    },
+    {
+      "ru": "Эффекты",
+      "en": "Effects"
+    },
+    {
+      "ru": "Щит",
+      "en": "Shield"
+    },
+    {
+      "ru": "Тип стрел",
+      "en": "Arrow type"
+    },
+    {
+      "ru": "Стрельба",
+      "en": "Shoot"
+    },
+    {
+      "ru": "Скрыть курсор",
+      "en": "Hide cursor"
+    },
+    {
+      "ru": "Звук",
+      "en": "Audio"
+    },
+    {
+      "ru": "Мышь",
+      "en": "Mouse"
+    },
+    {
+      "ru": "Управление",
+      "en": "Controls"
+    },
+    {
+      "ru": "Показать курсор",
+      "en": "Show cursor"
+    },
+    {
+      "ru": "Назад",
+      "en": "Back"
+    },
+    {
+      "ru": "Режим стрельбы",
+      "en": "Fire mode"
+    },
+    {
+      "ru": "Музыка",
+      "en": "Music"
+    },
+    {
+      "ru": "Зелье",
+      "en": "Potion"
+    },
+    {
+      "ru": "+5 к максимуму HP",
+      "en": "+5 maximum HP"
+    },
+    {
+      "ru": "Скорость полёта",
+      "en": "Arrow speed"
+    },
+    {
+      "ru": "+500 монет",
+      "en": "+500 coins"
+    },
+    {
+      "ru": "Урон стрел",
+      "en": "Arrow damage"
+    },
+    {
+      "ru": "Сбросить",
+      "en": "Reset"
+    },
+    {
+      "ru": "Поверни телефон",
+      "en": "Rotate your phone"
+    },
+    {
+      "ru": "МЕСТО ПОКАЗА: полноэкранная реклама после возврата в лагерь",
+      "en": "AD PLACEMENT: interstitial after returning to camp"
+    },
+    {
+      "ru": "Обучение",
+      "en": "Training"
+    },
+    {
+      "ru": "0 монет",
+      "en": "0 coins"
+    },
+    {
+      "ru": "В ЛАГЕРЬ",
+      "en": "TO CAMP"
+    },
+    {
+      "ru": "Размер кнопок",
+      "en": "Button size"
+    },
+    {
+      "ru": "Прозрачность",
+      "en": "Opacity"
+    },
+    {
+      "ru": "Оружие",
+      "en": "Weapon"
+    },
+    {
+      "ru": "Улучшения",
+      "en": "Upgrades"
+    },
+    {
+      "ru": "Наборы",
+      "en": "Packs"
+    },
+    {
+      "ru": "Усиль героя для следующих волн",
+      "en": "Get stronger for the next waves"
+    },
+    {
+      "ru": "Расположение кнопок",
+      "en": "Button layout"
+    },
+    {
+      "ru": "Пробивные",
+      "en": "Piercing"
+    },
+    {
+      "ru": "Обзор",
+      "en": "View"
+    },
+    {
+      "ru": "Лагерь",
+      "en": "Camp"
+    },
+    {
+      "ru": "Перезарядка",
+      "en": "Reload"
+    },
+    {
+      "ru": "Обычные",
+      "en": "Normal"
+    },
+    {
+      "ru": "Для боя нужен горизонтальный экран\nИгра продолжится после поворота",
+      "en": "Combat requires landscape mode\nRotate your phone to continue"
+    },
+    {
+      "ru": "Отмена",
+      "en": "Cancel"
+    },
+    {
+      "ru": "Касание — автонаводка · удержание — ручной прицел\nОтпусти для выстрела · автоогонь стреляет при удержании",
+      "en": "Tap to auto-aim · hold to aim manually\nRelease to shoot · hold in auto mode for continuous fire"
+    },
+    {
+      "ru": "Радиус притяжения",
+      "en": "Attraction radius"
+    },
+    {
+      "ru": "Ты пал в бою",
+      "en": "You fell in battle"
+    },
+    {
+      "ru": "Текущая волна сохранится. Видео вернёт полное здоровье",
+      "en": "Keep this wave. Watch a video to restore full health"
+    },
+    {
+      "ru": "Притяжение лута",
+      "en": "Loot attraction"
+    },
+    {
+      "ru": "БОНУС ТОРГОВЦА",
+      "en": "MERCHANT BONUS"
+    },
+    {
+      "ru": "500 монет",
+      "en": "500 coins"
+    },
+    {
+      "ru": "Сброс",
+      "en": "Reset"
+    },
+    {
+      "ru": "Быстрый захват",
+      "en": "Quick capture"
+    },
+    {
+      "ru": "350 монет",
+      "en": "350 coins"
+    },
+    {
+      "ru": "200 монет",
+      "en": "200 coins"
+    },
+    {
+      "ru": "Бонусы",
+      "en": "Bonuses"
+    },
+    {
+      "ru": "+10 к максимуму",
+      "en": "+10 maximum stamina"
+    },
+    {
+      "ru": "+5 к запасу щита",
+      "en": "+5 shield energy"
+    },
+    {
+      "ru": "Щ",
+      "en": "SH"
+    },
+    {
+      "ru": "Огонь",
+      "en": "Fire"
+    },
+    {
+      "ru": "+0,05 к скорости",
+      "en": "+0.05 movement speed"
+    },
+    {
+      "ru": "Здоровье",
+      "en": "Health"
+    },
+    {
+      "ru": "Воин света \"Роберто\"",
+      "en": "Warrior of Light \"Roberto\""
+    },
+    {
+      "ru": "Сохранить",
+      "en": "Save"
+    },
+    {
+      "ru": "Арена",
+      "en": "Arena"
+    },
+    {
+      "ru": "Товары",
+      "en": "Supplies"
+    },
+    {
+      "ru": "+0,5 к урону",
+      "en": "+0.5 damage"
+    },
+    {
+      "ru": "Меняй расположение,\nразмер и прозрачность",
+      "en": "Change position,\nsize and opacity"
+    },
+    {
+      "ru": "Продолжить",
+      "en": "Continue"
+    },
+    {
+      "ru": "Посмотри видео и получи монеты\nна снаряжение и улучшения",
+      "en": "Watch a video to earn coins\nfor supplies and upgrades"
+    },
+    {
+      "ru": "Вернуться в лагерь",
+      "en": "Return to camp"
+    },
+    {
+      "ru": "Выносливость",
+      "en": "Stamina"
+    },
+    {
+      "ru": "Скорость",
+      "en": "Speed"
+    },
+    {
+      "ru": "Герой",
+      "en": "Hero"
+    },
+    {
+      "ru": "Продолжить за видео",
+      "en": "Continue for a video"
+    },
+    {
+      "ru": "Настроить кнопки",
+      "en": "Customise buttons"
+    },
+    {
+      "ru": "Снаряжение и развитие героя",
+      "en": "Supplies and hero upgrades"
+    },
+    {
+      "ru": "Святые",
+      "en": "Holy"
+    },
+    {
+      "ru": "Аванпост: стой в круге, чтобы получить монеты",
+      "en": "Outpost: stay in the circle to earn coins"
+    },
+    {
+      "ru": "Купить",
+      "en": "Buy"
+    },
+    {
+      "ru": "Смотреть видео",
+      "en": "Watch video"
+    },
+    {
+      "ru": "Ядовитые",
+      "en": "Poison"
+    },
+    {
+      "ru": "Достижения",
+      "en": "Achievements"
+    },
+    {
+      "ru": "Пауза",
+      "en": "Pause"
+    },
+    {
+      "ru": "Награда аванпоста",
+      "en": "Outpost reward"
+    },
+    {
+      "ru": "Алтарь хранителя",
+      "en": "Guardian altar"
+    },
+    {
+      "ru": "Статистика",
+      "en": "Statistics"
+    },
+    {
+      "ru": "ЛУЧШИЕ ИГРОКИ",
+      "en": "TOP PLAYERS"
+    },
+    {
+      "ru": "Волны: 0    Враги: 0\nЭлита: 0    Боссы: 0    Смерти: 0",
+      "en": "Waves: 0    Enemies: 0\nElites: 0    Bosses: 0    Deaths: 0"
+    },
+    {
+      "ru": "ЛИЧНЫЙ РЕЗУЛЬТАТ",
+      "en": "PERSONAL BEST"
+    },
+    {
+      "ru": "Язык",
+      "en": "Language"
+    },
+    {
+      "ru": "Авто",
+      "en": "Auto"
+    },
+    {
+      "ru": "Автоматически",
+      "en": "Automatic"
+    },
+    {
+      "ru": "Поверните телефон",
+      "en": "Rotate your phone"
+    },
+    {
+      "ru": "Для игры нужен альбомный режим.",
+      "en": "Play in landscape mode."
+    },
+    {
+      "ru": "Последний солдат: другой мир",
+      "en": "The Last Soldier: Another World"
+    },
+    {
+      "ru": "{0} набор",
+      "en": "{0} pack"
+    },
+    {
+      "ru": "{0} набора",
+      "en": "{0} packs"
+    },
+    {
+      "ru": "{0} наборов",
+      "en": "{0} packs"
+    },
+    {
+      "ru": "Уровень {0} / {1}",
+      "en": "Level {0} / {1}"
+    },
+    {
+      "ru": "Уровень {0} · +{1}",
+      "en": "Level {0} · +{1}"
+    },
+    {
+      "ru": "Попадания: {0} / 3. Цель не атакует.",
+      "en": "Hits: {0} / 3. The target won't attack."
+    },
+    {
+      "ru": "{0}\nПопадания: {1} / 3. Цель не атакует.",
+      "en": "{0}\nHits: {1} / 3. The target won't attack."
+    },
+    {
+      "ru": "{0} Слаймы приближаются: отходи от них.\nПобеждено: {1} / 3.",
+      "en": "{0} Slimes are approaching: keep your distance.\nDefeated: {1} / 3."
+    },
+    {
+      "ru": "{0} в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.",
+      "en": "{0} into the marked TO CAMP portal. Returning is free during a break. The portal closes during combat; use a mirror to retreat."
+    },
+    {
+      "ru": "Волна {0} сохранена. {1}",
+      "en": "Wave {0} saved. {1}"
+    },
+    {
+      "ru": "Подождите {0} сек.",
+      "en": "Wait {0} s"
+    },
+    {
+      "ru": "В наборе: {0} шт. · {1} монет\nУ тебя: {2} шт. · Лечение {3} HP",
+      "en": "Per pack: {0} items · {1} coins\nYou have: {2} items · Healing {3} HP"
+    },
+    {
+      "ru": "Та же волна · полное здоровье",
+      "en": "Same wave · full health"
+    },
+    {
+      "ru": "Здоровье: 25 HP · монеты: 50%",
+      "en": "Health: 25 HP · coins: 50%"
+    },
+    {
+      "ru": "Набор · 3 стрелы\nДо 3 врагов за выстрел",
+      "en": "Pack · 3 arrows\nPierces up to 3 enemies"
+    },
+    {
+      "ru": "Набор · 3 стрелы",
+      "en": "Pack · 3 arrows"
+    },
+    {
+      "ru": "Возвращение в лагерь · 1",
+      "en": "Return to camp · 1"
+    },
+    {
+      "ru": "Набор · 5 стрел",
+      "en": "Pack · 5 arrows"
+    },
+    {
+      "ru": "Набор · 1 стрела",
+      "en": "Pack · 1 arrow"
+    },
+    {
+      "ru": "Последний солдат · другой мир",
+      "en": "The Last Soldier · Another World"
+    },
+    {
+      "ru": "Место · Игрок",
+      "en": "Rank · Player"
+    },
+    {
+      "ru": "Медаль · MMR",
+      "en": "Medal · MMR"
+    },
+    {
+      "ru": "{0} м",
+      "en": "{0} m"
+    }
+  ]
+}

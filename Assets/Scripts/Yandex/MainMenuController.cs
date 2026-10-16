@@ -19,6 +19,7 @@ public sealed class MainMenuController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private TextMeshProUGUI authLabel;
     private bool loading;
+    public GameObject SettingsPanel => settingsPanel;
 
     private void OnEnable() => GameProgress.Changed += Refresh;
     private void OnDisable() => GameProgress.Changed -= Refresh;

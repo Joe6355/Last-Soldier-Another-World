@@ -45,6 +45,7 @@ public sealed class AndroidTestAd : MonoBehaviour
         active.availableAt = Time.realtimeSinceStartup + 3f;
         if (id != null) YGInsides.OpenRewardedAdv(); else YGInsides.OpenInterAdv();
         active.CreateUi();
+        GameLocalization.Register(host);
     }
 
     private void CreateUi()

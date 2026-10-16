@@ -45,6 +45,7 @@ public class Ui : MonoBehaviour
     private bool startWhenReady;
     private Shop activeShop;
     public bool IsMenuOpen => isMenuOpen;
+    public GameObject SettingsPanel => settingsPanel;
     public bool IsTradeOpen => activeShop != null;
     private bool mobileOrientationPaused, orientationResumePending;
     public bool IsMobileOrientationPaused => mobileOrientationPaused;
@@ -118,7 +119,7 @@ public class Ui : MonoBehaviour
     {
         if (activeShop != null || isMenuOpen || !GameProgress.IsReady || YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return false;
         activeShop = shop;
-        PauseGame();
+        PauseGame(keepGameMusic: true);
         return true;
     }
 
@@ -131,7 +132,7 @@ public class Ui : MonoBehaviour
         ResumeGame();
     }
 
-    private void PauseGame()
+    private void PauseGame(bool keepGameMusic = false)
     {
         crossbowController.SetShootingState(false);
         YG.YG2.GameplayStop();
@@ -139,8 +140,8 @@ public class Ui : MonoBehaviour
         // Останавливаем время
         Time.timeScale = 0f;
 
-        // Ставим музыку игры на паузу
-        PauseGameMusic();
+        // Торговля останавливает бой, но сохраняет текущую фоновую музыку.
+        if (!keepGameMusic) PauseGameMusic();
 
         // Останавливаем эффекты
         foreach (var sfx in sfxSources)
@@ -150,7 +151,7 @@ public class Ui : MonoBehaviour
         }
 
         // Включаем музыку меню
-        if (menuMusic != null && !menuMusic.isPlaying)
+        if (!keepGameMusic && menuMusic != null && !menuMusic.isPlaying)
         {
             menuMusic.Play();
         }

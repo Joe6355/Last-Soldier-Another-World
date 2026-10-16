@@ -105,14 +105,24 @@ public partial class TipsManager
         Canvas.ForceUpdateCanvases();
         UpdateGuideGeometry(true);
         guideRoot.gameObject.SetActive(false);
+        GameLocalization.Register(guideRoot.gameObject);
+        GameLocalization.Changed += RefreshGuideLanguage;
+    }
+
+    private void RefreshGuideLanguage()
+    {
+        if (guideRoot == null) return;
+        GameLocalization.RefreshAll();
+        UpdateGuideGeometry(true);
     }
 
     private void RenderGuide(string title, string body, string counter, string actionLabel,
         bool showAction, bool welcome = false)
     {
         if (guideRoot == null) return;
-        if (guideTitleText.text == title && guideBodyText.text == body && guideCounterText.text == counter
-            && guideActionText.text == actionLabel && guideHasAction == showAction && guideWelcome == welcome) return;
+        if (guideTitleText.text == GameLocalization.Text(title) && guideBodyText.text == GameLocalization.Text(body)
+            && guideCounterText.text == GameLocalization.Text(counter) && guideActionText.text == GameLocalization.Text(actionLabel)
+            && guideHasAction == showAction && guideWelcome == welcome) return;
         guideTitleText.text = title;
         guideBodyText.text = body;
         guideCounterText.text = counter;
@@ -120,6 +130,7 @@ public partial class TipsManager
         guideHasAction = showAction;
         guideWelcome = welcome;
         guideActionButton.gameObject.SetActive(showAction);
+        GameLocalization.RefreshAll();
         UpdateGuideGeometry(true);
     }
 
@@ -622,6 +633,7 @@ public partial class TipsManager
 
     private void DestroyGuideView()
     {
+        GameLocalization.Changed -= RefreshGuideLanguage;
         if (guideRoot != null) Destroy(guideRoot.gameObject);
         if (guideHandSprite != null) Destroy(guideHandSprite);
         if (guideHandTexture != null) Destroy(guideHandTexture);

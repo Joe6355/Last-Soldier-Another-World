@@ -1,33 +1,33 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-16T07:27:00.296260+00:00",
+  "builtAt": "2026-10-16T12:48:53.595482+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 18169093,
-  "unpackedBytes": 18411661,
-  "sha256": "fda6c8818e94387cfd5f2073bbb9564174497a6983c12d7b10453b6d97c5a603",
+  "zipBytes": 18196652,
+  "unpackedBytes": 18439826,
+  "sha256": "48eea9d0b4ded65aae0d3d9f7dc3bae35992f87d975a984b893fc0906195eea0",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
     "Build/YandexGames.loader.js",
     "Build/YandexGames.wasm.unityweb",
+    "index.html",
     "StreamingAssets/ThirdParty/LiberationSans-OFL.txt",
     "StreamingAssets/ThirdParty/PTSerif-OFL.txt",
-    "index.html",
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "fee6d11c6c107b23797580f8dc586c505a0956de8f11c4253d9d1be7b6f1d598",
-    "Build/YandexGames.framework.js.unityweb": "f9c71182156a733b74a782aead52716b6551a4974202302cea7aa8c613d847ae",
+    "Build/YandexGames.data.unityweb": "c9ef2019b7677a4b8601732d24d7bb9bb9726e36108f361823107f9d64f7b256",
+    "Build/YandexGames.framework.js.unityweb": "bc0e4feb3c3e7a260cfe978467dbd5ed834a1a54f02c6d6d642c4fdf8f117b5c",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "4ea2cb5d54003b28e57eea106d7b8781a448200e09f919ac59be34ed99f60001",
+    "Build/YandexGames.wasm.unityweb": "f92b7bb6ad5af4551245ef3908d8700599ae2c10c4d2d28879a55e38787162b1",
+    "index.html": "bc4b494065d4d77abf1aa055aefe686967c404a0d23b15f9203e97e4cfd26ced",
     "StreamingAssets/ThirdParty/LiberationSans-OFL.txt": "37f8552e9a874ec10710dc0ede6a9adf168e6609fbd02a507f35629373b85a48",
     "StreamingAssets/ThirdParty/PTSerif-OFL.txt": "ddf311c28ddf5a5ad9747649837346b67bed9d356789c3072bb27dbce49e514d",
-    "index.html": "1ee970dd91e2c8e0439c8ad459ec0e0cf3143cfea0b95e41aa653a765ade318c",
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 84,
+    "matched_files": 164,
     "files": [
       {
         "path": "Assets/Editor/GuidedTutorialAuthoring.cs",
@@ -36,6 +36,14 @@
       {
         "path": "Assets/Editor/YandexBuild.cs",
         "sha256": "a74cc4381cef34ee61fe475f9f4616510746e2f8519e52702d018da5bca27da4"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
+        "sha256": "b3563fea314e22223b82616c7e939e5271899515b48d8c25a4b1a20e2d705bc0"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Editor/CopyCode/CloudStorage_js.js",
+        "sha256": "c5220fe811fdb29698d0b126b0614dcab003a9ea49d0c566c5738924568515e8"
       },
       {
         "path": "Assets/Prefabs/Arena/Barrel.prefab",
@@ -58,6 +66,18 @@
         "sha256": "97e5bbc5bdce438eef90f281624f25f449748e2d9f520bc33bdde8c395379345"
       },
       {
+        "path": "Assets/Resources/Localization.meta",
+        "sha256": "4887ce5c0d9e39d2cfe69c7952542702057814ce302781f3fd37e6b03f041261"
+      },
+      {
+        "path": "Assets/Resources/Localization/English.json",
+        "sha256": "3bafc53b4ef69a9407411ac7cd8ffe5dd60d26a16effe63266b0c1124f66c3b9"
+      },
+      {
+        "path": "Assets/Resources/Localization/English.json.meta",
+        "sha256": "5cd6e26705999c1dda06ef42e78c2ab629f619187f138e4fa66ac227248ad675"
+      },
+      {
         "path": "Assets/Scenes/Menu.unity",
         "sha256": "9806c2848046ae86f47104ce32820feb7d9f124dd9fa3673759095a6b8d53a7a"
       },
@@ -70,220 +90,512 @@
         "sha256": "666047e9815a9caddaaa944f87515a14e82fd56c9d873648fc8d936c3ab7929c"
       },
       {
+        "path": "Assets/Scripts/AddHolyArrow.cs.meta",
+        "sha256": "580f885b264f473bab49b2fa0497047892f6f3b0d707db5e511d67f9be42515f"
+      },
+      {
         "path": "Assets/Scripts/ArenaFeature.cs",
         "sha256": "bc1ea724b1c84b90129d95921ca8d175d9d855bba3cb3b14e5dabe0ea903d576"
+      },
+      {
+        "path": "Assets/Scripts/ArenaFeature.cs.meta",
+        "sha256": "4332d45c66af2f17f28d5c1e767bb526cc248e161d7162de733ab10b28a33832"
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs",
         "sha256": "5db518275a621770ee20a824f4ebce1a562f1d9bcf567def0b0c2c8bc65f0b60"
       },
       {
+        "path": "Assets/Scripts/ArrowDef.cs.meta",
+        "sha256": "bccded6a9c7e34aaf71dfb526812be74b7206787c563e6175e196631dd9a3d62"
+      },
+      {
         "path": "Assets/Scripts/AssassinProject.cs",
         "sha256": "dcded3127141d1133809191542bf1e48e17961e6ee15d240308bf40e728fbd35"
+      },
+      {
+        "path": "Assets/Scripts/AssassinProject.cs.meta",
+        "sha256": "abf07ef30f8d2980ec590de543b37ffc2f99fbbe4e2fa876b37af8d4afa53a24"
+      },
+      {
+        "path": "Assets/Scripts/Boss.meta",
+        "sha256": "1ec43dbcee28e419b503e026ba48e8e01480441ca8b47e33a6c9f20f44b36ffb"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Asasin.meta",
+        "sha256": "b2f8f898877d9942641b21b1221c40e679edbef3e5d0576a91f662a606bd76c1"
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Anim.cs",
         "sha256": "dce7651e6bf0b909eec80724cb4cfdb91ee563d922427ca560a13badcf6a9afc"
       },
       {
+        "path": "Assets/Scripts/Boss/Asasin/Anim.cs.meta",
+        "sha256": "4a40dfa81fa3602b8d3efe7e21219031b81c3815ebd8ecc2dcbadbc9b05ce2f3"
+      },
+      {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs",
         "sha256": "48fc16b6119b0ee1f181fd40f0eae1e38baa5b8aedb768c4a193e471b1c0564d"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Asasin/Roberto.cs.meta",
+        "sha256": "cc0b0a1dff51e37a33751a2558d98bd75bb16806ee27c43a8818874a43814179"
+      },
+      {
+        "path": "Assets/Scripts/Boss/SlimeBoss.meta",
+        "sha256": "16179fceb31499d4c285b19feaaa85a07df7387d006766022fba2fc087d6e0d7"
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
         "sha256": "f0b776e8fa0a09c94444010c2db51f6fff2cfedf9906e28ae87daae7ced13ff0"
       },
       {
+        "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs.meta",
+        "sha256": "a2d1d5e7aa110c8e95f09df1184ad8ece4de9c9839219e05ab05f03bdb5175d6"
+      },
+      {
+        "path": "Assets/Scripts/Camera.meta",
+        "sha256": "3d0857a244f9dbedce4f4869e0d62fa5ab58902aa995a1fb3ee98770a736ba73"
+      },
+      {
         "path": "Assets/Scripts/Camera/CamController.cs",
         "sha256": "46eecf28f87cc9c8c11d8d89c2f3c9426fd7b36c142337b15c0999ac5e583ff4"
+      },
+      {
+        "path": "Assets/Scripts/Camera/CamController.cs.meta",
+        "sha256": "fb605283615b61d593d1d5eee1fc6cd661eae741c2d9ada6ccc1f06b374833db"
       },
       {
         "path": "Assets/Scripts/Camera/VisionManipulatetor.cs",
         "sha256": "b55936bfbfd5590804000940edd1c2b3bf7fc163d5548d3760574c5e0fd82d1a"
       },
       {
+        "path": "Assets/Scripts/Camera/VisionManipulatetor.cs.meta",
+        "sha256": "46b6d9097deb19c1a2f5fbeae4396933cf7c1bfcfc1f5261d3c4b33d4c491e0c"
+      },
+      {
         "path": "Assets/Scripts/Chest.cs",
         "sha256": "e92a53080f9f32d0785581c230f4ad554b98e35edd26fdd651110274eb6dcee8"
+      },
+      {
+        "path": "Assets/Scripts/Chest.cs.meta",
+        "sha256": "fe337f31e1c0bb7c13bd29bba90bc3ff9887ba70471411717906f9a2f657f70f"
       },
       {
         "path": "Assets/Scripts/Coin.cs",
         "sha256": "9a86e938ed3ec055ab8d3ed764eb0e1076c667064b3fbcccd851f672d3728fa4"
       },
       {
+        "path": "Assets/Scripts/Coin.cs.meta",
+        "sha256": "7f5f9c6b9e0c383408c2cfc50d926df8a7c956eeddd1d65b0c35bd3b59068486"
+      },
+      {
         "path": "Assets/Scripts/CrossbowController.cs",
         "sha256": "99f2157c9a145bce002b19e1188dd3292e8fa29b8b109e5c4b39b2a0e7850666"
+      },
+      {
+        "path": "Assets/Scripts/CrossbowController.cs.meta",
+        "sha256": "29febf9469bd3fef11961f23a9f7e7ef4cf9834d3fe162977dc602e2740bb23d"
       },
       {
         "path": "Assets/Scripts/DeadZone.cs",
         "sha256": "2c08bcf72da2cd85543426e4afa2f898d6136ac5184ec59abc3e772d9b1ba3ef"
       },
       {
+        "path": "Assets/Scripts/DeadZone.cs.meta",
+        "sha256": "8db29750180645741ab7dc35423b9c175390138508c051e1d5268c089045b5f4"
+      },
+      {
         "path": "Assets/Scripts/Enemy.cs",
         "sha256": "43f1fcee8f906f2ecc622e76ce9a884cd6776b88adfecfd76051b6ee75fe3d93"
+      },
+      {
+        "path": "Assets/Scripts/Enemy.cs.meta",
+        "sha256": "e5e2d26240e0274f305a453724db2f9a3fc13e125e5c52ae3767f245eb42cfaf"
       },
       {
         "path": "Assets/Scripts/EnemyProgject.cs",
         "sha256": "10c475274a7b9b685b090b691e39d0679368574047be041bfe925733a7b48838"
       },
       {
+        "path": "Assets/Scripts/EnemyProgject.cs.meta",
+        "sha256": "0b86b69b4243ef452265bd81f1e77402db6e8f722e87081f7278e0b9f08a8e52"
+      },
+      {
         "path": "Assets/Scripts/EnemyProgjectVAR.cs",
         "sha256": "75cc832d3da17ee5fd21a12b5273e540c5b96fb30bc2c2f312b1c3466736f191"
+      },
+      {
+        "path": "Assets/Scripts/EnemyProgjectVAR.cs.meta",
+        "sha256": "998e702b4ca89fe2f9eba0d1a70203153e5f22af45676d54915615e0b496426e"
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs",
         "sha256": "3e233460f487223947673a5a21a4b47dc5e344417784f8fd09901ac1e9ba0794"
       },
       {
+        "path": "Assets/Scripts/HealerEnemy.cs.meta",
+        "sha256": "23e4d45680a9fdeafe632f49662fcf8d154a640bd9ed210f04778cae33b6bbd7"
+      },
+      {
         "path": "Assets/Scripts/HolyArrow.cs",
         "sha256": "ca0f15d48a57459c4c2fd77b0398b438c12420ecb3731bcc47e8c5b340edb52e"
+      },
+      {
+        "path": "Assets/Scripts/HolyArrow.cs.meta",
+        "sha256": "7ed41443b612f4fe3971fbc99daa43d0d74f61fc3462ba02eb83a38cf87b452b"
       },
       {
         "path": "Assets/Scripts/Luja.cs",
         "sha256": "d70e4f79cf06c6558b347e78e3792f0fd70ce864e52942e1784184f0ef514291"
       },
       {
+        "path": "Assets/Scripts/Luja.cs.meta",
+        "sha256": "6ca4ecabff4e3a558239db59ae25f18ccf8b032b2eca4c7ee536e91c74314b45"
+      },
+      {
         "path": "Assets/Scripts/NewArrow.cs",
         "sha256": "93d66e2a21ec3528c668b2bc05cc51c418769a2c14cba6e876778d7f7cbac8ab"
+      },
+      {
+        "path": "Assets/Scripts/NewArrow.cs.meta",
+        "sha256": "572155add1854da07634e04f2d1b1819051f03d4639267b42b13d0a7b6ec1f1b"
+      },
+      {
+        "path": "Assets/Scripts/Npc.meta",
+        "sha256": "50ad2f6e1ca5d1db735a6ad192285b25ad0e5efc5fc45f4ab737a22265261acb"
       },
       {
         "path": "Assets/Scripts/Npc/Animals.cs",
         "sha256": "29746ac32cee047d2aaf9ee7e9ac5369b97a7cbcf8547527b92e60db1ec122f5"
       },
       {
+        "path": "Assets/Scripts/Npc/Animals.cs.meta",
+        "sha256": "45c719aa006f1df96f470d114243dbaf797f0ea6128db67876478de7701a88bf"
+      },
+      {
         "path": "Assets/Scripts/Npc/Beka.cs",
         "sha256": "f147955d90b956b2f6fcdd9551f29f6fff5831dc77830a708cb2bb1cc641e830"
+      },
+      {
+        "path": "Assets/Scripts/Npc/Beka.cs.meta",
+        "sha256": "a704e3f4f394f86c70550590b9a42cf36261a9b647823bf3ccfb55ce48774652"
       },
       {
         "path": "Assets/Scripts/Npc/Lona.cs",
         "sha256": "9c371a35e23b72191bc53b1ebba35f5fe9ef097761de14423fffed57672a15e7"
       },
       {
+        "path": "Assets/Scripts/Npc/Lona.cs.meta",
+        "sha256": "0cac9e9e8c6d62756da8b0cf142dcb0a8906117173333c48b842f0f0d33d8ea7"
+      },
+      {
         "path": "Assets/Scripts/Npc/Npc.cs",
         "sha256": "c79a9e65cedb1d65acae0bf7165a9438ab0900078571ad05133f74a0a99479c5"
+      },
+      {
+        "path": "Assets/Scripts/Npc/Npc.cs.meta",
+        "sha256": "f1e55a04dc0d369228d2a9db30d6a2da44784b43c3fc72d35e847f4cb5dac840"
       },
       {
         "path": "Assets/Scripts/PlayerController.cs",
         "sha256": "656e9f6a02d53cc716f2403adeb99bb98e79a3a998d8b2ec469c6289ed45bd5f"
       },
       {
+        "path": "Assets/Scripts/PlayerController.cs.meta",
+        "sha256": "aebd2d9f523eb96d3f1027fe1c10fe752bd1b9230abb9e84d38934ab589a9109"
+      },
+      {
+        "path": "Assets/Scripts/Portal.meta",
+        "sha256": "3969e2d1afb27197f369b5fe6fa6ad437245b9a36d829fc4f215f8ad7965d27e"
+      },
+      {
         "path": "Assets/Scripts/Portal/Portal.cs",
-        "sha256": "bfdb025ee7a7f0646fca6cbc359a797ff85793049a476a549b7ebf8b1fdc5780"
+        "sha256": "daaabaf15beb2e98bf2d583c9e642331395bbc89988b90fef406fc1a9dd1b41c"
+      },
+      {
+        "path": "Assets/Scripts/Portal/Portal.cs.meta",
+        "sha256": "342ec49dd8fb79bdfac822c234abd9d929da7e8bbb0ff69a772ca7a89d60aedc"
       },
       {
         "path": "Assets/Scripts/Portal/PortalAnim.cs",
         "sha256": "1519398692e558ea884c978fe27f6812ce51a2faa19935db7a8fda663ab044f6"
       },
       {
+        "path": "Assets/Scripts/Portal/PortalAnim.cs.meta",
+        "sha256": "01c50bf01e9223eed492174f643e8997ae3f93dc81a92d031c43215a6ce623f5"
+      },
+      {
         "path": "Assets/Scripts/PosionArrow.cs",
         "sha256": "489c275035f11e84c25ace668a172ba63fe7bafd51401065cb4c0d2a4f6b4d5b"
+      },
+      {
+        "path": "Assets/Scripts/PosionArrow.cs.meta",
+        "sha256": "0ada049266e8e5f611c542bfd9228cb5329df749393c7e950a4a66238fe54e66"
       },
       {
         "path": "Assets/Scripts/SceletMag.cs",
         "sha256": "a095313f0532853d573acb238ea140df79b12916b95d4d8764658c71ec0d430e"
       },
       {
+        "path": "Assets/Scripts/SceletMag.cs.meta",
+        "sha256": "47b3df0749f8189ede75c64db398fe8b86d16816f86220e6f69efea787ca9de5"
+      },
+      {
         "path": "Assets/Scripts/SceletonDef.cs",
         "sha256": "40366ed405b960a0ae4b6d229ae46697cc5702bd650dd3106906b88c98611290"
       },
       {
+        "path": "Assets/Scripts/SceletonDef.cs.meta",
+        "sha256": "e81661351145152aaf660c85f77181801906267be925561d2bd69adabdd0ed09"
+      },
+      {
         "path": "Assets/Scripts/Shop.cs",
-        "sha256": "f62d30929b896b4a8f2f99cdec8709c1803ee9a23a6327e97d7370b3176f0629"
+        "sha256": "7b90d611dfc35b3509a1ea243f14ec6ef13ce27f7289641850c8c6a231374719"
+      },
+      {
+        "path": "Assets/Scripts/Shop.cs.meta",
+        "sha256": "f4639c6cffaf77ec18900ba4e622456ac3522947994e20023662b647a75f34a3"
       },
       {
         "path": "Assets/Scripts/ShoperSkills.cs",
         "sha256": "394980ef3e3e8c3d1f7a7f07ba32ce08ebd4dacd4414d85d6002d5b26a81a3ee"
       },
       {
+        "path": "Assets/Scripts/ShoperSkills.cs.meta",
+        "sha256": "e1d0596c74427497ad31f5e59379dce07a7f7f1e4c5d1bdb06765511bf1869b7"
+      },
+      {
         "path": "Assets/Scripts/Slime.cs",
         "sha256": "002005f6ae073d13c9328faf62c2f2fb6d8f40b9be45f8b3df241f2a02e63127"
+      },
+      {
+        "path": "Assets/Scripts/Slime.cs.meta",
+        "sha256": "20b0c15348c2d81e1388d0dcb8b9e175fd165d3ace6b5f01eca85b1a116b1598"
+      },
+      {
+        "path": "Assets/Scripts/Sounds.meta",
+        "sha256": "55740f2afaaf41803123f62a788c9a158f933ab576758b0a8422ca01337a3eaf"
       },
       {
         "path": "Assets/Scripts/Sounds/Sounds.cs",
         "sha256": "3c7c67333bf64288792995ead4430832f5457c9b7a4447473b704e57b62c6889"
       },
       {
+        "path": "Assets/Scripts/Sounds/Sounds.cs.meta",
+        "sha256": "981a72fcfff4adfe528ff4f315fcf2bd8b65e8ecb8852edf5b0ec31ef142839c"
+      },
+      {
+        "path": "Assets/Scripts/Ui.meta",
+        "sha256": "1bd7c0813ec0f283ebe4ecabb626a85b15cc67f54e183ffa4c312bad55cbb2ac"
+      },
+      {
         "path": "Assets/Scripts/Ui/DamageNumbers.cs",
         "sha256": "2ada6f8de9babf6debefdd51419aa91be2ab6eed85baf26442215364f440ab67"
+      },
+      {
+        "path": "Assets/Scripts/Ui/DamageNumbers.cs.meta",
+        "sha256": "92709d91d8b0da3f930613d2af7a3ca9a4902642122278159299aad3747d71c6"
       },
       {
         "path": "Assets/Scripts/Ui/Kursorchik.cs",
         "sha256": "ac195270493cc059ac01bb57dc1a1b19aae4993fb265d8b50e83b27faec5162c"
       },
       {
+        "path": "Assets/Scripts/Ui/Kursorchik.cs.meta",
+        "sha256": "66fef1abf5c59d76a8a810545fb14406e7c5613db321d2e27cd5c2018f57befc"
+      },
+      {
+        "path": "Assets/Scripts/Ui/LanguageSelector.cs",
+        "sha256": "0883ab3c591f4baea2b2993f4b1219a06c9e81cb3d1d0914492a390fed46d96d"
+      },
+      {
+        "path": "Assets/Scripts/Ui/LanguageSelector.cs.meta",
+        "sha256": "3966203d92f57aeddb7429fb66fcf442e41fd022633c5ec87eb23d0b32a85495"
+      },
+      {
         "path": "Assets/Scripts/Ui/LeaderboardRow.cs",
-        "sha256": "870c73f0242c22072046c9fd8a2d5e732c1789155bbf71f6b033255b858d5663"
+        "sha256": "ef0a50cc1a7e76c2b011c724ad0bc68843d4d831bed50a6b647c30117a916b85"
+      },
+      {
+        "path": "Assets/Scripts/Ui/LeaderboardRow.cs.meta",
+        "sha256": "757217226119d8f7a256debf6845cfb4869077b49e338fdf129f571f58cf7d12"
       },
       {
         "path": "Assets/Scripts/Ui/MobileControls.cs",
         "sha256": "e5f9b871e37e2a656eb4e28c579ec075023692f3f1ae62538ca9fd29b650bf63"
       },
       {
+        "path": "Assets/Scripts/Ui/MobileControls.cs.meta",
+        "sha256": "83a574307b4f004ee1f2202c1f75699da41836ec07da9078b868f79f991f8f20"
+      },
+      {
         "path": "Assets/Scripts/Ui/Stats.cs",
         "sha256": "7c4d36c182fb047d7054fa884dcaf168d9645fd1139354bc189ef33e6df36b6c"
+      },
+      {
+        "path": "Assets/Scripts/Ui/Stats.cs.meta",
+        "sha256": "f644b6e75057ed9e7adddc3ca876f1d68206dae3ae7475e139f86e1274eb4a49"
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.Guided.cs",
         "sha256": "5217f4417f2a606bb7467833bdc048b4e75988963b8dc1f769b9f1631df7365f"
       },
       {
+        "path": "Assets/Scripts/Ui/TipsManager.Guided.cs.meta",
+        "sha256": "fa17d9601258bc5eab5de15e02165e1916579b63053fe1569fe22dcdd1560626"
+      },
+      {
         "path": "Assets/Scripts/Ui/TipsManager.View.cs",
-        "sha256": "b9ce3072ce9fc86c3b2584105a4e6943e54bf4cd235f78218099741efd96f291"
+        "sha256": "0cb7f48f5907d3b636bbdaac27686d5f5b8654b995f398b2d4a50360eb20480e"
+      },
+      {
+        "path": "Assets/Scripts/Ui/TipsManager.View.cs.meta",
+        "sha256": "5edbd1a267aa6e19fb0816a3c714515f55ddc6293273108b2c3a3508945aa3c1"
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.cs",
         "sha256": "617bf0e3795e490f1a4d82219746528a361c1ae6bff6c6a64b0407a2f142c854"
       },
       {
+        "path": "Assets/Scripts/Ui/TipsManager.cs.meta",
+        "sha256": "ff908c0d86e3258f8dede310fc34b026e02962fc81908747d6b9c4ad585533e6"
+      },
+      {
         "path": "Assets/Scripts/Ui/TipsTrigger.cs",
         "sha256": "78dd455360389e2a6277d558a8cd246a3a844cfaae5260404915e92efa4d6dbf"
+      },
+      {
+        "path": "Assets/Scripts/Ui/TipsTrigger.cs.meta",
+        "sha256": "c373e7299a5f8a1282458d43e6e087b21afab894a768fd96f44686bb31d9183e"
       },
       {
         "path": "Assets/Scripts/Ui/TopPlayersPanel.cs",
         "sha256": "320168435b8d7872929945bfe9eaedd73f9ffbac348bbd4b56046273eacaeaea"
       },
       {
+        "path": "Assets/Scripts/Ui/TopPlayersPanel.cs.meta",
+        "sha256": "0072d10f6fd27b9be267ffa2f8890850fd164467d7627cb084b9478757dede5c"
+      },
+      {
         "path": "Assets/Scripts/Ui/TouchControl.cs",
         "sha256": "006d8808c94421168ae49e1368aab4f78f2f9648739300b496fb45109f700fe9"
       },
       {
+        "path": "Assets/Scripts/Ui/TouchControl.cs.meta",
+        "sha256": "c77857e56cd122e52f293260b519978e231f5190d4a1e823b3eee17a1357892d"
+      },
+      {
         "path": "Assets/Scripts/Ui/Ui.cs",
-        "sha256": "893591e391ea1bdd8f397e894b6b2145d2d572e39130e0ef2c8d3d48a82ac29b"
+        "sha256": "9a1eb74fed4b5fd738d8ff3f28b74891489d8a309110fc9ebc30638b0f3e2d51"
+      },
+      {
+        "path": "Assets/Scripts/Ui/Ui.cs.meta",
+        "sha256": "edacc53ef4fb6ededf7a8dfe898679d38ad08e90fc55e2ebe05d5e6b2e028d27"
+      },
+      {
+        "path": "Assets/Scripts/UiMenu.meta",
+        "sha256": "566a82948b5ef6d95fb9bfc5eff85dc92a88741740e1cff0b82ed4c242d092ea"
       },
       {
         "path": "Assets/Scripts/UiMenu/RandomActivator.cs",
         "sha256": "2c4a48472451b60e7c336a0e02203efc33349f23a6a0e127cb4bd6e47f194db9"
       },
       {
+        "path": "Assets/Scripts/UiMenu/RandomActivator.cs.meta",
+        "sha256": "e34e2e7e68324a21646730c88c60c3e32a5dbfba2425d41184290d597ce22854"
+      },
+      {
         "path": "Assets/Scripts/UiMenu/RandomBackgroundSwitcher.cs",
         "sha256": "41ac6d0813396a5aa305b166f97ed785437f8c65a77d518af295d0015f384ed6"
       },
       {
+        "path": "Assets/Scripts/UiMenu/RandomBackgroundSwitcher.cs.meta",
+        "sha256": "83f61e7ef49012746c0134956fd4ed2fe2ece6ff242499635a87e35738a53639"
+      },
+      {
         "path": "Assets/Scripts/UiMenu/UserDisplay.cs",
-        "sha256": "724561286f6787069241ba5c1c07dc6ad77caa1cd49816439bc394ab341da860"
+        "sha256": "13d52dd2ec2f8c28beffb96b3b4544ed60203622e188bec84e63a1a0853e662e"
+      },
+      {
+        "path": "Assets/Scripts/UiMenu/UserDisplay.cs.meta",
+        "sha256": "8cbb1e27aed67c3ee187d18bcf56d975b580058a45129e55e5f722be0fcb175c"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs",
         "sha256": "94bd938ad5b89be26e6359e8237f6f7e43337842969fcef34a986d4945758dbf"
       },
       {
+        "path": "Assets/Scripts/WaveSpawner.cs.meta",
+        "sha256": "e8a5276a66e27601e6424570af52754d714999c4264b9a37d7e7b538fd0d9bad"
+      },
+      {
+        "path": "Assets/Scripts/Yandex.meta",
+        "sha256": "7d710c9145717021f6157216c7324457b8c674f601f4702078bb01d4bb25a643"
+      },
+      {
         "path": "Assets/Scripts/Yandex/AndroidTestPlatform.cs",
-        "sha256": "689127b95395f3def223c160a53e9b2775a05c5a8e2fe7c55b95360120d247d7"
+        "sha256": "63a108af8479da5b0481465c0219289f7031b2f00c29c278e360c0b2951de026"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/AndroidTestPlatform.cs.meta",
+        "sha256": "6de10c21f1224026d6b4c4280849a3af01cef4cfee544d69ed03f883ef57291a"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/GameLocalization.cs",
+        "sha256": "9b8bfaa71238cacb9a9bf07ad8f1656f99eb76ead58a646b65102118cc2227ba"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/GameLocalization.cs.meta",
+        "sha256": "6db3afa5a51b70098daacb28e8b8c1a4a815d3b39d716108bf23e84959f1f1c1"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/GameLocalization.jslib",
+        "sha256": "417cdfc219372f9a8de5c2e87d21b82a1ae332a5b66e290c04a40d04411cc36b"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/GameLocalization.jslib.meta",
+        "sha256": "280367d386ec4150733aaa60a8894d98b1015fdc9e7173e8752219484affda16"
       },
       {
         "path": "Assets/Scripts/Yandex/GameMonetization.cs",
         "sha256": "60fe79ce40a19133eb2ddcf86591c5c389ab6d21c6c08507ebb0784b2978ed8a"
       },
       {
+        "path": "Assets/Scripts/Yandex/GameMonetization.cs.meta",
+        "sha256": "ae25ea12507c02b3de1efacdb7c298767588429403093070d497b4599604a6eb"
+      },
+      {
         "path": "Assets/Scripts/Yandex/GameProgress.cs",
         "sha256": "9ae1ab7f135393075d05b874a58e9438000cd487531060386a05c98982bfd111"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/GameProgress.cs.meta",
+        "sha256": "70d8536bc599a4a6c8266d5bf968db720fc1f30c376daa6b248c8d9062b76868"
       },
       {
         "path": "Assets/Scripts/Yandex/GameSavesYG.cs",
         "sha256": "159b847d86621d602e111ad72d3b3e304e6ee0690b6be06e896f5c31395d4b34"
       },
       {
+        "path": "Assets/Scripts/Yandex/GameSavesYG.cs.meta",
+        "sha256": "5321b4254a5de469b41c43ea50913cfc95d499a2c74087d61a0c167778722f39"
+      },
+      {
         "path": "Assets/Scripts/Yandex/MainMenuController.cs",
-        "sha256": "9c30a1aed94f0743e999a3c7ffdfd6af927a929f6364f416acc78380f09cc4fa"
+        "sha256": "ddcc99f4f5df158ed87b5905459f778b741fb3136fd1c0ba21cb1c8845b86e44"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/MainMenuController.cs.meta",
+        "sha256": "af0c2623ec043b33aae1493a3a5095b5642d9c5db7259ed34dc09699f196d748"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/link.xml",
+        "sha256": "794758e941f580a3d7a2aec1ce2f9ff2ea99c55c309d43fd06e5ce247e337251"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/link.xml.meta",
+        "sha256": "7aaf39cd430764dacb5192f67b94d1c2689134981bb94c9e5f45119e768d70d6"
       },
       {
         "path": "Assets/Sprits/achievements.png",
@@ -292,6 +604,22 @@
       {
         "path": "Assets/Sprits/achievements.png.meta",
         "sha256": "35e0698b0e1b4a11e8c415b39dd8080e2feaa0dcaa3948b12aa84f8e2169c839"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/LiberationSans-OFL.txt",
+        "sha256": "37f8552e9a874ec10710dc0ede6a9adf168e6609fbd02a507f35629373b85a48"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/LiberationSans-OFL.txt.meta",
+        "sha256": "0d7602ce750d947d4476f1d090327f0476d6ea74e5036be34b2b90efe916a10b"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+        "sha256": "e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta",
+        "sha256": "e2e35a015703584fb119355fa02631764d111c3e112d32519801d46bd697b596"
       },
       {
         "path": "Assets/UI/ForestGarrison/Medals.meta",
@@ -330,44 +658,36 @@
         "sha256": "ae8181d15d164c97e90b4e409ef15f771bce1cad07c8663c776e9af81429600f"
       },
       {
-        "path": "ProjectSettings/EditorBuildSettings.asset",
-        "sha256": "3613fdc0d371519c81d86e774db35a86a14018468f09f90c2e963a13bb9b7cfc"
-      },
-      {
-        "path": "Assets/StreamingAssets/ThirdParty/LiberationSans-OFL.txt",
-        "sha256": "37f8552e9a874ec10710dc0ede6a9adf168e6609fbd02a507f35629373b85a48"
-      },
-      {
-        "path": "Assets/StreamingAssets/ThirdParty/LiberationSans-OFL.txt.meta",
-        "sha256": "0d7602ce750d947d4476f1d090327f0476d6ea74e5036be34b2b90efe916a10b"
-      },
-      {
-        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
-        "sha256": "b3563fea314e22223b82616c7e939e5271899515b48d8c25a4b1a20e2d705bc0"
-      },
-      {
-        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Editor/CopyCode/CloudStorage_js.js",
-        "sha256": "c5220fe811fdb29698d0b126b0614dcab003a9ea49d0c566c5738924568515e8"
-      },
-      {
         "path": "Assets/WebGLTemplates/YandexGames/index.html",
-        "sha256": "6536c04ada770a66da8184797635169e359e8e42016116d2857a52ce19820df2"
+        "sha256": "07e870ea5a5a14b9b4f4fe52aa89ccb94cde2817e574e727ed237d7390449910"
+      },
+      {
+        "path": "Assets/WebGLTemplates/YandexGames/index.html.meta",
+        "sha256": "a8166081a8d2acb57a1de9e5a1d09e21061fc48826eba400ff2661e44430915e"
       },
       {
         "path": "Assets/WebGLTemplates/YandexGames/style.css",
         "sha256": "d2eaa8c3cbf0934e50c2a09b88e7d38fd068c2dbbd24c58d5f988c755234b065"
       },
       {
-        "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
-        "sha256": "e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49"
+        "path": "Assets/WebGLTemplates/YandexGames/style.css.meta",
+        "sha256": "1c9d6c6b609c7782971cc5187c1ebe9d99c641aba8c6e7db38be2f33ee0b56bc"
       },
       {
-        "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta",
-        "sha256": "e2e35a015703584fb119355fa02631764d111c3e112d32519801d46bd697b596"
+        "path": "Assets/WebGLTemplates/YandexGames/thumbnail.png",
+        "sha256": "32af03c5677fb2ce78860853d345361bd6d374a90faae8f184715adcbed11b1f"
+      },
+      {
+        "path": "Assets/WebGLTemplates/YandexGames/thumbnail.png.meta",
+        "sha256": "ce4048fc92194137f934ea64e454ea082dbd968e8ac3e21b501a014e51ecc8f4"
+      },
+      {
+        "path": "ProjectSettings/EditorBuildSettings.asset",
+        "sha256": "3613fdc0d371519c81d86e774db35a86a14018468f09f90c2e963a13bb9b7cfc"
       }
     ]
   },
-  "sourceSettingsSha256": "0d8a65e7ee86b59a9e57b3f61d605c8cb286f4bceee23508f0827f754905d645",
+  "sourceSettingsSha256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
   "buildSettingsSha256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
   "validationLogs": [
     "Builds/RatingValidation/boss-repeat-checks-final.log",
@@ -375,13 +695,15 @@
     "Builds/RatingValidation/release-wave-zero-checks.log",
     "Builds/RatingValidation/release-webgl-build.log",
     "Builds/ReleaseChecks20261015/cloud-restore-checks.log",
-    "Builds/ReleaseChecks20261015/cloud-webgl-build.log"
+    "Builds/ReleaseChecks20261015/cloud-webgl-build.log",
+    "Builds/RatingValidation/localization-checks-visual.log",
+    "Builds/RatingValidation/localization-webgl-build.log"
   ],
-  "uploadedToYandex": true,
+  "uploadedToYandex": false,
   "previousUploadedArchive": {
-    "sha256": "4b529bf8d62574d7e6d40f5c556d5b9c5b91f7648513c816648340859344cdab",
-    "version": "0.0.0.9",
-    "fileId": "13997678"
+    "sha256": "fda6c8818e94387cfd5f2073bbb9564174497a6983c12d7b10453b6d97c5a603",
+    "version": "0.0.0.10",
+    "fileId": "14011980"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -409,7 +731,7 @@
     "orientation": "landscape",
     "ageRating": "12+",
     "moderationSubmitted": false,
-    "moderationBlocker": "Console requires an active ELS or RSYA contract.",
+    "moderationBlocker": null,
     "card": {
       "iconSaved": true,
       "coverSaved": true,
@@ -552,7 +874,10 @@
       "accountIdsLogged": false,
       "liveCauseConfirmed": false
     },
-    "uploadProcessedAtConsole": "12:32:03 16/10/2026"
+    "uploadProcessedAtConsole": "12:32:03 16/10/2026",
+    "monetizationLastObserved": "Connected; submit for moderation button enabled in console on 2026-10-16.",
+    "ageRatingUserReported": "6+",
+    "ageRatingObservationNote": "12+ was the last live observation; owner later reported changing to 6+. Not modified by this change."
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -562,9 +887,7 @@
     "Detect resolved leaderboard JSON error responses, record response structure without player data, and retry missing entry lookup once after 60 seconds without another score write. Only generated index.html changed; compiled Unity files are unchanged.",
     "Added cloud load/save revision and gameplay counter diagnostics without account IDs to distinguish remote save state from local backup selection. Only generated index.html changed; compiled Unity files are unchanged."
   ],
-  "postBuildPackaging": [
-    "Fresh Unity WebGL build: cloud confirmed-base comparison, camp spawn, bundled Cyrillic font on legacy texts, persistent source-template portrait guard. Generated files copied and zipped without binary patching."
-  ],
+  "postBuildPackaging": [],
   "cloudRestoreValidation": {
     "unitCases": 8,
     "result": "Passed",
@@ -600,5 +923,26 @@
     "firstAttemptWasmDownloadError": true,
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
+  },
+  "localVersion": "0.0.0.11",
+  "uploadLimitation": "Local browser use is disabled in Work settings; console draft remains the last observed 0.0.0.10.",
+  "localization": {
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "catalogEntries": 455,
+    "selector": "auto / ru / en",
+    "runtimeUnityChecks": "PASS",
+    "templateNodeTestsPassed": 9,
+    "guidePcAndTouchTranslated": true,
+    "liveBrowserChecked": false,
+    "documentation": "Publishing/LOCALIZATION.md"
+  },
+  "shopMusic": {
+    "unityRuntimeVerified": true,
+    "musicSamplesAdvanceInTrade": true,
+    "sdkPauseRespected": true,
+    "realPlatformVideoRecheck": false
   }
 }

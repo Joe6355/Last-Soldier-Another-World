@@ -318,6 +318,7 @@ public class Shop : Sounds
             view.ButtonText = view.Button.GetComponentInChildren<TextMeshProUGUI>();
             view.Button.onClick.AddListener(() => ClaimAchievement(index));
             achievementViews.Add(view);
+            GameLocalization.Register(card);
         }
     }
 

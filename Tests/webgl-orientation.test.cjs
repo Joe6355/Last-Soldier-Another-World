@@ -25,7 +25,8 @@ function events(target = {}) {
 }
 
 function fixture({ mobile = true, type = 'portrait-primary', width = 900, height = 420,
-  screenWidth = 420, screenHeight = 900, legacy, coarse = mobile, touch = mobile ? 5 : 0 } = {}) {
+  screenWidth = 420, screenHeight = 900, legacy, coarse = mobile, touch = mobile ? 5 : 0,
+  language = 'ru', languageChoice = null } = {}) {
   const messages = [], frames = [], timers = [], appended = [];
   let focusCount = 0;
   const canvas = { style: {}, focus() { focusCount++; } };
@@ -33,9 +34,10 @@ function fixture({ mobile = true, type = 'portrait-primary', width = 900, height
   const elements = {
     '#unity-container': { style: {} }, '#unity-canvas': canvas, '#orientation-cover': cover,
     '#loading-cover': { style: {} }, '#unity-progress-bar-empty': { style: {} },
-    '#unity-progress-bar-full': { style: {} }, '.spinner': { style: {} }
+    '#unity-progress-bar-full': { style: {} }, '.spinner': { style: {} },
+    '#orientation-title': { textContent: '' }, '#orientation-description': { textContent: '' }
   };
-  const document = events({ hidden: false, activeElement: null,
+  const document = events({ hidden: false, activeElement: null, documentElement: {},
     querySelector: selector => elements[selector],
     createElement: () => ({ style: {} }), body: { appendChild: element => appended.push(element) } });
   const orientation = events({ type });
@@ -44,14 +46,15 @@ function fixture({ mobile = true, type = 'portrait-primary', width = 900, height
     matchMedia: () => ({ matches: coarse }), visualViewport: events({}), location: { hostname: 'test.invalid' } });
   window.top = window;
   const ctx = vm.createContext({ window, document,
-    navigator: { userAgent: mobile ? 'Android Chrome' : 'Desktop Chrome', maxTouchPoints: touch },
+    navigator: { userAgent: mobile ? 'Android Chrome' : 'Desktop Chrome', maxTouchPoints: touch, language },
+    localStorage: { getItem: () => languageChoice },
     Element: function Element() {}, requestAnimationFrame: callback => frames.push(callback),
     setTimeout: (callback, delay) => timers.push({ callback, delay }),
     console: { log() {}, error() {} } });
   vm.runInContext(source, ctx, { filename: 'YandexGames/index.html' });
   const run = code => vm.runInContext(code, ctx);
   const flushFrames = () => { while (frames.length) frames.shift()(); };
-  return { ctx, run, window, document, orientation, cover, messages, timers, appended,
+  return { ctx, run, window, document, orientation, cover, messages, timers, appended, elements,
     focusCount: () => focusCount, flushFrames,
     ready() {
       ctx.testMessages = messages;
@@ -72,6 +75,22 @@ test('portrait phone shows a readable guard before Unity loads, even inside a la
   assert.equal(f.focusCount(), 0, 'Orientation cover cannot lose focus to the underlying game');
   f.ready();
   assert.equal(f.lastPause(), 'true', 'A portrait startup pauses as soon as Unity announces readiness');
+});
+
+test('orientation text uses a saved language before Unity, then SDK language in automatic mode', () => {
+  const english = fixture({ language: 'ru-RU', languageChoice: 'en' });
+  assert.equal(english.elements['#orientation-title'].textContent, 'Rotate your phone');
+  assert.equal(english.document.documentElement.lang, 'en');
+  english.run("ysdk = { environment: { i18n: { lang: 'ru' } } }; SetGameLanguage('en');");
+  assert.equal(english.elements['#orientation-title'].textContent, 'Rotate your phone');
+  english.run("SetGameLanguage('auto');");
+  assert.equal(english.elements['#orientation-title'].textContent, 'Поверните телефон');
+  english.run("ysdk.environment.i18n.lang = 'tr'; SetGameLanguage('auto');");
+  assert.equal(english.elements['#orientation-description'].textContent, 'Play in landscape mode.');
+  english.run("SetGameLanguage('ru', 'en');");
+  assert.equal(english.elements['#orientation-title'].textContent, 'Поверните телефон');
+  const automatic = fixture({ language: 'en-US' });
+  assert.equal(automatic.document.documentElement.lang, 'en');
 });
 
 test('real landscape clears the guard even when the iframe viewport is portrait', () => {

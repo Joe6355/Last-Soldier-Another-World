@@ -14,12 +14,27 @@ public sealed class LeaderboardRow : MonoBehaviour
     [SerializeField] private Image background;
     [SerializeField] private Color normalColor = new Color(0.08f, 0.17f, 0.15f, 1f);
     [SerializeField] private Color currentPlayerColor = new Color(0.14f, 0.27f, 0.23f, 1f);
+    private string playerName;
+    private int playerRank;
+    private bool placeholder, anonymous;
+
+    private void Awake() { GameLocalization.Protect(nickname); GameLocalization.Register(gameObject); }
+    private void OnEnable() { GameLocalization.Changed += RefreshNickname; RefreshNickname(); }
+    private void OnDisable() => GameLocalization.Changed -= RefreshNickname;
+    private void RefreshNickname()
+    {
+        if (nickname == null) return;
+        nickname.text = placeholder ? "—  " + GameLocalization.Text("Игрок")
+            : playerRank + ". " + (anonymous ? GameLocalization.Text("Игрок") : playerName);
+    }
 
     public void Bind(LBPlayerData player, Stats localStats)
     {
-        string name = string.IsNullOrWhiteSpace(player.name) || player.name == InfoYG.ANONYMOUS ? "Игрок" : player.name;
+        placeholder = false;
+        anonymous = string.IsNullOrWhiteSpace(player.name) || player.name == InfoYG.ANONYMOUS;
+        playerName = player.name; playerRank = player.rank;
         nickname.richText = false;
-        nickname.text = player.rank + ". " + name;
+        RefreshNickname();
         mmr.text = "MMR " + Math.Max(0, player.score).ToString("N0");
         medal.color = Color.white;
         medal.sprite = localStats != null ? localStats.MedalForMmr(Math.Max(0, player.score)) : null;
@@ -42,7 +57,8 @@ public sealed class LeaderboardRow : MonoBehaviour
     public void BindPlaceholder(Stats localStats)
     {
         nickname.richText = false;
-        nickname.text = "—  Игрок";
+        placeholder = true;
+        RefreshNickname();
         statistics.text = "Волны: —   Враги: —\nЭлита: —   Боссы: —";
         mmr.text = "MMR —";
         medal.sprite = localStats != null ? localStats.MedalForMmr(0) : null;
