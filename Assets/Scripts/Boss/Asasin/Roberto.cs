@@ -241,19 +241,22 @@ public class Roberto : Sounds
         ownedAttacks.Clear();
         foreach (var enemy in summonedEnemies) if (enemy != null) Destroy(enemy);
         summonedEnemies.Clear();
+        // The dedicated boss uses a shared player marker; only owned visuals are detached.
+        if (regularEnemy || ownedMarker != null) markerAnimator = null;
         if (ownedMarker != null) Destroy(ownedMarker);
         ownedMarker = null;
-        markerAnimator = null;
     }
 
     private void OnDisable()
     {
-        if (regularEnemy) ClearOwnedAttacks();
+        StopAllCoroutines();
+        CancelInvoke();
+        ClearOwnedAttacks();
     }
 
     private void OnDestroy()
     {
-        if (regularEnemy) ClearOwnedAttacks();
+        ClearOwnedAttacks();
     }
 
     private void Start()
@@ -490,7 +493,7 @@ public class Roberto : Sounds
             {
                 if (remoteAttackPrefab == null) continue;
                 GameObject instance = Instantiate(remoteAttackPrefab, spawnPosition.position, spawnPosition.rotation);
-                if (regularEnemy) TrackOwnedAttack(instance);
+                TrackOwnedAttack(instance);
                 StartCoroutine(AnimateRemoteAttack(instance));
                 
             }
@@ -668,20 +671,11 @@ public class Roberto : Sounds
         if (hpBarContainer != null)
             hpBarContainer.SetActive(false);
 
-        // Уничтожаем все призванные мобы
-        foreach (GameObject enemy in summonedEnemies)
-        {
-            if (enemy != null)
-                Destroy(enemy);
-        }
-        summonedEnemies.Clear();
-
-        if (regularEnemy)
-        {
-            StopAllCoroutines();
-            ClearOwnedAttacks();
-            if (regularLootPrefab != null) Instantiate(regularLootPrefab, transform.position, Quaternion.identity);
-        }
+        StopAllCoroutines();
+        CancelInvoke();
+        ClearOwnedAttacks();
+        if (regularEnemy && regularLootPrefab != null)
+            Instantiate(regularLootPrefab, transform.position, Quaternion.identity);
 
         Destroy(gameObject, 0.8f);
         PlaySound(sounds[2], volume: 1, destroyed: true);

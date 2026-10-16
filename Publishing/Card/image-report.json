@@ -1,0 +1,34 @@
+[
+  {
+    "file": "icon.png",
+    "source": "icon-source.png",
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 278018,
+    "sha256": "621cf7ea5ff4a4bf129d17d6e5e4f926870808629ed4b297c24ee66703084146",
+    "conversion": "center fit and nearest-neighbor resize"
+  },
+  {
+    "file": "cover.png",
+    "source": "cover-source.png",
+    "sourceSize": [
+      1635,
+      962
+    ],
+    "size": [
+      800,
+      470
+    ],
+    "mode": "RGB",
+    "bytes": 528302,
+    "sha256": "4e545489942aac1d0c6a0e8bcbda2a9c62fc0d0b09ea8a75260876506c6db319",
+    "conversion": "center fit and nearest-neighbor resize"
+  }
+]

@@ -14,6 +14,8 @@ public sealed class GameProgress : MonoBehaviour
 {
     public const string LeaderboardName = "mmr";
     private const string BackupPrefix = "LastSoldier.Progress.v1.";
+    private const string CloudBasePrefix = "LastSoldier.CloudBase.v1.";
+    private const string RecoveryPrefix = "LastSoldier.Recovery.v1.";
     private const float CloudInterval = 10f;
     private static GameProgress instance;
     public static bool IsReady { get; private set; }
@@ -26,6 +28,7 @@ public sealed class GameProgress : MonoBehaviour
     private string owner;
     private int sentRevision;
     private string lastSnapshot;
+    private string sentCloudSnapshot;
     private float nextRating;
     private int submittedRating = -1;
     private bool ratingSending;
@@ -95,7 +98,17 @@ public sealed class GameProgress : MonoBehaviour
         SavesYG backup = ReadBackup(newOwner);
 
         if (cloudValid && cloudReadOk)
-            YG2.saves = backup != null && backup.cloudBaseKnown && backup.idSave > cloud.idSave ? backup : cloud;
+        {
+            string cloudSnapshot = JsonUtility.ToJson(cloud);
+            string knownBase = LocalStorage.GetKey(CloudBasePrefix + newOwner, "");
+            bool restorePending = CanRestorePendingBackup(backup, cloud, knownBase);
+            // Counters from independently played devices are not a global clock.
+            // Keep the old device copy before accepting a changed remote snapshot.
+            if (!restorePending && backup != null && JsonUtility.ToJson(backup) != cloudSnapshot)
+                LocalStorage.SetKey(RecoveryPrefix + newOwner, JsonUtility.ToJson(backup));
+            YG2.saves = restorePending ? backup : cloud;
+            LocalStorage.SetKey(CloudBasePrefix + newOwner, cloudSnapshot);
+        }
         else if (backup != null)
             YG2.saves = backup;
         else if (cloudEmpty && cloudReadOk && AuthPending && wasGuest)
@@ -121,6 +134,13 @@ public sealed class GameProgress : MonoBehaviour
         submittedRating = -1;
         ratingSending = false;
         Changed?.Invoke();
+    }
+
+    private static bool CanRestorePendingBackup(SavesYG backup, SavesYG cloud, string knownBase)
+    {
+        return backup != null && cloud != null && backup.ownerId == cloud.ownerId
+            && backup.cloudBaseKnown && backup.idSave > cloud.idSave
+            && !string.IsNullOrEmpty(knownBase) && knownBase == JsonUtility.ToJson(cloud);
     }
 
     private static int ReadCloudState()
@@ -295,12 +315,14 @@ public sealed class GameProgress : MonoBehaviour
             return;
         nextCloudSave = Time.unscaledTime + CloudInterval;
         sentRevision = YG2.saves.idSave;
+        sentCloudSnapshot = JsonUtility.ToJson(YG2.saves);
 #if UNITY_WEBGL && !UNITY_EDITOR
         sending = true;
         YG2.iPlatform.SaveCloud();
 #elif UNITY_EDITOR
         YG.Insides.YGInsides.SaveEditor();
         cloudDirty = false;
+        LocalStorage.SetKey(CloudBasePrefix + owner, sentCloudSnapshot);
 #endif
     }
 
@@ -309,6 +331,8 @@ public sealed class GameProgress : MonoBehaviour
         if (instance == null) return;
         var ack = JsonUtility.FromJson<SaveReceipt>(receipt);
         if (ack.ownerId != instance.owner || ack.idSave != instance.sentRevision) return;
+        if (!string.IsNullOrEmpty(instance.sentCloudSnapshot))
+            LocalStorage.SetKey(CloudBasePrefix + instance.owner, instance.sentCloudSnapshot);
         instance.sending = false;
         instance.cloudDirty = YG2.saves.idSave != ack.idSave;
     }

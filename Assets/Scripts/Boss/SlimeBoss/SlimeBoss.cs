@@ -181,8 +181,7 @@ public class SlimeBoss : Sounds
     {
         if (prefab == null) return;
         GameObject shot = Instantiate(prefab, firePoint.position, firePoint.rotation);
-        if (!regularEnemy) return;
-        WaveSpawner.ScaleEnemyProjectile(shot, waveDamageMultiplier, waveProjectileSpeedMultiplier);
+        if (regularEnemy) WaveSpawner.ScaleEnemyProjectile(shot, waveDamageMultiplier, waveProjectileSpeedMultiplier);
         ownedProjectiles.RemoveAll(projectile => projectile == null);
         ownedProjectiles.Add(shot);
         waveOwner?.TrackEnemyProjectile(shot);
@@ -196,14 +195,14 @@ public class SlimeBoss : Sounds
 
     private void OnDisable()
     {
-        if (!regularEnemy) return;
+        StopAllCoroutines();
         CancelInvoke();
         ClearOwnedProjectiles();
     }
 
     private void OnDestroy()
     {
-        if (regularEnemy) ClearOwnedProjectiles();
+        ClearOwnedProjectiles();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -281,7 +280,7 @@ public class SlimeBoss : Sounds
     private IEnumerator DeathSequence()
     {
         isDead = true;
-        if (regularEnemy) ClearOwnedProjectiles();
+        ClearOwnedProjectiles();
         anim.SetTrigger("Dead");
 
         yield return new WaitForSeconds(deathAnimationTime);

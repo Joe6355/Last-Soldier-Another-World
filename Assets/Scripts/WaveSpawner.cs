@@ -154,26 +154,19 @@ public class WaveSpawner : MonoBehaviour
         if (breakIndicator != null)
             breakIndicator.SetActive(false);
 
-        // Скрываем объекты босса для 10-й и 15-й волн
-        if (bossWave10 != null) bossWave10.SetActive(false);
-        if (bossHPBar10 != null) bossHPBar10.SetActive(false);
-        if (bossPlaceholder10 != null) bossPlaceholder10.SetActive(false);
-
-        if (bossWave15 != null) bossWave15.SetActive(false);
-        if (bossHPBar15 != null) bossHPBar15.SetActive(false);
-        if (bossPlaceholder15 != null) bossPlaceholder15.SetActive(false);
+        HideDedicatedBosses();
 
         // The dedicated bosses destroy themselves on death. Preserve inactive
         // templates before waves 10/15 so their later ordinary copies remain available.
         if (bossWave10 != null)
         {
-            regularSlimeTemplate = Instantiate(bossWave10, transform);
+            regularSlimeTemplate = Instantiate(bossWave10, transform, true);
             regularSlimeTemplate.name = "LateWaveSlimeTemplate";
             regularSlimeTemplate.SetActive(false);
         }
         if (bossWave15 != null)
         {
-            regularAssassinTemplate = Instantiate(bossWave15, transform);
+            regularAssassinTemplate = Instantiate(bossWave15, transform, true);
             regularAssassinTemplate.name = "LateWaveAssassinTemplate";
             regularAssassinTemplate.SetActive(false);
         }
@@ -269,6 +262,8 @@ public class WaveSpawner : MonoBehaviour
 
         if (breakIndicator != null)
             breakIndicator.SetActive(false);
+
+        HideDedicatedBosses();
 
         isWaveActive = true;
         isBreakActive = false;
@@ -509,15 +504,7 @@ public class WaveSpawner : MonoBehaviour
 
         ClearActiveEnemies();
 
-        // Скрываем объекты босса для 10-й волны
-        if (bossWave10 != null) bossWave10.SetActive(false);
-        if (bossHPBar10 != null) bossHPBar10.SetActive(false);
-        if (bossPlaceholder10 != null) bossPlaceholder10.SetActive(false);
-
-        // Скрываем босса для 15-й волны и его UI
-        if (bossWave15 != null) bossWave15.SetActive(false);
-        if (bossHPBar15 != null) bossHPBar15.SetActive(false);
-        if (bossPlaceholder15 != null) bossPlaceholder15.SetActive(false);
+        HideDedicatedBosses();
     }
 
     public void AbandonRun()
@@ -710,11 +697,43 @@ public class WaveSpawner : MonoBehaviour
 
     #region Boss на 10-й и 15-й волнах
 
+    private void HideDedicatedBosses()
+    {
+        if (bossWave10 != null) bossWave10.SetActive(false);
+        if (bossHPBar10 != null) bossHPBar10.SetActive(false);
+        if (bossPlaceholder10 != null) bossPlaceholder10.SetActive(false);
+        if (bossWave15 != null) bossWave15.SetActive(false);
+        if (bossHPBar15 != null) bossHPBar15.SetActive(false);
+        if (bossPlaceholder15 != null) bossPlaceholder15.SetActive(false);
+    }
+
+    private GameObject PrepareDedicatedBoss(bool slime)
+    {
+        GameObject template = slime ? regularSlimeTemplate : regularAssassinTemplate;
+        if (template == null) return null;
+        GameObject previous = slime ? bossWave10 : bossWave15;
+        if (previous != null)
+        {
+            previous.SetActive(false);
+            Destroy(previous);
+        }
+        // An inactive pristine copy restarts HP, timers, healing and death state.
+        // The template keeps the dedicated fight's original scene UI references.
+        GameObject boss = Instantiate(template, template.transform.position, template.transform.rotation);
+        boss.name = slime ? "SlimeBossWave10" : "AssassinBossWave15";
+        if (slime) bossWave10 = boss;
+        else bossWave15 = boss;
+        return boss;
+    }
+
     // Босс на 10-й волне (Слизь)
     private IEnumerator ActivateBossWave10()
     {
         // Подождём 1 секунду для визуального эффекта
         yield return new WaitForSeconds(1f);
+
+        if (!isWaveActive || currentWaveIndex != 9) yield break;
+        PrepareDedicatedBoss(true);
 
         if (bossWave10 != null)
             bossWave10.SetActive(true);
@@ -737,6 +756,9 @@ public class WaveSpawner : MonoBehaviour
     {
         // Подождём 1 секунду для визуального эффекта
         yield return new WaitForSeconds(1f);
+
+        if (!isWaveActive || currentWaveIndex != 14) yield break;
+        PrepareDedicatedBoss(false);
 
         if (bossWave15 != null)
             bossWave15.SetActive(true);

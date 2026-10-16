@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-15",
+  "applicationId": 623393,
+  "version": "0.0.0.6",
+  "runtimeBuildPath": "623393/yp391073bp4v0d0xr936pzc4noo2kmo2",
+  "sdkReadyMilliseconds": 13317,
+  "cloudProfile": {
+    "completedWaves": 19,
+    "kills": 128,
+    "mmr": 2028
+  },
+  "leaderboard": {
+    "entryVerified": false,
+    "logs": [
+      {
+        "level": "log",
+        "message": "%cSet Leaderboard: 2028 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T14:52:11.735Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/yp391073bp4v0d0xr936pzc4noo2kmo2/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "log",
+        "message": "%cLeaderboard availability check: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T14:52:11.736Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/yp391073bp4v0d0xr936pzc4noo2kmo2/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "log",
+        "message": "%cLeaderboard submission start: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T14:52:11.832Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/yp391073bp4v0d0xr936pzc4noo2kmo2/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "log",
+        "message": "%cLeaderboard submission response: type=undefined fields= code=NONE color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T14:52:11.910Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/yp391073bp4v0d0xr936pzc4noo2kmo2/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "log",
+        "message": "%cLeaderboard submission saved: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T14:52:11.910Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/yp391073bp4v0d0xr936pzc4noo2kmo2/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "warn",
+        "message": "Leaderboard stored entry check failed: code=UNKNOWN message=Api request error from https://games-sdk.yandex.ru/games/api/sdk/v1/leaderboard/player-entry: Failed to fetch",
+        "timestamp": "2026-10-15T14:52:18.509Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/yp391073bp4v0d0xr936pzc4noo2kmo2/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      }
+    ]
+  },
+  "console": {
+    "archiveFileId": "13973244",
+    "archiveProcessing": "Ready",
+    "moderationEnabled": false,
+    "moderationBlocker": "Active ELS or RSYA contract required"
+  },
+  "mobile": {
+    "connected": true,
+    "screenLocked": true,
+    "crossDeviceRoundTripVerified": false
+  },
+  "realAdvertisementOutcomesVerified": false,
+  "limitation": "Automatic pointer input did not activate Unity menu controls in this browser iframe. This observation is not a confirmed game defect; normal desktop input was previously checked by the owner.",
+  "localVerification": {
+    "sdkContractTests": "Passed",
+    "zipCrc": "Passed",
+    "archiveSha256": "3b78114330e042c4df6e89931ed1c74eaaa039ca5a6aaff268170a6e85dc012f",
+    "fileHashesMatched": 8,
+    "sourceHashesMatched": 79,
+    "unityRebuilt": false,
+    "reason": "Compiled sources unchanged; actual shipped archive verified."
+  }
+}

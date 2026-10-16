@@ -1,13 +1,50 @@
 async function SetLeaderboard(name, score, extraData) {
     try {
         if (!ysdk) throw new Error('SDK is unavailable');
+        LogStyledMessage(`Leaderboard availability check: name=${name} score=${score}`);
         if (ysdk.isAvailableMethod && !(await ysdk.isAvailableMethod('leaderboards.setScore')))
             throw new Error('Leaderboard submission is unavailable');
-        await ysdk.leaderboards.setScore(name, score, extraData);
+        LogStyledMessage(`Leaderboard submission start: name=${name} score=${score}`);
+        const result = await ysdk.leaderboards.setScore(name, score, extraData);
+        // The platform can resolve a JSON error body instead of rejecting it.
+        // Log only response structure and error tokens, never player data.
+        const objectResult = result !== null && typeof result === 'object';
+        const errorCode = objectResult ? result.code ?? result.reason ?? result.error?.code : undefined;
+        const errorToken = typeof errorCode === 'string' ? errorCode.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 96) : 'NONE';
+        LogStyledMessage(`Leaderboard submission response: type=${typeof result} fields=${objectResult ? Object.keys(result).join(',') : ''} code=${errorToken}`);
+        if (objectResult && (result.error || (result.reason && result.message))) {
+            const error = new Error('Leaderboard service returned an error response');
+            error.code = errorToken;
+            throw error;
+        }
+        LogStyledMessage(`Leaderboard submission saved: name=${name} score=${score}`);
         YG2Instance('GameRatingSaved', String(score));
     } catch (e) {
-        console.error('Set Leaderboard Error:', e?.message ?? e);
+        console.error('Set Leaderboard Error:', `code=${e?.code ?? 'UNKNOWN'} message=${e?.message ?? String(e)}`);
         YG2Instance('GameRatingFailed');
+        return;
+    }
+
+    // This diagnostic read must never turn a successful submission into a failure.
+    if (typeof ysdk?.leaderboards?.getPlayerEntry === 'function') {
+        try {
+            const entry = await ysdk.leaderboards.getPlayerEntry(name);
+            LogStyledMessage(`Leaderboard stored entry: name=${name} score=${entry.score} rank=${entry.rank}`);
+        } catch (e) {
+            console.warn('Leaderboard stored entry check failed:', `code=${e?.code ?? 'UNKNOWN'} message=${e?.message ?? String(e)}`);
+            if (e?.code === 'LEADERBOARD_PLAYER_NOT_PRESENT') {
+                // Read again without another score write to distinguish a delayed
+                // entry from an acknowledged write that did not persist.
+                setTimeout(async () => {
+                    try {
+                        const entry = await ysdk.leaderboards.getPlayerEntry(name);
+                        LogStyledMessage(`Leaderboard delayed stored entry: name=${name} score=${entry.score} rank=${entry.rank}`);
+                    } catch (error) {
+                        console.warn('Leaderboard delayed entry check failed:', `code=${error?.code ?? 'UNKNOWN'} message=${error?.message ?? String(error)}`);
+                    }
+                }, 60000);
+            }
+        }
     }
 }
 
@@ -32,11 +69,12 @@ function GetLeaderboard(nameLB, quantityTop, quantityAround, photoSize, auth) {
 
             return ysdk.leaderboards.getEntries(nameLB, {
                 quantityTop: quantityTop,
-                includeUser: auth,
+                includeUser: Boolean(auth),
                 quantityAround: quantityAround
             });
         })
         .then(res => {
+            LogStyledMessage(`Leaderboard entries received: name=${nameLB} count=${res.entries.length} ranks=${res.entries.map(entry => entry.rank).join(',')}`);
             let jsonPlayers = EntriesLB(res, photoSize);
             let combinedJson = { ...jsonEntries, ...jsonPlayers };
 

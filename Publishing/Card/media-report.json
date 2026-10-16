@@ -1,0 +1,123 @@
+{
+  "source": {
+    "file": "Builds/CardCapture/phone/lastsoldier-promo-20261012-231911.mp4",
+    "platform": "Android browser on Yandex Games",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bytes": 24823579,
+    "sha256": "75ec182feb7cb3a00596ab1292ffec08b1ab01529f2affe25224a1aabc1340f9",
+    "audio": false
+  },
+  "video": {
+    "file": "gameplay.mp4",
+    "platform": "Android browser",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "fps": 30,
+    "frameCount": 600,
+    "durationSeconds": 20,
+    "codec": "H264",
+    "pixelFormat": "yuv420p",
+    "audio": false,
+    "fastStart": true,
+    "bytes": 4224717,
+    "sha256": "03d83fd59f3d26992481b272793bdf29de8753f9f3849db114cd74f20e4fc546"
+  },
+  "export": {
+    "sourceCrop": {
+      "x": 50,
+      "y": 120,
+      "width": 1230,
+      "height": 528
+    },
+    "scale": [
+      1280,
+      550
+    ],
+    "pad": {
+      "width": 1280,
+      "height": 720,
+      "x": 0,
+      "y": 85
+    },
+    "activeGameAreaRatio": 0.7638888888888888,
+    "processing": "Crop platform header/left margin, nearest-neighbor scale, black letterbox, FPS conversion. Game HUD and game content retained."
+  },
+  "validation": {
+    "fullDecode": true,
+    "blackDetectGameArea": "No black segments detected",
+    "visualReview": "20 frames at one-second spacing; additional full-size frames at 0/5/10/15/19 seconds. No full-screen menus, death screen, platform or system UI in reviewed frames.",
+    "allFrameArenaContinuity": {
+      "frames": 600,
+      "minMeanGreen": 160.668,
+      "minCentralMeanGreen": 171.185
+    },
+    "limitation": "Early-wave recording has few simultaneous enemies; visual review samples frames and is not a manual review of every frame."
+  },
+  "screenshots": [
+    {
+      "file": "screenshot-mobile-shield.png",
+      "platform": "Android browser",
+      "sourceTimeSeconds": 5,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "bytes": 408198,
+      "sha256": "0da9363ae18ec6030ff8e2281735c04b2a95a63caffa97d09170d6e893d5952c"
+    },
+    {
+      "file": "screenshot-mobile-combat.png",
+      "platform": "Android browser",
+      "sourceTimeSeconds": 10,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "bytes": 435073,
+      "sha256": "1069d203c5a5bef4376255b7902e7778a57862edfaf196a329cc897a54dada3b"
+    },
+    {
+      "file": "screenshot-desktop-camp.jpg",
+      "platform": "PC local browser",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "format": "JPEG",
+      "bytes": 82977,
+      "sha256": "dbb07e1c17cbe2b2f63397c0099a44c9742b589899eeebcd741509e89c216c44",
+      "captureMethod": "CUA browser tab screenshot",
+      "source": "http://127.0.0.1:8770/game/index.html",
+      "sourceBuild": "Builds/YandexGames",
+      "sourceArchiveSha256": "cb6308596b3c15e7cdd6025db4ca3819411ca80fc07ee919bcdef5579b5d4bd2",
+      "captureReference": "Publishing/Card/screenshot-desktop-camp.jpg",
+      "validation": "JPEG verified, dimensions/mode checked; viewed at full size. No browser/system/platform UI; original game HUD retained. Renamed original mislabeled .png extension to .jpg; bytes and pixels unchanged."
+    },
+    {
+      "file": "screenshot-desktop-combat.jpg",
+      "platform": "PC local browser",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "format": "JPEG",
+      "bytes": 69277,
+      "sha256": "0b7a6e0a0ae35d4ce4f6844d5e9a86a02c9516d8ca11cafee1683d43956c3db6",
+      "captureMethod": "CUA browser tab screenshot",
+      "source": "http://127.0.0.1:8770/game/index.html",
+      "sourceBuild": "Builds/YandexGames",
+      "sourceArchiveSha256": "cb6308596b3c15e7cdd6025db4ca3819411ca80fc07ee919bcdef5579b5d4bd2",
+      "captureReference": "Builds/CardCapture/desktop-candidate.png",
+      "validation": "JPEG verified, dimensions/mode checked; viewed at full size. No browser/system/platform UI; original game HUD retained. Renamed original mislabeled .png extension to .jpg; bytes and pixels unchanged."
+    }
+  ]
+}

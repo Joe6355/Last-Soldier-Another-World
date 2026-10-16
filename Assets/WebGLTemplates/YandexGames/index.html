@@ -36,6 +36,14 @@
 </head>
 <body class="{{{ SPLASH_SCREEN_STYLE.toLowerCase() }}}">
 
+    <div id="orientation-cover" role="status" aria-live="polite" hidden>
+        <div class="orientation-card">
+            <div class="orientation-phone" aria-hidden="true"><span>↻</span></div>
+            <h1>Поверните телефон</h1>
+            <p>Для игры нужен альбомный режим.</p>
+        </div>
+    </div>
+
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
     </div>
@@ -77,6 +85,7 @@
         const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
         const progressBarFull = document.querySelector("#unity-progress-bar-full");
         const spinner = document.querySelector('.spinner');
+        const orientationCover = document.querySelector('#orientation-cover');
 
         const canFullscreen = (function () {
             for (const key of [
@@ -111,9 +120,55 @@
         let initYSDK = false;
         let initGame = false;
         let syncInit = false;
-        let isVisibility = true;
+        let isVisibility = !document.hidden;
         let isPausedGame = false;
+        let isOrientationBlocked = false;
         const NO_DATA = 'no data';
+
+        function IsMobileOrientationDevice() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+                || Boolean(navigator.userAgentData && navigator.userAgentData.mobile)
+                || (navigator.maxTouchPoints > 0 && typeof window.matchMedia === 'function'
+                    && window.matchMedia('(pointer: coarse)').matches)
+                || Boolean(ysdk && ysdk.deviceInfo && (ysdk.deviceInfo.isMobile() || ysdk.deviceInfo.isTablet()));
+        }
+
+        function IsPortraitScreen() {
+            // The platform may fit a landscape iframe inside a portrait phone viewport.
+            // Prefer the physical screen orientation over the iframe's aspect ratio.
+            const type = window.screen && window.screen.orientation && window.screen.orientation.type;
+            if (typeof type === 'string' && /^(portrait|landscape)/.test(type))
+                return type.startsWith('portrait');
+            if (typeof window.orientation === 'number')
+                return Math.abs(window.orientation) % 180 === 0;
+            if (window.screen && window.screen.width > 0 && window.screen.height > 0
+                && window.screen.width !== window.screen.height)
+                return window.screen.height > window.screen.width;
+            return window.innerHeight > window.innerWidth;
+        }
+
+        function SyncGamePause() {
+            if (!initGame || ygGameInstance === null) return;
+            const paused = isPausedGame || isOrientationBlocked || !isVisibility || document.hidden;
+            YG2Instance('SetPauseGame', paused ? 'true' : 'false');
+        }
+
+        function UpdateMobileOrientation() {
+            const blocked = IsMobileOrientationDevice() && IsPortraitScreen();
+            orientationCover.hidden = !blocked;
+            if (isOrientationBlocked === blocked) return;
+            isOrientationBlocked = blocked;
+            SyncGamePause();
+            if (!blocked) FocusGame();
+        }
+
+        window.addEventListener('resize', UpdateMobileOrientation);
+        window.addEventListener('orientationchange', UpdateMobileOrientation);
+        if (window.screen && window.screen.orientation && window.screen.orientation.addEventListener)
+            window.screen.orientation.addEventListener('change', UpdateMobileOrientation);
+        if (window.visualViewport)
+            window.visualViewport.addEventListener('resize', UpdateMobileOrientation);
+        UpdateMobileOrientation();
 
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('visibilitychange', () => SetVisibility(!document.hidden));
@@ -173,7 +228,7 @@
             if (!canvas) return;
 
             requestAnimationFrame(() => {
-                if (checkingPauseStatus && isPausedGame) return;
+                if (isOrientationBlocked || !isVisibility || document.hidden || (checkingPauseStatus && isPausedGame)) return;
 
                 const active = document.activeElement;
                 if (active && (active.tagName === 'INPUT' ||
@@ -188,25 +243,24 @@
         }
 
         function SetVisibility(visibility) {
-            if (ysdk !== null && initGame === true && isVisibility !== visibility) {
+            visibility = Boolean(visibility) && !document.hidden;
+            if (isVisibility !== visibility) {
                 isVisibility = visibility;
-                if (!visibility) {
-                    YG2Instance('SetFocusWindowGame', 'false');
+                if (ysdk !== null && initGame === true) {
+                    YG2Instance('SetFocusWindowGame', visibility ? 'true' : 'false');
                 }
-                else {
-                    YG2Instance('SetFocusWindowGame', 'true');
-                }
+                SyncGamePause();
             }
         }
 
         const PauseCallback = () => {
             isPausedGame = true;
-            YG2Instance('SetPauseGame', 'true');
+            SyncGamePause();
         };
 
         const ResumeCallback = () => {
             isPausedGame = false;
-            YG2Instance('SetPauseGame', 'false');
+            SyncGamePause();
             FocusGame(false);
         };
 
@@ -301,6 +355,7 @@
                 if (ysdk.deviceInfo && (ysdk.deviceInfo.isMobile() || ysdk.deviceInfo.isTablet())) {
                     container.className = "unity-mobile";
                 }
+                UpdateMobileOrientation();
                 ysdk.on('game_api_pause', PauseCallback);
                 ysdk.on('game_api_resume', ResumeCallback);
 
@@ -328,10 +383,15 @@
 
         function InitGame() {
             initGame = true;
+            UpdateMobileOrientation();
+            if (isPausedGame || isOrientationBlocked || !isVisibility || document.hidden)
+                SyncGamePause();
 
             setTimeout(function () {
-                if (isPausedGame == true)
-                    YG2Instance('SetPauseGame', 'true');
+                UpdateMobileOrientation();
+                if (!isVisibility) YG2Instance('SetFocusWindowGame', 'false');
+                if (isPausedGame || isOrientationBlocked || !isVisibility || document.hidden)
+                    SyncGamePause();
             }, 100);
 
             // Additional start modules

@@ -1,0 +1,49 @@
+{
+  "version": "0.0.0.10",
+  "checkedAt": "2026-10-16",
+  "entryVerified": false,
+  "logs": [
+    {
+      "level": "log",
+      "message": "%cSet Leaderboard: 2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-16T07:44:28.593Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard availability check: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-16T07:44:28.594Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard submission start: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-16T07:44:28.649Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard submission response: type=undefined fields= code=NONE color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-16T07:44:28.693Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard submission saved: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-16T07:44:28.693Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "warn",
+      "message": "Leaderboard stored entry check failed: code=LEADERBOARD_PLAYER_NOT_PRESENT message=Player is not present in leaderboard",
+      "timestamp": "2026-10-16T07:44:28.744Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "warn",
+      "message": "Leaderboard delayed entry check failed: code=LEADERBOARD_PLAYER_NOT_PRESENT message=Player is not present in leaderboard",
+      "timestamp": "2026-10-16T07:45:28.818Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    }
+  ]
+}

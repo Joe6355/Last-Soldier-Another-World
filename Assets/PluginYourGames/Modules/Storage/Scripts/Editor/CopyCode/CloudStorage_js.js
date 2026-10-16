@@ -1,11 +1,24 @@
 var cloudSaves = NO_DATA;
 var gameCloudStatus = 0;
 
+function LogCloudState(stage, save) {
+    if (typeof LogStyledMessage !== 'function') return;
+    const read = (keys, values, key) => {
+        if (!Array.isArray(keys) || !Array.isArray(values)) return 'unset';
+        const index = keys.indexOf(key);
+        return index >= 0 ? values[index] : 'unset';
+    };
+    // Only gameplay counters; never log the owner ID or the complete save.
+    LogStyledMessage(`Cloud state ${stage}: revision=${save.idSave} coins=${read(save.intKeys, save.intValues, 'Coins')} hp=${read(save.floatKeys, save.floatValues, 'PlayerHP')} death=${read(save.intKeys, save.intValues, 'PlayerDeathPending')} arrows=${read(save.stringKeys, save.stringValues, 'ArrowCounts')} potions=${read(save.intKeys, save.intValues, 'potionCount')} waves=${read(save.intKeys, save.intValues, 'CompletedWaves')} kills=${read(save.intKeys, save.intValues, 'countEnemyDead')}`);
+}
+
 async function SaveCloud(jsonData, flush) {
     try {
         if (!player || gameCloudStatus !== 1) throw new Error('Cloud storage is unavailable');
-        await player.setData({ saves: [jsonData] }, Boolean(flush));
         const data = JSON.parse(jsonData);
+        LogCloudState('save request', data);
+        await player.setData({ saves: [jsonData] }, Boolean(flush));
+        LogCloudState('save confirmed', data);
         YG2Instance('GameCloudSaved', JSON.stringify({ ownerId: data.ownerId, idSave: data.idSave }));
     } catch (e) {
         console.error('Save Cloud Error:', e?.message ?? e);
@@ -34,6 +47,7 @@ async function LoadCloud() {
             const save = JSON.parse(data.saves[0]);
             if (!save || save.progressVersion !== 1 || typeof save.ownerId !== 'string')
                 throw new Error('Unsupported cloud save schema');
+            LogCloudState('loaded', save);
             result = JSON.stringify(data.saves);
         }
         gameCloudStatus = 1;

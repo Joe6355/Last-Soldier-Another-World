@@ -1,0 +1,177 @@
+{
+  "checkedAt": "2026-10-16",
+  "applicationId": 623393,
+  "initialMobileVersion": "0.0.0.6",
+  "diagnosticVersion": "0.0.0.7",
+  "mobileInitial": {
+    "waves": 19,
+    "kills": 128,
+    "mmr": 2028,
+    "coins": 316,
+    "hp": 0,
+    "maxHp": 120,
+    "pendingDeath": true,
+    "arenaWave": 4
+  },
+  "mobileRevive": {
+    "realAdvertisementOpened": true,
+    "realAdvertisementCompleted": true,
+    "hp": 120,
+    "maxHp": 120,
+    "coins": 316,
+    "arenaWave": 4,
+    "proof": "Publishing/Previews/android-revive-result-20261015.png",
+    "enemyAndTimerContinuityVerified": false,
+    "audioPauseVerified": false
+  },
+  "firstPcReload": {
+    "coins": 158,
+    "hp": 25,
+    "maxHp": 120,
+    "arrowCounts": [
+      67,
+      46,
+      27,
+      525
+    ],
+    "potionCount": 386,
+    "proof": "Builds/ReleaseChecks20261015/pc-after-phone-load.png",
+    "causeConfirmed": false
+  },
+  "syncMarker": {
+    "device": "Android",
+    "musicPercentBefore": 50,
+    "musicPercentTest": 60,
+    "willRestoreOriginal": true,
+    "phoneLeftInBackgroundBeforePcCheck": true,
+    "originalMusicVerifiedAgain": true,
+    "finalMusicPercent": 50
+  },
+  "roundTripVerified": true,
+  "pcDiagnosticRead": {
+    "version": "0.0.0.7",
+    "serverCoins": 158,
+    "serverHp": 25,
+    "serverRevision": 916,
+    "logs": [
+      {
+        "level": "log",
+        "message": "%cCloud state loaded: revision=916 coins=158 hp=25 death=0 arrows=67,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T17:49:51.582Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/nlr14rtg3yx51zzn2mri3all2ppwjsjq/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "log",
+        "message": "%cCloud state save request: revision=917 coins=158 hp=25 death=0 arrows=67,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T17:50:00.286Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/nlr14rtg3yx51zzn2mri3all2ppwjsjq/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      },
+      {
+        "level": "log",
+        "message": "%cCloud state save confirmed: revision=917 coins=158 hp=25 death=0 arrows=67,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+        "timestamp": "2026-10-15T17:50:00.539Z",
+        "url": "https://app-623393.games.s3.yandex.net/623393/nlr14rtg3yx51zzn2mri3all2ppwjsjq/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+      }
+    ]
+  },
+  "cloudRestoreFix": {
+    "source": "Assets/Scripts/Yandex/GameProgress.cs",
+    "comparison": "Pending local data is restored only when the current remote snapshot exactly matches the last confirmed base of that device. A higher independent revision alone is insufficient.",
+    "legacyConflicts": "Differing device backup archived in LastSoldier.Recovery.v1.<owner>; valid cloud snapshot takes priority.",
+    "tests": {
+      "passed": 8,
+      "fixture": "Tests/CloudRestoreChecks.cs",
+      "log": "Builds/ReleaseChecks20261015/cloud-restore-checks.log"
+    },
+    "liveRoundTripVerified": true
+  },
+  "campSpawnFix": {
+    "scene": "Assets/Scenes/SampleScene.unity",
+    "oldPosition": [
+      -37.34,
+      50.37,
+      -4
+    ],
+    "campPosition": [
+      -5.39,
+      -0.99,
+      -4
+    ],
+    "arenaCheckpointRestorationUnchanged": true,
+    "liveVerified": true
+  },
+  "currentVersion": "0.0.0.10",
+  "mobilePurchaseAndBonus": {
+    "beforeCoins": 158,
+    "beforeNormalArrows": 67,
+    "purchasePacks": 1,
+    "purchaseArrowGain": 5,
+    "purchaseCost": 10,
+    "afterPurchaseCoins": 148,
+    "afterVideoCoins": 648,
+    "afterNormalArrows": 72,
+    "otherArrows": [
+      46,
+      27,
+      525
+    ],
+    "potions": 386,
+    "rewardDelta": 500,
+    "realAdvertisementCompleted": true,
+    "cancelBeforeRewardAvailable": false,
+    "cancelReason": "This player displayed a countdown and only exposed close after the reward.",
+    "musicPercentFinal": 50,
+    "phoneBackgroundedBeforePcLoad": true,
+    "proofs": [
+      "Publishing/Previews/android-v9-camp.png",
+      "Publishing/Previews/android-v9-bonus-result.png",
+      "Publishing/Previews/android-v9-after-bonus-hud.png"
+    ]
+  },
+  "roundTrip": {
+    "version": "0.0.0.9",
+    "sameAccount": true,
+    "onlyOneActiveDeviceDuringChanges": true,
+    "direction": "Android -> PC -> Android",
+    "androidToPc": {
+      "coins": 648,
+      "normalArrows": 72,
+      "otherArrows": [
+        46,
+        27,
+        525
+      ],
+      "potions": 386,
+      "hp": 25,
+      "serverReadRevision": 922
+    },
+    "pcToAndroid": {
+      "coins": 648,
+      "normalArrows": 71,
+      "otherArrows": [
+        46,
+        27,
+        525
+      ],
+      "potions": 385,
+      "hp": 60,
+      "serverConfirmedRevision": 926
+    },
+    "pcChanges": "One normal arrow fired during UI test; one healing potion consumed normally.",
+    "proofs": [
+      "Publishing/pc-cloud-roundtrip-v9.json",
+      "Publishing/Previews/android-cloud-return-v9.png",
+      "Publishing/Previews/pc-cloud-consumed-v9.png"
+    ],
+    "simultaneousEditingConflictVerified": false
+  },
+  "finalUiChecks": {
+    "version": "0.0.0.10",
+    "androidShopCloseCaptionVisible": true,
+    "androidShopRussianPriceSuffixVisible": true,
+    "proof": "Publishing/Previews/android-shop-fonts-v10.png",
+    "portraitRotatePromptAndLandscapeStartUserConfirmed": true,
+    "checkedAt": "2026-10-16",
+    "automaticRotationImplemented": false
+  }
+}

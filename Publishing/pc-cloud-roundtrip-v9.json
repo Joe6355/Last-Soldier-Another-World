@@ -1,0 +1,50 @@
+[
+  {
+    "level": "log",
+    "message": "%cCloud state save request: revision=923 coins=648 hp=25 death=0 arrows=72,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:28:31.107Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save confirmed: revision=923 coins=648 hp=25 death=0 arrows=72,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:28:31.355Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save request: revision=924 coins=648 hp=25 death=0 arrows=71,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:50:11.368Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save confirmed: revision=924 coins=648 hp=25 death=0 arrows=71,46,27,525 potions=386 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:50:11.881Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save request: revision=925 coins=648 hp=60 death=0 arrows=71,46,27,525 potions=385 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:55:55.481Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save confirmed: revision=925 coins=648 hp=60 death=0 arrows=71,46,27,525 potions=385 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:55:55.728Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save request: revision=926 coins=648 hp=60 death=0 arrows=71,46,27,525 potions=385 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:56:05.486Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  },
+  {
+    "level": "log",
+    "message": "%cCloud state save confirmed: revision=926 coins=648 hp=60 death=0 arrows=71,46,27,525 potions=385 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+    "timestamp": "2026-10-15T19:56:05.734Z",
+    "url": "https://app-623393.games.s3.yandex.net/623393/vun9gga625rwo2u7dlmz2aij0ohrv9oe/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+  }
+]

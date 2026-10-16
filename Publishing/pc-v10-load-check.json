@@ -1,0 +1,58 @@
+{
+  "version": "0.0.0.10",
+  "firstAttemptErrors": [
+    {
+      "level": "error",
+      "message": "Failed to download file Build/YandexGames.wasm.unityweb",
+      "timestamp": "2026-10-16T07:38:27.426Z",
+      "url": "https://app-623393.games.s3.yandex.net/sdk/_/v2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "error",
+      "message": "wasm streaming compile failed: TypeError: Failed to execute 'compile' on 'WebAssembly': HTTP status code is not ok",
+      "timestamp": "2026-10-16T07:38:27.844Z",
+      "url": "https://app-623393.games.s3.yandex.net/sdk/_/v2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "error",
+      "message": "falling back to ArrayBuffer instantiation",
+      "timestamp": "2026-10-16T07:38:27.844Z",
+      "url": "https://app-623393.games.s3.yandex.net/sdk/_/v2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "error",
+      "message": "both async and sync fetching of the wasm failed",
+      "timestamp": "2026-10-16T07:38:27.957Z",
+      "url": "https://app-623393.games.s3.yandex.net/sdk/_/v2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "error",
+      "message": "abort(\"both async and sync fetching of the wasm failed\") at Error\n    at jsStackTrace (blob:https://app-623393.games.s3.yandex.net/82e2d909-ae06-4932-891f-a0da495fd91f:10:23761)\n    at stackTrace (blob:https://app-623393.games.s3.yandex.net/82e2d909-ae06-4932-891f-a0da495fd91f:10:24024)\n    at abort (blob:https://app-623393.games.s3.yandex.net/82e2d909-ae06-4932-891f-a0da495fd91f:10:992)\n    at getBinary (blob:https://app-623393.games.s3.yandex.net/82e2d909-ae06-4932-891f-a0da495fd91f:10:19957)\n    at blob:https://app-623393.games.s3.yandex.net/82e2d909-ae06-4932-891f-a0da495fd91f:10:20338",
+      "timestamp": "2026-10-16T07:38:27.958Z",
+      "url": "https://app-623393.games.s3.yandex.net/sdk/_/v2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "error",
+      "message": "failed to asynchronously prepare wasm: TypeError: WebAssembly.instantiate(): Argument 0 must be a buffer source or a WebAssembly.Module object",
+      "timestamp": "2026-10-16T07:38:27.958Z",
+      "url": "https://app-623393.games.s3.yandex.net/sdk/_/v2.5871b227ff69bc337568.js"
+    }
+  ],
+  "retry": {
+    "gameReadyMilliseconds": 3591,
+    "mainMenuRendered": true,
+    "playOpenedCamp": true,
+    "escapeOpenedPause": true,
+    "latestCloudLoad": {
+      "level": "log",
+      "message": "%cCloud state loaded: revision=930 coins=648 hp=60 death=0 arrows=71,46,27,525 potions=385 waves=19 kills=127 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-16T07:44:25.239Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o/index.html?debug-mode=16&draft=true&lang=ru&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    "errorsSinceLatestLoad": [],
+    "proofs": [
+      "Publishing/Previews/pc-version10-menu.png",
+      "Publishing/Previews/pc-version10-pause.png"
+    ]
+  }
+}

@@ -19,6 +19,69 @@ body {
     margin: 0;
 }
 
+#orientation-cover {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+    background: #142c25;
+    color: #f7f0d8;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    touch-action: none;
+}
+
+#orientation-cover[hidden] {
+    display: none;
+}
+
+.orientation-card {
+    max-width: 340px;
+}
+
+.orientation-card h1 {
+    margin: 28px 0 12px;
+    font-size: clamp(22px, 6vw, 30px);
+}
+
+.orientation-card p {
+    margin: 0;
+    color: #c7d2bf;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.orientation-phone {
+    position: relative;
+    width: 92px;
+    height: 52px;
+    margin: 0 auto;
+    border: 3px solid #e3ba65;
+    border-radius: 10px;
+}
+
+.orientation-phone::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 14px;
+    left: 5px;
+    top: 16px;
+    background: #e3ba65;
+    border-radius: 2px;
+}
+
+.orientation-phone span {
+    display: block;
+    color: #e3ba65;
+    font-size: 40px;
+    line-height: 44px;
+}
+
 #unity-container {
     width: 100%;
     height: 100%;
