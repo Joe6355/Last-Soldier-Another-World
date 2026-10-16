@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-17",
+  "version": "0.0.0.11",
+  "archiveFileId": "14020652",
+  "gameUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "runtimeBuildPath": "623393/h0tiazs7gk97y0c5hb4ziqd9fnb7zowj",
+  "mainMenuRendered": true,
+  "cloudProfileRendered": true,
+  "cloudMmrRendered": 2028,
+  "cloudCompletedWavesRendered": 19,
+  "cloudKillsRendered": 128,
+  "languageSelectorInteractionVerified": false,
+  "playOpenedCampVerified": false,
+  "shopMusicLiveVerified": false,
+  "ownerReportedChecks": {
+    "checkedAt": "2026-10-17",
+    "version": "0.0.0.11",
+    "playButtonWorks": true,
+    "settingsButtonWorks": true,
+    "reply": "Обе кнопки работают"
+  },
+  "automationCanvasInputConfirmed": false,
+  "automationObservation": "Coordinate clicks on Settings, including a held click and fullscreen, produced no observed UI change. A narrow code audit found no obvious new raycast blocker. The owner subsequently confirmed that Play and Settings both work in the browser; the automation failure cause remains unknown.",
+  "leaderboardReadResult": "LEADERBOARD_PLAYER_NOT_PRESENT",
+  "leaderboardCauseConfirmed": false,
+  "englishLinkObservation": "The console-provided yandex.com link with lang=en redirected to yandex.ru with force_lang=ru in the game iframe. Automatic English selection was not verified.",
+  "playerNamesOrIdsRecorded": false,
+  "proof": "Publishing/Previews/yandex-version11-menu-20261017.png"
+}

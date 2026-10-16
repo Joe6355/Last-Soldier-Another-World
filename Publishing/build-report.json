@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-16T12:48:53.595482+00:00",
+  "builtAt": "2026-10-16T19:33:36.998816+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 18196652,
-  "unpackedBytes": 18439826,
-  "sha256": "48eea9d0b4ded65aae0d3d9f7dc3bae35992f87d975a984b893fc0906195eea0",
+  "zipBytes": 18197523,
+  "unpackedBytes": 18441389,
+  "sha256": "2deb2c491207a8aa60ef8df2f2522062a2cb13b27d27d5d5d2fd3cca30189ee9",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -17,10 +17,10 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "c9ef2019b7677a4b8601732d24d7bb9bb9726e36108f361823107f9d64f7b256",
-    "Build/YandexGames.framework.js.unityweb": "bc0e4feb3c3e7a260cfe978467dbd5ed834a1a54f02c6d6d642c4fdf8f117b5c",
+    "Build/YandexGames.data.unityweb": "745823535971b4d35356255d7bc623a373438d8e3b66dc16eb951cd6aa64da8c",
+    "Build/YandexGames.framework.js.unityweb": "859f432abe741ba6655205386b62ad01d4d50bdb1d140bac8ce18455d3c8707b",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "f92b7bb6ad5af4551245ef3908d8700599ae2c10c4d2d28879a55e38787162b1",
+    "Build/YandexGames.wasm.unityweb": "5d4c740b9419e033aacd5f3d746863798a66899e39f6c7009eb7b50c05ab589f",
     "index.html": "bc4b494065d4d77abf1aa055aefe686967c404a0d23b15f9203e97e4cfd26ced",
     "StreamingAssets/ThirdParty/LiberationSans-OFL.txt": "37f8552e9a874ec10710dc0ede6a9adf168e6609fbd02a507f35629373b85a48",
     "StreamingAssets/ThirdParty/PTSerif-OFL.txt": "ddf311c28ddf5a5ad9747649837346b67bed9d356789c3072bb27dbce49e514d",
@@ -83,7 +83,7 @@
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "49e78505bf0b4f893612659f439aa697fb4343237c1276e5e6f5911d661e34e0"
+        "sha256": "6a0a79bdf468fe62838166805ba6bc954090aa98aa36e299fa3aa12995be065f"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
@@ -191,7 +191,7 @@
       },
       {
         "path": "Assets/Scripts/CrossbowController.cs",
-        "sha256": "99f2157c9a145bce002b19e1188dd3292e8fa29b8b109e5c4b39b2a0e7850666"
+        "sha256": "10875c76c151c6b5df68307e5119d9a51379cccff4f5d6fd8ae7b8ae81572c6a"
       },
       {
         "path": "Assets/Scripts/CrossbowController.cs.meta",
@@ -697,13 +697,15 @@
     "Builds/ReleaseChecks20261015/cloud-restore-checks.log",
     "Builds/ReleaseChecks20261015/cloud-webgl-build.log",
     "Builds/RatingValidation/localization-checks-visual.log",
-    "Builds/RatingValidation/localization-webgl-build.log"
+    "Builds/RatingValidation/localization-webgl-build.log",
+    "Builds/RatingValidation/shotgun-webgl-build-final.log",
+    "Builds/RatingValidation/shotgun-checks.log"
   ],
   "uploadedToYandex": false,
   "previousUploadedArchive": {
-    "sha256": "fda6c8818e94387cfd5f2073bbb9564174497a6983c12d7b10453b6d97c5a603",
-    "version": "0.0.0.10",
-    "fileId": "14011980"
+    "sha256": "48eea9d0b4ded65aae0d3d9f7dc3bae35992f87d975a984b893fc0906195eea0",
+    "version": "0.0.0.11",
+    "fileId": "14020652"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -720,8 +722,8 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.10",
-    "archiveFileId": "14011980",
+    "version": "0.0.0.11",
+    "archiveFileId": "14020652",
     "checkedAt": "2026-10-16",
     "archiveProcessing": "Ready",
     "platforms": [
@@ -729,11 +731,36 @@
       "Android"
     ],
     "orientation": "landscape",
-    "ageRating": "12+",
+    "ageRating": "6+",
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "runtimeCheckedVersion": "0.0.0.10",
     "moderationSubmitted": false,
+    "published": false,
     "moderationBlocker": null,
     "card": {
       "iconSaved": true,
+      "english": {
+        "checkedAfterReload": true,
+        "textSource": "Publishing/Card/en.json",
+        "savedFieldsMatchSource": [
+          "title",
+          "seoDescription",
+          "description",
+          "shortDescription",
+          "instructions"
+        ],
+        "sharedIconSaved": true,
+        "consoleCompletenessPercent": 69,
+        "remainingMedia": [
+          "cover",
+          "promo video",
+          "desktop and Android screenshots"
+        ],
+        "readyForModeration": false
+      },
       "coverSaved": true,
       "instructionsSaved": true,
       "desktopScreenshotCount": 2,
@@ -784,7 +811,8 @@
       "Verify actual leaderboard score submission and entries on Yandex.",
       "Verify exact rewarded outcomes and cancellation, interstitial pause/audio on the platform.",
       "Finish asset source/license mapping; free/own statement is not a complete license inventory.",
-      "Owner completes the active ELS/RSYA contract before moderation."
+      "Finish English card media: cover, promo video and desktop/Android screenshots; English card is 69% complete.",
+      "Verify version 0.0.0.11 RU/EN language selection and shop music on the real platform; previous runtime checks describe versions 0.0.0.9/0.0.0.10."
     ],
     "proofs": [
       "Publishing/Previews/yandex-release-contract-20261013.jpg",
@@ -798,7 +826,8 @@
       "Publishing/Previews/yandex-version10-20261016.png",
       "Publishing/Previews/android-shop-fonts-v10.png",
       "Publishing/Previews/pc-version10-menu.png",
-      "Publishing/Previews/pc-version10-pause.png"
+      "Publishing/Previews/pc-version10-pause.png",
+      "Publishing/Previews/yandex-version11-20261016.png"
     ],
     "leaderboardBridgeCorrection": {
       "source": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
@@ -854,10 +883,11 @@
       "platformIncidentConfirmedBySupport": true,
       "latestCheck": "Publishing/leaderboard-version10-check.json"
     },
-    "uploadSavedAtConsole": "12:31:40 16/10/2026",
+    "lastSavedAtConsole": "18:32:02 16/10/2026",
     "consoleTimeoutResolvedAfterReload": true,
     "latestReleaseCheck": {
       "checkedAt": "2026-10-16",
+      "checkedVersion": "0.0.0.10",
       "report": "Publishing/cloud-platform-check.json",
       "sdkReadyMilliseconds": 3591,
       "cloudProfileRendered": true,
@@ -874,10 +904,9 @@
       "accountIdsLogged": false,
       "liveCauseConfirmed": false
     },
-    "uploadProcessedAtConsole": "12:32:03 16/10/2026",
     "monetizationLastObserved": "Connected; submit for moderation button enabled in console on 2026-10-16.",
     "ageRatingUserReported": "6+",
-    "ageRatingObservationNote": "12+ was the last live observation; owner later reported changing to 6+. Not modified by this change."
+    "ageRatingObservationNote": "6+ observed in console on 2026-10-16 and preserved; no age-rating change made during this upload."
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -924,8 +953,20 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.11",
-  "uploadLimitation": "Local browser use is disabled in Work settings; console draft remains the last observed 0.0.0.10.",
+  "localVersion": "0.0.0.12",
+  "uploadLimitation": "Upload attempt on 2026-10-17 could not reach the console: browser tool returned Local browser use is disabled in Work settings. The last confirmed console version remains 0.0.0.11.",
+  "desktopVersion11Validation": {
+    "checkedAt": "2026-10-17",
+    "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
+    "mainMenuRendered": true,
+    "cloudProfileRendered": true,
+    "ownerReportedPlayButtonWorks": true,
+    "ownerReportedSettingsButtonWorks": true,
+    "languageSelectorInteractionVerified": false,
+    "playOpenedCampVerified": false,
+    "shopMusicLiveVerified": false,
+    "report": "Publishing/pc-v11-load-check.json"
+  },
   "localization": {
     "languages": [
       "ru",
@@ -938,6 +979,23 @@
     "guidePcAndTouchTranslated": true,
     "liveBrowserChecked": false,
     "documentation": "Publishing/LOCALIZATION.md"
+  },
+  "shotgunBuff": {
+    "checkedAt": "2026-10-17",
+    "targetVersion": "0.0.0.12",
+    "fireDelaySeconds": 0,
+    "arrowsPerVolley": 3,
+    "baseIntervalSeconds": 0.35,
+    "maxReloadLevel": 10,
+    "maxReloadIntervalSeconds": 0.1590909,
+    "previousBaseIntervalSeconds": 0.85,
+    "previousMaxReloadIntervalSeconds": 0.6590909,
+    "unityRuntimeChecks": "PASS",
+    "assertionsPassed": 80,
+    "fixture": "Tests/ShotgunChecks.cs",
+    "log": "Builds/RatingValidation/shotgun-checks.log",
+    "result": "Builds/RatingValidation/shotgun-checks.txt",
+    "livePlatformGameplayVerified": false
   },
   "shopMusic": {
     "unityRuntimeVerified": true,

@@ -8009,7 +8009,6 @@ MonoBehaviour:
   arrowCounts: 4b0100009a0000001400000000000000
   fireForce: 5
   offsetX: 0.15
-  shotgunDelay: 0.5
   modeText: {fileID: 1044734404}
   arrowCountsText:
   - {fileID: 1951908642}

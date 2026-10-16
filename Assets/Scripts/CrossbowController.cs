@@ -14,7 +14,6 @@ public class CrossbowController : Sounds
 
     [Header("Shotgun Settings")]
     [SerializeField] private float offsetX = 0.3f;       // Насколько смещаемся влево/вправо (для дробовика)
-    [SerializeField] private float shotgunDelay = 0.3f;  // Задержка перед выстрелом дробовика
 
     [Header("UI Elements")]
     [SerializeField] private Text modeText;              // Текст: режим стрельбы (Обычный, Дробовик, Автомат)
@@ -99,21 +98,13 @@ public class CrossbowController : Sounds
 
             case 2:
                 if (arrowCounts[selectedArrowIndex] < 3) return;
-                nextShotTime = Time.time + shotgunDelay + ShotInterval(selectedArrowIndex);
-                StartCoroutine(ShotgunRoutine(selectedArrowIndex, direction));
+                nextShotTime = Time.time + ShotInterval(selectedArrowIndex, shootingMode);
+                arrowCounts[selectedArrowIndex] -= 3;
+                SaveArrowCounts();
+                FireShotgun(selectedArrowIndex, direction);
+                UpdateArrowCountsUI();
                 break;
         }
-    }
-
-    private IEnumerator ShotgunRoutine(int type, Vector2 direction)
-    {
-        canShoot = false;
-        arrowCounts[type] -= 3;
-        SaveArrowCounts();
-        UpdateArrowCountsUI();
-        yield return new WaitForSeconds(shotgunDelay);
-        FireShotgun(type, direction);
-        canShoot = true;
     }
 
     private void FireArrow(Vector3 spawnPos, Vector2 direction, int type)
