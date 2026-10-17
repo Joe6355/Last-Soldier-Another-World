@@ -667,7 +667,7 @@ public class Roberto : Sounds
         currentState = BossState.Dead;
         if (regularEnemy) FindObjectOfType<Stats>()?.AddEnemyKill(Stats.EnemyKind.Other);
         else FindObjectOfType<Stats>()?.AddBossDead(Stats.EnemyKind.Assassin);
-        animator.SetTrigger("Dead");
+        EnemyDefeatEffect.PlayAndHide(gameObject);
         if (hpBarContainer != null)
             hpBarContainer.SetActive(false);
 

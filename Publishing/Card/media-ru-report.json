@@ -1,0 +1,116 @@
+{
+  "createdOn": "2026-10-17",
+  "localVersion": "0.0.0.13",
+  "captureMethod": "Real Unity 2022.3.47f1 PlayMode cameras and game HUD; automated movement and weapon firing on normal early waves in a fresh isolated profile.",
+  "captureHelper": "Tools/EditorPromoCapture.cs",
+  "captureHelperSnapshot": "Builds/CardCapture/Russian/capture-helper.cs.txt",
+  "captureHelperSha256": "252c1d89ee6017c156331c168c579600720b33fd3ba5eea9b3be53f598717890",
+  "exportHelper": "Tools/ExportEnglishMedia.py",
+  "language": "ru",
+  "gameAreaRatio": 1.0,
+  "processing": "Unchanged full game frames; H.264 encoding only. Screenshots retain source PNG bytes. No overlays, crop, zoom or added gameplay.",
+  "uploadedToYandex": true,
+  "limitations": [
+    "Mobile layout is the SDK editor simulator, not a capture or integration check on a physical phone.",
+    "Silent video; audio balance has not been reviewed by listening.",
+    "Visual review samples frames and does not establish sustained device FPS."
+  ],
+  "videos": [
+    {
+      "file": "Publishing/Card/gameplay-ru-pc.mp4",
+      "layout": "pc",
+      "sourceDirectory": "Builds/CardCapture/Russian/pc",
+      "captureResult": "Builds/RatingValidation/promo-ru-pc.txt",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "fps": 30,
+      "durationSeconds": 20,
+      "frameCount": 600,
+      "fullDecode": true,
+      "codec": "H.264",
+      "pixelFormat": "yuv420p",
+      "fastStart": true,
+      "audio": false,
+      "bytes": 560877,
+      "sha256": "99cc88c69f88324a9f926f509a655a3f0ecec1ffcc892a12118233578c9769a4"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "Publishing/Card/screenshot-pc-ru-1.png",
+      "layout": "pc",
+      "sourceFrame": "Builds/CardCapture/Russian/pc/frame0180.png",
+      "sourceTimeSeconds": 6.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 48158,
+      "sha256": "8cebee3ca1a5b97649fba26add7ed7332d9302283c3e0f38b2989e81a1847ab1",
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "file": "Publishing/Card/screenshot-pc-ru-2.png",
+      "layout": "pc",
+      "sourceFrame": "Builds/CardCapture/Russian/pc/frame0480.png",
+      "sourceTimeSeconds": 16.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 54084,
+      "sha256": "b8756cebd42b0a933f1ba2e8b153da54743535053bd657499d4fb36d12425262",
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "file": "Publishing/Card/screenshot-mobile-ru-1.png",
+      "layout": "mobile",
+      "sourceFrame": "Builds/CardCapture/Russian/mobile/frame0185.png",
+      "sourceTimeSeconds": 6.166666666666667,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 102831,
+      "sha256": "ef4e4c805ab22277e11cb15b1c63a99f182f5082276b9d499eac2a93fe908f23",
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "file": "Publishing/Card/screenshot-mobile-ru-2.png",
+      "layout": "mobile",
+      "sourceFrame": "Builds/CardCapture/Russian/mobile/frame0480.png",
+      "sourceTimeSeconds": 16.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 101325,
+      "sha256": "292f30a2d7b978154ea74185fb349820779f2a5dbc37362fce44ec877f080cfa",
+      "sourcePixelsUnchanged": true
+    }
+  ],
+  "mobileStillCapture": {
+    "resultFile": "Builds/RatingValidation/promo-ru-mobile.txt",
+    "captureResultExact": "FAIL\nPlayer defeated during recording",
+    "framesWrittenBeforeDefeat": 514,
+    "use": "Only unchanged, already captured frames at 6.167 and 16 seconds, before defeat; no mobile video exported."
+  },
+  "sourceVersion": "0.0.0.13",
+  "matchingSourceBuildArchiveSha256": "9db4b28e105d55e8f2bde16cfa3d1f4cbd9025b8c443f4bd24b9c48632984bf2",
+  "sourceNote": "Captured from the isolated Unity source copy verified against the asset manifests; capture is not a recording of the WebGL binary in a browser.",
+  "visualReview": "19 sampled frames plus full-size PC still and both mobile stills; frame 185 selected for the first mobile screenshot so the hero is visible between normal invulnerability flashes. No pixels edited.",
+  "videoFileId": "14045403",
+  "uploadedVideo": "Publishing/Card/gameplay-ru-pc.mp4",
+  "consoleLastSavedAt": "19:26:11 17/10/2026",
+  "checkedAfterReload": true,
+  "consoleCompletenessPercent": 92,
+  "videoProcessing": "Pending",
+  "videoPlaybackConfirmed": false,
+  "savedScreenshots": {
+    "desktop": 2,
+    "mobile": 2
+  },
+  "proof": "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg"
+}

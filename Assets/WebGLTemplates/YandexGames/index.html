@@ -218,8 +218,15 @@
             if (!('onblur' in document)) return;
             if (window.blurFocusHandlersInstalled) return;
 
+            let blockerButton = null;
+            function removeBlocker() {
+                if (blockerButton && blockerButton.parentNode)
+                    blockerButton.parentNode.removeChild(blockerButton);
+                blockerButton = null;
+            }
             window.addEventListener('blur', function () {
-                let blockerButton = document.createElement('button');
+                if (blockerButton) return;
+                blockerButton = document.createElement('button');
                 blockerButton.style.position = 'fixed';
                 blockerButton.style.top = '0';
                 blockerButton.style.left = '0';
@@ -229,19 +236,16 @@
                 blockerButton.style.backgroundColor = 'rgba(0, 0, 0, 0)';
                 blockerButton.style.border = 'none';
                 blockerButton.style.cursor = 'default';
-
+                // Some embedded browsers restore iframe input without firing window.focus.
+                // Consume that first press, then remove the guard so later input can reach Unity.
+                blockerButton.addEventListener('pointerdown', () => {
+                    removeBlocker();
+                    SetVisibility(true);
+                    FocusGame();
+                }, { once: true });
                 document.body.appendChild(blockerButton);
-
-                function removeBlocker() {
-                    if (blockerButton && blockerButton.parentNode) {
-                        blockerButton.parentNode.removeChild(blockerButton);
-                    }
-                    window.removeEventListener('focus', removeBlocker);
-                }
-
-                window.addEventListener('focus', removeBlocker);
             });
-
+            window.addEventListener('focus', removeBlocker);
             window.blurFocusHandlersInstalled = true;
         }
 

@@ -281,7 +281,7 @@ public class SlimeBoss : Sounds
     {
         isDead = true;
         ClearOwnedProjectiles();
-        anim.SetTrigger("Dead");
+        EnemyDefeatEffect.PlayAndHide(gameObject);
 
         yield return new WaitForSeconds(deathAnimationTime);
 

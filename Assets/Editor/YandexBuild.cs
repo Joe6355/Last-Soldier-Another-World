@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 
 public static class YandexBuild
 {
+    [Serializable] private sealed class PackedAssetList { public string[] paths; }
     public const string AndroidTestVersion = "1.0.7";
     public const int AndroidTestVersionCode = 8;
     public const string AndroidTestDefines = "PLUGIN_YG_2;Storage_yg;Authorization_yg;Leaderboards_yg;EnvirData_yg;RedefinePlayerPrefs_yg;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;StickyAdv_yg;LAST_SOLDIER_ANDROID_TEST";
@@ -82,6 +83,10 @@ public static class YandexBuild
         });
         if (report.summary.result != BuildResult.Succeeded)
             throw new InvalidOperationException("WebGL build failed: " + report.summary.result);
+        Directory.CreateDirectory("Publishing");
+        var packed = report.packedAssets.SelectMany(bundle => bundle.contents)
+            .Select(asset => asset.sourceAssetPath).Where(path => !string.IsNullOrEmpty(path)).Distinct().OrderBy(path => path).ToArray();
+        File.WriteAllText("Publishing/release-packed-assets.json", JsonUtility.ToJson(new PackedAssetList { paths = packed }, true));
         long size = Directory.GetFiles("Builds/YandexGames", "*", SearchOption.AllDirectories)
             .Sum(path => new FileInfo(path).Length);
         Debug.Log("Yandex WebGL build succeeded; unpacked bytes: " + size);

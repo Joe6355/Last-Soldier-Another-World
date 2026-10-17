@@ -1,49 +1,736 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-16T19:33:36.998816+00:00",
+  "builtAt": "2026-10-17T13:25:00.340125+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 18197523,
-  "unpackedBytes": 18441389,
-  "sha256": "2deb2c491207a8aa60ef8df2f2522062a2cb13b27d27d5d5d2fd3cca30189ee9",
+  "zipBytes": 14405931,
+  "unpackedBytes": 14712612,
+  "sha256": "9db4b28e105d55e8f2bde16cfa3d1f4cbd9025b8c443f4bd24b9c48632984bf2",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
     "Build/YandexGames.loader.js",
     "Build/YandexGames.wasm.unityweb",
     "index.html",
+    "StreamingAssets/ThirdParty/CC-BY-3.0.txt",
+    "StreamingAssets/ThirdParty/CC-BY-4.0.txt",
+    "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt",
+    "StreamingAssets/ThirdParty/CC-BY-SA-4.0.txt",
+    "StreamingAssets/ThirdParty/CC0-1.0.txt",
     "StreamingAssets/ThirdParty/LiberationSans-OFL.txt",
+    "StreamingAssets/ThirdParty/PluginYG2-CC0.txt",
+    "StreamingAssets/ThirdParty/PluginYG2-ThirdParty.txt",
     "StreamingAssets/ThirdParty/PTSerif-OFL.txt",
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "745823535971b4d35356255d7bc623a373438d8e3b66dc16eb951cd6aa64da8c",
-    "Build/YandexGames.framework.js.unityweb": "859f432abe741ba6655205386b62ad01d4d50bdb1d140bac8ce18455d3c8707b",
+    "Build/YandexGames.data.unityweb": "013aa73aed7648fc908812604811bf5dbe564ef614f8d9afd39aa21b73f068ab",
+    "Build/YandexGames.framework.js.unityweb": "3dcb95249c297016214b3202937a4679677dfae99c732cbfcb66f86c0ca9d020",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "5d4c740b9419e033aacd5f3d746863798a66899e39f6c7009eb7b50c05ab589f",
-    "index.html": "bc4b494065d4d77abf1aa055aefe686967c404a0d23b15f9203e97e4cfd26ced",
+    "Build/YandexGames.wasm.unityweb": "2aa6c7eb97957976d11a73c6db84838548bbb3c177b9bfc2733a7f557a1d560a",
+    "index.html": "a907c50c4d5538929e486b64529375fdc080af8590a0c4362ef94efb5096f7d6",
+    "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
+    "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
+    "StreamingAssets/ThirdParty/CC-BY-SA-4.0.txt": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5",
+    "StreamingAssets/ThirdParty/CC0-1.0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
     "StreamingAssets/ThirdParty/LiberationSans-OFL.txt": "37f8552e9a874ec10710dc0ede6a9adf168e6609fbd02a507f35629373b85a48",
+    "StreamingAssets/ThirdParty/PluginYG2-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "StreamingAssets/ThirdParty/PluginYG2-ThirdParty.txt": "0e1ee4d703dba7a22fb25bbc95732ca9d0665745f6babf05a5bab32315e28005",
     "StreamingAssets/ThirdParty/PTSerif-OFL.txt": "ddf311c28ddf5a5ad9747649837346b67bed9d356789c3072bb27dbce49e514d",
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 164,
+    "matched_files": 625,
+    "scope": "Gameplay scripts, enabled scenes, every existing Assets source file listed by the final Unity packed-assets report, and bundled license files.",
     "files": [
+      {
+        "path": "Assets/Anim/Animals/Babka.controller",
+        "sha256": "7f86344ad7354398c1e2f9a34579c82bd959f2bd4ba91072071523048a711dfc"
+      },
+      {
+        "path": "Assets/Anim/Animals/BabkaIdle.anim",
+        "sha256": "b9d3bcac581ec34b1f9e3c8405da7f5c117838223611bb4dbdca49c4e48deb69"
+      },
+      {
+        "path": "Assets/Anim/Animals/BabkaIvent.anim",
+        "sha256": "580eec7518c528d4e1e83a4f34ba8168cd9e8773c77eff94890d34c224d0c7b3"
+      },
+      {
+        "path": "Assets/Anim/Animals/BabkaWalk.anim",
+        "sha256": "385475042a2e1f139439bd8c2721f79e280ca3e8e70fedaf468f1943d86d25f0"
+      },
+      {
+        "path": "Assets/Anim/Animals/ChickenEat.anim",
+        "sha256": "45ad6fb5e6d473425f7402f8de82ab3db588f6566fb3369b590665fbc391e1d0"
+      },
+      {
+        "path": "Assets/Anim/Animals/ChickenIde.anim",
+        "sha256": "e4938588e645cbeff82e89a0d45dc44dbd5960194ab18b8be542085509147792"
+      },
+      {
+        "path": "Assets/Anim/Animals/ChickenWolk.anim",
+        "sha256": "94ad1ce532716bbcb4f9f57c38a565e72207b847f5ba7296db03b99a59819ad2"
+      },
+      {
+        "path": "Assets/Anim/Animals/Cow.controller",
+        "sha256": "d6ac14a5561b64ec8b29195a0b321bb085608f6610faed1c392cb28758082647"
+      },
+      {
+        "path": "Assets/Anim/Animals/CowEat.anim",
+        "sha256": "0e3dfeb14985736794a7a6fabb5c271066166dcfae04be936188ef346d66be6d"
+      },
+      {
+        "path": "Assets/Anim/Animals/CowIdle.anim",
+        "sha256": "5c8ce8abb88dd2c5521f55a33cb0954da4649d78924ba668c1f102866b76341f"
+      },
+      {
+        "path": "Assets/Anim/Animals/CowWalk.anim",
+        "sha256": "88524561cf1cdf057fce8317a481c6664e17b4c724cd1dcc4a48e1b5ad8ddf0d"
+      },
+      {
+        "path": "Assets/Anim/Animals/DoubleNote.controller",
+        "sha256": "bbf7b05d72cc2f2e039d19d16932f7579f21f646014e835499f3f176d3389c38"
+      },
+      {
+        "path": "Assets/Anim/Animals/Question.anim",
+        "sha256": "4d09d5e33b0e99f36a285931e997e8317c8d663072ba357afb835634fdedf58c"
+      },
+      {
+        "path": "Assets/Anim/Animals/Question.controller",
+        "sha256": "b9ea4fb00e5807fe1674386ef1975bc7d3ac99c849a26c29cd263593799f3ab4"
+      },
+      {
+        "path": "Assets/Anim/Animals/Sheep.controller",
+        "sha256": "ce94d09d5cf27e429c3f53443448d933e395e0494a3ce6114ca6983ba84b9fd3"
+      },
+      {
+        "path": "Assets/Anim/Animals/SheepEat.anim",
+        "sha256": "3d2477e8694eeedb485edd12c177490b41054bd0978e8340bc84e6aa497a7f95"
+      },
+      {
+        "path": "Assets/Anim/Animals/SheepIdle.anim",
+        "sha256": "ddb8e8e034e0b4068700482e4c3d2a9ede72018985328f6cb85e87491a613184"
+      },
+      {
+        "path": "Assets/Anim/Animals/SheepWalk.anim",
+        "sha256": "6c5f2b22e13524532d71172872f8a317cc2fe299f971761bf59f7b7ed2e39b2a"
+      },
+      {
+        "path": "Assets/Anim/Animals/Songs.anim",
+        "sha256": "586686163bdce56a55e5e361fd921d1f0640913991757f7bb6f879925c7ac5ce"
+      },
+      {
+        "path": "Assets/Anim/Animals/SoungsNote.anim",
+        "sha256": "0f0a0e4109d9d6a66f6d40126fb2e5763165c132850b8e776fad7006e6791ed7"
+      },
+      {
+        "path": "Assets/Anim/Animals/chicken.controller",
+        "sha256": "ead88b0360b6f0312b93c4de27207e89b8fcfa0926496117cb5a5f9c6fec4d3c"
+      },
+      {
+        "path": "Assets/Anim/Boss/0_0.controller",
+        "sha256": "86fc043dca7aa32ad8c68db7652f85659f5b56c3cf822fe11076a2a3e3fbaf8b"
+      },
+      {
+        "path": "Assets/Anim/Boss/Assassin.controller",
+        "sha256": "a501444947211c9921c6025113ffd28080b31e189d59612640a63ea4461931f2"
+      },
+      {
+        "path": "Assets/Anim/Boss/Atack.anim",
+        "sha256": "d9ae71816759ed079448a285206f991cfdc1185a6284763b6110c9f91a12d14f"
+      },
+      {
+        "path": "Assets/Anim/Boss/Circle (30).controller",
+        "sha256": "0025b3521459b66717964784d846bd19371922e5dbbca1b715afa509af051a37"
+      },
+      {
+        "path": "Assets/Anim/Boss/Dead.anim",
+        "sha256": "0d68072bb235e2a80e809ae49046651198c85907883ae7d232f6967e60f179e4"
+      },
+      {
+        "path": "Assets/Anim/Boss/Heal.anim",
+        "sha256": "4a2f4d9af80ca940a3007a018c356524c17738dbbac84c04cd3f203cae373509"
+      },
+      {
+        "path": "Assets/Anim/Boss/Ide.anim",
+        "sha256": "c46ec2e33456f027c91764c6001e1e7684fbd08bb7a80ed815f67e42b5eb6cdc"
+      },
+      {
+        "path": "Assets/Anim/Boss/Metior.anim",
+        "sha256": "b7eb771aa39aa551533d562ffdabb22ea310cb07d5b882524fec35d4ff09022b"
+      },
+      {
+        "path": "Assets/Anim/Boss/Run.anim",
+        "sha256": "3f9b8cd7775cc652ec09d3120151a43358102eb0049b7b650de22d0da6ea7a84"
+      },
+      {
+        "path": "Assets/Anim/Boss/Test.anim",
+        "sha256": "ea534249e2ba55e67578008f45f890223a79cc43f4df1f3ba67ec80d10dc5a4b"
+      },
+      {
+        "path": "Assets/Anim/Chest/Chest.controller",
+        "sha256": "f27c1eb410471e503102c27a8df46ee1a489527623b756ededdbbabd52e697c6"
+      },
+      {
+        "path": "Assets/Anim/Chest/ChestClose.anim",
+        "sha256": "880b88f40c38e34c02afebae48bde4a313e360792c063a457deec5a7e35c8739"
+      },
+      {
+        "path": "Assets/Anim/Chest/ChestIde.anim",
+        "sha256": "ca3c6b82b6a22be7b361f38e3a71c1760323ef934502bbd7c76061b06d30d061"
+      },
+      {
+        "path": "Assets/Anim/Chest/ChestOpen.anim",
+        "sha256": "f44403855cab8ad9d4c8e3dae94026d6fad0a9907c0e7162e1e4dd14f11e67a4"
+      },
+      {
+        "path": "Assets/Anim/Enemy/HealerEnemy.controller",
+        "sha256": "757e1ce9f2f65577ddc1de29da1fa94820b4febea5e15ba7c1fe31ee28d95a52"
+      },
+      {
+        "path": "Assets/Anim/Enemy/HealerHeal.anim",
+        "sha256": "285194b5db575acfe37cccd6a4fb38c2ec7a650e48dc9b4591140ad35536e217"
+      },
+      {
+        "path": "Assets/Anim/Enemy/HealerWalk.anim",
+        "sha256": "db82da05b85800ebda10272907281241aa2a39f055b2b1fa082c11ba8201d0e8"
+      },
+      {
+        "path": "Assets/Anim/Enemy/HolySlime.controller",
+        "sha256": "43ba217d1eab7549739429e94d4b731b01063b8a73a69fac664a662191cfc17f"
+      },
+      {
+        "path": "Assets/Anim/Enemy/HolySlimeAtack.anim",
+        "sha256": "c5321391fefb03c70402ed534c23b93a1f57521e098643cb34d83c02228469b2"
+      },
+      {
+        "path": "Assets/Anim/Enemy/HolySlimeWalk.anim",
+        "sha256": "82794b44848d3abe6857e8aac613c9f3855affff21b985f8ca75148984572f8d"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Luja.anim",
+        "sha256": "61b16437de7b6750832afc0f8786c90b19fe525af8483680db1923506d47f67e"
+      },
+      {
+        "path": "Assets/Anim/Enemy/PoisonLuja.controller",
+        "sha256": "641bfe2a46adab4d57f8c14fe250829d427f9798f22d75405d97a419b07a2f0e"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletBombIde.anim",
+        "sha256": "0440f18ef62c36f327eec2b57334e88b1c04f6e6fca4ba6cb1d5a9d02cbe6b9e"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletBombRun.anim",
+        "sha256": "bb444c098b0890c254de5d27433f3d29483b243ba4cd9a92f5f857598819bb4b"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletMag.controller",
+        "sha256": "d552208f46995d8974efb4ad10f8541a69b097f7c95abf8376a1427b2d246a2e"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletMagIde.anim",
+        "sha256": "4651aa65f8be68d579ec44eb9bbdeecdd1b0e3acbb243de5c16e741bafcdd2ed"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletProstoiMag.anim",
+        "sha256": "fd2fb0d106880208dbde2dd1a399d8f18308ebe5dd3bf087e659158b957f48bc"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletSheld.controller",
+        "sha256": "ab1cacefcba70a40886f523ba280f4965ebfd8e02ac7baee370816d7803de050"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletonAtacka.anim",
+        "sha256": "c313584fa79fbf80885c901c30739c923889c6d943cc71544dd3bc127e17d2f0"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletonSheldIde.anim",
+        "sha256": "a85f2685025e5611fd9849750f156bd5e0043ac10f7510f2cb8531610e2073b8"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SceletonSheldRun.anim",
+        "sha256": "3db965241a32f6868f4a285b966f6329c4292292b5c45b32af2a52b11d209a2f"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Slime.controller",
+        "sha256": "018afac15b41fdaf42a6d5e80ff5b4c407181e1d380abe24af29ab6b04104924"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SlimeAt.anim",
+        "sha256": "8ce6dba0eaeb5dc2d2e05e8c3cf3ae55e43ed4a5c1a1991f652710a6e6fa2b26"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SlimeIde.anim",
+        "sha256": "e2a8020033b484a35b24b9bdd57e5194e25f0e175f9056ddb3a95435974a8f74"
+      },
+      {
+        "path": "Assets/Anim/Enemy/SlimeTrue.controller",
+        "sha256": "b592c370765724e084b673d86e6dc72aebae54b841a322b73c584c0c4a33a603"
+      },
+      {
+        "path": "Assets/Anim/Lona/FadeIn.anim",
+        "sha256": "bd0780bfdc243048e24bee3e6144bd4d29316392fa0b2e378dd124dcd1a05c68"
+      },
+      {
+        "path": "Assets/Anim/Lona/FadeOut.anim",
+        "sha256": "ba9d9a21f7f9ece99dbc4f2179f50964d1fad68b040e7f906cb1a0fea0a29abb"
+      },
+      {
+        "path": "Assets/Anim/Lona/Lona.controller",
+        "sha256": "da7543a0908d745a19875311f13fc58f9b8ac4317a8e73b000835498a818a1ae"
+      },
+      {
+        "path": "Assets/Anim/MiniBossSlime/Attack.anim",
+        "sha256": "61be3bb5f632a90b918338b6045edc8a88208c01ee9b893f443be55aa4883c0f"
+      },
+      {
+        "path": "Assets/Anim/MiniBossSlime/Dead.anim",
+        "sha256": "dc1a87ddede4ed6fa9926fa7f5082096d13aa3d3160fe475d81e7a046854599b"
+      },
+      {
+        "path": "Assets/Anim/MiniBossSlime/Ide.anim",
+        "sha256": "82c0993476ce2fd5b335c9c21db02b464f044e937eb9551ce2f3320bfda7f592"
+      },
+      {
+        "path": "Assets/Anim/MiniBossSlime/MiniBoss.controller",
+        "sha256": "49b7a3acca37383ce63db8c1e13141511661a3ef5aac515298dfd23bddc45d66"
+      },
+      {
+        "path": "Assets/Anim/MiniBossSlime/Walking.anim",
+        "sha256": "c6973684e1e24a73b53672515cadace00f47478278bc346acb25521de598fca0"
+      },
+      {
+        "path": "Assets/Anim/Player/Marker.anim",
+        "sha256": "a900c3b4daf459b174a1d818b4b66cc17741a2d537bf10f921ccf834af8824b7"
+      },
+      {
+        "path": "Assets/Anim/Player/Player.controller",
+        "sha256": "0318402429ba2b0f77ccf8c14c37bbda8130e8417d798f2071b0404b5b86948e"
+      },
+      {
+        "path": "Assets/Anim/Player/Shoot.anim",
+        "sha256": "f4ed42cdc543242cf8bc6b6c4d3a7381bcf0258017c2e27e6f7f0d7e682e72fa"
+      },
+      {
+        "path": "Assets/Anim/Portal/Portal.controller",
+        "sha256": "2ace30f0991a7f11118b1c2cffd84002540e09b88ad35ad5fdec7262035b9ebb"
+      },
+      {
+        "path": "Assets/Anim/Portal/PortalStart.anim",
+        "sha256": "92e929d018b65c86457366334540593b335509a78da4a453ef5fa529f642bf96"
+      },
+      {
+        "path": "Assets/Anim/Portal/PortalZapusk.anim",
+        "sha256": "d4c55f3e378e5da95387793b2b70ae08d9641fe79459904542b6bd87ac7e3fc1"
+      },
+      {
+        "path": "Assets/Anim/Shoper/Beka.controller",
+        "sha256": "8c5ddca0af8ddaedc084d450602c315bf297402d59bbd9e0b3012fc993e38ea9"
+      },
+      {
+        "path": "Assets/Anim/Shoper/BekaIde.anim",
+        "sha256": "86822932e0e36bede3f1dd98e7301dc5b9c805bf37151272bf148734ae7a16ab"
+      },
+      {
+        "path": "Assets/Anim/Shoper/BekaWalk.anim",
+        "sha256": "6d9551099736fb206d6a335a16774384632ec22c77253caf44a92a21f8e08a2f"
+      },
+      {
+        "path": "Assets/Anim/Shoper/Shoper.controller",
+        "sha256": "68d8667be225bbbe992f17dbf1b565449f062ac4a2fe22af4c3438800c1f7f7e"
+      },
+      {
+        "path": "Assets/Anim/Shoper/ShoperEvent.anim",
+        "sha256": "596a32d03b9893b0faf16eab35f36a1c7854642bbdd7f44ae9e721ebb01065d2"
+      },
+      {
+        "path": "Assets/Anim/Shoper/ShoperIde.anim",
+        "sha256": "3610595a452ca49c9e1eba6252bf71b9acfaf3cb58cd7fe3ce611d091b619100"
+      },
+      {
+        "path": "Assets/Anim/Shoper/ShoperIdeVariant.anim",
+        "sha256": "97465c2567757d0d4e400fb3fc036441454b7a96a3bb4488aa4e7fb14d04a827"
+      },
+      {
+        "path": "Assets/Anim/Shoper/ShoperRoza.anim",
+        "sha256": "21cea1644e736314d29d5c6bdd3b8ce2e9faa13ef57ed664dc1fb0f624505bb2"
+      },
+      {
+        "path": "Assets/Anim/UI/TipTable.controller",
+        "sha256": "de6aa6bd7cc5dc84e3a684df54dcc16140e45732dc9407cd1a48d2351de53454"
+      },
+      {
+        "path": "Assets/Anim/UI/TipsFadeIn.anim",
+        "sha256": "eca2da17b55bab49e6370d31ecbba167fd1efe1d8597236cc6709295c52e4056"
+      },
+      {
+        "path": "Assets/Anim/UI/TipsFadeOut.anim",
+        "sha256": "5e7af1c3bb59e0672dcd2e84b5a5a089a710861bf5285a9856b50691036b1f9a"
+      },
       {
         "path": "Assets/Editor/GuidedTutorialAuthoring.cs",
         "sha256": "e0a782bf3e620bdbc577528bdaf2a52d3739fab5ee981b4ccb142e4de7d515d6"
       },
       {
         "path": "Assets/Editor/YandexBuild.cs",
-        "sha256": "a74cc4381cef34ee61fe475f9f4616510746e2f8519e52702d018da5bca27da4"
+        "sha256": "9cd5aabfeb696108fbee72882750efff228b1bfba305131cc94cdcaa3c332d5c"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_interface.cs",
+        "sha256": "15174c723725c03735a4b62168c0ce395e3c4dfcbf9d179430cf71b7bbbeb527"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_lang.cs",
+        "sha256": "fbd60b053a9558e0b07d8d1679f9a1633f73137ddc92c1b3d53a2b8250f1e221"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yandexPlatform.cs",
+        "sha256": "21f1bdaaabb8672ed4fc5b9b5067e59f51aae60a6bfa5625711390ba3a5d1450"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yg.cs",
+        "sha256": "9a617b4cf680407ab449767081298c479636c105ed009d242e056820bb28fbf5"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs",
+        "sha256": "2e44ba8bd9b184a4109b652c9bfde2db8a454a11eb63d8d0f77ccf0d5da43b65"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/EnvirData/Scripts/EnvirData_interface.cs",
+        "sha256": "b3cd232c173d1220a2b2b69748ec4c42d641f8706e94595e6da5cb9ac00383ab"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/EnvirData/Scripts/EnvirData_yandexPlatform.cs",
+        "sha256": "7b8d43d159ecf735fb2f6a7f6927bf90fe81f5d612db4b7d3dfb2a7905184f63"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/EnvirData/Scripts/EnvirData_yg.cs",
+        "sha256": "28d2e8ba0e302df40a8d25c9f5fc59db796700eb81a2a12f1e54180c99b1df38"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/AdNotification/AdNotificationYG.cs",
+        "sha256": "d3208d3bcacfb3d0534221adf34c8fcf2abd6d6c55429f956d64935dd5d3f14e"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_interface.cs",
+        "sha256": "e816a3e5fb5f734b8e1fdf2fa953ba9717b87df5950bc8e7f2fdff99d3d0669e"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_yandexPlatform.cs",
+        "sha256": "060e5df179b5a04c6631aac0ec716ddbf8d6eac0ad400228fa2d2883e2ac8e0d"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_yg.cs",
+        "sha256": "5d033b40f61c951cc45bd478304782d69ea1c474246dfd86bce9d9b0bb80867b"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterstitialAdv_optionalPlatform.cs",
+        "sha256": "ad4e494ceb2c2777fc54268be3dc198b05d2b45435abca15974cbf3d691cb527"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterstitialAdv_projectSettings.cs",
+        "sha256": "6369cb53dffe3a57910f78b6e481ec7feb61430e16182c8e0dffbf2903ceb8bf"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/TimerBeforeAds/TimerBeforeAdsYG.cs",
+        "sha256": "dd79fd95a506978cc598be596582331f4992e523ee9d275de720c07e044dcb1f"
       },
       {
         "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
         "sha256": "b3563fea314e22223b82616c7e939e5271899515b48d8c25a4b1a20e2d705bc0"
       },
       {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs",
+        "sha256": "5efbec77b6982b7f985d402c02381f942549f9ec9dac39e5bd383bdf92df7258"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_interface.cs",
+        "sha256": "942ba4e909eba6f320ad1675ec434018a2bf029529bab5d01708abf66236a522"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_lang.cs",
+        "sha256": "dabd920210edf74c25e23e058768477c2b04598a22fb50dca4fbfbb1c07ceee3"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_yandexPlatform.cs",
+        "sha256": "a04aeff99c2bd1d1314e90dbed271635df931308cf739f8007da2eebdce54677"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_yg.cs",
+        "sha256": "5d8affc25c8e91bb5138af02e2dccdad71402e57dd45d6ca7fe3d7e472513dd3"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LeaderboardYG.cs",
+        "sha256": "336d3282f6a584066828512dcbc68dc0f27435503107fdb07ce6e7d4ddacd356"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/UtilsLB.cs",
+        "sha256": "d1563a56876106254207d5158f9bed498d96b27e77d7277231bf6d4cbad01bd7"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RedefinePlayerPrefs/Scripts/RedefinePlayerPrefs.cs",
+        "sha256": "b7d85f4f5721db32dfca1d757f48d796bc96afefff4f3185e5d30599084974f4"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RedefinePlayerPrefs/Scripts/RedefinePlayerPrefs_interface.cs",
+        "sha256": "01a57f7a56e63bbe1a492d4f0328504366c747769d3939d8b25e26a337105b89"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RedefinePlayerPrefs/Scripts/SavesYG2.cs",
+        "sha256": "ea173323428cc0008ab86aaaab8b9e630ab30106646a2bbeb0ee8a445eff2da5"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdvLockTimer.cs",
+        "sha256": "d57af989b11154fcb5e7c756b898f1002025b09951b5c68ee861491adfe90b54"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_interface.cs",
+        "sha256": "72668bdaaa57dec214f03960dff93c58951ce93c652c6b252d80846241cb3f0b"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_optionalPlatform.cs",
+        "sha256": "880bc3d531c169e3656110db8e8f2f43765667b8bf379bb81582c2271bf1c9cd"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_projectSettings.cs",
+        "sha256": "7efd9399aca3d33a5b7edf01b846a7aa78cf0122490f81f0a4b818edf7c0178f"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_yandexPlatform.cs",
+        "sha256": "a8b93d1eb4b1564dfd9d0ba2c5823817421971770b3a0d4f0aee8b30342048bd"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_yg.cs",
+        "sha256": "c4334322731c0e74b03919a2bb13ea456658f9d9a49f8b49c68ed2437bf13dac"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_interface.cs",
+        "sha256": "6897db0ded49f6fff5916e7626df72f781289e07a5c57801d7b8d1c311148b88"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yandexPlatform.cs",
+        "sha256": "0dc1d28afa31a0e6a2e47b9cb30009615a4cbc877b808c426f01094c6e337a77"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yg.cs",
+        "sha256": "8c60c90ee769f426ef6373f150d9df5f57496f6c988cc23a6bcaa433c0e448ea"
+      },
+      {
         "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Editor/CopyCode/CloudStorage_js.js",
         "sha256": "c5220fe811fdb29698d0b126b0614dcab003a9ea49d0c566c5738924568515e8"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/SavesYG2.cs",
+        "sha256": "b5b8bcb621f92b192c3b42091ff3aec74da7f85df85a3ae918eb29cc9b8ec7bf"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Storage_interface.cs",
+        "sha256": "ba996e5ecad2361d69b4b73f2a75d04df87bf71ed1586c837c03be0431ae21d3"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Storage_projectSettings.cs",
+        "sha256": "5bfcf1e1b6fc7d34cb30601953df39e3ba032521be28bdadd613d1c96b9a3911"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yandexPlatform.cs",
+        "sha256": "3e985e728222258583622d525d1cf795e1258041aa16fd3dc46bb9ebeb6c8a3c"
+      },
+      {
+        "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yg.cs",
+        "sha256": "4010b4e7cbb768bed6d6312140a7427822b6990f809e444e76474ba8f7fe524d"
+      },
+      {
+        "path": "Assets/PluginYourGames/Platforms/YandexGames/Scripts/OwnHost/OwnHost.cs",
+        "sha256": "eab02ea763de97cd4dd02018cc5a521e4f9fc973b6fcea8a5ae64dd72f114b3e"
+      },
+      {
+        "path": "Assets/PluginYourGames/Platforms/YandexGames/Scripts/YandexGamePlatform.cs",
+        "sha256": "baad74c37f4cce641e5e36e801611c5f62e5eef85aa1be560b7e3391537c3135"
+      },
+      {
+        "path": "Assets/PluginYourGames/Platforms/YandexGames/YandexGames.asset",
+        "sha256": "416a285bf80d60a3ec25da6a60ff7bc9ae9639428fbcdd23b6a32bfa0edc6c4c"
+      },
+      {
+        "path": "Assets/PluginYourGames/Resources/SettingsYG2.asset",
+        "sha256": "05d69e8b2dd84258720923f005f02f4b48711bcd0bd785488327197ea1d3a156"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/CallAction.cs",
+        "sha256": "b9527595353319f621ce8b9b53a2e4ff937686eefedee04b6fbc13ebabd2f1d3"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/GamePause.cs",
+        "sha256": "58f0f6d70ea47f5db9c024d734820d5883fab1b4bd1c24eb9af668fe9ca9be4e"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/GameReadyAPI.cs",
+        "sha256": "70ffd19af3bc4a81981ed8363a13176bbf1d397b971f565bb707b9d008a4694b"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/GameplayAPI.cs",
+        "sha256": "706faa13164e7ecc8816c5d18ba561be4ad69aa83f1b1c3d7718563baf3d081b"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/IPlatformsYG2.cs",
+        "sha256": "d99093b6e4384dd154deb3f091f8e0276e1257cf28011baa4a976c8c260889f2"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/InitAttributes.cs",
+        "sha256": "383bf3efd973c1ca3dca58b9a50a5c901fde0b01289af6cc9682bedf4914139f"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/OptionalPlatform.cs",
+        "sha256": "ff0dc62cc3bbc8ed1ada454411c794fd8b59b74c252dbc5a5453d4d612340929"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs",
+        "sha256": "a4bb654d6890944e231ff3f17ab7adcb0b77e568c3a17673bde1586f4f092d04"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/YG2.cs",
+        "sha256": "1e4e7e0924a708e5bdc0e4401cd963c286d14dd58ad535b1af85a6d0f71779a1"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/YGInsides.cs",
+        "sha256": "1cbf3af1053f8f383a3d52871a66a887748c775b9bde573725abee5ca1fd425a"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Basic/YGSendMessage.cs",
+        "sha256": "40e2d2be6a0de8f554d444abdf70e26157d89c10614cc54e814e56b8858f88f1"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Attributes/ColorYGAttribute.cs",
+        "sha256": "f1047072689c4e497aaf2dd41f400755abbee24710b649b13f9ea29a06e77252"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Attributes/HeaderYGAttribute.cs",
+        "sha256": "90c2bdc27d442808b6f25c373fa47eb930834b729c02559c364c4066dd507943"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Attributes/LabelYGAttribute.cs",
+        "sha256": "ce8bd80e206258a32fbd000d8aadf0001f589e6592974d982a98dcd76b3279fe"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Attributes/NestedYGAttribute.cs",
+        "sha256": "6fd11abe457a0232c3850b11e22fdf8e55e7cfcc2365b5a34f38f86709c545d4"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/DefineSymbols.cs",
+        "sha256": "03e58e6adbeb97c1a3bbc4536138e11a756025efc6c2adaf22d5f6ec9f2bc3de"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/FileYG.cs",
+        "sha256": "5c64cd81a3665e1c9bc444647fae929cd82e345bfab3018cd440047e1ca2c6fd"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Module.cs",
+        "sha256": "9318f557350648631b6c5b955c28726fcaa2fd3ab69fcc07acac2c00cc304da5"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/PluginPrefs.cs",
+        "sha256": "6cd080b8086a0228fb7b1f50dbf68ce52b9706e33c500361b697ddfb765213c2"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/PrefsList.cs",
+        "sha256": "085ca8356b3336ee334f16d28429459692c3dcb68a4f8d6c07d647592b615d52"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/TextStyles.cs",
+        "sha256": "49e95b6350ed1780896a5a502a20e2e7e6e31a59dd0ff7289b774ff802ce0317"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Translates/Langs.cs",
+        "sha256": "f79527bff2dfb9769bfae925d19051e3e8d9124a3a92cd8e451a2d52c55b07d5"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/Translates/VersionControl_lang.cs",
+        "sha256": "5cdced5a33d64d3ca3e8971e35ee436a73dfad1bad3411458e3262dd9188f5e8"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/EditorScr/UnityPackagesManager.cs",
+        "sha256": "5162a2ffa4e2509991f1fe1270a725e9d650feaa03637b2e777448e06d59203f"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/InfoYG/InfoYG.cs",
+        "sha256": "f80d905cbc93ae26bfef2ecb8a784da2dffeefe0b146ef6b787f3846a2e6952c"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/InfoYG/InfoYG_lang.cs",
+        "sha256": "271ffd53a8c70cc5e4a524083320a4fcc4ef9ccf2742ff3c5a661017fe7ffcdc"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Other/AdvCallingSimulation.cs",
+        "sha256": "2e5175b438f77243e980731ecc906e8cc4f938d9ac2a229dcbb6850249fc8b16"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Other/EventsYG2.cs",
+        "sha256": "8d04fced1081e13a6a68f2fd24692b64fd98a608907fe7c7b31b06d2f2900935"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Other/ImageLoadYG.cs",
+        "sha256": "9f4943b04fc4f884ecd82fe826986f3068cd3cde2ed196ced3d2a89c61821503"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Other/PauseGameYG.cs",
+        "sha256": "e5ef589032a03e2e3e03c374121c3c28ad17105f056f8a3fc4d5a3be84b5d161"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Other/PlatformEventsYG2.cs",
+        "sha256": "915d9df8b9f2d35acca165d9a7dc2f710422e705372a34edc2f1228c183e7261"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Platform/CommonOptions.cs",
+        "sha256": "3b6607a837a4ee7fc4a9b800d27b0ab48acc42a91be906ea536199bdfafd2782"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Platform/PlatformSettings.cs",
+        "sha256": "582a1b2a5056d250b3527aee1b9f6c2ea752f43a92b998bb110f533b25a6a07e"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Platform/PlatformSettingsAttributes.cs",
+        "sha256": "c51dbbf7c3a985f2c6798e025c6f6f023432d60e95b7a507b7810e3969bb31a1"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Platform/PlatformSettings_langs.cs",
+        "sha256": "77e886b49a8a5b39888d21e95753899434dc3f1cae30f4d1e3ddbe08e917b794"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Platform/PlatformToggles.cs",
+        "sha256": "f7cd4bc4e25cc8dfc67fe83061c7ecef5c9cd1e700729e372bcb8b2f6b6a1dec"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Platform/ProjectSettings.cs",
+        "sha256": "af6b5f30dc044e07d26461d20a4d39d876063c0113bb29cbad1fc53912d94281"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Server/ModuleJson.cs",
+        "sha256": "f96b0974f07e59d5fbbb10bbca3afb0c51f895703e2ed101c49fa6be1ea75a11"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Server/ServerInfo.cs",
+        "sha256": "55cefa37bde89d34682b9b66067e45ebd1bc004b20bdc667ba51870a97c245a8"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Server/ServerJson.cs",
+        "sha256": "b6fb053dc60326d2ba2a2105916080310a36f564761349042a206dd99369d2b1"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Utils/JsonYG.cs",
+        "sha256": "3a750e4108a01f5ea59fd57fb35b00689c443aa052a7d521fdfe6503fd0ea751"
+      },
+      {
+        "path": "Assets/PluginYourGames/Scripts/Utils/LocalStorage_yg.cs",
+        "sha256": "ef0101e89d38c76f480c4a86c858cbe399e3f085118cbd9f4e00b2b425040143"
+      },
+      {
+        "path": "Assets/Prefabs/Animals/Cow.prefab",
+        "sha256": "294ea783d685cac411f3eaa6174d61d9d2124376e0ea7c30d032a74024ebe308"
+      },
+      {
+        "path": "Assets/Prefabs/Animals/chicken.prefab",
+        "sha256": "21f6894e8479307b02bef29ea493501349c9104d21cd394c40abd383b0fb4ae6"
       },
       {
         "path": "Assets/Prefabs/Arena/Barrel.prefab",
@@ -52,6 +739,106 @@
       {
         "path": "Assets/Prefabs/Arena/Barrel.prefab.meta",
         "sha256": "3a5b7fa6226b87c101f9d0488df69b0071554fd2938857ec2d4ada8c68604482"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/ArrowDef.prefab",
+        "sha256": "c3401836ee56d3a342ad69e835d3c1104f8e7566fb0b97d04170d78739508a2f"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/ArrowDrop.prefab",
+        "sha256": "38088abcd0769ef40cacf5d92ecbeb019d5b1267a326ad6fdcf34dfcc6a4c080"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/BolletEnemy.prefab",
+        "sha256": "f383e4f97f8658655ff64d0f870873b45307a7ed63422056f2b0d254199c4043"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/BolletEnemyBlack.prefab",
+        "sha256": "e0a771453e2932afb81662751ddd033262e40c60bb6a1523a1691e0d7c0ca423"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/Circle.prefab",
+        "sha256": "922b5d0633771f72a39604574233e3a6c11dec95e616a2fc745e2cce11f29bac"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/HolyArrow.prefab",
+        "sha256": "3e95ea9e63ae8758805b8c30a9d202ca376610b6e176902137451c34a1496357"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/HolySlime Variant.prefab",
+        "sha256": "6a0212a8e7a99ab6c8bad0c9fad78c714b3a57cac0d2d659a8002f2fb11339b5"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/PiercingArrow.prefab",
+        "sha256": "0479ffd607d78a6c03b3c4b11e3b0c7881d6d31b89c8dd2bbe4ac711236bb562"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/PoisonArrow.prefab",
+        "sha256": "a769239d48992bf8fd285aeae4302b06c82042ba057d1dd6064dff720acb37f3"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/SlimeBoss Variant.prefab",
+        "sha256": "cd07fe051bfe9d42464f613d8f793caffa4093e8f8faf9bdba8b8f9afa5a2a09"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/SlimeProj Variant.prefab",
+        "sha256": "2e42766af2ef758563fa34a380f0680e963193a1c37fb934374e0bc922e4a552"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/SlimeProjBoss Variant.prefab",
+        "sha256": "85a98327c511b510312ca3f9569c47acc94ebe1ee90eda34efe74f0f6c866f73"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/SlimeProjMini Variant Variant.prefab",
+        "sha256": "871351a6843dce14b9cc0b5286270e4b9354f80d67ce8c828cc3a2a8babc9b0d"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/Zaglyska.prefab",
+        "sha256": "a857fb0579fd2e078c4cf6019a9ee0c770bdee11153a997c82f07a0b1a8e9b6e"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/Bomber.prefab",
+        "sha256": "2e0dac53b49c024ed9fb9d7c5be0e41132cb250f36a0d384ee60b574bbc572d7"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/BossEn/BomberBoss Variant.prefab",
+        "sha256": "6ff659ed5aafcd8b1cd3b357a8bca9b4d3750704407ff56fb9a78cee7f61f3b5"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/BossEn/HealerEnemyBoss Variant.prefab",
+        "sha256": "9016c5efdd2d83efa08e02370df412edcfc8c694cf6c0f8d59f7789c8fd11f11"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/BossEn/SceletMagBoss Variant.prefab",
+        "sha256": "b5a08c48f42dc5b9140ebbe303d22faa19d800d672f80bcba5908c107bac1f17"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HealerEnemy.prefab",
+        "sha256": "761168af34ed4144c9b9ad1d7914a4ab04186b568fafb71f9a1979eebb07a246"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HolySlime.prefab",
+        "sha256": "20839c286149e28954d149b727c2a83c4c879fa6208c00f42ff7d52c5e154bd7"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/SceletMag.prefab",
+        "sha256": "196f5efd50a28176d874bd0175bd55b27eeff3b9c6d23b2f076f7067cf4b5216"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/SceletSheld.prefab",
+        "sha256": "65718c20c7e15fd6c7db468977740528cc02e592f88d3f8bb06baceb9df07366"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/SlimeMini.prefab",
+        "sha256": "ef89fce9427c872d0f56ab0aaa789158e196566d059fce48be7ee419c99fb04e"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/SlimeTrue.prefab",
+        "sha256": "17412ec2b1daeb2cf290c8b1e2097a651e50c4daa55a9b5120e8a57b3d81e0e3"
+      },
+      {
+        "path": "Assets/Prefabs/LvlComponent/PoisonLuja.prefab",
+        "sha256": "5af1d2034a9161346963c7e7a3b8c2355f92c6a1dc0ec833dc3d34e4b9189683"
       },
       {
         "path": "Assets/Prefabs/MMRText.prefab",
@@ -66,12 +853,36 @@
         "sha256": "97e5bbc5bdce438eef90f281624f25f449748e2d9f520bc33bdde8c395379345"
       },
       {
+        "path": "Assets/Prefabs/Money/MoneyGold Variant.prefab",
+        "sha256": "cc158d7e728b99ea8b90e5bd7123083b89d2165517c95e76807ce1f6f368597c"
+      },
+      {
+        "path": "Assets/Prefabs/Money/MoneyObsidian Variant.prefab",
+        "sha256": "c670fd90c53965c230774a3919de63560283e4cc48aba74150e18b542246b5e2"
+      },
+      {
+        "path": "Assets/Prefabs/Money/MoneyPlatina Variant.prefab",
+        "sha256": "bcba5812cc06ca51ac72a1c5a85b8e908ae27cb190125de1d55d4786bf1c79b9"
+      },
+      {
+        "path": "Assets/Prefabs/Money/MoneySilver Variant.prefab",
+        "sha256": "23721caf4a91564dc3e70dfe24f18d5d00186af3ff0367ebf1ae6dc6b1a61d1c"
+      },
+      {
+        "path": "Assets/Resources/AssetCredits.txt",
+        "sha256": "83daae199d45eb709bfd7d45229f658362baa8b6c1fd47e17bedfabd2d1ea2b9"
+      },
+      {
+        "path": "Assets/Resources/AssetCredits.txt.meta",
+        "sha256": "93df31726ebd6c8666c8103053a5cfb754dd9369f1cc3eff68884a89bfddef89"
+      },
+      {
         "path": "Assets/Resources/Localization.meta",
         "sha256": "4887ce5c0d9e39d2cfe69c7952542702057814ce302781f3fd37e6b03f041261"
       },
       {
         "path": "Assets/Resources/Localization/English.json",
-        "sha256": "3bafc53b4ef69a9407411ac7cd8ffe5dd60d26a16effe63266b0c1124f66c3b9"
+        "sha256": "70faf2baa1938bd3aa579a6cc97aef563c2dd8266116d08887a61c0e979f3b8d"
       },
       {
         "path": "Assets/Resources/Localization/English.json.meta",
@@ -79,11 +890,11 @@
       },
       {
         "path": "Assets/Scenes/Menu.unity",
-        "sha256": "9806c2848046ae86f47104ce32820feb7d9f124dd9fa3673759095a6b8d53a7a"
+        "sha256": "90cad669a1921e29307994a80cfe0030ad69011d260c22544d56dd3e5937fddb"
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "6a0a79bdf468fe62838166805ba6bc954090aa98aa36e299fa3aa12995be065f"
+        "sha256": "cad1ee91f46755c3d6c9eeff44ce3d3f6dd7ee0e0fd4353794ea1bffbc75af2f"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
@@ -135,7 +946,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs",
-        "sha256": "48fc16b6119b0ee1f181fd40f0eae1e38baa5b8aedb768c4a193e471b1c0564d"
+        "sha256": "a4519cf23ce8ab47bc652d6dc56a2ab7767793286da112845dc46edb3225fa22"
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs.meta",
@@ -147,7 +958,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
-        "sha256": "f0b776e8fa0a09c94444010c2db51f6fff2cfedf9906e28ae87daae7ced13ff0"
+        "sha256": "caae7ef39d3f70f2eca56dae46cf231b27beaab28f5c3b31c4a60ec13b563802"
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs.meta",
@@ -212,6 +1023,14 @@
       {
         "path": "Assets/Scripts/Enemy.cs.meta",
         "sha256": "e5e2d26240e0274f305a453724db2f9a3fc13e125e5c52ae3767f245eb42cfaf"
+      },
+      {
+        "path": "Assets/Scripts/EnemyDefeatEffect.cs",
+        "sha256": "c3a322ee8546f256c7d9e48733e6be3894859de9040bb2b022a74c59f290d318"
+      },
+      {
+        "path": "Assets/Scripts/EnemyDefeatEffect.cs.meta",
+        "sha256": "ebaafea60bc8287c591a46dfff0b8682c6871e5ec83e5ffc0138ae41d0f6ee77"
       },
       {
         "path": "Assets/Scripts/EnemyProgject.cs",
@@ -407,7 +1226,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/LanguageSelector.cs",
-        "sha256": "0883ab3c591f4baea2b2993f4b1219a06c9e81cb3d1d0914492a390fed46d96d"
+        "sha256": "12eaddcb6c18604c11349778243a2ab44a28b0996f5f224e438449ad965aaaea"
       },
       {
         "path": "Assets/Scripts/Ui/LanguageSelector.cs.meta",
@@ -431,7 +1250,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/Stats.cs",
-        "sha256": "7c4d36c182fb047d7054fa884dcaf168d9645fd1139354bc189ef33e6df36b6c"
+        "sha256": "5464a14485be5886845fa31b0316e541109dbe8162ab39fa98d300462b8de57c"
       },
       {
         "path": "Assets/Scripts/Ui/Stats.cs.meta",
@@ -598,12 +1417,588 @@
         "sha256": "7aaf39cd430764dacb5192f67b94d1c2689134981bb94c9e5f45119e768d70d6"
       },
       {
+        "path": "Assets/Sounds/Song/Home.wav",
+        "sha256": "786339f2bf398b6b4f16719618371f4f527876492a79ce34c6a49df950e65ab8"
+      },
+      {
+        "path": "Assets/Sounds/Song/Menu.wav",
+        "sha256": "dc44ee4bd141fe4579d87c48746f14319ce689ae8308f181ea6225bdfae39c04"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Animals/BabkaPlayer.mp3",
+        "sha256": "28d1418bac59211fa9315350c72dd2a6385805602e153734de40f4f4ca23d652"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Animals/Cow.mp3",
+        "sha256": "ae244011319e465fa03b3dbc35152778f70d15b9ef530db491fbf51cae4d2bbe"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Animals/chicken.mp3",
+        "sha256": "28d1418bac59211fa9315350c72dd2a6385805602e153734de40f4f4ca23d652"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Animals/shee.mp3",
+        "sha256": "3371a922899c78bdc1fec8acf875e3a0481fc3fb28837afe955f1a1200fdc8db"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Chest/934.mp3",
+        "sha256": "694c56c9fd3673cb8232a58ff9bd98252a35ce71e9e7cfe33c6f7d77bc35ffdf"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Chest/936.mp3",
+        "sha256": "e221276972fbbfc081dd079b4899cbcb6ea33bb682292cbd9360a7f8d49c596c"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Chest/brosok-odnoy-monetki-v-obschuyu-kuchu.mp3",
+        "sha256": "a80f00330c1b2004e40f6aae0fc9d09944844d699e90fd94dc863cf9cb1fef99"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Assasin/DamageAssasin (mp3cut.net) (1).mp3",
+        "sha256": "23d8aa2aca3ead875d761bcaa5549654cc04a608aa7dbbcc41c9970705464295"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Assasin/DeadAssasim (mp3cut.net).mp3",
+        "sha256": "fa7b6e6e856623938276f8bd6ce4135f80f62279c4821bf892a9f922390f7779"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Assasin/healingAssasin (mp3cut.net).mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Assasin/vzmah-razrubayuschiy-vozduh.mp3",
+        "sha256": "fe0857cc6f414e8b796abb7f47490720cda275fece68213c05fa3fab8195210a"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Assasin/vzryiv-s-ognennyim-plamenem (mp3cut.net).mp3",
+        "sha256": "b822b4d9a6685bff536160cf8556f2ad1755867696d726761fa67b4a99ba8033"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Block.mp3",
+        "sha256": "7b46dde66c4e80f68b970129b9af7d66aa4c2b2a62be643d0e0680f807791c3e"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/BomberDead.mp3",
+        "sha256": "fa7b6e6e856623938276f8bd6ce4135f80f62279c4821bf892a9f922390f7779"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/DeadBoss.mp3",
+        "sha256": "fa7b6e6e856623938276f8bd6ce4135f80f62279c4821bf892a9f922390f7779"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/ElitAttak.mp3",
+        "sha256": "1f73a78d74f30b29c6e76d01fb672cc928df9447e977dee8118b2185484aae25"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/HealEnemy 1.mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Slime/SlimeAt.mp3",
+        "sha256": "04eadf68a9ee6836143d50be86d02f0bef3fa22d145401daefadb09744b8a3a0"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Slime/SlimeDamage.mp3",
+        "sha256": "04eadf68a9ee6836143d50be86d02f0bef3fa22d145401daefadb09744b8a3a0"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Slime/SlimeDead.mp3",
+        "sha256": "fa7b6e6e856623938276f8bd6ce4135f80f62279c4821bf892a9f922390f7779"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/Slime/slime-movement_my185dn_.mp3",
+        "sha256": "04eadf68a9ee6836143d50be86d02f0bef3fa22d145401daefadb09744b8a3a0"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Enemy/sceletDamage.mp3",
+        "sha256": "9cc325de3cd80316a4961db4250c370ebc620355fffb41b8893869ef449fe25a"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/Damage.mp3",
+        "sha256": "b5146202b08341479006af3e93293a7d7c11b0e76288ef023461c284ef722a40"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/Shot.mp3",
+        "sha256": "1fd46282a14c6ae9bd695ae6ff6b6e27550884f91c48446535047ff2bfa6ad62"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/Spawn.mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/desh.mp3",
+        "sha256": "8f4edc715a71bdddbefd71f40fb4b85e2afe426ec28caee832b9016d5e596063"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/heal.mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/pickitup.mp3",
+        "sha256": "3b3284b803969a522e7f4f29156929ebd0c2aadd182a9a5075a5528fc0cb308f"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Player/tp.mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Portal/PortalTp.mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Portal/PortalZone.mp3",
+        "sha256": "d866ac7c634e03e2a7022622719c2cd1472b3513bf316edec8662c25a5d683a3"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Shopper/apple-pay-succes.mp3",
+        "sha256": "a80f00330c1b2004e40f6aae0fc9d09944844d699e90fd94dc863cf9cb1fef99"
+      },
+      {
+        "path": "Assets/Sounds/Zvyki/Shopper/sos.mp3",
+        "sha256": "5a67f92f9f12daaa8a185a987902171516a29e24d4fb83ea73377793afbc7089"
+      },
+      {
+        "path": "Assets/SpriteAtlas.spriteatlasv2",
+        "sha256": "857da2303f628bf2df3bcbad9f193cc86030cf3489b465ef9e745c33aa89079e"
+      },
+      {
+        "path": "Assets/Sprits/0.png",
+        "sha256": "84008e96c2421d2ad37537a16c963ddcc3d03e92d4325f173dc67934b1df98c3"
+      },
+      {
+        "path": "Assets/Sprits/Banditka/Bandit Faceset.png",
+        "sha256": "024b0407900c08cbb6d6654ff9cd793b477d07da1f65ab9c79eca597c9daa9ef"
+      },
+      {
+        "path": "Assets/Sprits/Banditka/Beka.png",
+        "sha256": "e144648b484afaf337ed8b5ce0f3df20000bc828636506800b9b56c1e53e8add"
+      },
+      {
+        "path": "Assets/Sprits/Banditka/BekaWolk.png",
+        "sha256": "5ef5f7395edd5c0361e9d47878dfcc3a9109c57d89d4af265cef42a3986b3ffb"
+      },
+      {
+        "path": "Assets/Sprits/Boss/Assassin.png",
+        "sha256": "4bf493e49f74374887713af331f9f4009b68f315d141f93b422a72a8d8be4f3d"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
+        "sha256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png",
+        "sha256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png",
+        "sha256": "f6971732730e8bfab3629f8ddf15732c8ab44f47ad55f0fdb6f0388a9c51056a"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png",
+        "sha256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png",
+        "sha256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png",
+        "sha256": "6c783d494157067a44a2af6bf554904ff053b4dc5d5c1e0082ea9263775fee14"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png",
+        "sha256": "e12923bcb57369b2175a0cbd646d237cf81714bfccb0726f749fe633beb040f7"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png",
+        "sha256": "a281d8c8949f87ffc881ad46ac67f7f0acd5b63bb06aa6acaba0e88ddd15f6a6"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png",
+        "sha256": "f2e7cc46662685a14ee7a40abf3449166eaeedbc9ad13e5966a1095737027cc2"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png",
+        "sha256": "56d7efa91f7c55e954a451ce7e4d5d07ddf31db23459de54daf40b59aef60d71"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png",
+        "sha256": "57754e247f63a65c4b198405bb1d8a33339c008ea9454a557d08a04ae5ed4c06"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png",
+        "sha256": "367987152568edfced986200e087163b42217bfcf967455c5e9130e7bb0f1954"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png",
+        "sha256": "2ca9f65bb493522a31f8b38d659299b07ff67de616481c42280c391e45910040"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png",
+        "sha256": "9c002843e301b659332a90f8019b9606a5d628749c3db779581d679b9e19c8cb"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png",
+        "sha256": "74e0fface49ae31e6cbe90937fcb745e88fa7ec59448344231b9540baa12946f"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png",
+        "sha256": "74de4245568aab95830e11e48471bb13bcbf1b9f128ede099422426d434e5a23"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png",
+        "sha256": "a96fd339f9eab8153ff9b98aca867fdf7229663ee7bc584c686f10bcda9b0858"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png",
+        "sha256": "bca9331714008131d8d97479849455cd393468b522335cdb71fb3b42a3e5710a"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png",
+        "sha256": "f075aa9e406fa8573a4c07379b3e8e8a42b5c2607f5c18e3f4c3f0d2a801d383"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png",
+        "sha256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png",
+        "sha256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png",
+        "sha256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png",
+        "sha256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png",
+        "sha256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png",
+        "sha256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png",
+        "sha256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png",
+        "sha256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png",
+        "sha256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png",
+        "sha256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png",
+        "sha256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png",
+        "sha256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png",
+        "sha256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png",
+        "sha256": "b61d31009d303a0ad4b0affb538eff88d48c1f3493495a22426feda3aefc3b77"
+      },
+      {
+        "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png",
+        "sha256": "366dd753ccc7f05965c5d05fd00c13f15240f4308949d662570e44f01a563ff8"
+      },
+      {
+        "path": "Assets/Sprits/Coins/coinpreview.png",
+        "sha256": "939f75f3a1dde5ef918ed695ec042e11785427c6cccf1202ecdfefcad9fa7c44"
+      },
+      {
+        "path": "Assets/Sprits/Double Note Strip.png",
+        "sha256": "224ddaba4e4b9a74f2afd10d1a0e88dfa9bcb12772de43d5a45636ce2b3cc070"
+      },
+      {
+        "path": "Assets/Sprits/Explosion.png",
+        "sha256": "7ec6a7be8f97a7033fa07d21b7c375c1197eb4b7b3e4a480c844daee6e39cf2e"
+      },
+      {
+        "path": "Assets/Sprits/Healer.png",
+        "sha256": "5c826eb1ae7f049cccc9b7ff0a4c38c294f069682841f6db21cd3bdb2b45e6d7"
+      },
+      {
+        "path": "Assets/Sprits/HealerAtack.png",
+        "sha256": "8fa85bc50f2eae7e2a50314e93892a5ddfebc567b9bb1e0f1de0a3d32d4dcde1"
+      },
+      {
+        "path": "Assets/Sprits/LPCportrait33.png",
+        "sha256": "70ee1c297c74683ab33bca18d27a114d4a33fe908f1798d4b6c7523c0b45c9a9"
+      },
+      {
+        "path": "Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png",
+        "sha256": "94804713a3a2856d07e782d194cf3920bcb331cd539fcd2ced0d058720f0c3f4"
+      },
+      {
+        "path": "Assets/Sprits/Map/achievements.png",
+        "sha256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f"
+      },
+      {
+        "path": "Assets/Sprits/Map/basictiles.png",
+        "sha256": "3e738d7030e3d8c9aa9e49dbeed0e8a42b29a194cde533ac7aa7eb2edd50081c"
+      },
+      {
+        "path": "Assets/Sprits/Map/chicken_eat.png",
+        "sha256": "c02621f1096d46dba0f11b6358e4ee8901e76b4ea57f58c6e2cd8cd514e63b06"
+      },
+      {
+        "path": "Assets/Sprits/Map/chicken_walk.png",
+        "sha256": "9f2e5b54f283a6e9b4a0e0439a548844b6ce1a20f34e719ae944206e4e206ebe"
+      },
+      {
+        "path": "Assets/Sprits/Map/cow_eat.png",
+        "sha256": "61bf45f6a448a9bda98d5f92e4263d821f2f8860e1a6438e70c745708275145f"
+      },
+      {
+        "path": "Assets/Sprits/Map/cow_walk.png",
+        "sha256": "f338ac144fcafdbbdb5c67ce674365b919b87c2a6ef757af60ec7e4abf23796b"
+      },
+      {
+        "path": "Assets/Sprits/Map/preview.png",
+        "sha256": "76fa05658455bc39fee06b268be1a01b6fdd81a7a3cd4a858ef95552ce2956c9"
+      },
+      {
+        "path": "Assets/Sprits/Map/sheep_eat.png",
+        "sha256": "20fcc7218839747e20ff5895d315c947a9637d6b1adf03308b19b5bbcd5d2c9c"
+      },
+      {
+        "path": "Assets/Sprits/Map/sheep_walk.png",
+        "sha256": "2ccaecd23d4dba308974a72415e660a6afa64135253d7061827fb62b67f9d29e"
+      },
+      {
+        "path": "Assets/Sprits/Map/sheet.png",
+        "sha256": "df9e0ba6b1e39b3b1d338a6dabc8d64e8d59d91dfd647ac4ff41f7410d901a59"
+      },
+      {
+        "path": "Assets/Sprits/Map/things.png",
+        "sha256": "f0c06e4c2fbf508f4b7aa9d2c483ae5406a4a92b3fde0fd35a6058f00b3ca192"
+      },
+      {
+        "path": "Assets/Sprits/PlayerAll.png",
+        "sha256": "f5a809fc80d7fd01202b16191cc1cf5095dfde500dee1478fc6294bd21b07c4e"
+      },
+      {
+        "path": "Assets/Sprits/Question Strip.png",
+        "sha256": "4c831f6ab5ad7cca3f5d1d554f9799aa8e0f1916c4abfba6a1a19e5040b0a7be"
+      },
+      {
+        "path": "Assets/Sprits/SciDE.png",
+        "sha256": "07535c2d5b9c2b1ca396e52b2ed9e9566ed005a39ed26f73b08118f1890ae5f0"
+      },
+      {
+        "path": "Assets/Sprits/ShoperAllAnim.png",
+        "sha256": "248022b6dea020e629e4bb1152f6c016d404969f4ac06477ab05007459217b5b"
+      },
+      {
         "path": "Assets/Sprits/achievements.png",
         "sha256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f"
       },
       {
         "path": "Assets/Sprits/achievements.png.meta",
         "sha256": "35e0698b0e1b4a11e8c415b39dd8080e2feaa0dcaa3948b12aa84f8e2169c839"
+      },
+      {
+        "path": "Assets/Sprits/allEnemy.png",
+        "sha256": "521d45f94a33c38c52ed0fd91ca5190901df713e699f5cf6a61a0d7ea078ea98"
+      },
+      {
+        "path": "Assets/Sprits/nun-black-NESW.png",
+        "sha256": "1b4d251e7c91e21ecd0d8597261f642e507b9c70c4ecb9de969243f31566418e"
+      },
+      {
+        "path": "Assets/Sprits/portalRings1.png",
+        "sha256": "73eb4a9c7a246d4665a8fbb953e898158088b7aa778c73782f94df4c60645a66"
+      },
+      {
+        "path": "Assets/Sprits/portalRings2.png",
+        "sha256": "eeda538f10bbcaea5bf791576d47935fab94c162456f9c706a00984eed94a6f3"
+      },
+      {
+        "path": "Assets/Sprits/ramka.png",
+        "sha256": "c16a6f5688a8eeb74822ad03d78b6ea475f4216c6ac063be59c3409e409db9eb"
+      },
+      {
+        "path": "Assets/Sprits/slime_monster_spritesheet.png",
+        "sha256": "d18208d895b689414a642510e76ddd601ba4ee20961ffd39052f6ca998a02fb9"
+      },
+      {
+        "path": "Assets/Sprits/spr_shield.png",
+        "sha256": "c74dc0fe63e47b8ae599ff00672e3a3a91df53a6460f8ecbd5dd0d326369a3ee"
+      },
+      {
+        "path": "Assets/Sprits/ui/HUD Menus.png",
+        "sha256": "a8bc0b339af7c1bd34b0c4136190670d5f553c219a176dd8f3215009ec222443"
+      },
+      {
+        "path": "Assets/Sprits/ui/Square Buttons/Info Square Button.png",
+        "sha256": "0818f430fac87ea08e0e01abbc0813b28a5ced8879fa17da1a81a8d3b545812c"
+      },
+      {
+        "path": "Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png",
+        "sha256": "1166ddec4ad1da70d2077e4ba13be6dcaa02e91978be9ba2f0e5e057a7eaa0fc"
+      },
+      {
+        "path": "Assets/Sprits/ui/Square Buttons/Return Square Button.png",
+        "sha256": "6e4cfba831e2a2c49b7b76754e6990f534d11f75456e5e21f20ae1dfaeb6cc71"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png",
+        "sha256": "6e6524b9bf573cac8d3c4ffee7d2d09dc36eafbc40fb8c435927fe99aa756c58"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_1.psd",
+        "sha256": "da88add61eef89bc459ead376c51130c4e1069a050c6d5c6af11ebb9a70ca9d4"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_2.psd",
+        "sha256": "a949dddb01ba024e671edd2014226d027478259af124616d10c4025c4e6a4a13"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_3.psd",
+        "sha256": "eceb64e0b806754b0dc9cccc31fd607bccf67c51efb0f10035a7529a15d4bb5b"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_4.psd",
+        "sha256": "672eabe13e65e00d6611b93313900f70967041be7cfb0358efd64ae200ed3f63"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_5.psd",
+        "sha256": "a154513babd4f3417b15c466626dcdbc519a2613419ff88cb491f8430c583b70"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_6.psd",
+        "sha256": "b2c65bfa6aca48283e1f32f639b590356fd1419dc4da75999b9fe06a6518f7ab"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_7.psd",
+        "sha256": "3b98c20b2380248eca3b9eecd3775bc96d8ccb4c73573b19dad245feab9c1ef1"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_8.psd",
+        "sha256": "92204806bb3cbed314dc1c690f06d58261916901ad785d9e4cacd5cc5a43b618"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/1.psd",
+        "sha256": "1e97fc6656f2a8f60895820b6e95347e91ba45f6f5a19a7a6a57342e91187646"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/2.psd",
+        "sha256": "a6244668282a619e662a09485d3e8dcf162c219520485c461d0261c8269e2137"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/3.psd",
+        "sha256": "59d70d69d498547b08aee812112371294ffda44266df60fe3e35aa7595379452"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/4.psd",
+        "sha256": "7a269597fccf759b087560a276ad169d2729263d3b98d666e13ffe8cb136e929"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/5.psd",
+        "sha256": "dec6965d6d1ab264a062aa155d421718d8468f297bbb396c3e579654f5acecda"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/6.psd",
+        "sha256": "6c9193fe4ba4376076be3c5e2a6e350fe38a84d0841ea374eb8af79e7655f9e9"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/7.psd",
+        "sha256": "2d60e9fa27b704a35b8322a681d9c8d9a828924e12aa91938fe8540b80e1badd"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/8.psd",
+        "sha256": "a712814e52ff2a1f0e8f9867cfdefe467e5d5e15a6cfaa79bc31a9c23ce46b94"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png",
+        "sha256": "3d762d29c1e4fbaa2ded89196127e26fe1fe2b4fcf978fb44abf90bb2acf1f6b"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png",
+        "sha256": "5be9584a740711182ea79b453fc9c9f22d15b0b67405acc327886e09a8c36279"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png",
+        "sha256": "65c8b1a6ee4e5bd82dc45bac512831b1416972d9a5f01cb2f969eb086ed83b0e"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png",
+        "sha256": "5aaad8d71ad756d64c7be5b0d551422a8db5f1dc0980aea28746267e50259b47"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png",
+        "sha256": "16abf9e5c0e7685559a320746ff14cf52082de20f8cd25ce8ea9d77231ad49f1"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png",
+        "sha256": "b43896d63426d2bedb83b432fff13bf89c633d79021972e5ee886a2483cb34b3"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png",
+        "sha256": "3a2a2082586cf3a79ad11c44cc390163b16ed8e046f45b4a1f27a3590adeb4c6"
+      },
+      {
+        "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png",
+        "sha256": "0eca64f105100fb3d2ea01fa4fc08f3d01e34fbca791a4b6032b2549675ee9b3"
+      },
+      {
+        "path": "Assets/Sprits/uiEL.png",
+        "sha256": "d3d175478994aa0028f36ba085ecc98d71cfaa9e93d0791d8ff613513baa12fe"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-3.0.txt",
+        "sha256": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-3.0.txt.meta",
+        "sha256": "f2f5670cf9fb6e9315b50876709a0785ecf699792f140eee6665c2907a88d3fc"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-4.0.txt",
+        "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-4.0.txt.meta",
+        "sha256": "1bd81d56f324db1ce887d019453dc03eadc7efb303dac3814b15d1a849e425bc"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt",
+        "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt.meta",
+        "sha256": "3f82ee447deb80952cb11e0e0be35e2edba5bd86a38deb2867c5af4f287c87d7"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-SA-4.0.txt",
+        "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC-BY-SA-4.0.txt.meta",
+        "sha256": "b93c26ccdf680e4a35c29490a684c75b59a6cbe7df16aa20ff02d1faacdb6179"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC0-1.0.txt",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/CC0-1.0.txt.meta",
+        "sha256": "eeced670b043642b434545be68a398fc1652dd6192324089462f1baac9efecf1"
       },
       {
         "path": "Assets/StreamingAssets/ThirdParty/LiberationSans-OFL.txt",
@@ -614,12 +2009,476 @@
         "sha256": "0d7602ce750d947d4476f1d090327f0476d6ea74e5036be34b2b90efe916a10b"
       },
       {
+        "path": "Assets/StreamingAssets/ThirdParty/PTSerif-OFL.txt",
+        "sha256": "ddf311c28ddf5a5ad9747649837346b67bed9d356789c3072bb27dbce49e514d"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/PTSerif-OFL.txt.meta",
+        "sha256": "00729341b99ed844740241e7d8d9fe01bbff83b916151fd57ff07a62677b86e5"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/PluginYG2-CC0.txt",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/PluginYG2-CC0.txt.meta",
+        "sha256": "612e509732db2c3a46d260128b855ca574e0357be725a0ffe5da906930c53ee0"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/PluginYG2-ThirdParty.txt",
+        "sha256": "0e1ee4d703dba7a22fb25bbc95732ca9d0665745f6babf05a5bab32315e28005"
+      },
+      {
+        "path": "Assets/StreamingAssets/ThirdParty/PluginYG2-ThirdParty.txt.meta",
+        "sha256": "f8a84accb398bd17e1b313ba759678925e859efdeecaee700cf1f2212d5a0436"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Overlay.mat",
+        "sha256": "9bf0ef632fa609a465899a85d6791ae7a6e882f4330043a3f424bda15dff4225"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs",
+        "sha256": "3c61167c0eab6c7bd295c2ff7c36777c89ffcbc453af8d6580236a6aabc0757d"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs",
+        "sha256": "99c88ada7f9cda09c0bb6d6deaaabc3b66845550f61d4fb41745005761cff298"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs",
+        "sha256": "e89e3ed0038c306fe7e4dcdaaf9d7931097c32493b34622877e4d53a6eef03a5"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark03.cs",
+        "sha256": "31ac73ac6a23a98c7e8ea480aa09c5abdb8ac8598a3de68b6933df7ea16c3d66"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark04.cs",
+        "sha256": "840c386820d5037e1f4cfc85a34b7348581566704076ca304be72ab672c70787"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+        "sha256": "76575f9a696f7400c5a3c78e7b5b5ee540de2dacf691dcd322f63be00c4520fa"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs",
+        "sha256": "14479ee971d6b8eceae82e9eb9c03389df611a825051df6e2b10e53a60ae1c9f"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs",
+        "sha256": "e163035bc080b98e90ef130abc969e8cefa32a630783650e68e724316b359332"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs",
+        "sha256": "6d5b1670e18606f4b4026828ea61470638cd9bf0a12891a90b55c046549f7444"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs",
+        "sha256": "ff61da5bf98d6b797aa6c99d0ed59928153271dc71f63b2deb3bdb7715e4d5a9"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ShaderPropAnimator.cs",
+        "sha256": "ede5388968001b879abe9bfeac8d87ed0905e301a4a789a301726257685513a3"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs",
+        "sha256": "4d13b6a4af5b35897cf73e0164d4069e2c1f5328ecb53b0d6713b22546b0624f"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs",
+        "sha256": "c9e6d50712b15ece9a7874026c2085b26c90f52d85de10202e8b36e3fea4f7e9"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs",
+        "sha256": "f6c9a606954beebc086b45d6997f89de40a29fcc35584fbbd2818d4a7a7e3c67"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
+        "sha256": "3a61c0f7256d8fbeb739f25e5c1627dcf6b6517158eef38c5fa450c688201ffa"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
+        "sha256": "d9fbdf75fd2e62d887150ce6f29fefb2d32b199588649c835567fd3aa97bb82b"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_PhoneNumberValidator.cs",
+        "sha256": "db98aef0ef8c1ad063aee3fd316c6d7137a783371003c0339ba9ffec25157a17"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs",
+        "sha256": "b59f9d1c7fddffaeec2b2523c338cc32d4c40c18fa8dd7f540b6e3b22a3f36e5"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs",
+        "sha256": "07e23509a862c25cf32cc3a84afeabcd8d79f6662f680405654aa1d905d9fbe8"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+        "sha256": "cd8f39066cf3c6835e1b61503b06ef7a3fd409437baa2e5569ec27a02ea408c4"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_A.cs",
+        "sha256": "e9c85049e2db34237663df431af7685b6c527554aadae03d01e5b999702a7948"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+        "sha256": "6e93b8e1eb4ff438c24e35ab0bf80b2ee4ab65a2d8c10f93f387e64f415d425b"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs",
+        "sha256": "d2f2ab0090772da36b7759783de6fbf225dad51fc40d4d7b06f82e6a8be27d2f"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
+        "sha256": "03933725d53aa925c5f55f7c831a88ceb28b78bc38aff5736bc06e2716e6d7ca"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs",
+        "sha256": "6d2e0e4fd557486ff1652ff2a6404312dc49ada59632563fc98c9b95d85fff7a"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs",
+        "sha256": "96d0c388d9f8742b63a924114947d3d6737f2dc558b527cd4e9bf88ad36f1631"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
+        "sha256": "b31384607c78e1b71c8773b0162f9e8c4c299d7f7baaab04ccd773039c79861a"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshSpawner.cs",
+        "sha256": "f4b25e169766fad6769f11526dbaaffb259731c2a2e5279bbee8ed4152384036"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs",
+        "sha256": "b7ab939290ed6e64ef779d91925fa44edea787a5fd73bfd784466f22f53ceb6c"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs",
+        "sha256": "4e934def3bee0a2806572824cb7007efcb05f9b1082a24400e35d4de209d8506"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeA.cs",
+        "sha256": "3e9b5d4c3ccaa63663098964a33bd3640e4e67e61e4dda00dc90dc047d67f339"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs",
+        "sha256": "6162673abf5de78d60b478dc1572b92b6108162390f4b37886afa52f66a7a613"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs",
+        "sha256": "921eff16d54ea819c0741acd9cb3d0f53d79d42d593aab7cad6f0aa93f20a16c"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs",
+        "sha256": "71b9808aca4e1c6ba124152a48c4eea1e10fc0ff7a66de5ef2ab26561123cbfe"
+      },
+      {
         "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
         "sha256": "e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49"
       },
       {
         "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta",
         "sha256": "e2e35a015703584fb119355fa02631764d111c3e112d32519801d46bd697b596"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+        "sha256": "b6b65c34e4907dd3006c2217fc8a4cef81b6da24df0a3de8e2288199eb6c5a9d"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+        "sha256": "98106785a032665c504bad1dcaf08b3bf58cf0f9fa6df9a7ad260bd3b64ba7bb"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat",
+        "sha256": "25874340976d40e9f9e8abf731b7f32e5a478541dead9288140bd60c7a3287d9"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+        "sha256": "c3ff50e3133d989180b187748ffc67903f1fede099a5b85b4fcbd8cb6e8be958"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt",
+        "sha256": "3a73e5ffe2510756dd3c2e982fdc1218b4be82c6e21abde88070d6860e1bc8e6"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt",
+        "sha256": "62d3f4d5f64aaf885692d2d13a8313f6918e6e4c5aeb3990a43f614652bfd89c"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset",
+        "sha256": "01222ac025a1f5b90f3f129eee7bfac7fb05223a1edd84aecf2171ec34b10708"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Resources/TMP Settings.asset",
+        "sha256": "56601a6bbf285ebb1ce6f0c861b83dcb124e923912ca341bdbb18ede6977f2d7"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader",
+        "sha256": "b2f29604a41934625338b7d1e6bd37fe008366f98932ac49f026dec16fd465d0"
+      },
+      {
+        "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+        "sha256": "970db4b1e73b8289c1dd56cff60877f426b49c9682620b2d14da6cd70b64cb9c"
+      },
+      {
+        "path": "Assets/Tile/32x32_map_tile v3.1 [MARGINLESS]_367.asset",
+        "sha256": "37e4fbf674f623db1af493301338dfd14312b5d7ebd50ad6e74f652f2d2644c1"
+      },
+      {
+        "path": "Assets/Tile/32x32_map_tile v3.1 [MARGINLESS]_368.asset",
+        "sha256": "f4522fc100c05915deb26e97d5097f43dfe6ff993ab933165ec4a447206b4561"
+      },
+      {
+        "path": "Assets/Tile/32x32_map_tile v3.1 [MARGINLESS]_369.asset",
+        "sha256": "c20c1e8df10397c93b8adcdc2c877d6d2e2780cd0dad87b20bcf712bca687834"
+      },
+      {
+        "path": "Assets/Tile/32x32_map_tile v3.1 [MARGINLESS]_370.asset",
+        "sha256": "e4601ce0ec12d12936c1b8a802c58023840aba4c372141e252b0af9a133833cd"
+      },
+      {
+        "path": "Assets/Tile/32x32_map_tile v3.1 [MARGINLESS]_485.asset",
+        "sha256": "d5044caa8f2b149f8a10944cf818bde1dd4938c77a4ad480a2cc9333228d2952"
+      },
+      {
+        "path": "Assets/Tile/32x32_map_tile v3.1 [MARGINLESS]_495.asset",
+        "sha256": "dae14598008d758a7007e794151b12769865eca7996601bc9f1d5c1addbd51c3"
+      },
+      {
+        "path": "Assets/Tile/basictiles_17.asset",
+        "sha256": "5d00bf957754597b864d16daaae1b5c25d1c50c0d4733cae57409a7a2af27ba3"
+      },
+      {
+        "path": "Assets/Tile/basictiles_30.asset",
+        "sha256": "baad7802b112fc4e2aef4af2acda3b8f19bd75e292c28ef417809a2bca46cd7d"
+      },
+      {
+        "path": "Assets/Tile/sheet_0.asset",
+        "sha256": "484922bbddfb54237e65054ae3b23c0c64d13d081b24a07b7ecdaf54356ba761"
+      },
+      {
+        "path": "Assets/Tile/sheet_1.asset",
+        "sha256": "f02c1c9e3e76635be4e2bde3b8810ea2a1667e48c9f31369db02e425b3b40175"
+      },
+      {
+        "path": "Assets/Tile/sheet_15.asset",
+        "sha256": "08e9515bbe8b47208e0720899e77a3653539f791f462078f22d3f272bbf89304"
+      },
+      {
+        "path": "Assets/Tile/sheet_18.asset",
+        "sha256": "779a45814e9b7467e82591875fa475c0917fa8cc837b1dccbea84fcff614f469"
+      },
+      {
+        "path": "Assets/Tile/sheet_19.asset",
+        "sha256": "7dabf33b41fdf3e7d0fd5a35a8529149e49e4afe951ff64933102a28f8ad869c"
+      },
+      {
+        "path": "Assets/Tile/sheet_23.asset",
+        "sha256": "9417146e7fc3f010f90ed702665ea7e57fcf04925e4cec5bb8e00d0fc2696a4b"
+      },
+      {
+        "path": "Assets/Tile/sheet_26.asset",
+        "sha256": "5843abf766b90cf39a984798286cd46ba74af8a7fb5e5c8ae0330cab1413f655"
+      },
+      {
+        "path": "Assets/Tile/sheet_27.asset",
+        "sha256": "31a487befb0b3a41102fd3f34c9fe6fa9493fd0a756fed1451e76262d2b21613"
+      },
+      {
+        "path": "Assets/Tile/sheet_31.asset",
+        "sha256": "35a0be78e10f52ad66e34b72c0559072cfc151bc5fee33ce678c332b80a5efcf"
+      },
+      {
+        "path": "Assets/Tile/sheet_39.asset",
+        "sha256": "183ca5dd9d2462a9f57fb02226688f8884f5c6897f0c5f46f4014a95d3521be3"
+      },
+      {
+        "path": "Assets/Tile/sheet_40.asset",
+        "sha256": "57fe316094284ddf85e5c27a3149ab8ef732dbcbe6847576bc39535a4e5af045"
+      },
+      {
+        "path": "Assets/Tile/sheet_41.asset",
+        "sha256": "47a17bdefec9bd65953982fa22468d11359b86ff8b2dbcda44d93227a41f5456"
+      },
+      {
+        "path": "Assets/Tile/sheet_45.asset",
+        "sha256": "17de517b7f712b0ff1a9327f9d5279fd65ed295efc0d87bac6d0ec8f4f612e34"
+      },
+      {
+        "path": "Assets/Tile/sheet_46.asset",
+        "sha256": "42932999fafdeb1a66a6434f8fc4c3cbf07434b2ed180107fc62e7d60dc6ead1"
+      },
+      {
+        "path": "Assets/Tile/sheet_47.asset",
+        "sha256": "327180c0344c1dce43038940a9dd5025d7fe3c97cffb38ff9661deedfa39653b"
+      },
+      {
+        "path": "Assets/Tile/sheet_48.asset",
+        "sha256": "5f1f6204b2f65168006403a85385f1f4a3156c6e5d3edfa16c50cfefee478013"
+      },
+      {
+        "path": "Assets/Tile/sheet_53.asset",
+        "sha256": "a94a24e946a931ddda48e362d5e0a4ff901010973ec93377d4fdf3f515a3f7b2"
+      },
+      {
+        "path": "Assets/Tile/sheet_54.asset",
+        "sha256": "d2dd6dd1fb82dd5e242754c15154ae60c376a48c08616b46f54eca97271d3a6f"
+      },
+      {
+        "path": "Assets/Tile/sheet_55.asset",
+        "sha256": "517f929b880cbb5bb90c735cfab3c054721461f4e2cb26c4bf5887efbd550caf"
+      },
+      {
+        "path": "Assets/Tile/sheet_56.asset",
+        "sha256": "c308bd7af5a00a0916a1481c17b866ecdb8f21484620173c78ec25bc85fb610e"
+      },
+      {
+        "path": "Assets/Tile/sheet_58.asset",
+        "sha256": "f2314cc81549593a61b8428ad4db901976efb4e17e17a0582651b518748e7a22"
+      },
+      {
+        "path": "Assets/Tile/sheet_59.asset",
+        "sha256": "cf299e8c7bb634843af05831063d3227d16b39e682d951cf151d1a93525ee4e2"
+      },
+      {
+        "path": "Assets/Tile/sheet_60.asset",
+        "sha256": "9c89ee91ccd5252d23ca7b3dff2cfda3300b424a4c2376fee99356e5d4334b0b"
+      },
+      {
+        "path": "Assets/Tile/sheet_61.asset",
+        "sha256": "a7a6dfb43f427e9493fc27853bbbac445dfafc79bbcd16661664afc9c4825897"
+      },
+      {
+        "path": "Assets/Tile/sheet_62.asset",
+        "sha256": "e4603d2d1a430def1b01fd93d73190ae704b5963cbe5ad617d3b45ae34aeb20b"
+      },
+      {
+        "path": "Assets/Tile/sheet_63.asset",
+        "sha256": "81ba3c20dcaeeb1b68d76509f692c4903465c8ea6e73de5fd26490c5bacd4b37"
+      },
+      {
+        "path": "Assets/Tile/sheet_64.asset",
+        "sha256": "3f9b486f5569c24760f4fc93f7363c3397d5ac2acf449821b9a27717f364bb89"
+      },
+      {
+        "path": "Assets/Tile/sheet_65.asset",
+        "sha256": "8c3df0015cd3910eae40869f1afd85fbaa2355c30229bdbda2e61268216f31fa"
+      },
+      {
+        "path": "Assets/Tile/sheet_66.asset",
+        "sha256": "8c62a7c74da78cb725d5a21331d8276764ed5e93bbe67c4a865cac958288a16b"
+      },
+      {
+        "path": "Assets/Tile/sheet_67.asset",
+        "sha256": "4dbcf4217df36356d849b40b729db2b6913218207669af90b2739a809563aba8"
+      },
+      {
+        "path": "Assets/Tile/sheet_68.asset",
+        "sha256": "b540a046c2c017f6bc5915baea2883d895d41072bb6ac0ca9593d1fea83bba10"
+      },
+      {
+        "path": "Assets/Tile/sheet_69.asset",
+        "sha256": "731e615c3be7bb95a9a3f4da5fa4a3514312942675e989b8510353012f4a3dee"
+      },
+      {
+        "path": "Assets/Tile/sheet_7.asset",
+        "sha256": "211866c8f8764449d462582ccfc4a2a57e65f29511c6694c0d2306105100ea5f"
+      },
+      {
+        "path": "Assets/Tile/sheet_70.asset",
+        "sha256": "87b0035202689c1603c87e0f7845220acf0c6b6215489b72569af7ce2d66777b"
+      },
+      {
+        "path": "Assets/Tile/sheet_71.asset",
+        "sha256": "dad28d83f275ad96517af8d3e34836bc3c7f04feae6524c037b403c33d8296d6"
+      },
+      {
+        "path": "Assets/Tile/sheet_72.asset",
+        "sha256": "9b4e945f05799ddd17ea73730995dd396dfc7c44b1367435ff0e1cf8eb517c13"
+      },
+      {
+        "path": "Assets/Tile/sheet_73.asset",
+        "sha256": "4e6d1ac47f0156292935a49688b7022a60de76ec171ceb68b3ed117e6aa162c4"
+      },
+      {
+        "path": "Assets/Tile/sheet_74.asset",
+        "sha256": "9f0c70550c1d19205d23661f144b7a40ffe1f20fde0a1575b181fc2240a507d8"
+      },
+      {
+        "path": "Assets/Tile/sheet_8.asset",
+        "sha256": "180b1f7990b2cf46b0e83a889b8e7a9251b2b0d697ee8b04d0fc5f49bcf91593"
+      },
+      {
+        "path": "Assets/Tile/sheet_80.asset",
+        "sha256": "6ffcab12b7f4ad8855466e5ff23bf863c3a4fd479fa2fcecf04bde34e2741ddd"
+      },
+      {
+        "path": "Assets/Tile/sheet_81.asset",
+        "sha256": "c7000e5d823a43dfb9dc4e8ead94f9caec609ede996dd29c18e6e130773e5eb8"
+      },
+      {
+        "path": "Assets/Tile/sheet_84.asset",
+        "sha256": "505bb8ddf33258800d81332b910d9e82ca27a3c757c0167e3653daa6ce81889d"
+      },
+      {
+        "path": "Assets/Tile/sheet_86.asset",
+        "sha256": "e52bef71c555895e72fa98fb126ae8965e199807d66592e759e70b3ce1aac8e6"
+      },
+      {
+        "path": "Assets/Tile/sheet_87.asset",
+        "sha256": "b7a8a7c27c24529c12c56720da74f8fe90feb2cd3de1bd1704786390dbb77b63"
+      },
+      {
+        "path": "Assets/Tile/sheet_88.asset",
+        "sha256": "d91c10d055c476bf87bafa3f0b1222587c6ed7b567a88f01ee21c85cbf7aed46"
+      },
+      {
+        "path": "Assets/Tile/sheet_9.asset",
+        "sha256": "e0b792fe77872669e6ed26db147df4f88fcea1c95bb8258956b01ada65b9c574"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/AchievementCard.prefab",
+        "sha256": "710a18a4fd5a3919129889c27ca0b6b365e39d7bd9bb6474ec85bfaa2e1e2b0c"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Arena/Altar.png",
+        "sha256": "e2237f3cf0459b4c319b22059cddc89e0557296f79095ebe4d04c87f3646eea2"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Arena/ArenaRunes.mat",
+        "sha256": "642ba5d386c2c57264f9112ec32de26f6c7d5ed1cd53b5d93778e30a4abd9330"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Arena/Barrel.png",
+        "sha256": "617e25692aab1253787d46ff76331fab66bce94475bfff6db6296c674093d8fb"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Arena/GravityRune.png",
+        "sha256": "af84ddbfc655664ee40933ef35472b591f9055ed7fd27be9626d6e288c97bb22"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Arena/Outpost.png",
+        "sha256": "1822032bd4b7fe6de7dbacd06aa5900a6bd09dd56b7151da9fc6d71a3cb6388f"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Enemy/DamageNumber.prefab",
+        "sha256": "a36d478bf797c8cdac504b0bc3c8d762c48f4f7e9d72772b6df258b808b9946b"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Enemy/ShieldReinforcement.mat",
+        "sha256": "20ba7784cd224d809d1fc9d909417166693f699ee3950b226579283cae75d96d"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Enemy/ShieldReinforcement.shader",
+        "sha256": "5c69dd3929d65b68428ca59228a09fa60298eec7c489f5876705de84b43062f7"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Fonts/ForestTitle.asset",
+        "sha256": "a8c2a746fd6937adab222c4b3f1f6dacda68e1b5c3624828881b063ca461676c"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Fonts/PT_Serif-Web-Bold.ttf",
+        "sha256": "038ba7336bd7ea14f12ad155bed51a4345cac5153275d521dec3ba04021c526e"
       },
       {
         "path": "Assets/UI/ForestGarrison/Medals.meta",
@@ -659,7 +2518,7 @@
       },
       {
         "path": "Assets/WebGLTemplates/YandexGames/index.html",
-        "sha256": "07e870ea5a5a14b9b4f4fe52aa89ccb94cde2817e574e727ed237d7390449910"
+        "sha256": "548efa64c82559ffe9256f93cf35cde88c714246f9da87d15a751ccae1b231cb"
       },
       {
         "path": "Assets/WebGLTemplates/YandexGames/index.html.meta",
@@ -699,13 +2558,20 @@
     "Builds/RatingValidation/localization-checks-visual.log",
     "Builds/RatingValidation/localization-webgl-build.log",
     "Builds/RatingValidation/shotgun-webgl-build-final.log",
-    "Builds/RatingValidation/shotgun-checks.log"
+    "Builds/RatingValidation/shotgun-checks.log",
+    "Builds/RatingValidation/release-v13-webgl-final.log",
+    "Builds/RatingValidation/release-v13-ui-verified.log",
+    "Builds/RatingValidation/release-v13-assets-verified.log",
+    "Builds/RatingValidation/friendly-defeat-graphics-checks.log",
+    "Builds/RatingValidation/release-v13-webgl-assets-final.log",
+    "Builds/RatingValidation/release-v13-ui-final.log",
+    "Builds/RatingValidation/release-v13-assets-final.log"
   ],
-  "uploadedToYandex": false,
+  "uploadedToYandex": true,
   "previousUploadedArchive": {
-    "sha256": "48eea9d0b4ded65aae0d3d9f7dc3bae35992f87d975a984b893fc0906195eea0",
-    "version": "0.0.0.11",
-    "fileId": "14020652"
+    "sha256": "2deb2c491207a8aa60ef8df2f2522062a2cb13b27d27d5d5d2fd3cca30189ee9",
+    "version": "0.0.0.12",
+    "fileId": "14044286"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -722,10 +2588,11 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.11",
-    "archiveFileId": "14020652",
-    "checkedAt": "2026-10-16",
+    "version": "0.0.0.13",
+    "archiveFileId": "14045057",
+    "checkedAt": "2026-10-17",
     "archiveProcessing": "Ready",
+    "archiveLastChangedAtConsole": null,
     "platforms": [
       "desktop",
       "Android"
@@ -736,10 +2603,13 @@
       "ru",
       "en"
     ],
-    "runtimeCheckedVersion": "0.0.0.10",
+    "runtimeCheckedVersion": "0.0.0.13",
     "moderationSubmitted": false,
     "published": false,
-    "moderationBlocker": null,
+    "moderationBlocker": "Submit button still disabled after English media finished processing; disabled property verified in DOM and visible UI. Exact reason not exposed.",
+    "moderationSubmitEnabled": false,
+    "moderationBlockerCauseConfirmed": false,
+    "platformRestrictionBannerVisible": true,
     "card": {
       "iconSaved": true,
       "english": {
@@ -753,47 +2623,84 @@
           "instructions"
         ],
         "sharedIconSaved": true,
-        "consoleCompletenessPercent": 69,
-        "remainingMedia": [
-          "cover",
-          "promo video",
-          "desktop and Android screenshots"
-        ],
-        "readyForModeration": false
+        "consoleCompletenessPercent": 92,
+        "remainingMedia": [],
+        "readyForModeration": true,
+        "coverSaved": true,
+        "promoVideoSaved": true,
+        "desktopScreenshotCount": 2,
+        "mobileScreenshotCount": 2,
+        "horizontalVideoFileId": "14045080",
+        "horizontalVideoPlaybackConfirmed": true,
+        "horizontalVideoDurationSeconds": 19.999999,
+        "consoleFieldsEvidence": "Publishing/card-en-console-v13.json",
+        "proof": "Publishing/Previews/yandex-video-en-v13-20261017.jpg",
+        "readinessScope": "Required listed English fields/media saved and reloaded; overall moderation eligibility remains disabled.",
+        "consoleVideoRecheck": {
+          "checkedAt": "2026-10-17",
+          "readyState": 4,
+          "currentTime": 12.197781,
+          "duration": 19.999999,
+          "paused": false,
+          "error": null,
+          "initialPlayerErrorResolved": true,
+          "initialErrorCauseConfirmed": false,
+          "downloadRequestCompleted": false
+        }
       },
       "coverSaved": true,
       "instructionsSaved": true,
       "desktopScreenshotCount": 2,
       "mobileScreenshotCount": 2,
-      "horizontalVideoFileId": "13936285",
-      "horizontalVideoPlaybackConfirmed": true,
-      "horizontalVideoDurationSeconds": 20,
-      "downloadedTranscodeBytes": 4653594,
-      "downloadedTranscodeSha256": "6459d3663edb46f44f3b76c313ffc579512dbb2976b5894a0dd69a716e4059f7",
-      "downloadedTranscodeFullDecode": true,
-      "consoleVideoRecheck": {
-        "checkedAt": "2026-10-14",
-        "readyState": 4,
-        "currentTime": 12.19313,
-        "error": null,
-        "playbackConfirmed": true
-      }
+      "consoleCompletenessRussianPercent": 92,
+      "checkedAt": "2026-10-17",
+      "neutralRussianDescriptionsSaved": true,
+      "consoleVideoRecheckLatestRussian": {
+        "checkedAt": "2026-10-17",
+        "videoFileId": "14045403",
+        "status": "Uploaded, waiting for server processing after save and page reload",
+        "playbackConfirmed": false,
+        "proof": "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg"
+      },
+      "previousRussianVideo": {
+        "horizontalVideoFileId": "13936285",
+        "horizontalVideoPlaybackConfirmed": true,
+        "horizontalVideoDurationSeconds": 20,
+        "downloadedTranscodeBytes": 4653594,
+        "downloadedTranscodeSha256": "6459d3663edb46f44f3b76c313ffc579512dbb2976b5894a0dd69a716e4059f7",
+        "downloadedTranscodeFullDecode": true,
+        "consoleVideoRecheck": {
+          "checkedAt": "2026-10-14",
+          "readyState": 4,
+          "currentTime": 12.19313,
+          "error": null,
+          "playbackConfirmed": true
+        }
+      },
+      "horizontalVideoFileId": "14045403",
+      "horizontalVideoPlaybackConfirmed": false,
+      "horizontalVideoProcessing": "Uploaded, awaiting processing",
+      "horizontalVideoSourceDurationSeconds": 20,
+      "russianDesktopScreenshotCount": 2,
+      "russianMobileScreenshotCount": 2
     },
     "runtime": {
       "sdkVersion": "v2",
-      "gameReadyMilliseconds": 3591,
+      "gameReadyMilliseconds": 4424,
       "i18nUsed": true,
       "cloudProfileRendered": true,
-      "cloudMmrRendered": 2028,
-      "cloudCompletedWavesRendered": 19,
-      "cloudKillsRendered": 128,
+      "cloudMmrRendered": 2668,
+      "cloudCompletedWavesRendered": 25,
+      "cloudKillsRendered": 168,
       "realLeaderboardEntriesVerified": false,
       "cloudCrossDeviceRoundTripVerified": true,
-      "checkedVersion": "0.0.0.10",
+      "checkedVersion": "0.0.0.13",
       "gameReadyMillisecondsPreviousVersion": 4133,
-      "runtimeBuildPath": "623393/yo5eps03mrhxvfl1fnyuoyt4onvjbq7o",
+      "runtimeBuildPath": "623393/x04z8h3c5rtqtv9mivqsjnm5j38c3tml",
       "gameReadyMillisecondsFirstObservation": 71793,
-      "cloudRoundTripCheckedVersion": "0.0.0.9"
+      "cloudRoundTripCheckedVersion": "0.0.0.9",
+      "gameReadyEnglishMilliseconds": 2869,
+      "cloudProfileEvidence": "Publishing/Previews/yandex-auto-en-v13-20261017.jpg"
     },
     "userReportedChecks": {
       "desktopPlayAndRatingOpen": true,
@@ -808,11 +2715,12 @@
       "mobileLandscapeStartsAfterManualRotation": true
     },
     "remainingChecks": [
-      "Verify actual leaderboard score submission and entries on Yandex.",
-      "Verify exact rewarded outcomes and cancellation, interstitial pause/audio on the platform.",
-      "Finish asset source/license mapping; free/own statement is not a complete license inventory.",
-      "Finish English card media: cover, promo video and desktop/Android screenshots; English card is 69% complete.",
-      "Verify version 0.0.0.11 RU/EN language selection and shop music on the real platform; previous runtime checks describe versions 0.0.0.9/0.0.0.10."
+      "Await the new Russian promo video 14045403 processing, then verify playback. Current Russian screenshots have been refreshed; old unsupported art is no longer selected in the card.",
+      "Real leaderboard entries remain unverified: v12 raw table empty after accepted submission; v13 immediate/delayed entry warnings still present. Account for platform incident without assigning an unproven root cause.",
+      "Submit-for-moderation button disabled after media processing; exact reason not exposed. No moderation request or publication performed.",
+      "Real early video cancellation was not offered by the supplied player; actual cancellation remains untested. Verify active enemy/timer continuity on rewarded revival, beyond earlier full HP/coins confirmation.",
+      "Full supported-browser/device matrix and a sustained gameplay/performance session were not completed. Android basic controls/shop and shop/ad/focus audio were confirmed by the owner on v13.",
+      "Selected 6+ retained and boss defeat visuals softened; final age classification remains a moderation decision."
     ],
     "proofs": [
       "Publishing/Previews/yandex-release-contract-20261013.jpg",
@@ -827,7 +2735,17 @@
       "Publishing/Previews/android-shop-fonts-v10.png",
       "Publishing/Previews/pc-version10-menu.png",
       "Publishing/Previews/pc-version10-pause.png",
-      "Publishing/Previews/yandex-version11-20261016.png"
+      "Publishing/Previews/yandex-version11-20261016.png",
+      "Publishing/Previews/yandex-version12-20261017.png",
+      "Publishing/Previews/yandex-version13-20261017.jpg",
+      "Publishing/Previews/yandex-auto-ru-v13-20261017.jpg",
+      "Publishing/Previews/yandex-auto-en-v13-20261017.jpg",
+      "Publishing/Previews/yandex-credits-v13-20261017.jpg",
+      "Publishing/Previews/yandex-video-en-v13-20261017.jpg",
+      "Publishing/Previews/yandex-mobile-screens-en-v13-20261017.jpg",
+      "Publishing/Previews/yandex-moderation-disabled-v13-20261017.jpg",
+      "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg",
+      "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg"
     ],
     "leaderboardBridgeCorrection": {
       "source": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
@@ -881,9 +2799,9 @@
         "replyProof": "Publishing/Previews/yandex-support-leaderboard-reply-20261014.png"
       },
       "platformIncidentConfirmedBySupport": true,
-      "latestCheck": "Publishing/leaderboard-version10-check.json"
+      "latestCheck": "Publishing/leaderboard-recheck-20261017.json"
     },
-    "lastSavedAtConsole": "18:32:02 16/10/2026",
+    "lastSavedAtConsole": "19:26:11 17/10/2026",
     "consoleTimeoutResolvedAfterReload": true,
     "latestReleaseCheck": {
       "checkedAt": "2026-10-16",
@@ -904,9 +2822,11 @@
       "accountIdsLogged": false,
       "liveCauseConfirmed": false
     },
-    "monetizationLastObserved": "Connected; submit for moderation button enabled in console on 2026-10-16.",
+    "monetizationLastObserved": "Connected observed on 2026-10-16. Submit for moderation button disabled on 2026-10-17; exact current disabling reason not exposed.",
     "ageRatingUserReported": "6+",
-    "ageRatingObservationNote": "6+ observed in console on 2026-10-16 and preserved; no age-rating change made during this upload."
+    "ageRatingObservationNote": "6+ observed and preserved on 2026-10-17; new code removes boss bodies and uses neutral defeat text. Moderation decision not guaranteed.",
+    "platformPanelStatus": "Technical maintenance: come back later or choose another navigation section",
+    "platformPanelProof": "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg"
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -934,15 +2854,17 @@
     "proof": "Publishing/Previews/android-shop-fonts-v10.png"
   },
   "orientationValidation": {
-    "nodeCases": 7,
+    "nodeCases": 9,
     "nodeResult": "Passed",
     "test": "Tests/webgl-orientation.test.cjs",
     "presentInFreshGeneratedHtmlAndCss": true,
     "liveMobileVerified": true,
     "forcesRotation": false,
     "userConfirmedRotatePromptAndLandscapeStart": true,
-    "liveVersion": "0.0.0.10",
-    "checkedAt": "2026-10-16"
+    "liveVersion": "0.0.0.13",
+    "checkedAt": "2026-10-17",
+    "focusGuardTest": "Repeated blur cannot stack guards; pointerdown without focus clears the guard; regular focus also clears it.",
+    "liveMobileVerifiedBy": "Owner reply: да работает; combined rotation/movement/firing/shop/one-hand question."
   },
   "desktopVersion10Validation": {
     "result": "Passed after reload",
@@ -953,8 +2875,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.12",
-  "uploadLimitation": "Upload attempt on 2026-10-17 could not reach the console: browser tool returned Local browser use is disabled in Work settings. The last confirmed console version remains 0.0.0.11.",
+  "localVersion": "0.0.0.13",
+  "uploadLimitation": null,
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
@@ -972,13 +2894,15 @@
       "ru",
       "en"
     ],
-    "catalogEntries": 455,
+    "catalogEntries": 457,
     "selector": "auto / ru / en",
     "runtimeUnityChecks": "PASS",
-    "templateNodeTestsPassed": 9,
+    "templateNodeTestsPassed": 10,
     "guidePcAndTouchTranslated": true,
-    "liveBrowserChecked": false,
-    "documentation": "Publishing/LOCALIZATION.md"
+    "liveBrowserChecked": true,
+    "documentation": "Publishing/LOCALIZATION.md",
+    "liveCheckedVersion": "0.0.0.13",
+    "liveScope": "v13 SDK Auto RU/EN, persisted manual English on Russian SDK, settings and credits; manual Russian persistence and shop translation checked on v12."
   },
   "shotgunBuff": {
     "checkedAt": "2026-10-17",
@@ -1001,6 +2925,104 @@
     "unityRuntimeVerified": true,
     "musicSamplesAdvanceInTrade": true,
     "sdkPauseRespected": true,
-    "realPlatformVideoRecheck": false
+    "realPlatformVideoRecheck": true,
+    "liveVerifiedBy": "Owner direct reply on v13: shop continuity and ad/minimization pause/resume work.",
+    "ownerReport": "Publishing/owner-v13-check.json"
+  },
+  "assetValidation": {
+    "result": "PASS",
+    "report": "Publishing/release-assets-validation.json",
+    "provenance": [
+      "Publishing/asset-rights-inventory.json",
+      "Publishing/character-replacements.json",
+      "Publishing/interface-sprite-provenance.json",
+      "Publishing/audio-provenance.json"
+    ],
+    "unknownPackedRasterPaths": [],
+    "originalAudioClips": 40,
+    "replacedCharacterAtlases": 11,
+    "originalProceduralPngs": 14,
+    "listeningReviewed": true,
+    "listeningReviewedByOwner": true,
+    "listeningIndependentlyReviewedByAgent": false,
+    "listeningScope": "Owner confirmed shop music continuity and ad/focus pause/resume. Agent did not independently assess sound balance."
+  },
+  "friendlyDefeatValidation": {
+    "result": "PASS",
+    "cases": 54,
+    "log": "Builds/RatingValidation/friendly-defeat-graphics-checks.log",
+    "scope": "Four boss/regular variants: immediate body/weapon hiding, collision and simulation stop, particles, reward once, original removal timing and attack cleanup.",
+    "ageDecision": "User-selected 6+ unchanged; not a guarantee of moderation approval."
+  },
+  "desktopVersion12Validation": {
+    "checkedAt": "2026-10-17",
+    "sdkLanguageAutoEnglish": true,
+    "languageManualRussianPersistedOnReload": true,
+    "manualAutoAndEnglishVerified": true,
+    "playOpenedCamp": true,
+    "keyboardMovement": true,
+    "merchantMouseButtonOpenedShop": true,
+    "realMerchantVideoReward": {
+      "before": 1148,
+      "after": 1648,
+      "delta": 500
+    },
+    "rewardCancellationVerified": false,
+    "shopMusicLiveVerified": false,
+    "leaderboardReport": "Publishing/leaderboard-recheck-20261017.json",
+    "proofs": [
+      "Publishing/Previews/yandex-sdk-auto-en-v12-20261017.png",
+      "Publishing/Previews/yandex-language-persist-v12-20261017.png",
+      "Publishing/Previews/yandex-shop-en-v12-20261017.png",
+      "Publishing/Previews/yandex-reward-en-v12-20261017.png"
+    ]
+  },
+  "assetManifestHashes": {
+    "Publishing/asset-rights-inventory.json": "b9fd37ac154f83e15588d40e3ba4107bbd5f6b0286468cdfe8ef92e07b551aec",
+    "Publishing/character-replacements.json": "12e04b0c8891950e199a927b08a01fd13c1fdfc1d3c2865cf5cf405d2a945573",
+    "Publishing/interface-sprite-provenance.json": "26cc42ea7059f9e4178bee3cdfc5ea845a63f6d709234ebc68f14b9b202ea749",
+    "Publishing/audio-provenance.json": "cc9a625ef26f50e48023d46f9913deb11dd40de5c724b3760a05f43545f152d8"
+  },
+  "englishMedia": {
+    "report": "Publishing/Card/media-en-report.json",
+    "coverReport": "Publishing/Card/cover-en-report.json",
+    "captureScope": "Unity PlayMode; phone layout is SDK simulation, not physical Android browser validation.",
+    "uploadedToYandex": true,
+    "videoFileId": "14045080",
+    "screenshotsSaved": {
+      "desktop": 2,
+      "mobile": 2
+    },
+    "consoleCompletenessPercent": 92,
+    "videoPlaybackConfirmed": true
+  },
+  "desktopVersion13Validation": {
+    "checkedAt": "2026-10-17",
+    "environment": "Codex in-app Chromium browser; not the full supported-browser matrix",
+    "sdkVersion": "v2",
+    "gameReadyMillisecondsRu": 4424,
+    "gameReadyMillisecondsEn": 2869,
+    "i18nUsed": true,
+    "persistedExplicitEnglishLoadedOnRussianSdk": true,
+    "sdkAutoRussianSelectedAndRendered": true,
+    "sdkAutoEnglishOpenedByOfficialMockAndRendered": true,
+    "settingsOpen": true,
+    "creditsOpenScrollClose": true,
+    "playOpenedCampWithoutPause": true,
+    "keyboardDMovementObserved": true,
+    "currentRuntimePath": "623393/x04z8h3c5rtqtv9mivqsjnm5j38c3tml",
+    "ownerReport": "Publishing/owner-v13-check.json",
+    "warnings": "Electron sandbox initialization errors, optional purchase capability warning and Unity filesystem deprecation warning observed; leaderboard missing-entry warnings persist. Do not claim an empty console."
+  },
+  "russianMedia": {
+    "report": "Publishing/Card/media-ru-report.json",
+    "uploadedVideoFileId": "14045403",
+    "processingVerified": false,
+    "uploadedToYandex": true,
+    "processingStatus": "Pending",
+    "desktopScreenshotsSaved": 2,
+    "mobileScreenshotsSaved": 2,
+    "lastSavedAtConsole": "19:26:11 17/10/2026",
+    "proof": "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg"
   }
 }

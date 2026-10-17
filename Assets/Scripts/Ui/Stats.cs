@@ -59,28 +59,28 @@ public class Stats : MonoBehaviour
     // Порядок сохраняет ID достижений: новые цели можно добавлять только в конец.
     public static IReadOnlyList<Achievement> Achievements { get; } = Array.AsReadOnly(new[]
     {
-        new Achievement("Первые победы", "Убить 25 врагов любого типа", AchievementMetric.Kills, 25, 50),
-        new Achievement("Защитник лагеря", "Убить 100 врагов любого типа", AchievementMetric.Kills, 100, 150),
-        new Achievement("Опытный боец", "Убить 250 врагов любого типа", AchievementMetric.Kills, 250, 300),
-        new Achievement("Гроза арены", "Убить 500 врагов любого типа", AchievementMetric.Kills, 500, 600),
-        new Achievement("Тысяча побед", "Убить 1 000 врагов любого типа", AchievementMetric.Kills, 1000, 1000),
-        new Achievement("Неудержимый", "Убить 2 500 врагов любого типа", AchievementMetric.Kills, 2500, 2500),
-        new Achievement("Легенда гарнизона", "Убить 5 000 врагов любого типа", AchievementMetric.Kills, 5000, 5000),
-        new Achievement("Первые слаймы", "Убить 25 слаймов", AchievementMetric.Slimes, 25, 100),
-        new Achievement("Чистые сапоги", "Убить 100 слаймов", AchievementMetric.Slimes, 100, 250),
-        new Achievement("Охотник на слизь", "Убить 250 слаймов", AchievementMetric.Slimes, 250, 500),
-        new Achievement("Гроза слаймов", "Убить 500 слаймов", AchievementMetric.Slimes, 500, 1000),
-        new Achievement("Без следа слизи", "Убить 1 000 слаймов", AchievementMetric.Slimes, 1000, 2000),
-        new Achievement("Кости врозь", "Убить 25 скелетов, включая магов", AchievementMetric.Skeletons, 25, 100),
-        new Achievement("Костолом", "Убить 100 скелетов, включая магов", AchievementMetric.Skeletons, 100, 250),
-        new Achievement("Враг нежити", "Убить 250 скелетов, включая магов", AchievementMetric.Skeletons, 250, 500),
-        new Achievement("Покой для нежити", "Убить 500 скелетов, включая магов", AchievementMetric.Skeletons, 500, 1000),
-        new Achievement("Опасные противники", "Убить 10 элитных врагов", AchievementMetric.Elite, 10, 150),
-        new Achievement("Охотник на элиту", "Убить 25 элитных врагов", AchievementMetric.Elite, 25, 350),
-        new Achievement("Лучше лучших", "Убить 100 элитных врагов", AchievementMetric.Elite, 100, 1200),
-        new Achievement("Первая большая победа", "Убить любого босса", AchievementMetric.Bosses, 1, 250),
-        new Achievement("Пять трофеев", "Убить 5 боссов", AchievementMetric.Bosses, 5, 1000),
-        new Achievement("Победитель великанов", "Убить 10 боссов", AchievementMetric.Bosses, 10, 2000),
+        new Achievement("Первые победы", "Победить 25 врагов любого типа", AchievementMetric.Kills, 25, 50),
+        new Achievement("Защитник лагеря", "Победить 100 врагов любого типа", AchievementMetric.Kills, 100, 150),
+        new Achievement("Опытный боец", "Победить 250 врагов любого типа", AchievementMetric.Kills, 250, 300),
+        new Achievement("Гроза арены", "Победить 500 врагов любого типа", AchievementMetric.Kills, 500, 600),
+        new Achievement("Тысяча побед", "Победить 1 000 врагов любого типа", AchievementMetric.Kills, 1000, 1000),
+        new Achievement("Неудержимый", "Победить 2 500 врагов любого типа", AchievementMetric.Kills, 2500, 2500),
+        new Achievement("Легенда гарнизона", "Победить 5 000 врагов любого типа", AchievementMetric.Kills, 5000, 5000),
+        new Achievement("Первые слаймы", "Победить 25 слаймов", AchievementMetric.Slimes, 25, 100),
+        new Achievement("Чистые сапоги", "Победить 100 слаймов", AchievementMetric.Slimes, 100, 250),
+        new Achievement("Охотник на слизь", "Победить 250 слаймов", AchievementMetric.Slimes, 250, 500),
+        new Achievement("Гроза слаймов", "Победить 500 слаймов", AchievementMetric.Slimes, 500, 1000),
+        new Achievement("Без следа слизи", "Победить 1 000 слаймов", AchievementMetric.Slimes, 1000, 2000),
+        new Achievement("Кости врозь", "Победить 25 скелетов, включая магов", AchievementMetric.Skeletons, 25, 100),
+        new Achievement("Костолом", "Победить 100 скелетов, включая магов", AchievementMetric.Skeletons, 100, 250),
+        new Achievement("Враг нежити", "Победить 250 скелетов, включая магов", AchievementMetric.Skeletons, 250, 500),
+        new Achievement("Покой для нежити", "Победить 500 скелетов, включая магов", AchievementMetric.Skeletons, 500, 1000),
+        new Achievement("Опасные противники", "Победить 10 элитных врагов", AchievementMetric.Elite, 10, 150),
+        new Achievement("Охотник на элиту", "Победить 25 элитных врагов", AchievementMetric.Elite, 25, 350),
+        new Achievement("Лучше лучших", "Победить 100 элитных врагов", AchievementMetric.Elite, 100, 1200),
+        new Achievement("Первая большая победа", "Победить любого босса", AchievementMetric.Bosses, 1, 250),
+        new Achievement("Пять трофеев", "Победить 5 боссов", AchievementMetric.Bosses, 5, 1000),
+        new Achievement("Победитель великанов", "Победить 10 боссов", AchievementMetric.Bosses, 10, 2000),
         new Achievement("Большая слизь", "Победить босса-слайма", AchievementMetric.SlimeBosses, 1, 350),
         new Achievement("Повелитель слизи", "Победить босса-слайма 5 раз", AchievementMetric.SlimeBosses, 5, 1250),
         new Achievement("Вижу тебя", "Победить босса-ассасина", AchievementMetric.Assassins, 1, 500),
@@ -301,7 +301,7 @@ public class Stats : MonoBehaviour
     }
 
     public static string FormatSummary(int waves, int kills, int elite, int bosses, int deaths) =>
-        $"Волны: {waves:N0}    Враги: {kills:N0}\nЭлита: {elite:N0}    Боссы: {bosses:N0}    Смерти: {deaths:N0}";
+        $"Волны: {waves:N0}    Враги: {kills:N0}\nЭлита: {elite:N0}    Боссы: {bosses:N0}    Поражения: {deaths:N0}";
 
     [Serializable]
     public sealed class LeaderboardSummary

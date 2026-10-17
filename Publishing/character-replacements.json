@@ -1,0 +1,2628 @@
+{
+  "createdOn": "2026-10-17",
+  "generator": "Tools/ReplaceCharacterSprites.py",
+  "pillowVersion": "12.3.0",
+  "originalBackup": "Builds/AssetReplacements/original-sprites",
+  "sourceHashes": {
+    "tiny16-basic-characters.png": "76893cf9d886433c383c776ed04ab3290219d098f01087f8f93962ba42f63797",
+    "tiny16-expanded-skeleton.png": "5cee791c28b4b6cb425703a7931babbbf8839e4b7c5b31f166fa43920865a54c",
+    "tiny16-more-character-animations.png": "6e83a1ece1e08239a566fa9b2ac6a891a9e2560b06801165e0737ec52e07a041"
+  },
+  "portraitSourceSHA256": "70ee1c297c74683ab33bca18d27a114d4a33fe908f1798d4b6c7523c0b45c9a9",
+  "sources": [
+    {
+      "title": "Tiny 16: Basic",
+      "author": "Lanea Zimmerman (Sharm)",
+      "url": "https://opengameart.org/content/tiny-16-basic",
+      "license": "CC-BY-3.0"
+    },
+    {
+      "title": "Tiny 16: Expanded Character Sprites",
+      "author": "withthelove, Lanea Zimmerman, Evert, mdkieran",
+      "url": "https://opengameart.org/content/tiny-16-expanded-character-sprites",
+      "license": "CC-BY-3.0"
+    },
+    {
+      "title": "Tiny 16: more character animations",
+      "author": "Lanea Zimmerman, Clint Bellanger, Charles Gabriel, basxto",
+      "url": "https://opengameart.org/content/tiny-16-more-character-animations",
+      "license": "CC-BY-3.0"
+    },
+    {
+      "title": "LPC Anime Portrait #2",
+      "author": "PlayCraft, ZeNeRIA29; posted by ZaPaper",
+      "url": "https://opengameart.org/content/lpc-anime-portrait-2",
+      "license": "CC-BY-3.0"
+    }
+  ],
+  "unityMetaChanged": false,
+  "files": [
+    {
+      "path": "Assets/Sprits/PlayerAll.png",
+      "size": [
+        160,
+        32
+      ],
+      "originalSHA256": "c87805b85d1f5a66f2da0ec1640daec46592758fc88075d65cc9b1f8ca6bb122",
+      "sha256": "f5a809fc80d7fd01202b16191cc1cf5095dfde500dee1478fc6294bd21b07c4e",
+      "metadataSHA256": "c1158a6b0cc73960394cf646ce923177303409c2f1a2bf79c688b854cc578431",
+      "frameCount": 5,
+      "frames": [
+        {
+          "name": "PlayerAll_0",
+          "x": 4,
+          "y": 0,
+          "width": 22,
+          "height": 31,
+          "role": "licensed male walk cycle; new green hood, cloak palette and wooden bow",
+          "opaqueBounds": [
+            0,
+            2,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "PlayerAll_1",
+          "x": 36,
+          "y": 1,
+          "width": 22,
+          "height": 31,
+          "role": "licensed male walk cycle; new green hood, cloak palette and wooden bow",
+          "opaqueBounds": [
+            0,
+            2,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "PlayerAll_2",
+          "x": 68,
+          "y": 1,
+          "width": 22,
+          "height": 31,
+          "role": "licensed male walk cycle; new green hood, cloak palette and wooden bow",
+          "opaqueBounds": [
+            0,
+            2,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "PlayerAll_3",
+          "x": 100,
+          "y": 1,
+          "width": 22,
+          "height": 31,
+          "role": "licensed male walk cycle; new green hood, cloak palette and wooden bow",
+          "opaqueBounds": [
+            0,
+            2,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "PlayerAll_4",
+          "x": 132,
+          "y": 1,
+          "width": 22,
+          "height": 31,
+          "role": "licensed male walk cycle; new green hood, cloak palette and wooden bow",
+          "opaqueBounds": [
+            0,
+            2,
+            22,
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/allEnemy.png",
+      "size": [
+        316,
+        635
+      ],
+      "originalSHA256": "055cdb54d55e91074a8e63f66824163ac25205cf6a11a0d910d34a16450fa27f",
+      "sha256": "521d45f94a33c38c52ed0fd91ca5190901df713e699f5cf6a61a0d7ea078ea98",
+      "metadataSHA256": "6856942ba067755ebf606e472417b6f451cdca9a4ebca181c7da231ea02cbe97",
+      "frameCount": 42,
+      "frames": [
+        {
+          "name": "allEnemy_1",
+          "x": 55,
+          "y": 603,
+          "width": 9,
+          "height": 14,
+          "role": "project-drawn bomb with fuse",
+          "opaqueBounds": [
+            0,
+            2,
+            9,
+            14
+          ]
+        },
+        {
+          "name": "allEnemy_2",
+          "x": 98,
+          "y": 603,
+          "width": 14,
+          "height": 20,
+          "role": "project-drawn wooden shield; reinforcement shader compatible",
+          "opaqueBounds": [
+            0,
+            1,
+            14,
+            20
+          ]
+        },
+        {
+          "name": "allEnemy_3",
+          "x": 145,
+          "y": 603,
+          "width": 19,
+          "height": 17,
+          "role": "project-drawn green spell orb or poison pool",
+          "opaqueBounds": [
+            0,
+            0,
+            19,
+            17
+          ]
+        },
+        {
+          "name": "allEnemy_4",
+          "x": 240,
+          "y": 614,
+          "width": 5,
+          "height": 5,
+          "role": "project-drawn green magic projectile",
+          "opaqueBounds": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        {
+          "name": "allEnemy_5",
+          "x": 251,
+          "y": 614,
+          "width": 5,
+          "height": 5,
+          "role": "project-drawn green magic projectile",
+          "opaqueBounds": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        {
+          "name": "allEnemy_8",
+          "x": 212,
+          "y": 603,
+          "width": 12,
+          "height": 11,
+          "role": "project-drawn green spell orb or poison pool",
+          "opaqueBounds": [
+            0,
+            0,
+            12,
+            11
+          ]
+        },
+        {
+          "name": "allEnemy_12",
+          "x": 5,
+          "y": 555,
+          "width": 23,
+          "height": 31,
+          "role": "licensed skeleton walk cycle",
+          "opaqueBounds": [
+            1,
+            0,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_15",
+          "x": 37,
+          "y": 555,
+          "width": 23,
+          "height": 32,
+          "role": "licensed skeleton walk cycle",
+          "opaqueBounds": [
+            1,
+            0,
+            22,
+            32
+          ]
+        },
+        {
+          "name": "allEnemy_18",
+          "x": 69,
+          "y": 555,
+          "width": 23,
+          "height": 31,
+          "role": "licensed skeleton walk cycle",
+          "opaqueBounds": [
+            1,
+            0,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_20",
+          "x": 101,
+          "y": 555,
+          "width": 23,
+          "height": 31,
+          "role": "licensed skeleton walk cycle",
+          "opaqueBounds": [
+            1,
+            0,
+            22,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_29",
+          "x": 8,
+          "y": 491,
+          "width": 17,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            5,
+            17,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_33",
+          "x": 39,
+          "y": 491,
+          "width": 18,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            4,
+            18,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_36",
+          "x": 71,
+          "y": 491,
+          "width": 18,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            4,
+            18,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_38",
+          "x": 104,
+          "y": 491,
+          "width": 17,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            5,
+            17,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_45",
+          "x": 104,
+          "y": 427,
+          "width": 17,
+          "height": 48,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            5,
+            17,
+            48
+          ]
+        },
+        {
+          "name": "allEnemy_46",
+          "x": 8,
+          "y": 427,
+          "width": 17,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            5,
+            17,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_47",
+          "x": 40,
+          "y": 427,
+          "width": 17,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            5,
+            17,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_48",
+          "x": 72,
+          "y": 427,
+          "width": 17,
+          "height": 49,
+          "role": "licensed skeleton carrying project-drawn bomb",
+          "opaqueBounds": [
+            0,
+            5,
+            17,
+            49
+          ]
+        },
+        {
+          "name": "allEnemy_57",
+          "x": 8,
+          "y": 363,
+          "width": 34,
+          "height": 31,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_61",
+          "x": 81,
+          "y": 363,
+          "width": 34,
+          "height": 33,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            33
+          ]
+        },
+        {
+          "name": "allEnemy_65",
+          "x": 154,
+          "y": 363,
+          "width": 34,
+          "height": 31,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_68",
+          "x": 227,
+          "y": 363,
+          "width": 34,
+          "height": 31,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_73",
+          "x": 8,
+          "y": 299,
+          "width": 34,
+          "height": 31,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_75",
+          "x": 81,
+          "y": 299,
+          "width": 34,
+          "height": 32,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            32
+          ]
+        },
+        {
+          "name": "allEnemy_77",
+          "x": 154,
+          "y": 299,
+          "width": 34,
+          "height": 31,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_79",
+          "x": 227,
+          "y": 299,
+          "width": 34,
+          "height": 31,
+          "role": "licensed skeleton with project-drawn wooden shield",
+          "opaqueBounds": [
+            1,
+            0,
+            33,
+            31
+          ]
+        },
+        {
+          "name": "allEnemy_89",
+          "x": 2,
+          "y": 267,
+          "width": 14,
+          "height": 13,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            3,
+            14,
+            13
+          ]
+        },
+        {
+          "name": "allEnemy_90",
+          "x": 34,
+          "y": 267,
+          "width": 14,
+          "height": 12,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            2,
+            14,
+            12
+          ]
+        },
+        {
+          "name": "allEnemy_91",
+          "x": 66,
+          "y": 267,
+          "width": 14,
+          "height": 12,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            2,
+            14,
+            12
+          ]
+        },
+        {
+          "name": "allEnemy_92",
+          "x": 98,
+          "y": 267,
+          "width": 14,
+          "height": 11,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            1,
+            14,
+            11
+          ]
+        },
+        {
+          "name": "allEnemy_93",
+          "x": 2,
+          "y": 235,
+          "width": 14,
+          "height": 13,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            3,
+            14,
+            13
+          ]
+        },
+        {
+          "name": "allEnemy_94",
+          "x": 34,
+          "y": 235,
+          "width": 14,
+          "height": 12,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            2,
+            14,
+            12
+          ]
+        },
+        {
+          "name": "allEnemy_95",
+          "x": 66,
+          "y": 235,
+          "width": 14,
+          "height": 12,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            2,
+            14,
+            12
+          ]
+        },
+        {
+          "name": "allEnemy_96",
+          "x": 98,
+          "y": 235,
+          "width": 14,
+          "height": 11,
+          "role": "licensed green slime animation",
+          "opaqueBounds": [
+            0,
+            1,
+            14,
+            11
+          ]
+        },
+        {
+          "name": "allEnemy_97",
+          "x": 4,
+          "y": 187,
+          "width": 24,
+          "height": 36,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            4,
+            24,
+            36
+          ]
+        },
+        {
+          "name": "allEnemy_98",
+          "x": 93,
+          "y": 187,
+          "width": 25,
+          "height": 37,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            6,
+            25,
+            37
+          ]
+        },
+        {
+          "name": "allEnemy_100",
+          "x": 181,
+          "y": 187,
+          "width": 24,
+          "height": 36,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            4,
+            24,
+            36
+          ]
+        },
+        {
+          "name": "allEnemy_101",
+          "x": 271,
+          "y": 187,
+          "width": 24,
+          "height": 36,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            6,
+            24,
+            36
+          ]
+        },
+        {
+          "name": "allEnemy_110",
+          "x": 4,
+          "y": 123,
+          "width": 21,
+          "height": 36,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            8,
+            21,
+            36
+          ]
+        },
+        {
+          "name": "allEnemy_111",
+          "x": 93,
+          "y": 123,
+          "width": 21,
+          "height": 37,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            11,
+            21,
+            37
+          ]
+        },
+        {
+          "name": "allEnemy_112",
+          "x": 181,
+          "y": 123,
+          "width": 21,
+          "height": 36,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            8,
+            21,
+            36
+          ]
+        },
+        {
+          "name": "allEnemy_113",
+          "x": 271,
+          "y": 123,
+          "width": 21,
+          "height": 36,
+          "role": "licensed skeleton with project-drawn violet magic hat and staff",
+          "opaqueBounds": [
+            0,
+            10,
+            21,
+            36
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/Banditka/Beka.png",
+      "size": [
+        32,
+        32
+      ],
+      "originalSHA256": "b9a975053c011aea3a1d5c781080649f871fe4c8160378d66596af4ca1a9fb15",
+      "sha256": "e144648b484afaf337ed8b5ce0f3df20000bc828636506800b9b56c1e53e8add",
+      "metadataSHA256": "f80d840d8fb40f0f91d68571e485257d9cd8af10bee4f32caba5f71a087cbb4c",
+      "frameCount": 1,
+      "frames": [
+        {
+          "name": "Beka",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            7,
+            0,
+            24,
+            32
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/Banditka/BekaWolk.png",
+      "size": [
+        480,
+        80
+      ],
+      "originalSHA256": "d8dfd70a1a1e05776bc0634518b28adaafe805551a952c0ccc95f7f9f9c25065",
+      "sha256": "5ef5f7395edd5c0361e9d47878dfcc3a9109c57d89d4af265cef42a3986b3ffb",
+      "metadataSHA256": "a99a85baf80195a0deba7a4f034d4e9ae947aa7dcd7c2f5508f8744eb8507570",
+      "frameCount": 6,
+      "frames": [
+        {
+          "name": "BekaWolk_0",
+          "x": 23,
+          "y": 21,
+          "width": 20,
+          "height": 30,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            30
+          ]
+        },
+        {
+          "name": "BekaWolk_1",
+          "x": 103,
+          "y": 21,
+          "width": 20,
+          "height": 31,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            2,
+            0,
+            18,
+            30
+          ]
+        },
+        {
+          "name": "BekaWolk_2",
+          "x": 183,
+          "y": 21,
+          "width": 20,
+          "height": 30,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            30
+          ]
+        },
+        {
+          "name": "BekaWolk_3",
+          "x": 263,
+          "y": 21,
+          "width": 20,
+          "height": 31,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            2,
+            0,
+            18,
+            30
+          ]
+        },
+        {
+          "name": "BekaWolk_4",
+          "x": 342,
+          "y": 21,
+          "width": 20,
+          "height": 31,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            31
+          ]
+        },
+        {
+          "name": "BekaWolk_5",
+          "x": 422,
+          "y": 21,
+          "width": 20,
+          "height": 30,
+          "role": "confirmed portrait companion sprite; subtle walking bob",
+          "opaqueBounds": [
+            3,
+            0,
+            18,
+            29
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/Banditka/Bandit Faceset.png",
+      "size": [
+        576,
+        288
+      ],
+      "originalSHA256": "b743e67892a19825fff7eb135b63d95441e31153894a77028e066386b13591f4",
+      "sha256": "024b0407900c08cbb6d6654ff9cd793b477d07da1f65ab9c79eca597c9daa9ef",
+      "metadataSHA256": "b52051ce01ad7c6733f7ca410af36fa250ed4dadf3475b50b286f853996f215d",
+      "frameCount": 6,
+      "frames": [
+        {
+          "name": "Bandit Faceset_0",
+          "x": 0,
+          "y": 144,
+          "width": 143,
+          "height": 144,
+          "role": "cropped and resized confirmed PlayCraft/ZeNeRIA29 portrait",
+          "opaqueBounds": [
+            0,
+            1,
+            143,
+            144
+          ]
+        },
+        {
+          "name": "Bandit Faceset_1",
+          "x": 144,
+          "y": 144,
+          "width": 143,
+          "height": 144,
+          "role": "cropped and resized confirmed PlayCraft/ZeNeRIA29 portrait",
+          "opaqueBounds": [
+            0,
+            1,
+            143,
+            144
+          ]
+        },
+        {
+          "name": "Bandit Faceset_2",
+          "x": 288,
+          "y": 144,
+          "width": 144,
+          "height": 144,
+          "role": "cropped and resized confirmed PlayCraft/ZeNeRIA29 portrait",
+          "opaqueBounds": [
+            0,
+            1,
+            144,
+            144
+          ]
+        },
+        {
+          "name": "Bandit Faceset_3",
+          "x": 1,
+          "y": 0,
+          "width": 142,
+          "height": 144,
+          "role": "cropped and resized confirmed PlayCraft/ZeNeRIA29 portrait",
+          "opaqueBounds": [
+            0,
+            1,
+            142,
+            144
+          ]
+        },
+        {
+          "name": "Bandit Faceset_4",
+          "x": 144,
+          "y": 0,
+          "width": 143,
+          "height": 144,
+          "role": "cropped and resized confirmed PlayCraft/ZeNeRIA29 portrait",
+          "opaqueBounds": [
+            0,
+            1,
+            143,
+            144
+          ]
+        },
+        {
+          "name": "Bandit Faceset_5",
+          "x": 288,
+          "y": 0,
+          "width": 144,
+          "height": 144,
+          "role": "cropped and resized confirmed PlayCraft/ZeNeRIA29 portrait",
+          "opaqueBounds": [
+            0,
+            1,
+            144,
+            144
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/Boss/Assassin.png",
+      "size": [
+        320,
+        160
+      ],
+      "originalSHA256": "861a60f3f80592c597c1f566a05176b48267c1284759519df5a8bbc70c077ba1",
+      "sha256": "4bf493e49f74374887713af331f9f4009b68f315d141f93b422a72a8d8be4f3d",
+      "metadataSHA256": "f61ba682a7e55b03444077c8ada19dc2171cc743ad0c797bfce77a71b87a2ee2",
+      "frameCount": 50,
+      "frames": [
+        {
+          "name": "Assassin_0",
+          "x": 9,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_1",
+          "x": 41,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_2",
+          "x": 73,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_3",
+          "x": 105,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_4",
+          "x": 137,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_5",
+          "x": 169,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_6",
+          "x": 201,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_7",
+          "x": 233,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_8",
+          "x": 265,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_9",
+          "x": 297,
+          "y": 128,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_10",
+          "x": 9,
+          "y": 96,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            14,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_11",
+          "x": 41,
+          "y": 96,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            14,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_12",
+          "x": 71,
+          "y": 97,
+          "width": 16,
+          "height": 30,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            10,
+            16,
+            30
+          ]
+        },
+        {
+          "name": "Assassin_13",
+          "x": 105,
+          "y": 96,
+          "width": 15,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            13,
+            15,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_14",
+          "x": 137,
+          "y": 96,
+          "width": 16,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            11,
+            16,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_15",
+          "x": 169,
+          "y": 96,
+          "width": 17,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            10,
+            17,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_16",
+          "x": 201,
+          "y": 96,
+          "width": 21,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            5,
+            21,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_17",
+          "x": 232,
+          "y": 97,
+          "width": 25,
+          "height": 30,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            0,
+            24,
+            30
+          ]
+        },
+        {
+          "name": "Assassin_18",
+          "x": 265,
+          "y": 96,
+          "width": 15,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            13,
+            15,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_19",
+          "x": 297,
+          "y": 96,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            14,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_20",
+          "x": 7,
+          "y": 64,
+          "width": 15,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            13,
+            15,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_21",
+          "x": 38,
+          "y": 64,
+          "width": 16,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            11,
+            16,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_22",
+          "x": 102,
+          "y": 64,
+          "width": 16,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            11,
+            16,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_23",
+          "x": 133,
+          "y": 64,
+          "width": 18,
+          "height": 30,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            8,
+            18,
+            30
+          ]
+        },
+        {
+          "name": "Assassin_24",
+          "x": 165,
+          "y": 64,
+          "width": 18,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            18,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_25",
+          "x": 197,
+          "y": 64,
+          "width": 17,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            10,
+            17,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_26",
+          "x": 264,
+          "y": 64,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            14,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_27",
+          "x": 296,
+          "y": 64,
+          "width": 15,
+          "height": 30,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            12,
+            15,
+            30
+          ]
+        },
+        {
+          "name": "Assassin_28",
+          "x": 9,
+          "y": 32,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_29",
+          "x": 41,
+          "y": 32,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_30",
+          "x": 72,
+          "y": 32,
+          "width": 15,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            7,
+            15,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_31",
+          "x": 106,
+          "y": 32,
+          "width": 13,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            10,
+            13,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_32",
+          "x": 139,
+          "y": 32,
+          "width": 15,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            7,
+            15,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_33",
+          "x": 171,
+          "y": 32,
+          "width": 21,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            1,
+            0,
+            20,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_34",
+          "x": 202,
+          "y": 32,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_35",
+          "x": 234,
+          "y": 32,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_36",
+          "x": 265,
+          "y": 32,
+          "width": 15,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            7,
+            15,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_37",
+          "x": 297,
+          "y": 32,
+          "width": 14,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            9,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_38",
+          "x": 9,
+          "y": 0,
+          "width": 14,
+          "height": 31,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            0,
+            5,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_39",
+          "x": 41,
+          "y": 0,
+          "width": 14,
+          "height": 31,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            0,
+            1,
+            14,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_40",
+          "x": 74,
+          "y": 0,
+          "width": 13,
+          "height": 31,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            0,
+            4,
+            13,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_41",
+          "x": 106,
+          "y": 0,
+          "width": 14,
+          "height": 30,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            0,
+            8,
+            14,
+            30
+          ]
+        },
+        {
+          "name": "Assassin_42",
+          "x": 138,
+          "y": 0,
+          "width": 14,
+          "height": 29,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            4,
+            5,
+            13,
+            28
+          ]
+        },
+        {
+          "name": "Assassin_43",
+          "x": 172,
+          "y": 0,
+          "width": 12,
+          "height": 26,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            4,
+            9,
+            12,
+            26
+          ]
+        },
+        {
+          "name": "Assassin_44",
+          "x": 204,
+          "y": 0,
+          "width": 12,
+          "height": 23,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            1,
+            6,
+            12,
+            23
+          ]
+        },
+        {
+          "name": "Assassin_45",
+          "x": 234,
+          "y": 0,
+          "width": 15,
+          "height": 19,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            3,
+            6,
+            13,
+            19
+          ]
+        },
+        {
+          "name": "Assassin_46",
+          "x": 263,
+          "y": 0,
+          "width": 20,
+          "height": 15,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            1,
+            2,
+            16,
+            12
+          ]
+        },
+        {
+          "name": "Assassin_47",
+          "x": 294,
+          "y": 0,
+          "width": 22,
+          "height": 7,
+          "role": "golden disappearance sparks; no fallen body",
+          "opaqueBounds": [
+            1,
+            0,
+            18,
+            6
+          ]
+        },
+        {
+          "name": "Assassin_48",
+          "x": 230,
+          "y": 66,
+          "width": 19,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            1,
+            19,
+            31
+          ]
+        },
+        {
+          "name": "Assassin_49",
+          "x": 71,
+          "y": 65,
+          "width": 16,
+          "height": 31,
+          "role": "licensed strike/walk poses; slate palette and small fantasy blade",
+          "opaqueBounds": [
+            0,
+            5,
+            16,
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/Healer.png",
+      "size": [
+        96,
+        42
+      ],
+      "originalSHA256": "1c290f2078a44b5bfce7764271530a2662f8b7c97d27ca6d89ba1f756bb1bab1",
+      "sha256": "5c826eb1ae7f049cccc9b7ff0a4c38c294f069682841f6db21cd3bdb2b45e6d7",
+      "metadataSHA256": "0efa6c48fad90cf0b07a28351a9730e6c8b9f5edbd3b200ff712dbcae56d70fb",
+      "frameCount": 3,
+      "frames": [
+        {
+          "name": "Healer_0",
+          "x": 3,
+          "y": 0,
+          "width": 27,
+          "height": 36,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            0,
+            1,
+            26,
+            35
+          ]
+        },
+        {
+          "name": "Healer_1",
+          "x": 35,
+          "y": 0,
+          "width": 27,
+          "height": 35,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            0,
+            2,
+            26,
+            34
+          ]
+        },
+        {
+          "name": "Healer_2",
+          "x": 67,
+          "y": 0,
+          "width": 27,
+          "height": 36,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            0,
+            1,
+            26,
+            35
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/HealerAtack.png",
+      "size": [
+        512,
+        42
+      ],
+      "originalSHA256": "75c338a3af4e32f810ed665685c68555212719b7f178ab6366e467fd1cd88890",
+      "sha256": "8fa85bc50f2eae7e2a50314e93892a5ddfebc567b9bb1e0f1de0a3d32d4dcde1",
+      "metadataSHA256": "0bf33f0e27f3c4924e5cdb5c8f38b6f70fe81ec461eb6f360052e13cd9f1cddb",
+      "frameCount": 8,
+      "frames": [
+        {
+          "name": "HealerAtack_0",
+          "x": 3,
+          "y": 0,
+          "width": 28,
+          "height": 36,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            1,
+            1,
+            27,
+            35
+          ]
+        },
+        {
+          "name": "HealerAtack_2",
+          "x": 67,
+          "y": 0,
+          "width": 22,
+          "height": 36,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            0,
+            8,
+            22,
+            35
+          ]
+        },
+        {
+          "name": "HealerAtack_3",
+          "x": 131,
+          "y": 0,
+          "width": 41,
+          "height": 40,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            7,
+            5,
+            33,
+            39
+          ]
+        },
+        {
+          "name": "HealerAtack_5",
+          "x": 195,
+          "y": 0,
+          "width": 52,
+          "height": 36,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            13,
+            3,
+            39,
+            35
+          ]
+        },
+        {
+          "name": "HealerAtack_11",
+          "x": 258,
+          "y": 0,
+          "width": 56,
+          "height": 42,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            15,
+            7,
+            41,
+            41
+          ]
+        },
+        {
+          "name": "HealerAtack_16",
+          "x": 323,
+          "y": 0,
+          "width": 55,
+          "height": 42,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            14,
+            9,
+            40,
+            41
+          ]
+        },
+        {
+          "name": "HealerAtack_18",
+          "x": 387,
+          "y": 0,
+          "width": 56,
+          "height": 42,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            15,
+            7,
+            42,
+            41
+          ]
+        },
+        {
+          "name": "HealerAtack_20",
+          "x": 451,
+          "y": 0,
+          "width": 42,
+          "height": 36,
+          "role": "licensed skeleton healer; teal spell particles drawn within preserved frame",
+          "opaqueBounds": [
+            8,
+            3,
+            35,
+            35
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/nun-black-NESW.png",
+      "size": [
+        72,
+        128
+      ],
+      "originalSHA256": "8ff98d0f387c952ca1dc2918d3e06517792b564d3e629571198cdf863e169ea8",
+      "sha256": "1b4d251e7c91e21ecd0d8597261f642e507b9c70c4ecb9de969243f31566418e",
+      "metadataSHA256": "76b55ae17136a2f9c70f009aa389562146e84366a2f183e2cadea7a18eba5190",
+      "frameCount": 12,
+      "frames": [
+        {
+          "name": "nun-black-NESW_0",
+          "x": 3,
+          "y": 96,
+          "width": 18,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_1",
+          "x": 27,
+          "y": 97,
+          "width": 18,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_2",
+          "x": 51,
+          "y": 96,
+          "width": 18,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_3",
+          "x": 3,
+          "y": 64,
+          "width": 16,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            0,
+            0,
+            16,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_4",
+          "x": 27,
+          "y": 65,
+          "width": 16,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            0,
+            0,
+            16,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_5",
+          "x": 51,
+          "y": 64,
+          "width": 16,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            0,
+            0,
+            16,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_6",
+          "x": 3,
+          "y": 32,
+          "width": 18,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_7",
+          "x": 27,
+          "y": 33,
+          "width": 18,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_8",
+          "x": 51,
+          "y": 32,
+          "width": 18,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            1,
+            0,
+            17,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_9",
+          "x": 5,
+          "y": 0,
+          "width": 16,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            0,
+            0,
+            16,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_10",
+          "x": 29,
+          "y": 1,
+          "width": 16,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            0,
+            0,
+            16,
+            26
+          ]
+        },
+        {
+          "name": "nun-black-NESW_11",
+          "x": 53,
+          "y": 0,
+          "width": 16,
+          "height": 26,
+          "role": "licensed ordinary traveller; no religious habit or symbol",
+          "opaqueBounds": [
+            0,
+            0,
+            16,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/SciDE.png",
+      "size": [
+        128,
+        38
+      ],
+      "originalSHA256": "b33558c8c8d9aafa9f0bf8219d8a87e597afea27e14fe86f6a2f3d739db9176e",
+      "sha256": "07535c2d5b9c2b1ca396e52b2ed9e9566ed005a39ed26f73b08118f1890ae5f0",
+      "metadataSHA256": "115bac6a569f95c27f1212550da3811d10aab10a9e3b3b84d908c9658076062f",
+      "frameCount": 4,
+      "frames": [
+        {
+          "name": "SciDE_0",
+          "x": 4,
+          "y": 0,
+          "width": 24,
+          "height": 36,
+          "role": "licensed skeleton mage with violet hat and magic staff",
+          "opaqueBounds": [
+            0,
+            4,
+            24,
+            36
+          ]
+        },
+        {
+          "name": "SciDE_1",
+          "x": 36,
+          "y": 0,
+          "width": 24,
+          "height": 37,
+          "role": "licensed skeleton mage with violet hat and magic staff",
+          "opaqueBounds": [
+            0,
+            7,
+            24,
+            37
+          ]
+        },
+        {
+          "name": "SciDE_3",
+          "x": 68,
+          "y": 0,
+          "width": 24,
+          "height": 36,
+          "role": "licensed skeleton mage with violet hat and magic staff",
+          "opaqueBounds": [
+            0,
+            4,
+            24,
+            36
+          ]
+        },
+        {
+          "name": "SciDE_4",
+          "x": 100,
+          "y": 0,
+          "width": 24,
+          "height": 36,
+          "role": "licensed skeleton mage with violet hat and magic staff",
+          "opaqueBounds": [
+            0,
+            6,
+            24,
+            36
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Assets/Sprits/ShoperAllAnim.png",
+      "size": [
+        384,
+        158
+      ],
+      "originalSHA256": "bd2f623755fbe5ac6fccf94544a214c9fd966cdbd657c97151df78ec5fa22196",
+      "sha256": "248022b6dea020e629e4bb1152f6c016d404969f4ac06477ab05007459217b5b",
+      "metadataSHA256": "444bbf08f32387b062b04d266ee70dcc2205df432fd2d82bef5435ff8e2317d7",
+      "frameCount": 37,
+      "frames": [
+        {
+          "name": "ShoperAllAnim_0",
+          "x": 0,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_1",
+          "x": 32,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_2",
+          "x": 64,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_3",
+          "x": 96,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_4",
+          "x": 128,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_5",
+          "x": 160,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_6",
+          "x": 192,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_7",
+          "x": 224,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_8",
+          "x": 256,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_9",
+          "x": 288,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_10",
+          "x": 320,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_11",
+          "x": 352,
+          "y": 126,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_12",
+          "x": 0,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_13",
+          "x": 32,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_14",
+          "x": 64,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_15",
+          "x": 96,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_16",
+          "x": 128,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_17",
+          "x": 160,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_18",
+          "x": 192,
+          "y": 94,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_19",
+          "x": 0,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_20",
+          "x": 32,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_21",
+          "x": 64,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_22",
+          "x": 96,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_23",
+          "x": 128,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_24",
+          "x": 160,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_25",
+          "x": 192,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_26",
+          "x": 224,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_27",
+          "x": 0,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_28",
+          "x": 32,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_29",
+          "x": 64,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_30",
+          "x": 96,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_31",
+          "x": 128,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_32",
+          "x": 160,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_33",
+          "x": 192,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_34",
+          "x": 224,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            1,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_35",
+          "x": 256,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            2,
+            25,
+            32
+          ]
+        },
+        {
+          "name": "ShoperAllAnim_36",
+          "x": 288,
+          "y": 30,
+          "width": 32,
+          "height": 32,
+          "role": "licensed merchant walk/idle cycle; new small coin emote",
+          "opaqueBounds": [
+            6,
+            0,
+            26,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "sourceHashes": true,
+    "dimensionsPreserved": true,
+    "allFramesNonempty": true,
+    "pixelReproduction": true,
+    "unityMetadataPreserved": true
+  },
+  "runtimeVisualReview": "Pending Unity/browser review"
+}

@@ -1,0 +1,137 @@
+{
+  "createdOn": "2026-10-17",
+  "localVersion": "0.0.0.13",
+  "captureMethod": "Real Unity 2022.3.47f1 PlayMode cameras and game HUD; automated movement and weapon firing on normal early waves in a fresh isolated profile.",
+  "captureHelper": "Tools/EditorPromoCapture.cs",
+  "captureHelperSha256": "f623b3ec567716715e2d66bfe60602bb0974b4c0e8255202c53bdc0955e571ab",
+  "exportHelper": "Tools/ExportEnglishMedia.py",
+  "language": "en",
+  "gameAreaRatio": 1.0,
+  "processing": "Unchanged full game frames; H.264 encoding only. Screenshots retain source PNG bytes. No overlays, crop, zoom or added gameplay.",
+  "uploadedToYandex": true,
+  "limitations": [
+    "Mobile layout is the SDK editor simulator, not a capture or integration check on a physical phone.",
+    "Silent video; audio balance has not been reviewed by listening.",
+    "Visual review samples frames and does not establish sustained device FPS."
+  ],
+  "videos": [
+    {
+      "file": "Publishing/Card/gameplay-en-pc.mp4",
+      "layout": "pc",
+      "sourceDirectory": "Builds/CardCapture/English/pc",
+      "captureResult": "Builds/RatingValidation/promo-pc.txt",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "fps": 30,
+      "durationSeconds": 20,
+      "frameCount": 600,
+      "fullDecode": true,
+      "codec": "H.264",
+      "pixelFormat": "yuv420p",
+      "fastStart": true,
+      "audio": false,
+      "bytes": 674442,
+      "sha256": "31889e05f2fb6fccc10c3f3ced9adb4ecb146df27415b9a3e4f1943295e0ef19",
+      "uploadedToYandex": true
+    },
+    {
+      "file": "Publishing/Card/gameplay-en-mobile.mp4",
+      "layout": "mobile",
+      "sourceDirectory": "Builds/CardCapture/English/mobile",
+      "captureResult": "Builds/RatingValidation/promo-mobile.txt",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "fps": 30,
+      "durationSeconds": 20,
+      "frameCount": 600,
+      "fullDecode": true,
+      "codec": "H.264",
+      "pixelFormat": "yuv420p",
+      "fastStart": true,
+      "audio": false,
+      "bytes": 480078,
+      "sha256": "ba9887194ed6054f2197bbc82c02cef58bb4f64d7464ddd120d2ab311949db4e",
+      "uploadedToYandex": false
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "Publishing/Card/screenshot-pc-en-1.png",
+      "layout": "pc",
+      "sourceFrame": "Builds/CardCapture/English/pc/frame0180.png",
+      "sourceTimeSeconds": 6.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 53326,
+      "sha256": "87c448c642b6f7b09f6fe635b4d0797b33a2b758b8d26c1a698dba1ee6c17ab4",
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "file": "Publishing/Card/screenshot-pc-en-2.png",
+      "layout": "pc",
+      "sourceFrame": "Builds/CardCapture/English/pc/frame0480.png",
+      "sourceTimeSeconds": 16.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 48714,
+      "sha256": "e295a443956f5989f1e2cb5395c31137498d21f9152bacea03f094096ad9122c",
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "file": "Publishing/Card/screenshot-mobile-en-1.png",
+      "layout": "mobile",
+      "sourceFrame": "Builds/CardCapture/English/mobile/frame0180.png",
+      "sourceTimeSeconds": 6.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 99503,
+      "sha256": "6c41f936fed8522245f2c3570aff3bc3dd403d4f416d29a3709d3d53cb564fae",
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "file": "Publishing/Card/screenshot-mobile-en-2.png",
+      "layout": "mobile",
+      "sourceFrame": "Builds/CardCapture/English/mobile/frame0480.png",
+      "sourceTimeSeconds": 16.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 99600,
+      "sha256": "ab9fd4980d7aa6c9c6aefae9a4ce7d62cfa1f56770fd5919554fc3204b577cc3",
+      "sourcePixelsUnchanged": true
+    }
+  ],
+  "consoleLastSavedAt": "18:41:08 17/10/2026",
+  "checkedAfterReload": true,
+  "consoleCompletenessPercent": 92,
+  "uploadedVideo": "Publishing/Card/gameplay-en-pc.mp4",
+  "videoFileId": "14045080",
+  "videoPlayback": {
+    "readyState": 4,
+    "paused": false,
+    "currentTime": 12.197781,
+    "duration": 19.999999,
+    "error": null,
+    "initialPlayerErrorResolved": true
+  },
+  "proofs": [
+    "Publishing/Previews/yandex-video-en-v13-20261017.jpg",
+    "Publishing/Previews/yandex-mobile-screens-en-v13-20261017.jpg"
+  ],
+  "visualReview": "20 sampled frames at 2-second spacing, plus full-size PC and mobile screenshots; gameplay, translated HUD and normal early-wave combat retained.",
+  "captureHelperSnapshot": "Builds/CardCapture/English/capture-helper.cs.txt",
+  "sourceVersion": "0.0.0.13",
+  "matchingSourceBuildArchiveSha256": "9db4b28e105d55e8f2bde16cfa3d1f4cbd9025b8c443f4bd24b9c48632984bf2",
+  "sourceNote": "Captured from the isolated Unity source copy verified against the asset manifests; capture is not a recording of the WebGL binary in a browser."
+}

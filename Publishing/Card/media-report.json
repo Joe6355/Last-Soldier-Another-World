@@ -119,5 +119,11 @@
       "captureReference": "Builds/CardCapture/desktop-candidate.png",
       "validation": "JPEG verified, dimensions/mode checked; viewed at full size. No browser/system/platform UI; original game HUD retained. Renamed original mislabeled .png extension to .jpg; bytes and pixels unchanged."
     }
-  ]
+  ],
+  "historicalOnly": true,
+  "supersededBy": [
+    "Publishing/Card/media-en-report.json",
+    "Publishing/Card/media-ru-report.json"
+  ],
+  "note": "October 12 capture kept as historical evidence; these older gameplay screenshots/video are no longer selected in the current Yandex draft."
 }

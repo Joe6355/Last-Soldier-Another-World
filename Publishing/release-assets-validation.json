@@ -1,0 +1,27 @@
+{
+  "checkedOn": "2026-10-17",
+  "result": "PASS",
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSha256": "9db4b28e105d55e8f2bde16cfa3d1f4cbd9025b8c443f4bd24b9c48632984bf2",
+  "archiveFileCount": 15,
+  "matchedSourceFiles": 625,
+  "packedAssetsReport": "Publishing/release-packed-assets.json",
+  "packedAssetsReportSha256": "00e818bd3cb85e1ebc69ae544b4f54e71b9ec9d002f935c43ba58efaba051599",
+  "packedSourceAssets": 1862,
+  "packedRasterPaths": 94,
+  "unknownPackedRasterPaths": [],
+  "exactSourceProofs": 65,
+  "licensedCharacterAtlases": 11,
+  "originalProceduralPngs": 14,
+  "originalSynthesizedAudioClips": 40,
+  "bundledLicenseFiles": [
+    "PTSerif-OFL.txt",
+    "LiberationSans-OFL.txt",
+    "CC0-1.0.txt",
+    "CC-BY-3.0.txt",
+    "CC-BY-4.0.txt",
+    "CC-BY-SA-3.0.txt",
+    "CC-BY-SA-4.0.txt"
+  ],
+  "scope": "Verifies recorded provenance and hashes; not a legal warranty or a moderation decision."
+}

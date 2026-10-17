@@ -1,0 +1,188 @@
+{
+  "createdOn": "2026-10-17",
+  "generator": "Tools/GenerateInterfaceSprites.py",
+  "files": [
+    {
+      "file": "Assets/Sprits/ramka.png",
+      "kind": "frame",
+      "dimensions": [
+        32,
+        32
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "c16a6f5688a8eeb74822ad03d78b6ea475f4216c6ac063be59c3409e409db9eb",
+      "metaSha256": "9f4190293511da52a88c4df5a86673e3b97a0c3d7042bf0564da9e4a18ee8980",
+      "originalSha256": "b8de28ec2195ba16b30cca4d54976c9c3363a30ecaa4411c0f0660dcd8409796"
+    },
+    {
+      "file": "Assets/Sprits/0.png",
+      "kind": "spark",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "rectangles": 15,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "84008e96c2421d2ad37537a16c963ddcc3d03e92d4325f173dc67934b1df98c3",
+      "metaSha256": "4af2771d44ca170bea69e1a2561e5d47f0ffe3ca0e35b1fb3d8b6b70ab46cfb9",
+      "originalSha256": "0a75843a67fdcbaf3a0d95c576ca9bdcfe8fd7fb5df290d33a90da481c359155"
+    },
+    {
+      "file": "Assets/Sprits/Explosion.png",
+      "kind": "explosion",
+      "dimensions": [
+        1152,
+        96
+      ],
+      "rectangles": 12,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "7ec6a7be8f97a7033fa07d21b7c375c1197eb4b7b3e4a480c844daee6e39cf2e",
+      "metaSha256": "dac2c44fb63634f2e16d303de4a469c33b6ee295b0b31eed85a7dd89e042e541",
+      "originalSha256": "baae587198d2a64e8447c7d36a441ea326d8a4f27fd019deef920795e6c5b623"
+    },
+    {
+      "file": "Assets/Sprits/spr_shield.png",
+      "kind": "shield",
+      "dimensions": [
+        556,
+        556
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "c74dc0fe63e47b8ae599ff00672e3a3a91df53a6460f8ecbd5dd0d326369a3ee",
+      "metaSha256": "d74d7dd500290b188f0419995aea53575af3f3ab01d20faf9467e910edeeae83",
+      "originalSha256": "303aaf88ecb83fb33fa8b61b8a54b6ac0842d3c87f33c7e16944edbb76b525da"
+    },
+    {
+      "file": "Assets/Sprits/ui/HUD Menus.png",
+      "kind": "panel",
+      "dimensions": [
+        837,
+        607
+      ],
+      "rectangles": 8,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "a8bc0b339af7c1bd34b0c4136190670d5f553c219a176dd8f3215009ec222443",
+      "metaSha256": "87c506749faef55d54d87d540d445c634393f6711dd64281607d2557fb86862a",
+      "originalSha256": "d5f4edd2523fab7796ee8691514bd5c0483ef0ed449fbbdb1ddce1c9370bba58"
+    },
+    {
+      "file": "Assets/Sprits/ui/Square Buttons/Info Square Button.png",
+      "kind": "info",
+      "dimensions": [
+        200,
+        200
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "0818f430fac87ea08e0e01abbc0813b28a5ced8879fa17da1a81a8d3b545812c",
+      "metaSha256": "d73655910a087f01107505a82ab120d7b5fbe3ca106adba4955e16c0b9503be2",
+      "originalSha256": "3c686840b74ee1513ba1d520ab44e903adc86cc20634669c0eece8ddea524a4b"
+    },
+    {
+      "file": "Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png",
+      "kind": "question",
+      "dimensions": [
+        200,
+        200
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "1166ddec4ad1da70d2077e4ba13be6dcaa02e91978be9ba2f0e5e057a7eaa0fc",
+      "metaSha256": "0d83e568d647b24dc6551112f9171c8750b284763e9a4386f7fcfc4739ee2088",
+      "originalSha256": "b4b985105afd7462bca068990e7575a532b17df14abda7aef3a88c9772d0dc1b"
+    },
+    {
+      "file": "Assets/Sprits/ui/Square Buttons/Return Square Button.png",
+      "kind": "return",
+      "dimensions": [
+        200,
+        200
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "6e4cfba831e2a2c49b7b76754e6990f534d11f75456e5e21f20ae1dfaeb6cc71",
+      "metaSha256": "db15b053941f25d21e8ae1152f5b7a9ae4c56947dc712ee1091dea9f5b54ecdb",
+      "originalSha256": "e8b821d7e94d659be5f8d0368d389684e5994187bdfbe5a2c2fd213746b2d200"
+    },
+    {
+      "file": "Assets/Sprits/uiEL.png",
+      "kind": "equipment",
+      "dimensions": [
+        96,
+        96
+      ],
+      "rectangles": 6,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "d3d175478994aa0028f36ba085ecc98d71cfaa9e93d0791d8ff613513baa12fe",
+      "metaSha256": "3cd4e474c73bc834612189353df86b80d3cd6869f5df0938a6157a9271954fde",
+      "originalSha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b"
+    },
+    {
+      "file": "Assets/Sprits/Map/preview.png",
+      "kind": "tent",
+      "dimensions": [
+        160,
+        160
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "76fa05658455bc39fee06b268be1a01b6fdd81a7a3cd4a858ef95552ce2956c9",
+      "metaSha256": "106fb81e9e8e03bed6b26034f4c3fbeec7d05e655f3fcad8164d817f97955d0c",
+      "originalSha256": "edf4c028da0e976ea313ed0b14d0b71ad55fb2425033d2ddd1d9d0435432cc9c"
+    },
+    {
+      "file": "Assets/UI/ForestGarrison/Arena/Altar.png",
+      "kind": "altar",
+      "dimensions": [
+        48,
+        64
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "e2237f3cf0459b4c319b22059cddc89e0557296f79095ebe4d04c87f3646eea2",
+      "metaSha256": "394cc82047fdece49eaf5f75a1708993a45c0af5a3353e48725ab9334e10f889",
+      "originalSha256": "58b6d8cd4e708f85682e15b257838c1a8ea3096e2fdeef46e9f5bd873cf2218b"
+    },
+    {
+      "file": "Assets/UI/ForestGarrison/Arena/Barrel.png",
+      "kind": "barrel",
+      "dimensions": [
+        48,
+        64
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "617e25692aab1253787d46ff76331fab66bce94475bfff6db6296c674093d8fb",
+      "metaSha256": "34142b7aae3ec39f279c208d5fa1afce5c4790710e762a5b95c472407bf38606",
+      "originalSha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86"
+    },
+    {
+      "file": "Assets/UI/ForestGarrison/Arena/Outpost.png",
+      "kind": "outpost",
+      "dimensions": [
+        48,
+        64
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "1822032bd4b7fe6de7dbacd06aa5900a6bd09dd56b7151da9fc6d71a3cb6388f",
+      "metaSha256": "93164d5dc7461e4c59e81c64540caeb5cb9daffee98041d9caa939e1dfaf27c0",
+      "originalSha256": "633666d31ed1988e73f7f175629b60426f92842db696bf83bad7009d11b586da"
+    },
+    {
+      "file": "Assets/UI/ForestGarrison/Arena/GravityRune.png",
+      "kind": "rune",
+      "dimensions": [
+        48,
+        64
+      ],
+      "rectangles": 1,
+      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
+      "sha256": "af84ddbfc655664ee40933ef35472b591f9055ed7fd27be9626d6e288c97bb22",
+      "metaSha256": "24942075896020215c0a6cca12a095c3e60a5dac216aa958d71c9546a458e5cb",
+      "originalSha256": "1c1299b21c9d03556f20f08b9a0197ca31ef1e895218f302f7d649c687906c03"
+    }
+  ]
+}

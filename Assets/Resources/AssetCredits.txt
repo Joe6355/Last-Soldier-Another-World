@@ -1,0 +1,130 @@
+АВТОРЫ АССЕТОВ / ASSET CREDITS
+
+Лицензии относятся к указанным материалам. Авторы исходных наборов не являются авторами игры и не заявляли о её поддержке.
+Licenses apply to the listed materials. Original asset authors do not endorse this game.
+
+Tiny 16: Basic — Lanea Zimmerman (Sharm)
+CC BY 3.0; the author waives the anti-DRM clause.
+https://opengameart.org/content/tiny-16-basic
+https://creativecommons.org/licenses/by/3.0/
+Tiles and objects: source PNG unchanged; sliced and arranged in Unity.
+Тайлы и предметы: исходные PNG сохранены; нарезка и размещение в Unity.
+
+Tiny 16: Expanded Character Sprites — withthelove, Lanea Zimmerman (Sharm), Evert, mdkieran
+CC BY 3.0
+https://opengameart.org/content/tiny-16-expanded-character-sprites
+https://creativecommons.org/licenses/by/3.0/
+Originals by Lanea Zimmerman; skeleton by Evert; extensions by withthelove; roll frames by mdkieran.
+Оригиналы: Lanea Zimmerman; скелет: Evert; дополнения: withthelove; перекаты: mdkieran.
+
+Tiny 16: more character animations — Lanea Zimmerman, Clint Bellanger, Charles Gabriel, basxto
+CC BY 3.0
+https://opengameart.org/content/tiny-16-more-character-animations
+https://creativecommons.org/licenses/by/3.0/
+
+Basic map 32x32 — Ivan Voirol
+CC BY 3.0
+https://opengameart.org/content/basic-map-tile-32x32
+https://creativecommons.org/licenses/by/3.0/
+Original atlas unchanged; tiles sliced and arranged in Unity.
+Исходный атлас сохранён; тайлы нарезаны и размещены в Unity.
+
+LPC style farm animals — Daniel Eddeland (daneeklu)
+CC BY 3.0
+https://opengameart.org/content/lpc-style-farm-animals
+https://creativecommons.org/licenses/by/3.0/
+Chicken, cow and sheep frames unchanged; animation assembled in Unity.
+Кадры курицы, коровы и овцы сохранены; анимация собрана в Unity.
+
+LPC Anime Portrait #2 — PlayCraft, ZeNeRIA29; posted by ZaPaper
+Portrait graphics created by PlayCraft. Graphics designed by ZeNeRIA29.
+CC BY 3.0
+https://opengameart.org/content/lpc-anime-portrait-2
+https://creativecommons.org/licenses/by/3.0/
+Original LPCportrait33.png unchanged; used as a cropped portrait.
+Исходный LPCportrait33.png сохранён; используется фрагмент портрета.
+
+Slime monster 24x24 — Bonsaiheldin
+CC BY 4.0
+https://opengameart.org/content/slime-monster-24x24
+https://creativecommons.org/licenses/by/4.0/
+Original sprite sheet unchanged; animation frames sliced in Unity.
+Исходный атлас сохранён; кадры нарезаны в Unity.
+
+VeMe — PiXeRaT (pixelato)
+CC BY-SA 4.0
+https://opengameart.org/content/veme
+https://opengameart.org/users/pixelato
+https://creativecommons.org/licenses/by-sa/4.0/
+All 46 included PNG animation frames are unchanged. CC BY-SA 4.0 applies to this artwork; adaptations of it retain that license.
+Все 46 используемых PNG-кадров сохранены. CC BY-SA 4.0 относится к этой графике; её переработки сохраняют данную лицензию.
+
+Medals — Buch
+CC0 1.0
+https://opengameart.org/node/16656
+https://creativecommons.org/publicdomain/zero/1.0/
+Original atlas unchanged. Emerald, Sapphire, Amethyst and Ruby medals recoloured for this game; original geometry retained.
+Исходный атлас сохранён. У изумрудной, сапфировой, аметистовой и рубиновой медалей заменена палитра; геометрия сохранена.
+
+Portals — LetargicDev
+CC0 1.0
+https://opengameart.org/content/portals
+https://creativecommons.org/publicdomain/zero/1.0/
+Original portalRings1.png and portalRings2.png unchanged; animation frames sliced in Unity.
+Исходные portalRings1.png и portalRings2.png сохранены; кадры нарезаны в Unity.
+
+Summer Pixel Art Backgrounds; Nature Backgrounds Pixel Art — Craftpix
+Craftpix Free License
+https://craftpix.net/freebies/free-summer-pixel-art-backgrounds/
+https://craftpix.net/freebies/free-nature-backgrounds-pixel-art/
+https://craftpix.net/file-licenses/
+Background layers arranged and scaled for the game menu.
+Слои фона размещены и масштабированы для меню игры.
+
+PT Serif Bold — ParaType
+SIL Open Font License 1.1; PTSerif-OFL.txt distributed with the game.
+SIL Open Font License 1.1; текст PTSerif-OFL.txt включён в игру.
+
+Liberation Sans — Google / Red Hat
+SIL Open Font License 1.1; LiberationSans-OFL.txt distributed with the game.
+SIL Open Font License 1.1; текст LiberationSans-OFL.txt включён в игру.
+
+Plugin Your Games 2 — JustPlay-Max and contributors
+CC0 1.0; third-party components retain their own notices.
+CC0 1.0; сторонние компоненты сохраняют собственные уведомления.
+https://github.com/JustPlay-Max/Unity-PluginYG-2/releases/tag/2.0092
+
+Tuxemon tileset — Buch
+CC BY-SA 3.0
+https://opengameart.org/content/tuxemon-tileset
+https://opengameart.org/users/buch
+https://creativecommons.org/licenses/by-sa/3.0/
+Original sheet.png unchanged; tiles sliced and arranged in Unity.
+Исходный sheet.png сохранён; тайлы нарезаны и размещены в Unity.
+
+NPC Expression & Emotion Bubbles (Project Emotion) — TheBlueJester
+CC BY-SA 3.0
+https://opengameart.org/content/npc-expression-emotion-bubbles-project-emotion
+https://creativecommons.org/licenses/by-sa/3.0/
+Original Double Note Strip and Question Strip unchanged.
+Исходные полосы анимации сохранены.
+
+Coins pixel art — Loel
+CC0 1.0 (selected from the alternatives offered by the author).
+https://opengameart.org/content/coins-pixel-art-silver-gold-crystal-and-more
+https://creativecommons.org/publicdomain/zero/1.0/
+Original coinpreview.png unchanged. / Исходный файл сохранён.
+
+Character adaptations / Переработки персонажей
+Tiny 16 characters recoloured, cropped and packed into the game's existing sprite rectangles. New green hood, bow, shields, bombs and spell accents. Green key background removed from Expanded Skeleton.
+Персонажи Tiny 16 перекрашены и упакованы в игровые атласы; добавлены капюшон, лук, щиты, бомбы и магические акценты. Зелёный фон Expanded Skeleton удалён.
+Companion NPC and faces: cropped and resized LPC Anime Portrait #2; Portrait graphics created by PlayCraft.
+NPC и портреты: кадрирование и масштабирование LPC Anime Portrait #2; Portrait graphics created by PlayCraft.
+
+Original project audio / Новое аудио проекта
+40 clips created from oscillators and deterministic noise for this game; no external sound recordings or music samples.
+40 клипов синтезированы для игры из осцилляторов и шума; сторонние записи и музыкальные сэмплы не использовались.
+
+Original project UI and effects / Новые UI и эффекты проекта
+Equipment icons, shield, HUD panels, camp tent, arena props and magical bursts drawn with geometric pixel shapes.
+Иконки снаряжения, щит, панели, палатка, объекты арены и магические вспышки созданы геометрическими пиксельными формами.

@@ -70,6 +70,19 @@ public static class LocalizationChecks
                     Check(menu.SettingsPanel.GetComponentsInChildren<TMP_Text>().Any(text => text.text == "Settings"), "Main settings translated");
                     Check(menu.SettingsPanel.GetComponentsInChildren<LanguageSelector>().Length == 1, "One selector in main settings");
                     Capture("localization-menu-en.png");
+                    var creditsPanel = Get<GameObject>(menu.SettingsPanel.GetComponentInChildren<LanguageSelector>(), "creditsPanel");
+                    Check(!creditsPanel.activeSelf, "Asset credits do not block settings on entry");
+                    menu.SettingsPanel.transform.Find("LanguageSelector/AssetCredits").GetComponent<Button>().onClick.Invoke();
+                    Check(creditsPanel.activeInHierarchy, "Asset credits open inside the existing settings");
+                    var creditsBody = creditsPanel.transform.Find("CreditsScroll/CreditsText").GetComponent<TMP_Text>();
+                    Check(!string.IsNullOrWhiteSpace(creditsBody.text) && !creditsBody.richText,
+                        "Bundled attribution is readable plain text without external navigation");
+                    GameLocalization.RefreshAll();
+                    Check(creditsPanel.GetComponentsInChildren<TMP_Text>().Any(text => text.text == "Art and audio licenses"),
+                        "Asset credits heading follows English selection");
+                    Capture("localization-credits-en.png");
+                    creditsPanel.transform.Find("CloseCredits").GetComponent<Button>().onClick.Invoke();
+                    Check(!creditsPanel.activeSelf, "Closing attribution returns to settings");
                     menu.CloseSettings(); menu.ShowRating(); GameLocalization.SetSelection("ru"); menu.CloseRating();
                     GameLocalization.SetSelection("en"); menu.ShowRating(); GameLocalization.RefreshAll();
                     foreach (var row in UnityEngine.Object.FindObjectsOfType<LeaderboardRow>())

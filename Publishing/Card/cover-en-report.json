@@ -1,0 +1,36 @@
+{
+  "createdOn": "2026-10-17",
+  "tool": "image_gen__imagegen (built-in)",
+  "mode": "text-localization",
+  "input": "Publishing/Card/cover.png",
+  "prompt": "Use case: text-localization. Asset type: English localized cover for the same fantasy pixel-art game, landscape 800:470 composition. Input image 1 is the edit target. Replace only the Russian title lettering. Main cream-colored block pixel lettering must read exactly THE LAST SOLDIER, arranged in two lines: THE LAST / SOLDIER. The smaller gold subtitle must read exactly ANOTHER WORLD, with the same short gold decorative lines on either side. Keep the title in the existing upper-right space, legible and visually balanced. Preserve the rest of the image as closely as possible: green hooded archer on the left aiming right, forest campsite, green slime, skeleton, bow, colors, shading, pixel-art texture and framing. Do not add characters or objects. No Cyrillic text, no watermark. Opaque background.",
+  "transparentBackground": false,
+  "originalGeneratedFile": "C:\\Users\\79870\\.codex\\generated_images\\01a149b5-5d55-70d0-8416-8cc2c0bb5164\\exec-5f12dbad-a118-4a76-a52d-5a42f01ec5aa.png",
+  "source": "Publishing/Card/cover-en-source.png",
+  "sourceDimensions": [
+    1637,
+    961
+  ],
+  "final": "Publishing/Card/cover-en.png",
+  "finalDimensions": [
+    800,
+    470
+  ],
+  "resize": "Pillow LANCZOS; existing user authorization to resize Yandex card media",
+  "text": [
+    "THE LAST SOLDIER",
+    "ANOTHER WORLD"
+  ],
+  "validation": {
+    "generatedImageVisuallyInspected": true,
+    "finalImageVisuallyInspected": true,
+    "notes": "English text is correctly spelled; original archer, forest camp, slime, skeleton and composition retained. Resize keeps the full frame."
+  },
+  "sha256": {
+    "source": "cf9a66e8d25cbba3a2d84ece5614f3c67ebc4baaf91af851c070512356e6fba4",
+    "final": "9aca83570c985a0f4104ab83561fadef3b2c8ed3a8f23302ff7bcbd80ad2b688"
+  },
+  "uploadedAndSaved": true,
+  "checkedOn": "2026-10-17",
+  "proof": "Publishing/Previews/yandex-cover-en-saved-20261017.png"
+}

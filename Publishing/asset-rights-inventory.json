@@ -1,0 +1,3237 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-17",
+  "scope": "Initial 96 raster dependencies plus two additional rasters found by the final Unity BuildReport; replacements and player exclusions recorded. Audio: Publishing/audio-provenance.json.",
+  "dependencyGraph": "Builds/RatingValidation/asset-dependencies.json",
+  "method": "Exact public source downloads and ZIP member bytes compared to local files by SHA-256; static GUID reachability is not a Unity build dependency report.",
+  "proofs": [
+    {
+      "sourceId": "ivan-basic-map",
+      "author": "Ivan Voirol",
+      "title": "Basic map 32x32",
+      "page": "https://opengameart.org/content/basic-map-tile-32x32",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png",
+      "localSHA256": "94804713a3a2856d07e782d194cf3920bcb331cd539fcd2ced0d058720f0c3f4",
+      "downloadUrl": "https://opengameart.org/sites/default/files/32x32_map_tile%20v3.1%20%5BMARGINLESS%5D.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/ivan-basic-map-32x32_map_tile v3.1 [MARGINLESS].png",
+      "downloadSHA256": "94804713a3a2856d07e782d194cf3920bcb331cd539fcd2ced0d058720f0c3f4",
+      "archiveEntry": null,
+      "sourceSHA256": "94804713a3a2856d07e782d194cf3920bcb331cd539fcd2ced0d058720f0c3f4",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "playcraft-portrait",
+      "author": "PlayCraft; ZeNeRIA29; posted by ZaPaper",
+      "title": "LPC Anime Portrait #2",
+      "page": "https://opengameart.org/content/lpc-anime-portrait-2",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/LPCportrait33.png",
+      "localSHA256": "70ee1c297c74683ab33bca18d27a114d4a33fe908f1798d4b6c7523c0b45c9a9",
+      "downloadUrl": "https://opengameart.org/sites/default/files/LPCportrait33_0.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/playcraft-portrait-LPCportrait33.png",
+      "downloadSHA256": "70ee1c297c74683ab33bca18d27a114d4a33fe908f1798d4b6c7523c0b45c9a9",
+      "archiveEntry": null,
+      "sourceSHA256": "70ee1c297c74683ab33bca18d27a114d4a33fe908f1798d4b6c7523c0b45c9a9",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "buch-medals",
+      "author": "Buch",
+      "title": "Medals",
+      "page": "https://opengameart.org/node/16656",
+      "license": "CC0-1.0",
+      "localPath": "Assets/Sprits/achievements.png",
+      "localSHA256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "downloadUrl": "https://opengameart.org/sites/default/files/achievements_1.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/buch-medals-achievements.png",
+      "downloadSHA256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "archiveEntry": null,
+      "sourceSHA256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "sharm-tiny16-basic",
+      "author": "Lanea Zimmerman (Sharm)",
+      "title": "Tiny 16: Basic",
+      "page": "https://opengameart.org/content/tiny-16-basic",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/basictiles.png",
+      "localSHA256": "3e738d7030e3d8c9aa9e49dbeed0e8a42b29a194cde533ac7aa7eb2edd50081c",
+      "downloadUrl": "https://opengameart.org/sites/default/files/basictiles_2.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/sharm-tiny16-basic-basictiles.png",
+      "downloadSHA256": "3e738d7030e3d8c9aa9e49dbeed0e8a42b29a194cde533ac7aa7eb2edd50081c",
+      "archiveEntry": null,
+      "sourceSHA256": "3e738d7030e3d8c9aa9e49dbeed0e8a42b29a194cde533ac7aa7eb2edd50081c",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "sharm-tiny16-basic",
+      "author": "Lanea Zimmerman (Sharm)",
+      "title": "Tiny 16: Basic",
+      "page": "https://opengameart.org/content/tiny-16-basic",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/things.png",
+      "localSHA256": "f0c06e4c2fbf508f4b7aa9d2c483ae5406a4a92b3fde0fd35a6058f00b3ca192",
+      "downloadUrl": "https://opengameart.org/sites/default/files/things_0.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/sharm-tiny16-basic-things.png",
+      "downloadSHA256": "f0c06e4c2fbf508f4b7aa9d2c483ae5406a4a92b3fde0fd35a6058f00b3ca192",
+      "archiveEntry": null,
+      "sourceSHA256": "f0c06e4c2fbf508f4b7aa9d2c483ae5406a4a92b3fde0fd35a6058f00b3ca192",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "bonsaiheldin-slime",
+      "author": "Bonsaiheldin",
+      "title": "Slime monster 24x24",
+      "page": "https://opengameart.org/content/slime-monster-24x24",
+      "license": "CC-BY-4.0",
+      "localPath": "Assets/Sprits/slime_monster_spritesheet.png",
+      "localSHA256": "d18208d895b689414a642510e76ddd601ba4ee20961ffd39052f6ca998a02fb9",
+      "downloadUrl": "https://opengameart.org/sites/default/files/slime_monster_24x24_0.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/bonsaiheldin-slime-slime_monster_spritesheet.zip",
+      "downloadSHA256": "569a5ac896874e2353246ff39d6113e28ef23c86980cafed05253743cb9ee5ee",
+      "archiveEntry": "slime_monster_spritesheet.png",
+      "sourceSHA256": "d18208d895b689414a642510e76ddd601ba4ee20961ffd39052f6ca998a02fb9",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "letargicdev-portals",
+      "author": "LetargicDev",
+      "title": "Portals",
+      "page": "https://opengameart.org/content/portals",
+      "license": "CC0-1.0",
+      "localPath": "Assets/Sprits/portalRings1.png",
+      "localSHA256": "73eb4a9c7a246d4665a8fbb953e898158088b7aa778c73782f94df4c60645a66",
+      "downloadUrl": "https://opengameart.org/sites/default/files/portalRings1.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/letargicdev-portals-portalRings1.png",
+      "downloadSHA256": "73eb4a9c7a246d4665a8fbb953e898158088b7aa778c73782f94df4c60645a66",
+      "archiveEntry": null,
+      "sourceSHA256": "73eb4a9c7a246d4665a8fbb953e898158088b7aa778c73782f94df4c60645a66",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "letargicdev-portals",
+      "author": "LetargicDev",
+      "title": "Portals",
+      "page": "https://opengameart.org/content/portals",
+      "license": "CC0-1.0",
+      "localPath": "Assets/Sprits/portalRings2.png",
+      "localSHA256": "eeda538f10bbcaea5bf791576d47935fab94c162456f9c706a00984eed94a6f3",
+      "downloadUrl": "https://opengameart.org/sites/default/files/portalRings2.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/letargicdev-portals-portalRings2.png",
+      "downloadSHA256": "eeda538f10bbcaea5bf791576d47935fab94c162456f9c706a00984eed94a6f3",
+      "archiveEntry": null,
+      "sourceSHA256": "eeda538f10bbcaea5bf791576d47935fab94c162456f9c706a00984eed94a6f3",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "daneeklu-farm",
+      "author": "Daniel Eddeland (daneeklu)",
+      "title": "LPC style farm animals",
+      "page": "https://opengameart.org/content/lpc-style-farm-animals",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/chicken_eat.png",
+      "localSHA256": "c02621f1096d46dba0f11b6358e4ee8901e76b4ea57f58c6e2cd8cd514e63b06",
+      "downloadUrl": "https://opengameart.org/sites/default/files/chicken_eat.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/daneeklu-farm-chicken_eat.png",
+      "downloadSHA256": "c02621f1096d46dba0f11b6358e4ee8901e76b4ea57f58c6e2cd8cd514e63b06",
+      "archiveEntry": null,
+      "sourceSHA256": "c02621f1096d46dba0f11b6358e4ee8901e76b4ea57f58c6e2cd8cd514e63b06",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "daneeklu-farm",
+      "author": "Daniel Eddeland (daneeklu)",
+      "title": "LPC style farm animals",
+      "page": "https://opengameart.org/content/lpc-style-farm-animals",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/chicken_walk.png",
+      "localSHA256": "9f2e5b54f283a6e9b4a0e0439a548844b6ce1a20f34e719ae944206e4e206ebe",
+      "downloadUrl": "https://opengameart.org/sites/default/files/chicken_walk.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/daneeklu-farm-chicken_walk.png",
+      "downloadSHA256": "9f2e5b54f283a6e9b4a0e0439a548844b6ce1a20f34e719ae944206e4e206ebe",
+      "archiveEntry": null,
+      "sourceSHA256": "9f2e5b54f283a6e9b4a0e0439a548844b6ce1a20f34e719ae944206e4e206ebe",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "daneeklu-farm",
+      "author": "Daniel Eddeland (daneeklu)",
+      "title": "LPC style farm animals",
+      "page": "https://opengameart.org/content/lpc-style-farm-animals",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/cow_eat.png",
+      "localSHA256": "61bf45f6a448a9bda98d5f92e4263d821f2f8860e1a6438e70c745708275145f",
+      "downloadUrl": "https://opengameart.org/sites/default/files/cow_eat.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/daneeklu-farm-cow_eat.png",
+      "downloadSHA256": "61bf45f6a448a9bda98d5f92e4263d821f2f8860e1a6438e70c745708275145f",
+      "archiveEntry": null,
+      "sourceSHA256": "61bf45f6a448a9bda98d5f92e4263d821f2f8860e1a6438e70c745708275145f",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "daneeklu-farm",
+      "author": "Daniel Eddeland (daneeklu)",
+      "title": "LPC style farm animals",
+      "page": "https://opengameart.org/content/lpc-style-farm-animals",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/cow_walk.png",
+      "localSHA256": "f338ac144fcafdbbdb5c67ce674365b919b87c2a6ef757af60ec7e4abf23796b",
+      "downloadUrl": "https://opengameart.org/sites/default/files/cow_walk.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/daneeklu-farm-cow_walk.png",
+      "downloadSHA256": "f338ac144fcafdbbdb5c67ce674365b919b87c2a6ef757af60ec7e4abf23796b",
+      "archiveEntry": null,
+      "sourceSHA256": "f338ac144fcafdbbdb5c67ce674365b919b87c2a6ef757af60ec7e4abf23796b",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "daneeklu-farm",
+      "author": "Daniel Eddeland (daneeklu)",
+      "title": "LPC style farm animals",
+      "page": "https://opengameart.org/content/lpc-style-farm-animals",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/sheep_eat.png",
+      "localSHA256": "20fcc7218839747e20ff5895d315c947a9637d6b1adf03308b19b5bbcd5d2c9c",
+      "downloadUrl": "https://opengameart.org/sites/default/files/sheep_eat.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/daneeklu-farm-sheep_eat.png",
+      "downloadSHA256": "20fcc7218839747e20ff5895d315c947a9637d6b1adf03308b19b5bbcd5d2c9c",
+      "archiveEntry": null,
+      "sourceSHA256": "20fcc7218839747e20ff5895d315c947a9637d6b1adf03308b19b5bbcd5d2c9c",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "daneeklu-farm",
+      "author": "Daniel Eddeland (daneeklu)",
+      "title": "LPC style farm animals",
+      "page": "https://opengameart.org/content/lpc-style-farm-animals",
+      "license": "CC-BY-3.0",
+      "localPath": "Assets/Sprits/Map/sheep_walk.png",
+      "localSHA256": "2ccaecd23d4dba308974a72415e660a6afa64135253d7061827fb62b67f9d29e",
+      "downloadUrl": "https://opengameart.org/sites/default/files/sheep_walk.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/daneeklu-farm-sheep_walk.png",
+      "downloadSHA256": "2ccaecd23d4dba308974a72415e660a6afa64135253d7061827fb62b67f9d29e",
+      "archiveEntry": null,
+      "sourceSHA256": "2ccaecd23d4dba308974a72415e660a6afa64135253d7061827fb62b67f9d29e",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
+      "localSHA256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe attaking/sprite_0.png",
+      "sourceSHA256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png",
+      "localSHA256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe attaking/sprite_1.png",
+      "sourceSHA256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png",
+      "localSHA256": "f6971732730e8bfab3629f8ddf15732c8ab44f47ad55f0fdb6f0388a9c51056a",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe attaking/sprite_2.png",
+      "sourceSHA256": "f6971732730e8bfab3629f8ddf15732c8ab44f47ad55f0fdb6f0388a9c51056a",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png",
+      "localSHA256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe attaking/sprite_3.png",
+      "sourceSHA256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png",
+      "localSHA256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe attaking/sprite_4.png",
+      "sourceSHA256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png",
+      "localSHA256": "6c783d494157067a44a2af6bf554904ff053b4dc5d5c1e0082ea9263775fee14",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_00.png",
+      "sourceSHA256": "6c783d494157067a44a2af6bf554904ff053b4dc5d5c1e0082ea9263775fee14",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png",
+      "localSHA256": "e12923bcb57369b2175a0cbd646d237cf81714bfccb0726f749fe633beb040f7",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_01.png",
+      "sourceSHA256": "e12923bcb57369b2175a0cbd646d237cf81714bfccb0726f749fe633beb040f7",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png",
+      "localSHA256": "a281d8c8949f87ffc881ad46ac67f7f0acd5b63bb06aa6acaba0e88ddd15f6a6",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_02.png",
+      "sourceSHA256": "a281d8c8949f87ffc881ad46ac67f7f0acd5b63bb06aa6acaba0e88ddd15f6a6",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png",
+      "localSHA256": "f2e7cc46662685a14ee7a40abf3449166eaeedbc9ad13e5966a1095737027cc2",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_03.png",
+      "sourceSHA256": "f2e7cc46662685a14ee7a40abf3449166eaeedbc9ad13e5966a1095737027cc2",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png",
+      "localSHA256": "56d7efa91f7c55e954a451ce7e4d5d07ddf31db23459de54daf40b59aef60d71",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_04.png",
+      "sourceSHA256": "56d7efa91f7c55e954a451ce7e4d5d07ddf31db23459de54daf40b59aef60d71",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png",
+      "localSHA256": "57754e247f63a65c4b198405bb1d8a33339c008ea9454a557d08a04ae5ed4c06",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_05.png",
+      "sourceSHA256": "57754e247f63a65c4b198405bb1d8a33339c008ea9454a557d08a04ae5ed4c06",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png",
+      "localSHA256": "367987152568edfced986200e087163b42217bfcf967455c5e9130e7bb0f1954",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_06.png",
+      "sourceSHA256": "367987152568edfced986200e087163b42217bfcf967455c5e9130e7bb0f1954",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png",
+      "localSHA256": "2ca9f65bb493522a31f8b38d659299b07ff67de616481c42280c391e45910040",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_07.png",
+      "sourceSHA256": "2ca9f65bb493522a31f8b38d659299b07ff67de616481c42280c391e45910040",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png",
+      "localSHA256": "9c002843e301b659332a90f8019b9606a5d628749c3db779581d679b9e19c8cb",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_08.png",
+      "sourceSHA256": "9c002843e301b659332a90f8019b9606a5d628749c3db779581d679b9e19c8cb",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png",
+      "localSHA256": "74e0fface49ae31e6cbe90937fcb745e88fa7ec59448344231b9540baa12946f",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_09.png",
+      "sourceSHA256": "74e0fface49ae31e6cbe90937fcb745e88fa7ec59448344231b9540baa12946f",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png",
+      "localSHA256": "74de4245568aab95830e11e48471bb13bcbf1b9f128ede099422426d434e5a23",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_10.png",
+      "sourceSHA256": "74de4245568aab95830e11e48471bb13bcbf1b9f128ede099422426d434e5a23",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png",
+      "localSHA256": "a96fd339f9eab8153ff9b98aca867fdf7229663ee7bc584c686f10bcda9b0858",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_11.png",
+      "sourceSHA256": "a96fd339f9eab8153ff9b98aca867fdf7229663ee7bc584c686f10bcda9b0858",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png",
+      "localSHA256": "bca9331714008131d8d97479849455cd393468b522335cdb71fb3b42a3e5710a",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_12.png",
+      "sourceSHA256": "bca9331714008131d8d97479849455cd393468b522335cdb71fb3b42a3e5710a",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png",
+      "localSHA256": "f075aa9e406fa8573a4c07379b3e8e8a42b5c2607f5c18e3f4c3f0d2a801d383",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_13.png",
+      "sourceSHA256": "f075aa9e406fa8573a4c07379b3e8e8a42b5c2607f5c18e3f4c3f0d2a801d383",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png",
+      "localSHA256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_14.png",
+      "sourceSHA256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png",
+      "localSHA256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_15.png",
+      "sourceSHA256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png",
+      "localSHA256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_16.png",
+      "sourceSHA256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png",
+      "localSHA256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_17.png",
+      "sourceSHA256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png",
+      "localSHA256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_18.png",
+      "sourceSHA256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png",
+      "localSHA256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_19.png",
+      "sourceSHA256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png",
+      "localSHA256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_20.png",
+      "sourceSHA256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png",
+      "localSHA256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe dead/sprite_21.png",
+      "sourceSHA256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png",
+      "localSHA256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe still/sprite_0.png",
+      "sourceSHA256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png",
+      "localSHA256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe still/sprite_1.png",
+      "sourceSHA256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png",
+      "localSHA256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe still/sprite_2.png",
+      "sourceSHA256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png",
+      "localSHA256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe still/sprite_3.png",
+      "sourceSHA256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png",
+      "localSHA256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_00.png",
+      "sourceSHA256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png",
+      "localSHA256": "b61d31009d303a0ad4b0affb538eff88d48c1f3493495a22426feda3aefc3b77",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_01.png",
+      "sourceSHA256": "b61d31009d303a0ad4b0affb538eff88d48c1f3493495a22426feda3aefc3b77",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png",
+      "localSHA256": "366dd753ccc7f05965c5d05fd00c13f15240f4308949d662570e44f01a563ff8",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_02.png",
+      "sourceSHA256": "366dd753ccc7f05965c5d05fd00c13f15240f4308949d662570e44f01a563ff8",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_03.png",
+      "localSHA256": "936c28af10efb6037bbb3075625d98ff4c948b2ecbf558429f164f7fe485482a",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_03.png",
+      "sourceSHA256": "936c28af10efb6037bbb3075625d98ff4c948b2ecbf558429f164f7fe485482a",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_04.png",
+      "localSHA256": "93631be1ee291772fac3441d47ef3e8fff0bef178c8e17da6d82b304b8e4ff3e",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_04.png",
+      "sourceSHA256": "93631be1ee291772fac3441d47ef3e8fff0bef178c8e17da6d82b304b8e4ff3e",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_05.png",
+      "localSHA256": "9df29821b3071ca85fc5803d3019dd54a88e6eeb51c7dcd8830c6bb6596408cd",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_05.png",
+      "sourceSHA256": "9df29821b3071ca85fc5803d3019dd54a88e6eeb51c7dcd8830c6bb6596408cd",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_06.png",
+      "localSHA256": "3fad8d482dfff59f21a69637d000494dc773dcbbd9698de2a1b1c041b50c7cb4",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_06.png",
+      "sourceSHA256": "3fad8d482dfff59f21a69637d000494dc773dcbbd9698de2a1b1c041b50c7cb4",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_07.png",
+      "localSHA256": "841d82d7292d11f894b9c19171bc0a8f41c68f3bed85f5b57b6223a74df42af5",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_07.png",
+      "sourceSHA256": "841d82d7292d11f894b9c19171bc0a8f41c68f3bed85f5b57b6223a74df42af5",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_08.png",
+      "localSHA256": "0344290af654a7d90d74b7eca6ea1acdd51afedb9743e38cdfeedfab60896423",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_08.png",
+      "sourceSHA256": "0344290af654a7d90d74b7eca6ea1acdd51afedb9743e38cdfeedfab60896423",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_09.png",
+      "localSHA256": "3bc45dcbc2b8adbdd1a9227e924fa2dba389475453ab4e69935986703fd277dc",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_09.png",
+      "sourceSHA256": "3bc45dcbc2b8adbdd1a9227e924fa2dba389475453ab4e69935986703fd277dc",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_10.png",
+      "localSHA256": "1c8d4234151ee740546c700ac6bb6345b5b4b905f83066d219cbcdc7a915d942",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_10.png",
+      "sourceSHA256": "1c8d4234151ee740546c700ac6bb6345b5b4b905f83066d219cbcdc7a915d942",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_11.png",
+      "localSHA256": "32be99ca1f46270edf42cb3df91ea23c39774f33580026887e0701bdf3bc69ba",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_11.png",
+      "sourceSHA256": "32be99ca1f46270edf42cb3df91ea23c39774f33580026887e0701bdf3bc69ba",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_12.png",
+      "localSHA256": "527dae3bb6947513b6f741d3aa119aecf1257e3d183be365c59cce362e695015",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_12.png",
+      "sourceSHA256": "527dae3bb6947513b6f741d3aa119aecf1257e3d183be365c59cce362e695015",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_13.png",
+      "localSHA256": "4802b5c63297eb1c71c168de3b4a59df21b1d21360e1f5eb40caeb85f0b73a1e",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_13.png",
+      "sourceSHA256": "4802b5c63297eb1c71c168de3b4a59df21b1d21360e1f5eb40caeb85f0b73a1e",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "pixelato-veme",
+      "author": "PiXeRaT (pixelato)",
+      "title": "VeMe",
+      "page": "https://opengameart.org/content/veme",
+      "license": "CC-BY-SA-4.0",
+      "localPath": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_14.png",
+      "localSHA256": "72e9a496146158a38e6085f5b2dc9f7517391e1307150fc083cd54248ff2c64c",
+      "downloadUrl": "https://opengameart.org/sites/default/files/veme.zip",
+      "downloadPath": "Builds/AssetReplacements/sources/veme.zip",
+      "downloadSHA256": "31808ed73e860783b5854e7e2d81f8d99c73bf4c9c353470bb28a5cc689504ec",
+      "archiveEntry": "VeMe walking/sprite_14.png",
+      "sourceSHA256": "72e9a496146158a38e6085f5b2dc9f7517391e1307150fc083cd54248ff2c64c",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "buch-medals",
+      "author": "Buch",
+      "title": "Medals",
+      "page": "https://opengameart.org/node/16656",
+      "license": "CC0-1.0",
+      "localPath": "Assets/Sprits/Map/achievements.png",
+      "localSHA256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "downloadUrl": "https://opengameart.org/sites/default/files/achievements_1.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/buch-medals-achievements.png",
+      "downloadSHA256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "archiveEntry": null,
+      "sourceSHA256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "buch-tuxemon",
+      "author": "Buch",
+      "title": "Tuxemon tileset",
+      "page": "https://opengameart.org/content/tuxemon-tileset",
+      "license": "CC-BY-SA-3.0",
+      "localPath": "Assets/Sprits/Map/sheet.png",
+      "localSHA256": "df9e0ba6b1e39b3b1d338a6dabc8d64e8d59d91dfd647ac4ff41f7410d901a59",
+      "downloadUrl": "https://opengameart.org/sites/default/files/sheet_5.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/confirmed-sheet.png",
+      "downloadSHA256": "df9e0ba6b1e39b3b1d338a6dabc8d64e8d59d91dfd647ac4ff41f7410d901a59",
+      "sourceSHA256": "df9e0ba6b1e39b3b1d338a6dabc8d64e8d59d91dfd647ac4ff41f7410d901a59",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "project-emotion",
+      "author": "TheBlueJester",
+      "title": "NPC Expression & Emotion Bubbles (Project Emotion)",
+      "page": "https://opengameart.org/content/npc-expression-emotion-bubbles-project-emotion",
+      "license": "CC-BY-SA-3.0",
+      "localPath": "Assets/Sprits/Double Note Strip.png",
+      "localSHA256": "224ddaba4e4b9a74f2afd10d1a0e88dfa9bcb12772de43d5a45636ce2b3cc070",
+      "downloadUrl": "https://opengameart.org/sites/default/files/Double%20Note%20Strip_0.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/confirmed-Double Note Strip.png",
+      "downloadSHA256": "224ddaba4e4b9a74f2afd10d1a0e88dfa9bcb12772de43d5a45636ce2b3cc070",
+      "sourceSHA256": "224ddaba4e4b9a74f2afd10d1a0e88dfa9bcb12772de43d5a45636ce2b3cc070",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "project-emotion",
+      "author": "TheBlueJester",
+      "title": "NPC Expression & Emotion Bubbles (Project Emotion)",
+      "page": "https://opengameart.org/content/npc-expression-emotion-bubbles-project-emotion",
+      "license": "CC-BY-SA-3.0",
+      "localPath": "Assets/Sprits/Question Strip.png",
+      "localSHA256": "4c831f6ab5ad7cca3f5d1d554f9799aa8e0f1916c4abfba6a1a19e5040b0a7be",
+      "downloadUrl": "https://opengameart.org/sites/default/files/Question%20Strip_1.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/confirmed-Question Strip.png",
+      "downloadSHA256": "4c831f6ab5ad7cca3f5d1d554f9799aa8e0f1916c4abfba6a1a19e5040b0a7be",
+      "sourceSHA256": "4c831f6ab5ad7cca3f5d1d554f9799aa8e0f1916c4abfba6a1a19e5040b0a7be",
+      "exactBytesMatch": true
+    },
+    {
+      "sourceId": "loel-coins",
+      "author": "Loel",
+      "title": "Coins pixel art",
+      "page": "https://opengameart.org/content/coins-pixel-art-silver-gold-crystal-and-more",
+      "license": "CC0-1.0",
+      "localPath": "Assets/Sprits/Coins/coinpreview.png",
+      "localSHA256": "939f75f3a1dde5ef918ed695ec042e11785427c6cccf1202ecdfefcad9fa7c44",
+      "downloadUrl": "https://opengameart.org/sites/default/files/coinpreview.png",
+      "downloadPath": "Builds/AssetReplacements/sources/originals/confirmed-coinpreview.png",
+      "downloadSHA256": "939f75f3a1dde5ef918ed695ec042e11785427c6cccf1202ecdfefcad9fa7c44",
+      "sourceSHA256": "939f75f3a1dde5ef918ed695ec042e11785427c6cccf1202ecdfefcad9fa7c44",
+      "exactBytesMatch": true
+    }
+  ],
+  "files": [
+    {
+      "path": "Assets/Sprits/0.png",
+      "sha256": "84008e96c2421d2ad37537a16c963ddcc3d03e92d4325f173dc67934b1df98c3",
+      "bytes": 24893,
+      "pixelSize": [
+        2048,
+        2048
+      ],
+      "spriteRects": 15,
+      "referencedSpriteFileIds": [
+        "-1322742091",
+        "-1488428183",
+        "-1725048261",
+        "-1730226379",
+        "-187792536",
+        "-2047759738",
+        "-413698831",
+        "-530534354",
+        "-785835883",
+        "-910558703",
+        "1056492105",
+        "1715758822",
+        "773686315",
+        "810498737",
+        "980563820"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Boss\\Test.anim"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/achievements.png",
+      "sha256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "bytes": 50200,
+      "pixelSize": [
+        465,
+        521
+      ],
+      "spriteRects": 68,
+      "referencedSpriteFileIds": [
+        "-1383855738",
+        "-636806416",
+        "1225026077",
+        "2049737883"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Prefabs\\LeaderboardPanel.prefab",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "buch-medals"
+    },
+    {
+      "path": "Assets/Sprits/allEnemy.png",
+      "sha256": "521d45f94a33c38c52ed0fd91ca5190901df713e699f5cf6a61a0d7ea078ea98",
+      "bytes": 7450,
+      "pixelSize": [
+        316,
+        635
+      ],
+      "spriteRects": 42,
+      "referencedSpriteFileIds": [
+        "-1022395749",
+        "-1025267531",
+        "-1250371215",
+        "-1525572024",
+        "-1583531525",
+        "-1816516215",
+        "-2046842343",
+        "-2062588570",
+        "-2135157778",
+        "-314955211",
+        "-620395362",
+        "-646216339",
+        "-697750456",
+        "-76221300",
+        "-944698591",
+        "-948107212",
+        "-987343457",
+        "1265554644",
+        "1266341045",
+        "1322754779",
+        "1484285053",
+        "1861545143",
+        "196923889",
+        "1983413761",
+        "2094967746",
+        "2120674553",
+        "374941408",
+        "496865922",
+        "535939785",
+        "545851355",
+        "564838186",
+        "587820112",
+        "690545831",
+        "759881341",
+        "888715378"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Enemy\\SlimeTrue.prefab",
+        "Assets\\Prefabs\\LvlComponent\\PoisonLuja.prefab",
+        "Assets\\Prefabs\\Enemy\\SlimeMini.prefab",
+        "Assets\\Prefabs\\Arrow\\SlimeProj Variant.prefab",
+        "Assets\\Prefabs\\Arrow\\BolletEnemy.prefab",
+        "Assets\\Anim\\Enemy\\SlimeAt.anim",
+        "Assets\\Anim\\Enemy\\SlimeIde.anim",
+        "Assets\\Prefabs\\Enemy\\SceletMag.prefab",
+        "Assets\\Anim\\Enemy\\SceletonAtacka.anim",
+        "Assets\\Anim\\Enemy\\SceletMagIde.anim",
+        "Assets\\Prefabs\\Arrow\\BolletEnemyBlack.prefab",
+        "Assets\\Prefabs\\Enemy\\SceletSheld.prefab",
+        "Assets\\Anim\\Enemy\\SceletonSheldIde.anim",
+        "Assets\\Anim\\Enemy\\SceletonSheldRun.anim",
+        "Assets\\Prefabs\\Enemy\\Bomber.prefab",
+        "Assets\\Anim\\Enemy\\SceletBombIde.anim",
+        "Assets\\Anim\\Enemy\\SceletBombRun.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/Banditka/Bandit Faceset.png",
+      "sha256": "024b0407900c08cbb6d6654ff9cd793b477d07da1f65ab9c79eca597c9daa9ef",
+      "bytes": 254500,
+      "pixelSize": [
+        576,
+        288
+      ],
+      "spriteRects": 6,
+      "referencedSpriteFileIds": [
+        "-144326360"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/Banditka/Beka.png",
+      "sha256": "e144648b484afaf337ed8b5ce0f3df20000bc828636506800b9b56c1e53e8add",
+      "bytes": 1129,
+      "pixelSize": [
+        32,
+        32
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Shoper\\BekaIde.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/Banditka/BekaWolk.png",
+      "sha256": "5ef5f7395edd5c0361e9d47878dfcc3a9109c57d89d4af265cef42a3986b3ffb",
+      "bytes": 2816,
+      "pixelSize": [
+        480,
+        80
+      ],
+      "spriteRects": 6,
+      "referencedSpriteFileIds": [
+        "-1757656888",
+        "-44286920",
+        "-980344144",
+        "283775717",
+        "380507927",
+        "810834994"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Shoper\\BekaWalk.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/Boss/Assassin.png",
+      "sha256": "4bf493e49f74374887713af331f9f4009b68f315d141f93b422a72a8d8be4f3d",
+      "bytes": 5735,
+      "pixelSize": [
+        320,
+        160
+      ],
+      "spriteRects": 50,
+      "referencedSpriteFileIds": [
+        "-1004319502",
+        "-103990621",
+        "-1426323001",
+        "-1452429365",
+        "-1514625627",
+        "-1855443166",
+        "-1970547812",
+        "-1990378762",
+        "-2017761552",
+        "-2121116388",
+        "-239766918",
+        "-310647818",
+        "-326141191",
+        "-409966423",
+        "-617926412",
+        "-751742159",
+        "-794946906",
+        "-916158126",
+        "-982946553",
+        "1053642420",
+        "1131614313",
+        "1158791532",
+        "1163120070",
+        "1168886388",
+        "1211948896",
+        "1239191551",
+        "1271749602",
+        "1276650106",
+        "133688904",
+        "1338344351",
+        "1356700635",
+        "144031397",
+        "1482875145",
+        "1495663046",
+        "1499208781",
+        "1637238670",
+        "1655956718",
+        "1710737013",
+        "1711915426",
+        "1835049408",
+        "1917039729",
+        "193525672",
+        "1963860963",
+        "2047110600",
+        "2052591257",
+        "442506671",
+        "535728685",
+        "537322343",
+        "745658567",
+        "903524715"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Boss\\Dead.anim",
+        "Assets\\Anim\\Boss\\Run.anim",
+        "Assets\\Anim\\Boss\\Atack.anim",
+        "Assets\\Anim\\Boss\\Ide.anim",
+        "Assets\\Anim\\Boss\\Heal.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
+      "sha256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "bytes": 508,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Attack.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png",
+      "sha256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef",
+      "bytes": 552,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Attack.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png",
+      "sha256": "f6971732730e8bfab3629f8ddf15732c8ab44f47ad55f0fdb6f0388a9c51056a",
+      "bytes": 547,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Attack.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png",
+      "sha256": "633a7fc9c07a9172e99619c8606748bf12c41d4898cb75daddfd7ee1f1b957ef",
+      "bytes": 552,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Attack.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png",
+      "sha256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "bytes": 508,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Attack.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png",
+      "sha256": "6c783d494157067a44a2af6bf554904ff053b4dc5d5c1e0082ea9263775fee14",
+      "bytes": 503,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png",
+      "sha256": "e12923bcb57369b2175a0cbd646d237cf81714bfccb0726f749fe633beb040f7",
+      "bytes": 496,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png",
+      "sha256": "a281d8c8949f87ffc881ad46ac67f7f0acd5b63bb06aa6acaba0e88ddd15f6a6",
+      "bytes": 499,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png",
+      "sha256": "f2e7cc46662685a14ee7a40abf3449166eaeedbc9ad13e5966a1095737027cc2",
+      "bytes": 479,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png",
+      "sha256": "56d7efa91f7c55e954a451ce7e4d5d07ddf31db23459de54daf40b59aef60d71",
+      "bytes": 466,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png",
+      "sha256": "57754e247f63a65c4b198405bb1d8a33339c008ea9454a557d08a04ae5ed4c06",
+      "bytes": 479,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png",
+      "sha256": "367987152568edfced986200e087163b42217bfcf967455c5e9130e7bb0f1954",
+      "bytes": 468,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png",
+      "sha256": "2ca9f65bb493522a31f8b38d659299b07ff67de616481c42280c391e45910040",
+      "bytes": 446,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png",
+      "sha256": "9c002843e301b659332a90f8019b9606a5d628749c3db779581d679b9e19c8cb",
+      "bytes": 435,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png",
+      "sha256": "74e0fface49ae31e6cbe90937fcb745e88fa7ec59448344231b9540baa12946f",
+      "bytes": 420,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png",
+      "sha256": "74de4245568aab95830e11e48471bb13bcbf1b9f128ede099422426d434e5a23",
+      "bytes": 417,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png",
+      "sha256": "a96fd339f9eab8153ff9b98aca867fdf7229663ee7bc584c686f10bcda9b0858",
+      "bytes": 401,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png",
+      "sha256": "bca9331714008131d8d97479849455cd393468b522335cdb71fb3b42a3e5710a",
+      "bytes": 380,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png",
+      "sha256": "f075aa9e406fa8573a4c07379b3e8e8a42b5c2607f5c18e3f4c3f0d2a801d383",
+      "bytes": 366,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png",
+      "sha256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953",
+      "bytes": 401,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png",
+      "sha256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974",
+      "bytes": 413,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png",
+      "sha256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e",
+      "bytes": 414,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png",
+      "sha256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006",
+      "bytes": 430,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png",
+      "sha256": "b1613cb4b932287f4489f678906da0fe4e01e93d7578958ae94b92a12ffe9953",
+      "bytes": 401,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png",
+      "sha256": "6caae24eb1f5bfcc882b0e0201019d547f05625f69df0b140d27045ba33bd974",
+      "bytes": 413,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png",
+      "sha256": "e102669481836f2529c365bd23715c996886a52ef5dce4a0d8a9ccbcdcdb963e",
+      "bytes": 414,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png",
+      "sha256": "e45890abad4fe29412406b892140d1de94486a48f452ebf8dce47bd245043006",
+      "bytes": 430,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Dead.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png",
+      "sha256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51",
+      "bytes": 504,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Enemy\\MiniBoss.prefab",
+        "Assets\\Anim\\MiniBossSlime\\Ide.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png",
+      "sha256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479",
+      "bytes": 500,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Ide.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png",
+      "sha256": "6e93ea2778b70f7bbfbafd7f24ba542801d4222e310d42d1049c32f55988ae51",
+      "bytes": 504,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Ide.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png",
+      "sha256": "3246d7d540bead04159c48c8219bf15cacc6de2e0e6540b1b8e66e75e9855479",
+      "bytes": 500,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Ide.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png",
+      "sha256": "a62ece69b40851fab46db28db21f67b561284c1cb3483d43fbfbce88ec84ffd7",
+      "bytes": 508,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Walking.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png",
+      "sha256": "b61d31009d303a0ad4b0affb538eff88d48c1f3493495a22426feda3aefc3b77",
+      "bytes": 552,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Walking.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png",
+      "sha256": "366dd753ccc7f05965c5d05fd00c13f15240f4308949d662570e44f01a563ff8",
+      "bytes": 504,
+      "pixelSize": [
+        50,
+        50
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\MiniBossSlime\\Walking.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "pixelato-veme"
+    },
+    {
+      "path": "Assets/Sprits/Coins/coinpreview.png",
+      "sha256": "939f75f3a1dde5ef918ed695ec042e11785427c6cccf1202ecdfefcad9fa7c44",
+      "bytes": 2085,
+      "pixelSize": [
+        64,
+        64
+      ],
+      "spriteRects": 5,
+      "referencedSpriteFileIds": [
+        "-669315634",
+        "-693026461",
+        "13414140",
+        "1656947854",
+        "54091844"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Money\\MoneySilver Variant.prefab",
+        "Assets\\Prefabs\\Money\\MoneyBronza Variant.prefab",
+        "Assets\\Prefabs\\Money\\MoneyGold Variant.prefab",
+        "Assets\\Prefabs\\Money\\MoneyPlatina Variant.prefab",
+        "Assets\\Prefabs\\Money\\MoneyObsidian Variant.prefab"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "loel-coins"
+    },
+    {
+      "path": "Assets/Sprits/Double Note Strip.png",
+      "sha256": "224ddaba4e4b9a74f2afd10d1a0e88dfa9bcb12772de43d5a45636ce2b3cc070",
+      "bytes": 13350,
+      "pixelSize": [
+        256,
+        512
+      ],
+      "spriteRects": 30,
+      "referencedSpriteFileIds": [
+        "-1049127875",
+        "-1177220293",
+        "-1191557094",
+        "-1229633740",
+        "-1417660521",
+        "-1418424718",
+        "-1818264984",
+        "-1995706848",
+        "-2020974132",
+        "-2109377182",
+        "-2113909045",
+        "-618155781",
+        "-677029484",
+        "1131272505",
+        "1211899188",
+        "1743012136",
+        "1817886268",
+        "2128453137",
+        "320787747",
+        "339852390",
+        "455016591",
+        "50784678",
+        "874884961",
+        "929708876",
+        "956016091"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Animals\\SoungsNote.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "project-emotion"
+    },
+    {
+      "path": "Assets/Sprits/Explosion.png",
+      "sha256": "7ec6a7be8f97a7033fa07d21b7c375c1197eb4b7b3e4a480c844daee6e39cf2e",
+      "bytes": 5244,
+      "pixelSize": [
+        1152,
+        96
+      ],
+      "spriteRects": 12,
+      "referencedSpriteFileIds": [
+        "-1180306721",
+        "-1326658657",
+        "-1911613826",
+        "-2029910613",
+        "-606062954",
+        "-813287786",
+        "-902497455",
+        "1615330201",
+        "387800387",
+        "602035287",
+        "617972457",
+        "77174784"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Boss\\Metior.anim"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/Healer.png",
+      "sha256": "5c826eb1ae7f049cccc9b7ff0a4c38c294f069682841f6db21cd3bdb2b45e6d7",
+      "bytes": 850,
+      "pixelSize": [
+        96,
+        42
+      ],
+      "spriteRects": 3,
+      "referencedSpriteFileIds": [
+        "-824000648",
+        "1094988859",
+        "1501408946"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Enemy\\HealerEnemy.prefab",
+        "Assets\\Anim\\Enemy\\HealerWalk.anim",
+        "Assets\\Anim\\Enemy\\HealerHeal.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/HealerAtack.png",
+      "sha256": "8fa85bc50f2eae7e2a50314e93892a5ddfebc567b9bb1e0f1de0a3d32d4dcde1",
+      "bytes": 1864,
+      "pixelSize": [
+        512,
+        42
+      ],
+      "spriteRects": 8,
+      "referencedSpriteFileIds": [
+        "-1212901559",
+        "-1247326967",
+        "-1462359698",
+        "-1925266913",
+        "-926632064",
+        "1473393731",
+        "343773783",
+        "607663472"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Enemy\\HealerHeal.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/LPCportrait33.png",
+      "sha256": "70ee1c297c74683ab33bca18d27a114d4a33fe908f1798d4b6c7523c0b45c9a9",
+      "bytes": 400410,
+      "pixelSize": [
+        900,
+        760
+      ],
+      "spriteRects": 5,
+      "referencedSpriteFileIds": [
+        "-777716870"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "playcraft-portrait"
+    },
+    {
+      "path": "Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png",
+      "sha256": "94804713a3a2856d07e782d194cf3920bcb331cd539fcd2ced0d058720f0c3f4",
+      "bytes": 166560,
+      "pixelSize": [
+        736,
+        928
+      ],
+      "spriteRects": 666,
+      "referencedSpriteFileIds": [
+        "-815525189",
+        "1226675680",
+        "1308792919",
+        "541576623",
+        "58829291",
+        "88242572"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Tile\\32x32_map_tile v3.1 [MARGINLESS]_370.asset",
+        "Assets\\Tile\\32x32_map_tile v3.1 [MARGINLESS]_485.asset",
+        "Assets\\Tile\\32x32_map_tile v3.1 [MARGINLESS]_369.asset",
+        "Assets\\Tile\\32x32_map_tile v3.1 [MARGINLESS]_367.asset",
+        "Assets\\Tile\\32x32_map_tile v3.1 [MARGINLESS]_495.asset",
+        "Assets\\Tile\\32x32_map_tile v3.1 [MARGINLESS]_368.asset"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "ivan-basic-map"
+    },
+    {
+      "path": "Assets/Sprits/Map/basictiles.png",
+      "sha256": "3e738d7030e3d8c9aa9e49dbeed0e8a42b29a194cde533ac7aa7eb2edd50081c",
+      "bytes": 7516,
+      "pixelSize": [
+        128,
+        240
+      ],
+      "spriteRects": 87,
+      "referencedSpriteFileIds": [
+        "-1460918779",
+        "-227020130",
+        "855907073"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Tile\\basictiles_30.asset",
+        "Assets\\Tile\\basictiles_17.asset"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "sharm-tiny16-basic"
+    },
+    {
+      "path": "Assets/Sprits/Map/chicken_eat.png",
+      "sha256": "c02621f1096d46dba0f11b6358e4ee8901e76b4ea57f58c6e2cd8cd514e63b06",
+      "bytes": 4434,
+      "pixelSize": [
+        128,
+        128
+      ],
+      "spriteRects": 16,
+      "referencedSpriteFileIds": [
+        "-1110009830",
+        "-685602764",
+        "529353302",
+        "601241661"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Animals\\ChickenEat.anim",
+        "Assets\\Anim\\Animals\\ChickenIde.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "daneeklu-farm"
+    },
+    {
+      "path": "Assets/Sprits/Map/chicken_walk.png",
+      "sha256": "9f2e5b54f283a6e9b4a0e0439a548844b6ce1a20f34e719ae944206e4e206ebe",
+      "bytes": 4126,
+      "pixelSize": [
+        128,
+        128
+      ],
+      "spriteRects": 16,
+      "referencedSpriteFileIds": [
+        "-1300711042",
+        "-1689620342",
+        "1870322503",
+        "754772571"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Animals\\chicken.prefab",
+        "Assets\\Anim\\Animals\\ChickenWolk.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "daneeklu-farm"
+    },
+    {
+      "path": "Assets/Sprits/Map/cow_eat.png",
+      "sha256": "61bf45f6a448a9bda98d5f92e4263d821f2f8860e1a6438e70c745708275145f",
+      "bytes": 11579,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 16,
+      "referencedSpriteFileIds": [
+        "-1470817077",
+        "-763658790",
+        "1424360942",
+        "583112274"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Animals\\CowEat.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "daneeklu-farm"
+    },
+    {
+      "path": "Assets/Sprits/Map/cow_walk.png",
+      "sha256": "f338ac144fcafdbbdb5c67ce674365b919b87c2a6ef757af60ec7e4abf23796b",
+      "bytes": 10379,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 16,
+      "referencedSpriteFileIds": [
+        "-1427361779",
+        "-2088064333",
+        "-52286509",
+        "1357510785"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Animals\\Cow.prefab",
+        "Assets\\Anim\\Animals\\CowIdle.anim",
+        "Assets\\Anim\\Animals\\CowWalk.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "daneeklu-farm"
+    },
+    {
+      "path": "Assets/Sprits/Map/preview.png",
+      "sha256": "76fa05658455bc39fee06b268be1a01b6fdd81a7a3cd4a858ef95552ce2956c9",
+      "bytes": 1298,
+      "pixelSize": [
+        160,
+        160
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/Map/sheep_eat.png",
+      "sha256": "20fcc7218839747e20ff5895d315c947a9637d6b1adf03308b19b5bbcd5d2c9c",
+      "bytes": 8800,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 16,
+      "referencedSpriteFileIds": [
+        "-1929157925",
+        "1020223",
+        "1057267492",
+        "32251191"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Animals\\SheepEat.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "daneeklu-farm"
+    },
+    {
+      "path": "Assets/Sprits/Map/sheep_walk.png",
+      "sha256": "2ccaecd23d4dba308974a72415e660a6afa64135253d7061827fb62b67f9d29e",
+      "bytes": 8222,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 16,
+      "referencedSpriteFileIds": [
+        "-1643630979",
+        "-2131812424",
+        "1987900908",
+        "873448730"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Animals\\Sheep.prefab",
+        "Assets\\Anim\\Animals\\SheepWalk.anim",
+        "Assets\\Anim\\Animals\\SheepIdle.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "daneeklu-farm"
+    },
+    {
+      "path": "Assets/Sprits/Map/sheet.png",
+      "sha256": "df9e0ba6b1e39b3b1d338a6dabc8d64e8d59d91dfd647ac4ff41f7410d901a59",
+      "bytes": 11024,
+      "pixelSize": [
+        128,
+        208
+      ],
+      "spriteRects": 98,
+      "referencedSpriteFileIds": [
+        "-1132006055",
+        "-1262728820",
+        "-1391904382",
+        "-1512264532",
+        "-1541602817",
+        "-1596341245",
+        "-1745901580",
+        "-1837450738",
+        "-1968831388",
+        "-2068016521",
+        "-319411820",
+        "-351689321",
+        "-358736066",
+        "-44625638",
+        "-514071405",
+        "-624440423",
+        "-678633244",
+        "-679565607",
+        "-770296531",
+        "-772139849",
+        "-826948000",
+        "-827358033",
+        "-843827345",
+        "1061186101",
+        "1208636187",
+        "1221539937",
+        "1316926959",
+        "1353558808",
+        "13580173",
+        "1369585061",
+        "1416422371",
+        "1607983946",
+        "1619919646",
+        "1724921722",
+        "1742240666",
+        "2018159396",
+        "207433333",
+        "266161808",
+        "345492484",
+        "436849553",
+        "483181327",
+        "490860376",
+        "727233338",
+        "730296768",
+        "851630350",
+        "967401314"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Tile\\sheet_84.asset",
+        "Assets\\Tile\\sheet_87.asset",
+        "Assets\\Tile\\sheet_15.asset",
+        "Assets\\Tile\\sheet_62.asset",
+        "Assets\\Tile\\sheet_59.asset",
+        "Assets\\Tile\\sheet_80.asset",
+        "Assets\\Tile\\sheet_54.asset",
+        "Assets\\Tile\\sheet_7.asset",
+        "Assets\\Tile\\sheet_8.asset",
+        "Assets\\Tile\\sheet_56.asset",
+        "Assets\\Tile\\sheet_66.asset",
+        "Assets\\Tile\\sheet_39.asset",
+        "Assets\\Tile\\sheet_27.asset",
+        "Assets\\Tile\\sheet_81.asset",
+        "Assets\\Tile\\sheet_23.asset",
+        "Assets\\Tile\\sheet_63.asset",
+        "Assets\\Tile\\sheet_0.asset",
+        "Assets\\Tile\\sheet_65.asset",
+        "Assets\\Tile\\sheet_45.asset",
+        "Assets\\Tile\\sheet_64.asset",
+        "Assets\\Tile\\sheet_46.asset",
+        "Assets\\Tile\\sheet_18.asset",
+        "Assets\\Tile\\sheet_74.asset",
+        "Assets\\Tile\\sheet_48.asset",
+        "Assets\\Tile\\sheet_31.asset",
+        "Assets\\Tile\\sheet_61.asset",
+        "Assets\\Tile\\sheet_60.asset",
+        "Assets\\Tile\\sheet_67.asset",
+        "Assets\\Tile\\sheet_58.asset",
+        "Assets\\Tile\\sheet_53.asset",
+        "Assets\\Tile\\sheet_41.asset",
+        "Assets\\Tile\\sheet_72.asset",
+        "Assets\\Tile\\sheet_86.asset",
+        "Assets\\Tile\\sheet_1.asset",
+        "Assets\\Tile\\sheet_71.asset",
+        "Assets\\Tile\\sheet_69.asset",
+        "Assets\\Tile\\sheet_19.asset",
+        "Assets\\Tile\\sheet_68.asset",
+        "Assets\\Tile\\sheet_73.asset",
+        "Assets\\Tile\\sheet_47.asset",
+        "Assets\\Tile\\sheet_55.asset",
+        "Assets\\Tile\\sheet_70.asset",
+        "Assets\\Tile\\sheet_40.asset",
+        "Assets\\Tile\\sheet_9.asset",
+        "Assets\\Tile\\sheet_26.asset",
+        "Assets\\Tile\\sheet_88.asset"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "buch-tuxemon"
+    },
+    {
+      "path": "Assets/Sprits/Map/things.png",
+      "sha256": "f0c06e4c2fbf508f4b7aa9d2c483ae5406a4a92b3fde0fd35a6058f00b3ca192",
+      "bytes": 6885,
+      "pixelSize": [
+        192,
+        128
+      ],
+      "spriteRects": 96,
+      "referencedSpriteFileIds": [
+        "-116194655",
+        "-2077930007",
+        "-2106847459",
+        "-459463075",
+        "336169558"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Prefabs\\LvlComponent\\Chest.prefab",
+        "Assets\\Anim\\Chest\\ChestClose.anim",
+        "Assets\\Anim\\Chest\\ChestOpen.anim",
+        "Assets\\Anim\\Chest\\ChestIde.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "sharm-tiny16-basic"
+    },
+    {
+      "path": "Assets/Sprits/nun-black-NESW.png",
+      "sha256": "1b4d251e7c91e21ecd0d8597261f642e507b9c70c4ecb9de969243f31566418e",
+      "bytes": 2335,
+      "pixelSize": [
+        72,
+        128
+      ],
+      "spriteRects": 12,
+      "referencedSpriteFileIds": [
+        "-1279667512",
+        "1057978478",
+        "324568085",
+        "351306288"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Animals\\BabkaWalk.anim",
+        "Assets\\Anim\\Animals\\BabkaIdle.anim",
+        "Assets\\Anim\\Animals\\BabkaIvent.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/PlayerAll.png",
+      "sha256": "f5a809fc80d7fd01202b16191cc1cf5095dfde500dee1478fc6294bd21b07c4e",
+      "bytes": 825,
+      "pixelSize": [
+        160,
+        32
+      ],
+      "spriteRects": 5,
+      "referencedSpriteFileIds": [
+        "-1449162265"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/portalRings1.png",
+      "sha256": "73eb4a9c7a246d4665a8fbb953e898158088b7aa778c73782f94df4c60645a66",
+      "bytes": 3637,
+      "pixelSize": [
+        128,
+        160
+      ],
+      "spriteRects": 17,
+      "referencedSpriteFileIds": [
+        "-1010346903",
+        "-1169829225",
+        "-136008860",
+        "-1386277121",
+        "-1484671112",
+        "-1491646239",
+        "-1492212630",
+        "-1931644576",
+        "-349696966",
+        "-383423274",
+        "1194975599",
+        "1242098612",
+        "1469178983",
+        "1602147131",
+        "1794781228",
+        "2080366985",
+        "695533046"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Portal\\PortalStart.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "letargicdev-portals"
+    },
+    {
+      "path": "Assets/Sprits/portalRings2.png",
+      "sha256": "eeda538f10bbcaea5bf791576d47935fab94c162456f9c706a00984eed94a6f3",
+      "bytes": 2319,
+      "pixelSize": [
+        160,
+        32
+      ],
+      "spriteRects": 5,
+      "referencedSpriteFileIds": [
+        "-1908723466",
+        "-50058400",
+        "1366365478",
+        "1473973109",
+        "1524063607"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Portal\\PortalZapusk.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "letargicdev-portals"
+    },
+    {
+      "path": "Assets/Sprits/Question Strip.png",
+      "sha256": "4c831f6ab5ad7cca3f5d1d554f9799aa8e0f1916c4abfba6a1a19e5040b0a7be",
+      "bytes": 9925,
+      "pixelSize": [
+        256,
+        512
+      ],
+      "spriteRects": 30,
+      "referencedSpriteFileIds": [
+        "-1140947085",
+        "-1286873570",
+        "-1504736551",
+        "-1957316276",
+        "-2000527444",
+        "-2001300125",
+        "-2019718338",
+        "-2095051037",
+        "-2122792865",
+        "-470074448",
+        "-837276172",
+        "-862750231",
+        "10977578",
+        "1279991326",
+        "1375382892",
+        "1506021122",
+        "1540780841",
+        "1583150110",
+        "1658053315",
+        "1786733965",
+        "179166394",
+        "1860066984",
+        "1912034486",
+        "217059091",
+        "239356955",
+        "882487735",
+        "887400344",
+        "907522314",
+        "926585523",
+        "968492485"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Animals\\Question.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "project-emotion"
+    },
+    {
+      "path": "Assets/Sprits/SciDE.png",
+      "sha256": "07535c2d5b9c2b1ca396e52b2ed9e9566ed005a39ed26f73b08118f1890ae5f0",
+      "bytes": 953,
+      "pixelSize": [
+        128,
+        38
+      ],
+      "spriteRects": 4,
+      "referencedSpriteFileIds": [
+        "-1034551138",
+        "-415419347",
+        "-745760465"
+      ],
+      "referencedBy": [
+        "Assets\\Anim\\Enemy\\SceletProstoiMag.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/ShoperAllAnim.png",
+      "sha256": "248022b6dea020e629e4bb1152f6c016d404969f4ac06477ab05007459217b5b",
+      "bytes": 4067,
+      "pixelSize": [
+        384,
+        158
+      ],
+      "spriteRects": 37,
+      "referencedSpriteFileIds": [
+        "-111385028",
+        "-1161439083",
+        "-1210298002",
+        "-1225583958",
+        "-1287470315",
+        "-1417476258",
+        "-1575319363",
+        "-1875942834",
+        "-189121768",
+        "-1917133036",
+        "-2007270806",
+        "-2075579102",
+        "-2114891612",
+        "-273489697",
+        "-347975573",
+        "-413962594",
+        "-622785836",
+        "-768520035",
+        "-848429952",
+        "-959406497",
+        "1098908956",
+        "1267515878",
+        "128984985",
+        "1756121495",
+        "1831276136",
+        "1842424191",
+        "1982249392",
+        "299825422",
+        "50242307",
+        "525619567",
+        "552458154",
+        "553049312",
+        "846931843",
+        "944524334",
+        "9973676"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Anim\\Shoper\\ShoperEvent.anim",
+        "Assets\\Anim\\Shoper\\ShoperRoza.anim",
+        "Assets\\Anim\\Shoper\\ShoperIdeVariant.anim",
+        "Assets\\Anim\\Shoper\\ShoperIde.anim"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+    },
+    {
+      "path": "Assets/Sprits/slime_monster_spritesheet.png",
+      "sha256": "d18208d895b689414a642510e76ddd601ba4ee20961ffd39052f6ca998a02fb9",
+      "bytes": 982,
+      "pixelSize": [
+        72,
+        72
+      ],
+      "spriteRects": 9,
+      "referencedSpriteFileIds": [
+        "-293487645",
+        "-987775776",
+        "1033020258",
+        "1599291342",
+        "579932611",
+        "762018775"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Enemy\\HolySlime.prefab",
+        "Assets\\Anim\\Enemy\\HolySlimeAtack.anim",
+        "Assets\\Anim\\Enemy\\HolySlimeWalk.anim"
+      ],
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "bonsaiheldin-slime"
+    },
+    {
+      "path": "Assets/Sprits/spr_shield.png",
+      "sha256": "c74dc0fe63e47b8ae599ff00672e3a3a91df53a6460f8ecbd5dd0d326369a3ee",
+      "bytes": 4049,
+      "pixelSize": [
+        556,
+        556
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png",
+      "sha256": "6e6524b9bf573cac8d3c4ffee7d2d09dc36eafbc40fb8c435927fe99aa756c58",
+      "bytes": 75354,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png",
+      "sha256": "3d762d29c1e4fbaa2ded89196127e26fe1fe2b4fcf978fb44abf90bb2acf1f6b",
+      "bytes": 80093,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png",
+      "sha256": "5be9584a740711182ea79b453fc9c9f22d15b0b67405acc327886e09a8c36279",
+      "bytes": 14178,
+      "pixelSize": [
+        576,
+        324
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png",
+      "sha256": "65c8b1a6ee4e5bd82dc45bac512831b1416972d9a5f01cb2f969eb086ed83b0e",
+      "bytes": 81425,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png",
+      "sha256": "5aaad8d71ad756d64c7be5b0d551422a8db5f1dc0980aea28746267e50259b47",
+      "bytes": 62949,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png",
+      "sha256": "16abf9e5c0e7685559a320746ff14cf52082de20f8cd25ce8ea9d77231ad49f1",
+      "bytes": 61075,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png",
+      "sha256": "b43896d63426d2bedb83b432fff13bf89c633d79021972e5ee886a2483cb34b3",
+      "bytes": 57084,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png",
+      "sha256": "3a2a2082586cf3a79ad11c44cc390163b16ed8e046f45b4a1f27a3590adeb4c6",
+      "bytes": 39224,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png",
+      "sha256": "0eca64f105100fb3d2ea01fa4fc08f3d01e34fbca791a4b6032b2549675ee9b3",
+      "bytes": 44315,
+      "pixelSize": [
+        2304,
+        1296
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "confirmed-existing-license",
+      "sourceId": "craftpix"
+    },
+    {
+      "path": "Assets/Sprits/ui/HUD Menus.png",
+      "sha256": "a8bc0b339af7c1bd34b0c4136190670d5f553c219a176dd8f3215009ec222443",
+      "bytes": 4284,
+      "pixelSize": [
+        837,
+        607
+      ],
+      "spriteRects": 8,
+      "referencedSpriteFileIds": [
+        "-1452482773"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/ui/Square Buttons/Info Square Button.png",
+      "sha256": "0818f430fac87ea08e0e01abbc0813b28a5ced8879fa17da1a81a8d3b545812c",
+      "bytes": 835,
+      "pixelSize": [
+        200,
+        200
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png",
+      "sha256": "1166ddec4ad1da70d2077e4ba13be6dcaa02e91978be9ba2f0e5e057a7eaa0fc",
+      "bytes": 989,
+      "pixelSize": [
+        200,
+        200
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/ui/Square Buttons/Return Square Button.png",
+      "sha256": "6e4cfba831e2a2c49b7b76754e6990f534d11f75456e5e21f20ae1dfaeb6cc71",
+      "bytes": 1065,
+      "pixelSize": [
+        200,
+        200
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/uiEL.png",
+      "sha256": "d3d175478994aa0028f36ba085ecc98d71cfaa9e93d0791d8ff613513baa12fe",
+      "bytes": 1085,
+      "pixelSize": [
+        96,
+        96
+      ],
+      "spriteRects": 6,
+      "referencedSpriteFileIds": [
+        "-1681913690",
+        "-1852612127",
+        "-1944040769",
+        "1127440787",
+        "1955226355",
+        "616179350"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Prefabs\\LvlComponent\\Money.prefab",
+        "Assets\\Prefabs\\Arrow\\PiercingArrow.prefab",
+        "Assets\\Prefabs\\Arrow\\HolyArrow.prefab",
+        "Assets\\Prefabs\\Arrow\\ArrowDrop.prefab",
+        "Assets\\Prefabs\\Arrow\\PoisonArrow.prefab",
+        "Assets\\Prefabs\\Arrow\\ArrowDef.prefab"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
+      "sha256": "f0ed23200980b5dfc4115a3ea99d26706d06a00f4946e4ccc01b83950456201b",
+      "bytes": 178491,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 14,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Sprite Assets\\Default Sprite Asset.asset"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Brushed Metal 3.jpg",
+      "sha256": "7d21ed4aeaed1db486303adb34f3687f2ec9bdac1167cbb1d4cb9bc0974cfdb8",
+      "bytes": 28175,
+      "pixelSize": [
+        512,
+        356
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\LiberationSans SDF - Metalic Green.mat"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Cement.jpg",
+      "sha256": "d9c5332cbdaeacae60a48e31ebdd565cb93545605193ba7d5aa4e2f5ac92d6d5",
+      "bytes": 71537,
+      "pixelSize": [
+        520,
+        390
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\LiberationSans SDF - Metalic Green.mat",
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\Bangers SDF Logo.mat"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg",
+      "sha256": "dcdb715f73dda61219860185eccc1a6bd81fbeacc171d7bf2a5f766f8eea8e0c",
+      "bytes": 150089,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\Bangers SDF Logo.mat",
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\Anton SDF - Sunny Days.mat"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg",
+      "sha256": "51735b2a99f9d6baae14b01cf2e01fa1aeef69c9a95553b73bdea5a8957a19a7",
+      "bytes": 11688,
+      "pixelSize": [
+        16,
+        16
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\Bangers SDF Glow.mat"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Sunny Days - Seamless.jpg",
+      "sha256": "ab6536daf74188dfc075d65f5d85aca9efeaead7f03b905514e53076d854f365",
+      "bytes": 273488,
+      "pixelSize": [
+        2048,
+        1024
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Examples & Extras\\Resources\\Fonts & Materials\\Anton SDF - Sunny Days.mat"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+      "sha256": "a87b965a701de3dc31d7401e542b1fc946587f912c51d7a26e46ade9f098bd1a",
+      "bytes": 112319,
+      "pixelSize": [
+        512,
+        512
+      ],
+      "spriteRects": 15,
+      "referencedSpriteFileIds": [
+        "2800000"
+      ],
+      "referencedBy": [
+        "Assets\\TextMesh Pro\\Resources\\Sprite Assets\\EmojiOne.asset"
+      ],
+      "rightsStatus": "excluded-from-player-dependencies",
+      "changes": "Unused demo Resources moved under Editor; default EmojiOne disabled; used LiberationSans overlay material preserved",
+      "priorPathAbsent": true
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Arena/Altar.png",
+      "sha256": "e2237f3cf0459b4c319b22059cddc89e0557296f79095ebe4d04c87f3646eea2",
+      "bytes": 531,
+      "pixelSize": [
+        48,
+        64
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Arena\\Altar.prefab"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Arena/Barrel.png",
+      "sha256": "617e25692aab1253787d46ff76331fab66bce94475bfff6db6296c674093d8fb",
+      "bytes": 598,
+      "pixelSize": [
+        48,
+        64
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Arena\\Barrel.prefab"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Arena/GravityRune.png",
+      "sha256": "af84ddbfc655664ee40933ef35472b591f9055ed7fd27be9626d6e288c97bb22",
+      "bytes": 563,
+      "pixelSize": [
+        48,
+        64
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Arena\\Altar.prefab"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Arena/Outpost.png",
+      "sha256": "1822032bd4b7fe6de7dbacd06aa5900a6bd09dd56b7151da9fc6d71a3cb6388f",
+      "bytes": 519,
+      "pixelSize": [
+        48,
+        64
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Prefabs\\Arena\\Outpost.prefab"
+      ],
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Medals/Amethyst.png",
+      "sha256": "31e7b52b60c43dc589a7953d9de6d0c09c3babc284b4fb8302d6ee50c11dff9e",
+      "bytes": 633,
+      "pixelSize": [
+        48,
+        48
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "derived-from-confirmed-CC0",
+      "sourceId": "buch-medals",
+      "changes": "Five-colour palette replacement; geometry unchanged. See Publishing/MEDALS.md."
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Medals/Emerald.png",
+      "sha256": "6db5dab47d48a7194c80d642e44469cc7a83cca1d79bab5f8f90b998c2336902",
+      "bytes": 630,
+      "pixelSize": [
+        48,
+        48
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "derived-from-confirmed-CC0",
+      "sourceId": "buch-medals",
+      "changes": "Five-colour palette replacement; geometry unchanged. See Publishing/MEDALS.md."
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Medals/Ruby.png",
+      "sha256": "2b5b978bcff08bb3d3fd0385a1a861ccc7a783655dde74754153d50d83ed974e",
+      "bytes": 632,
+      "pixelSize": [
+        48,
+        48
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "derived-from-confirmed-CC0",
+      "sourceId": "buch-medals",
+      "changes": "Five-colour palette replacement; geometry unchanged. See Publishing/MEDALS.md."
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Medals/Sapphire.png",
+      "sha256": "a22c1e5c549d17bb7b5352045c5fefbb077a04fe9c249b28fdc67529bb4ad534",
+      "bytes": 634,
+      "pixelSize": [
+        48,
+        48
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [
+        "21300000"
+      ],
+      "referencedBy": [
+        "Assets\\Scenes\\SampleScene.unity",
+        "Assets\\Scenes\\Menu.unity"
+      ],
+      "rightsStatus": "derived-from-confirmed-CC0",
+      "sourceId": "buch-medals",
+      "changes": "Five-colour palette replacement; geometry unchanged. See Publishing/MEDALS.md."
+    },
+    {
+      "path": "Assets/Sprits/Map/achievements.png",
+      "sha256": "c6ec92bcdb1008595eeb60f9cdf0bbee6dc9335af536fc9e2fef676142f52b6f",
+      "bytes": 50200,
+      "pixelSize": [
+        465,
+        521
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [],
+      "referencedBy": [],
+      "packedInFinalPlayer": true,
+      "rightsStatus": "confirmed-source-exact-bytes",
+      "sourceId": "buch-medals",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "Assets/Sprits/ramka.png",
+      "sha256": "c16a6f5688a8eeb74822ad03d78b6ea475f4216c6ac063be59c3409e409db9eb",
+      "bytes": 127,
+      "pixelSize": [
+        32,
+        32
+      ],
+      "spriteRects": 0,
+      "referencedSpriteFileIds": [],
+      "referencedBy": [],
+      "packedInFinalPlayer": true,
+      "rightsStatus": "replaced-with-original-procedural-art",
+      "replacementManifest": "Publishing/interface-sprite-provenance.json",
+      "changes": "Original geometric pixel drawing; old pixels not sampled"
+    }
+  ],
+  "proofsCount": 65,
+  "statusCounts": {
+    "replaced-with-original-procedural-art": 14,
+    "confirmed-source-exact-bytes": 53,
+    "replaced-with-licensed-adaptation": 11,
+    "confirmed-existing-license": 9,
+    "excluded-from-player-dependencies": 7,
+    "derived-from-confirmed-CC0": 4
+  },
+  "remainingUnconfirmedRasterPaths": [],
+  "finalPackedReport": "Publishing/release-packed-assets.json"
+}

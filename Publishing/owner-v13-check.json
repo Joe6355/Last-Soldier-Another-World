@@ -1,0 +1,11 @@
+{
+  "checkedOn": "2026-10-17",
+  "version": "0.0.0.13",
+  "source": "Direct human answers in this chat",
+  "androidQuestion": "After refresh, do rotation, movement, firing and shop work? Is one-handed control comfortable?",
+  "androidReplyExact": "да работает",
+  "audioQuestion": "Does music continue through shop open/close, pause during advertisements and minimization, then resume?",
+  "audioReplyExact": "да, все работает",
+  "independentAutomation": false,
+  "limitation": "Functional owner confirmation; no device/browser version or timed gameplay recording supplied."
+}

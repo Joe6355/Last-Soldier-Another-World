@@ -37,9 +37,13 @@ function fixture({ mobile = true, type = 'portrait-primary', width = 900, height
     '#unity-progress-bar-full': { style: {} }, '.spinner': { style: {} },
     '#orientation-title': { textContent: '' }, '#orientation-description': { textContent: '' }
   };
-  const document = events({ hidden: false, activeElement: null, documentElement: {},
+  const body = {
+    appendChild(element) { element.parentNode = body; appended.push(element); },
+    removeChild(element) { appended.splice(appended.indexOf(element), 1); element.parentNode = null; }
+  };
+  const document = events({ hidden: false, onblur: null, activeElement: null, documentElement: {},
     querySelector: selector => elements[selector],
-    createElement: () => ({ style: {} }), body: { appendChild: element => appended.push(element) } });
+    createElement: name => events({ style: {}, tagName: name.toUpperCase() }), body });
   const orientation = events({ type });
   const window = events({ screen: { orientation, width: screenWidth, height: screenHeight },
     innerWidth: width, innerHeight: height, orientation: legacy,
@@ -64,6 +68,20 @@ function fixture({ mobile = true, type = 'portrait-primary', width = 900, height
     lastPause() { return messages.filter(item => item[1] === 'SetPauseGame').at(-1)?.[2]; }
   };
 }
+
+test('iframe focus guard does not stack and clears on the first press without a window focus event', () => {
+  const f = fixture({ mobile: false }); f.ready();
+  f.run('InstallBlurFocusBlocker(); InstallBlurFocusBlocker();');
+  f.window.emit('blur'); f.window.emit('blur');
+  const guards = () => f.appended.filter(node => node.tagName === 'BUTTON');
+  assert.equal(guards().length, 1, 'Repeated blur events retain one guard');
+  assert.equal(f.lastPause(), 'true');
+  guards()[0].emit('pointerdown'); f.flushFrames();
+  assert.equal(guards().length, 0, 'A click recovers iframe input even without focus');
+  assert.equal(f.lastPause(), 'false');
+  f.window.emit('blur'); assert.equal(guards().length, 1);
+  f.window.emit('focus'); assert.equal(guards().length, 0, 'Normal focus also removes the guard');
+});
 
 test('portrait phone shows a readable guard before Unity loads, even inside a landscape iframe', () => {
   const f = fixture();

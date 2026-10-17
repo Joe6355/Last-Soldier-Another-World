@@ -1,0 +1,86 @@
+{
+  "checkedOn": "2026-10-17",
+  "version": "0.0.0.12",
+  "result": "SDK submission resolves; immediate and delayed entry not present; entries count 0",
+  "platformIncidentBanner": true,
+  "logs": [
+    {
+      "level": "log",
+      "message": "%cSet Leaderboard: 2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:07:10.037Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard availability check: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:07:10.037Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard submission start: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:07:10.099Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard submission response: type=undefined fields= code=NONE color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:07:10.142Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard submission saved: name=mmr score=2028 color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:07:10.143Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "warn",
+      "message": "Leaderboard stored entry check failed: code=LEADERBOARD_PLAYER_NOT_PRESENT message=Player is not present in leaderboard",
+      "timestamp": "2026-10-17T12:07:10.190Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "warn",
+      "message": "Leaderboard delayed entry check failed: code=LEADERBOARD_PLAYER_NOT_PRESENT message=Player is not present in leaderboard",
+      "timestamp": "2026-10-17T12:08:10.260Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cGet Leaderboard color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:13:11.511Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cDev|Sdk%csdkTimeout%c background: dimgrey; color: darkgrey; font-size: 8px; font-weight: normal; border-radius:4px 0 0 4px; padding: 2px background: peru; color: black; font-size: 8px; font-weight: normal; border-radius: 0 4px 4px 0; padding: 2px; font-weight: normal; init Leaderboards.getLeaderboardDescription",
+      "timestamp": "2026-10-17T12:13:11.540Z",
+      "url": "https://yastatic.net/s3/games-static/_/build/game/desktop/yandex/index.216f537f184d70df0619.js"
+    },
+    {
+      "level": "log",
+      "message": "%cDev|Sdk%csdkTimeout%c background: dimgrey; color: darkgrey; font-size: 8px; font-weight: normal; border-radius:4px 0 0 4px; padding: 2px background: peru; color: black; font-size: 8px; font-weight: normal; border-radius: 0 4px 4px 0; padding: 2px; font-weight: normal; resolve Leaderboards.getLeaderboardDescription",
+      "timestamp": "2026-10-17T12:13:11.753Z",
+      "url": "https://yastatic.net/s3/games-static/_/build/game/desktop/yandex/index.216f537f184d70df0619.js"
+    },
+    {
+      "level": "log",
+      "message": "%cDev|Sdk%csdkTimeout%c background: dimgrey; color: darkgrey; font-size: 8px; font-weight: normal; border-radius:4px 0 0 4px; padding: 2px background: peru; color: black; font-size: 8px; font-weight: normal; border-radius: 0 4px 4px 0; padding: 2px; font-weight: normal; init Leaderboards.getLeaderboardEntries",
+      "timestamp": "2026-10-17T12:13:11.754Z",
+      "url": "https://yastatic.net/s3/games-static/_/build/game/desktop/yandex/index.216f537f184d70df0619.js"
+    },
+    {
+      "level": "log",
+      "message": "%cLeaderboard entries received: name=mmr count=0 ranks= color: #FFDF73; background-color: #454545",
+      "timestamp": "2026-10-17T12:13:11.826Z",
+      "url": "https://app-623393.games.s3.yandex.net/623393/r0ikfmgexdlvlj7eyd3o2pdfzsoap4ww/index.html?debug-mode=16&draft=true&lang=en&sdk=%2Fsdk%2F_%2Fv2.5871b227ff69bc337568.js"
+    },
+    {
+      "level": "log",
+      "message": "%cDev|Sdk%csdkTimeout%c background: dimgrey; color: darkgrey; font-size: 8px; font-weight: normal; border-radius:4px 0 0 4px; padding: 2px background: peru; color: black; font-size: 8px; font-weight: normal; border-radius: 0 4px 4px 0; padding: 2px; font-weight: normal; resolve Leaderboards.getLeaderboardEntries",
+      "timestamp": "2026-10-17T12:13:11.829Z",
+      "url": "https://yastatic.net/s3/games-static/_/build/game/desktop/yandex/index.216f537f184d70df0619.js"
+    }
+  ]
+}
