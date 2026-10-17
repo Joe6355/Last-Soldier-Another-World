@@ -306,7 +306,6 @@ public class Beka : MonoBehaviour
     {
         isBuying = true;
         UpgradeItem item = upgradeItems[itemIndex];
-        bool purchasedSomething = false;
 
         while (Input.GetKey(KeyCode.LeftControl) && CanPurchase() && OfferVisible(itemIndex) && TipsManager.AllowsUpgrade(itemIndex))
         {
@@ -322,7 +321,7 @@ public class Beka : MonoBehaviour
                 player.crossbowController.RestoreWeaponUpgrades(upgradeItems);
                 FindObjectOfType<Stats>()?.RecordUpgradePurchase(item.itemType);
 
-                purchasedSomething = true;
+                PlaySoundPurchase();
                 RefreshOffers();
                 SaveUpgrades();
                 player.SavePlayerData();
@@ -338,7 +337,6 @@ public class Beka : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
         }
 
-        if (purchasedSomething) PlaySoundPurchase();
         isBuying = false;
     }
 
@@ -466,14 +464,14 @@ public class Beka : MonoBehaviour
     // ========================
     private void PlaySoundPurchase()
     {
-        if (soundPurchase != null)
-            AudioSource.PlayClipAtPoint(soundPurchase, transform.position, 1f);
+        if (market != null) market.PlaySound(soundPurchase);
+        else if (player != null) player.PlaySound(soundPurchase);
     }
 
     private void PlaySoundFail()
     {
-        if (soundFail != null)
-            AudioSource.PlayClipAtPoint(soundFail, transform.position, 1f);
+        if (market != null) market.PlaySound(soundFail);
+        else if (player != null) player.PlaySound(soundFail);
     }
 }
 

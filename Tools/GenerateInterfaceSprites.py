@@ -139,8 +139,20 @@ def main():
         'Assets/UI/ForestGarrison/Arena/Outpost.png': 'outpost',
         'Assets/UI/ForestGarrison/Arena/GravityRune.png': 'rune',
     }
+    manifest = ROOT / 'Publishing/interface-sprite-provenance.json'
+    retained = {item['file']: item for item in json.loads(manifest.read_text('utf-8'))['files']
+                if item.get('restoredFromBackup')} if manifest.exists() else {}
     records = []
     for filename, kind in jobs.items():
+        if filename in retained:
+            entry = retained[filename]
+            path = ROOT / filename
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == entry['sha256']
+            assert path.read_bytes() == (ROOT / entry['restoredFromBackup']).read_bytes()
+            assert hashlib.sha256(Path(str(path) + '.meta').read_bytes()).hexdigest() == entry['metaSha256']
+            records.append(entry)
+            print(filename, 'ORIGINAL RETAINED', flush=True)
+            continue
         path = ROOT / filename
         meta = Path(str(path) + '.meta'); meta_hash = hashlib.sha256(meta.read_bytes()).hexdigest()
         backup = BACKUP / filename.removeprefix('Assets/')

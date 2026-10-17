@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEditor;
+using UnityEditor.Animations;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public static class ReleaseAssetChecks
@@ -35,6 +37,60 @@ public static class ReleaseAssetChecks
                         "All sliced sprites import: " + path);
                 }
             }
+            var idle = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Anim/Player/Marker.anim");
+            var walk = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Anim/Player/Shoot.anim");
+            var spriteBinding = EditorCurveBinding.PPtrCurve("", typeof(SpriteRenderer), "m_Sprite");
+            var idleFrames = AnimationUtility.GetObjectReferenceCurve(idle, spriteBinding);
+            var walkFrames = AnimationUtility.GetObjectReferenceCurve(walk, spriteBinding);
+            Check(idleFrames != null && idleFrames.Select(f => f.value).Distinct().Count() == 1,
+                "Hero stands on the original idle frame");
+            Check(walkFrames != null && walkFrames.Select(f => f.value).Distinct().Count() == 5
+                && walkFrames.All(f => AssetDatabase.GetAssetPath(f.value) == "Assets/Sprits/PlayerAll.png"),
+                "Hero walk loops through all five original frames");
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>("Assets/Anim/Player/Player.controller");
+            Check(controller.parameters.Any(p => p.name == "IsMoving" && p.type == AnimatorControllerParameterType.Bool)
+                && controller.layers[0].stateMachine.defaultState.motion == idle,
+                "Movement controls the existing hero animator; default state is idle");
+            foreach (var state in controller.layers[0].stateMachine.states)
+                Check(state.state.transitions.Length == 1 && state.state.transitions.All(t => !t.hasExitTime && t.duration == 0),
+                    "Hero animation switches without waiting: " + state.state.name);
+            var merchant = AssetDatabase.LoadAssetAtPath<AnimatorController>("Assets/Anim/Shoper/Shoper.controller");
+            Check(merchant.animationClips.Length == 4 && merchant.animationClips.All(clip =>
+                AnimationUtility.GetObjectReferenceCurveBindings(clip).Any(binding =>
+                    AnimationUtility.GetObjectReferenceCurve(clip, binding).Any(frame =>
+                        AssetDatabase.GetAssetPath(frame.value) == "Assets/Sprits/ShoperAllAnim.png"))),
+                "All four original merchant animations retain their sprite bindings");
+            var altar = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Arena/Altar.prefab");
+            Check(!altar.transform.Find("BuildingPad").GetComponent<SpriteRenderer>().enabled,
+                "Orphan decorative rune below the locked altar is hidden");
+            EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");
+            var player = UnityEngine.Object.FindObjectOfType<PlayerController>();
+            Check(new SerializedObject(player).FindProperty("anim").objectReferenceValue is Animator animator
+                && animator.runtimeAnimatorController == controller, "Game scene uses the verified hero animator");
+            var mage = AssetDatabase.LoadAssetAtPath<AnimatorController>("Assets/Anim/Enemy/SceletMag.controller");
+            foreach (var clip in mage.animationClips)
+                Check(AnimationUtility.GetObjectReferenceCurveBindings(clip).All(binding =>
+                    AnimationUtility.GetObjectReferenceCurve(clip, binding).All(frame =>
+                        new[] { "Assets/Sprits/allEnemy.png", "Assets/Sprits/SciDE.png" }.Contains(AssetDatabase.GetAssetPath(frame.value)))),
+                    "Mage state uses restored artwork: " + clip.name);
+            foreach (var name in new[] { "SlimeAt", "SlimeIde" })
+            {
+                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Anim/Enemy/" + name + ".anim");
+                Check(AnimationUtility.GetObjectReferenceCurveBindings(clip).All(binding =>
+                    AnimationUtility.GetObjectReferenceCurve(clip, binding).All(frame =>
+                        AssetDatabase.GetAssetPath(frame.value) == "Assets/Sprits/SlimeVariantAtlas.png")),
+                    "Slime state uses the retained v13 artwork: " + name);
+            }
+            var playerData = new SerializedObject(player);
+            Check(playerData.FindProperty("shieldRaiseSound").objectReferenceValue != null
+                && playerData.FindProperty("shieldBlockSound").objectReferenceValue != null,
+                "Shield raise and block clips are configured on the game player");
+            var barrel = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Arena/Barrel.prefab");
+            var barrelSound = (AudioSource)new SerializedObject(barrel.GetComponent<ArenaFeature>())
+                .FindProperty("explosionAudio").objectReferenceValue;
+            var bomber = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemy/Bomber.prefab").GetComponent<Enemy>();
+            Check(barrelSound.clip != bomber.sounds[0] && barrelSound.clip.name.StartsWith("vzryiv")
+                && bomber.sounds[0].name == "BomberDead", "Barrel and bomber use distinct explosion clips");
             foreach (var path in Directory.GetFiles("Assets/Sounds", "*", SearchOption.AllDirectories)
                 .Where(path => new[] { ".wav", ".mp3", ".ogg" }.Contains(Path.GetExtension(path).ToLowerInvariant())))
             {

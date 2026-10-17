@@ -1,0 +1,102 @@
+{
+  "version": "0.0.0.16",
+  "restoredOriginals": [
+    {
+      "path": "Assets/Sprits/nun-black-NESW.png",
+      "sha256": "8ff98d0f387c952ca1dc2918d3e06517792b564d3e629571198cdf863e169ea8",
+      "metadataSHA256": "76b55ae17136a2f9c70f009aa389562146e84366a2f183e2cadea7a18eba5190"
+    },
+    {
+      "path": "Assets/Sprits/Healer.png",
+      "sha256": "1c290f2078a44b5bfce7764271530a2662f8b7c97d27ca6d89ba1f756bb1bab1",
+      "metadataSHA256": "0efa6c48fad90cf0b07a28351a9730e6c8b9f5edbd3b200ff712dbcae56d70fb"
+    },
+    {
+      "path": "Assets/Sprits/HealerAtack.png",
+      "sha256": "75c338a3af4e32f810ed665685c68555212719b7f178ab6366e467fd1cd88890",
+      "metadataSHA256": "0bf33f0e27f3c4924e5cdb5c8f38b6f70fe81ec461eb6f360052e13cd9f1cddb"
+    }
+  ],
+  "slimeBossEscort": 6,
+  "dedicatedSlimeBossBonusCoins": 250,
+  "checks": [
+    {
+      "result": "PASS",
+      "checks": 135,
+      "output": "Builds/RatingValidation/gameplay-v16-checks.txt",
+      "log": "Builds/RatingValidation/gameplay-v16-runtime-complete.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 1033,
+      "output": "Builds/RatingValidation/localization-checks.txt",
+      "log": "Builds/RatingValidation/v16-LocalizationChecks-complete.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 80,
+      "output": "Builds/RatingValidation/shotgun-checks.txt",
+      "log": "Builds/RatingValidation/v16-ShotgunChecks.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 54,
+      "output": "Builds/RatingValidation/friendly-defeat-checks.txt",
+      "log": "Builds/RatingValidation/v16-FriendlyDefeatChecks.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 215,
+      "output": "Builds/RatingValidation/release-asset-checks.txt",
+      "log": "Builds/RatingValidation/v16-ReleaseAssetChecks.log"
+    }
+  ],
+  "nodeTests": {
+    "result": "PASS",
+    "passed": 10,
+    "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+  },
+  "build": {
+    "verifiedPackedSourcePaths": 1016,
+    "mismatches": [],
+    "rootSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/gameplay-v16-webgl-isolated.log"
+  },
+  "uploaded": true,
+  "physicalPhoneTestPerformed": false,
+  "behaviour": {
+    "arrowEffects": "All four shotgun ammunition types hit real physics targets; poison ticks and holy damage/healing preserved; bosses receive each pellet once",
+    "upgradeSound": "Every successful single purchase and every Ctrl-repeat purchase uses the existing 2D shop feedback source",
+    "assetCredits": "Attribution remains accessible inside the language card; main menu columns avoid the banner strip",
+    "slimeBoss": "Dedicated wave 10 only: six SlimeTrue at arena entrances with green spawn particles, tracked and cleared with the wave; 250 guaranteed coins in addition to random loot",
+    "lateRegularBosses": "Do not gain reinforcements or the dedicated 250-coin bonus"
+  },
+  "changedRuntimeFiles": [
+    "Assets/Sprits/nun-black-NESW.png",
+    "Assets/Sprits/Healer.png",
+    "Assets/Sprits/HealerAtack.png",
+    "Assets/Scripts/ArrowDef.cs",
+    "Assets/Scripts/HolyArrow.cs",
+    "Assets/Scripts/PosionArrow.cs",
+    "Assets/Scripts/Slime.cs",
+    "Assets/Scripts/Npc/Beka.cs",
+    "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
+    "Assets/Scripts/WaveSpawner.cs",
+    "Assets/Scripts/EnemyDefeatEffect.cs",
+    "Assets/Scripts/Ui/LanguageSelector.cs",
+    "Assets/Scenes/SampleScene.unity",
+    "Assets/Resources/AssetCredits.txt"
+  ],
+  "remainingLimitations": [
+    "Physical phone gameplay not tested by agent this turn",
+    "Restored original PNG source/license remains unconfirmed; audit cannot clear rights"
+  ],
+  "archiveFileId": "14046785",
+  "processing": "Ready",
+  "archiveSHA256": "fdef812133ff1309912d102adda22a81adb1e3876e66b3dedc351992257b017c",
+  "uploadProof": "Publishing/Previews/yandex-version16-20261017.jpg",
+  "uploadReport": "Publishing/upload-v16-check.json",
+  "runtimePath": "623393/mkbo4stnwi3e07ddphe4fotsl83exmgl"
+}

@@ -41,6 +41,10 @@ public class PlayerController : Sounds
 
     [SerializeField] private Image shieldImage;
     [SerializeField] private GameObject shieldVisual;
+    [SerializeField] private AudioClip shieldRaiseSound;
+    [SerializeField] private AudioClip shieldBlockSound;
+    private bool shieldInputHeld;
+    private float nextShieldBlockSound;
 
     [Header("Настройки скорости")]
     public float originalMoveSpeed = 2f;      // начальная скорость
@@ -219,8 +223,13 @@ public class PlayerController : Sounds
     // =========================
     private void HandleShield()
     {
-        if (TipsManager.Allows(TipsManager.GuideAction.Shield) && (Input.GetKey(KeyCode.Space) || mobileControls != null && mobileControls.ShieldHeld) && shieldValue > 0f)
+        bool requested = TipsManager.Allows(TipsManager.GuideAction.Shield)
+            && (Input.GetKey(KeyCode.Space) || mobileControls != null && mobileControls.ShieldHeld);
+        bool pressed = requested && !shieldInputHeld;
+        shieldInputHeld = requested;
+        if (requested && shieldValue > 0f)
         {
+            if (pressed) PlaySound(shieldRaiseSound, .7f);
             shieldActive = true;
             shieldVisual.SetActive(true);
 
@@ -306,6 +315,11 @@ public class PlayerController : Sounds
         {
             shieldValue -= damage;
             if (shieldValue < 0f) shieldValue = 0f;
+            if (Time.time >= nextShieldBlockSound)
+            {
+                PlaySound(shieldBlockSound, .65f);
+                nextShieldBlockSound = Time.time + .12f;
+            }
             return;
         }
 
@@ -355,6 +369,7 @@ public class PlayerController : Sounds
     {
         if (!TipsManager.Allows(TipsManager.GuideAction.Move))
         {
+            if (anim != null) anim.SetBool("IsMoving", false);
             rb.velocity = Vector2.zero;
             if (mobileControls == null || !mobileControls.UseTouch)
                 FaceDirection((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - rb.position);
@@ -362,6 +377,7 @@ public class PlayerController : Sounds
         }
         Vector2 movement = mobileControls != null && mobileControls.UseTouch ? mobileControls.Movement
             : new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (anim != null) anim.SetBool("IsMoving", movement.sqrMagnitude > .001f);
         Vector2 rbPos = rb.position;
         rb.MovePosition(rbPos + movement * finalSpeed * Time.fixedDeltaTime);
 
@@ -386,6 +402,7 @@ public class PlayerController : Sounds
     {
         if (progressBarImage != null && progressBarContainer != null) ResetMirrorState();
         shieldActive = false; shieldMultiplier = 1f;
+        shieldInputHeld = false;
         if (shieldVisual != null) shieldVisual.SetActive(false);
     }
 

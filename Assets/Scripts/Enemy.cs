@@ -228,6 +228,8 @@ public class Enemy : Sounds
     {
         if (deathHandled) return;
         deathHandled = true;
+        if (sounds != null && sounds.Length > 0)
+            PlaySound(sounds[0], .85f, destroyed: true, spatial: false);
         stats.countEnemyDead++;
         stats.SaveInfo();
         stats.UpdateUI();
@@ -248,7 +250,7 @@ public class Enemy : Sounds
             if (playerController != null)
             {
                 playerController.TakeDamage(damageTouch);
-                PlaySound(sounds[0], volume: 1, destroyed: true);
+
             }
             
             // После нанесения урона убиваем врага

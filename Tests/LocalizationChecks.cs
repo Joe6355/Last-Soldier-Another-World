@@ -69,6 +69,7 @@ public static class LocalizationChecks
                     Check(UnityEngine.PlayerPrefs.GetString("LastSoldier.Language") == "en", "Language choice is saved locally");
                     Check(menu.SettingsPanel.GetComponentsInChildren<TMP_Text>().Any(text => text.text == "Settings"), "Main settings translated");
                     Check(menu.SettingsPanel.GetComponentsInChildren<LanguageSelector>().Length == 1, "One selector in main settings");
+                    CheckLanguageCard(menu.SettingsPanel);
                     Capture("localization-menu-en.png");
                     var creditsPanel = Get<GameObject>(menu.SettingsPanel.GetComponentInChildren<LanguageSelector>(), "creditsPanel");
                     Check(!creditsPanel.activeSelf, "Asset credits do not block settings on entry");
@@ -97,6 +98,7 @@ public static class LocalizationChecks
                     Check(GameLocalization.Language == "en", "English survives scene switch");
                     ui.ShowSettings(); GameLocalization.RefreshAll();
                     Check(ui.SettingsPanel.GetComponentsInChildren<LanguageSelector>().Length == 1, "One selector in in-game settings");
+                    CheckLanguageCard(ui.SettingsPanel);
                     Capture("localization-settings-en.png");
                     ui.StartGame();
                     typeof(Shop).GetField("isPlayerInRange", Private).SetValue(shop, true);
@@ -189,6 +191,30 @@ public static class LocalizationChecks
         body.ForceMeshUpdate();
         Check(body.preferredHeight <= body.rectTransform.rect.height+4f,"English tutorial body fits its card on "+YG2.envir.deviceType);
         Check(Get<RectTransform>(tutorial,"guideRoot").gameObject.activeInHierarchy,"Live tutorial overlay remains visible");
+    }
+    private static void CheckLanguageCard(GameObject settings)
+    {
+        Canvas.ForceUpdateCanvases();
+        var card = settings.transform.Find("LanguageSelector").GetComponent<RectTransform>();
+        if (settings.scene.name == "Menu")
+        {
+            var bounds = settings.GetComponent<RectTransform>();
+            var cardCorners = new Vector3[4]; card.GetWorldCorners(cardCorners);
+            Check(cardCorners.All(p => bounds.InverseTransformPoint(p).x < bounds.rect.xMin + bounds.rect.width * .8f),
+                "Main-menu language and credits stay outside the banner strip");
+        }
+        float lastBottom = card.rect.yMax;
+        foreach (string name in new[] { "LanguageTitle", "Choose_auto", "Choose_ru", "Choose_en", "AssetCredits" })
+        {
+            var node = card.Find(name).GetComponent<RectTransform>();
+            var corners = new Vector3[4]; node.GetWorldCorners(corners);
+            var local = corners.Select(p => card.InverseTransformPoint(p)).ToArray();
+            Check(local.All(p => p.x >= card.rect.xMin - .1f && p.x <= card.rect.xMax + .1f
+                && p.y >= card.rect.yMin - .1f && p.y <= card.rect.yMax + .1f),
+                "Language card contains its complete control: " + name);
+            Check(local.Max(p => p.y) <= lastBottom + .1f, "Language card controls do not overlap: " + name);
+            lastBottom = local.Min(p => p.y);
+        }
     }
     private static void CatalogChecks()
     {

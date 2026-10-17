@@ -8,19 +8,28 @@ public static class EnemyDefeatEffect
     public static void PlayAndHide(GameObject enemy)
     {
         if (enemy == null) return;
-        var sprite = enemy.GetComponentInChildren<SpriteRenderer>();
-        Vector3 origin = sprite != null ? sprite.bounds.center : enemy.transform.position;
-        float size = sprite != null ? Mathf.Clamp(sprite.bounds.size.magnitude * .25f, .2f, .7f) : .3f;
-        int sortingLayer = sprite != null ? sprite.sortingLayerID : 0;
-        int sortingOrder = sprite != null ? sprite.sortingOrder + 1 : 1;
+        PlayBurst(enemy, false);
 
         // Hide every body/weapon sprite now, before another animation frame can show a fall.
         foreach (var animator in enemy.GetComponentsInChildren<Animator>()) animator.enabled = false;
         foreach (var renderer in enemy.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
         foreach (var collider in enemy.GetComponentsInChildren<Collider2D>()) collider.enabled = false;
         foreach (var body in enemy.GetComponentsInChildren<Rigidbody2D>()) body.simulated = false;
+    }
 
-        var effect = new GameObject("EnemyDefeatSparkles");
+    public static void PlaySpawn(GameObject enemy)
+    {
+        if (enemy != null) PlayBurst(enemy, true);
+    }
+
+    private static void PlayBurst(GameObject enemy, bool spawning)
+    {
+        var sprite = enemy.GetComponentInChildren<SpriteRenderer>();
+        Vector3 origin = sprite != null ? sprite.bounds.center : enemy.transform.position;
+        float size = sprite != null ? Mathf.Clamp(sprite.bounds.size.magnitude * .25f, .2f, .7f) : .3f;
+        int sortingLayer = sprite != null ? sprite.sortingLayerID : 0;
+        int sortingOrder = sprite != null ? sprite.sortingOrder + 1 : 1;
+        var effect = new GameObject(spawning ? "SlimeSpawnSparkles" : "EnemyDefeatSparkles");
         effect.transform.position = origin;
         var particles = effect.AddComponent<ParticleSystem>();
         particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -31,7 +40,9 @@ public static class EnemyDefeatEffect
         main.startLifetime = new ParticleSystem.MinMaxCurve(.25f, .45f);
         main.startSpeed = new ParticleSystem.MinMaxCurve(size * 1.5f, size * 3f);
         main.startSize = new ParticleSystem.MinMaxCurve(size * .12f, size * .24f);
-        main.startColor = new ParticleSystem.MinMaxGradient(new Color(1f, .87f, .48f), new Color(.8f, 1f, .87f));
+        main.startColor = spawning
+            ? new ParticleSystem.MinMaxGradient(new Color(.35f, 1f, .45f), new Color(.8f, 1f, .55f))
+            : new ParticleSystem.MinMaxGradient(new Color(1f, .87f, .48f), new Color(.8f, 1f, .87f));
         main.simulationSpace = ParticleSystemSimulationSpace.World;
         main.useUnscaledTime = false;
         main.maxParticles = 16;

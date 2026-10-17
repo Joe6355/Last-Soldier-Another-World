@@ -47,6 +47,7 @@ public class SlimeBoss : Sounds
     private bool isDead = false;
 
     private Stats stats;
+    [SerializeField, Min(0)] private int bossKillBonus = 250;
     private bool regularEnemy;
     private WaveSpawner waveOwner;
     private float waveDamageMultiplier = 1f;
@@ -222,7 +223,7 @@ public class SlimeBoss : Sounds
             if (playerController != null)
                 playerController.TakeDamage(damageTouch);
         }
-        else if (collision.gameObject.CompareTag("Projectile"))
+        else if (collision.gameObject.CompareTag("Projectile") && collision.gameObject.GetComponentInParent<ArrowDef>() == null)
         {
             int damageAmount = 10;
             bool isHolyArrow = false;
@@ -295,6 +296,7 @@ public class SlimeBoss : Sounds
             else stats.AddBossDead(Stats.EnemyKind.SlimeBoss);
         }
 
+        if (!regularEnemy && playerController != null) playerController.AddCoin(bossKillBonus);
         DropLoot();
         Destroy(gameObject);
         PlaySound(sounds[0], volume: 1, destroyed: true);

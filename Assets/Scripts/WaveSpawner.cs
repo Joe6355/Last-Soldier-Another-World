@@ -346,6 +346,26 @@ public class WaveSpawner : MonoBehaviour
         return true;
     }
 
+    [SerializeField] private GameObject slimeBossEscortPrefab;
+    [SerializeField, Range(0, 12)] private int slimeBossEscortCount = 6;
+
+    private void SpawnSlimeBossEscort()
+    {
+        if (currentWaveIndex != 9 || bossWave10 == null || !CanSpawnRegularBossMinion
+            || slimeBossEscortPrefab == null || spawnPoints.Count == 0) return;
+        for (int i = 0; i < slimeBossEscortCount && CanSpawnRegularBossMinion; i++)
+        {
+            var point = spawnPoints[i % spawnPoints.Count];
+            if (point == null) continue;
+            Vector3 position = point.position;
+            // Repeated entrances use a small offset, rather than overlapping colliders.
+            position.x += i / spawnPoints.Count * .6f;
+            var escort = Instantiate(slimeBossEscortPrefab, position, Quaternion.identity);
+            if (RegisterSpawnedEnemy(escort)) EnemyDefeatEffect.PlaySpawn(escort);
+            else Destroy(escort);
+        }
+    }
+
     private bool SpawnRegularBoss(Vector3 position)
     {
         bool slimeTurn = regularBossesSpawned % 2 == 0;
@@ -415,6 +435,7 @@ public class WaveSpawner : MonoBehaviour
         if (!isWaveActive) return;
         isWaveActive = false;
         StopAllCoroutines();
+        if (currentWaveIndex == 9) ClearActiveEnemies();
         if (cleared) FindObjectOfType<Stats>()?.AddCompletedWave();
         StartBreak();
         SaveCheckpoint();
@@ -739,6 +760,7 @@ public class WaveSpawner : MonoBehaviour
             bossWave10.SetActive(true);
         bossActivated = true;
         if (bossWave10 == null) { CompleteWave(false); yield break; }
+        SpawnSlimeBossEscort();
         if (bossHPBar10 != null)
             bossHPBar10.SetActive(true);
         if (bossPlaceholder10 != null)

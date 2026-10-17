@@ -17,19 +17,28 @@ public sealed class LanguageSelector : MonoBehaviour
         var rect = host.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(.815f, .13f); rect.anchorMax = new Vector2(.975f, .78f);
         rect.offsetMin = rect.offsetMax = Vector2.zero;
+        if (settings.scene.name == "Menu")
+        {
+            // The menu's banner owns the right strip. Keep all settings before it.
+            SetColumn(settings.transform, "ForestAudioSection", .055f, .32f);
+            SetColumn(settings.transform, "DamageNumbersSetting", .055f, .32f);
+            SetColumn(settings.transform, "ForestControlsSection", .34f, .615f);
+            SetColumn(settings.transform, "MobileControlsCard", .34f, .615f);
+            rect.anchorMin = new Vector2(.635f, .13f); rect.anchorMax = new Vector2(.795f, .78f);
+        }
         host.GetComponent<Image>().color = new Color32(27, 53, 46, 245);
         var selector = host.GetComponent<LanguageSelector>();
         TMP_Text sample = settings.transform.Find("ForestAudioSection")?.GetComponentInChildren<TMP_Text>(true)
             ?? settings.GetComponentInChildren<TMP_Text>(true);
         var title = MakeText(host.transform, "LanguageTitle", "Язык", sample != null ? sample.font : TMP_Settings.defaultFontAsset);
-        Stretch(title.rectTransform, .04f, .72f, .96f, .94f);
+        Stretch(title.rectTransform, .04f, .79f, .96f, .94f);
         title.fontSize = 24; title.fontStyle = FontStyles.Bold;
         for (int i = 0; i < Choices.Length; i++)
         {
             int index = i;
             var buttonObject = new GameObject("Choose_" + Choices[i], typeof(RectTransform), typeof(Image), typeof(Button));
             buttonObject.transform.SetParent(host.transform, false);
-            Stretch(buttonObject.GetComponent<RectTransform>(), .08f, .48f - i * .19f, .92f, .64f - i * .19f);
+            Stretch(buttonObject.GetComponent<RectTransform>(), .08f, .61f - i * .18f, .92f, .75f - i * .18f);
             var button = buttonObject.GetComponent<Button>();
             button.onClick.AddListener(() => GameLocalization.SetSelection(Choices[index]));
             selector.options[i] = button;
@@ -39,7 +48,10 @@ public sealed class LanguageSelector : MonoBehaviour
         }
         var credits = selector.MakeButton(host.transform, "AssetCredits", "Авторы ассетов", title.font,
             () => selector.creditsPanel.SetActive(true));
-        Stretch(credits.GetComponent<RectTransform>(), .08f, -.10f, .92f, .015f);
+        Stretch(credits.GetComponent<RectTransform>(), .08f, .04f, .92f, .16f);
+        credits.GetComponent<Image>().color = new Color32(27, 53, 46, 255);
+        var creditsLabel = credits.GetComponentInChildren<TMP_Text>();
+        creditsLabel.fontSize = creditsLabel.fontSizeMax = 18;
         selector.MakeCreditsPanel(settings.transform, title.font);
         selector.Refresh();
         GameLocalization.Register(host);
@@ -58,6 +70,15 @@ public sealed class LanguageSelector : MonoBehaviour
     {
         rect.anchorMin = new Vector2(left, bottom); rect.anchorMax = new Vector2(right, top);
         rect.offsetMin = rect.offsetMax = Vector2.zero;
+    }
+    private static void SetColumn(Transform parent, string name, float left, float right)
+    {
+        var rect = parent.Find(name) as RectTransform;
+        if (rect == null) return;
+        rect.anchorMin = new Vector2(left, rect.anchorMin.y);
+        rect.anchorMax = new Vector2(right, rect.anchorMax.y);
+        rect.offsetMin = new Vector2(0, rect.offsetMin.y);
+        rect.offsetMax = new Vector2(0, rect.offsetMax.y);
     }
     private Button MakeButton(Transform parent, string name, string text, TMP_FontAsset font, UnityEngine.Events.UnityAction action)
     {

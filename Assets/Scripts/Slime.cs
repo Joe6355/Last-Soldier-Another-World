@@ -271,6 +271,20 @@ public class Slime : Sounds
 
     }
 
+    public void ApplyPoison(int damagePerTick, int ticks, float interval)
+    {
+        if (!deathHandled && isActiveAndEnabled) StartCoroutine(PoisonDamage(damagePerTick, ticks, interval));
+    }
+
+    private IEnumerator PoisonDamage(int damagePerTick, int ticks, float interval)
+    {
+        for (int i = 0; i < ticks && !deathHandled && health > 0; i++)
+        {
+            TakeDamage(damagePerTick, false);
+            yield return new WaitForSeconds(interval);
+        }
+    }
+
     private void Die()
     {
         if (deathHandled) return;

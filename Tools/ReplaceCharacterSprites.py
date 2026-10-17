@@ -312,7 +312,20 @@ def main():
     source = prepare()
     rows = []
     previews = []
+    previous_files = json.loads(MANIFEST.read_text('utf-8'))['files'] if MANIFEST.exists() else []
+    retained = {item['path']: item for item in json.loads(MANIFEST.read_text('utf-8'))['files']
+                if item.get('restoredFromBackup')} if MANIFEST.exists() else {}
     for short in FILES:
+        key = 'Assets/Sprits/' + short
+        if key in retained:
+            entry = retained[key]
+            path = ROOT / key
+            if sha(path) != entry['sha256'] or sha(path) != sha(ROOT / entry['restoredFromBackup']):
+                raise RuntimeError(f'Restored original no longer matches the reviewed backup: {short}')
+            if sha(Path(str(path) + '.meta')) != entry['metadataSHA256']:
+                raise RuntimeError(f'Restored original Unity metadata changed: {short}')
+            rows.append(entry)
+            continue
         path, generated, frames = render(source, short)
         meta = Path(str(path) + ".meta")
         old_meta_hash = sha(meta)
@@ -337,6 +350,15 @@ def main():
         for f in frames[:3]:
             top = generated.height - f["y"] - f["height"]
             previews.append((short + "/" + f["name"], generated.crop((f["x"], top, f["x"] + f["width"], top + f["height"]))))
+    for entry in previous_files:
+        if not entry.get('preservedVariantSource'):
+            continue
+        path = ROOT / entry['path']
+        if sha(path) != entry['sha256'] or sha(path) != sha(ROOT / entry['preservedVariantSource']):
+            raise RuntimeError('Preserved visual variant changed: ' + entry['path'])
+        if sha(Path(str(path) + '.meta')) != entry['metadataSHA256']:
+            raise RuntimeError('Preserved visual variant metadata changed: ' + entry['path'])
+        rows.append(entry)
     report = dict(createdOn="2026-10-17", generator="Tools/ReplaceCharacterSprites.py",
                   pillowVersion=pillow_version, originalBackup=BACKUP.relative_to(ROOT).as_posix(),
                   sourceHashes=SOURCE_HASHES, portraitSourceSHA256=PORTRAIT_HASH,

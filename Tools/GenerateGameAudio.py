@@ -5,6 +5,7 @@ Requires numpy and ffmpeg (the existing CardCapture imageio_ffmpeg runtime is su
 """
 from __future__ import annotations
 import hashlib
+import argparse
 import json
 import math
 from pathlib import Path
@@ -123,7 +124,49 @@ def sfx(path):
     name = path.stem.lower()
     seed = int(hashlib.sha256(str(path.relative_to(ROOT)).encode()).hexdigest()[:8], 16)
     rng = np.random.default_rng(seed)
-    if name in {"pickitup", "apple-pay-succes"} or "monetki" in name:
+    if "bomber" in name or "vzryiv" in name:
+        barrel = "vzryiv" in name
+        duration = 1.05 if barrel else .72
+        t = np.arange(round(duration * RATE)) / RATE
+        noise = rng.normal(0, 1, len(t))
+        width = 31 if barrel else 19
+        body = np.convolve(noise, np.ones(width) / width, mode="same")
+        frequency = 42 + (112 if barrel else 145) * np.exp(-t * 25)
+        thump = np.sin(2 * math.pi * np.cumsum(frequency) / RATE) * np.exp(-t * (10 if barrel else 14))
+        crack = (noise - np.convolve(noise, np.ones(5) / 5, mode="same")) * np.exp(-t * 100)
+        sound = .58 * thump + 1.4 * body * np.exp(-t * (6 if barrel else 10)) + .18 * crack
+        if barrel:
+            for delay, frequency in [(0.025, 410), (0.065, 290), (0.11, 570), (0.18, 230)]:
+                pulse_t = np.maximum(t - delay, 0)
+                sound += np.where(t >= delay, .12 * np.sin(2 * math.pi * frequency * pulse_t)
+                                  * np.exp(-pulse_t * 50), 0)
+        sound = np.tanh(sound * 1.3) * .6
+        kind = "layered wooden barrel explosion with low thump, crack and debris" if barrel else "short bomber explosion with punch and noisy tail"
+    elif name in {"portaltp", "tp"}:
+        portal = name == "portaltp"
+        duration = .7 if portal else .9
+        t = np.arange(round(duration * RATE)) / RATE
+        envelope = np.sin(math.pi * t / duration) ** 2
+        frequency = 180 + 760 * (t / duration if portal else (1 - t / duration))
+        phase = 2 * math.pi * np.cumsum(frequency) / RATE
+        air = rng.normal(0, 1, len(t)); air = np.convolve(air, np.ones(9) / 9, mode="same")
+        sound = (.13 * np.sin(phase) + .07 * np.sin(phase * 1.502) + .22 * air) * envelope
+        sound += tone(1320 if portal else 880, duration, "bell", .13)
+        kind = "rising arcane portal whoosh" if portal else "descending mirror teleport with soft chime"
+    elif "sheled" in name:
+        duration = .38
+        t = np.arange(round(duration * RATE)) / RATE
+        phase = 2 * math.pi * np.cumsum(380 + 900 * t / duration) / RATE
+        sound = .13 * np.sin(phase) * np.sin(math.pi * t / duration) ** 2
+        sound += tone(1045, duration, "bell", .18) + tone(1568, duration, "bell", .07)
+        kind = "shield raise: short magical sweep and bright rim"
+    elif "block" in name:
+        duration = .2
+        t = np.arange(round(duration * RATE)) / RATE
+        sound = tone(690, duration, "bell", .22) + tone(1133, duration, "bell", .09)
+        sound += .12 * rng.normal(0, 1, len(t)) * np.exp(-t * 90)
+        kind = "shield impact: short metallic clink"
+    elif name in {"pickitup", "apple-pay-succes"} or "monetki" in name:
         duration = .42
         sound = np.zeros(round(duration * RATE))
         notes = [84, 91, 96] if name != "pickitup" else [86, 93]
@@ -147,13 +190,6 @@ def sfx(path):
         sound = (.17 * np.sin(2 * math.pi * 196 * t) + .09 * np.sin(2 * math.pi * 294 * t))
         sound *= np.sin(math.pi * t / duration) ** 2
         kind = "soft arcane resonance"
-    elif any(word in name for word in ("vzryiv", "bomber")):
-        duration = .65
-        t = np.arange(round(duration * RATE)) / RATE
-        noise = rng.normal(0, 1, len(t))
-        noise = np.convolve(noise, np.ones(13) / 13, mode="same")
-        sound = (.4 * noise + .2 * np.sin(2 * math.pi * (75 * t - 26 * t * t))) * np.exp(-t * 7)
-        kind = "stylised magical burst"
     elif any(word in name for word in ("cow", "shee", "chicken", "babka")):
         duration = .65
         t = np.arange(round(duration * RATE)) / RATE
@@ -167,10 +203,6 @@ def sfx(path):
         t = np.arange(round(duration * RATE)) / RATE
         sound = .32 * np.sin(2 * math.pi * (330 * t - 380 * t * t)) * np.sin(math.pi * t / duration) ** 2
         kind = "elastic bubble pop"
-    elif "block" in name or "sheled" in name:
-        duration = .25
-        sound = tone(740, duration, "bell", .23) + tone(1045, duration, "bell", .08)
-        kind = "light fantasy shield clink"
     else:
         duration = .15 if name == "shot" else .24
         t = np.arange(round(duration * RATE)) / RATE
@@ -198,10 +230,19 @@ def write_wav(path, sound):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--only', nargs='+', help='Exact paths relative to Assets/Sounds; retain other clips and records.')
+    args = parser.parse_args()
     ffmpeg = ffmpeg_path()
     files = sorted(p for p in (ROOT / "Assets/Sounds").rglob('*') if p.suffix.lower() in {'.wav', '.mp3', '.ogg'})
     if len(files) != 40:
         raise RuntimeError(f"Expected 40 source clips, found {len(files)}; review the inventory first")
+    previous = json.loads((ROOT / 'Publishing/audio-provenance.json').read_text('utf-8')) if args.only else None
+    if args.only:
+        requested = set(args.only)
+        files = [p for p in files if p.relative_to(ROOT / 'Assets/Sounds').as_posix() in requested]
+        if len(files) != len(requested):
+            raise RuntimeError('Every --only path must identify an existing clip exactly')
     BACKUP.mkdir(parents=True, exist_ok=True)
     records = []
     for path in files:
@@ -233,6 +274,9 @@ def main():
                         'originalSha256':hashlib.sha256(original.read_bytes()).hexdigest(),
                         'fullDecode':True})
         print(relative, 'OK', round(len(sound)/RATE, 3), 's', flush=True)
+    if previous is not None:
+        revised = {r['file']: r for r in records}
+        records = [revised.get(r['file'], r) for r in previous['clips']]
     result={'createdOn':'2026-10-17','method':'Original additive/FM synthesis and deterministic noise; no recordings or samples',
             'generator':'Tools/GenerateGameAudio.py','originalBackup':'Builds/AssetReplacements/original-audio',
             'unityMetaChanged':False,'listeningReview':'Not yet performed','clips':records}

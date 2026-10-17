@@ -1,0 +1,20 @@
+{
+  "checkedOn": "2026-10-17",
+  "version": "0.0.0.14",
+  "applicationId": 623393,
+  "archiveFileId": "14045841",
+  "archiveSHA256": "ce96a4a145a470375ce171db82f61c0bac775076507b94e52db587c13ee54dc3",
+  "archiveBytes": 14408623,
+  "savedAtConsole": "20:20:01 17/10/2026",
+  "processing": "Ready",
+  "gameUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "runtimePath": "623393/mj8pt48o2i1qd93omv77rwu695wxa131",
+  "mainMenuRendered": true,
+  "restoredHeroVisible": true,
+  "phoneTestPerformedThisTurn": false,
+  "playTransitionVerifiedThisTurn": false,
+  "proof": "Publishing/Previews/yandex-version14-20261017.jpg",
+  "moderationSubmitted": false,
+  "published": false,
+  "scope": "Draft archive uploaded and processing confirmed in the visible console. New runtime path and restored hero seen in the browser menu. Gameplay checks on physical devices remain for the owner."
+}

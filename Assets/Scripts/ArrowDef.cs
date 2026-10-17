@@ -12,6 +12,29 @@ public class ArrowDef : MonoBehaviour
     private readonly HashSet<int> hitEnemies = new HashSet<int>();
     private Collider2D[] ownerColliders;
     private Collider2D[] projectileColliders;
+    private static readonly HashSet<ArrowDef> activeArrows = new HashSet<ArrowDef>();
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetArrows() => activeArrows.Clear();
+
+    protected virtual void OnEnable()
+    {
+        hitEnemies.Clear();
+        projectileColliders = GetComponentsInChildren<Collider2D>(true);
+        // Keep player arrows from blocking one another in shotgun volleys,
+        // while retaining their contacts with enemies and scenery.
+        foreach (var arrow in activeArrows)
+        {
+            if (arrow == null || arrow.projectileColliders == null) continue;
+            foreach (var own in projectileColliders)
+                foreach (var other in arrow.projectileColliders)
+                    if (own != null && other != null && own.isActiveAndEnabled && other.isActiveAndEnabled)
+                        Physics2D.IgnoreCollision(own, other);
+        }
+        activeArrows.Add(this);
+    }
+
+    protected virtual void OnDisable() => activeArrows.Remove(this);
 
     public void IgnoreOwnerCollisions(Collider2D[] colliders)
     {
@@ -50,7 +73,7 @@ public class ArrowDef : MonoBehaviour
             return;
         }
         if (!hitEnemies.Add(target.GetInstanceID())) return;
-        DamageEnemy(target, damage);
+        ApplyHit(target);
         if (hitEnemies.Count >= maxEnemyHits) Destroy(gameObject);
     }
 
@@ -68,16 +91,18 @@ public class ArrowDef : MonoBehaviour
         return target;
     }
 
-    public static void DamageEnemy(MonoBehaviour target, int amount)
+    protected virtual void ApplyHit(MonoBehaviour target) => DamageEnemy(target, damage);
+
+    public static void DamageEnemy(MonoBehaviour target, int amount, bool holy = false)
     {
         if (target == null || !target.gameObject.activeInHierarchy || amount <= 0) return;
         if (target is Roberto assassin) assassin.TakeDamage(amount);
-        else if (target is Enemy enemy) enemy.TakeDamage(amount, false);
-        else if (target is SceletonDef skeleton) skeleton.TakeDamage(amount, false);
-        else if (target is SceletMag mage) mage.TakeDamage(amount, false);
-        else if (target is Slime slime) slime.TakeDamage(amount, false);
-        else if (target is HealerEnemy healer) healer.TakeDamage(amount, false);
-        else if (target is SlimeBoss boss) boss.TakeDamage(amount, false);
+        else if (target is Enemy enemy) enemy.TakeDamage(amount, holy);
+        else if (target is SceletonDef skeleton) skeleton.TakeDamage(amount, holy);
+        else if (target is SceletMag mage) mage.TakeDamage(amount, holy);
+        else if (target is Slime slime) slime.TakeDamage(amount, holy);
+        else if (target is HealerEnemy healer) healer.TakeDamage(amount, holy);
+        else if (target is SlimeBoss boss) boss.TakeDamage(amount, holy);
     }
 
     // Списки тегов для врагов (добавим "Healer" сюда, если хотите бить и хилера)
@@ -96,52 +121,12 @@ public class ArrowDef : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D coll)
     {
-        // Проверяем, есть ли на объекте компонент ассассина (Roberto)
-        Roberto assassin = coll.gameObject.GetComponent<Roberto>();
-        if (assassin != null)
-        {
-            // Если компонент найден, наносим ассассину урон
-            assassin.TakeDamage(damage);
-            Destroy(gameObject);
-            return;
-        }
-
-        // Если тег объекта входит в список вражеских тегов
-        if (enemyTeg.Contains(coll.gameObject.tag))
-        {
-            // Проверяем наличие различных компонентов врагов и наносим урон
-            Enemy enemy = coll.gameObject.GetComponent<Enemy>();
-            SceletonDef skeletonDef = coll.gameObject.GetComponent<SceletonDef>();
-            SceletMag sceletMag = coll.gameObject.GetComponent<SceletMag>();
-            Slime slime = coll.gameObject.GetComponent<Slime>();
-            HealerEnemy healer = coll.gameObject.GetComponent<HealerEnemy>(); // <-- Добавлено
-
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage, false);
-            }
-            if (skeletonDef != null)
-            {
-                skeletonDef.TakeDamage(damage, false);
-            }
-            if (sceletMag != null)
-            {
-                sceletMag.TakeDamage(damage, false);
-            }
-            if (slime != null)
-            {
-                slime.TakeDamage(damage, false);
-            }
-            if (healer != null)
-            {
-                healer.TakeDamage(damage, false);
-            }
-        }
-
-        Destroy(gameObject); // Уничтожаем стрелу после попадания
+        var other = coll.collider;
+        if (other.GetComponentInParent<PlayerController>() != null
+            || other.GetComponentInParent<ArrowDef>() != null) return;
+        if (triggerProjectile || maxEnemyHits > 1) return;
+        var target = FindEnemy(other);
+        if (target != null && hitEnemies.Add(target.GetInstanceID())) ApplyHit(target);
+        Destroy(gameObject);
     }
-    // else 
-    // {
-    //     // Это не враг, можно просто уничтожить стрелу или что-то ещё
-    // }
 }

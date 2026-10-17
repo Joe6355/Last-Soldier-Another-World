@@ -175176,6 +175176,8 @@ MonoBehaviour:
   - {fileID: 2333858741623184734, guid: b3b752ef501a955488d3fb527851c6c0, type: 3}
   - {fileID: 4796505742097344617, guid: 83fcd56191521944d92445afb39579ce, type: 3}
   - {fileID: 2013197180881235825, guid: f1b4c9286e8cf9e42b445fe5f148c6a6, type: 3}
+  slimeBossEscortPrefab: {fileID: 1468289449252124208, guid: ad01bc5162f0be9458af4e32a49ecb4e, type: 3}
+  slimeBossEscortCount: 6
   waves:
   - waveDuration: 300
     minDifficulty: 0
@@ -220964,6 +220966,8 @@ MonoBehaviour:
   shieldActive: 0
   shieldImage: {fileID: 2073269166}
   shieldVisual: {fileID: 2078203198}
+  shieldRaiseSound: {fileID: 8300000, guid: ee5618488bdf4b24d85ee94720b1e448, type: 3}
+  shieldBlockSound: {fileID: 8300000, guid: 42f5490bf75e924408d9a08b2f1d05f9, type: 3}
   originalMoveSpeed: 2
   shieldMultiplier: 1
   mirrorMultiplier: 1

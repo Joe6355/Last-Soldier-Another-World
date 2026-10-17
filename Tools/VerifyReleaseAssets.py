@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import zipfile
+import argparse
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -16,6 +17,10 @@ def sha(path):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--allow-unconfirmed', action='store_true',
+                        help='Verify integrity while reporting pending provenance; does not clear rights.')
+    args = parser.parse_args()
     release = read('Publishing/build-report.json')
     assert sha(release['archive']) == release['sha256'], release['archive']
     with zipfile.ZipFile(ROOT / release['archive']) as archive:
@@ -50,17 +55,21 @@ def main():
     assert not unknown, unknown
     assert not any('EmojiOne' in path or '/Examples & Extras/Textures/' in path for path in packed)
     assert not any('original-audio' in path or 'original-sprites' in path for path in packed)
+    pending = []
     for path in rasters:
         if path in by_path:
             assert sha(path) == by_path[path]['sha256'], path
-            assert by_path[path]['rightsStatus'] not in {'unconfirmed', 'project-created-source-record-pending'}, path
+            if by_path[path]['rightsStatus'] in {'unconfirmed', 'project-created-source-record-pending'}:
+                pending.append(path)
+    assert args.allow_unconfirmed or not pending, 'Unconfirmed provenance: ' + ', '.join(pending)
     assert 'Assets/Resources/AssetCredits.txt' in packed
     required = ['PTSerif-OFL.txt', 'LiberationSans-OFL.txt', 'CC0-1.0.txt', 'CC-BY-3.0.txt',
                 'CC-BY-4.0.txt', 'CC-BY-SA-3.0.txt', 'CC-BY-SA-4.0.txt']
     for name in required:
         assert (ROOT / 'Builds/YandexGames/StreamingAssets/ThirdParty' / name).is_file(), name
     summary = {
-        'checkedOn': '2026-10-17', 'result': 'PASS',
+        'checkedOn': '2026-10-17', 'result': 'TECHNICAL_PASS_RIGHTS_PENDING' if pending else 'PASS',
+        'pendingProvenancePaths': pending,
         'archive': release['archive'], 'archiveSha256': release['sha256'],
         'archiveFileCount': len(release['fileHashes']),
         'matchedSourceFiles': len(release['sourceSnapshot']['files']),
@@ -68,7 +77,9 @@ def main():
         'packedAssetsReportSha256': sha('Publishing/release-packed-assets.json'),
         'packedSourceAssets': len(packed), 'packedRasterPaths': len(rasters),
         'unknownPackedRasterPaths': unknown, 'exactSourceProofs': len(inventory['proofs']),
-        'licensedCharacterAtlases': len(character['files']), 'originalProceduralPngs': len(interface['files']),
+        'licensedCharacterAtlases': sum(not item.get('restoredFromBackup') for item in character['files']),
+        'originalProceduralPngs': sum(not item.get('restoredFromBackup') for item in interface['files']),
+        'restoredOriginalPngs': sum(bool(item.get('restoredFromBackup')) for manifest in [character, interface] for item in manifest['files']),
         'originalSynthesizedAudioClips': len(audio['clips']),
         'bundledLicenseFiles': required,
         'scope': 'Verifies recorded provenance and hashes; not a legal warranty or a moderation decision.'

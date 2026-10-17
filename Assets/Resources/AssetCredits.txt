@@ -116,15 +116,19 @@ https://creativecommons.org/publicdomain/zero/1.0/
 Original coinpreview.png unchanged. / Исходный файл сохранён.
 
 Character adaptations / Переработки персонажей
-Tiny 16 characters recoloured, cropped and packed into the game's existing sprite rectangles. New green hood, bow, shields, bombs and spell accents. Green key background removed from Expanded Skeleton.
-Персонажи Tiny 16 перекрашены и упакованы в игровые атласы; добавлены капюшон, лук, щиты, бомбы и магические акценты. Зелёный фон Expanded Skeleton удалён.
+Tiny 16 adaptations retained for companion characters and small slime variants; original hero, merchant, nun, healer, assassin and regular skeleton atlases restored.
+Переработки Tiny 16 сохранены у спутников и маленьких слизней; исходные атласы героя, торговца, монашки, хилера, ассасина и обычных скелетов восстановлены.
 Companion NPC and faces: cropped and resized LPC Anime Portrait #2; Portrait graphics created by PlayCraft.
 NPC и портреты: кадрирование и масштабирование LPC Anime Portrait #2; Portrait graphics created by PlayCraft.
+
+Original merchant / Исходный торговец
+Sprite artwork and animation drawings by the game developer, as confirmed by the owner.
+Спрайты и рисунки анимации созданы разработчиком игры, по подтверждению владельца.
 
 Original project audio / Новое аудио проекта
 40 clips created from oscillators and deterministic noise for this game; no external sound recordings or music samples.
 40 клипов синтезированы для игры из осцилляторов и шума; сторонние записи и музыкальные сэмплы не использовались.
 
 Original project UI and effects / Новые UI и эффекты проекта
-Equipment icons, shield, HUD panels, camp tent, arena props and magical bursts drawn with geometric pixel shapes.
-Иконки снаряжения, щит, панели, палатка, объекты арены и магические вспышки созданы геометрическими пиксельными формами.
+Shield, HUD panels, camp tent, altar, outpost and magical bursts drawn with geometric pixel shapes.
+Щит, панели, палатка, алтарь, аванпост и магические вспышки созданы геометрическими пиксельными формами.

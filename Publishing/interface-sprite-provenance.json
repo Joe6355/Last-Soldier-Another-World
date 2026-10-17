@@ -114,10 +114,12 @@
         96
       ],
       "rectangles": 6,
-      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
-      "sha256": "d3d175478994aa0028f36ba085ecc98d71cfaa9e93d0791d8ff613513baa12fe",
+      "source": "Exact pre-v13 PNG restored at owner request; Unity metadata and animation clips unchanged.",
+      "sha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b",
       "metaSha256": "3cd4e474c73bc834612189353df86b80d3cd6869f5df0938a6157a9271954fde",
-      "originalSha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b"
+      "originalSha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b",
+      "restoredFromBackup": "Builds/AssetReplacements/original-sprites/Sprits/uiEL.png",
+      "restoredOn": "2026-10-17"
     },
     {
       "file": "Assets/Sprits/Map/preview.png",
@@ -153,10 +155,12 @@
         64
       ],
       "rectangles": 1,
-      "source": "Original geometric pixel drawing in Tools/GenerateInterfaceSprites.py; no sampled image pixels",
-      "sha256": "617e25692aab1253787d46ff76331fab66bce94475bfff6db6296c674093d8fb",
+      "source": "Exact pre-v13 PNG restored at owner request; Unity metadata and animation clips unchanged.",
+      "sha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86",
       "metaSha256": "34142b7aae3ec39f279c208d5fa1afce5c4790710e762a5b95c472407bf38606",
-      "originalSha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86"
+      "originalSha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86",
+      "restoredFromBackup": "Builds/AssetReplacements/original-sprites/UI/ForestGarrison/Arena/Barrel.png",
+      "restoredOn": "2026-10-17"
     },
     {
       "file": "Assets/UI/ForestGarrison/Arena/Outpost.png",

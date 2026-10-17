@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-17",
+  "files": [
+    {
+      "path": "Assets/Sprits/PlayerAll.png",
+      "sha256": "c87805b85d1f5a66f2da0ec1640daec46592758fc88075d65cc9b1f8ca6bb122",
+      "backup": "Builds/AssetReplacements/original-sprites/PlayerAll.png",
+      "metadataSHA256": "c1158a6b0cc73960394cf646ce923177303409c2f1a2bf79c688b854cc578431",
+      "rightsStatus": "unconfirmed"
+    },
+    {
+      "path": "Assets/Sprits/ShoperAllAnim.png",
+      "sha256": "bd2f623755fbe5ac6fccf94544a214c9fd966cdbd657c97151df78ec5fa22196",
+      "backup": "Builds/AssetReplacements/original-sprites/ShoperAllAnim.png",
+      "metadataSHA256": "444bbf08f32387b062b04d266ee70dcc2205df432fd2d82bef5435ff8e2317d7",
+      "rightsStatus": "owner-confirmed-original-art"
+    },
+    {
+      "path": "Assets/Sprits/allEnemy.png",
+      "sha256": "055cdb54d55e91074a8e63f66824163ac25205cf6a11a0d910d34a16450fa27f",
+      "backup": "Builds/AssetReplacements/original-sprites/allEnemy.png",
+      "metadataSHA256": "6856942ba067755ebf606e472417b6f451cdca9a4ebca181c7da231ea02cbe97",
+      "rightsStatus": "unconfirmed"
+    },
+    {
+      "path": "Assets/Sprits/uiEL.png",
+      "sha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b",
+      "backup": "Builds/AssetReplacements/original-sprites/Sprits/uiEL.png",
+      "metadataSHA256": "3cd4e474c73bc834612189353df86b80d3cd6869f5df0938a6157a9271954fde",
+      "rightsStatus": "unconfirmed"
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Arena/Barrel.png",
+      "sha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86",
+      "backup": "Builds/AssetReplacements/original-sprites/UI/ForestGarrison/Arena/Barrel.png",
+      "metadataSHA256": "34142b7aae3ec39f279c208d5fa1afce5c4790710e762a5b95c472407bf38606",
+      "rightsStatus": "unconfirmed"
+    }
+  ],
+  "animationClipsModified": true,
+  "unityMetadataModified": false,
+  "note": "Owner requested restoration after visual regressions in v13. This is not a claim of complete rights clearance.",
+  "merchantAnimationsModified": false,
+  "heroAnimationChanges": {
+    "controller": "Assets/Anim/Player/Player.controller",
+    "idle": "Assets/Anim/Player/Marker.anim",
+    "walk": "Assets/Anim/Player/Shoot.anim",
+    "frames": 5,
+    "framesPerSecond": 10,
+    "trigger": "IsMoving: actual desktop axes or mobile joystick"
+  },
+  "removedDecoration": "Altar/BuildingPad SpriteRenderer disabled; altar interaction and healing retained",
+  "unityChecks": "Builds/RatingValidation/release-asset-checks.txt",
+  "runtimeChecks": "Builds/RatingValidation/visual-restoration-runtime.txt",
+  "buildVersion": "0.0.0.14",
+  "uploadedToYandex": true,
+  "previews": [
+    "Publishing/Previews/visual-restoration-camp.png",
+    "Publishing/Previews/visual-restoration-arena.png"
+  ],
+  "runtimeChecksResult": "PASS: real mobile joystick, four directions; five frames per direction; correct facing; idle on release; actual arena altar pad hidden",
+  "uploadReport": "Publishing/upload-v14-check.json"
+}

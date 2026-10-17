@@ -1,0 +1,154 @@
+{
+  "version": "0.0.0.15",
+  "restoredOriginals": [
+    {
+      "path": "Assets/Sprits/Boss/Assassin.png",
+      "sha256": "861a60f3f80592c597c1f566a05176b48267c1284759519df5a8bbc70c077ba1",
+      "metadataSHA256": "f61ba682a7e55b03444077c8ada19dc2171cc743ad0c797bfce77a71b87a2ee2"
+    },
+    {
+      "path": "Assets/Sprits/SciDE.png",
+      "sha256": "b33558c8c8d9aafa9f0bf8219d8a87e597afea27e14fe86f6a2f3d739db9176e",
+      "metadataSHA256": "115bac6a569f95c27f1212550da3811d10aab10a9e3b3b84d908c9658076062f"
+    }
+  ],
+  "slimeAtlas": {
+    "path": "Assets/Sprits/SlimeVariantAtlas.png",
+    "sha256": "521d45f94a33c38c52ed0fd91ca5190901df713e699f5cf6a61a0d7ea078ea98",
+    "guid": "0954afc3d780457d996ced4de4092d4c",
+    "unchangedV13Bytes": true,
+    "referencedFrames": 8,
+    "references": [
+      {
+        "path": "Assets/Anim/Enemy/SlimeAt.anim",
+        "changedReferences": 8
+      },
+      {
+        "path": "Assets/Anim/Enemy/SlimeIde.anim",
+        "changedReferences": 8
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/SlimeMini.prefab",
+        "changedReferences": 1
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/SlimeTrue.prefab",
+        "changedReferences": 1
+      }
+    ]
+  },
+  "uploadedToYandex": true,
+  "audio": [
+    {
+      "file": "Assets/Sounds/Zvyki/Enemy/Assasin/vzryiv-s-ognennyim-plamenem (mp3cut.net).mp3",
+      "kind": "layered wooden barrel explosion with low thump, crack and debris",
+      "seed": 1601195917,
+      "sampleRate": 32000,
+      "channels": 1,
+      "durationSeconds": 1.05,
+      "decodedPeak": 0.498669,
+      "bytes": 10188,
+      "sha256": "df068eba0f327a2f398390f9a38035841e26b0000c4550f4d05064b9ffaccf20",
+      "originalSha256": "df0a2287ab99ec9581f43b528a51b23f3b2c258a6ce1cfbda2a4ab5db3775748",
+      "fullDecode": true
+    },
+    {
+      "file": "Assets/Sounds/Zvyki/Enemy/Block.mp3",
+      "kind": "shield impact: short metallic clink",
+      "seed": 689969180,
+      "sampleRate": 32000,
+      "channels": 1,
+      "durationSeconds": 0.2,
+      "decodedPeak": 0.362036,
+      "bytes": 2340,
+      "sha256": "5a395afd1e0ab194e3ad1a506b682a0d945f40e551efbb05e5be63d6a0706a66",
+      "originalSha256": "c7028380d7c363e207c934cbfc56f5d5e1e52f122d424b2f0ce5537ae5f6cdb2",
+      "fullDecode": true
+    },
+    {
+      "file": "Assets/Sounds/Zvyki/Enemy/BomberDead.mp3",
+      "kind": "short bomber explosion with punch and noisy tail",
+      "seed": 692625462,
+      "sampleRate": 32000,
+      "channels": 1,
+      "durationSeconds": 0.72,
+      "decodedPeak": 0.506891,
+      "bytes": 6984,
+      "sha256": "956b44dd268d8358ff87397acbe717becbda267daada14994f63ca7c7976a5bb",
+      "originalSha256": "aef4a68856fbf4194ab4582d69feeb3884ed7d55c2a7dd2e8ff03bddf57fe88e",
+      "fullDecode": true
+    },
+    {
+      "file": "Assets/Sounds/Zvyki/Player/sheled (mp3cut.net).mp3",
+      "kind": "shield raise: short magical sweep and bright rim",
+      "seed": 3142408081,
+      "sampleRate": 32000,
+      "channels": 1,
+      "durationSeconds": 0.38,
+      "decodedPeak": 0.242829,
+      "bytes": 2916,
+      "sha256": "68b9fefe725e0ee4bb62a5925704bf7da2b02f4cda5e667f50ae46e15f936366",
+      "originalSha256": "2ad632589b4e479a140d85d914bcbcaff2eabe8d53a48b927e9617079deecb98",
+      "fullDecode": true
+    },
+    {
+      "file": "Assets/Sounds/Zvyki/Player/tp.mp3",
+      "kind": "descending mirror teleport with soft chime",
+      "seed": 3465032156,
+      "sampleRate": 32000,
+      "channels": 1,
+      "durationSeconds": 0.9,
+      "decodedPeak": 0.364509,
+      "bytes": 8676,
+      "sha256": "ed9f61bc616596441e2f83a795239edbbbd48f2963cb19928dc7702dd4419c29",
+      "originalSha256": "4905cd6d4009710f4f624223d079ee3d800f319a9b74eeeba7f48f181f8b31be",
+      "fullDecode": true
+    },
+    {
+      "file": "Assets/Sounds/Zvyki/Portal/PortalTp.mp3",
+      "kind": "rising arcane portal whoosh",
+      "seed": 2409510656,
+      "sampleRate": 32000,
+      "channels": 1,
+      "durationSeconds": 0.7,
+      "decodedPeak": 0.364411,
+      "bytes": 7020,
+      "sha256": "9de3ac2be858a8945a2fd95864e58db0261e6987608b528f6ed0e34ccff0b248",
+      "originalSha256": "879199dd0754342b9e732417dc441b463feb38ad6639dd8211b4289f1ff507c4",
+      "fullDecode": true
+    }
+  ],
+  "audioEventChanges": {
+    "barrel": "Dedicated explosion clip, previous VFX and damage retained",
+    "bomber": "Death after projectile or contact plays one detached 2D explosion",
+    "shield": "One activation sound per activation and throttled impact clink",
+    "portal": "Sound plays on traveller only after a successful warp",
+    "mirror": "Existing completion event uses the revised mirror sound"
+  },
+  "staticChecks": "Builds/RatingValidation/visual-audio-v15-static.log",
+  "runtimeChecks": "Builds/RatingValidation/visual-audio-v15-runtime-complete.log",
+  "staticChecksResult": "PASS",
+  "runtimeChecksResult": "PASS: barrel detonation, one explosion after bomber death, shield activation/impact without repeated activation, portal warp/cooldown, mirror completion; real touch-control callbacks in Unity PlayMode",
+  "listeningReview": "Not performed; automated checks verify event timing, clip playback and volume settings, not subjective sound quality",
+  "friendlyDefeatChecks": "Builds/RatingValidation/visual-audio-v15-defeat.log",
+  "friendlyDefeatResult": "PASS: 54 checks across dedicated and regular assassin/slime variants",
+  "buildEnvironment": "Isolated validation project with repository source files and ProjectSettings synchronized; main project occupied by another Unity instance",
+  "uploadReport": "Publishing/upload-v15-check.json",
+  "codeFiles": [
+    "Assets/Scripts/PlayerController.cs",
+    "Assets/Scripts/Enemy.cs",
+    "Assets/Scripts/Portal/Portal.cs",
+    "Assets/Scripts/Sounds/Sounds.cs"
+  ],
+  "sceneAndPrefabFiles": [
+    "Assets/Scenes/SampleScene.unity",
+    "Assets/Prefabs/Arena/Barrel.prefab",
+    "Assets/Prefabs/Enemy/SlimeMini.prefab",
+    "Assets/Prefabs/Enemy/SlimeTrue.prefab"
+  ],
+  "animationFiles": [
+    "Assets/Anim/Enemy/SlimeAt.anim",
+    "Assets/Anim/Enemy/SlimeIde.anim"
+  ],
+  "buildChecks": "Publishing/isolated-build-v15.json"
+}

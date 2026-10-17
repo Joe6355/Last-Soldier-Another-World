@@ -7,61 +7,15 @@ public class PoisonArrow : ArrowDef
     [SerializeField] protected int poisonTicks = 3; // Количество тиков
     [SerializeField] protected float tickInterval = 1f; // Интервал между тиками
 
-    protected override void OnCollisionEnter2D(Collision2D coll)
+    protected override void ApplyHit(MonoBehaviour target)
     {
-        base.OnCollisionEnter2D(coll); // Используем базовый функционал
-
-        if (coll.gameObject.TryGetComponent<Enemy>(out var enemy))
-        {
-            // Проверяем, если враг не святой
-            if (!enemyTegHoly.Contains(coll.gameObject.tag))
-            {
-                enemy.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval); // Передаем параметры яда врагу
-            }
-            else
-            {
-               // Debug.Log($"Ядовитая стрела попала в {coll.gameObject.name}, но это святой враг. Урон не наносится.");
-            }
-        }
-        if (coll.gameObject.TryGetComponent<SceletonDef>(out var sceletonDef))
-        {
-            // Проверяем, если враг не святой
-            if (!enemyTegHoly.Contains(coll.gameObject.tag))
-            {
-                sceletonDef.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval); // Передаем параметры яда врагу
-            }
-            else
-            {
-              //  Debug.Log($"Ядовитая стрела попала в {coll.gameObject.name}, но это святой враг. Урон не наносится.");
-            }
-        }
-
-        if (coll.gameObject.TryGetComponent<SceletMag>(out var sceletMag))
-        {
-            // Проверяем, если враг не святой
-            if (!enemyTegHoly.Contains(coll.gameObject.tag))
-            {
-                sceletMag.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval); // Передаем параметры яда врагу
-            }
-            else
-            {
-               // Debug.Log($"Ядовитая стрела попала в {coll.gameObject.name}, но это святой враг. Урон не наносится.");
-            }
-        }
-
-        if (coll.gameObject.TryGetComponent<Slime>(out var slime))
-        {
-            // Проверяем, если враг не святой
-            if (!enemyTegHoly.Contains(coll.gameObject.tag))
-            {
-                slime.TakeDamage(damage, false); // Передаем параметры яда врагу
-            }
-            else
-            {
-                // Debug.Log($"Ядовитая стрела попала в {coll.gameObject.name}, но это святой враг. Урон не наносится.");
-            }
-        }
-
-        Destroy(gameObject); // Уничтожаем стрелу после попадания
+        base.ApplyHit(target);
+        if (target == null || !target.isActiveAndEnabled || target.CompareTag("HolyEnemy")) return;
+        if (target is Enemy enemy) enemy.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is SceletonDef skeleton) skeleton.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is SceletMag mage) mage.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is Slime slime) slime.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is HealerEnemy healer) healer.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is SlimeBoss boss) boss.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
     }
 }

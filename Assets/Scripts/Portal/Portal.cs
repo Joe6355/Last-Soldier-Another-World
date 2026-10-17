@@ -67,6 +67,9 @@ public class Portal : Sounds
                 camera.PreviousStateIsValid = false;
             }
             TipsManager.ReportPortal(this);
+            // Play on the traveller after the camera warp.
+            if (sounds != null && sounds.Length > 1)
+                other.GetComponent<PlayerController>()?.PlaySound(sounds[1], .8f);
 
             // Запоминаем время, когда телепорт произошёл
             lastTeleportTime = Time.time;

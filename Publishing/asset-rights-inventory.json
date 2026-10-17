@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "checkedOn": "2026-10-17",
-  "scope": "Initial 96 raster dependencies plus two additional rasters found by the final Unity BuildReport; replacements and player exclusions recorded. Audio: Publishing/audio-provenance.json.",
+  "scope": "Initial 96 raster dependencies plus two additional rasters found by the final Unity BuildReport; replacements and player exclusions recorded. Audio: Publishing/audio-provenance.json. Pre-v13 visual restoration on 2026-10-17: merchant ownership confirmed by owner; other restored PNG provenance remains unconfirmed.",
   "dependencyGraph": "Builds/RatingValidation/asset-dependencies.json",
   "method": "Exact public source downloads and ZIP member bytes compared to local files by SHA-256; static GUID reachability is not a Unity build dependency report.",
   "proofs": [
@@ -1037,8 +1037,8 @@
     },
     {
       "path": "Assets/Sprits/allEnemy.png",
-      "sha256": "521d45f94a33c38c52ed0fd91ca5190901df713e699f5cf6a61a0d7ea078ea98",
-      "bytes": 7450,
+      "sha256": "055cdb54d55e91074a8e63f66824163ac25205cf6a11a0d910d34a16450fa27f",
+      "bytes": 10560,
       "pixelSize": [
         316,
         635
@@ -1100,9 +1100,10 @@
         "Assets\\Anim\\Enemy\\SceletBombIde.anim",
         "Assets\\Anim\\Enemy\\SceletBombRun.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
     },
     {
       "path": "Assets/Sprits/Banditka/Bandit Faceset.png",
@@ -1169,8 +1170,8 @@
     },
     {
       "path": "Assets/Sprits/Boss/Assassin.png",
-      "sha256": "4bf493e49f74374887713af331f9f4009b68f315d141f93b422a72a8d8be4f3d",
-      "bytes": 5735,
+      "sha256": "861a60f3f80592c597c1f566a05176b48267c1284759519df5a8bbc70c077ba1",
+      "bytes": 7585,
       "pixelSize": [
         320,
         160
@@ -1236,9 +1237,9 @@
         "Assets\\Anim\\Boss\\Ide.anim",
         "Assets\\Anim\\Boss\\Heal.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 original restored at explicit owner request; source remains unconfirmed"
     },
     {
       "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
@@ -1954,8 +1955,8 @@
     },
     {
       "path": "Assets/Sprits/Healer.png",
-      "sha256": "5c826eb1ae7f049cccc9b7ff0a4c38c294f069682841f6db21cd3bdb2b45e6d7",
-      "bytes": 850,
+      "sha256": "1c290f2078a44b5bfce7764271530a2662f8b7c97d27ca6d89ba1f756bb1bab1",
+      "bytes": 1049,
       "pixelSize": [
         96,
         42
@@ -1971,14 +1972,15 @@
         "Assets\\Anim\\Enemy\\HealerWalk.anim",
         "Assets\\Anim\\Enemy\\HealerHeal.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
+      "rightsNote": "Restoring the requested artwork does not establish its source or license."
     },
     {
       "path": "Assets/Sprits/HealerAtack.png",
-      "sha256": "8fa85bc50f2eae7e2a50314e93892a5ddfebc567b9bb1e0f1de0a3d32d4dcde1",
-      "bytes": 1864,
+      "sha256": "75c338a3af4e32f810ed665685c68555212719b7f178ab6366e467fd1cd88890",
+      "bytes": 2098,
       "pixelSize": [
         512,
         42
@@ -1997,9 +1999,10 @@
       "referencedBy": [
         "Assets\\Anim\\Enemy\\HealerHeal.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
+      "rightsNote": "Restoring the requested artwork does not establish its source or license."
     },
     {
       "path": "Assets/Sprits/LPCportrait33.png",
@@ -2358,8 +2361,8 @@
     },
     {
       "path": "Assets/Sprits/nun-black-NESW.png",
-      "sha256": "1b4d251e7c91e21ecd0d8597261f642e507b9c70c4ecb9de969243f31566418e",
-      "bytes": 2335,
+      "sha256": "8ff98d0f387c952ca1dc2918d3e06517792b564d3e629571198cdf863e169ea8",
+      "bytes": 1305,
       "pixelSize": [
         72,
         128
@@ -2377,14 +2380,15 @@
         "Assets\\Anim\\Animals\\BabkaIdle.anim",
         "Assets\\Anim\\Animals\\BabkaIvent.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
+      "rightsNote": "Restoring the requested artwork does not establish its source or license."
     },
     {
       "path": "Assets/Sprits/PlayerAll.png",
-      "sha256": "f5a809fc80d7fd01202b16191cc1cf5095dfde500dee1478fc6294bd21b07c4e",
-      "bytes": 825,
+      "sha256": "c87805b85d1f5a66f2da0ec1640daec46592758fc88075d65cc9b1f8ca6bb122",
+      "bytes": 1297,
       "pixelSize": [
         160,
         32
@@ -2397,9 +2401,10 @@
         "Assets\\Scenes\\SampleScene.unity",
         "Assets\\Scenes\\Menu.unity"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
     },
     {
       "path": "Assets/Sprits/portalRings1.png",
@@ -2508,8 +2513,8 @@
     },
     {
       "path": "Assets/Sprits/SciDE.png",
-      "sha256": "07535c2d5b9c2b1ca396e52b2ed9e9566ed005a39ed26f73b08118f1890ae5f0",
-      "bytes": 953,
+      "sha256": "b33558c8c8d9aafa9f0bf8219d8a87e597afea27e14fe86f6a2f3d739db9176e",
+      "bytes": 1022,
       "pixelSize": [
         128,
         38
@@ -2523,14 +2528,14 @@
       "referencedBy": [
         "Assets\\Anim\\Enemy\\SceletProstoiMag.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 original restored at explicit owner request; source remains unconfirmed"
     },
     {
       "path": "Assets/Sprits/ShoperAllAnim.png",
-      "sha256": "248022b6dea020e629e4bb1152f6c016d404969f4ac06477ab05007459217b5b",
-      "bytes": 4067,
+      "sha256": "bd2f623755fbe5ac6fccf94544a214c9fd966cdbd657c97151df78ec5fa22196",
+      "bytes": 4464,
       "pixelSize": [
         384,
         158
@@ -2580,9 +2585,10 @@
         "Assets\\Anim\\Shoper\\ShoperIdeVariant.anim",
         "Assets\\Anim\\Shoper\\ShoperIde.anim"
       ],
-      "rightsStatus": "replaced-with-licensed-adaptation",
+      "rightsStatus": "owner-confirmed-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Licensed Tiny16/PlayCraft sprites adapted and packed; original GUIDs retained"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+      "ownershipEvidence": "Owner explicitly stated on 2026-10-17: это я его рисовал (merchant and animations)."
     },
     {
       "path": "Assets/Sprits/slime_monster_spritesheet.png",
@@ -2877,8 +2883,8 @@
     },
     {
       "path": "Assets/Sprits/uiEL.png",
-      "sha256": "d3d175478994aa0028f36ba085ecc98d71cfaa9e93d0791d8ff613513baa12fe",
-      "bytes": 1085,
+      "sha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b",
+      "bytes": 1238,
       "pixelSize": [
         96,
         96
@@ -2901,9 +2907,10 @@
         "Assets\\Prefabs\\Arrow\\PoisonArrow.prefab",
         "Assets\\Prefabs\\Arrow\\ArrowDef.prefab"
       ],
-      "rightsStatus": "replaced-with-original-procedural-art",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/interface-sprite-provenance.json",
-      "changes": "Original geometric pixel drawing; old pixels not sampled"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
     },
     {
       "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
@@ -3055,8 +3062,8 @@
     },
     {
       "path": "Assets/UI/ForestGarrison/Arena/Barrel.png",
-      "sha256": "617e25692aab1253787d46ff76331fab66bce94475bfff6db6296c674093d8fb",
-      "bytes": 598,
+      "sha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86",
+      "bytes": 590,
       "pixelSize": [
         48,
         64
@@ -3068,9 +3075,10 @@
       "referencedBy": [
         "Assets\\Prefabs\\Arena\\Barrel.prefab"
       ],
-      "rightsStatus": "replaced-with-original-procedural-art",
+      "rightsStatus": "unconfirmed",
       "replacementManifest": "Publishing/interface-sprite-provenance.json",
-      "changes": "Original geometric pixel drawing; old pixels not sampled"
+      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
     },
     {
       "path": "Assets/UI/ForestGarrison/Arena/GravityRune.png",
@@ -3221,17 +3229,58 @@
       "rightsStatus": "replaced-with-original-procedural-art",
       "replacementManifest": "Publishing/interface-sprite-provenance.json",
       "changes": "Original geometric pixel drawing; old pixels not sampled"
+    },
+    {
+      "path": "Assets/Sprits/SlimeVariantAtlas.png",
+      "sha256": "521d45f94a33c38c52ed0fd91ca5190901df713e699f5cf6a61a0d7ea078ea98",
+      "bytes": 7450,
+      "pixelSize": [
+        316,
+        635
+      ],
+      "spriteRects": 42,
+      "referencedSpriteFileIds": [
+        "1484285053",
+        "374941408",
+        "759881341",
+        "-2062588570",
+        "-646216339",
+        "-987343457",
+        "1322754779",
+        "-948107212"
+      ],
+      "referencedBy": [
+        "Assets/Anim/Enemy/SlimeAt.anim",
+        "Assets/Anim/Enemy/SlimeIde.anim",
+        "Assets/Prefabs/Enemy/SlimeMini.prefab",
+        "Assets/Prefabs/Enemy/SlimeTrue.prefab"
+      ],
+      "rightsStatus": "replaced-with-licensed-adaptation",
+      "replacementManifest": "Publishing/character-replacements.json",
+      "changes": "Exact licensed v13 atlas retained for slime animation frames 89..96; restored skeleton atlas remains independent"
     }
   ],
   "proofsCount": 65,
   "statusCounts": {
-    "replaced-with-original-procedural-art": 14,
+    "replaced-with-original-procedural-art": 12,
     "confirmed-source-exact-bytes": 53,
-    "replaced-with-licensed-adaptation": 11,
+    "unconfirmed": 9,
+    "replaced-with-licensed-adaptation": 4,
+    "owner-confirmed-original-art": 1,
     "confirmed-existing-license": 9,
     "excluded-from-player-dependencies": 7,
     "derived-from-confirmed-CC0": 4
   },
-  "remainingUnconfirmedRasterPaths": [],
+  "remainingUnconfirmedRasterPaths": [
+    "Assets/Sprits/allEnemy.png",
+    "Assets/Sprits/Boss/Assassin.png",
+    "Assets/Sprits/Healer.png",
+    "Assets/Sprits/HealerAtack.png",
+    "Assets/Sprits/nun-black-NESW.png",
+    "Assets/Sprits/PlayerAll.png",
+    "Assets/Sprits/SciDE.png",
+    "Assets/Sprits/uiEL.png",
+    "Assets/UI/ForestGarrison/Arena/Barrel.png"
+  ],
   "finalPackedReport": "Publishing/release-packed-assets.json"
 }
