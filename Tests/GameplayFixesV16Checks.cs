@@ -113,7 +113,7 @@ public static class GameplayFixesV16Checks
                     var hitbox = new GameObject("ChildHitbox"); hitbox.transform.SetParent(target.transform, false);
                     hitbox.AddComponent<BoxCollider2D>().size = new Vector2(5, .7f);
                     Check(bow.TrySelectArrowType(type), "Arrow selected for physics sample " + sample);
-                    expectedHealth = 100 + (sample == 4 ? 1 : -1) * 3 * bow.ArrowDamage(type)
+                    expectedHealth = holyTarget && type != 2 ? 100 : 100 + (sample == 4 ? 1 : -1) * 3 * bow.ArrowDamage(type)
                         - (sample == 1 ? 9 : 0);
                     Next(3); break;
                 case 3:

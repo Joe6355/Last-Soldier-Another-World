@@ -325,35 +325,15 @@ public class HealerEnemy : Sounds
     // ======================================
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled || amount <= 0) return;
+        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
         double previousHealth = health;
-        if (deathHandled) return;
-        ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
-
-        if (isHolyArrow && arrowDef != null)
-        {
-            if (arrowDef.HolyEnemyTags.Contains(gameObject.tag))
-            {
-                health -= amount;
-            }
-            else if (arrowDef.EnemyTags.Contains(gameObject.tag))
-            {
-                Heal(amount);
-            }
-        }
-        else
-        {
-            health -= amount;
-            PlaySound(sounds[0], volume: 1, destroyed: true);
-        }
-
+        health -= amount;
+        PlaySound(sounds[0], volume: 1, destroyed: true);
         DamageNumbers.Show(transform, previousHealth, health);
-        SetTransparency(0.5f);
-        Invoke(nameof(ResetTransparency), 0.1f);
-
-        if (health <= 0)
-        {
-            Die();
-        }
+        SetTransparency(.5f);
+        Invoke(nameof(ResetTransparency), .1f);
+        if (health <= 0) Die();
     }
 
     public void ApplyPoison(int poisonDamagePerTick, int poisonTicks, float tickInterval)

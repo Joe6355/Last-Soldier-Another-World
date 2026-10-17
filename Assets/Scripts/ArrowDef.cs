@@ -91,12 +91,30 @@ public class ArrowDef : MonoBehaviour
         return target;
     }
 
-    protected virtual void ApplyHit(MonoBehaviour target) => DamageEnemy(target, damage);
+    public virtual bool IsHoly => false;
+
+    public static bool CanDamageEnemy(Component target, bool holy)
+        => target != null && target.CompareTag("HolyEnemy") == holy;
+
+    protected virtual void ApplyHit(MonoBehaviour target)
+    {
+        if (target == null) return;
+        if (target.CompareTag("HolyEnemy") && !IsHoly)
+        {
+            DamageNumbers.ShowImmune(target.transform);
+            return;
+        }
+        DamageEnemy(target, damage, IsHoly);
+    }
 
     public static void DamageEnemy(MonoBehaviour target, int amount, bool holy = false)
     {
         if (target == null || !target.gameObject.activeInHierarchy || amount <= 0) return;
-        if (target is Roberto assassin) assassin.TakeDamage(amount);
+        if (target is Roberto assassin)
+        {
+            if (holy && !assassin.CompareTag("HolyEnemy")) assassin.RestoreHealth(amount);
+            else assassin.TakeDamage(amount);
+        }
         else if (target is Enemy enemy) enemy.TakeDamage(amount, holy);
         else if (target is SceletonDef skeleton) skeleton.TakeDamage(amount, holy);
         else if (target is SceletMag mage) mage.TakeDamage(amount, holy);

@@ -5,11 +5,28 @@ using System.Collections;
 public class Enemy : Sounds
 {
     private bool deathHandled;
-    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier)
+    public enum AttackStyle { ContactExplosion, Club, SpiritOrb }
+    [SerializeField] private AttackStyle attackStyle;
+    [SerializeField, Min(.2f)] private float attackRange = .95f;
+    [SerializeField, Min(.2f)] private float attackCooldown = 1.8f;
+    [SerializeField, Min(.1f)] private float attackWindup = .4f;
+    [SerializeField, Min(.1f)] private float defeatDuration = .5f;
+    [SerializeField] private GameObject spiritProjectile;
+    private bool attacking;
+    private float nextAttackTime;
+    private float waveDamageMultiplier = 1f, waveProjectileSpeedMultiplier = 1f;
+    private readonly System.Collections.Generic.List<GameObject> ownedProjectiles = new System.Collections.Generic.List<GameObject>();
+    public AttackStyle Style => attackStyle;
+    public bool IsAlive => !deathHandled && health > 0;
+    private bool CanAct => IsAlive && GameProgress.IsReady && !YG.YG2.isPauseGame && Time.timeScale > 0
+        && playerController != null && playerController.hp > 0 && !playerController.IsAwaitingRevive;
+    public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier, float projectileSpeedMultiplier = 1f)
     {
         health = Mathf.CeilToInt(health * healthMultiplier);
         defSpeed *= speedMultiplier;
         damageTouch = Mathf.CeilToInt(damageTouch * damageMultiplier);
+        waveDamageMultiplier = damageMultiplier;
+        waveProjectileSpeedMultiplier = projectileSpeedMultiplier;
     }
     [Header("Параметры врага")]
     public int health = 5;           // Здоровье врага
@@ -35,11 +52,12 @@ public class Enemy : Sounds
     [SerializeField] private float dropChanceMax = 0.50f;
     [SerializeField] private int lootDropCount = 3;
 
-    private Stats stats;    
+    private Stats stats;
     private void Start()
     {
         stats = FindObjectOfType<Stats>();
         anim = GetComponent<Animator>();
+        nextAttackTime = Time.time + attackCooldown * .5f;
         sprite = GetComponent<SpriteRenderer>();
 
         // Попытка найти игрока
@@ -62,6 +80,15 @@ public class Enemy : Sounds
 
     private void FixedUpdate()
     {
+        if (attackStyle != AttackStyle.ContactExplosion)
+        {
+            if (CanAct && player != null && !attacking)
+            {
+                FacePlayerWithFlip();
+                UpdateArchetype();
+            }
+            return;
+        }
         // Если игрок найден, выполняем логику движения и флипа
         if (player != null)
         {
@@ -73,6 +100,61 @@ public class Enemy : Sounds
     /// <summary>
     /// Определяем дистанцию до игрока и двигаем врага, если в зоне агро.
     /// </summary>
+    private void UpdateArchetype()
+    {
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance > agrDistantion) { anim.SetTrigger("NoRun"); return; }
+        if (distance > attackRange)
+        {
+            Vector2 next = Vector2.MoveTowards(transform.position, player.position, defSpeed * Time.fixedDeltaTime);
+            transform.position = new Vector3(next.x, next.y, transform.position.z);
+            anim.SetTrigger("GoRun");
+        }
+        else
+        {
+            anim.SetTrigger("NoRun");
+            if (Time.time >= nextAttackTime) StartCoroutine(ArchetypeAttack());
+        }
+    }
+
+    private IEnumerator ArchetypeAttack()
+    {
+        attacking = true;
+        nextAttackTime = Time.time + attackCooldown;
+        Vector2 direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(attackWindup);
+        if (!CanAct) { attacking = false; yield break; }
+        PlaySound(sounds != null && sounds.Length > 1 ? sounds[1] : null, .65f);
+        if (attackStyle == AttackStyle.Club)
+        {
+            Vector2 toPlayer = (Vector2)player.position - (Vector2)transform.position;
+            if (toPlayer.magnitude <= attackRange + .25f && Vector2.Dot(direction, toPlayer.normalized) > .35f)
+                playerController.TakeDamage(damageTouch);
+        }
+        else if (spiritProjectile != null)
+        {
+            var projectile = Instantiate(spiritProjectile, transform.position + (Vector3)direction * .35f, Quaternion.identity);
+            WaveSpawner.ScaleEnemyProjectile(projectile, waveDamageMultiplier, waveProjectileSpeedMultiplier);
+            ownedProjectiles.RemoveAll(shot => shot == null);
+            ownedProjectiles.Add(projectile);
+        }
+        yield return new WaitForSeconds(.2f);
+        attacking = false;
+    }
+
+    private void ClearProjectiles()
+    {
+        foreach (var projectile in ownedProjectiles) if (projectile != null) Destroy(projectile);
+        ownedProjectiles.Clear();
+    }
+
+    private void OnDisable()
+    {
+        if (attackStyle == AttackStyle.ContactExplosion) return;
+        StopAllCoroutines(); CancelInvoke(); attacking = false; ClearProjectiles();
+    }
+
     private void Distantion()
     {
         distantion = Vector2.Distance(player.position, transform.position);
@@ -169,48 +251,15 @@ public class Enemy : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled || amount <= 0) return;
+        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
         double previousHealth = health;
-        if (deathHandled) return;
-        ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
+        health -= amount;
 
-        if (arrowDef == null)
-        {
-            // Если ArrowDef отсутствует, считаем обычный урон
-            health -= amount;
-        }
-        else
-        {
-            // Если стрела святая
-            if (isHolyArrow)
-            {
-                // Если у врага тег из списка Holy, наносим урон
-                if (arrowDef.HolyEnemyTags.Contains(gameObject.tag))
-                {
-                    health -= amount;
-                }
-                // Если враг не святой, восстанавливаем здоровье
-                else if (arrowDef.EnemyTags.Contains(gameObject.tag))
-                {
-                    Heal(amount);
-                }
-            }
-            else
-            {
-                // Обычный урон
-                health -= amount;
-            }
-        }
-
-        // Эффект попадания (мигаем полупрозрачным)
         DamageNumbers.Show(transform, previousHealth, health);
-        SetTransparence(0.5f);
-        Invoke(nameof(ResetTransparency), 0.1f);
-
-        // Проверяем, не умер ли
-        if (health <= 0)
-        {
-            Die();
-        }
+        SetTransparence(.5f);
+        Invoke(nameof(ResetTransparency), .1f);
+        if (health <= 0) Die();
     }
 
     /// <summary>
@@ -218,7 +267,7 @@ public class Enemy : Sounds
     /// </summary>
     public void Heal(int amount)
     {
-        health += amount;
+        if (!deathHandled && amount > 0) health = (int)System.Math.Min(int.MaxValue, (long)health + amount);
     }
 
     /// <summary>
@@ -228,6 +277,18 @@ public class Enemy : Sounds
     {
         if (deathHandled) return;
         deathHandled = true;
+        if (attackStyle != AttackStyle.ContactExplosion)
+        {
+            StopAllCoroutines(); CancelInvoke(); ClearProjectiles();
+            foreach (var collider in GetComponentsInChildren<Collider2D>()) collider.enabled = false;
+            var body = GetComponent<Rigidbody2D>();
+            if (body != null) body.simulated = false;
+            anim.ResetTrigger("GoRun"); anim.ResetTrigger("NoRun"); anim.ResetTrigger("Attack");
+            anim.SetTrigger("Defeat");
+            PlaySound(sounds != null && sounds.Length > 0 ? sounds[0] : null, .65f, destroyed: true, spatial: false);
+            stats?.AddEnemyKill(); DropLoot(); Destroy(gameObject, defeatDuration);
+            return;
+        }
         if (sounds != null && sounds.Length > 0)
             PlaySound(sounds[0], .85f, destroyed: true, spatial: false);
         stats.countEnemyDead++;
@@ -242,6 +303,7 @@ public class Enemy : Sounds
     /// </summary>
     private void OnCollisionEnter2D(Collision2D coll)
     {
+        if (attackStyle != AttackStyle.ContactExplosion) return;
         if (coll.gameObject.CompareTag("Player"))
         {
 
@@ -252,7 +314,7 @@ public class Enemy : Sounds
                 playerController.TakeDamage(damageTouch);
 
             }
-            
+
             // После нанесения урона убиваем врага
             Die();
         }

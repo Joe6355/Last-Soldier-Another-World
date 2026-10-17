@@ -203,42 +203,15 @@ public class SceletonDef : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled || amount <= 0) return;
+        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
         double previousHealth = health;
-        if (deathHandled) return;
-        // Ссылка на скрипт ArrowDef (если он есть на сцене)
-        ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
-
-        if (isHolyArrow && arrowDef != null)
-        {
-            // Если у врага тег из списка "Holy", наносим урон
-            if (arrowDef.HolyEnemyTags.Contains(gameObject.tag))
-            {
-                health -= amount;
-            }
-            // Если тег из обычных врагов, лечим
-            else if (arrowDef.EnemyTags.Contains(gameObject.tag))
-            {
-                Heal(amount);
-                
-            }
-        }
-        else
-        {
-            // Обычный урон
-            health -= amount;
-            PlaySound(sounds[0], volume: 1, destroyed: false);
-        }
-
-        // Эффект «полупрозрачности» на короткое время
+        health -= amount;
+        PlaySound(sounds[0], volume: 1, destroyed: false);
         DamageNumbers.Show(transform, previousHealth, health);
-        SetTransparency(0.5f);
-        Invoke(nameof(ResetTransparency), 0.1f);
-
-        // Если здоровье упало до 0 или ниже, умираем
-        if (health <= 0)
-        {
-            Die();
-        }
+        SetTransparency(.5f);
+        Invoke(nameof(ResetTransparency), .1f);
+        if (health <= 0) Die();
     }
 
     /// <summary>

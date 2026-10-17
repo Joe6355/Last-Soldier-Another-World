@@ -1,0 +1,18 @@
+{
+  "checkedOn": "2026-10-17",
+  "version": "0.0.0.17",
+  "applicationId": 623393,
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "d91e1eb8bb4660f901cc7d7ba118455c4e3933df6a9ee42723befeb349a16c66",
+  "archiveBytes": 14529808,
+  "uploaded": false,
+  "status": "BLOCKED_BROWSER_DISABLED",
+  "blocker": "Local browser use is disabled in Work settings",
+  "lastVerifiedDraftVersion": "0.0.0.16",
+  "lastVerifiedArchiveFileId": "14046785",
+  "gameUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "liveGameplayInteractionVerifiedThisTurn": false,
+  "phoneTestPerformedThisTurn": false,
+  "moderationSubmitted": false,
+  "published": false
+}

@@ -3258,6 +3258,34 @@
       "rightsStatus": "replaced-with-licensed-adaptation",
       "replacementManifest": "Publishing/character-replacements.json",
       "changes": "Exact licensed v13 atlas retained for slime animation frames 89..96; restored skeleton atlas remains independent"
+    },
+    {
+      "path": "Assets/Sprits/Holy/HolyOrc.png",
+      "sha256": "bf1385e1255d3f0fbe5672bc29b5c8655707e7a9f2583e26399ebb4aa6bbc119",
+      "bytes": 832619,
+      "pixelSize": [
+        1254,
+        1254
+      ],
+      "spriteRects": 16,
+      "rightsStatus": "generated-for-project",
+      "generationTool": "OpenAI image_gen built-in",
+      "sourceManifest": "Publishing/holy-enemies-v17-assets.json",
+      "changes": "New generated character sheet using existing enemy atlas for style reference; no external character asset downloaded."
+    },
+    {
+      "path": "Assets/Sprits/Holy/HolyGhost.png",
+      "sha256": "7569ca8a8fa213c4bba14aac131ba0af745d21a6d6be684364999f6f7d478d5f",
+      "bytes": 795720,
+      "pixelSize": [
+        1254,
+        1254
+      ],
+      "spriteRects": 17,
+      "rightsStatus": "generated-for-project",
+      "generationTool": "OpenAI image_gen built-in",
+      "sourceManifest": "Publishing/holy-enemies-v17-assets.json",
+      "changes": "New generated character sheet using existing enemy atlas for style reference; no external character asset downloaded."
     }
   ],
   "proofsCount": 65,
@@ -3269,7 +3297,8 @@
     "owner-confirmed-original-art": 1,
     "confirmed-existing-license": 9,
     "excluded-from-player-dependencies": 7,
-    "derived-from-confirmed-CC0": 4
+    "derived-from-confirmed-CC0": 4,
+    "generated-for-project": 2
   },
   "remainingUnconfirmedRasterPaths": [
     "Assets/Sprits/allEnemy.png",

@@ -359,6 +359,8 @@ public class MobileControls : MonoBehaviour
         if (collider == null || !collider.enabled || !collider.gameObject.activeInHierarchy) return false;
         enemy = ArrowDef.FindEnemy(collider);
         if (enemy == null || !enemy.isActiveAndEnabled || enemy is SlimeBoss boss && !boss.IsAlive) return false;
+        var bow = player != null ? player.crossbowController : null;
+        if (bow != null && !ArrowDef.CanDamageEnemy(enemy, bow.arrowPrefabs[bow.SelectedArrowIndex].GetComponent<ArrowDef>().IsHoly)) return false;
         point = collider.bounds.center;
         float distance = (point - origin).sqrMagnitude;
         if (distance < .0001f || distance > searchRadius * searchRadius) return false;

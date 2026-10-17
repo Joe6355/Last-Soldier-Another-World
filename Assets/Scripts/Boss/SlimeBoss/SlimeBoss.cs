@@ -235,47 +235,17 @@ public class SlimeBoss : Sounds
 
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (isDead || amount <= 0) return;
+        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
         double previousHealth = currentHealth;
-        if (isDead) return;
-
         isAggroed = true;
-        ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
-        if (arrowDef == null)
-        {
-            currentHealth -= amount;
-            PlaySound(sounds[1], volume: 1, destroyed: true);
-        }
-        else
-        {
-            if (isHolyArrow)
-            {
-                if (arrowDef.HolyEnemyTags.Contains(gameObject.tag))
-                {
-                    currentHealth -= amount;
-                    PlaySound(sounds[1], volume: 1, destroyed: true);
-                }
-                else if (arrowDef.EnemyTags.Contains(gameObject.tag))
-                {
-                    Heal(amount);
-                }
-            }
-            else
-            {
-                currentHealth -= amount;
-                PlaySound(sounds[1], volume: 1, destroyed: true);
-            }
-        }
-
+        currentHealth -= amount;
+        PlaySound(sounds[1], volume: 1, destroyed: true);
         DamageNumbers.Show(transform, previousHealth, currentHealth);
-        SetTransparence(0.5f);
-        Invoke(nameof(ResetTransparency), 0.1f);
-
+        SetTransparence(.5f);
+        Invoke(nameof(ResetTransparency), .1f);
         UpdateBossHpBar();
-
-        if (currentHealth <= 0)
-        {
-            StartCoroutine(DeathSequence());
-        }
+        if (currentHealth <= 0) StartCoroutine(DeathSequence());
     }
 
     private IEnumerator DeathSequence()

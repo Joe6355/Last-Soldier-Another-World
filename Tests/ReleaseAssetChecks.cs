@@ -24,7 +24,7 @@ public static class ReleaseAssetChecks
     {
         try
         {
-            foreach (string name in new[] { "character-replacements.json", "interface-sprite-provenance.json" })
+            foreach (string name in new[] { "character-replacements.json", "interface-sprite-provenance.json", "holy-enemies-v17-assets.json" })
             {
                 var data = JsonUtility.FromJson<Manifest>(File.ReadAllText(Path.Combine(Repository, "Publishing", name)));
                 foreach (var entry in data.files)

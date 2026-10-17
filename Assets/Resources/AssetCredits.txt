@@ -132,3 +132,7 @@ Original project audio / Новое аудио проекта
 Original project UI and effects / Новые UI и эффекты проекта
 Shield, HUD panels, camp tent, altar, outpost and magical bursts drawn with geometric pixel shapes.
 Щит, панели, палатка, алтарь, аванпост и магические вспышки созданы геометрическими пиксельными формами.
+
+New holy enemies / Новые святые противники
+Crimson orc and ghost animation sheets generated for this game with OpenAI image generation.
+Атласы анимаций красного орка и призрака созданы для игры с помощью генерации изображений OpenAI.

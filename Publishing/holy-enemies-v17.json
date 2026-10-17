@@ -1,0 +1,93 @@
+{
+  "version": "0.0.0.17",
+  "checkedAt": "2026-10-17T18:47:12.479406+00:00",
+  "checks": [
+    {
+      "result": "PASS",
+      "checks": 228,
+      "output": "Builds/RatingValidation/holy-v17-checks.txt",
+      "log": "Builds/RatingValidation/v17-HolyEnemyChecks-complete.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 129,
+      "output": "Builds/RatingValidation/gameplay-v16-checks.txt",
+      "log": "Builds/RatingValidation/v17-GameplayFixesV16Checks-complete.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 80,
+      "output": "Builds/RatingValidation/shotgun-checks.txt",
+      "log": "Builds/RatingValidation/v17-ShotgunChecks-complete.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 54,
+      "output": "Builds/RatingValidation/friendly-defeat-checks.txt",
+      "log": "Builds/RatingValidation/v17-FriendlyDefeatChecks-complete.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 221,
+      "output": "Builds/RatingValidation/release-asset-checks.txt",
+      "log": "Builds/RatingValidation/v17-ReleaseAssetChecks-complete.log"
+    }
+  ],
+  "build": {
+    "verifiedPackedSourcePaths": 1048,
+    "mismatches": [],
+    "rootSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/holy-v17-webgl-isolated.log"
+  },
+  "uploaded": false,
+  "physicalPhoneTestPerformed": false,
+  "nodeTests": {
+    "result": "PASS",
+    "passed": 10,
+    "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+  },
+  "behaviour": {
+    "holyArrows": "Red arrows damage HolyEnemy and heal ordinary enemies, including the assassin; other arrow types do not damage HolyEnemy or apply poison to them",
+    "immunity": "Existing damage-number pool displays localized immunity feedback, respecting the damage-number setting",
+    "mobileAim": "Automatic target acquisition filters by selected ammunition and updates when ammunition changes",
+    "orc": "Holy red club enemy: approaches player, four-frame attack with windup, one evadable melee hit",
+    "ghost": "Holy red ghost: approaches firing range and casts an owned, scaled projectile; projectiles clear on death and arena cleanup",
+    "animation": "Both new enemies have four distinct frames in each Idle, Walk, Attack and Defeat state; no original enemy prefab replaced",
+    "spawns": "From wave 5 an explicit shuffled roster guarantees diversity within each complete spawn bag; waves 10 and 15 keep dedicated boss paths",
+    "environmentalDamage": "Holy immunity applies to arrows; existing arena effects and barrel damage remain effective"
+  },
+  "changedRuntimeFiles": [
+    "Assets/Scripts/ArrowDef.cs",
+    "Assets/Scripts/HolyArrow.cs",
+    "Assets/Scripts/Slime.cs",
+    "Assets/Scripts/Enemy.cs",
+    "Assets/Scripts/SceletonDef.cs",
+    "Assets/Scripts/SceletMag.cs",
+    "Assets/Scripts/HealerEnemy.cs",
+    "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
+    "Assets/Scripts/Boss/Asasin/Roberto.cs",
+    "Assets/Scripts/Ui/MobileControls.cs",
+    "Assets/Scripts/Ui/DamageNumbers.cs",
+    "Assets/Scripts/WaveSpawner.cs",
+    "Assets/Scenes/SampleScene.unity",
+    "Assets/Resources/AssetCredits.txt",
+    "Assets/Sprits/Holy/",
+    "Assets/Anim/Enemy/Holy/",
+    "Assets/Prefabs/Enemy/HolyOrc.prefab",
+    "Assets/Prefabs/Enemy/HolyGhost.prefab",
+    "Assets/Prefabs/Enemy/HolySpiritOrb.prefab"
+  ],
+  "testInstructions": [
+    "Play arena wave 5: ordinary mobs, bomber, shield skeleton, holy orc and holy ghost enter the shuffled spawn roster",
+    "Shoot any holy target with normal, poison or piercing arrows: health must not decrease; red arrows must damage it",
+    "In manual aim, hit an injured ordinary enemy with red arrows: health must increase up to its maximum",
+    "Check orc windup/dodge, ghost orb and all four animation states; verify mobile autoaim changes target eligibility with ammo"
+  ],
+  "remainingLimitations": [
+    "Physical Android gameplay not tested by agent this turn",
+    "Browser upload blocked: Local browser use is disabled in Work settings",
+    "Nine restored original PNG files still have unconfirmed provenance; technical audit does not clear rights"
+  ]
+}

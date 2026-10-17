@@ -265,40 +265,15 @@ public class SceletMag : Sounds
     /// </summary>
     public void TakeDamage(int amount, bool isHolyArrow)
     {
+        if (deathHandled || amount <= 0) return;
+        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
         double previousHealth = health;
-        if (deathHandled) return;
-        ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
-
-        if (isHolyArrow && arrowDef != null)
-        {
-            // Если у врага тег из списка "Holy", наносим урон
-            if (arrowDef.HolyEnemyTags.Contains(gameObject.tag))
-            {
-                health -= amount;
-            }
-            // Если враг обычный (Enemy), лечим
-            else if (arrowDef.EnemyTags.Contains(gameObject.tag))
-            {
-                Heal(amount);
-            }
-        }
-        else
-        {
-            // Обычный урон
-            health -= amount;
-            PlaySound(sounds[0], volume: 1, destroyed: true);
-        }
-
-        // Визуальный эффект попадания
+        health -= amount;
+        PlaySound(sounds[0], volume: 1, destroyed: true);
         DamageNumbers.Show(transform, previousHealth, health);
-        SetTransparence(0.5f);
-        Invoke(nameof(ResetTransparency), 0.1f);
-
-        // Проверяем смерть
-        if (health <= 0)
-        {
-            Die();
-        }
+        SetTransparence(.5f);
+        Invoke(nameof(ResetTransparency), .1f);
+        if (health <= 0) Die();
     }
 
     /// <summary>

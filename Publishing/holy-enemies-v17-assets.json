@@ -1,0 +1,380 @@
+{
+  "version": "0.0.0.17",
+  "createdOn": "2026-10-17",
+  "files": [
+    {
+      "path": "Assets/Sprits/Holy/HolyOrc.png",
+      "sha256": "bf1385e1255d3f0fbe5672bc29b5c8655707e7a9f2583e26399ebb4aa6bbc119",
+      "metadataSHA256": "08a3cc39fc6ff418cb1a720f000ba3b8e6614d263ea64fa213d9fa792250c5b2",
+      "frameCount": 16,
+      "size": [
+        1254,
+        1254
+      ],
+      "generation": "Built-in image_gen; allEnemy.png used as a style reference only",
+      "generatedSourceFile": "C:\\Users\\79870\\.codex\\generated_images\\01a10bd3-7ceb-7c10-b3fb-76a6f7fa83f0\\exec-e00c8cf9-73e9-43b0-a7ae-f6c0c3b51a7d.png",
+      "sourcePixelsUnchanged": true,
+      "importedTextureSize": 128,
+      "animationStates": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Defeat"
+      ],
+      "sourcePrompt": "Publishing/holy-enemies-v17-prompts.md"
+    },
+    {
+      "path": "Assets/Sprits/Holy/HolyGhost.png",
+      "sha256": "7569ca8a8fa213c4bba14aac131ba0af745d21a6d6be684364999f6f7d478d5f",
+      "metadataSHA256": "f49c755507cafbf7b25a1415861b9d48fc4f61d1116a55550163acf459e5ed19",
+      "frameCount": 17,
+      "size": [
+        1254,
+        1254
+      ],
+      "generation": "Built-in image_gen; allEnemy.png used as a style reference only",
+      "generatedSourceFile": "C:\\Users\\79870\\.codex\\generated_images\\01a10bd3-7ceb-7c10-b3fb-76a6f7fa83f0\\exec-a340c315-ba25-48d9-9517-82d8fed5b6a5.png",
+      "sourcePixelsUnchanged": true,
+      "importedTextureSize": 128,
+      "animationStates": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Defeat"
+      ],
+      "sourcePrompt": "Publishing/holy-enemies-v17-prompts.md"
+    }
+  ],
+  "waveRosters": [
+    {
+      "wave": 1,
+      "enemyTypes": [],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 2,
+      "enemyTypes": [],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 3,
+      "enemyTypes": [],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 4,
+      "enemyTypes": [],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 5,
+      "enemyTypes": [
+        1,
+        3,
+        4,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 6,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 7,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 8,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 9,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 10,
+      "enemyTypes": [],
+      "dedicatedBoss": true
+    },
+    {
+      "wave": 11,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 12,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 13,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 14,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 15,
+      "enemyTypes": [],
+      "dedicatedBoss": true
+    },
+    {
+      "wave": 16,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 17,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 18,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 19,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 20,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 21,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 22,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 23,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 24,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 25,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    },
+    {
+      "wave": 26,
+      "enemyTypes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "dedicatedBoss": false
+    }
+  ],
+  "generationTool": "image_gen built-in",
+  "rasterPostProcessing": "None. Original generated PNG bytes retained. Unity import limits texture to 128px and slices animation frames.",
+  "validation": {
+    "result": "PASS",
+    "runtimeChecks": 228,
+    "webGLBuild": "Succeeded",
+    "sourceComparison": "Publishing/isolated-build-v17.json"
+  }
+}

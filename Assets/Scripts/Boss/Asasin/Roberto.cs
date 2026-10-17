@@ -467,7 +467,7 @@ public class Roberto : Sounds
         if (!CanAct) yield break;
 
         float healAmount = maxHP * healPercentage;
-        currentHP = Mathf.Min(currentHP + healAmount, maxHP);
+        RestoreHealth(healAmount);
         currentHealPotions--;
 
         currentState = BossState.Aggro;
@@ -554,7 +554,7 @@ public class Roberto : Sounds
             PlayerController pc = player.GetComponent<PlayerController>();
             if (pc != null)
                 pc.TakeDamage(circleDamage);
-            currentHP = Mathf.Min(currentHP + circleHealAmount, maxHP);
+            RestoreHealth(circleHealAmount);
         }
         yield return new WaitForSeconds(boomAnimationDuration);
         if (remoteObj != null) Destroy(remoteObj);
@@ -613,6 +613,13 @@ public class Roberto : Sounds
         }
         currentState = BossState.Aggro;
         animator.SetTrigger("Run");
+    }
+
+    public void RestoreHealth(float amount)
+    {
+        if (currentState == BossState.Dead || amount <= 0) return;
+        currentHP = Mathf.Min(maxHP, currentHP + amount);
+        if (hpBar != null) hpBar.fillAmount = currentHP / maxHP;
     }
 
     public void TakeDamage(float damage)

@@ -40,6 +40,11 @@ def main():
             assert sha(path + '.meta') == (item.get('metadataSHA256') or item['metaSha256']), path + '.meta'
     for item in audio['clips']:
         assert sha(item['file']) == item['sha256'], item['file']
+    holy_manifest = ROOT / 'Publishing/holy-enemies-v17-assets.json'
+    if holy_manifest.is_file():
+        for item in read('Publishing/holy-enemies-v17-assets.json')['files']:
+            assert sha(item['path']) == item['sha256'], item['path']
+            assert sha(item['path'] + '.meta') == item['metadataSHA256'], item['path'] + '.meta'
     for item in inventory['proofs']:
         assert sha(item['downloadPath']) == item['downloadSHA256'], item['downloadPath']
         if item.get('archiveEntry'):

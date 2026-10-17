@@ -21,6 +21,8 @@ public sealed class DamageNumbers : MonoBehaviour
         public Vector3 origin;
         public float age, drift;
         public bool active;
+        public bool immunity;
+        public int sourceId;
     }
     private Number[] numbers;
     private int created;
@@ -56,6 +58,12 @@ public sealed class DamageNumbers : MonoBehaviour
         instance.Display(target, damage);
     }
 
+    public static void ShowImmune(Transform target)
+    {
+        if (!IsEnabled || instance == null || !instance.isActiveAndEnabled || target == null) return;
+        instance.Display(target, 0, true);
+    }
+
     private Number CreateNumber()
     {
         var label = Instantiate(numberPrefab, transform);
@@ -65,9 +73,13 @@ public sealed class DamageNumbers : MonoBehaviour
         return number;
     }
 
-    private void Display(Transform target, double damage)
+    private void Display(Transform target, double damage, bool immunity = false)
     {
         if (numberPrefab == null) return;
+        int sourceId = target.GetInstanceID();
+        if (immunity)
+            for (int i = 0; i < created; i++)
+                if (numbers[i].active && numbers[i].immunity && numbers[i].sourceId == sourceId && numbers[i].age < .25f) return;
         Number number = null, oldest = null;
         for (int i = 0; i < created; i++)
         {
@@ -84,7 +96,11 @@ public sealed class DamageNumbers : MonoBehaviour
         number.drift = UnityEngine.Random.Range(-.18f, .18f);
         number.age = 0;
         number.active = true;
-        number.label.text = damage.ToString("0.##", CultureInfo.CurrentCulture);
+        number.immunity = immunity;
+        number.sourceId = sourceId;
+        number.label.color = immunity ? new Color32(213, 193, 163, 255) : numberPrefab.color;
+        number.label.text = immunity ? (GameLocalization.Language == "en" ? "Immune" : "Иммунитет")
+            : damage.ToString("0.##", CultureInfo.CurrentCulture);
         number.label.alpha = 1;
         number.label.transform.position = number.origin;
         number.label.transform.localScale = Vector3.one * 1.15f;

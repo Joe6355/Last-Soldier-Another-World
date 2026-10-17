@@ -207,7 +207,8 @@ public class Slime : Sounds
     public void TakeDamage(int amount, bool isHolyArrow)
     {
         double previousHealth = health;
-        if (deathHandled) return;
+        if (deathHandled || amount <= 0) return;
+        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
         if (trainingTarget)
         {
             if (amount <= 0) return;
@@ -222,35 +223,8 @@ public class Slime : Sounds
             trainingDamage?.Invoke(actualDamage, defeated);
             return;
         }
-        // Получаем ссылку на стрелу
-        ArrowDef arrowDef = FindObjectOfType<ArrowDef>();
-
-
-
-        // Если стрела святая
-        if (isHolyArrow)
-        {
-            // Если у врага тег из списка Holy, наносим урон
-            if (arrowDef.HolyEnemyTags.Contains(gameObject.tag))
-            {
-                health -= amount;
-                PlaySound(sounds[1], volume: 1, destroyed: true);
-                //Debug.Log($"Враг получил урон от святой стрелы: {amount}. Текущее здоровье: {health}");
-            }
-            // Если враг не святой, восстанавливаем здоровье
-            else if (arrowDef.EnemyTags.Contains(gameObject.tag))
-            {
-                Heal(amount);
-                //Debug.Log($"Враг был вылечен святой стрелой на {amount}. Текущее здоровье: {health}");
-            }
-        }
-        else
-        {
-            // Если стрела не святая, наносим обычный урон
-            health -= amount;
-            PlaySound(sounds[1], volume: 1, destroyed: true);
-            //Debug.Log($"Враг получил обычный урон: {amount}. Текущее здоровье: {health}");
-        }
+        health -= amount;
+        PlaySound(sounds[1], volume: 1, destroyed: true);
 
         DamageNumbers.Show(transform, previousHealth, health);
         SetTransparence(0.5f);

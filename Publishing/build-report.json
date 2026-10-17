@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-17T17:27:33.613559+00:00",
+  "builtAt": "2026-10-17T18:47:21.103705+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 14472626,
-  "unpackedBytes": 14780242,
-  "sha256": "fdef812133ff1309912d102adda22a81adb1e3876e66b3dedc351992257b017c",
+  "zipBytes": 14529808,
+  "unpackedBytes": 14836048,
+  "sha256": "d91e1eb8bb4660f901cc7d7ba118455c4e3933df6a9ee42723befeb349a16c66",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "aa4685ca870f95f3ec5b3213d9e26c59a9ced51acbb9d30dc236539938e844a6",
-    "Build/YandexGames.framework.js.unityweb": "030c6c4da68c7b275431fcc25f79d2852f9cee3bbbe833c3e8fa5e0d0f14e8fb",
+    "Build/YandexGames.data.unityweb": "6564504f9c8ef360e56ab4124bd725f4be9826f1c34fc08292aa8cae19ec1691",
+    "Build/YandexGames.framework.js.unityweb": "f2f1eadd056a420b0973f3b9d2e723bd5cfffe33756055560ab3d2ea4e7ff1a2",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "e99f7421c47a0462cd97ade67ebfbb814fce410fffc7b8d39ae9ebf604e78af8",
-    "index.html": "a907c50c4d5538929e486b64529375fdc080af8590a0c4362ef94efb5096f7d6",
+    "Build/YandexGames.wasm.unityweb": "30d257ad592e682e3dafe48e4ab7653bfeb379563cd3f6b2bb4aacd5293a4cf3",
+    "index.html": "980f0c6fa8d2f4e5df727a82d2a51f92c9a45d035275f04df79056b69cfeddbd",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -41,7 +41,7 @@
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 1071,
+    "matched_files": 1103,
     "files": [
       {
         "path": "Assets/Anim/Animals/Babka.controller",
@@ -346,6 +346,86 @@
       {
         "path": "Assets/Anim/Enemy/HealerWalk.anim.meta",
         "sha256": "a95a8b113f7de70492aa8bac039fa357586e8e1f213cc1ad7184d2418bfe4af8"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhost.controller",
+        "sha256": "aa064ba8ee4283401e63f0dac068bbe52cb98a3c088aac51780ed114c0ed77be"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhost.controller.meta",
+        "sha256": "12fbcc2ef88639a4fb641ad27cb154b10fa808429489dabd9a3f9d0143a08d37"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostAttack.anim",
+        "sha256": "fac64ed52f7fd39857f89e02fe02195e295ea13ab9ae966989ed1716c33f3cb3"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostAttack.anim.meta",
+        "sha256": "46f3731280ffb671e5e73caf7687a602482d505d09b602f77dba53743744ac3f"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostDefeat.anim",
+        "sha256": "92ccfd80cf31257ee5618ae2cbd90083a266d6bb2e732c122cce0813894a1ae5"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostDefeat.anim.meta",
+        "sha256": "5e4e176aed5ffaf01151c46d77f37b983654e6eb8b1f01931c2d059a59e7d268"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostIdle.anim",
+        "sha256": "fc05047e7c2d5f36e51b87614731ad9511199a2b244e0cbcd016ca0d67ae4da1"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostIdle.anim.meta",
+        "sha256": "4c31178701f46561d6dbfe205fc21a6078aec0bb9fb833597c87dc326226b781"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostWalk.anim",
+        "sha256": "02f713eea4b22437486b49bf288148e3c6a4ce94dca0ace7cbe2822bf8a3992c"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyGhostWalk.anim.meta",
+        "sha256": "841ed082b1fc711173498bd82f4738d76d62d98de5da97351cf2247f5cad66d4"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrc.controller",
+        "sha256": "ad29a0b96b8b43b41f2c80b53c47ce0e40cdfee420c8e28d843643785f7fa36a"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrc.controller.meta",
+        "sha256": "f4833d70006fc6ac12607bbd1bbeba96d201cf135ef13a561850a81bc7b04564"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcAttack.anim",
+        "sha256": "3e6b98a12e3b0d14e5a4df82db72ddbd369c8a5b3d04d7bd42c45cb41f9b47fc"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcAttack.anim.meta",
+        "sha256": "35b664a239834ea8b0e8e917cef27e0755dc7d1855085fc0dce235ec5edc1166"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcDefeat.anim",
+        "sha256": "990a6d362573658db7701abcf542053cf7b2a7bea7160ef219e99dc0c6a6dd4a"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcDefeat.anim.meta",
+        "sha256": "a093f974d14ec3b276b7c95b729e4501f1d54b99c51f111125c578717e7f5d65"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcIdle.anim",
+        "sha256": "47c0a759e8683e2ca38d3137968e6b5b986c5abf58877cb1cc6c076aba8a80b1"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcIdle.anim.meta",
+        "sha256": "b8ac33d2f56647b793a676940f6f3d76224e1374734db950c60a31264ae31c2d"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcWalk.anim",
+        "sha256": "ed56c46f54640a1472bb3009f0e60da3f4e9779cd48f77d77e102db4423acbae"
+      },
+      {
+        "path": "Assets/Anim/Enemy/Holy/HolyOrcWalk.anim.meta",
+        "sha256": "8f08b16d2e55932bb71001d0eef1df239d041a341db37015aebc40231c8d339b"
       },
       {
         "path": "Assets/Anim/Enemy/HolySlime.controller",
@@ -1412,6 +1492,14 @@
         "sha256": "3a5b7fa6226b87c101f9d0488df69b0071554fd2938857ec2d4ada8c68604482"
       },
       {
+        "path": "Assets/Prefabs/Arrow/AddHolyArrow Variant.prefab",
+        "sha256": "242012c4af00c759eeafefc37ce5708ab05577dfd350bd1633a1f4e1b78c6258"
+      },
+      {
+        "path": "Assets/Prefabs/Arrow/AddHolyArrow Variant.prefab.meta",
+        "sha256": "1a07b62fda5e0ab15fbc0e57a445296d4b89d2eca0e5bd041dd47f050d5360e6"
+      },
+      {
         "path": "Assets/Prefabs/Arrow/ArrowDef.prefab",
         "sha256": "c3401836ee56d3a342ad69e835d3c1104f8e7566fb0b97d04170d78739508a2f"
       },
@@ -1564,12 +1652,36 @@
         "sha256": "9f5276f0449639ce781e57c7d8b35bbe0ba8e6d846bad8247c2a1c90d026e514"
       },
       {
+        "path": "Assets/Prefabs/Enemy/HolyGhost.prefab",
+        "sha256": "9fe2b19e490feee81156a86eee7426882dc1c21b5734490e0add1f4a06cdc0d6"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HolyGhost.prefab.meta",
+        "sha256": "a5d35f74e0f2fbd153f5fd8895eb56e403f021f979cf584adc5beeb603e34d64"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HolyOrc.prefab",
+        "sha256": "564cacb25f87ad30f46176aa54f420be777e966897d0ab982b675cb34dbbfa42"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HolyOrc.prefab.meta",
+        "sha256": "2efb6272f4681367baca82e301dd7621135181d5b287c42c57454c05423b1799"
+      },
+      {
         "path": "Assets/Prefabs/Enemy/HolySlime.prefab",
         "sha256": "20839c286149e28954d149b727c2a83c4c879fa6208c00f42ff7d52c5e154bd7"
       },
       {
         "path": "Assets/Prefabs/Enemy/HolySlime.prefab.meta",
         "sha256": "b3313fa1109d1e2e704c05a664cc198cc852fd0a140986f4c7c2d37ce6492940"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HolySpiritOrb.prefab",
+        "sha256": "004995c05bd8ec3f2601401d56a4411c86f97a4145994d6f0e55937beabd2d4f"
+      },
+      {
+        "path": "Assets/Prefabs/Enemy/HolySpiritOrb.prefab.meta",
+        "sha256": "afc8bb609bb49285b7dc282233af7074334772ef002b80aa2590071239bc51b5"
       },
       {
         "path": "Assets/Prefabs/Enemy/SceletMag.prefab",
@@ -1661,7 +1773,7 @@
       },
       {
         "path": "Assets/Resources/AssetCredits.txt",
-        "sha256": "320d65b0778869838f68d96431fb996ac57cfee43e9f4e7556236f4d51694442"
+        "sha256": "483df301027b799c6803006b19caa95d174d07e820fddb0f776464fd0edce685"
       },
       {
         "path": "Assets/Resources/AssetCredits.txt.meta",
@@ -1685,7 +1797,7 @@
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "a7bd357520c5f0c60984afcb73c4b6827d887064d289c227b52afaff8a922256"
+        "sha256": "83907b9db0ec55e66c83f3cdc049209a279c4724acdc03f55b7b56b50a867c25"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
@@ -1705,7 +1817,7 @@
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs",
-        "sha256": "65c5615990559e16a7bd66df3cc8afc5fdff9a62390f071d68713cfc8ba8a09b"
+        "sha256": "9bfa3df81014781a97b358e41c8829da9387b54e3a036e060d0c72e5c0ebc177"
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs.meta",
@@ -1737,7 +1849,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs",
-        "sha256": "a4519cf23ce8ab47bc652d6dc56a2ab7767793286da112845dc46edb3225fa22"
+        "sha256": "ebc29dadaec469278ac712915f2869d2cc7a821fee6ebf9a8594c949b3093cac"
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs.meta",
@@ -1749,7 +1861,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
-        "sha256": "fbb82492bd798bd1d4dd0f1f30d042ce18d4d8a7747699d70e4d769dc5b09185"
+        "sha256": "60a90322c07c130749aba2d967c2a3f59161a3acd8fb2e06340e683b16111f32"
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs.meta",
@@ -1809,7 +1921,7 @@
       },
       {
         "path": "Assets/Scripts/Enemy.cs",
-        "sha256": "9405a6761e0fe11300fb5f0f2fd53de0d7531a28d150f9ab5455d449c36becf6"
+        "sha256": "aa973d21b7a9da1f169b90eff9281cab2b3dbafbe2301271205b9fb22f0b0b37"
       },
       {
         "path": "Assets/Scripts/Enemy.cs.meta",
@@ -1841,7 +1953,7 @@
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs",
-        "sha256": "3e233460f487223947673a5a21a4b47dc5e344417784f8fd09901ac1e9ba0794"
+        "sha256": "33139bfe3be0f78f9ba57a12072eb2f4af9f580c0b7a35f2fe165b9798948ff8"
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs.meta",
@@ -1849,7 +1961,7 @@
       },
       {
         "path": "Assets/Scripts/HolyArrow.cs",
-        "sha256": "05d8699b879a633ea217e6b764d55ad9d642ec7aad4d41002e83588373fe2989"
+        "sha256": "6f1eeb943005bb59697518eaab10f0f01b4e63480f27ba592179346f71e8ec1b"
       },
       {
         "path": "Assets/Scripts/HolyArrow.cs.meta",
@@ -1945,7 +2057,7 @@
       },
       {
         "path": "Assets/Scripts/SceletMag.cs",
-        "sha256": "a095313f0532853d573acb238ea140df79b12916b95d4d8764658c71ec0d430e"
+        "sha256": "137f8da9a5b2202a831655ffabc26d7a1ef52fc94d7583245678c53d35f55a8f"
       },
       {
         "path": "Assets/Scripts/SceletMag.cs.meta",
@@ -1953,7 +2065,7 @@
       },
       {
         "path": "Assets/Scripts/SceletonDef.cs",
-        "sha256": "40366ed405b960a0ae4b6d229ae46697cc5702bd650dd3106906b88c98611290"
+        "sha256": "b4a4a49502b565354cd64e7ad1ca5fa41bbc45d33e4b5ea32cd582134b44929c"
       },
       {
         "path": "Assets/Scripts/SceletonDef.cs.meta",
@@ -1977,7 +2089,7 @@
       },
       {
         "path": "Assets/Scripts/Slime.cs",
-        "sha256": "e86c5de3ea26291fb9f7bba8fa6820fd7361f9587e734ab395390b0d0c1a2421"
+        "sha256": "4ef5f5725a5955af9558f8d72ad30b66a61f32cb54650df99b35fb9d220fe51d"
       },
       {
         "path": "Assets/Scripts/Slime.cs.meta",
@@ -2001,7 +2113,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/DamageNumbers.cs",
-        "sha256": "2ada6f8de9babf6debefdd51419aa91be2ab6eed85baf26442215364f440ab67"
+        "sha256": "ac56be130a0d55259aa5a8ed6d223a3c7ffc4acdf9197ba2b8a53df9c9dfec6a"
       },
       {
         "path": "Assets/Scripts/Ui/DamageNumbers.cs.meta",
@@ -2033,7 +2145,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/MobileControls.cs",
-        "sha256": "e5f9b871e37e2a656eb4e28c579ec075023692f3f1ae62538ca9fd29b650bf63"
+        "sha256": "cf4796f5a23cc58c21e9c7578b95a2a276ff377bb2f798bcd20a5acb15e8aea3"
       },
       {
         "path": "Assets/Scripts/Ui/MobileControls.cs.meta",
@@ -2133,7 +2245,7 @@
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs",
-        "sha256": "0315f2360bc8f3aa1931b95ac5636323984b378dd6617fc71f21d0fabb60d8e8"
+        "sha256": "93657dab8e668e660224a246450ac6ae4c8e518b373ed1a4f2514f44c2f7c626"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs.meta",
@@ -2854,6 +2966,22 @@
       {
         "path": "Assets/Sprits/HealerAtack.png.meta",
         "sha256": "0bf33f0e27f3c4924e5cdb5c8f38b6f70fe81ec461eb6f360052e13cd9f1cddb"
+      },
+      {
+        "path": "Assets/Sprits/Holy/HolyGhost.png",
+        "sha256": "7569ca8a8fa213c4bba14aac131ba0af745d21a6d6be684364999f6f7d478d5f"
+      },
+      {
+        "path": "Assets/Sprits/Holy/HolyGhost.png.meta",
+        "sha256": "f49c755507cafbf7b25a1415861b9d48fc4f61d1116a55550163acf459e5ed19"
+      },
+      {
+        "path": "Assets/Sprits/Holy/HolyOrc.png",
+        "sha256": "bf1385e1255d3f0fbe5672bc29b5c8655707e7a9f2583e26399ebb4aa6bbc119"
+      },
+      {
+        "path": "Assets/Sprits/Holy/HolyOrc.png.meta",
+        "sha256": "08a3cc39fc6ff418cb1a720f000ba3b8e6614d263ea64fa213d9fa792250c5b2"
       },
       {
         "path": "Assets/Sprits/LPCportrait33.png",
@@ -4343,13 +4471,19 @@
     "Builds/RatingValidation/v16-LocalizationChecks-complete.log",
     "Builds/RatingValidation/v16-ShotgunChecks.log",
     "Builds/RatingValidation/v16-FriendlyDefeatChecks.log",
-    "Builds/RatingValidation/v16-ReleaseAssetChecks.log"
+    "Builds/RatingValidation/v16-ReleaseAssetChecks.log",
+    "Builds/RatingValidation/holy-v17-webgl-isolated.log",
+    "Builds/RatingValidation/v17-HolyEnemyChecks-complete.log",
+    "Builds/RatingValidation/v17-GameplayFixesV16Checks-complete.log",
+    "Builds/RatingValidation/v17-ShotgunChecks-complete.log",
+    "Builds/RatingValidation/v17-FriendlyDefeatChecks-complete.log",
+    "Builds/RatingValidation/v17-ReleaseAssetChecks-complete.log"
   ],
-  "uploadedToYandex": true,
+  "uploadedToYandex": false,
   "previousUploadedArchive": {
-    "sha256": "fc23be8239e6e00b051a42c48654f98e7591d3e5ef3476c0c1fb4cea6bac7e63",
-    "version": "0.0.0.15",
-    "fileId": "14046277"
+    "sha256": "fdef812133ff1309912d102adda22a81adb1e3876e66b3dedc351992257b017c",
+    "version": "0.0.0.16",
+    "fileId": "14046785"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -4657,8 +4791,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.16",
-  "uploadLimitation": null,
+  "localVersion": "0.0.0.17",
+  "uploadLimitation": "Local browser use is disabled in Work settings. Version 0.0.0.17 is packaged locally, not uploaded; yandexDraft records the last verified version 0.0.0.16.",
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
@@ -4760,10 +4894,11 @@
     ]
   },
   "assetManifestHashes": {
-    "Publishing/asset-rights-inventory.json": "44c9613871b38eb2651571823ba5a2928f06833768b2c340d17c6006e6dc0f58",
+    "Publishing/asset-rights-inventory.json": "cffa05d465af3cdba7fa173eb3dd23fa775f21ec00c16b6c85f59a81eb4ab776",
     "Publishing/character-replacements.json": "f8047b4128b5a9270174e571d9b3b68866a384579d8710ea594616bbd6db2b09",
     "Publishing/interface-sprite-provenance.json": "d4e2974d6fdade730d778c39182d2c573754806764bd4db2840320f838d79e1c",
-    "Publishing/audio-provenance.json": "0348780bece1ca85cc5af2178a97413beac07e771a58b22f8f81ec1283c75bd1"
+    "Publishing/audio-provenance.json": "0348780bece1ca85cc5af2178a97413beac07e771a58b22f8f81ec1283c75bd1",
+    "Publishing/holy-enemies-v17-assets.json": "c9cfacd6e531d47c8326350e309de10e22a8027acc3da651e5eb25d4904b9d00"
   },
   "englishMedia": {
     "report": "Publishing/Card/media-en-report.json",
@@ -4817,7 +4952,7 @@
     "report": "Publishing/upload-v14-check.json"
   },
   "buildSettingsSource": "Builds/RatingValidation/Project/ProjectSettings/ProjectSettings.asset",
-  "isolatedBuildValidation": "Publishing/isolated-build-v16.json",
+  "isolatedBuildValidation": "Publishing/isolated-build-v17.json",
   "visualAudioRevision": "Publishing/visual-audio-v15.json",
   "desktopVersion15Validation": {
     "checkedAt": "2026-10-17",
@@ -4827,7 +4962,7 @@
     "physicalPhoneVerified": false,
     "report": "Publishing/upload-v15-check.json"
   },
-  "gameplayRevision": "Publishing/gameplay-fixes-v16.json",
+  "gameplayRevision": "Publishing/holy-enemies-v17.json",
   "desktopVersion16Validation": {
     "checkedAt": "2026-10-17",
     "mainMenuRendered": true,
@@ -4835,5 +4970,15 @@
     "gameplayInteractionVerified": false,
     "physicalPhoneVerified": false,
     "report": "Publishing/upload-v16-check.json"
+  },
+  "localVersion17Validation": {
+    "checkedAt": "2026-10-17",
+    "unityChecks": 712,
+    "nodeTests": 10,
+    "webGLBuild": "Succeeded",
+    "browserVerified": false,
+    "physicalPhoneVerified": false,
+    "report": "Publishing/holy-enemies-v17.json",
+    "uploadReport": "Publishing/upload-v17-check.json"
   }
 }

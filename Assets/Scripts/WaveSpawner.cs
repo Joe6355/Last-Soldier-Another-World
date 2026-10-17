@@ -16,6 +16,7 @@ public class WaveConfig
 
     [Header("Максимум врагов в волне")]
     public int maxEnemies = 10;
+    public int[] enemyTypes = System.Array.Empty<int>();
 
     [Header("Интервал спавна (0 — общая настройка)")]
     [Min(0)] public float spawnInterval;
@@ -112,6 +113,7 @@ public class WaveSpawner : MonoBehaviour
     private bool isBreakActive = false;
     private bool playerInsideZone = false;
     private int enemiesSpawnedInWave = 0;
+    private readonly List<int> spawnBag = new List<int>();
     private bool bossActivated;
     private bool tutorialWave;
     private int tutorialEnemiesLeft;
@@ -272,6 +274,7 @@ public class WaveSpawner : MonoBehaviour
         WaveConfig wave = waves[waveIndex];
         waveTimeLeft = wave.waveDuration;
         enemiesSpawnedInWave = 0;
+        spawnBag.Clear();
 
         // Очистка заспавненных врагов (если игрок ранее покидал арену)
         ClearActiveEnemies();
@@ -316,6 +319,28 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    private int SelectEnemyIndex(WaveConfig wave)
+    {
+        // A shuffled bag gives every configured species a turn before repeating.
+        // Early lessons and dedicated bosses keep their existing wave paths.
+        if (CurrentWaveNumber < 5 || wave.enemyTypes == null || wave.enemyTypes.Length == 0)
+            return Mathf.Clamp(Random.Range(wave.minDifficulty, wave.maxDifficulty + 1), 0, enemyPrefabs.Count - 1);
+        if (spawnBag.Count == 0)
+        {
+            foreach (int index in wave.enemyTypes)
+                if (index >= 0 && index < enemyPrefabs.Count && enemyPrefabs[index] != null && !spawnBag.Contains(index)) spawnBag.Add(index);
+            for (int i = spawnBag.Count - 1; i > 0; i--)
+            {
+                int other = Random.Range(0, i + 1);
+                int value = spawnBag[i]; spawnBag[i] = spawnBag[other]; spawnBag[other] = value;
+            }
+        }
+        if (spawnBag.Count == 0) return Mathf.Clamp(wave.minDifficulty, 0, enemyPrefabs.Count - 1);
+        int result = spawnBag[spawnBag.Count - 1];
+        spawnBag.RemoveAt(spawnBag.Count - 1);
+        return result;
+    }
+
     private bool SpawnEnemy(WaveConfig wave)
     {
         if (spawnPoints.Count == 0 || enemyPrefabs.Count == 0) return false;
@@ -336,8 +361,7 @@ public class WaveSpawner : MonoBehaviour
             && (enemiesSpawnedInWave + 1) % Mathf.Max(2, regularBossSpawnEvery) == 0
             && regularBosses.Count < maxConcurrentRegularBosses && SpawnRegularBoss(spawnPos)) return true;
 
-        int enemyLevel = Random.Range(wave.minDifficulty, wave.maxDifficulty + 1);
-        enemyLevel = Mathf.Clamp(enemyLevel, 0, enemyPrefabs.Count - 1);
+        int enemyLevel = SelectEnemyIndex(wave);
         if (enemyPrefabs[enemyLevel] == null) return false;
 
         GameObject enemy = Instantiate(enemyPrefabs[enemyLevel], spawnPos, Quaternion.identity);
@@ -415,7 +439,7 @@ public class WaveSpawner : MonoBehaviour
         float damage = 1f + damageBoostPerStep * level;
         float speed = 1f + movementBoostPerStep * level;
         var target = ArrowDef.FindEnemy(enemy.transform);
-        if (target is Enemy melee) melee.ApplyWaveScaling(health, damage, speed);
+        if (target is Enemy melee) melee.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
         else if (target is Slime slime) slime.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
         else if (target is SceletonDef skeleton) skeleton.ApplyWaveScaling(health, damage, speed);
         else if (target is SceletMag mage) mage.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
