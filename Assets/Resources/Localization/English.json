@@ -1827,6 +1827,46 @@
     {
       "ru": "Лицензии графики и звука",
       "en": "Art and audio licenses"
+    },
+    {
+      "ru": "Красная арена",
+      "en": "Crimson Arena"
+    },
+    {
+      "ru": "Требуется {0} MMR",
+      "en": "Requires {0} MMR"
+    },
+    {
+      "ru": "Время вышло! Враги: здоровье и урон ×10",
+      "en": "Time is up! Enemy health and damage x10"
+    },
+    {
+      "ru": "Враги ×10",
+      "en": "Enemies x10"
+    },
+    {
+      "ru": "Красная арена · Волна {0}",
+      "en": "Crimson Arena · Wave {0}"
+    },
+    {
+      "ru": "Красная · {0}",
+      "en": "Crimson · {0}"
+    },
+    {
+      "ru": "Король слизней",
+      "en": "Slime King"
+    },
+    {
+      "ru": "Ассасин",
+      "en": "Assassin"
+    },
+    {
+      "ru": "Красный портал — арена для прокачанного героя. Вход от 2000 MMR. Здоровье и урон врагов ×2, монеты и MMR ×2. Каждая пятая волна — два босса вместе.",
+      "en": "The red portal leads to an arena for upgraded heroes. Requires 2000 MMR. Enemy health and damage x2, coins and MMR x2. Two bosses fight together every fifth wave."
+    },
+    {
+      "ru": "АРЕНА · {0} / 8",
+      "en": "ARENA · {0} / 8"
     }
   ]
 }

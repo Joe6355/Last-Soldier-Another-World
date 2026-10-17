@@ -1,0 +1,52 @@
+PASS
+Portal preserves stone pixels, loops open/idle correctly, pauses/resumes, and explains hard arena on PC/mobile in Russian/English
+Red portal uses an override of the existing controller
+Red open clip is imported as a genuine loop
+Original green portal clip remains unchanged
+Red return portal shares the repaired controller
+Portal proximity callback is not duplicated
+Original stone preserved; magic alone recolored: PortalStart/0
+Original stone preserved; magic alone recolored: PortalStart/8
+Original stone preserved; magic alone recolored: PortalStart/16
+Original stone preserved; magic alone recolored: PortalZapusk/0
+Original stone preserved; magic alone recolored: PortalZapusk/2
+Original stone preserved; magic alone recolored: PortalZapusk/4
+Distant red portal keeps its original animated idle cycle
+Approaching actually switches red portal to its open animation
+All five open frames keep playing for multiple cycles without freezing
+Locked portal still animates without teleporting a new player
+Open animation respects game pause
+Leaving proximity returns to the original idle cycle
+Arena lesson advances to the new red-arena explanation before completion
+Information step does not award supplies or change progress
+Explanation cannot accidentally send the player into hard combat
+Difficulty, unlock and boss pair explained: 0
+Complete red-arena explanation fits: 0
+Tutorial visibly highlights the actual red portal: 0
+Final information step has a clear finish button: 0
+New eighth arena step counter is localized: 0
+On-screen focus contains the visible portal: 0
+Explanation leaves the portal visible: 0
+Difficulty, unlock and boss pair explained: 1
+Complete red-arena explanation fits: 1
+Tutorial visibly highlights the actual red portal: 1
+Final information step has a clear finish button: 1
+New eighth arena step counter is localized: 1
+On-screen focus contains the visible portal: 1
+Explanation leaves the portal visible: 1
+Difficulty, unlock and boss pair explained: 2
+Complete red-arena explanation fits: 2
+Tutorial visibly highlights the actual red portal: 2
+Final information step has a clear finish button: 2
+New eighth arena step counter is localized: 2
+On-screen focus contains the visible portal: 2
+Explanation leaves the portal visible: 2
+Difficulty, unlock and boss pair explained: 3
+Complete red-arena explanation fits: 3
+Tutorial visibly highlights the actual red portal: 3
+Final information step has a clear finish button: 3
+New eighth arena step counter is localized: 3
+On-screen focus contains the visible portal: 3
+Explanation leaves the portal visible: 3
+Final acknowledgement completes and saves the tutorial
+Saved indices of all previous lessons remain compatible

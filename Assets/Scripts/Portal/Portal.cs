@@ -5,21 +5,44 @@ using TMPro;
 
 public class Portal : Sounds
 {
-    [Tooltip("Ссылка на другой портал, куда переносим игрока.")]
+    [Tooltip("РЎСЃС‹Р»РєР° РЅР° РґСЂСѓРіРѕР№ РїРѕСЂС‚Р°Р», РєСѓРґР° РїРµСЂРµРЅРѕСЃРёРј РёРіСЂРѕРєР°.")]
     public Transform linkedPortal;
 
-    [Header("Настройки кулдауна")]
-    [Tooltip("Задержка (в секундах) перед повторным телепортом.")]
+    [Header("РќР°СЃС‚СЂРѕР№РєРё РєСѓР»РґР°СѓРЅР°")]
+    [Tooltip("Р—Р°РґРµСЂР¶РєР° (РІ СЃРµРєСѓРЅРґР°С…) РїРµСЂРµРґ РїРѕРІС‚РѕСЂРЅС‹Рј С‚РµР»РµРїРѕСЂС‚РѕРј.")]
     public float teleportCooldown = 1f;
 
-    private float lastTeleportTime = float.NegativeInfinity; // Когда последний раз телепортировались
+    private float lastTeleportTime = float.NegativeInfinity; // РљРѕРіРґР° РїРѕСЃР»РµРґРЅРёР№ СЂР°Р· С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°Р»РёСЃСЊ
 
-    [Header("Смещение после телепорта")]
-    [Tooltip("На сколько сместить игрока относительно центра linkedPortal.")]
+    [Header("РЎРјРµС‰РµРЅРёРµ РїРѕСЃР»Рµ С‚РµР»РµРїРѕСЂС‚Р°")]
+    [Tooltip("РќР° СЃРєРѕР»СЊРєРѕ СЃРјРµСЃС‚РёС‚СЊ РёРіСЂРѕРєР° РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР° linkedPortal.")]
     public Vector2 offset = new Vector2(5f, 0f);
 
     [SerializeField] private string destinationLabel;
     [SerializeField] private TMP_FontAsset labelFont;
+
+    [SerializeField, Min(0)] private int requiredMmr;
+    [SerializeField] private WaveSpawner destinationArena;
+    [SerializeField] private WaveSpawner originArena;
+    [SerializeField] private Color labelColor = new Color32(255, 228, 153, 255);
+    private TextMeshPro portalLabel;
+    private bool lastUnlocked;
+    public bool IsUnlocked => requiredMmr == 0 || (GameProgress.IsReady && WaveSpawner.CurrentMmr >= requiredMmr);
+    private void Update()
+    {
+        if (portalLabel == null || requiredMmr == 0 || lastUnlocked == IsUnlocked) return;
+        RefreshLabel();
+    }
+    private void RefreshLabel()
+    {
+        lastUnlocked = IsUnlocked;
+        if (portalLabel == null) return;
+        portalLabel.text = GameLocalization.Text(destinationLabel)
+            + (lastUnlocked ? "" : "\n" + GameLocalization.Text("РўСЂРµР±СѓРµС‚СЃСЏ {0} MMR").Replace("{0}", requiredMmr.ToString("N0")));
+        portalLabel.color = lastUnlocked ? labelColor : new Color32(220, 135, 135, 255);
+    }
+    private void OnEnable() => GameLocalization.Changed += RefreshLabel;
+    private void OnDisable() => GameLocalization.Changed -= RefreshLabel;
 
     private void Start()
     {
@@ -31,30 +54,35 @@ public class Portal : Sounds
         if (labelFont != null) label.font = labelFont;
         label.text = destinationLabel; label.fontSize = 3;
         label.alignment = TextAlignmentOptions.Center;
-        label.color = new Color32(255, 228, 153, 255);
+        label.color = labelColor;
         label.outlineWidth = .15f;
         label.rectTransform.sizeDelta = new Vector2(3.6f, .7f);
         label.GetComponent<MeshRenderer>().sortingOrder = 20;
-        GameLocalization.Register(label);
+        portalLabel = label;
+        GameLocalization.Protect(label);
+        RefreshLabel();
     }
 
     private void OnTriggerEnter2D(Collider2D other) => TryTeleport(other);
     private void OnTriggerStay2D(Collider2D other)
     {
         // The player may already be in the exit when the return exercise unlocks.
-        if (TipsManager.IsGuideActive) TryTeleport(other);
+        if (TipsManager.IsGuideActive || requiredMmr > 0) TryTeleport(other);
     }
     private void TryTeleport(Collider2D other)
     {
-        // Если мы недавно телепортировались, ждём кулдаун
-        if (linkedPortal == null || !TipsManager.AllowsPortal(this)
+        // Р•СЃР»Рё РјС‹ РЅРµРґР°РІРЅРѕ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°Р»РёСЃСЊ, Р¶РґС‘Рј РєСѓР»РґР°СѓРЅ
+        if (linkedPortal == null || !IsUnlocked || !TipsManager.AllowsPortal(this)
             || YG.YG2.isPauseGame || Time.timeScale == 0f || Time.time - lastTeleportTime < teleportCooldown)
             return;
 
-        // Если вошёл игрок (с тегом "Player")...
+        // Р•СЃР»Рё РІРѕС€С‘Р» РёРіСЂРѕРє (СЃ С‚РµРіРѕРј "Player")...
         if (other.CompareTag("Player"))
         {
-            // Телепортируем в позицию "linkedPortal" + офсет
+            // РўРµР»РµРїРѕСЂС‚РёСЂСѓРµРј РІ РїРѕР·РёС†РёСЋ "linkedPortal" + РѕС„СЃРµС‚
+            if (originArena != null) originArena.AbandonRun();
+            if (destinationArena != null && WaveSpawner.ActiveArena != null && WaveSpawner.ActiveArena != destinationArena)
+                WaveSpawner.ActiveArena.AbandonRun();
             Vector3 newPosition = linkedPortal.position + (Vector3)offset;
             Vector3 delta = newPosition - other.transform.position;
             other.transform.position = newPosition;
@@ -71,7 +99,7 @@ public class Portal : Sounds
             if (sounds != null && sounds.Length > 1)
                 other.GetComponent<PlayerController>()?.PlaySound(sounds[1], .8f);
 
-            // Запоминаем время, когда телепорт произошёл
+            // Р—Р°РїРѕРјРёРЅР°РµРј РІСЂРµРјСЏ, РєРѕРіРґР° С‚РµР»РµРїРѕСЂС‚ РїСЂРѕРёР·РѕС€С‘Р»
             lastTeleportTime = Time.time;
         }
     }

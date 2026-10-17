@@ -63,7 +63,7 @@ public static class FriendlyDefeatChecks
                     if (SceneManager.GetActiveScene().name != "SampleScene") return;
                     player = UnityEngine.Object.FindObjectOfType<PlayerController>();
                     stats = UnityEngine.Object.FindObjectOfType<Stats>();
-                    wave = UnityEngine.Object.FindObjectOfType<WaveSpawner>();
+                    wave = WaveSpawner.FindArena(false);
                     foreach (var guide in UnityEngine.Object.FindObjectsOfType<TipsManager>()) guide.SkipGuide();
                     UnityEngine.Object.FindObjectOfType<Ui>().StartGame();
                     player.TeleportPlayerHome();

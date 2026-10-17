@@ -25,8 +25,8 @@ public class Enemy : Sounds
         health = Mathf.CeilToInt(health * healthMultiplier);
         defSpeed *= speedMultiplier;
         damageTouch = Mathf.CeilToInt(damageTouch * damageMultiplier);
-        waveDamageMultiplier = damageMultiplier;
-        waveProjectileSpeedMultiplier = projectileSpeedMultiplier;
+        waveDamageMultiplier *= damageMultiplier;
+        waveProjectileSpeedMultiplier *= projectileSpeedMultiplier;
     }
     [Header("Параметры врага")]
     public int health = 5;           // Здоровье врага
@@ -291,9 +291,7 @@ public class Enemy : Sounds
         }
         if (sounds != null && sounds.Length > 0)
             PlaySound(sounds[0], .85f, destroyed: true, spatial: false);
-        stats.countEnemyDead++;
-        stats.SaveInfo();
-        stats.UpdateUI();
+        stats.AddEnemyKill();
         DropLoot();
         Destroy(gameObject);
     }
@@ -331,7 +329,7 @@ public class Enemy : Sounds
             if (Random.value <= dropChance)
             {
                 GameObject loot = lootPrefabs[Random.Range(0, lootPrefabs.Length)];
-                Instantiate(loot, transform.position, Quaternion.identity);
+                WaveSpawner.SpawnEnemyLoot(loot, transform.position, Quaternion.identity);
                 Debug.Log("Лут выпал: " + loot.name);
             }
             else

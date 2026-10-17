@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-17T19:54:56.068747+00:00",
+  "builtAt": "2026-10-17T22:42:31.771774+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 16169260,
-  "unpackedBytes": 16475561,
-  "sha256": "67ec36844e6f2a2290f3a580727e41214ebd16590cf8cb967a1659fa6af9351a",
+  "zipBytes": 16187320,
+  "unpackedBytes": 16498340,
+  "sha256": "a5bb2c5b7bc32d708114da7c96717793d46a693f21463584de48e22923a9e0c6",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "67f041f79f4d8d48a473418eea3a8013ab300684fff401a336ababa7a53b0d32",
-    "Build/YandexGames.framework.js.unityweb": "f2f1eadd056a420b0973f3b9d2e723bd5cfffe33756055560ab3d2ea4e7ff1a2",
+    "Build/YandexGames.data.unityweb": "de29c7b7b32d281f2a8d9d6d41cff43589a6d11c21f60687993b87df4ac74095",
+    "Build/YandexGames.framework.js.unityweb": "5aab3866558c4b97fd103ae24ee6e58be7834ef775e56eac95dfa1d036d9eb82",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "30d257ad592e682e3dafe48e4ab7653bfeb379563cd3f6b2bb4aacd5293a4cf3",
-    "index.html": "23315e8146f224804cf2f9e8da849b7bd6a0089558a2f131e01d10cb346885fb",
+    "Build/YandexGames.wasm.unityweb": "8ece7f8d762af760e275414c94d440022c47f954ed9048eeb5794bdf730c9ed6",
+    "index.html": "cd14bb678b105ebc15c61d302aa7058936602f59d236e78dc4195dbb314b2778",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -41,7 +41,7 @@
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 1109,
+    "matched_files": 1127,
     "files": [
       {
         "path": "Assets/Anim/Animals/Babka.controller",
@@ -780,6 +780,14 @@
         "sha256": "0b06a93bede72c229fe27597abe24e839fa3a065d5ee0b79c01ee21c1ba1d592"
       },
       {
+        "path": "Assets/Editor/CrimsonArenaAuthoring.cs",
+        "sha256": "e611903801f98f67c1ea5e4e4388bf0c76d9603a996701f38dffa79a112dba3b"
+      },
+      {
+        "path": "Assets/Editor/CrimsonArenaAuthoring.cs.meta",
+        "sha256": "d2e017bc1fea98bcd82405f3b6388ac18afc660d410592259c4eadfe84c31888"
+      },
+      {
         "path": "Assets/Editor/GameSpriteAtlas.cs",
         "sha256": "3249ff6a60e3c4305061f5d529fad658ccb99092fe62ad7bdfaee0e574fd695f"
       },
@@ -789,7 +797,7 @@
       },
       {
         "path": "Assets/Editor/GuidedTutorialAuthoring.cs",
-        "sha256": "e0a782bf3e620bdbc577528bdaf2a52d3739fab5ee981b4ccb142e4de7d515d6"
+        "sha256": "4db430601b8f7efd0581fd9a1f56bae851057f55c3e6cfbb7ea51a5c23733429"
       },
       {
         "path": "Assets/Editor/GuidedTutorialAuthoring.cs.meta",
@@ -1809,7 +1817,7 @@
       },
       {
         "path": "Assets/Resources/Localization/English.json",
-        "sha256": "70faf2baa1938bd3aa579a6cc97aef563c2dd8266116d08887a61c0e979f3b8d"
+        "sha256": "f433c81aa9cd2d1f10020317564705f0b60320984a9d2cb246111c8d9cb28877"
       },
       {
         "path": "Assets/Resources/Localization/English.json.meta",
@@ -1821,11 +1829,11 @@
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "83907b9db0ec55e66c83f3cdc049209a279c4724acdc03f55b7b56b50a867c25"
+        "sha256": "c7bf6721c21c3a7cd5b99eb19a67b48ec9ccd0dd103b1b7006fc1a81df0614a5"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
-        "sha256": "666047e9815a9caddaaa944f87515a14e82fd56c9d873648fc8d936c3ab7929c"
+        "sha256": "7523952a2508f2fb9c97f5663aa89a61836146365b9713b0c09a37e6932a82bb"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs.meta",
@@ -1833,7 +1841,7 @@
       },
       {
         "path": "Assets/Scripts/ArenaFeature.cs",
-        "sha256": "bc1ea724b1c84b90129d95921ca8d175d9d855bba3cb3b14e5dabe0ea903d576"
+        "sha256": "172fa502f8283de9a3adc4649f026df472dbaa0bfdce354c9a1324edca60f1c8"
       },
       {
         "path": "Assets/Scripts/ArenaFeature.cs.meta",
@@ -1873,7 +1881,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs",
-        "sha256": "ebc29dadaec469278ac712915f2869d2cc7a821fee6ebf9a8594c949b3093cac"
+        "sha256": "e9e60d1e355871f9d78261ae40920551f205c49cf750aaed9814a69b8577c62e"
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs.meta",
@@ -1885,7 +1893,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
-        "sha256": "60a90322c07c130749aba2d967c2a3f59161a3acd8fb2e06340e683b16111f32"
+        "sha256": "381246a1242d8a8c1eacfcb508e93c324c7600b175fc8bb40f69da3a8813138a"
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs.meta",
@@ -1921,7 +1929,7 @@
       },
       {
         "path": "Assets/Scripts/Coin.cs",
-        "sha256": "9a86e938ed3ec055ab8d3ed764eb0e1076c667064b3fbcccd851f672d3728fa4"
+        "sha256": "1f56d932e1362b96886223aa4117d675df171ed13d5a7a74a17902a00850151f"
       },
       {
         "path": "Assets/Scripts/Coin.cs.meta",
@@ -1937,7 +1945,7 @@
       },
       {
         "path": "Assets/Scripts/DeadZone.cs",
-        "sha256": "2c08bcf72da2cd85543426e4afa2f898d6136ac5184ec59abc3e772d9b1ba3ef"
+        "sha256": "20faf0558529d1f6da76a139499bc756835e746f8a50030969626f053053c1d9"
       },
       {
         "path": "Assets/Scripts/DeadZone.cs.meta",
@@ -1945,7 +1953,7 @@
       },
       {
         "path": "Assets/Scripts/Enemy.cs",
-        "sha256": "aa973d21b7a9da1f169b90eff9281cab2b3dbafbe2301271205b9fb22f0b0b37"
+        "sha256": "b4446c546b14a623bc1db431c8f65a4c102b113801bd897c08d88699344b33f6"
       },
       {
         "path": "Assets/Scripts/Enemy.cs.meta",
@@ -1953,7 +1961,7 @@
       },
       {
         "path": "Assets/Scripts/EnemyDefeatEffect.cs",
-        "sha256": "c83856a94f4e7fdaa0e5c32c0d55183d5fd730d158090945ca4ed107132863af"
+        "sha256": "4b251fb0a64d7fddb25f741adc65d151805ccdcbc23a1ae2129c0352ac7ad0cd"
       },
       {
         "path": "Assets/Scripts/EnemyDefeatEffect.cs.meta",
@@ -1977,7 +1985,7 @@
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs",
-        "sha256": "33139bfe3be0f78f9ba57a12072eb2f4af9f580c0b7a35f2fe165b9798948ff8"
+        "sha256": "a6bbf3fb0a3179db33a368d562c0bfca20044bccdfb2d7f034dd7ade8a8dba37"
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs.meta",
@@ -2001,7 +2009,7 @@
       },
       {
         "path": "Assets/Scripts/NewArrow.cs",
-        "sha256": "93d66e2a21ec3528c668b2bc05cc51c418769a2c14cba6e876778d7f7cbac8ab"
+        "sha256": "e5eefb9f3fcd6deac5f67b9c7a28305789392856309d0bac6ef7bdd40a748f71"
       },
       {
         "path": "Assets/Scripts/NewArrow.cs.meta",
@@ -2045,7 +2053,7 @@
       },
       {
         "path": "Assets/Scripts/PlayerController.cs",
-        "sha256": "850c741f53c062cdfae317c8a5ece16a59a34e1154cab2c4f0ff02bd735b281f"
+        "sha256": "71d08d473fabfdc407086c4d521c18c4851b7aba11bdc1c981e96a39faa95daf"
       },
       {
         "path": "Assets/Scripts/PlayerController.cs.meta",
@@ -2057,7 +2065,7 @@
       },
       {
         "path": "Assets/Scripts/Portal/Portal.cs",
-        "sha256": "57c5ab0bd60d97f800fb9c81c859b24f0b61feeb90f9a1153bbe2afc4a24b6d6"
+        "sha256": "935c2f4cc2d21088f5fe2b2cbd587dcfcd26aa23b15a24e93d4124eadc9e49a7"
       },
       {
         "path": "Assets/Scripts/Portal/Portal.cs.meta",
@@ -2081,7 +2089,7 @@
       },
       {
         "path": "Assets/Scripts/SceletMag.cs",
-        "sha256": "137f8da9a5b2202a831655ffabc26d7a1ef52fc94d7583245678c53d35f55a8f"
+        "sha256": "aafc0044bb69e5f46e38def9df7276a57a57b2f127be4cf41e522de24f3b5153"
       },
       {
         "path": "Assets/Scripts/SceletMag.cs.meta",
@@ -2089,7 +2097,7 @@
       },
       {
         "path": "Assets/Scripts/SceletonDef.cs",
-        "sha256": "b4a4a49502b565354cd64e7ad1ca5fa41bbc45d33e4b5ea32cd582134b44929c"
+        "sha256": "4509f236f5e3918f1adabf33072912093c0241cdb28024b227bc87876543a95c"
       },
       {
         "path": "Assets/Scripts/SceletonDef.cs.meta",
@@ -2113,7 +2121,7 @@
       },
       {
         "path": "Assets/Scripts/Slime.cs",
-        "sha256": "4ef5f5725a5955af9558f8d72ad30b66a61f32cb54650df99b35fb9d220fe51d"
+        "sha256": "d6b1917503e1d7ef1ce1c41d85388b5fec2ee0a50cd53bd1a8870d6f11fb77cc"
       },
       {
         "path": "Assets/Scripts/Slime.cs.meta",
@@ -2177,7 +2185,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/Stats.cs",
-        "sha256": "5464a14485be5886845fa31b0316e541109dbe8162ab39fa98d300462b8de57c"
+        "sha256": "0f60aef21d4794a3f168b725383adc0c7feb5134ed5499d49b335dea98b08015"
       },
       {
         "path": "Assets/Scripts/Ui/Stats.cs.meta",
@@ -2185,7 +2193,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.Guided.cs",
-        "sha256": "5217f4417f2a606bb7467833bdc048b4e75988963b8dc1f769b9f1631df7365f"
+        "sha256": "90db2c70564f3840f5c0f14756c7410843f40f0be786f45e5e43dbed4f53e848"
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.Guided.cs.meta",
@@ -2193,7 +2201,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.View.cs",
-        "sha256": "0cb7f48f5907d3b636bbdaac27686d5f5b8654b995f398b2d4a50360eb20480e"
+        "sha256": "f522d305bf815bcb67a465df4103c76035dce79823918552c8e4a01062a397a9"
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.View.cs.meta",
@@ -2268,8 +2276,16 @@
         "sha256": "8cbb1e27aed67c3ee187d18bcf56d975b580058a45129e55e5f722be0fcb175c"
       },
       {
+        "path": "Assets/Scripts/WaveSpawner.Crimson.cs",
+        "sha256": "12cbcdd13f0a79b44ccd1e6c7690a2094ce43bf0628539c38fc120dc4abe406d"
+      },
+      {
+        "path": "Assets/Scripts/WaveSpawner.Crimson.cs.meta",
+        "sha256": "3f70720c793c485daa3a1b3156a5e9ad66d5f213c1ed90980c0b1d6f7a6d5bfa"
+      },
+      {
         "path": "Assets/Scripts/WaveSpawner.cs",
-        "sha256": "93657dab8e668e660224a246450ac6ae4c8e518b373ed1a4f2514f44c2f7c626"
+        "sha256": "c02f11f8094dd3ec9f4c00c8ef072a41725470a10da8448ffac268be359b547f"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs.meta",
@@ -2305,7 +2321,7 @@
       },
       {
         "path": "Assets/Scripts/Yandex/GameMonetization.cs",
-        "sha256": "60fe79ce40a19133eb2ddcf86591c5c389ab6d21c6c08507ebb0784b2978ed8a"
+        "sha256": "19e12bcbb0358cf2ae7faa0713916d3fcf5ff9aed6400d7c78504b1efefc48f8"
       },
       {
         "path": "Assets/Scripts/Yandex/GameMonetization.cs.meta",
@@ -2313,7 +2329,7 @@
       },
       {
         "path": "Assets/Scripts/Yandex/GameProgress.cs",
-        "sha256": "9ae1ab7f135393075d05b874a58e9438000cd487531060386a05c98982bfd111"
+        "sha256": "63d7c2cb210a32f465e5c62b952e16ab06a185b09e6a05b677b157412f7578a7"
       },
       {
         "path": "Assets/Scripts/Yandex/GameProgress.cs.meta",
@@ -4376,6 +4392,62 @@
         "sha256": "93164d5dc7461e4c59e81c64540caeb5cb9daffee98041d9caa939e1dfaf27c0"
       },
       {
+        "path": "Assets/UI/ForestGarrison/Crimson/CrimsonPalette.shader",
+        "sha256": "8f704bf4175eaf8940abd40c2f0448cb5a7df0e61fc600bb5aa754bd6e7dfd61"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/CrimsonPalette.shader.meta",
+        "sha256": "b27eefac5dc490a98a77746e1c346b01cc3056bdac1a1ef720d171c9737b4c5c"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Decor.mat",
+        "sha256": "99d8b3a600c539f9e7a82e25b5802986113b4c910d982be01247f280eed4e1f7"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Decor.mat.meta",
+        "sha256": "2e4db9a3e556e70c72fc90ecc99e40414738197501798cf0da0e451908738f0c"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Portal.mat",
+        "sha256": "8af4285466b4c8bfeb9e76189672b0b4e00cfb300c5f5135c93ce7581e5a23c6"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Portal.mat.meta",
+        "sha256": "662faf8a1176cd0aca727474ca3a0ca320b6f8167787e7106f3de77dcdf49963"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Portal.overrideController",
+        "sha256": "24580e80651b4fc1d7bba6e92c971e05d8e1738d470e5b12e3de82cfdd1db0c5"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Portal.overrideController.meta",
+        "sha256": "9528c94788374c73bbfff2b495106070b8055f217926c492795c58395cba0017"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/PortalOpenLoop.anim",
+        "sha256": "9df1cfc6201830fe7a15670b3371ae2d8a60075dddcfa9ebf454e62431c5985d"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/PortalOpenLoop.anim.meta",
+        "sha256": "82e0df470a029b6bf70a7e8510d7b589a3f9274db0c31c975b99b249d8b301d0"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Terrain.mat",
+        "sha256": "8ff23352003c2034a5f5d7be50948b7bd169b9d424e284028cd680f086d938d5"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Terrain.mat.meta",
+        "sha256": "34d0111e3c2549fa5e3e4c457713e91f66c83bc08d13aac744a4ccb1dde83eb2"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Water.mat",
+        "sha256": "b6603bf82699ff830f6d86692f3c3d0899075e20ccecc0cfe1b4f269010d42c3"
+      },
+      {
+        "path": "Assets/UI/ForestGarrison/Crimson/Water.mat.meta",
+        "sha256": "7f02680f4f4e046162e67e9aa0470f7919da0ef11cdac60fc3bd06c7810c0c92"
+      },
+      {
         "path": "Assets/UI/ForestGarrison/Enemy/DamageNumber.prefab",
         "sha256": "a36d478bf797c8cdac504b0bc3c8d762c48f4f7e9d72772b6df258b808b9946b"
       },
@@ -4505,14 +4577,24 @@
     "Builds/RatingValidation/sprite-atlas-v18-webgl-isolated.log",
     "Builds/RatingValidation/sprite-atlas-v18-final.log",
     "Builds/RatingValidation/v18-HolyEnemyChecks-final.log",
-    "Builds/RatingValidation/v18-ReleaseAssetChecks-final.log"
+    "Builds/RatingValidation/v18-ReleaseAssetChecks-final.log",
+    "Builds/RatingValidation/crimson-v19-webgl-isolated.log",
+    "Builds/RatingValidation/crimson-v19-tests.log",
+    "Builds/RatingValidation/holy-v19-regression.log",
+    "Builds/RatingValidation/friendly-v19-regression.log",
+    "Builds/RatingValidation/assets-v19-checks.log",
+    "Builds/RatingValidation/atlas-v19-checks.log",
+    "Builds/RatingValidation/portal-v20-webgl-isolated.log",
+    "Builds/RatingValidation/portal-v20-tests.log",
+    "Builds/RatingValidation/localization-v20-tests.log",
+    "Builds/RatingValidation/crimson-v20-regression.log",
+    "Builds/RatingValidation/atlas-v20-checks.log"
   ],
-  "uploadedToYandex": true,
+  "uploadedToYandex": false,
   "previousUploadedArchive": {
-    "version": "0.0.0.17",
-    "fileId": "14047809",
-    "archiveHashVerified": false,
-    "note": "Observed in console this turn before replacement"
+    "sha256": "6590a885144d7161924a950343ec6cb2688e6b1b13056654741a5fbcf1989990",
+    "version": "0.0.0.19",
+    "fileId": "14048690"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -4529,11 +4611,11 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.18",
-    "archiveFileId": "14047953",
+    "version": "0.0.0.19",
+    "archiveFileId": "14048690",
     "checkedAt": "2026-10-18",
     "archiveProcessing": "Ready",
-    "archiveLastChangedAtConsole": "00:56:47 18/10/2026",
+    "archiveLastChangedAtConsole": "03:08:28 18/10/2026",
     "platforms": [
       "desktop",
       "Android"
@@ -4544,7 +4626,7 @@
       "ru",
       "en"
     ],
-    "runtimeCheckedVersion": "0.0.0.18",
+    "runtimeCheckedVersion": "0.0.0.19",
     "moderationSubmitted": false,
     "published": false,
     "moderationBlocker": "Submit button still disabled after English media finished processing; disabled property verified in DOM and visible UI. Exact reason not exposed.",
@@ -4742,7 +4824,7 @@
       "platformIncidentConfirmedBySupport": true,
       "latestCheck": "Publishing/leaderboard-recheck-20261017.json"
     },
-    "lastSavedAtConsole": "00:56:47 18/10/2026",
+    "lastSavedAtConsole": "03:08:28 18/10/2026",
     "consoleTimeoutResolvedAfterReload": true,
     "latestReleaseCheck": {
       "checkedAt": "2026-10-16",
@@ -4768,10 +4850,10 @@
     "ageRatingObservationNote": "6+ observed and preserved on 2026-10-17; new code removes boss bodies and uses neutral defeat text. Moderation decision not guaranteed.",
     "platformPanelStatus": "Technical maintenance: come back later or choose another navigation section",
     "platformPanelProof": "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg",
-    "uploadProof": "Publishing/Previews/yandex-version18-20261018.jpg",
+    "uploadProof": "Publishing/Previews/yandex-version19-20261018.png",
     "moderationStatusCheckedVersion": "0.0.0.13",
     "cardMediaRecordedForVersion": "0.0.0.13",
-    "currentRuntimePath": "623393/ueywbxfxueohj0czv9f9lb0yhkfbuk45"
+    "currentRuntimePath": "623393/pyv4ka3lf3itjhl01f3mnatlzgr5090v"
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -4820,8 +4902,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.18",
-  "uploadLimitation": null,
+  "localVersion": "0.0.0.20",
+  "uploadLimitation": "Local browser use is disabled in Work settings",
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
@@ -4981,7 +5063,7 @@
     "report": "Publishing/upload-v14-check.json"
   },
   "buildSettingsSource": "Builds/RatingValidation/Project/ProjectSettings/ProjectSettings.asset",
-  "isolatedBuildValidation": "Publishing/isolated-build-v18.json",
+  "isolatedBuildValidation": "Publishing/isolated-build-v20.json",
   "visualAudioRevision": "Publishing/visual-audio-v15.json",
   "desktopVersion15Validation": {
     "checkedAt": "2026-10-17",
@@ -5018,5 +5100,23 @@
     "gameplayInteractionVerified": false,
     "physicalPhoneVerified": false,
     "report": "Publishing/upload-v18-check.json"
+  },
+  "crimsonArenaRevision": "Publishing/crimson-arena-v19.json",
+  "desktopVersion19Validation": {
+    "mainMenuRendered": true,
+    "currentRuntimePath": "623393/pyv4ka3lf3itjhl01f3mnatlzgr5090v",
+    "gameplayInteractionVerified": false,
+    "physicalPhoneVerified": false,
+    "report": "Publishing/upload-v19-check.json"
+  },
+  "portalTutorialRevision": "Publishing/portal-tutorial-v20.json",
+  "localVersion20Validation": {
+    "unityChecks": 1832,
+    "nodeTests": 10,
+    "webGLBuild": "Succeeded",
+    "browserVerified": false,
+    "physicalPhoneVerified": false,
+    "report": "Publishing/portal-tutorial-v20.json",
+    "uploadReport": "Publishing/upload-v20-check.json"
   }
 }

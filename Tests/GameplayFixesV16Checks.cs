@@ -74,7 +74,7 @@ public static class GameplayFixesV16Checks
                     UnityEngine.Object.FindObjectOfType<Ui>().StartGame();
                     player = UnityEngine.Object.FindObjectOfType<PlayerController>();
                     bow = player.crossbowController;
-                    wave = UnityEngine.Object.FindObjectOfType<WaveSpawner>();
+                    wave = WaveSpawner.FindArena(false);
                     stats = UnityEngine.Object.FindObjectOfType<Stats>();
                     player.transform.position = new Vector3(1000, 1000, player.transform.position.z);
                     player.GetComponent<Rigidbody2D>().position = player.transform.position;

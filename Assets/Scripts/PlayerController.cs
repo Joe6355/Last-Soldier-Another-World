@@ -185,7 +185,7 @@ public class PlayerController : Sounds
             RestoreUpgrades(upgradeShop.upgradeItems);
         }
         IsAwaitingRevive = PlayerPrefs.GetInt("PlayerDeathPending", 0) == 1 && hp <= 0;
-        FindObjectOfType<WaveSpawner>()?.RestoreCheckpointPosition(this);
+        WaveSpawner.SavedArena()?.RestoreCheckpointPosition(this);
     }
 
     private void Update()
@@ -460,7 +460,7 @@ public class PlayerController : Sounds
     public void ReturnToCampAfterDeath()
     {
         if (!IsAwaitingRevive) return;
-        FindObjectOfType<WaveSpawner>()?.AbandonRun();
+        WaveSpawner.ActiveArena?.AbandonRun();
         TeleportPlayerHome();
         hp = Mathf.Min(maxHp, 25f);
         totalCoins = Mathf.Max(0, totalCoins / 2);
@@ -472,7 +472,13 @@ public class PlayerController : Sounds
 
     public void TeleportPlayerHome()
     {
+        WaveSpawner.ActiveArena?.AbandonRun();
+        Vector3 delta = mirrorHome.position - transform.position;
         transform.position = mirrorHome.position;
+        var homeBody = GetComponent<Rigidbody2D>();
+        if (homeBody != null) { homeBody.position = transform.position; homeBody.velocity = Vector2.zero; }
+        foreach (var camera in FindObjectsOfType<Cinemachine.CinemachineVirtualCamera>())
+        { camera.OnTargetObjectWarped(transform, delta); camera.PreviousStateIsValid = false; }
         Debug.Log("Вы дома");
     }
 

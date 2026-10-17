@@ -36,7 +36,7 @@ public class Stats : MonoBehaviour
 
     public int completedWaves;
     public int TotalKills => (int)Math.Min(int.MaxValue, (long)countEnemyDead + countElitEnemyDead + countBossDead);
-    public int Mmr => GameProgress.MmrScore(completedWaves, TotalKills);
+    public int Mmr => GameProgress.MmrScore(completedWaves, TotalKills, PlayerPrefs.GetInt("CrimsonMmrBonus", 0));
 
     public enum EnemyKind { Other, Slime, Skeleton, SlimeBoss, Assassin }
     public enum AchievementMetric
@@ -296,6 +296,7 @@ public class Stats : MonoBehaviour
     public void AddCompletedWave()
     {
         if (completedWaves < int.MaxValue) completedWaves++;
+        AwardCrimsonRating(100);
         UpdateUI();
         SaveInfo();
     }
@@ -308,11 +309,13 @@ public class Stats : MonoBehaviour
     {
         public int version = 1;
         public int waves, kills, elite, bosses, deaths;
-        public bool IsValid => version == 1 && waves >= 0 && kills >= 0 && elite >= 0 && bosses >= 0 && deaths >= 0;
+        public int bonusMmr;
+        public bool IsValid => version == 1 && waves >= 0 && kills >= 0 && elite >= 0 && bosses >= 0 && deaths >= 0 && bonusMmr >= 0;
     }
 
     public static LeaderboardSummary ReadLeaderboardSummary() => new LeaderboardSummary
     {
+        bonusMmr = PlayerPrefs.GetInt("CrimsonMmrBonus", 0),
         waves = PlayerPrefs.GetInt("CompletedWaves", 0),
         kills = (int)Math.Min(int.MaxValue, (long)PlayerPrefs.GetInt("countEnemyDead", 0)
             + PlayerPrefs.GetInt("countElitEnemyDead", 0) + PlayerPrefs.GetInt("countBossDead", 0)),
@@ -324,6 +327,7 @@ public class Stats : MonoBehaviour
     public void AddEnemyKill(EnemyKind kind = EnemyKind.Other)
     {
         if (countEnemyDead < int.MaxValue) countEnemyDead++;
+        AwardCrimsonRating(1);
         RecordEnemyKind(kind);
         UpdateUI();
         SaveInfo();
@@ -339,6 +343,7 @@ public class Stats : MonoBehaviour
     public void AddBossDead(EnemyKind kind = EnemyKind.Other)
     {
         if (countBossDead < int.MaxValue) countBossDead++;
+        AwardCrimsonRating(1);
         RecordEnemyKind(kind);
         UpdateUI();
         SaveInfo();
@@ -347,9 +352,17 @@ public class Stats : MonoBehaviour
     public void AddElitEnemyDead(EnemyKind kind = EnemyKind.Other)
     {
         if (countElitEnemyDead < int.MaxValue) countElitEnemyDead++;
+        AwardCrimsonRating(1);
         RecordEnemyKind(kind);
         UpdateUI();
         SaveInfo();
+    }
+
+    private static void AwardCrimsonRating(int amount)
+    {
+        if (WaveSpawner.ActiveArena == null || !WaveSpawner.ActiveArena.IsCrimson) return;
+        PlayerPrefs.SetInt("CrimsonMmrBonus", (int)Math.Min(int.MaxValue,
+            (long)PlayerPrefs.GetInt("CrimsonMmrBonus", 0) + amount));
     }
 
     private void RecordEnemyKind(EnemyKind kind)

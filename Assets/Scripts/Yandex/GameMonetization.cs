@@ -97,7 +97,7 @@ public sealed class GameMonetization : MonoBehaviour
         rewardGranted = rewardPending = rewardError = false;
         gameUi.PauseForDeath();
         deathPanel.SetActive(true);
-        var waves = FindObjectOfType<WaveSpawner>();
+        var waves = WaveSpawner.ActiveArena;
         string wave = waves != null && waves.IsRunning ? "Волна " + waves.CurrentWaveNumber + " сохранена. " : "";
         deathStatus.text = wave + "Посмотрите видео, чтобы продолжить с полным здоровьем";
         SetButtons(true);

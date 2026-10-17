@@ -25,7 +25,7 @@ public class WaveConfig
     public float breakDuration = 15f;   // Отдых между волнами
 }
 
-public class WaveSpawner : MonoBehaviour
+public partial class WaveSpawner : MonoBehaviour
 {
     #region Спавн врагов и UI
 
@@ -117,7 +117,7 @@ public class WaveSpawner : MonoBehaviour
     private bool bossActivated;
     private bool tutorialWave;
     private int tutorialEnemiesLeft;
-    public int CurrentWaveNumber => tutorialWave ? 0 : currentWaveIndex + 1;
+    public int CurrentWaveNumber => tutorialWave ? 0 : currentWaveIndex + 1 + (crimsonArena ? crimsonCycle * waves.Count : 0);
     public bool IsTutorialWave => tutorialWave;
     public Transform TutorialExit => breakIndicator != null ? breakIndicator.transform : null;
     public RectTransform TutorialHud => waveHudPanel != null ? waveHudPanel.GetComponent<RectTransform>()
@@ -128,8 +128,9 @@ public class WaveSpawner : MonoBehaviour
     public float RemainingWaveTime => waveTimeLeft;
     public int ReinforcementLevel => CurrentWaveNumber < reinforcementFirstWave ? 0
         : Mathf.Min(10, 1 + (CurrentWaveNumber - reinforcementFirstWave) / Mathf.Max(1, reinforcementWaveStep));
-    public float ProjectileSpeedMultiplier => 1f + projectileSpeedBoostPerStep * ReinforcementLevel;
-    public float BarrelDamageMultiplier => 1f + healthBoostPerStep * ReinforcementLevel;
+    public float ProjectileSpeedMultiplier => crimsonArena ? 1f + Mathf.Min(.6f, .04f * (CurrentWaveNumber - 1))
+        : 1f + projectileSpeedBoostPerStep * ReinforcementLevel;
+    public float BarrelDamageMultiplier => crimsonArena ? HealthMultiplier : 1f + healthBoostPerStep * ReinforcementLevel;
     public bool CanSpawnRegularBossMinion => IsCombatActive && !tutorialWave && GameProgress.IsReady && !YG.YG2.isPauseGame
         && Time.timeScale > 0 && activeEnemies.Count < maxConcurrentLateEnemies;
     public float EffectiveSpawnInterval
@@ -138,10 +139,12 @@ public class WaveSpawner : MonoBehaviour
         {
             float interval = waves.Count > currentWaveIndex && currentWaveIndex >= 0 && waves[currentWaveIndex].spawnInterval > 0
                 ? waves[currentWaveIndex].spawnInterval : spawnInterval;
-            return Mathf.Max(.01f, interval) / (1f + spawnRateBoostPerStep * ReinforcementLevel);
+            return crimsonArena ? Mathf.Max(.25f, .65f - .012f * (CurrentWaveNumber - 1))
+                : Mathf.Max(.01f, interval) / (1f + spawnRateBoostPerStep * ReinforcementLevel);
         }
     }
-    public int EffectiveEnemyLimit => waves.Count > currentWaveIndex && currentWaveIndex >= 0
+    public int EffectiveEnemyLimit => crimsonArena ? Mathf.Min(180, 32 + 6 * (CurrentWaveNumber - 1))
+        : waves.Count > currentWaveIndex && currentWaveIndex >= 0
         ? Mathf.CeilToInt(waves[currentWaveIndex].maxEnemies * (1f + enemyCountBoostPerStep * ReinforcementLevel)) : 0;
 
     #endregion
@@ -151,7 +154,7 @@ public class WaveSpawner : MonoBehaviour
     private void Start()
     {
         // Скрываем UI, пока игрок не зайдёт
-        HideSpawnerUI();
+        if (ActiveArena == null || ActiveArena == this) HideSpawnerUI();
 
         if (breakIndicator != null)
             breakIndicator.SetActive(false);
@@ -188,7 +191,7 @@ public class WaveSpawner : MonoBehaviour
             WaveConfig currentWave = waves[currentWaveIndex];
 
             // Если это боссовая волна, не учитываем обычные условия окончания волны
-            if (currentWaveIndex == 9)
+            if (!crimsonArena && currentWaveIndex == 9)
             {
                 // Для волны с боссом-слизью
                 if (bossActivated && (bossWave10 == null || !bossWave10.activeInHierarchy))
@@ -199,7 +202,7 @@ public class WaveSpawner : MonoBehaviour
                 // Можно обновлять UI по-другому или просто выводить номер волны
                 UpdateWaveUI(0, currentWave.waveDuration, true);
             }
-            else if (currentWaveIndex == 14)
+            else if (!crimsonArena && currentWaveIndex == 14)
             {
                 // Для волны с боссом-ассассином
                 if (bossActivated && (bossWave15 == null || !bossWave15.activeInHierarchy))
@@ -212,20 +215,20 @@ public class WaveSpawner : MonoBehaviour
             else
             {
                 // Обычная логика для обычных волн:
-                if (enemiesSpawnedInWave >= EffectiveEnemyLimit && activeEnemies.Count == 0)
+                if (enemiesSpawnedInWave >= EffectiveEnemyLimit && activeEnemies.Count == 0 && (!IsPairedBossWave || bossActivated))
                 {
                     CompleteWave(true);
                     return;
                 }
 
-                waveTimeLeft -= Time.deltaTime;
+                if (!overtime) waveTimeLeft -= Time.deltaTime;
                 if (waveTimeLeft <= 0f)
                 {
-                    CompleteWave(false);
+                    EnterOvertime();
                 }
                 else
                 {
-                    UpdateWaveUI(waveTimeLeft, currentWave.waveDuration, true);
+                    UpdateWaveUI(waveTimeLeft, EffectiveWaveDuration, true);
                 }
             }
         }
@@ -256,6 +259,7 @@ public class WaveSpawner : MonoBehaviour
     {
         StopAllCoroutines();
         bossActivated = false;
+        overtime = false;
         if (waveIndex < 0 || waveIndex >= waves.Count)
         {
             Debug.LogWarning("Нет такой волны: " + waveIndex);
@@ -272,7 +276,7 @@ public class WaveSpawner : MonoBehaviour
         regularBossesSpawned = 0;
 
         WaveConfig wave = waves[waveIndex];
-        waveTimeLeft = wave.waveDuration;
+        waveTimeLeft = EffectiveWaveDuration;
         enemiesSpawnedInWave = 0;
         spawnBag.Clear();
 
@@ -290,7 +294,13 @@ public class WaveSpawner : MonoBehaviour
         // Если волна 10 (индекс 9) — активируется босс-слизь,
         // если волна 15 (индекс 14) — активируется босс-ассассин,
         // иначе спавнятся обычные враги.
-        if (waveIndex == 9)
+        if (crimsonArena)
+        {
+            for (int i = 0; i < 8; i++) if (SpawnEnemy(wave)) enemiesSpawnedInWave++;
+            StartCoroutine(SpawnEnemiesDuringWave(waveIndex));
+            if (IsPairedBossWave) StartCoroutine(SpawnPairedBosses());
+        }
+        else if (waveIndex == 9)
         {
             StartCoroutine(ActivateBossWave10());
         }
@@ -311,7 +321,7 @@ public class WaveSpawner : MonoBehaviour
         while (isWaveActive && currentWaveIndex == waveIndex)
         {
             if (GameProgress.IsReady && !YG.YG2.isPauseGame && enemiesSpawnedInWave < EffectiveEnemyLimit
-                && (ReinforcementLevel == 0 || activeEnemies.Count < maxConcurrentLateEnemies))
+                && ((!crimsonArena && ReinforcementLevel == 0) || activeEnemies.Count < maxConcurrentLateEnemies))
             {
                 if (SpawnEnemy(wave)) enemiesSpawnedInWave++;
             }
@@ -323,7 +333,7 @@ public class WaveSpawner : MonoBehaviour
     {
         // A shuffled bag gives every configured species a turn before repeating.
         // Early lessons and dedicated bosses keep their existing wave paths.
-        if (CurrentWaveNumber < 5 || wave.enemyTypes == null || wave.enemyTypes.Length == 0)
+        if ((!crimsonArena && CurrentWaveNumber < 5) || wave.enemyTypes == null || wave.enemyTypes.Length == 0)
             return Mathf.Clamp(Random.Range(wave.minDifficulty, wave.maxDifficulty + 1), 0, enemyPrefabs.Count - 1);
         if (spawnBag.Count == 0)
         {
@@ -357,10 +367,11 @@ public class WaveSpawner : MonoBehaviour
         );
 
         regularBosses.RemoveAll(enemy => enemy == null || !enemy.activeInHierarchy);
-        if (CurrentWaveNumber >= regularBossFirstWave
+        if (!crimsonArena && CurrentWaveNumber >= regularBossFirstWave
             && (enemiesSpawnedInWave + 1) % Mathf.Max(2, regularBossSpawnEvery) == 0
             && regularBosses.Count < maxConcurrentRegularBosses && SpawnRegularBoss(spawnPos)) return true;
 
+        if (!TrySafeSpawn(spawnPos, out spawnPos)) return false;
         int enemyLevel = SelectEnemyIndex(wave);
         if (enemyPrefabs[enemyLevel] == null) return false;
 
@@ -399,9 +410,9 @@ public class WaveSpawner : MonoBehaviour
         // Configure the clone before Start can show shared UI or launch attacks.
         GameObject enemy = Instantiate(source, position, source.transform.rotation);
         enemy.SetActive(false);
-        float health = 1f + healthBoostPerStep * ReinforcementLevel;
-        float damage = 1f + damageBoostPerStep * ReinforcementLevel;
-        float movement = 1f + movementBoostPerStep * ReinforcementLevel;
+        float health = HealthMultiplier;
+        float damage = DamageMultiplier;
+        float movement = MovementMultiplier;
         if (slimeTurn) enemy.GetComponent<SlimeBoss>().ConfigureAsRegularEnemy(this, health, damage, movement, ProjectileSpeedMultiplier);
         else
         {
@@ -419,6 +430,8 @@ public class WaveSpawner : MonoBehaviour
     public bool RegisterSpawnedEnemy(GameObject enemy)
     {
         if (enemy == null || !CanSpawnRegularBossMinion || activeEnemies.Contains(enemy)) return false;
+        if (!TrySafeSpawn(enemy.transform.position, out var safePosition)) return false;
+        enemy.transform.position = safePosition;
         ApplyEnemyReinforcement(enemy);
         activeEnemies.Add(enemy);
         return true;
@@ -434,10 +447,10 @@ public class WaveSpawner : MonoBehaviour
     private void ApplyEnemyReinforcement(GameObject enemy)
     {
         int level = ReinforcementLevel;
-        if (level == 0) return;
-        float health = 1f + healthBoostPerStep * level;
-        float damage = 1f + damageBoostPerStep * level;
-        float speed = 1f + movementBoostPerStep * level;
+        if (level == 0 && !crimsonArena) return;
+        float health = HealthMultiplier;
+        float damage = DamageMultiplier;
+        float speed = MovementMultiplier;
         var target = ArrowDef.FindEnemy(enemy.transform);
         if (target is Enemy melee) melee.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
         else if (target is Slime slime) slime.ApplyWaveScaling(health, damage, speed, ProjectileSpeedMultiplier);
@@ -448,19 +461,22 @@ public class WaveSpawner : MonoBehaviour
 
     public static void ScaleEnemyProjectile(GameObject projectile, float damageMultiplier, float speedMultiplier = 1f)
     {
-        if (projectile == null) return;
-        if (projectile.TryGetComponent<EnemyProgject>(out var shot)) { shot.damage *= damageMultiplier; shot.speed *= speedMultiplier; }
-        if (projectile.TryGetComponent<EnemyProgjectVAR>(out var otherShot)) { otherShot.damage *= damageMultiplier; otherShot.speed *= speedMultiplier; }
-        FindObjectOfType<WaveSpawner>()?.TrackEnemyProjectile(projectile);
+        ScaleProjectileValues(projectile, damageMultiplier, speedMultiplier);
+        ActiveArena?.TrackEnemyProjectile(projectile);
     }
 
     private void CompleteWave(bool cleared)
     {
         if (!isWaveActive) return;
         isWaveActive = false;
+        overtime = false;
         StopAllCoroutines();
-        if (currentWaveIndex == 9) ClearActiveEnemies();
-        if (cleared) FindObjectOfType<Stats>()?.AddCompletedWave();
+        if (!crimsonArena && currentWaveIndex == 9) ClearActiveEnemies();
+        if (cleared)
+        {
+            FindObjectOfType<Stats>()?.AddCompletedWave();
+            AwardCrimsonWaveLoot();
+        }
         StartBreak();
         SaveCheckpoint();
     }
@@ -482,6 +498,7 @@ public class WaveSpawner : MonoBehaviour
             Debug.Log("Все волны пройдены!");
             // Можно зациклить или остановить спавн.
             currentWaveIndex = 0;
+            if (crimsonArena) crimsonCycle++;
         }
         StartWave(currentWaveIndex);
     }
@@ -493,8 +510,10 @@ public class WaveSpawner : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (TipsManager.IsGuideActive) return;
-        if (collision.CompareTag("Player") && !playerInsideZone)
+        if (collision.CompareTag("Player") && !playerInsideZone && CanEnter)
         {
+            if (ActiveArena != null && ActiveArena != this) ActiveArena.AbandonRun();
+            ActiveArena = this;
             playerInsideZone = true;
             ShowSpawnerUI();
             ResetWavesAndStart();
@@ -509,12 +528,16 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!playerInsideZone) return;
         // Выгрузка сцены удаляет коллайдер игрока: это не отказ от сохранённой волны.
         if (isActiveAndEnabled && gameObject.scene.isLoaded && collision != null && collision.enabled
             && collision.gameObject.activeInHierarchy && collision.gameObject.scene.isLoaded
             && collision.GetComponentInParent<PlayerController>() != null && collision.CompareTag("Player"))
         {
             if (tutorialWave) return;
+            // Water constrains this island. Leaving its trigger must not cancel
+            // the run before DeadZone can return a dash to the shore.
+            if (crimsonArena) return;
             playerInsideZone = false;
             HideSpawnerUI();
             ResetSpawnerCompletely();
@@ -523,7 +546,9 @@ public class WaveSpawner : MonoBehaviour
 
     private void ResetWavesAndStart()
     {
-        bool restore = PlayerPrefs.GetInt("ArenaRunActive", 0) == 1;
+        bool restore = PlayerPrefs.GetInt("ArenaRunActive", 0) == 1
+            && PlayerPrefs.GetInt("ArenaRunKind", 0) == (crimsonArena ? 1 : 0);
+        crimsonCycle = restore ? PlayerPrefs.GetInt("CrimsonArenaCycle", 0) : 0;
         currentWaveIndex = restore
             ? Mathf.Clamp(PlayerPrefs.GetInt("ArenaWaveIndex", 0), 0, waves.Count - 1) : 0;
         isWaveActive = false;
@@ -533,7 +558,9 @@ public class WaveSpawner : MonoBehaviour
 
     private void ResetSpawnerCompletely()
     {
+        if (ActiveArena == this) ActiveArena = null;
         PlayerPrefs.SetInt("ArenaRunActive", 0);
+        overtime = false; crimsonCycle = 0;
         GameProgress.RequestSave();
         StopAllCoroutines();
         currentWaveIndex = 0;
@@ -563,6 +590,9 @@ public class WaveSpawner : MonoBehaviour
     {
         if (tutorialWave || TipsManager.IsGuideActive || !IsRunning || waves.Count == 0) return;
         PlayerPrefs.SetInt("ArenaRunActive", 1);
+        PlayerPrefs.SetInt("ArenaRunKind", crimsonArena ? 1 : 0);
+        PlayerPrefs.SetInt("CrimsonArenaCycle", crimsonCycle
+            + (crimsonArena && isBreakActive && currentWaveIndex == waves.Count - 1 ? 1 : 0));
         PlayerPrefs.SetInt("ArenaWaveIndex", isBreakActive ? (currentWaveIndex + 1) % waves.Count : currentWaveIndex);
         if (isBreakActive) ClearArenaCheckpoint();
         else foreach (var feature in arenaFeatures) if (feature != null) feature.SaveCheckpoint();
@@ -596,8 +626,8 @@ public class WaveSpawner : MonoBehaviour
     {
         result.Clear();
         foreach (var enemy in activeEnemies) AddArenaTarget(result, enemy, point, radius);
-        if (currentWaveIndex == 9) AddArenaTarget(result, bossWave10, point, radius);
-        if (currentWaveIndex == 14) AddArenaTarget(result, bossWave15, point, radius);
+        if (!crimsonArena && currentWaveIndex == 9) AddArenaTarget(result, bossWave10, point, radius);
+        if (!crimsonArena && currentWaveIndex == 14) AddArenaTarget(result, bossWave15, point, radius);
     }
 
     private static void AddArenaTarget(List<MonoBehaviour> result, GameObject enemy, Vector2 point, float radius)
@@ -609,10 +639,11 @@ public class WaveSpawner : MonoBehaviour
 
     public void RestoreCheckpointPosition(PlayerController player)
     {
-        if (PlayerPrefs.GetInt("ArenaRunActive", 0) != 1 || !PlayerPrefs.HasKey("ArenaPlayerX")) return;
+        if (PlayerPrefs.GetInt("ArenaRunActive", 0) != 1 || !CanEnter
+            || PlayerPrefs.GetInt("ArenaRunKind", 0) != (crimsonArena ? 1 : 0) || !PlayerPrefs.HasKey("ArenaPlayerX")) return;
         var zone = GetComponent<Collider2D>();
         var point = new Vector3(PlayerPrefs.GetFloat("ArenaPlayerX"), PlayerPrefs.GetFloat("ArenaPlayerY"), player.transform.position.z);
-        if (zone != null && zone.bounds.Contains(new Vector3(point.x, point.y, zone.bounds.center.z)))
+        if (zone != null && zone.OverlapPoint(point))
             player.transform.position = point;
         else PlayerPrefs.SetInt("ArenaRunActive", 0);
     }
@@ -638,6 +669,7 @@ public class WaveSpawner : MonoBehaviour
     public void BeginTutorialWave(int enemiesLeft)
     {
         if (IsRunning && !tutorialWave) return;
+        ActiveArena = this;
         tutorialWave = true; playerInsideZone = true;
         isWaveActive = enemiesLeft > 0; isBreakActive = false;
         tutorialEnemiesLeft = enemiesLeft;
@@ -665,6 +697,7 @@ public class WaveSpawner : MonoBehaviour
     public void EndTutorialWave()
     {
         if (!tutorialWave) return;
+        if (ActiveArena == this) ActiveArena = null;
         tutorialWave = false; playerInsideZone = isWaveActive = isBreakActive = false;
         RestoreArenaPlayer();
         if (breakIndicator != null) breakIndicator.SetActive(false);
@@ -723,11 +756,11 @@ public class WaveSpawner : MonoBehaviour
         if (waveTimerText != null)
         {
             int seconds = Mathf.Max(0, Mathf.CeilToInt(timeLeft));
-            waveTimerText.text = $"{seconds / 60}:{seconds % 60:00}";
+            waveTimerText.text = overtime ? GameLocalization.Text("Враги ×10") : $"{seconds / 60}:{seconds % 60:00}";
             waveTimerText.color = new Color32(227, 186, 101, 255);
 
             if (waveNumberText != null)
-                waveNumberText.text = $"Волна {currentWaveIndex + 1}";
+                waveNumberText.text = crimsonArena ? GameLocalization.Text("Красная · {0}").Replace("{0}", CurrentWaveNumber.ToString()) : $"Волна {CurrentWaveNumber}";
         }
 
         if (waveTimerImage != null)

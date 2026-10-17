@@ -6,14 +6,15 @@ using UnityEngine;
 public class SceletMag : Sounds
 {
     private bool deathHandled;
+    public bool IsAlive => !deathHandled && health > 0;
     private float waveDamageMultiplier = 1f;
     private float waveProjectileSpeedMultiplier = 1f;
     public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier, float projectileSpeedMultiplier = 1f)
     {
         health = Mathf.CeilToInt(health * healthMultiplier);
         defSpeed *= speedMultiplier;
-        waveDamageMultiplier = damageMultiplier;
-        waveProjectileSpeedMultiplier = projectileSpeedMultiplier;
+        waveDamageMultiplier *= damageMultiplier;
+        waveProjectileSpeedMultiplier *= projectileSpeedMultiplier;
     }
     [SerializeField] private int health;
     [SerializeField] private float agrDist = 6f;
@@ -307,7 +308,7 @@ public class SceletMag : Sounds
             if (Random.value <= dropChance)
             {
                 GameObject loot = lootPrefabs[Random.Range(0, lootPrefabs.Length)];
-                Instantiate(loot, transform.position, Quaternion.identity);
+                WaveSpawner.SpawnEnemyLoot(loot, transform.position, Quaternion.identity);
             }
         }
     }

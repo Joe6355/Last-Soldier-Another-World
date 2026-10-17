@@ -285,7 +285,7 @@ public sealed class GameProgress : MonoBehaviour
             FindObjectOfType<PlayerController>()?.SavePlayerData();
             FindObjectOfType<CrossbowController>()?.SaveArrowCounts();
             FindObjectOfType<Stats>()?.SaveInfo();
-            FindObjectOfType<WaveSpawner>()?.SaveCheckpoint();
+            WaveSpawner.ActiveArena?.SaveCheckpoint();
             FindObjectOfType<Beka>(true)?.SaveUpgrades();
         }
         finally { capturing = false; }
@@ -348,7 +348,7 @@ public sealed class GameProgress : MonoBehaviour
     {
         if (!YG2.player.auth || !CloudAvailable || ratingSending || Time.unscaledTime < nextRating) return;
         var summary = Stats.ReadLeaderboardSummary();
-        int score = MmrScore(summary.waves, summary.kills);
+        int score = MmrScore(summary.waves, summary.kills, summary.bonusMmr);
         if (score == 0 || score == submittedRating) return;
         nextRating = Time.unscaledTime + 30f;
         ratingSending = true;
@@ -372,9 +372,9 @@ public sealed class GameProgress : MonoBehaviour
 
     [Serializable] private sealed class SaveReceipt { public string ownerId; public int idSave; }
 
-    public static int MmrScore(int completedWaves, int kills)
+    public static int MmrScore(int completedWaves, int kills, int bonusMmr = 0)
     {
-        long rating = Math.Max(0, completedWaves) * 100L + Math.Max(0, kills);
+        long rating = Math.Max(0, completedWaves) * 100L + Math.Max(0, kills) + (long)Math.Max(0, bonusMmr);
         return (int)Math.Min(int.MaxValue, rating);
     }
 

@@ -1,0 +1,361 @@
+PASS
+All runtime sprite textures and slices pack into game/background atlases without changing source images or IDs
+Existing atlas GUID preserved
+Sprite Atlas V2 is enabled
+Both new enemies are included with existing character artwork
+Unused demo artwork is excluded
+Every runtime sprite texture is packed exactly once across both atlases
+Large menu backdrops remain separate from game sprites: Assets/SpriteAtlas.spriteatlasv2
+Atlas textures are included and bound in player builds
+UI and tile sprites use unrotated rectangular packing with padding
+Pixel-art filtering, no mipmaps, no CPU texture copy
+Lossless 2048px atlas pages: DefaultTexturePlatform
+Lossless 2048px atlas pages: WebGL
+Lossless 2048px atlas pages: Android
+Large menu backdrops remain separate from game sprites: Assets/BackgroundSpriteAtlas.spriteatlasv2
+Atlas textures are included and bound in player builds
+UI and tile sprites use unrotated rectangular packing with padding
+Pixel-art filtering, no mipmaps, no CPU texture copy
+Lossless 2048px atlas pages: DefaultTexturePlatform
+Lossless 2048px atlas pages: WebGL
+Lossless 2048px atlas pages: Android
+Repeated atlas update is deterministic: Assets/SpriteAtlas.spriteatlasv2
+Repeated atlas update is deterministic: Assets/SpriteAtlas.spriteatlasv2.meta
+Repeated atlas update is deterministic: Assets/BackgroundSpriteAtlas.spriteatlasv2
+Repeated atlas update is deterministic: Assets/BackgroundSpriteAtlas.spriteatlasv2.meta
+All sprite slices bind to exactly one atlas: Assets/Sprits/0.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Banditka/Bandit Faceset.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Banditka/Beka.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Banditka/BekaWolk.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/Assassin.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Coins/coinpreview.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Double Note Strip.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Explosion.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Healer.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/HealerAtack.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Holy/HolyGhost.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Holy/HolyOrc.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/LPCportrait33.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/basictiles.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/chicken_eat.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/chicken_walk.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/cow_eat.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/cow_walk.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/preview.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/sheep_eat.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/sheep_walk.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/sheet.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Map/things.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/PlayerAll.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/Question Strip.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/SciDE.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ShoperAllAnim.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/SlimeVariantAtlas.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/achievements.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/allEnemy.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/nun-black-NESW.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/portalRings1.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/portalRings2.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/slime_monster_spritesheet.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/spr_shield.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/HUD Menus.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/Square Buttons/Info Square Button.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/Square Buttons/Return Square Button.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_1.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_2.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_3.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_4.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_5.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_6.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_7.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_8.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/1.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/2.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/3.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/4.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/5.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/6.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/7.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/8.psd
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png
+All sprite slices bind to exactly one atlas: Assets/Sprits/uiEL.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Arena/Altar.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Arena/Barrel.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Arena/GravityRune.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Arena/Outpost.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Medals/Amethyst.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Medals/Emerald.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Medals/Ruby.png
+All sprite slices bind to exactly one atlas: Assets/UI/ForestGarrison/Medals/Sapphire.png
+All sprite slices bind to exactly one atlas: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png
+All sprite slices bind to exactly one atlas: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png
+All sprite slices bind to exactly one atlas: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png
+Packed count equals all original animation/UI/tile slices: 1577
+Original texture or sprite metadata unchanged: Assets/Sprits/0.png
+Original texture or sprite metadata unchanged: Assets/Sprits/0.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Banditka/Bandit Faceset.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Banditka/Bandit Faceset.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Banditka/Beka.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Banditka/Beka.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Banditka/BekaWolk.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Banditka/BekaWolk.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/Assassin.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/Assassin.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Coins/coinpreview.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Coins/coinpreview.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Double Note Strip.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Double Note Strip.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Explosion.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Explosion.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Healer.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Healer.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/HealerAtack.png
+Original texture or sprite metadata unchanged: Assets/Sprits/HealerAtack.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Holy/HolyGhost.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Holy/HolyGhost.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Holy/HolyOrc.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Holy/HolyOrc.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/LPCportrait33.png
+Original texture or sprite metadata unchanged: Assets/Sprits/LPCportrait33.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/basictiles.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/basictiles.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/chicken_eat.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/chicken_eat.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/chicken_walk.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/chicken_walk.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/cow_eat.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/cow_eat.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/cow_walk.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/cow_walk.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/preview.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/preview.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/sheep_eat.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/sheep_eat.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/sheep_walk.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/sheep_walk.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/sheet.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/sheet.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/things.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Map/things.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/PlayerAll.png
+Original texture or sprite metadata unchanged: Assets/Sprits/PlayerAll.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/Question Strip.png
+Original texture or sprite metadata unchanged: Assets/Sprits/Question Strip.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/SciDE.png
+Original texture or sprite metadata unchanged: Assets/Sprits/SciDE.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ShoperAllAnim.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ShoperAllAnim.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/SlimeVariantAtlas.png
+Original texture or sprite metadata unchanged: Assets/Sprits/SlimeVariantAtlas.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/achievements.png
+Original texture or sprite metadata unchanged: Assets/Sprits/achievements.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/allEnemy.png
+Original texture or sprite metadata unchanged: Assets/Sprits/allEnemy.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/nun-black-NESW.png
+Original texture or sprite metadata unchanged: Assets/Sprits/nun-black-NESW.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/portalRings1.png
+Original texture or sprite metadata unchanged: Assets/Sprits/portalRings1.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/portalRings2.png
+Original texture or sprite metadata unchanged: Assets/Sprits/portalRings2.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/slime_monster_spritesheet.png
+Original texture or sprite metadata unchanged: Assets/Sprits/slime_monster_spritesheet.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/spr_shield.png
+Original texture or sprite metadata unchanged: Assets/Sprits/spr_shield.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/HUD Menus.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/HUD Menus.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/Square Buttons/Info Square Button.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/Square Buttons/Info Square Button.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/Square Buttons/Return Square Button.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/Square Buttons/Return Square Button.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_1.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_1.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_2.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_2.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_3.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_3.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_4.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_4.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_5.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_5.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_6.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_6.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_7.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_7.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_8.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_8.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/1.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/1.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/2.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/2.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/3.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/3.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/4.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/4.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/5.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/5.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/6.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/6.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/7.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/7.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/8.psd
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/8.psd.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png
+Original texture or sprite metadata unchanged: Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png.meta
+Original texture or sprite metadata unchanged: Assets/Sprits/uiEL.png
+Original texture or sprite metadata unchanged: Assets/Sprits/uiEL.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/Altar.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/Altar.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/Barrel.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/Barrel.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/GravityRune.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/GravityRune.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/Outpost.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Arena/Outpost.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Amethyst.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Amethyst.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Emerald.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Emerald.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Ruby.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Ruby.png.meta
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Sapphire.png
+Original texture or sprite metadata unchanged: Assets/UI/ForestGarrison/Medals/Sapphire.png.meta
+Original texture or sprite metadata unchanged: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png
+Original texture or sprite metadata unchanged: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png.meta
+Original texture or sprite metadata unchanged: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png
+Original texture or sprite metadata unchanged: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png.meta
+Original texture or sprite metadata unchanged: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png
+Original texture or sprite metadata unchanged: Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png.meta
+Atlas contains packed texture pages
+Every packed page respects the mobile texture limit

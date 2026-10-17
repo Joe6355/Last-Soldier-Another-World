@@ -1,0 +1,96 @@
+{
+  "version": "0.0.0.20",
+  "checkedAt": "2026-10-18T03:42:30.967244+05:00",
+  "result": "PASS",
+  "uploaded": false,
+  "build": {
+    "verifiedPackedSourcePaths": 1068,
+    "mismatches": [],
+    "rootSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/portal-v20-webgl-isolated.log",
+    "editorBuildSourcesCompared": true
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 50,
+      "output": "Publishing/portal-v20-checks.txt",
+      "log": "Builds/RatingValidation/portal-v20-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 1055,
+      "output": "Publishing/localization-v20-checks.txt",
+      "log": "Builds/RatingValidation/localization-v20-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 368,
+      "output": "Publishing/crimson-v20-checks.txt",
+      "log": "Builds/RatingValidation/crimson-v20-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 359,
+      "output": "Publishing/atlas-v20-checks.txt",
+      "log": "Builds/RatingValidation/atlas-v20-checks.log"
+    }
+  ],
+  "changedFiles": [
+    "Assets/Editor/CrimsonArenaAuthoring.cs",
+    "Assets/Scenes/SampleScene.unity",
+    "Assets/UI/ForestGarrison/Crimson/CrimsonPalette.shader",
+    "Assets/UI/ForestGarrison/Crimson/Portal.mat",
+    "Assets/UI/ForestGarrison/Crimson/PortalOpenLoop.anim",
+    "Assets/UI/ForestGarrison/Crimson/Portal.overrideController",
+    "Assets/Scripts/Ui/TipsManager.Guided.cs",
+    "Assets/Scripts/Ui/TipsManager.View.cs",
+    "Assets/Resources/Localization/English.json",
+    "Tests/PortalTutorialChecks.cs"
+  ],
+  "nodeTests": {
+    "passed": 10,
+    "result": "PASS",
+    "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+  },
+  "changes": {
+    "stoneArchRecolored": false,
+    "redMagicOnly": true,
+    "originalGreenPortalClipChanged": false,
+    "openAnimationLoops": true,
+    "tutorialStep": "CrimsonArena",
+    "unlockMmr": 2000,
+    "tutorialMentions": [
+      "Enemy health and damage x2",
+      "Coins and MMR x2",
+      "Two bosses every fifth wave"
+    ],
+    "tutorialLanguages": [
+      "ru",
+      "en"
+    ],
+    "previousSavedStepValuesPreserved": true
+  },
+  "atlas": {
+    "textures": 111,
+    "sourceSprites": 1577,
+    "packedSprites": 1577
+  },
+  "previews": [
+    "Publishing/Previews/portal-v20-open.png",
+    "Publishing/Previews/portal-v20-tutorial-mobile-en.png",
+    "Publishing/Previews/portal-v20-tutorial-mobile-ru.png",
+    "Publishing/Previews/portal-v20-tutorial-pc-en.png",
+    "Publishing/Previews/portal-v20-tutorial-pc-ru.png"
+  ],
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": false,
+  "uploadLimitation": "Browser tool reports: Local browser use is disabled in Work settings",
+  "previousDraft": {
+    "version": "0.0.0.19",
+    "report": "Publishing/upload-v19-check.json",
+    "verifiedThisTurn": false
+  }
+}

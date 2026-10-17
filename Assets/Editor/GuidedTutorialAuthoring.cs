@@ -35,7 +35,7 @@ public static class GuidedTutorialAuthoring
         Set(guide, "trainingSlimePrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemy/SlimeTrue.prefab").GetComponent<Slime>());
         Set(guide, "trainingCoinPrefab", AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Money/MoneyGold Variant.prefab").GetComponent<Coin>());
         Set(guide, "mentorPortrait", shop.GetComponent<SpriteRenderer>().sprite);
-        var waves = UnityEngine.Object.FindObjectOfType<WaveSpawner>(true);
+        var waves = UnityEngine.Object.FindObjectsOfType<WaveSpawner>(true).First(wave => !wave.IsCrimson);
         var exit = Get<GameObject>(waves, "breakIndicator").GetComponent<Portal>();
         var entrance = exit.linkedPortal.GetComponent<Portal>();
         Set(guide, "arenaEntrance", entrance); Set(guide, "arenaExit", exit);

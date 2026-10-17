@@ -7,6 +7,7 @@ using UnityEngine;
 public class Slime : Sounds
 {
     private bool deathHandled;
+    public bool IsAlive => !deathHandled && health > 0;
     private bool trainingTarget;
     private bool movingTrainingTarget;
     private System.Action<int, bool> trainingDamage;
@@ -43,8 +44,8 @@ public class Slime : Sounds
         health = Mathf.CeilToInt(health * healthMultiplier);
         defSpeed *= speedMultiplier;
         collisionDamage *= damageMultiplier;
-        waveDamageMultiplier = damageMultiplier;
-        waveProjectileSpeedMultiplier = projectileSpeedMultiplier;
+        waveDamageMultiplier *= damageMultiplier;
+        waveProjectileSpeedMultiplier *= projectileSpeedMultiplier;
     }
     [SerializeField] private int health;
     [SerializeField] private float agrDist;
@@ -290,7 +291,7 @@ public class Slime : Sounds
             if (Random.value <= dropChance)
             {
                 GameObject loot = lootPrefabs[Random.Range(0, lootPrefabs.Length)];
-                Instantiate(loot, transform.position, Quaternion.identity);
+                WaveSpawner.SpawnEnemyLoot(loot, transform.position, Quaternion.identity);
             }
         }
     }

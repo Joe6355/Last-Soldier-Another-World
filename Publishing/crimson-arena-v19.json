@@ -1,0 +1,106 @@
+{
+  "version": "0.0.0.19",
+  "checkedAt": "2026-10-18T03:06:37.761676+05:00",
+  "result": "PASS",
+  "uploaded": true,
+  "build": {
+    "verifiedPackedSourcePaths": 1064,
+    "mismatches": [],
+    "rootSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/crimson-v19-webgl-isolated.log",
+    "editorBuildSourcesCompared": true
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 368,
+      "output": "Builds/RatingValidation/crimson-v19-checks.txt",
+      "log": "Builds/RatingValidation/crimson-v19-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 228,
+      "output": "Builds/RatingValidation/holy-v19-checks.txt",
+      "log": "Builds/RatingValidation/holy-v19-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 54,
+      "output": "Builds/RatingValidation/friendly-v19-checks.txt",
+      "log": "Builds/RatingValidation/friendly-v19-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 221,
+      "output": "Builds/RatingValidation/assets-v19-checks.txt",
+      "log": "Builds/RatingValidation/assets-v19-checks.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 359,
+      "output": "Builds/RatingValidation/atlas-v19-checks.txt",
+      "log": "Builds/RatingValidation/atlas-v19-checks.log"
+    }
+  ],
+  "nodeTests": {
+    "passed": 10,
+    "result": "PASS",
+    "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+  },
+  "tuning": {
+    "unlockMmr": 2000,
+    "minimumOrdinarySpawnDistance": 4,
+    "overtimeHealthMultiplier": 10,
+    "overtimeDamageMultiplier": 10,
+    "overtimeStacks": false,
+    "overtimeMovementMultiplier": 1,
+    "redBaseHealth": 2,
+    "redBaseDamage": 2,
+    "redRewardMultiplier": 2,
+    "redMmrMultiplier": 2,
+    "redStartingPack": 8,
+    "redWaveOneQuota": 32,
+    "redMaximumConcurrentActors": 48,
+    "pairedBossEveryWaves": 5,
+    "healthFormula": "2*(1+0.20*(wave-1))",
+    "damageFormula": "2*(1+0.14*(wave-1))",
+    "timerFormula": "90+4*min(30,wave-1)",
+    "enemyQuotaFormula": "min(180,32+6*(wave-1))",
+    "spawnIntervalFormula": "max(0.25,0.65-0.012*(wave-1))",
+    "ordinaryWaveSupplies": {
+      "potions": 1,
+      "piercingArrows": 3
+    },
+    "bossWaveSupplies": {
+      "potions": 4,
+      "piercingArrows": 12,
+      "mirrors": 1,
+      "coins": 1000
+    },
+    "slimeBossGuaranteedCoins": 500,
+    "waterDamage": 80
+  },
+  "atlas": {
+    "textures": 111,
+    "sourceSprites": 1577,
+    "packedSprites": 1577
+  },
+  "previews": [
+    "Publishing/Previews/crimson-v19-boss-pair.png",
+    "Publishing/Previews/crimson-v19-island.png",
+    "Publishing/Previews/crimson-v19-portal-locked.png",
+    "Publishing/Previews/crimson-v19-shore.png"
+  ],
+  "mechanics": "Publishing/CRIMSON_ARENA.md",
+  "physicalPhoneTestPerformed": false,
+  "manualUpgradedCharacterBalancePlaytestPerformed": false,
+  "limitations": [
+    "Manual difficulty and physical Android performance remain unmeasured",
+    "Reload restarts the saved wave instead of restoring individual monsters, as before",
+    "Nine restored PNG files retain their existing unconfirmed provenance; no rights clearance is implied"
+  ],
+  "browserLaunchVerified": true,
+  "uploadReport": "Publishing/upload-v19-check.json"
+}

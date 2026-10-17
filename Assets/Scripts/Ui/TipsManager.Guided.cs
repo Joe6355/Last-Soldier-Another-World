@@ -10,7 +10,7 @@ public partial class TipsManager
     public enum GuideAction { Move, Fire, Collect, Arrow, Dash, Shield, Heal, Utilities, Mirror, Interact, Goods, Quantity, Purchase, Upgrades, Upgrade, Mode }
     // Keep the first sixteen values unchanged for existing saved lessons.
     public enum GuideStep { Welcome, Move, Fire, Loot, Arrow, Dash, Shield, Heal, Utilities, Mirror, Merchant, Goods, Quantity, UpgradeTab, Health, Finished,
-        ArenaPortal, ArenaIntro, ArenaCombat, ArenaLoot, ArenaBreak, ArenaReturn, ArenaFinished }
+        ArenaPortal, ArenaIntro, ArenaCombat, ArenaLoot, ArenaBreak, ArenaReturn, ArenaFinished, CrimsonArena }
     [Header("Наглядное обучение")]
     [SerializeField] private bool guidedTutorial;
     [SerializeField] private PlayerController player;
@@ -28,6 +28,7 @@ public partial class TipsManager
     [SerializeField] private Button settingsReplayButton;
     [SerializeField] private Portal arenaEntrance;
     [SerializeField] private Portal arenaExit;
+    private Transform crimsonEntrance;
     private static TipsManager guide;
     private const string Prefix = "GuidedTutorial.v1.";
     private GuideStep step;
@@ -101,11 +102,14 @@ public partial class TipsManager
     {
         if (!guidedTutorial) return;
         guide = this;
-        waves = FindObjectOfType<WaveSpawner>();
+        waves = WaveSpawner.FindArena(false);
         if (arenaExit == null && waves != null && waves.TutorialExit != null)
             arenaExit = waves.TutorialExit.GetComponent<Portal>();
         if (arenaEntrance == null && arenaExit != null && arenaExit.linkedPortal != null)
             arenaEntrance = arenaExit.linkedPortal.GetComponent<Portal>();
+        var crimson = WaveSpawner.FindArena(true);
+        if (crimson != null && crimson.TutorialExit != null)
+            crimsonEntrance = crimson.TutorialExit.GetComponent<Portal>()?.linkedPortal;
         lessonCamera = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
         replayButton.onClick.AddListener(RestartGuide);
         if (settingsReplayButton != null) settingsReplayButton.onClick.AddListener(RestartGuide);
@@ -148,7 +152,7 @@ public partial class TipsManager
     private void BeginGuide(bool repeating)
     {
         replay = repeating; running = true; result = false; prepared = false; bypass = false;
-        step = repeating ? GuideStep.Welcome : (GuideStep)Mathf.Clamp(Prefs.GetInt(Prefix + "Step", 0), 0, (int)GuideStep.ArenaFinished);
+        step = repeating ? GuideStep.Welcome : (GuideStep)Mathf.Clamp(Prefs.GetInt(Prefix + "Step", 0), 0, (int)GuideStep.CrimsonArena);
         if (!repeating && Prefs.GetInt(Prefix + "Done", 0) == 1 && step < GuideStep.ArenaPortal)
         {
             step = GuideStep.ArenaPortal;
@@ -188,8 +192,8 @@ public partial class TipsManager
         {
             Prefs.SetInt(Prefix + "Done", 1); shop.CloseShop();
         }
-        else if (step == GuideStep.ArenaIntro || step == GuideStep.ArenaBreak) { }
-        else if (step == GuideStep.ArenaFinished) { EndGuide(); return; }
+        else if (step == GuideStep.ArenaIntro || step == GuideStep.ArenaBreak || step == GuideStep.ArenaFinished) { }
+        else if (step == GuideStep.CrimsonArena) { EndGuide(); return; }
         else if (!result && !bypass) return;
         if (step == GuideStep.ArenaCombat && bypass) ClearArenaPractice();
         controls.ResetInput(); step++; result = false; bypass = false; outcome = null; prepared = false;
@@ -411,6 +415,7 @@ public partial class TipsManager
     private void RefreshTarget()
     {
         targetUi = null; targetWorld = null;
+        if (step == GuideStep.CrimsonArena) { targetWorld = crimsonEntrance; return; }
         if (step == GuideStep.ArenaPortal) { if (!result) targetWorld = arenaEntrance != null ? arenaEntrance.transform : null; return; }
         if (step == GuideStep.ArenaIntro || step == GuideStep.ArenaBreak) { targetUi = waves != null ? waves.TutorialHud : null; return; }
         if (step == GuideStep.ArenaCombat)
@@ -440,7 +445,7 @@ public partial class TipsManager
         bool touch = controls.UseTouch;
         guideLastPlatformTouch = touch;
         string[] titles = { "Добро пожаловать!", "Движение", "Первый бой", "Собери добычу", "Выбор стрел", "Рывок", "Защита", "Зелье лечения", "Быстрые предметы", "Возвращение в лагерь", "Познакомься с торговцем", "Покупка стрел", "Количество и цена", "Улучшения героя", "Стань сильнее", "Теперь на арену!",
-            "Портал на арену", "Учебная волна 0", "Зачисти волну", "Добыча после боя", "Между волнами", "Бесплатно в лагерь", "Обучение завершено!" };
+            "Портал на арену", "Учебная волна 0", "Зачисти волну", "Добыча после боя", "Между волнами", "Бесплатно в лагерь", "Обучение завершено!", "Красная арена" };
         string body = outcome ?? (step switch
         {
             GuideStep.Welcome => replay ? "Повторим управление, магазин и учебную волну 0. Припасы повторно не выдаются; покупки расходуют твои монеты." : "Покажу лагерь, управление и арену. Для первого урока получишь 200 монет и недостающие припасы. Обычные волны пока ждут.",
@@ -466,12 +471,13 @@ public partial class TipsManager
             GuideStep.ArenaLoot => touch ? "После зачистки подойди джойстиком к монете. Добыча нужна для улучшений и снаряжения." : "После зачистки подойди к монете с помощью WASD. Добыча нужна для улучшений и снаряжения.",
             GuideStep.ArenaBreak => "Между волнами идёт перерыв: портал «В ЛАГЕРЬ» открыт. Войди в него — зеркало не потратится. В обычной игре успей до конца таймера; учебный перерыв ждёт тебя.",
             GuideStep.ArenaReturn => (touch ? "Иди джойстиком" : "Иди с помощью WASD") + " в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.",
+            GuideStep.CrimsonArena => "Красный портал — арена для прокачанного героя. Вход от 2000 MMR. Здоровье и урон врагов ×2, монеты и MMR ×2. Каждая пятая волна — два босса вместе.",
             _ => "Ты знаешь путь на арену и бесплатный выход между волнами. Снова войди в портал «АРЕНА» — начнётся настоящая волна 1. Повторить обучение можно в меню."
         });
-        bool explanation = step == GuideStep.Welcome || step == GuideStep.Finished || step == GuideStep.ArenaIntro || step == GuideStep.ArenaBreak || step == GuideStep.ArenaFinished;
-        string counter = step >= GuideStep.ArenaPortal ? $"АРЕНА · {(int)step - (int)GuideStep.ArenaPortal + 1} / 7" : step == GuideStep.Welcome || step == GuideStep.Finished ? "НАСТАВНИК ЛАГЕРЯ" : $"ЛАГЕРЬ · {(int)step} / 14";
+        bool explanation = step == GuideStep.Welcome || step == GuideStep.Finished || step == GuideStep.ArenaIntro || step == GuideStep.ArenaBreak || step == GuideStep.ArenaFinished || step == GuideStep.CrimsonArena;
+        string counter = step >= GuideStep.ArenaPortal ? $"АРЕНА · {(int)step - (int)GuideStep.ArenaPortal + 1} / 8" : step == GuideStep.Welcome || step == GuideStep.Finished ? "НАСТАВНИК ЛАГЕРЯ" : $"ЛАГЕРЬ · {(int)step} / 14";
         RenderGuide(titles[(int)step], body, counter,
-            step == GuideStep.Welcome ? "Начать обучение" : step == GuideStep.Finished ? "Покажи портал" : step == GuideStep.ArenaIntro ? "Начать волну 0" : step == GuideStep.ArenaFinished ? "Готово" : bypass ? "Пропустить шаг" : "Дальше",
+            step == GuideStep.Welcome ? "Начать обучение" : step == GuideStep.Finished ? "Покажи портал" : step == GuideStep.ArenaIntro ? "Начать волну 0" : step == GuideStep.CrimsonArena ? "Готово" : step == GuideStep.ArenaFinished ? "Красная арена" : bypass ? "Пропустить шаг" : "Дальше",
             explanation || result || bypass, step == GuideStep.Welcome || step == GuideStep.Finished || step == GuideStep.ArenaFinished);
     }
 }

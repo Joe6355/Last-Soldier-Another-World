@@ -86,7 +86,7 @@ public static class HolyEnemyChecks
                     foreach (var guide in UnityEngine.Object.FindObjectsOfType<TipsManager>()) guide.SkipGuide();
                     UnityEngine.Object.FindObjectOfType<Ui>().StartGame();
                     player = UnityEngine.Object.FindObjectOfType<PlayerController>();
-                    wave = UnityEngine.Object.FindObjectOfType<WaveSpawner>();
+                    wave = WaveSpawner.FindArena(false);
                     mobile = UnityEngine.Object.FindObjectOfType<MobileControls>();
                     wave.enabled = false;
                     player.transform.position = new Vector3(1000, 1000, player.transform.position.z);

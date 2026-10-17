@@ -6,6 +6,7 @@ using UnityEngine;
 public class HealerEnemy : Sounds
 {
     private bool deathHandled;
+    public bool IsAlive => !deathHandled && health > 0;
     public void ApplyWaveScaling(float healthMultiplier, float damageMultiplier, float speedMultiplier, float projectileSpeedMultiplier = 1f)
     {
         health = Mathf.CeilToInt(health * healthMultiplier);
@@ -367,7 +368,7 @@ public class HealerEnemy : Sounds
     {
         if (deathHandled) return;
         deathHandled = true;
-        stats.countElitEnemyDead++;
+        stats.AddElitEnemyDead(Stats.EnemyKind.Skeleton);
         stats.SaveInfo();
         stats.UpdateUI();
         DropLoot();
@@ -382,7 +383,7 @@ public class HealerEnemy : Sounds
             if (Random.value <= dropChance && lootPrefabs.Length > 0)
             {
                 GameObject loot = lootPrefabs[Random.Range(0, lootPrefabs.Length)];
-                Instantiate(loot, transform.position, Quaternion.identity);
+                WaveSpawner.SpawnEnemyLoot(loot, transform.position, Quaternion.identity);
             }
         }
     }

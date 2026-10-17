@@ -142,6 +142,8 @@ public class Roberto : Sounds
     public float markerAnimationDuration = 0.5f;
 
     private bool regularEnemy;
+    private bool arenaBossEncounter;
+    public bool IsAlive => currentHP > 0f && currentState != BossState.Dead;
     private WaveSpawner waveOwner;
     private float waveMovementMultiplier = 1f;
     private readonly List<GameObject> ownedAttacks = new List<GameObject>();
@@ -178,6 +180,25 @@ public class Roberto : Sounds
         specialAttackPoints = System.Array.Empty<Transform>();
         animBoom = null;
         CreateOwnedMarker(markerAnimator);
+    }
+
+    public void ConfigureArenaBoss(WaveSpawner owner, float health, float damage, float movement,
+        float projectileSpeed, GameObject healthPanel, Image healthFill)
+    {
+        ConfigureAsRegularEnemy(owner, health, damage, movement, projectileSpeed);
+        arenaBossEncounter = true;
+        hpBarContainer = healthPanel;
+        hpBar = healthFill;
+    }
+
+    public void ApplyArenaScaling(float health, float damage)
+    {
+        maxHP *= health;
+        currentHP *= health;
+        attackDamage *= damage;
+        circleDamage *= damage;
+        circleHealAmount *= health;
+        if (hpBar != null) hpBar.fillAmount = currentHP / maxHP;
     }
 
     public void ConfigureRegularLoot(GameObject lootPrefab)
@@ -591,7 +612,7 @@ public class Roberto : Sounds
                     int index = Random.Range(0, specialSummonPrefabs.Length);
                     if (specialSummonPrefabs[index] == null) continue;
                     GameObject instance = Instantiate(specialSummonPrefabs[index], spawnPosition.position, spawnPosition.rotation);
-                    if (regularEnemy && !waveOwner.RegisterSpawnedEnemy(instance))
+                    if ((waveOwner != null || WaveSpawner.ActiveArena != null) && !(waveOwner != null ? waveOwner : WaveSpawner.ActiveArena).RegisterSpawnedEnemy(instance))
                     {
                         Destroy(instance);
                         continue;
@@ -672,7 +693,7 @@ public class Roberto : Sounds
     {
         if (currentState == BossState.Dead) return;
         currentState = BossState.Dead;
-        if (regularEnemy) FindObjectOfType<Stats>()?.AddEnemyKill(Stats.EnemyKind.Other);
+        if (regularEnemy && !arenaBossEncounter) FindObjectOfType<Stats>()?.AddEnemyKill(Stats.EnemyKind.Other);
         else FindObjectOfType<Stats>()?.AddBossDead(Stats.EnemyKind.Assassin);
         EnemyDefeatEffect.PlayAndHide(gameObject);
         if (hpBarContainer != null)
@@ -682,7 +703,7 @@ public class Roberto : Sounds
         CancelInvoke();
         ClearOwnedAttacks();
         if (regularEnemy && regularLootPrefab != null)
-            Instantiate(regularLootPrefab, transform.position, Quaternion.identity);
+            WaveSpawner.SpawnEnemyLoot(regularLootPrefab, transform.position, Quaternion.identity);
 
         Destroy(gameObject, 0.8f);
         PlaySound(sounds[2], volume: 1, destroyed: true);

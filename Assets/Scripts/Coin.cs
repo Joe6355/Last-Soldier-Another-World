@@ -23,6 +23,11 @@ public class Coin: Sounds
         if (rb != null) Stop();
     }
     public int rotSpeed = 1;   
+    public void ScaleReward(int multiplier)
+    {
+        coinValue = (int)System.Math.Min(int.MaxValue, (long)coinValue * Mathf.Max(1, multiplier));
+    }
+
     private void Start()
     {
           

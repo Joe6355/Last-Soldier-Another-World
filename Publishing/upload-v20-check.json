@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0.20",
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "a5bb2c5b7bc32d708114da7c96717793d46a693f21463584de48e22923a9e0c6",
+  "uploaded": false,
+  "checkedAt": "2026-10-18T03:43:04.458554+05:00",
+  "result": "BLOCKED_BROWSER_DISABLED",
+  "reason": "Local browser use is disabled in Work settings",
+  "previousConfirmedDraftVersion": "0.0.0.19",
+  "previousDraftRecheckedThisTurn": false,
+  "browserLaunchVerified": false,
+  "physicalPhoneTestPerformed": false,
+  "moderationSubmitted": false,
+  "published": false
+}

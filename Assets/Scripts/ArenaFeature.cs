@@ -57,7 +57,7 @@ public sealed class ArenaFeature : MonoBehaviour
     public float EffectRemaining => effectTime;
     public int BarrelDamage => Mathf.CeilToInt(barrelEnemyDamage * (spawner != null ? spawner.BarrelDamageMultiplier : 1f));
     public float CaptureDuration => CaptureSeconds(Level(Upgrade.OutpostCapture));
-    public int CaptureReward => Reward(Level(Upgrade.OutpostReward));
+    public int CaptureReward => Reward(Level(Upgrade.OutpostReward)) * (spawner != null ? spawner.RewardMultiplier : 1);
     public float EffectRadius => kind == FeatureKind.GravityRune ? RuneRadius(Level(Upgrade.RuneRadius))
         : kind == FeatureKind.Tower ? TowerRange(Level(Upgrade.TowerRange))
         : kind == FeatureKind.Roots ? RootRadius(Level(Upgrade.Roots)) : radius;

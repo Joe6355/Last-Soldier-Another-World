@@ -162,12 +162,12 @@ public partial class TipsManager
 
         guideFocus.gameObject.SetActive(hasFocus);
         guideHand.gameObject.SetActive(hasFocus);
-        bool portalStep = step == GuideStep.ArenaPortal || step == GuideStep.ArenaReturn;
+        bool portalStep = step == GuideStep.ArenaPortal || step == GuideStep.ArenaReturn || step == GuideStep.CrimsonArena;
         Vector3 viewport = worldTarget != null && Camera.main != null ? Camera.main.WorldToViewportPoint(worldTarget.position) : new Vector3(.5f, .5f, 1);
         bool offscreenPortal = portalStep && hasFocus && (viewport.x < 0 || viewport.x > 1 || viewport.y < 0 || viewport.y > 1);
         guideWaypoint.gameObject.SetActive(offscreenPortal);
         if (offscreenPortal)
-            guideWaypointText.text = (step == GuideStep.ArenaPortal ? "АРЕНА" : "ЛАГЕРЬ")
+            guideWaypointText.text = (step == GuideStep.CrimsonArena ? "Красная арена" : step == GuideStep.ArenaPortal ? "АРЕНА" : "ЛАГЕРЬ")
                 + $"\n{Vector2.Distance(player.transform.position, worldTarget.position):0} м";
         if (!hasFocus)
         {

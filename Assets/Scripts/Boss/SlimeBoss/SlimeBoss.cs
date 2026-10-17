@@ -49,6 +49,7 @@ public class SlimeBoss : Sounds
     private Stats stats;
     [SerializeField, Min(0)] private int bossKillBonus = 250;
     private bool regularEnemy;
+    private bool arenaBossEncounter;
     private WaveSpawner waveOwner;
     private float waveDamageMultiplier = 1f;
     private float waveProjectileSpeedMultiplier = 1f;
@@ -79,6 +80,24 @@ public class SlimeBoss : Sounds
             point.SetParent(transform, false);
             firePoint = point;
         }
+    }
+
+    public void ConfigureArenaBoss(WaveSpawner owner, float health, float damage, float movement,
+        float projectileSpeed, GameObject healthPanel, Image healthFill)
+    {
+        ConfigureAsRegularEnemy(owner, health, damage, movement, projectileSpeed);
+        arenaBossEncounter = true;
+        bossHpBarObject = healthPanel;
+        bossHpBar = healthFill;
+    }
+
+    public void ApplyArenaScaling(float health, float damage)
+    {
+        maxHealth *= health;
+        currentHealth *= health;
+        damageTouch = Mathf.CeilToInt(damageTouch * damage);
+        waveDamageMultiplier *= damage;
+        UpdateBossHpBar();
     }
 
     private void Start()
@@ -262,11 +281,11 @@ public class SlimeBoss : Sounds
 
         if (stats != null)
         {
-            if (regularEnemy) stats.AddEnemyKill(Stats.EnemyKind.Slime);
+            if (regularEnemy && !arenaBossEncounter) stats.AddEnemyKill(Stats.EnemyKind.Slime);
             else stats.AddBossDead(Stats.EnemyKind.SlimeBoss);
         }
 
-        if (!regularEnemy && playerController != null) playerController.AddCoin(bossKillBonus);
+        if ((!regularEnemy || arenaBossEncounter) && playerController != null) playerController.AddCoin(bossKillBonus * (waveOwner != null ? waveOwner.RewardMultiplier : 1));
         DropLoot();
         Destroy(gameObject);
         PlaySound(sounds[0], volume: 1, destroyed: true);
@@ -290,7 +309,7 @@ public class SlimeBoss : Sounds
             if (Random.value <= dropChance && lootPrefabs != null && lootPrefabs.Length > 0)
             {
                 GameObject loot = lootPrefabs[Random.Range(0, lootPrefabs.Length)];
-                Instantiate(loot, transform.position, Quaternion.identity);
+                WaveSpawner.SpawnEnemyLoot(loot, transform.position, Quaternion.identity);
                 Debug.Log("Лут выпал: " + loot.name);
             }
             else

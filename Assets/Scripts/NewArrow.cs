@@ -29,6 +29,11 @@ public class NewArrow : MonoBehaviour
         }
     }
     
+    public void ScaleReward(int multiplier)
+    {
+        countArrow = (int)System.Math.Min(int.MaxValue, (long)countArrow * Mathf.Max(1, multiplier));
+    }
+
     private void Start()
     {
 
