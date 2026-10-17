@@ -14,5 +14,12 @@
   "liveGameplayInteractionVerifiedThisTurn": false,
   "phoneTestPerformedThisTurn": false,
   "moderationSubmitted": false,
-  "published": false
+  "published": false,
+  "laterConsoleObservation": {
+    "checkedOn": "2026-10-18",
+    "version": "0.0.0.17",
+    "archiveFileId": "14047809",
+    "savedAtConsole": "00:31:55 18/10/2026",
+    "note": "Observed on the next turn before replacing with v18. The original local browser blocker is historical."
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "checkedOn": "2026-10-17",
+  "checkedOn": "2026-10-18",
   "result": "TECHNICAL_PASS_RIGHTS_PENDING",
   "pendingProvenancePaths": [
     "Assets/Sprits/allEnemy.png",
@@ -13,13 +13,13 @@
     "Assets/UI/ForestGarrison/Arena/Barrel.png"
   ],
   "archive": "Builds/LastSoldierYandex.zip",
-  "archiveSha256": "d91e1eb8bb4660f901cc7d7ba118455c4e3933df6a9ee42723befeb349a16c66",
+  "archiveSha256": "67ec36844e6f2a2290f3a580727e41214ebd16590cf8cb967a1659fa6af9351a",
   "archiveFileCount": 15,
-  "matchedSourceFiles": 1103,
+  "matchedSourceFiles": 1109,
   "packedAssetsReport": "Publishing/release-packed-assets.json",
-  "packedAssetsReportSha256": "dd53a93ae9871a9b70d456869f97c1c58cd40a9d7292544420dbedb2e2d5b968",
-  "packedSourceAssets": 1880,
-  "packedRasterPaths": 97,
+  "packedAssetsReportSha256": "8ee1eb877ea862d82cba3f8ddd858554dd91e8db4f3a254281c14b7cd4d5a136",
+  "packedSourceAssets": 1879,
+  "packedRasterPaths": 95,
   "unknownPackedRasterPaths": [],
   "exactSourceProofs": 65,
   "licensedCharacterAtlases": 4,

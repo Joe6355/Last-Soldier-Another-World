@@ -26,7 +26,7 @@
     {
       "path": "Assets/Sprits/Holy/HolyGhost.png",
       "sha256": "7569ca8a8fa213c4bba14aac131ba0af745d21a6d6be684364999f6f7d478d5f",
-      "metadataSHA256": "f49c755507cafbf7b25a1415861b9d48fc4f61d1116a55550163acf459e5ed19",
+      "metadataSHA256": "4f1f5da20f8685319c00352899417a1228470cd7d91e5250d1cb60ced85e340e",
       "frameCount": 17,
       "size": [
         1254,
@@ -42,7 +42,15 @@
         "Attack",
         "Defeat"
       ],
-      "sourcePrompt": "Publishing/holy-enemies-v17-prompts.md"
+      "sourcePrompt": "Publishing/holy-enemies-v17-prompts.md",
+      "metadataRevisions": [
+        {
+          "version": "0.0.0.18",
+          "previousSHA256": "f49c755507cafbf7b25a1415861b9d48fc4f61d1116a55550163acf459e5ed19",
+          "sha256": "4f1f5da20f8685319c00352899417a1228470cd7d91e5250d1cb60ced85e340e",
+          "source": "Existing committed metadata in afd7ccc, already present before atlas changes; sprite IDs retained and runtime projectile/animations verified"
+        }
+      ]
     }
   ],
   "waveRosters": [

@@ -19,6 +19,7 @@ public static class YandexBuild
         if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android))
             throw new InvalidOperationException("Установите Android Build Support, SDK, NDK и OpenJDK в Unity Hub.");
 
+        GameSpriteAtlas.Synchronize();
         PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android, AndroidTestDefines);
         PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
         PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup.Android, ManagedStrippingLevel.Minimal);
@@ -72,6 +73,7 @@ public static class YandexBuild
     {
         if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.WebGL, BuildTarget.WebGL))
             throw new InvalidOperationException("Install WebGL Build Support for Unity 2022.3.47f1 in Unity Hub.");
+        GameSpriteAtlas.Synchronize();
         PlayerSettings.WebGL.template = "PROJECT:YandexGames";
         var scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray();
         var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions

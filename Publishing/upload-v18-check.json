@@ -1,0 +1,28 @@
+{
+  "checkedOn": "2026-10-18",
+  "version": "0.0.0.18",
+  "applicationId": 623393,
+  "archiveFileId": "14047953",
+  "archiveSHA256": "67ec36844e6f2a2290f3a580727e41214ebd16590cf8cb967a1659fa6af9351a",
+  "archiveBytes": 16169260,
+  "initialSavedAtConsole": "00:55:54 18/10/2026",
+  "processing": "Ready",
+  "readyButtonEnabled": true,
+  "gameUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "runtimePath": "623393/ueywbxfxueohj0czv9f9lb0yhkfbuk45",
+  "mainMenuRendered": true,
+  "phoneTestPerformedThisTurn": false,
+  "liveGameplayInteractionVerifiedThisTurn": false,
+  "uploaded": true,
+  "moderationSubmitted": false,
+  "published": false,
+  "previousDraftObservedThisTurn": {
+    "version": "0.0.0.17",
+    "archiveFileId": "14047809",
+    "savedAtConsole": "00:31:55 18/10/2026",
+    "note": "Observed in the console before replacing the archive; this corrects the previous local record of a browser access blocker."
+  },
+  "savedAtConsole": "00:56:47 18/10/2026",
+  "proof": "Publishing/Previews/yandex-version18-20261018.jpg",
+  "interactionLimitation": "Automated canvas clicks did not leave the menu; live gameplay interaction was not verified by the browser tool."
+}

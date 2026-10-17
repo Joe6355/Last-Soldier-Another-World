@@ -1,0 +1,321 @@
+{
+  "result": "PASS",
+  "atlasPath": "Assets/SpriteAtlas.spriteatlasv2",
+  "atlasGuid": "5cd0cf0f10c0fde498b6762c58293577",
+  "buildTarget": "WebGL",
+  "scope": "All imported sprite textures referenced by enabled build scenes and Resources, including animation, UI and tiles. Runtime-generated tutorial pointer and font SDF textures are not imported sprites.",
+  "textureCount": 111,
+  "sourceSpriteCount": 1577,
+  "packedSpriteCount": 1577,
+  "checks": 359,
+  "texturePaths": [
+    "Assets/Sprits/0.png",
+    "Assets/Sprits/Banditka/Bandit Faceset.png",
+    "Assets/Sprits/Banditka/Beka.png",
+    "Assets/Sprits/Banditka/BekaWolk.png",
+    "Assets/Sprits/Boss/Assassin.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png",
+    "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png",
+    "Assets/Sprits/Coins/coinpreview.png",
+    "Assets/Sprits/Double Note Strip.png",
+    "Assets/Sprits/Explosion.png",
+    "Assets/Sprits/Healer.png",
+    "Assets/Sprits/HealerAtack.png",
+    "Assets/Sprits/Holy/HolyGhost.png",
+    "Assets/Sprits/Holy/HolyOrc.png",
+    "Assets/Sprits/LPCportrait33.png",
+    "Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png",
+    "Assets/Sprits/Map/basictiles.png",
+    "Assets/Sprits/Map/chicken_eat.png",
+    "Assets/Sprits/Map/chicken_walk.png",
+    "Assets/Sprits/Map/cow_eat.png",
+    "Assets/Sprits/Map/cow_walk.png",
+    "Assets/Sprits/Map/preview.png",
+    "Assets/Sprits/Map/sheep_eat.png",
+    "Assets/Sprits/Map/sheep_walk.png",
+    "Assets/Sprits/Map/sheet.png",
+    "Assets/Sprits/Map/things.png",
+    "Assets/Sprits/PlayerAll.png",
+    "Assets/Sprits/Question Strip.png",
+    "Assets/Sprits/SciDE.png",
+    "Assets/Sprits/ShoperAllAnim.png",
+    "Assets/Sprits/SlimeVariantAtlas.png",
+    "Assets/Sprits/achievements.png",
+    "Assets/Sprits/allEnemy.png",
+    "Assets/Sprits/nun-black-NESW.png",
+    "Assets/Sprits/portalRings1.png",
+    "Assets/Sprits/portalRings2.png",
+    "Assets/Sprits/slime_monster_spritesheet.png",
+    "Assets/Sprits/spr_shield.png",
+    "Assets/Sprits/ui/HUD Menus.png",
+    "Assets/Sprits/ui/Square Buttons/Info Square Button.png",
+    "Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png",
+    "Assets/Sprits/ui/Square Buttons/Return Square Button.png",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_1.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_2.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_3.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_4.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_5.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_6.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_7.psd",
+    "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_8.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/1.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/2.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/3.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/4.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/5.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/6.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/7.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/8.psd",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png",
+    "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png",
+    "Assets/Sprits/uiEL.png",
+    "Assets/UI/ForestGarrison/Arena/Altar.png",
+    "Assets/UI/ForestGarrison/Arena/Barrel.png",
+    "Assets/UI/ForestGarrison/Arena/GravityRune.png",
+    "Assets/UI/ForestGarrison/Arena/Outpost.png",
+    "Assets/UI/ForestGarrison/Medals/Amethyst.png",
+    "Assets/UI/ForestGarrison/Medals/Emerald.png",
+    "Assets/UI/ForestGarrison/Medals/Ruby.png",
+    "Assets/UI/ForestGarrison/Medals/Sapphire.png",
+    "Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png",
+    "Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png",
+    "Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png"
+  ],
+  "pages": [
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    },
+    {
+      "width": 2048,
+      "height": 2048,
+      "format": "RGBA32",
+      "estimatedBytes": 16777216
+    }
+  ],
+  "groups": [
+    {
+      "path": "Assets/SpriteAtlas.spriteatlasv2",
+      "guid": "5cd0cf0f10c0fde498b6762c58293577",
+      "textureCount": 85,
+      "spriteCount": 1551,
+      "pages": [
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        }
+      ]
+    },
+    {
+      "path": "Assets/BackgroundSpriteAtlas.spriteatlasv2",
+      "guid": "18854cf98f81cce40b46cd13c10cba51",
+      "textureCount": 26,
+      "spriteCount": 26,
+      "pages": [
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        },
+        {
+          "width": 2048,
+          "height": 2048,
+          "format": "RGBA32",
+          "estimatedBytes": 16777216
+        }
+      ]
+    }
+  ],
+  "version": "0.0.0.18",
+  "checkedOn": "2026-10-18",
+  "build": {
+    "verifiedPackedSourcePaths": 1052,
+    "mismatches": [],
+    "rootSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildSettingsSHA256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/sprite-atlas-v18-webgl-isolated.log",
+    "editorBuildSourcesCompared": true
+  },
+  "uploaded": true,
+  "sourceImageOrSpriteMetadataChangedByAtlas": false,
+  "physicalPhoneTestPerformed": false,
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 359,
+      "output": "Builds/RatingValidation/sprite-atlas-v18-checks.txt",
+      "log": "Builds/RatingValidation/sprite-atlas-v18-final.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 228,
+      "output": "Builds/RatingValidation/holy-v17-checks.txt",
+      "log": "Builds/RatingValidation/v18-HolyEnemyChecks-final.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 221,
+      "output": "Builds/RatingValidation/release-asset-checks.txt",
+      "log": "Builds/RatingValidation/v18-ReleaseAssetChecks-final.log"
+    }
+  ],
+  "nodeTests": {
+    "passed": 10,
+    "result": "PASS",
+    "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+  },
+  "liveEditorBindingChecks": {
+    "menuUniqueSprites": 4,
+    "gameUniqueSprites": 29,
+    "log": "Builds/RatingValidation/v18-HolyEnemyChecks-final.log"
+  },
+  "preview": "Publishing/Previews/sprite-atlas-v18-camp.png",
+  "modifiedFiles": [
+    "Assets/SpriteAtlas.spriteatlasv2",
+    "Assets/BackgroundSpriteAtlas.spriteatlasv2",
+    "Assets/Editor/GameSpriteAtlas.cs",
+    "Assets/Editor/YandexBuild.cs",
+    "Tests/SpriteAtlasChecks.cs",
+    "Tests/HolyEnemyChecks.cs",
+    "Publishing/holy-enemies-v17-assets.json"
+  ],
+  "sourceMetadataNote": "Existing committed HolyGhost metadata in afd7ccc differs from the original v17 manifest; the current sprite metadata was preserved and its recorded hash refreshed.",
+  "remainingLimitations": [
+    "Physical phone not tested this turn",
+    "Runtime-generated tutorial pointer and SDF font textures are not imported sprite assets",
+    "Existing source texture compression remains unchanged; Unity reports source-compression warnings when packing",
+    "Nine restored original PNG files still have unconfirmed provenance; no rights clearance is implied"
+  ],
+  "atlasFileHashes": {
+    "Assets/SpriteAtlas.spriteatlasv2": "4e6de11230c4a3d4b68ec021044e4f24df4efaa784d3e65963be740bd664789a",
+    "Assets/SpriteAtlas.spriteatlasv2.meta": "7977d33000d6179ab05271cf914d2a196d1a7b9fb4881bdc80d725cdecc0f03c",
+    "Assets/BackgroundSpriteAtlas.spriteatlasv2": "905c14206a152c6e415ea843431c5c300f0513724baac56a008ddc506bdae434",
+    "Assets/BackgroundSpriteAtlas.spriteatlasv2.meta": "0b06a93bede72c229fe27597abe24e839fa3a065d5ee0b79c01ee21c1ba1d592"
+  },
+  "browserLaunchVerified": true,
+  "uploadReport": "Publishing/upload-v18-check.json"
+}

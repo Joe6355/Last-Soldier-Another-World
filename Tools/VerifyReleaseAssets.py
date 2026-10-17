@@ -4,6 +4,7 @@ import hashlib
 import json
 import zipfile
 import argparse
+from datetime import date
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -73,7 +74,7 @@ def main():
     for name in required:
         assert (ROOT / 'Builds/YandexGames/StreamingAssets/ThirdParty' / name).is_file(), name
     summary = {
-        'checkedOn': '2026-10-17', 'result': 'TECHNICAL_PASS_RIGHTS_PENDING' if pending else 'PASS',
+        'checkedOn': date.today().isoformat(), 'result': 'TECHNICAL_PASS_RIGHTS_PENDING' if pending else 'PASS',
         'pendingProvenancePaths': pending,
         'archive': release['archive'], 'archiveSha256': release['sha256'],
         'archiveFileCount': len(release['fileHashes']),

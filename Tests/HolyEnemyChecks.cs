@@ -79,6 +79,7 @@ public static class HolyEnemyChecks
             switch (phase)
             {
                 case 0:
+                    SpriteAtlasChecks.CheckLoadedScene();
                     UnityEngine.Object.FindObjectOfType<MainMenuController>().Play(); Next(1); break;
                 case 1:
                     if (SceneManager.GetActiveScene().name != "SampleScene") return;
@@ -191,6 +192,8 @@ public static class HolyEnemyChecks
                     Check(projectile != null && projectile.GetComponent<EnemyProgject>() != null && projectile.GetComponent<Collider2D>().isTrigger,
                         "Ghost launches the existing enemy projectile type");
                     Check(projectile.GetComponent<SpriteRenderer>().sprite.name == "HolyGhost_CastOrb", "Projectile uses the orb slice, not the whole character");
+                    // Leave travel margin for pause/resume checks during batch-mode rendering.
+                    projectile.GetComponent<EnemyProgject>().speed = .2f;
                     orbPosition = projectile.transform.position; Time.timeScale = 0; Next(13); break;
                 case 13:
                     if (EditorApplication.timeSinceStartup - realBegan < .2) return;
@@ -214,6 +217,7 @@ public static class HolyEnemyChecks
                     Next(16); break;
                 case 16:
                     if (Time.time - began < .5f) return;
+                    SpriteAtlasChecks.CheckLoadedScene();
                     typeof(LocalizationChecks).GetMethod("Capture", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { "holy-v17-camp.png" });
                     Finish(true, "Holy immunity/healing, all enemy classes, mobile targeting, animations, combat, pause and diverse wave rosters passed"); break;
             }
@@ -271,7 +275,8 @@ public static class HolyEnemyChecks
             string path = "Assets/Sprits/Holy/" + name + ".png";
             var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToArray();
             Check(sprites.Length == (name == "HolyGhost" ? 17 : 16), "All generated sprites are sliced: " + name);
-            Check(sprites.All(s => s.texture.width == 128 && s.texture.filterMode == FilterMode.Point), "Small point-filtered pixel texture: " + name);
+            var sourceTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            Check(sourceTexture.width == 128 && sourceTexture.filterMode == FilterMode.Point, "Small point-filtered source texture before atlas packing: " + name);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemy/" + name + ".prefab");
             Check(prefab.CompareTag("HolyEnemy") && prefab.GetComponent<Enemy>() != null, "New enemy reuses existing health and reward system: " + name);
             Check(prefab.GetComponent<SpriteRenderer>().sprite.bounds.size.x <= 1.01f, "New enemy matches the scene's character scale: " + name);

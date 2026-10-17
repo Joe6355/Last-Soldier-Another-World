@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-17T18:47:21.103705+00:00",
+  "builtAt": "2026-10-17T19:54:56.068747+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 14529808,
-  "unpackedBytes": 14836048,
-  "sha256": "d91e1eb8bb4660f901cc7d7ba118455c4e3933df6a9ee42723befeb349a16c66",
+  "zipBytes": 16169260,
+  "unpackedBytes": 16475561,
+  "sha256": "67ec36844e6f2a2290f3a580727e41214ebd16590cf8cb967a1659fa6af9351a",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "6564504f9c8ef360e56ab4124bd725f4be9826f1c34fc08292aa8cae19ec1691",
+    "Build/YandexGames.data.unityweb": "67f041f79f4d8d48a473418eea3a8013ab300684fff401a336ababa7a53b0d32",
     "Build/YandexGames.framework.js.unityweb": "f2f1eadd056a420b0973f3b9d2e723bd5cfffe33756055560ab3d2ea4e7ff1a2",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
     "Build/YandexGames.wasm.unityweb": "30d257ad592e682e3dafe48e4ab7653bfeb379563cd3f6b2bb4aacd5293a4cf3",
-    "index.html": "980f0c6fa8d2f4e5df727a82d2a51f92c9a45d035275f04df79056b69cfeddbd",
+    "index.html": "23315e8146f224804cf2f9e8da849b7bd6a0089558a2f131e01d10cb346885fb",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -41,7 +41,7 @@
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 1103,
+    "matched_files": 1109,
     "files": [
       {
         "path": "Assets/Anim/Animals/Babka.controller",
@@ -772,12 +772,36 @@
         "sha256": "710901c9aafa5c9243f77960f6e9dc15e54098a3c47a19a70a22ba65fc3410c7"
       },
       {
+        "path": "Assets/BackgroundSpriteAtlas.spriteatlasv2",
+        "sha256": "905c14206a152c6e415ea843431c5c300f0513724baac56a008ddc506bdae434"
+      },
+      {
+        "path": "Assets/BackgroundSpriteAtlas.spriteatlasv2.meta",
+        "sha256": "0b06a93bede72c229fe27597abe24e839fa3a065d5ee0b79c01ee21c1ba1d592"
+      },
+      {
+        "path": "Assets/Editor/GameSpriteAtlas.cs",
+        "sha256": "3249ff6a60e3c4305061f5d529fad658ccb99092fe62ad7bdfaee0e574fd695f"
+      },
+      {
+        "path": "Assets/Editor/GameSpriteAtlas.cs.meta",
+        "sha256": "53ac435e78dd3c1664b5da2f124776ca12aeef670029aebb6850f8736720819d"
+      },
+      {
         "path": "Assets/Editor/GuidedTutorialAuthoring.cs",
         "sha256": "e0a782bf3e620bdbc577528bdaf2a52d3739fab5ee981b4ccb142e4de7d515d6"
       },
       {
+        "path": "Assets/Editor/GuidedTutorialAuthoring.cs.meta",
+        "sha256": "fb19e3b3a95d68d07472b5270055c3b5cf085fb8fa06391dc3e254aba64a2043"
+      },
+      {
         "path": "Assets/Editor/YandexBuild.cs",
-        "sha256": "9cd5aabfeb696108fbee72882750efff228b1bfba305131cc94cdcaa3c332d5c"
+        "sha256": "13de51436fff35cf1a11e8b186e114c09a8d453dd92ca4fa452d8f00a6f91e1d"
+      },
+      {
+        "path": "Assets/Editor/YandexBuild.cs.meta",
+        "sha256": "32a0e1a1a5871bf5522638f968ce726628a9f535bb423286588975907ce51991"
       },
       {
         "path": "Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_interface.cs",
@@ -1653,7 +1677,7 @@
       },
       {
         "path": "Assets/Prefabs/Enemy/HolyGhost.prefab",
-        "sha256": "9fe2b19e490feee81156a86eee7426882dc1c21b5734490e0add1f4a06cdc0d6"
+        "sha256": "303841bd8e962b948d2260e547aeb73fbf3a4222945d083fd9c9c98c8f23b05d"
       },
       {
         "path": "Assets/Prefabs/Enemy/HolyGhost.prefab.meta",
@@ -1661,7 +1685,7 @@
       },
       {
         "path": "Assets/Prefabs/Enemy/HolyOrc.prefab",
-        "sha256": "564cacb25f87ad30f46176aa54f420be777e966897d0ab982b675cb34dbbfa42"
+        "sha256": "7d2c959adab11c9b64ea081d92273a11492de09473efca863fd24e462fcdf9e0"
       },
       {
         "path": "Assets/Prefabs/Enemy/HolyOrc.prefab.meta",
@@ -1677,7 +1701,7 @@
       },
       {
         "path": "Assets/Prefabs/Enemy/HolySpiritOrb.prefab",
-        "sha256": "004995c05bd8ec3f2601401d56a4411c86f97a4145994d6f0e55937beabd2d4f"
+        "sha256": "f0c6c3fdb519d077294a6dc1d8b7c299f8a5d62aa9701e68a632ae8f9337c2c7"
       },
       {
         "path": "Assets/Prefabs/Enemy/HolySpiritOrb.prefab.meta",
@@ -2609,11 +2633,11 @@
       },
       {
         "path": "Assets/SpriteAtlas.spriteatlasv2",
-        "sha256": "857da2303f628bf2df3bcbad9f193cc86030cf3489b465ef9e745c33aa89079e"
+        "sha256": "4e6de11230c4a3d4b68ec021044e4f24df4efaa784d3e65963be740bd664789a"
       },
       {
         "path": "Assets/SpriteAtlas.spriteatlasv2.meta",
-        "sha256": "6fbb0979b8ce882b4f6f1629671aef93701feeb25f5cb97707b5cd3b095f6c82"
+        "sha256": "7977d33000d6179ab05271cf914d2a196d1a7b9fb4881bdc80d725cdecc0f03c"
       },
       {
         "path": "Assets/Sprits/0.png",
@@ -2973,7 +2997,7 @@
       },
       {
         "path": "Assets/Sprits/Holy/HolyGhost.png.meta",
-        "sha256": "f49c755507cafbf7b25a1415861b9d48fc4f61d1116a55550163acf459e5ed19"
+        "sha256": "4f1f5da20f8685319c00352899417a1228470cd7d91e5250d1cb60ced85e340e"
       },
       {
         "path": "Assets/Sprits/Holy/HolyOrc.png",
@@ -4477,13 +4501,18 @@
     "Builds/RatingValidation/v17-GameplayFixesV16Checks-complete.log",
     "Builds/RatingValidation/v17-ShotgunChecks-complete.log",
     "Builds/RatingValidation/v17-FriendlyDefeatChecks-complete.log",
-    "Builds/RatingValidation/v17-ReleaseAssetChecks-complete.log"
+    "Builds/RatingValidation/v17-ReleaseAssetChecks-complete.log",
+    "Builds/RatingValidation/sprite-atlas-v18-webgl-isolated.log",
+    "Builds/RatingValidation/sprite-atlas-v18-final.log",
+    "Builds/RatingValidation/v18-HolyEnemyChecks-final.log",
+    "Builds/RatingValidation/v18-ReleaseAssetChecks-final.log"
   ],
-  "uploadedToYandex": false,
+  "uploadedToYandex": true,
   "previousUploadedArchive": {
-    "sha256": "fdef812133ff1309912d102adda22a81adb1e3876e66b3dedc351992257b017c",
-    "version": "0.0.0.16",
-    "fileId": "14046785"
+    "version": "0.0.0.17",
+    "fileId": "14047809",
+    "archiveHashVerified": false,
+    "note": "Observed in console this turn before replacement"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -4500,11 +4529,11 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.16",
-    "archiveFileId": "14046785",
-    "checkedAt": "2026-10-17",
+    "version": "0.0.0.18",
+    "archiveFileId": "14047953",
+    "checkedAt": "2026-10-18",
     "archiveProcessing": "Ready",
-    "archiveLastChangedAtConsole": "22:30:43 17/10/2026",
+    "archiveLastChangedAtConsole": "00:56:47 18/10/2026",
     "platforms": [
       "desktop",
       "Android"
@@ -4515,7 +4544,7 @@
       "ru",
       "en"
     ],
-    "runtimeCheckedVersion": "0.0.0.16",
+    "runtimeCheckedVersion": "0.0.0.18",
     "moderationSubmitted": false,
     "published": false,
     "moderationBlocker": "Submit button still disabled after English media finished processing; disabled property verified in DOM and visible UI. Exact reason not exposed.",
@@ -4713,7 +4742,7 @@
       "platformIncidentConfirmedBySupport": true,
       "latestCheck": "Publishing/leaderboard-recheck-20261017.json"
     },
-    "lastSavedAtConsole": "21:17:52 17/10/2026",
+    "lastSavedAtConsole": "00:56:47 18/10/2026",
     "consoleTimeoutResolvedAfterReload": true,
     "latestReleaseCheck": {
       "checkedAt": "2026-10-16",
@@ -4739,10 +4768,10 @@
     "ageRatingObservationNote": "6+ observed and preserved on 2026-10-17; new code removes boss bodies and uses neutral defeat text. Moderation decision not guaranteed.",
     "platformPanelStatus": "Technical maintenance: come back later or choose another navigation section",
     "platformPanelProof": "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg",
-    "uploadProof": "Publishing/Previews/yandex-version15-20261017.jpg",
+    "uploadProof": "Publishing/Previews/yandex-version18-20261018.jpg",
     "moderationStatusCheckedVersion": "0.0.0.13",
     "cardMediaRecordedForVersion": "0.0.0.13",
-    "currentRuntimePath": "623393/mkbo4stnwi3e07ddphe4fotsl83exmgl"
+    "currentRuntimePath": "623393/ueywbxfxueohj0czv9f9lb0yhkfbuk45"
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -4791,8 +4820,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.17",
-  "uploadLimitation": "Local browser use is disabled in Work settings. Version 0.0.0.17 is packaged locally, not uploaded; yandexDraft records the last verified version 0.0.0.16.",
+  "localVersion": "0.0.0.18",
+  "uploadLimitation": null,
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
@@ -4898,7 +4927,7 @@
     "Publishing/character-replacements.json": "f8047b4128b5a9270174e571d9b3b68866a384579d8710ea594616bbd6db2b09",
     "Publishing/interface-sprite-provenance.json": "d4e2974d6fdade730d778c39182d2c573754806764bd4db2840320f838d79e1c",
     "Publishing/audio-provenance.json": "0348780bece1ca85cc5af2178a97413beac07e771a58b22f8f81ec1283c75bd1",
-    "Publishing/holy-enemies-v17-assets.json": "c9cfacd6e531d47c8326350e309de10e22a8027acc3da651e5eb25d4904b9d00"
+    "Publishing/holy-enemies-v17-assets.json": "c3b3689723b3d5c1b2d641868aa0f54d8f9cb49ebcb1e00697cfe4ebd838b1e8"
   },
   "englishMedia": {
     "report": "Publishing/Card/media-en-report.json",
@@ -4952,7 +4981,7 @@
     "report": "Publishing/upload-v14-check.json"
   },
   "buildSettingsSource": "Builds/RatingValidation/Project/ProjectSettings/ProjectSettings.asset",
-  "isolatedBuildValidation": "Publishing/isolated-build-v17.json",
+  "isolatedBuildValidation": "Publishing/isolated-build-v18.json",
   "visualAudioRevision": "Publishing/visual-audio-v15.json",
   "desktopVersion15Validation": {
     "checkedAt": "2026-10-17",
@@ -4980,5 +5009,14 @@
     "physicalPhoneVerified": false,
     "report": "Publishing/holy-enemies-v17.json",
     "uploadReport": "Publishing/upload-v17-check.json"
+  },
+  "spriteAtlasRevision": "Publishing/sprite-atlas-v18.json",
+  "desktopVersion18Validation": {
+    "checkedAt": "2026-10-18",
+    "mainMenuRendered": true,
+    "currentRuntimePath": "623393/ueywbxfxueohj0czv9f9lb0yhkfbuk45",
+    "gameplayInteractionVerified": false,
+    "physicalPhoneVerified": false,
+    "report": "Publishing/upload-v18-check.json"
   }
 }
