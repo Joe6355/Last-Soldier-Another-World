@@ -11,7 +11,9 @@ public class PoisonArrow : ArrowDef
     {
         base.ApplyHit(target);
         if (target == null || !target.isActiveAndEnabled || target.CompareTag("HolyEnemy")) return;
-        if (target is Enemy enemy) enemy.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        if (target is ShaulaHitZone zone) zone.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is ShaulaBoss shaula) shaula.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
+        else if (target is Enemy enemy) enemy.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
         else if (target is SceletonDef skeleton) skeleton.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
         else if (target is SceletMag mage) mage.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);
         else if (target is Slime slime) slime.ApplyPoison(poisonDamagePerTick, poisonTicks, tickInterval);

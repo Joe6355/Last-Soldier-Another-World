@@ -1,0 +1,62 @@
+PASS
+Wave picker, Shaula shortcut, arbitrary waves, no rewards, save/cloud isolation, normal-run restoration and demo death passed.
+Editor test tools are available
+Draft WebGL explicitly includes the demo define
+The wave picker cannot open outside an active arena
+Entering the arena starts its ordinary run
+Wave picker opens during combat
+Picker pauses combat and owns Escape without opening the pause menu
+Picker text fits: Title/ru
+Picker text fits: Description/ru
+Picker text fits: Text/ru
+Picker text fits: Label/ru
+Picker text fits: Label/ru
+Picker text fits: Validation/ru
+Picker text fits: Label/ru
+Picker text fits: Label/ru
+Picker text fits: Label/ru
+Out-of-range waves cannot start or alter the run
+Invalid text keeps the picker open and normal progress intact
+The Shaula shortcut starts test wave 20
+The test has a separate save object
+Test wave selection never becomes the saved normal checkpoint
+Selection clears the previous pack and spawns the real boss prefab
+All direct and coordinated save paths reject the demo data
+Consumed supplies and health never mutate the original save
+Kills, deaths, achievements and completed waves are not credited in tests
+Test rewards cannot add coins
+Demo kills do not spawn collectible loot
+Authorization cannot change the owner of a demo save
+Defeating demo Shaula finishes the test without real progression
+Boss victory produces no real reward or rating credit
+A completed test waits for another selection instead of advancing waves
+Picker can reopen after the test ends
+An explicit return-to-normal action is visible
+Picker text fits: Title/en
+Picker text fits: Description/en
+Picker text fits: Text/en
+Picker text fits: Label/en
+Picker text fits: Label/en
+Picker text fits: Validation/en
+Picker text fits: Label/en
+Picker text fits: Label/en
+Picker text fits: Label/en
+Picker text fits: Label/en
+Numeric selection replaces Shaula with wave 15
+The existing assassin encounter still starts through the picker
+Picker can interrupt and replace an active test boss
+Late ordinary waves can be selected
+Changing the wave deactivates the old boss and health bar
+Repeated selection leaves the original snapshot unchanged
+An ordinary selected wave spawns its actual enemy roster
+Picker opens during the ordinary test wave
+Exit restores the original save object
+Disposable save keys are discarded
+Exit restores original coins, ammunition and health
+Exit restores all normal statistics
+Normal saved wave resumes after the scene reload
+No stale picker or pause survives the reload
+Another demo session can start after restoring normal play
+Second demo session is isolated too
+Demo defeat returns to the normal run without a rewarded ad
+Demo defeat does not penalize normal resources or statistics

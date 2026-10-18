@@ -1,0 +1,335 @@
+{
+  "conceptOnly": true,
+  "integratedIntoGame": false,
+  "columns": 6,
+  "rows": 6,
+  "frameSize": 448,
+  "view": "three-quarter top-down facing down-left",
+  "sheets": {
+    "normal": {
+      "file": "shaula-normal-sheet.png",
+      "width": 1254,
+      "height": 1254,
+      "cell": 209,
+      "columns": 6,
+      "rows": 6,
+      "sha256": "7ff25e68c131eac79bee1b6c10d4f147c2c6303d707af145b89d2d4dd9ed9523",
+      "transparentPixels": 519731
+    },
+    "crimson": {
+      "file": "shaula-crimson-sheet.png",
+      "width": 1254,
+      "height": 1254,
+      "cell": 209,
+      "columns": 6,
+      "rows": 6,
+      "sha256": "f4d3f18c44a1931b2ed01c6de3c4e24683f771600a3e232d6f8141ad9eadd4c8",
+      "transparentPixels": 597798
+    },
+    "special-normal": {
+      "file": "shaula-special-normal-sheet.png",
+      "width": 1254,
+      "height": 1254,
+      "cell": 209,
+      "columns": 6,
+      "rows": 6,
+      "sha256": "3ab520fc6ae3f8fcfa1f4491f23e45e74d09e8a2bdea284566fa7914882a0c77",
+      "transparentPixels": 582993
+    },
+    "special-crimson": {
+      "file": "shaula-special-crimson-sheet.png",
+      "width": 1254,
+      "height": 1254,
+      "cell": 209,
+      "columns": 6,
+      "rows": 6,
+      "sha256": "836fc85f13036c0d357d2175b709df77e00df6bfdcbd030031e961c3ba1fee32",
+      "transparentPixels": 593785
+    },
+    "laser": {
+      "file": "shaula-white-laser-sheet.png",
+      "width": 2172,
+      "height": 724,
+      "cell": 362,
+      "cellHeight": 362,
+      "columns": 6,
+      "rows": 2,
+      "sha256": "7014937641def6752672c6835fd0257d83934f516610ca135167b6b047cacafe",
+      "transparentPixels": 605227
+    }
+  },
+  "clips": {
+    "idle": {
+      "label": "Ожидание",
+      "row": 0,
+      "kind": "main",
+      "durationsMs": [
+        180,
+        180,
+        180,
+        180,
+        180,
+        180
+      ],
+      "loop": true,
+      "totalMs": 1080,
+      "frameCount": 6
+    },
+    "walk": {
+      "label": "Ходьба",
+      "row": 1,
+      "kind": "main",
+      "durationsMs": [
+        110,
+        110,
+        110,
+        110,
+        110,
+        110
+      ],
+      "loop": true,
+      "totalMs": 660,
+      "frameCount": 6
+    },
+    "grab": {
+      "label": "Смертельная хватка",
+      "row": 2,
+      "kind": "main",
+      "durationsMs": [
+        260,
+        260,
+        110,
+        130,
+        320,
+        650
+      ],
+      "loop": false,
+      "totalMs": 1730,
+      "frameCount": 6
+    },
+    "slam": {
+      "label": "Сокрушительный удар",
+      "row": 3,
+      "kind": "main",
+      "durationsMs": [
+        400,
+        400,
+        100,
+        120,
+        320,
+        400
+      ],
+      "loop": false,
+      "totalMs": 1740,
+      "frameCount": 6
+    },
+    "infernal-shot": {
+      "label": "Адский выстрел",
+      "row": 0,
+      "kind": "laser",
+      "durationsMs": [
+        600,
+        600,
+        300,
+        90,
+        180,
+        320
+      ],
+      "loop": false,
+      "totalMs": 2090,
+      "frameCount": 6,
+      "phaseRows": {
+        "normal": 0,
+        "crimson": 1
+      },
+      "muzzleAnchors": [
+        [
+          0.645,
+          0.156
+        ],
+        [
+          0.516,
+          0.269
+        ],
+        [
+          0.512,
+          0.251
+        ],
+        [
+          0.573,
+          0.298
+        ],
+        [
+          0.496,
+          0.291
+        ],
+        [
+          0.698,
+          0.158
+        ]
+      ],
+      "beamColor": "#ffffff",
+      "beamDurationMs": 180,
+      "impactDurationMs": 450,
+      "previousMainAtlasRowUnused": 4
+    },
+    "piercing-sting": {
+      "label": "Пронзающее жало",
+      "row": 5,
+      "kind": "main",
+      "durationsMs": [
+        500,
+        500,
+        100,
+        180,
+        1000,
+        320
+      ],
+      "loop": false,
+      "totalMs": 2600,
+      "frameCount": 6
+    },
+    "star-barrage": {
+      "label": "Звёздный обстрел",
+      "row": 0,
+      "kind": "special",
+      "durationsMs": [
+        300,
+        350,
+        160,
+        160,
+        160,
+        450
+      ],
+      "loop": false,
+      "totalMs": 1580,
+      "frameCount": 6
+    },
+    "needle-volley": {
+      "label": "Шквал жал",
+      "row": 1,
+      "kind": "special",
+      "durationsMs": [
+        300,
+        140,
+        140,
+        140,
+        140,
+        450
+      ],
+      "loop": false,
+      "totalMs": 1310,
+      "frameCount": 6
+    },
+    "tail-break": {
+      "label": "Разрушение хвоста",
+      "row": 2,
+      "kind": "special",
+      "durationsMs": [
+        250,
+        180,
+        180,
+        200,
+        300,
+        700
+      ],
+      "loop": false,
+      "totalMs": 1810,
+      "frameCount": 6
+    },
+    "tail-regrow": {
+      "label": "Регенерация жала",
+      "row": 3,
+      "kind": "special",
+      "durationsMs": [
+        300,
+        240,
+        220,
+        220,
+        240,
+        600
+      ],
+      "loop": false,
+      "totalMs": 1820,
+      "frameCount": 6
+    },
+    "enrage": {
+      "label": "Багровая ярость",
+      "row": 4,
+      "kind": "special",
+      "durationsMs": [
+        350,
+        260,
+        260,
+        260,
+        300,
+        650
+      ],
+      "loop": false,
+      "totalMs": 2080,
+      "frameCount": 6
+    },
+    "defeat": {
+      "label": "Последнее превращение",
+      "row": 5,
+      "kind": "special",
+      "durationsMs": [
+        400,
+        300,
+        250,
+        250,
+        500,
+        1000
+      ],
+      "loop": false,
+      "totalMs": 2700,
+      "frameCount": 6,
+      "previewFrameScales": [
+        1,
+        1,
+        1,
+        1,
+        0.6,
+        0.45
+      ]
+    }
+  },
+  "hero": {
+    "file": "hero-reference.png",
+    "opaqueBounds": [
+      0,
+      0,
+      22,
+      31
+    ]
+  },
+  "scale": {
+    "bossWidthInHeroHeights": 6,
+    "referenceBossBounds": [
+      16,
+      19,
+      207,
+      208
+    ],
+    "note": "Presentation scale only; no Unity object scale has been changed"
+  },
+  "macros": {
+    "chase": {
+      "clip": "grab",
+      "repeats": 3,
+      "recoveryMs": 900
+    },
+    "armor": {
+      "clip": "idle",
+      "weakPointHighlight": true
+    }
+  },
+  "timings": {
+    "infernalShotChargeMs": 1500,
+    "stingTelegraphMs": 1000,
+    "whiteLaserDurationMs": 180,
+    "proposedAimLockBeforeShotMs": 400,
+    "otherTimingsProvisional": true
+  },
+  "limitation": "AI animation draft: one angle; frame edge residue and final pivot cleanup need review before production import"
+}

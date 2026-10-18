@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using TMPro;
 
-public class Ui : MonoBehaviour
+public partial class Ui : MonoBehaviour
 {
     [Header("Основные элементы")]
     [SerializeField] private GameObject menuPanel; // Главная панель меню
@@ -89,6 +89,7 @@ public class Ui : MonoBehaviour
 
     private void Update()
     {
+        UpdateEncounterMusic();
         if (mobileOrientationPaused && playerController != null && GameProgress.IsReady && !YG.YG2.isPauseGame && Time.timeScale > 0f) PauseGame();
         if (orientationResumePending && playerController != null && GameProgress.IsReady && !YG.YG2.isPauseGame)
         {
@@ -100,7 +101,7 @@ public class Ui : MonoBehaviour
         }
         if (startWhenReady && GameProgress.IsReady) BeginLoadedGame();
         // Открытие/закрытие меню по нажатию клавиши Esc
-        if (playerController != null && !YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
+        if (!WaveSpawner.BlocksDemoInput && playerController != null && !YG.YG2.isPauseGame && !playerController.IsAwaitingRevive && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
 
@@ -325,7 +326,7 @@ public class Ui : MonoBehaviour
     private void PauseGameMusic()
     {
         // Ставим на паузу все треки в массиве
-        foreach (var musicSource in gameMusicSources)
+        foreach (var musicSource in MusicChannels())
         {
             if (musicSource != null && musicSource.isPlaying)
             {
@@ -338,7 +339,7 @@ public class Ui : MonoBehaviour
     private void ResumeGameMusic()
     {
         // Возобновляем все треки в массиве
-        foreach (var musicSource in gameMusicSources)
+        foreach (var musicSource in MusicChannels())
         {
             if (musicSource != null && !musicSource.isPlaying)
             {
@@ -363,6 +364,7 @@ public class Ui : MonoBehaviour
 
         // Сохраняем значение
         PlayerPrefs.SetFloat("MusicVolume", volume);
+        SetEncounterMusicVolume(volume);
         PlayerPrefs.Save();
         if (musicValueText != null) musicValueText.text = Mathf.RoundToInt(volume * 100f) + "%";
     }

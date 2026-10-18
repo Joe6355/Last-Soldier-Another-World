@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Шаула — анимационный концепт</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10221e;color:#f3edda;font:16px/1.45 system-ui,sans-serif}
+main{max-width:1040px;padding:24px;margin:auto}h1{font-size:28px;line-height:1.2;margin:0 0 6px}p{margin:0 0 18px;color:#c0cfc3}
+.controls{display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin:18px 0}
+label{display:grid;gap:5px}select,button,input{font:inherit}select,button{min-height:44px;background:#244b3e;color:#f3edda;border:1px solid #729281;border-radius:5px;padding:8px 12px}
+button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #efd378;outline-offset:3px}
+select{max-width:100%}label.action{flex:1;min-width:min(290px,100%)}button.primary{background:#dfbd65;color:#14261d;border-color:#dfbd65}
+canvas{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:7px;background:#203f33}
+.timeline{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}.timeline input{flex:1;min-width:170px;accent-color:#dfbd65;min-height:32px}.timeline output{font-variant-numeric:tabular-nums}
+#status{min-height:48px;padding:12px 0;color:#eddb9e}.note{font-size:14px}.links{display:flex;gap:16px;flex-wrap:wrap}a{color:#efd378}
+@media(max-width:500px){main{padding:14px}h1{font-size:24px}.controls label{width:100%}.controls button{flex:1}canvas{border-radius:0}}
+</style>
+</head>
+<body>
+<main>
+<h1>Шаула</h1>
+<p>Анимационный концепт · в игре ничего не изменено · ширина босса = 6 высот героя</p>
+<div class="controls">
+<label class="action">Движение / способность<select id="action">
+<option value="idle">Ожидание</option><option value="walk">Ходьба</option>
+<option value="infernal-shot" selected>Адский выстрел · белый лазер</option><option value="grab">Смертельная хватка</option>
+<option value="slam">Сокрушительный удар</option><option value="star-barrage">Звёздный обстрел</option>
+<option value="chase">Неистовое преследование · три рывка</option><option value="piercing-sting">Пронзающее жало</option>
+<option value="needle-volley">Шквал жал</option><option value="armor">Непробиваемый панцирь · слабые места</option>
+<option value="tail-break">Разрушение хвоста</option><option value="tail-regrow">Регенерация жала</option>
+<option value="enrage">Багровая ярость · переход</option><option value="defeat">Последнее превращение</option>
+</select></label>
+<label>Форма<select id="phase"><option value="normal">Чёрный панцирь</option><option value="crimson">Багровая форма</option></select></label>
+<button id="play" type="button" class="primary">Пауза</button><button id="restart" type="button">Повторить</button>
+</div>
+<canvas id="arena" width="960" height="520" role="img" aria-label="Крупный спрайт Шаулы рядом с героем. Выберите способность, чтобы увидеть анимацию и предупреждение."></canvas>
+<div class="timeline"><label for="frame">Кадр</label><input id="frame" type="range" min="0" max="5" value="0" step="1"><output id="counter">1 / 6</output><output id="time">0,00 с</output></div>
+<div id="status" aria-live="polite"></div>
+<p class="note">Один ракурс. Тайминги пауз и эффекты предварительные. Подготовка выстрела — 1,5 с, укола — 1 с. Здесь проверяется анимация, боевой ИИ не подключён.</p>
+<div class="links"><a href="shaula-white-laser-sheet.png">Белый лазер · PNG</a><a href="shaula-white-laser-preview.gif">Белый лазер · GIF</a><a href="shaula-motion-preview.gif">Все движения · GIF</a><a href="CONCEPT.md">Описание и ограничения</a></div>
+</main>
+<script>window.SHAULA_MANIFEST = __SHAULA_MANIFEST__;</script>
+<script src="preview-logic.js"></script><script src="preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "verifiedPackedSourcePaths": 1168,
+  "mismatches": [],
+  "rootSettingsSHA256": "8383a18c9041d81dda3c4ad31ca7ca17d8e1831496e89e7e59bf3302c5ceed3a",
+  "buildSettingsSHA256": "8383a18c9041d81dda3c4ad31ca7ca17d8e1831496e89e7e59bf3302c5ceed3a",
+  "buildProject": "Builds/RatingValidation/Project",
+  "buildLog": "Builds/RatingValidation/shaula-v23-webgl-isolated.log",
+  "oldMotionSheetsPacked": false,
+  "articulatedPartsPacked": true
+}

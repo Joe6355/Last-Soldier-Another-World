@@ -1,0 +1,20 @@
+{
+  "tool": "built-in imagegen",
+  "jobs": [
+    {
+      "name": "crimson",
+      "target": "D:/YniUni/_YandexGame/AmaGame-Joe6355/Concepts/Shaula/v2/shaula-normal-sheet.png",
+      "prompt": "Use case: precise-object-edit. Recolor this BLACK Shaula sheet into a CRIMSON phase variant. Keep the moderately simplified chunky pixel style, broad plain armor plates, flat 2-3 shades, no grain/scratches/fine highlights. Exactly SIX columns and SIX rows of full-body scorpion frames. Same giant proportions, white star, ivory claws, eight legs, top-down 3/4 front-left camera. TRUE ALPHA TRANSPARENCY. NO BLOOD, NO RED SPLASHES, NO RED DUST, NO RED GLOW BELOW FEET. All magical particles are WHITE/IVORY/PALE GOLD, dry stone dust is beige/gray. Red only on solid intact crimson armor, never particles. No captions or grid. Preserve all poses and cell placement. All 36 scorpion armor bodies become matte deep crimson with burgundy shadows and simple red edge highlights. Ivory claws/joints and white star remain unchanged. The tail-shot row remains WHITE magic, not red fire. Six rows: idle, walk, grab, slam, white tail shot, piercing sting. Keep the whole sheet square 1254x1254. Do not add any red splatter or red aura outside the armored silhouette."
+    },
+    {
+      "name": "special-crimson",
+      "target": "D:/YniUni/_YandexGame/AmaGame-Joe6355/Concepts/Shaula/v2/shaula-special-normal-sheet.png",
+      "prompt": "Use case: precise-object-edit. Make a crimson-phase variant of this Shaula SPECIAL animation sheet. Keep the moderately simplified chunky pixel style, broad plain armor plates, flat 2-3 shades, no grain/scratches/fine highlights. Exactly SIX columns and SIX rows of full-body scorpion frames. Same giant proportions, white star, ivory claws, eight legs, top-down 3/4 front-left camera. TRUE ALPHA TRANSPARENCY. NO BLOOD, NO RED SPLASHES, NO RED DUST, NO RED GLOW BELOW FEET. All magical particles are WHITE/IVORY/PALE GOLD, dry stone dust is beige/gray. Red only on solid intact crimson armor, never particles. No captions or grid. Preserve all poses and cell placement. In ROWS ONE THROUGH FOUR, every body armor plate is CRIMSON throughout EVERY frame. Row1 white star bombardment, row2 white needles, row3 tail dissolves into WHITE sparkles leaving a clean closed short stump, row4 tail regenerates progressively with WHITE sparkles. NO black body returning in the middle of rows1-4. Preserve ROW FIVE black-to-crimson phase transition and ROW SIX giant-crimson-to-tiny-red harmless magical transformation. All disintegration pixels are WHITE/PALE GOLD; no red shrapnel, no blood, no pools, no exposed flesh. Keep square 1254x1254."
+    },
+    {
+      "name": "special-normal-fixed",
+      "target": "D:/YniUni/_YandexGame/AmaGame-Joe6355/Concepts/Shaula/v2/shaula-special-normal-sheet.png",
+      "prompt": "Use case: precise-object-edit. Small continuity correction to this Shaula special sheet ONLY. Keep the moderately simplified chunky pixel style, broad plain armor plates, flat 2-3 shades, no grain/scratches/fine highlights. Exactly SIX columns and SIX rows of full-body scorpion frames. Same giant proportions, white star, ivory claws, eight legs, top-down 3/4 front-left camera. TRUE ALPHA TRANSPARENCY. NO BLOOD, NO RED SPLASHES, NO RED DUST, NO RED GLOW BELOW FEET. All magical particles are WHITE/IVORY/PALE GOLD, dry stone dust is beige/gray. Red only on solid intact crimson armor, never particles. No captions or grid. Preserve all poses and cell placement. IMPORTANT CORRECTION: ROW FOUR (tail regrowth), COLUMNS FIVE AND SIX currently incorrectly change the scorpion's BODY to red. Make these TWO BODY ARMORS BLACK/charcoal again, just like the first4 frames of that row. All of rows1,2,3,4 must have BLACK bodies in every frame. Keep their growing tail poses and WHITE magic, all outlines and other details unchanged. ROW FIVE correctly transitions from black to crimson, leave it as it is. ROW SIX correctly transforms giant crimson into tiny red, leave it as it is. DO NOT recolor rows5 or6 black. Preserve square 1254x1254 and exact 6x6 layout."
+    }
+  ]
+}

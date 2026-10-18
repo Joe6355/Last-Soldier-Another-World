@@ -1,0 +1,9 @@
+{
+  "verifiedPackedSourcePaths": 1157,
+  "mismatches": [],
+  "rootSettingsSHA256": "001eb3f50a0b932b4ad040c3b3f32dd9c65412939c12009d3806e042d16090a1",
+  "buildSettingsSHA256": "001eb3f50a0b932b4ad040c3b3f32dd9c65412939c12009d3806e042d16090a1",
+  "buildProject": "Builds/RatingValidation/Project",
+  "buildLog": "Builds/RatingValidation/arena-demo-v22-webgl-isolated.log",
+  "editorBuildSourcesCompared": true
+}

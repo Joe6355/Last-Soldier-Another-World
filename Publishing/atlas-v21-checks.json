@@ -1,0 +1,278 @@
+{
+    "result": "PASS",
+    "atlasPath": "Assets/SpriteAtlas.spriteatlasv2",
+    "atlasGuid": "5cd0cf0f10c0fde498b6762c58293577",
+    "buildTarget": "WebGL",
+    "scope": "All imported sprite textures referenced by enabled build scenes and Resources, including animation, UI and tiles. Runtime-generated tutorial pointer and font SDF textures are not imported sprites.",
+    "textureCount": 113,
+    "sourceSpriteCount": 1721,
+    "packedSpriteCount": 1721,
+    "checks": 365,
+    "texturePaths": [
+        "Assets/Bosses/Shaula/crimson.png",
+        "Assets/Bosses/Shaula/normal.png",
+        "Assets/Sprits/0.png",
+        "Assets/Sprits/Banditka/Bandit Faceset.png",
+        "Assets/Sprits/Banditka/Beka.png",
+        "Assets/Sprits/Banditka/BekaWolk.png",
+        "Assets/Sprits/Boss/Assassin.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_1.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_2.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_3.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_4.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_00.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_01.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_02.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_03.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_04.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_05.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_06.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_07.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_08.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_09.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_10.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_11.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_12.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_13.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_14.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_15.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_16.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_17.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_18.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_19.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_20.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe dead/sprite_21.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_0.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_1.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_2.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe still/sprite_3.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_00.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_01.png",
+        "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe walking/sprite_02.png",
+        "Assets/Sprits/Coins/coinpreview.png",
+        "Assets/Sprits/Double Note Strip.png",
+        "Assets/Sprits/Explosion.png",
+        "Assets/Sprits/Healer.png",
+        "Assets/Sprits/HealerAtack.png",
+        "Assets/Sprits/Holy/HolyGhost.png",
+        "Assets/Sprits/Holy/HolyOrc.png",
+        "Assets/Sprits/LPCportrait33.png",
+        "Assets/Sprits/Map/32x32_map_tile v3.1 [MARGINLESS].png",
+        "Assets/Sprits/Map/basictiles.png",
+        "Assets/Sprits/Map/chicken_eat.png",
+        "Assets/Sprits/Map/chicken_walk.png",
+        "Assets/Sprits/Map/cow_eat.png",
+        "Assets/Sprits/Map/cow_walk.png",
+        "Assets/Sprits/Map/preview.png",
+        "Assets/Sprits/Map/sheep_eat.png",
+        "Assets/Sprits/Map/sheep_walk.png",
+        "Assets/Sprits/Map/sheet.png",
+        "Assets/Sprits/Map/things.png",
+        "Assets/Sprits/PlayerAll.png",
+        "Assets/Sprits/Question Strip.png",
+        "Assets/Sprits/SciDE.png",
+        "Assets/Sprits/ShoperAllAnim.png",
+        "Assets/Sprits/SlimeVariantAtlas.png",
+        "Assets/Sprits/achievements.png",
+        "Assets/Sprits/allEnemy.png",
+        "Assets/Sprits/nun-black-NESW.png",
+        "Assets/Sprits/portalRings1.png",
+        "Assets/Sprits/portalRings2.png",
+        "Assets/Sprits/slime_monster_spritesheet.png",
+        "Assets/Sprits/spr_shield.png",
+        "Assets/Sprits/ui/HUD Menus.png",
+        "Assets/Sprits/ui/Square Buttons/Info Square Button.png",
+        "Assets/Sprits/ui/Square Buttons/Questionmark Square Button.png",
+        "Assets/Sprits/ui/Square Buttons/Return Square Button.png",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PNG/summer 1/Summer1.png",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_1.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_2.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_3.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_4.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_5.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_6.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_7.psd",
+        "Assets/Sprits/ui/craftpix-net-256745-free-summer-pixel-art-backgrounds/PSD/S_8.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/1.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/2.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/3.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/4.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/5.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/6.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/7.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/PSD/8.psd",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_1/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_2/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_3/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_4/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_5/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_6/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_7/origbig.png",
+        "Assets/Sprits/ui/craftpix-net-823949-free-nature-backgrounds-pixel-art/nature_8/origbig.png",
+        "Assets/Sprits/uiEL.png",
+        "Assets/UI/ForestGarrison/Arena/Altar.png",
+        "Assets/UI/ForestGarrison/Arena/Barrel.png",
+        "Assets/UI/ForestGarrison/Arena/GravityRune.png",
+        "Assets/UI/ForestGarrison/Arena/Outpost.png",
+        "Assets/UI/ForestGarrison/Medals/Amethyst.png",
+        "Assets/UI/ForestGarrison/Medals/Emerald.png",
+        "Assets/UI/ForestGarrison/Medals/Ruby.png",
+        "Assets/UI/ForestGarrison/Medals/Sapphire.png",
+        "Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/Square.png",
+        "Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Circle.png",
+        "Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png"
+    ],
+    "pages": [
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        },
+        {
+            "width": 2048,
+            "height": 2048,
+            "format": "RGBA32",
+            "estimatedBytes": 16777216
+        }
+    ],
+    "groups": [
+        {
+            "path": "Assets/SpriteAtlas.spriteatlasv2",
+            "guid": "5cd0cf0f10c0fde498b6762c58293577",
+            "textureCount": 87,
+            "spriteCount": 1695,
+            "pages": [
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                }
+            ]
+        },
+        {
+            "path": "Assets/BackgroundSpriteAtlas.spriteatlasv2",
+            "guid": "18854cf98f81cce40b46cd13c10cba51",
+            "textureCount": 26,
+            "spriteCount": 26,
+            "pages": [
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                },
+                {
+                    "width": 2048,
+                    "height": 2048,
+                    "format": "RGBA32",
+                    "estimatedBytes": 16777216
+                }
+            ]
+        }
+    ]
+}

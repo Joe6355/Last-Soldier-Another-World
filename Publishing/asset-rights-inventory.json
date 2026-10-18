@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-17",
+  "checkedOn": "2026-10-18",
   "scope": "Initial 96 raster dependencies plus two additional rasters found by the final Unity BuildReport; replacements and player exclusions recorded. Audio: Publishing/audio-provenance.json. Pre-v13 visual restoration on 2026-10-17: merchant ownership confirmed by owner; other restored PNG provenance remains unconfirmed.",
   "dependencyGraph": "Builds/RatingValidation/asset-dependencies.json",
   "method": "Exact public source downloads and ZIP member bytes compared to local files by SHA-256; static GUID reachability is not a Unity build dependency report.",
@@ -3286,6 +3286,49 @@
       "generationTool": "OpenAI image_gen built-in",
       "sourceManifest": "Publishing/holy-enemies-v17-assets.json",
       "changes": "New generated character sheet using existing enemy atlas for style reference; no external character asset downloaded."
+    },
+    {
+      "path": "Assets/Bosses/Shaula/crimson.png",
+      "sha256": "af1afee954450a781caff0ab5225c90a3e591f7394e367abe2902ca4d6a5371b",
+      "bytes": 3880270,
+      "pixelSize": [
+        1920,
+        3840
+      ],
+      "spriteRects": 72,
+      "rightsStatus": "generated-for-project",
+      "generationTool": "OpenAI image_gen built-in",
+      "sourceManifest": "Publishing/shaula-asset-provenance.json",
+      "changes": "Approved concept v2 frames registered to a common pivot; nearest-neighbour scaling and transparent padding only."
+    },
+    {
+      "path": "Assets/Bosses/Shaula/normal.png",
+      "sha256": "454042a1f33349dd65483b93cfa93923d9e5ed703a455fe608af503992de4384",
+      "bytes": 3756897,
+      "pixelSize": [
+        1920,
+        3840
+      ],
+      "spriteRects": 72,
+      "rightsStatus": "generated-for-project",
+      "generationTool": "OpenAI image_gen built-in",
+      "sourceManifest": "Publishing/shaula-asset-provenance.json",
+      "changes": "Approved concept v2 frames registered to a common pivot; nearest-neighbour scaling and transparent padding only."
+    },
+    {
+      "path": "Assets/Bosses/Shaula/rig-parts.png",
+      "sha256": "ddf1a790ec0df288cc96487a35077f59cd5ae048daa546547361c0c158f802db",
+      "metadataSHA256": "ae04f9fefffacae06a1850b60d334228d93b0773b96b1455f0bbaeaa6ffa6704",
+      "bytes": 1311379,
+      "pixelSize": [
+        1536,
+        1024
+      ],
+      "spriteRects": 9,
+      "rightsStatus": "generated-for-project",
+      "generationTool": "OpenAI image_gen built-in",
+      "sourceManifest": "Concepts/Shaula/v3/generation.json",
+      "changes": "Generated 9-part puppet atlas; source pixels preserved. Individually measured sprite rectangles; runtime skeletal animation and palette shader."
     }
   ],
   "proofsCount": 65,
@@ -3298,7 +3341,7 @@
     "confirmed-existing-license": 9,
     "excluded-from-player-dependencies": 7,
     "derived-from-confirmed-CC0": 4,
-    "generated-for-project": 2
+    "generated-for-project": 5
   },
   "remainingUnconfirmedRasterPaths": [
     "Assets/Sprits/allEnemy.png",

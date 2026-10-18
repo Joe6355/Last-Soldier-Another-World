@@ -1,0 +1,281 @@
+{
+  "method": "Original deterministic synthesis; reuses existing Tools/GenerateGameAudio.py helpers, no samples or recordings",
+  "rate": 32000,
+  "pcmBits": 16,
+  "gameIntegrated": false,
+  "autoplay": false,
+  "listeningReviewPerformed": false,
+  "sfxCount": 17,
+  "musicLoopCount": 2,
+  "clips": [
+    {
+      "file": "audio/step-a.wav",
+      "label": "Шаг · сухой хитин A",
+      "role": "Quiet; use variants sparsely, not eight simultaneous leg clicks",
+      "seconds": 0.16,
+      "peak": 0.3272487156877846,
+      "rms": 0.05889059213262722,
+      "sha256": "c71127a55b851dedd5faca4114b3f6027ab156ef5157bfd1eda84b47f3725d45"
+    },
+    {
+      "file": "audio/step-b.wav",
+      "label": "Шаг · сухой хитин B",
+      "role": "Alternative to step-a",
+      "seconds": 0.16,
+      "peak": 0.3095801423169426,
+      "rms": 0.05379872449487871,
+      "sha256": "0e94e8487484959724d31288e6a6f11ae32d2d14a46a8acf97d848b802129d76"
+    },
+    {
+      "file": "audio/arrival.wav",
+      "label": "Появление Шаулы",
+      "role": "Heavy shell movement and muted low impact, no creature scream",
+      "seconds": 1.65,
+      "peak": 0.6510782140244203,
+      "rms": 0.07074432805847211,
+      "sha256": "5a1fc1f962a2b950121be6db698e1c43c2346e14daa6e7ce1d993c3d0052cafe"
+    },
+    {
+      "file": "audio/claw-ready.wav",
+      "label": "Клешни · подготовка",
+      "role": "Dry mechanical shell scrape; warning before grab",
+      "seconds": 0.4,
+      "peak": 0.37630630693898287,
+      "rms": 0.04946891862855035,
+      "sha256": "7d465c65261b68f9843e5723841685b7178d0c3ac8e5f670da23f5db9809b424"
+    },
+    {
+      "file": "audio/claw-hit.wav",
+      "label": "Клешни · удар",
+      "role": "Dry punch, no flesh or wet crunch",
+      "seconds": 0.36,
+      "peak": 0.72,
+      "rms": 0.12267554420807694,
+      "sha256": "82fd35bb8f0b6992c0775627e37683019c2d6a8cf1f6b9c55730d8061706eec6"
+    },
+    {
+      "file": "audio/ground-slam.wav",
+      "label": "Удар по земле",
+      "role": "Low thud and dry stone chips; short enough for repeated attacks",
+      "seconds": 0.7,
+      "peak": 0.6931644385052778,
+      "rms": 0.09544517268783814,
+      "sha256": "ef74a4c3a7fbfba848032183eac500200e50a1a621919a4ca8bbe76fcff43647"
+    },
+    {
+      "file": "audio/laser-charge.wav",
+      "label": "Лазер · заряд 1,5 с",
+      "role": "Distinct rising warning, follows the complete charge window",
+      "seconds": 1.5,
+      "peak": 0.32803239914831517,
+      "rms": 0.08815011924267716,
+      "sha256": "f23eedb756367f7dfb91069ea8a00418fd2119f355cbd904e1b45da7f068e452"
+    },
+    {
+      "file": "audio/laser-fire.wav",
+      "label": "Лазер · мощный белый разряд",
+      "role": "Immediate dry crack plus low body; no long piercing whistle",
+      "seconds": 0.45,
+      "peak": 0.72,
+      "rms": 0.08434088861795082,
+      "sha256": "64cdf762d685a1c4f6a51ee67be0dec4bdffb5ca45732c62cc22d40930782c12"
+    },
+    {
+      "file": "audio/laser-impact.wav",
+      "label": "Лазер · попадание",
+      "role": "Short impact and pale magical ring; quieter than the shot",
+      "seconds": 0.55,
+      "peak": 0.539860344692825,
+      "rms": 0.07268013614205425,
+      "sha256": "aa00171637987545d8a879b0e2f35355599bc0f5cb7306d34b5020e54801c3c4"
+    },
+    {
+      "file": "audio/tail-break.wav",
+      "label": "Хвост · исчезновение",
+      "role": "Dry magical snap and descending shimmer, no bodily injury sound",
+      "seconds": 0.65,
+      "peak": 0.292478270337011,
+      "rms": 0.040305564621579686,
+      "sha256": "3234071076b4336ae60ee9bcc4cc439eddb25ea3c0dc0ed2dd8e73d40be86bff"
+    },
+    {
+      "file": "audio/tail-regrow.wav",
+      "label": "Хвост · регенерация",
+      "role": "Ascending segments; shockwave accent at 1.22 seconds",
+      "seconds": 1.82,
+      "peak": 0.38233050984779465,
+      "rms": 0.052704873963895865,
+      "sha256": "0cc4a548d3182c33af69b83cefa8bd081154c7feed5213160fdfa90031ef4cbf"
+    },
+    {
+      "file": "audio/rage.wav",
+      "label": "Багровая ярость",
+      "role": "Low swell, shell click and clear phase-change tone; no scream",
+      "seconds": 1.5,
+      "peak": 0.35442448807966065,
+      "rms": 0.057021977373122604,
+      "sha256": "e9c5506d855c859f2b61a73ad9e60c5b5f3e40d1adccd80a0e10a9b6a6927bf9"
+    },
+    {
+      "file": "audio/star-cast.wav",
+      "label": "Звёздный обстрел",
+      "role": "Airy three-note star signal; distinct from laser charge",
+      "seconds": 0.85,
+      "peak": 0.197676020639417,
+      "rms": 0.04676159286089277,
+      "sha256": "de1a14dc7878e381be228b0d4bd1702588102ad42d8d2c1e8f8b62d87f1578f4"
+    },
+    {
+      "file": "audio/needle.wav",
+      "label": "Магическая игла",
+      "role": "Short light tick, much smaller than the main laser",
+      "seconds": 0.15,
+      "peak": 0.1513481827145378,
+      "rms": 0.03026627121298073,
+      "sha256": "cbf9d18cad9fb40fb852a913ebd6a961d37c6c3fa3cc63ac353cc1be84b4642e"
+    },
+    {
+      "file": "audio/sting.wav",
+      "label": "Жало · выпад",
+      "role": "Air swish and dry ground contact, no punctured flesh",
+      "seconds": 0.32,
+      "peak": 0.47680624475859507,
+      "rms": 0.0646509613339853,
+      "sha256": "8da4556dec74521e258e9df6d7ff93786d258d10ad234ed2c5add8f1d8659411"
+    },
+    {
+      "file": "audio/armor-block.wav",
+      "label": "Панцирь · попадание",
+      "role": "Quiet dull shell tick; no constant loud ringing",
+      "seconds": 0.18,
+      "peak": 0.1559509096099063,
+      "rms": 0.018650624916957185,
+      "sha256": "7603fdc889f9c92508c2a0f05204a1d42c7ada77553584e1fde803c54d545de7"
+    },
+    {
+      "file": "audio/transform.wav",
+      "label": "Финальное превращение",
+      "role": "Gentle descending magic then two light tiny-scorpion clicks; no death cry",
+      "seconds": 2.1,
+      "peak": 0.15702946216894414,
+      "rms": 0.03968749971061702,
+      "sha256": "a5351693f8f452cb9c71f3841fa07de9d36bcea7bb9e4e4bf14bea6fcd1842a4"
+    },
+    {
+      "file": "audio/music-phase-1.wav",
+      "label": "Музыка · фаза 1",
+      "role": "Original optional 8-bar fantasy loop; preview separately, not installed in game",
+      "seconds": 18.46153125,
+      "bpm": 104,
+      "bars": 8,
+      "peak": 0.1618317186089806,
+      "rms": 0.022186634588455784,
+      "sha256": "b2130be04a6f012262655e9b3ff017f5c27c3583452b63f640900bf5f860bf0d"
+    },
+    {
+      "file": "audio/music-phase-2.wav",
+      "label": "Музыка · фаза 2",
+      "role": "Original optional 8-bar fantasy loop; preview separately, not installed in game",
+      "seconds": 18.46153125,
+      "bpm": 104,
+      "bars": 8,
+      "peak": 0.16206687935538297,
+      "rms": 0.022237408229631328,
+      "sha256": "44cef0a9cef62398ee000df65ceb7ceec46dcd1bffe8f2316c591d0c99f090c4"
+    }
+  ],
+  "demo": {
+    "file": "audio/demo.wav",
+    "seconds": 25,
+    "events": [
+      [
+        0,
+        "arrival"
+      ],
+      [
+        2,
+        "step-a"
+      ],
+      [
+        2.3,
+        "step-b"
+      ],
+      [
+        3,
+        "claw-ready"
+      ],
+      [
+        3.52,
+        "claw-hit"
+      ],
+      [
+        4.5,
+        "ground-slam"
+      ],
+      [
+        6,
+        "laser-charge"
+      ],
+      [
+        7.5,
+        "laser-fire"
+      ],
+      [
+        7.52,
+        "laser-impact"
+      ],
+      [
+        10,
+        "tail-break"
+      ],
+      [
+        11.2,
+        "tail-regrow"
+      ],
+      [
+        14,
+        "rage"
+      ],
+      [
+        16,
+        "star-cast"
+      ],
+      [
+        17,
+        "needle"
+      ],
+      [
+        17.14,
+        "needle"
+      ],
+      [
+        17.28,
+        "needle"
+      ],
+      [
+        17.42,
+        "needle"
+      ],
+      [
+        17.56,
+        "needle"
+      ],
+      [
+        17.7,
+        "needle"
+      ],
+      [
+        19,
+        "sting"
+      ],
+      [
+        20,
+        "armor-block"
+      ],
+      [
+        22,
+        "transform"
+      ]
+    ]
+  }
+}

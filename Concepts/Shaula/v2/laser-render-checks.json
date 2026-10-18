@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "renderer": "@napi-rs/canvas; shared preview.js, no browser session",
+  "laserPhases": [
+    {
+      "phase": "normal",
+      "whiteCorePixels": 808,
+      "beforeChargeComplete": 0,
+      "afterBeam": 0
+    },
+    {
+      "phase": "crimson",
+      "whiteCorePixels": 808,
+      "beforeChargeComplete": 0,
+      "afterBeam": 0
+    }
+  ],
+  "renderedActionPhaseCombinations": 28,
+  "renderedFrames": 124,
+  "frameMs": 40,
+  "browserInteractionVerified": false,
+  "gameIntegrated": false
+}

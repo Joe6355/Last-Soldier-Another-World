@@ -487,6 +487,7 @@ public class PlayerController : Sounds
     // ===========================
     public void AddCoin(int amount)
     {
+        if (GameProgress.IsArenaDemo) return;
         totalCoins = (int)System.Math.Max(0L, System.Math.Min(int.MaxValue, (long)totalCoins + amount));
         UpdateCoinText();
         PlayerPrefs.SetInt("Coins", totalCoins);

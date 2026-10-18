@@ -1,0 +1,1711 @@
+fileFormatVersion: 2
+guid: a968a5d1401eab54ea9e39cbd83e582b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: idle-00
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 3572
+        width: 197
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0784bc2a460b794e0800000000000000
+      internalID: -1974915965304223632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle-01
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 3572
+        width: 195
+        height: 188
+      alignment: 9
+      pivot: {x: 0.4923077, y: 0.25531915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 138cc1eeed8b96fa0800000000000000
+      internalID: -5806906976900429775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle-02
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 3571
+        width: 196
+        height: 194
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2525773}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f30781a754ac7c2a0800000000000000
+      internalID: -6717177919449829313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle-03
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 3572
+        width: 197
+        height: 191
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.2513089}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c9ea407169b164c0800000000000000
+      internalID: -4295948741387818552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle-04
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 3571
+        width: 195
+        height: 192
+      alignment: 9
+      pivot: {x: 0.4923077, y: 0.25520834}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50271e52991abea0800000000000000
+      internalID: -5856340249007415202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle-05
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 3571
+        width: 197
+        height: 193
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.253886}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fd527fcb8372f1c0800000000000000
+      internalID: -4471384435707453961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk-00
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 3253
+        width: 198
+        height: 198
+      alignment: 9
+      pivot: {x: 0.5050505, y: 0.23737374}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564e4a577ecec1ab0800000000000000
+      internalID: -5035889804451715995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk-01
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 3251
+        width: 202
+        height: 199
+      alignment: 9
+      pivot: {x: 0.509901, y: 0.24623115}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 893ac7758533e83c0800000000000000
+      internalID: -4355487335102766184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk-02
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 3251
+        width: 196
+        height: 198
+      alignment: 9
+      pivot: {x: 0.5, y: 0.24747474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cda8be08771821fb0800000000000000
+      internalID: -4678534712620512548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk-03
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 3251
+        width: 198
+        height: 199
+      alignment: 9
+      pivot: {x: 0.5050505, y: 0.24623115}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f1d489b2b183370800000000000000
+      internalID: 8302415787110244178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk-04
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 3251
+        width: 199
+        height: 198
+      alignment: 9
+      pivot: {x: 0.5025126, y: 0.24747474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78721416efa5d3e70800000000000000
+      internalID: 9096526870958122887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk-05
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 3251
+        width: 195
+        height: 198
+      alignment: 9
+      pivot: {x: 0.50769234, y: 0.24747474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ebf459746e18100800000000000000
+      internalID: 108621061155700325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grab-00
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 2935
+        width: 201
+        height: 198
+      alignment: 9
+      pivot: {x: 0.5124378, y: 0.22727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa39b11f46eebbc0800000000000000
+      internalID: -3765319011160999261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grab-01
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 2935
+        width: 191
+        height: 207
+      alignment: 9
+      pivot: {x: 0.4816754, y: 0.2173913}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b70727efbfab9850800000000000000
+      internalID: 6384890135479519155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grab-02
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 2933
+        width: 192
+        height: 209
+      alignment: 9
+      pivot: {x: 0.484375, y: 0.22488038}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed29cc6a725912420800000000000000
+      internalID: 2603526057131545310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grab-03
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 2931
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5af3c56821c6fcd0800000000000000
+      internalID: -2524618161844389284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grab-04
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 2931
+        width: 196
+        height: 211
+      alignment: 9
+      pivot: {x: 0.49489796, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc9509a96e3d9980800000000000000
+      internalID: -8530593495641645864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grab-05
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 2934
+        width: 197
+        height: 208
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.22115384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 060568717a51ea940800000000000000
+      internalID: 5309204818114793568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slam-00
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 2623
+        width: 194
+        height: 194
+      alignment: 9
+      pivot: {x: 0.49484536, y: 0.19072165}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e676611b2cb1c840800000000000000
+      internalID: 5242678334397511399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slam-01
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 2622
+        width: 198
+        height: 194
+      alignment: 9
+      pivot: {x: 0.5050505, y: 0.19587629}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c70b072c4190e6d0800000000000000
+      internalID: -2963208798551210041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slam-02
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 2613
+        width: 200
+        height: 197
+      alignment: 9
+      pivot: {x: 0.51, y: 0.23857868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568069b468e81cb80800000000000000
+      internalID: -8376257124487526299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slam-03
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 2611
+        width: 202
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5148515, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c330244826c9d9f20800000000000000
+      internalID: 3431070438065832764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slam-04
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 2611
+        width: 193
+        height: 195
+      alignment: 9
+      pivot: {x: 0.49222797, y: 0.25128207}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d702b689be4780630800000000000000
+      internalID: 3893490433085087869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slam-05
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 2611
+        width: 194
+        height: 197
+      alignment: 9
+      pivot: {x: 0.5051546, y: 0.24873096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76362c4c7c5f2ddf0800000000000000
+      internalID: -156792798656175257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: infernal-shot-00
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 2301
+        width: 204
+        height: 191
+      alignment: 9
+      pivot: {x: 0.53431374, y: 0.20418848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3a24e828ed03140800000000000000
+      internalID: 4697499063661274022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: infernal-shot-01
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2301
+        width: 204
+        height: 191
+      alignment: 9
+      pivot: {x: 0.53431374, y: 0.20418848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e78009f14aa0b060800000000000000
+      internalID: 6967255823869315043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: infernal-shot-02
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 2301
+        width: 205
+        height: 191
+      alignment: 9
+      pivot: {x: 0.54146343, y: 0.20418848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d0c41819a27642a0800000000000000
+      internalID: -6753584520616427308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: infernal-shot-03
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 2301
+        width: 197
+        height: 191
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.20418848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60d125908c9377e60800000000000000
+      internalID: 7959894397713259782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: infernal-shot-04
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 2301
+        width: 211
+        height: 191
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.20418848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 088f45f6011a723f0800000000000000
+      internalID: -925594106441959296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: infernal-shot-05
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 2301
+        width: 211
+        height: 191
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.20418848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4f3560f6ebe1780800000000000000
+      internalID: -8710315245231147850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piercing-sting-00
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 1981
+        width: 199
+        height: 190
+      alignment: 9
+      pivot: {x: 0.50753766, y: 0.20526315}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ffe8c0648cd41540800000000000000
+      internalID: 4977845949268815863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piercing-sting-01
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 1981
+        width: 197
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.203125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec2735a800d1775c0800000000000000
+      internalID: -4217870637851249970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piercing-sting-02
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1984
+        width: 194
+        height: 188
+      alignment: 9
+      pivot: {x: 0.48969072, y: 0.19148937}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df0698923b6465de0800000000000000
+      internalID: -1344809703413554947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piercing-sting-03
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 1981
+        width: 193
+        height: 181
+      alignment: 9
+      pivot: {x: 0.49222797, y: 0.21546961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8ab86e549e12d10800000000000000
+      internalID: 2099215387761289410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piercing-sting-04
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 1981
+        width: 195
+        height: 186
+      alignment: 9
+      pivot: {x: 0.4974359, y: 0.20967741}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb2e712085f587b0800000000000000
+      internalID: -5222498262199686175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piercing-sting-05
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 1982
+        width: 194
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5051546, y: 0.19791667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a7e9f54c1c39dc30800000000000000
+      internalID: 4384601804352645027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-barrage-00
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1651
+        width: 206
+        height: 206
+      alignment: 9
+      pivot: {x: 0.51941746, y: 0.23786408}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75185b0b34c1b2f20800000000000000
+      internalID: 3398841420834242903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-barrage-01
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 1651
+        width: 203
+        height: 208
+      alignment: 9
+      pivot: {x: 0.5123153, y: 0.23557693}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320e0dd0c3a1967d0800000000000000
+      internalID: -2924777637768273885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-barrage-02
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 1651
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de3d46c6389b773f0800000000000000
+      internalID: -903049226154093587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-barrage-03
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1651
+        width: 211
+        height: 206
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23786408}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a9898c689ae87c0800000000000000
+      internalID: -4067127017112823263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-barrage-04
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 1651
+        width: 211
+        height: 205
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23902439}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ec32f9f337774b0800000000000000
+      internalID: -5442754907563897319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-barrage-05
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 1651
+        width: 211
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.25520834}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4717e5eef49cc6460800000000000000
+      internalID: 7236380046416310644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: needle-volley-00
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1331
+        width: 206
+        height: 211
+      alignment: 9
+      pivot: {x: 0.51941746, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca94196e588f3660800000000000000
+      internalID: 7367757454472682177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: needle-volley-01
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 1331
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07eb48ca3c92e0a30800000000000000
+      internalID: 4183327024263511664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: needle-volley-02
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 1331
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0369dedb098b79360800000000000000
+      internalID: 7176407463039440432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: needle-volley-03
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1331
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbddd1e8cb3a8c080800000000000000
+      internalID: -9166897011279143492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: needle-volley-04
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 1331
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9c3f3fc597aebb30800000000000000
+      internalID: 4305062555681766558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: needle-volley-05
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 1331
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2406763d5b9d72790800000000000000
+      internalID: -7554830474931642302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-break-00
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1012
+        width: 197
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e36db42ada4f5d00800000000000000
+      internalID: 963571146060293096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-break-01
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 1012
+        width: 197
+        height: 185
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.25945947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1893744e6aaa9b90800000000000000
+      internalID: -7234282460845729765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-break-02
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 1012
+        width: 197
+        height: 147
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.3265306}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28a4573f86c7de030800000000000000
+      internalID: 3525610873503959682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-break-03
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 1013
+        width: 196
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5255102, y: 0.3671875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c3c28a2f8cd58cc0800000000000000
+      internalID: -3709316210618088512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-break-04
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 1013
+        width: 196
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5255102, y: 0.3671875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b79261fa4b9a6dbe0800000000000000
+      internalID: -1452787236283733637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-break-05
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 1013
+        width: 196
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5255102, y: 0.3671875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e02826dffd1083f0800000000000000
+      internalID: -900686940827279131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-regrow-00
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 693
+        width: 196
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5255102, y: 0.3671875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f934e57985d594010800000000000000
+      internalID: 1173571812984767391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-regrow-01
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 692
+        width: 197
+        height: 126
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.3809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 530107c5542c8e500800000000000000
+      internalID: 425803767945891893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-regrow-02
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 692
+        width: 197
+        height: 147
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.3265306}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89af27ff235c5c20800000000000000
+      internalID: 3196521301001873805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-regrow-03
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 692
+        width: 197
+        height: 168
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff97d6e4b180aba0800000000000000
+      internalID: -6079716882983182338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-regrow-04
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 692
+        width: 197
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce6247a719f2d5110800000000000000
+      internalID: 1251208573350061804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail-regrow-05
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 692
+        width: 197
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49746192, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 765ad4fb67a47a520800000000000000
+      internalID: 2713219174390146407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enrage-00
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 371
+        width: 207
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d59d5fd2ab018b60800000000000000
+      internalID: 7746485628214023635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enrage-01
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 371
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8214b03739add3080800000000000000
+      internalID: -9205961736450260696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enrage-02
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 371
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81586724268ae7de0800000000000000
+      internalID: -1333443299679763176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enrage-03
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 371
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2572421edf62f9320800000000000000
+      internalID: 2566813184470296402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enrage-04
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 371
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ce6696cc4ea1300800000000000000
+      internalID: 223742698101074963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enrage-05
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 371
+        width: 211
+        height: 211
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.23222749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a0c1cc06637b820800000000000000
+      internalID: 2933873471624317551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: defeat-00
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 53
+        width: 205
+        height: 209
+      alignment: 9
+      pivot: {x: 0.51707315, y: 0.22488038}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c56ace7da895c400800000000000000
+      internalID: 343848817487668677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: defeat-01
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 53
+        width: 211
+        height: 209
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.22488038}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6fda221dcb06b480800000000000000
+      internalID: -8883900239540723857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: defeat-02
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 57
+        width: 211
+        height: 205
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.20975609}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3428143879f74ae90800000000000000
+      internalID: -7015342030817492413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: defeat-03
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 60
+        width: 211
+        height: 202
+      alignment: 9
+      pivot: {x: 0.5308057, y: 0.1980198}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5764d6e6d9792e4e0800000000000000
+      internalID: -1953832585907059083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: defeat-04
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 81
+        width: 102
+        height: 54
+      alignment: 9
+      pivot: {x: 0.65686274, y: 0.35185185}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820e792805a4a7500800000000000000
+      internalID: 394709626997170216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: defeat-05
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 86
+        width: 40
+        height: 40
+      alignment: 9
+      pivot: {x: 0.35, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43483578e6a28990800000000000000
+      internalID: -7385156921604947126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      defeat-00: 343848817487668677
+      defeat-01: -8883900239540723857
+      defeat-02: -7015342030817492413
+      defeat-03: -1953832585907059083
+      defeat-04: 394709626997170216
+      defeat-05: -7385156921604947126
+      enrage-00: 7746485628214023635
+      enrage-01: -9205961736450260696
+      enrage-02: -1333443299679763176
+      enrage-03: 2566813184470296402
+      enrage-04: 223742698101074963
+      enrage-05: 2933873471624317551
+      grab-00: -3765319011160999261
+      grab-01: 6384890135479519155
+      grab-02: 2603526057131545310
+      grab-03: -2524618161844389284
+      grab-04: -8530593495641645864
+      grab-05: 5309204818114793568
+      idle-00: -1974915965304223632
+      idle-01: -5806906976900429775
+      idle-02: -6717177919449829313
+      idle-03: -4295948741387818552
+      idle-04: -5856340249007415202
+      idle-05: -4471384435707453961
+      infernal-shot-00: 4697499063661274022
+      infernal-shot-01: 6967255823869315043
+      infernal-shot-02: -6753584520616427308
+      infernal-shot-03: 7959894397713259782
+      infernal-shot-04: -925594106441959296
+      infernal-shot-05: -8710315245231147850
+      needle-volley-00: 7367757454472682177
+      needle-volley-01: 4183327024263511664
+      needle-volley-02: 7176407463039440432
+      needle-volley-03: -9166897011279143492
+      needle-volley-04: 4305062555681766558
+      needle-volley-05: -7554830474931642302
+      piercing-sting-00: 4977845949268815863
+      piercing-sting-01: -4217870637851249970
+      piercing-sting-02: -1344809703413554947
+      piercing-sting-03: 2099215387761289410
+      piercing-sting-04: -5222498262199686175
+      piercing-sting-05: 4384601804352645027
+      slam-00: 5242678334397511399
+      slam-01: -2963208798551210041
+      slam-02: -8376257124487526299
+      slam-03: 3431070438065832764
+      slam-04: 3893490433085087869
+      slam-05: -156792798656175257
+      star-barrage-00: 3398841420834242903
+      star-barrage-01: -2924777637768273885
+      star-barrage-02: -903049226154093587
+      star-barrage-03: -4067127017112823263
+      star-barrage-04: -5442754907563897319
+      star-barrage-05: 7236380046416310644
+      tail-break-00: 963571146060293096
+      tail-break-01: -7234282460845729765
+      tail-break-02: 3525610873503959682
+      tail-break-03: -3709316210618088512
+      tail-break-04: -1452787236283733637
+      tail-break-05: -900686940827279131
+      tail-regrow-00: 1173571812984767391
+      tail-regrow-01: 425803767945891893
+      tail-regrow-02: 3196521301001873805
+      tail-regrow-03: -6079716882983182338
+      tail-regrow-04: 1251208573350061804
+      tail-regrow-05: 2713219174390146407
+      walk-00: -5035889804451715995
+      walk-01: -4355487335102766184
+      walk-02: -4678534712620512548
+      walk-03: 8302415787110244178
+      walk-04: 9096526870958122887
+      walk-05: 108621061155700325
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

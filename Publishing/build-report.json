@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-17T22:42:31.771774+00:00",
+  "builtAt": "2026-10-18T19:24:39.693331+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 16187320,
-  "unpackedBytes": 16498340,
-  "sha256": "a5bb2c5b7bc32d708114da7c96717793d46a693f21463584de48e22923a9e0c6",
+  "zipBytes": 18055294,
+  "unpackedBytes": 18361783,
+  "sha256": "7a9a7cd0bc1f00847c8107bd92b734c209f70355a81e2a6c84f644787cad3fd8",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "de29c7b7b32d281f2a8d9d6d41cff43589a6d11c21f60687993b87df4ac74095",
-    "Build/YandexGames.framework.js.unityweb": "5aab3866558c4b97fd103ae24ee6e58be7834ef775e56eac95dfa1d036d9eb82",
+    "Build/YandexGames.data.unityweb": "fe78616bc2c95f7b5029d5226ddc571d59e083f98036dba244fc00cb3d62564d",
+    "Build/YandexGames.framework.js.unityweb": "219eca015d955b5a60e4755e3dd3eacfc9ec1ef0a67042c11d8e71d74ba43006",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "8ece7f8d762af760e275414c94d440022c47f954ed9048eeb5794bdf730c9ed6",
-    "index.html": "cd14bb678b105ebc15c61d302aa7058936602f59d236e78dc4195dbb314b2778",
+    "Build/YandexGames.wasm.unityweb": "20908d0831997508384df8099805b857d4534daf1c70dad93d584fc42376dd2f",
+    "index.html": "9584d6ee538a19ae7107aac08057964c7cca99e45b15185b52b10cc244d01077",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -41,7 +41,7 @@
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 1127,
+    "matched_files": 1202,
     "files": [
       {
         "path": "Assets/Anim/Animals/Babka.controller",
@@ -780,6 +780,222 @@
         "sha256": "0b06a93bede72c229fe27597abe24e839fa3a065d5ee0b79c01ee21c1ba1d592"
       },
       {
+        "path": "Assets/Bosses/Shaula/Audio/armor-block.wav",
+        "sha256": "7603fdc889f9c92508c2a0f05204a1d42c7ada77553584e1fde803c54d545de7"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/armor-block.wav.meta",
+        "sha256": "463e24850f1abe2ec79b29b577b016c8a4035187666513e0b06a688c961456f0"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/arrival.wav",
+        "sha256": "5a1fc1f962a2b950121be6db698e1c43c2346e14daa6e7ce1d993c3d0052cafe"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/arrival.wav.meta",
+        "sha256": "c0d674a518143b0361c76c6e41d8f1b5ebef0cac5cd0c74ca043a4cbff254a7d"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/claw-hit.wav",
+        "sha256": "82fd35bb8f0b6992c0775627e37683019c2d6a8cf1f6b9c55730d8061706eec6"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/claw-hit.wav.meta",
+        "sha256": "4c6065fccdfdd437617bc222fbb46b7255758decd5bc661d70327213bea32f06"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/claw-ready.wav",
+        "sha256": "7d465c65261b68f9843e5723841685b7178d0c3ac8e5f670da23f5db9809b424"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/claw-ready.wav.meta",
+        "sha256": "a2d4f580958a4d84f01abfff0c7cb5d0992d37da7cd7f00740f0935f372285ce"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/ground-slam.wav",
+        "sha256": "ef74a4c3a7fbfba848032183eac500200e50a1a621919a4ca8bbe76fcff43647"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/ground-slam.wav.meta",
+        "sha256": "987e17194d71623cb53268927a0bd63186a317f928f4b612da10acb020ec93af"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/laser-charge.wav",
+        "sha256": "b38401d3c5d5c426681e57a72d3cc01ffab81cc78ef904748db138b69af41136"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/laser-charge.wav.meta",
+        "sha256": "ff28f4ab910df8b7003acc8751daad4c9137a420e9f27cbedc0eee9c46fe9db0"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/laser-fire.wav",
+        "sha256": "953dbb54f952a273199e4f87076198636da0e2aeb950af21e6b8a8abf298a734"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/laser-fire.wav.meta",
+        "sha256": "4d47757e3ba47c111e2c3bf4825fb761585a993c7cb86638b953953eb6d94c02"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/laser-impact.wav",
+        "sha256": "f8a09fb3a350962c0f3222f68f17f6e5bfdda222f69fb830ebc1287ebcc88c07"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/laser-impact.wav.meta",
+        "sha256": "dbf0a6e1d24573510bae2b1e3bef391df2e25800a926b40ab35ed6b4ec751b9f"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/music-phase-1.wav",
+        "sha256": "b2130be04a6f012262655e9b3ff017f5c27c3583452b63f640900bf5f860bf0d"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/music-phase-1.wav.meta",
+        "sha256": "0b3a0e48315f3ab7cba32eb36fc999986f652041be12176a2019c27adcc5bf91"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/music-phase-2.wav",
+        "sha256": "44cef0a9cef62398ee000df65ceb7ceec46dcd1bffe8f2316c591d0c99f090c4"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/music-phase-2.wav.meta",
+        "sha256": "86d8827bcc7a81f1caf0deece012d03c0c2e31cfad3af9c3ebc03cffeea36c55"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/needle.wav",
+        "sha256": "ab0a38a2565b9334d8d91b52228306eae3e906feecd2d51ef5e93e227e78f796"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/needle.wav.meta",
+        "sha256": "685cb6e9923a6f5391bdc2ee05e34c73bcf38fc7881f55f3aa2339ab967f725e"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/rage.wav",
+        "sha256": "e9c5506d855c859f2b61a73ad9e60c5b5f3e40d1adccd80a0e10a9b6a6927bf9"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/rage.wav.meta",
+        "sha256": "c39ec8f5dc6d49370cc2706b60e000ff74f58c03027c31060367fbe92d502d89"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/star-cast.wav",
+        "sha256": "de1a14dc7878e381be228b0d4bd1702588102ad42d8d2c1e8f8b62d87f1578f4"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/star-cast.wav.meta",
+        "sha256": "7c711cd59734d998079957f2b9dc4f547d4e08549ec24ef949e593bc42907c87"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/step-a.wav",
+        "sha256": "c71127a55b851dedd5faca4114b3f6027ab156ef5157bfd1eda84b47f3725d45"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/step-a.wav.meta",
+        "sha256": "4b9bc1720261f8cc2c7c3629691b9b4b9bb38b53ad8fca11a977ed977f4f6632"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/step-b.wav",
+        "sha256": "0e94e8487484959724d31288e6a6f11ae32d2d14a46a8acf97d848b802129d76"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/step-b.wav.meta",
+        "sha256": "6c9d304f824847fd03b87bef236bc946689020f1c5786caed763d96ef6054c04"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/sting.wav",
+        "sha256": "8da4556dec74521e258e9df6d7ff93786d258d10ad234ed2c5add8f1d8659411"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/sting.wav.meta",
+        "sha256": "a3e4f001bd9ab3816422b42b10ab65bf05e2f957dcd22def65bce6bcdbdc39b3"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/tail-break.wav",
+        "sha256": "3234071076b4336ae60ee9bcc4cc439eddb25ea3c0dc0ed2dd8e73d40be86bff"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/tail-break.wav.meta",
+        "sha256": "61a8f917be56c1f81a065abe3d29235c4c4a265ba8e9114140635cc1f7b8365e"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/tail-regrow.wav",
+        "sha256": "0cc4a548d3182c33af69b83cefa8bd081154c7feed5213160fdfa90031ef4cbf"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/tail-regrow.wav.meta",
+        "sha256": "09d72ed905df1db01e08e46c1cc9b93844acb4dab318a554db06d0669170e90a"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/transform.wav",
+        "sha256": "a5351693f8f452cb9c71f3841fa07de9d36bcea7bb9e4e4bf14bea6fcd1842a4"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Audio/transform.wav.meta",
+        "sha256": "046d5424b4e186f86fa84d59282b4f5342537f91472ebedf97aca8cccc91851c"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Carapace.mat",
+        "sha256": "1064ced7f0b27b71f8efdefbecfbcb49679c3d8be99be027d40246b453354e3d"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Carapace.mat.meta",
+        "sha256": "ae65e6281fa21f37ef12ae24656d94e61ad7a354903beb4214de2ca10d252d21"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Carapace.shader",
+        "sha256": "c47b25c6e32a3cb53f98dc0d4f36a19188fbad02ab2b300f4cbc26738f6066ef"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Carapace.shader.meta",
+        "sha256": "6b706ff7d7544c6ff9ad7d42c72f319c6058232d5ea37368dcc7d2d6e6e01f27"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Magic.mat",
+        "sha256": "cf4f8532206eae69034dd7d587e5182182b9680b3c28e5045fe70cb7c1f7ee26"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Magic.mat.meta",
+        "sha256": "d2f81be95817b04cabc5a33209e2506ffd46c641758dec04667edfd7fccead60"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Shaula.prefab",
+        "sha256": "6274b4d8a418efb64739f997e4cd20bdaf2bc6baad170ec7273ffe5f019e5164"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/Shaula.prefab.meta",
+        "sha256": "f3f4cd2c148e1135b121acf344a7fcc7e60ef625b664cd6bbf07eff968dd9b5e"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/crimson.png",
+        "sha256": "af1afee954450a781caff0ab5225c90a3e591f7394e367abe2902ca4d6a5371b"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/crimson.png.meta",
+        "sha256": "9f9b8fb1c024ea52258467ed11b69456d9e2c8bde9a1035bf1763f02d5959b04"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/normal.png",
+        "sha256": "454042a1f33349dd65483b93cfa93923d9e5ed703a455fe608af503992de4384"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/normal.png.meta",
+        "sha256": "92fd1167fc79978d281521776feed4f21f0c02c949cf8c3f70307185b348e82c"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/rig-parts.png",
+        "sha256": "ddf1a790ec0df288cc96487a35077f59cd5ae048daa546547361c0c158f802db"
+      },
+      {
+        "path": "Assets/Bosses/Shaula/rig-parts.png.meta",
+        "sha256": "ae04f9fefffacae06a1850b60d334228d93b0773b96b1455f0bbaeaa6ffa6704"
+      },
+      {
+        "path": "Assets/Editor/ArenaDemoAuthoring.cs",
+        "sha256": "ae84b8f74ea181d0af9e2bd975d12b78af48352feb084cf1c3230f0055e36ff5"
+      },
+      {
+        "path": "Assets/Editor/ArenaDemoAuthoring.cs.meta",
+        "sha256": "4844d996c0347f094413e67a17e20669a76a4c09780bd3427ac689a1121cbc30"
+      },
+      {
         "path": "Assets/Editor/CrimsonArenaAuthoring.cs",
         "sha256": "e611903801f98f67c1ea5e4e4388bf0c76d9603a996701f38dffa79a112dba3b"
       },
@@ -804,8 +1020,16 @@
         "sha256": "fb19e3b3a95d68d07472b5270055c3b5cf085fb8fa06391dc3e254aba64a2043"
       },
       {
+        "path": "Assets/Editor/ShaulaAuthoring.cs",
+        "sha256": "c806cac12695dc863f2bfa8854e078fd63e1ef0b74a7b4c1505962054ff406c8"
+      },
+      {
+        "path": "Assets/Editor/ShaulaAuthoring.cs.meta",
+        "sha256": "199ab80c73cd406101dc582e7c42978f70511e3f81270ae71d3d036a91645634"
+      },
+      {
         "path": "Assets/Editor/YandexBuild.cs",
-        "sha256": "13de51436fff35cf1a11e8b186e114c09a8d453dd92ca4fa452d8f00a6f91e1d"
+        "sha256": "4083e7c2dcc5235b26e0867052133ef1f4e231a5a411f137fdbf18e83ab12d52"
       },
       {
         "path": "Assets/Editor/YandexBuild.cs.meta",
@@ -1125,7 +1349,7 @@
       },
       {
         "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yg.cs",
-        "sha256": "4010b4e7cbb768bed6d6312140a7427822b6990f809e444e76474ba8f7fe524d"
+        "sha256": "3cc02342e1c3c7f1cec390e8f46c2435f478c5e793ca004f722ee6db06c81613"
       },
       {
         "path": "Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yg.cs.meta",
@@ -1805,7 +2029,7 @@
       },
       {
         "path": "Assets/Resources/AssetCredits.txt",
-        "sha256": "483df301027b799c6803006b19caa95d174d07e820fddb0f776464fd0edce685"
+        "sha256": "1388af805900d09ef904cb58fce74219dc67818c667418a9f4e87b0e160aff0a"
       },
       {
         "path": "Assets/Resources/AssetCredits.txt.meta",
@@ -1817,7 +2041,7 @@
       },
       {
         "path": "Assets/Resources/Localization/English.json",
-        "sha256": "f433c81aa9cd2d1f10020317564705f0b60320984a9d2cb246111c8d9cb28877"
+        "sha256": "a272253a2745636bb629e1ab717a0d87b6c5a975412487b30269dd4ed33c6cf7"
       },
       {
         "path": "Assets/Resources/Localization/English.json.meta",
@@ -1829,7 +2053,7 @@
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "c7bf6721c21c3a7cd5b99eb19a67b48ec9ccd0dd103b1b7006fc1a81df0614a5"
+        "sha256": "b92f9a736059e8a77438435639cdca69686e12b2896b084a9dfea1cecdf34997"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
@@ -1841,7 +2065,7 @@
       },
       {
         "path": "Assets/Scripts/ArenaFeature.cs",
-        "sha256": "172fa502f8283de9a3adc4649f026df472dbaa0bfdce354c9a1324edca60f1c8"
+        "sha256": "61059da4907c7688a011a4f453122043918c430a7ef661b35ca0b7da02077737"
       },
       {
         "path": "Assets/Scripts/ArenaFeature.cs.meta",
@@ -1849,7 +2073,7 @@
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs",
-        "sha256": "9bfa3df81014781a97b358e41c8829da9387b54e3a036e060d0c72e5c0ebc177"
+        "sha256": "341001e97ccb2a33744eac6c9c11c5854d0d777f16d478d835a6ef68e9335b62"
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs.meta",
@@ -1886,6 +2110,50 @@
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs.meta",
         "sha256": "cc0b0a1dff51e37a33751a2558d98bd75bb16806ee27c43a8818874a43814179"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula.meta",
+        "sha256": "4f12093f2387580e9a451d77ec3b402e2a95a368c42abfd46db63a277b04c6b2"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.Abilities.cs",
+        "sha256": "62829fd245f9b034803dc4a1d6b4e49099745555a277c1b91290bea9ad01bfb3"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.Abilities.cs.meta",
+        "sha256": "4e14a1dc4a31bf5630d2eb0d2f549e3117e0550fe5809e2e058693edfcf5e164"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.Effects.cs",
+        "sha256": "56430aa0a3fa36572c09279df53418f8a1c82060dd1eb17ff890385d5d7a1b97"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.Effects.cs.meta",
+        "sha256": "7c661142216ae252323a52c8464905c020f3246c9ab3da2ac867e1e2c062b56b"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.Visuals.cs",
+        "sha256": "35f9afc650d8d325c1ddc41c14147268b7dbd9bb39357f9200eba3ee9015a6aa"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.Visuals.cs.meta",
+        "sha256": "6f9402f8fcf93e69853bad62962e16fb2899d65f07d0f5708fd5f969a06e807a"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.cs",
+        "sha256": "3e51b759845f8956ca79b384590174724e1df0254c79ccc57aaf884da9f2b28c"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.cs.meta",
+        "sha256": "9fed335c4ba050d5201c78d5e1ab8d3d4f023fb8ee96ed9a3b1fc48d4169d99a"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaHitZone.cs",
+        "sha256": "d75fd86c58ef761d52628dcf75f61ae306258e3fdc34a245734d51287842f763"
+      },
+      {
+        "path": "Assets/Scripts/Boss/Shaula/ShaulaHitZone.cs.meta",
+        "sha256": "1331f4370022a492da49bf84ac743e6047fff1d5db93aebd755a84689757d1b3"
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss.meta",
@@ -2053,7 +2321,7 @@
       },
       {
         "path": "Assets/Scripts/PlayerController.cs",
-        "sha256": "71d08d473fabfdc407086c4d521c18c4851b7aba11bdc1c981e96a39faa95daf"
+        "sha256": "b1573ff7898ebe0407c1ec5f0f2e1f14316ffa6c12ce917e3d9a2f4742edc8c8"
       },
       {
         "path": "Assets/Scripts/PlayerController.cs.meta",
@@ -2081,7 +2349,7 @@
       },
       {
         "path": "Assets/Scripts/PosionArrow.cs",
-        "sha256": "fc98757e11ae6d63df99043eeca1154c64233549b71554f700eaac349e98a625"
+        "sha256": "af53e2f51304381b410e2c71dd81a76e5662bcca0dfc16d4a98a64b389ccd49f"
       },
       {
         "path": "Assets/Scripts/PosionArrow.cs.meta",
@@ -2177,7 +2445,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/MobileControls.cs",
-        "sha256": "cf4796f5a23cc58c21e9c7578b95a2a276ff377bb2f798bcd20a5acb15e8aea3"
+        "sha256": "670c28fb34eb904c8e4b8d68250e1aa64da9ad9fe42f421c1ef0e0a394387bed"
       },
       {
         "path": "Assets/Scripts/Ui/MobileControls.cs.meta",
@@ -2185,7 +2453,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/Stats.cs",
-        "sha256": "0f60aef21d4794a3f168b725383adc0c7feb5134ed5499d49b335dea98b08015"
+        "sha256": "148936feb9657503ea4fb4a5d002a9beed77a5a4b62a962128641b41e1158877"
       },
       {
         "path": "Assets/Scripts/Ui/Stats.cs.meta",
@@ -2240,8 +2508,16 @@
         "sha256": "c77857e56cd122e52f293260b519978e231f5190d4a1e823b3eee17a1357892d"
       },
       {
+        "path": "Assets/Scripts/Ui/Ui.BossMusic.cs",
+        "sha256": "b43ca2f20d19ccef929e235e76385ea40f4f8b50995c69b4e29695311c3da796"
+      },
+      {
+        "path": "Assets/Scripts/Ui/Ui.BossMusic.cs.meta",
+        "sha256": "5cd09a27f343073f0fc28850cdb975dfa114bff3af844d5332f7503ec15494d6"
+      },
+      {
         "path": "Assets/Scripts/Ui/Ui.cs",
-        "sha256": "9a1eb74fed4b5fd738d8ff3f28b74891489d8a309110fc9ebc30638b0f3e2d51"
+        "sha256": "5df2fd42442d75aacd4aed18acc6eeb2ccb98e9cc9014d4625438890d805a596"
       },
       {
         "path": "Assets/Scripts/Ui/Ui.cs.meta",
@@ -2277,15 +2553,31 @@
       },
       {
         "path": "Assets/Scripts/WaveSpawner.Crimson.cs",
-        "sha256": "12cbcdd13f0a79b44ccd1e6c7690a2094ce43bf0628539c38fc120dc4abe406d"
+        "sha256": "ed96ca4033f5af6be684a599f0a3fa671767b35529f99da3baa6e61278e1b8b2"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.Crimson.cs.meta",
         "sha256": "3f70720c793c485daa3a1b3156a5e9ad66d5f213c1ed90980c0b1d6f7a6d5bfa"
       },
       {
+        "path": "Assets/Scripts/WaveSpawner.Demo.cs",
+        "sha256": "c4dad3b3c92ed3db19119a12e3eef795b5419f04d93ec3481f9229607ecc2c74"
+      },
+      {
+        "path": "Assets/Scripts/WaveSpawner.Demo.cs.meta",
+        "sha256": "3a8c4ec968d17237cc42e4d96d51ad495f260557c377ce08bd9f18be73354cdc"
+      },
+      {
+        "path": "Assets/Scripts/WaveSpawner.Shaula.cs",
+        "sha256": "43e3c1a11568cda8a38b0cb80850d2a96f58c17d88b05336ae84cdeb76c04c66"
+      },
+      {
+        "path": "Assets/Scripts/WaveSpawner.Shaula.cs.meta",
+        "sha256": "879fc26889892c2d78e1193678d79706cc167bbc27490cbf1eb3f8e0c7c14de6"
+      },
+      {
         "path": "Assets/Scripts/WaveSpawner.cs",
-        "sha256": "c02f11f8094dd3ec9f4c00c8ef072a41725470a10da8448ffac268be359b547f"
+        "sha256": "cb87eda110d3033ede55445bb50180b03e6f857cf7cb8a7f6f9fa86adbc9913f"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs.meta",
@@ -2321,15 +2613,23 @@
       },
       {
         "path": "Assets/Scripts/Yandex/GameMonetization.cs",
-        "sha256": "19e12bcbb0358cf2ae7faa0713916d3fcf5ff9aed6400d7c78504b1efefc48f8"
+        "sha256": "e3e3c40eefe39ae5873729862738912b0c1fefb715577961a8baf6e795dd0344"
       },
       {
         "path": "Assets/Scripts/Yandex/GameMonetization.cs.meta",
         "sha256": "ae25ea12507c02b3de1efacdb7c298767588429403093070d497b4599604a6eb"
       },
       {
+        "path": "Assets/Scripts/Yandex/GameProgress.Demo.cs",
+        "sha256": "14711c1e9dc10e72512bc6b288bc289edb40f1521170cf04e084486095269008"
+      },
+      {
+        "path": "Assets/Scripts/Yandex/GameProgress.Demo.cs.meta",
+        "sha256": "e5f023749947b163c9fe0207ddf3862ae713fe25a95d1702873e0adda884d617"
+      },
+      {
         "path": "Assets/Scripts/Yandex/GameProgress.cs",
-        "sha256": "63d7c2cb210a32f465e5c62b952e16ab06a185b09e6a05b677b157412f7578a7"
+        "sha256": "c3826052b5b1ee41631b6496bbe5250a453b2b45550cab7965c916db04d981ec"
       },
       {
         "path": "Assets/Scripts/Yandex/GameProgress.cs.meta",
@@ -2649,7 +2949,7 @@
       },
       {
         "path": "Assets/SpriteAtlas.spriteatlasv2",
-        "sha256": "4e6de11230c4a3d4b68ec021044e4f24df4efaa784d3e65963be740bd664789a"
+        "sha256": "8cb6c89f0d94bcaf0553f77650903ee7d653d972d2e551721c35786ac114bc18"
       },
       {
         "path": "Assets/SpriteAtlas.spriteatlasv2.meta",
@@ -4553,8 +4853,8 @@
       }
     ]
   },
-  "sourceSettingsSha256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
-  "buildSettingsSha256": "d9a5e055b8e8410cd4b9c75b83dfca21770b66f7b6d1fe177f5f3ea2c6458089",
+  "sourceSettingsSha256": "6cfcbaa1689e61403db89643fce96f4a52dba267144d2ac5b26f88902b66be4f",
+  "buildSettingsSha256": "6cfcbaa1689e61403db89643fce96f4a52dba267144d2ac5b26f88902b66be4f",
   "validationLogs": [
     "Builds/RatingValidation/visual-restore-checks.log",
     "Builds/RatingValidation/visual-restoration-runtime-final.log",
@@ -4588,13 +4888,31 @@
     "Builds/RatingValidation/portal-v20-tests.log",
     "Builds/RatingValidation/localization-v20-tests.log",
     "Builds/RatingValidation/crimson-v20-regression.log",
-    "Builds/RatingValidation/atlas-v20-checks.log"
+    "Builds/RatingValidation/atlas-v20-checks.log",
+    "Builds/RatingValidation/shaula-v21-webgl-isolated.log",
+    "Builds/RatingValidation/shaula-v21-tests.log",
+    "Builds/RatingValidation/shaula-v21-crimson-regression.log",
+    "Builds/RatingValidation/shaula-v21-holy-regression.log",
+    "Builds/RatingValidation/shaula-v21-localization-regression.log",
+    "Builds/RatingValidation/shaula-v21-atlas.log",
+    "Builds/RatingValidation/arena-demo-v22-webgl-isolated.log",
+    "Builds/RatingValidation/arena-demo-v22-tests.log",
+    "Builds/RatingValidation/arena-demo-v22-shaula-regression.log",
+    "Builds/RatingValidation/arena-demo-v22-crimson-regression.log",
+    "Builds/RatingValidation/arena-demo-v22-localization-regression.log",
+    "Builds/RatingValidation/shaula-v23-webgl-isolated.log",
+    "Builds/RatingValidation/shaula-v23-tests.log",
+    "Builds/RatingValidation/shaula-v23-demo-regression.log",
+    "Builds/RatingValidation/shaula-v24-webgl-isolated.log",
+    "Builds/RatingValidation/shaula-v24-tests.log",
+    "Builds/RatingValidation/shaula-v24-crimson-regression.log",
+    "Builds/RatingValidation/shaula-v24-demo-regression.log"
   ],
-  "uploadedToYandex": false,
+  "uploadedToYandex": true,
   "previousUploadedArchive": {
-    "sha256": "6590a885144d7161924a950343ec6cb2688e6b1b13056654741a5fbcf1989990",
-    "version": "0.0.0.19",
-    "fileId": "14048690"
+    "sha256": "fff1693f080b0a8bdc5f0845d62685f3dd4db4680f20ffcdbf44c79328319808",
+    "version": "0.0.0.23",
+    "fileId": "14066459"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -4611,11 +4929,11 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.19",
-    "archiveFileId": "14048690",
-    "checkedAt": "2026-10-18",
+    "version": "0.0.0.24",
+    "archiveFileId": "14066854",
+    "checkedAt": "2026-10-19T00:30:15.877603+05:00",
     "archiveProcessing": "Ready",
-    "archiveLastChangedAtConsole": "03:08:28 18/10/2026",
+    "archiveLastChangedAtConsole": "00:27:55 19/10/2026",
     "platforms": [
       "desktop",
       "Android"
@@ -4626,7 +4944,7 @@
       "ru",
       "en"
     ],
-    "runtimeCheckedVersion": "0.0.0.19",
+    "runtimeCheckedVersion": "0.0.0.24",
     "moderationSubmitted": false,
     "published": false,
     "moderationBlocker": "Submit button still disabled after English media finished processing; disabled property verified in DOM and visible UI. Exact reason not exposed.",
@@ -4850,10 +5168,18 @@
     "ageRatingObservationNote": "6+ observed and preserved on 2026-10-17; new code removes boss bodies and uses neutral defeat text. Moderation decision not guaranteed.",
     "platformPanelStatus": "Technical maintenance: come back later or choose another navigation section",
     "platformPanelProof": "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg",
-    "uploadProof": "Publishing/Previews/yandex-version19-20261018.png",
+    "uploadProof": "Publishing/Previews/yandex-version24-20261019.png",
     "moderationStatusCheckedVersion": "0.0.0.13",
     "cardMediaRecordedForVersion": "0.0.0.13",
-    "currentRuntimePath": "623393/pyv4ka3lf3itjhl01f3mnatlzgr5090v"
+    "currentRuntimePath": "623393/aoam67bl98pzlegns5np5ky7ohg9q1gb",
+    "draftSmokeCheck": {
+      "version": "0.0.0.24",
+      "checkedAt": "2026-10-19T00:30:15.877603+05:00",
+      "menuRendered": true,
+      "gameSceneVerified": false,
+      "physicalKeyboardDemoVerified": false,
+      "menuProof": "Publishing/Previews/yandex-version24-menu-20261019.png"
+    }
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -4902,8 +5228,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.20",
-  "uploadLimitation": "Local browser use is disabled in Work settings",
+  "localVersion": "0.0.0.24",
+  "uploadLimitation": null,
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",

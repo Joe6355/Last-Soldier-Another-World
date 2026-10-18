@@ -1,0 +1,37 @@
+{
+  "method": "Original deterministic synthesis, no third-party samples",
+  "clips": [
+    {
+      "file": "Assets/Bosses/Shaula/Audio/laser-charge.wav",
+      "label": "laser-charge",
+      "sha256": "b38401d3c5d5c426681e57a72d3cc01ffab81cc78ef904748db138b69af41136",
+      "seconds": 1.1,
+      "peak": 0.3013212481587608,
+      "rms": 0.08758732403274383
+    },
+    {
+      "file": "Assets/Bosses/Shaula/Audio/laser-fire.wav",
+      "label": "laser-fire",
+      "sha256": "953dbb54f952a273199e4f87076198636da0e2aeb950af21e6b8a8abf298a734",
+      "seconds": 0.42,
+      "peak": 0.8,
+      "rms": 0.09862394126732021
+    },
+    {
+      "file": "Assets/Bosses/Shaula/Audio/laser-impact.wav",
+      "label": "laser-impact",
+      "sha256": "f8a09fb3a350962c0f3222f68f17f6e5bfdda222f69fb830ebc1287ebcc88c07",
+      "seconds": 0.4,
+      "peak": 0.6984983070270253,
+      "rms": 0.1076809737915416
+    },
+    {
+      "file": "Assets/Bosses/Shaula/Audio/needle.wav",
+      "label": "needle",
+      "sha256": "ab0a38a2565b9334d8d91b52228306eae3e906feecd2d51ef5e93e227e78f796",
+      "seconds": 0.12,
+      "peak": 0.20698629169642063,
+      "rms": 0.04408640823184835
+    }
+  ]
+}

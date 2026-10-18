@@ -1,0 +1,142 @@
+PASS
+Wave-20 encounter, animation data, arrows, armor, tail, phases, all seven attacks, pause, shield, rewards and cleanup passed.
+Wave 20 spawns live Shaula
+Wave 20 follows the dedicated encounter path
+Earlier bosses remain dormant
+Red paired waves are unchanged
+Named top health panel is visible
+All twelve approved animation states are assigned
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+Both forms have six real frames per state
+Every frame has a positive duration
+All seventeen original sound effects are connected
+Both music loops are connected
+The giant boss never hides the player sprite during close combat
+Adult silhouette is at least 5.5 hero heights wide
+All zones belong to the same ordinary (non-holy) boss
+Collider lookup preserves weak zones and area damage target
+Piercing arrows cannot double-hit the same boss through multiple zones
+Shell reduces direct damage to sixty percent (588/588)
+Pale joints take increased damage (561/561)
+Tail hit damages main health (531/531)
+Tail durability is independently reduced (82,5/82,5)
+Holy arrows heal Shaula instead of damaging her (541/541)
+Poison ticks reach the new boss through the common damage rules (536,2/536,2)
+Physical piercing projectile damages the tail only once across overlapping zones (518,2/518,2)
+Physical poison arrow applies its impact and poison tick
+Physical holy arrow heals without losing the boss hit lookup (511,5999/511,5999)
+Damage is blocked while paused (511,5999/511,5999)
+Animation freezes during pause (0/0)
+Ability clock freezes during pause (3,11213/3,11213)
+Shop-style pause keeps the current boss music playing continuously (playing=True, time=2,154649/1,557324, listenerPaused=False)
+Muting effects also silences an already playing boss cue
+Crossing fifty percent starts the permanent crimson phase
+Healing cannot revert the second phase
+Crimson armor never changes the holy classification
+Enough tail damage removes its hit zone
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+A broken tail cannot start a laser warning or projectile
+Regeneration remains warned before the restoration pulse
+Regeneration restores durability and the tail hit zone
+Laser has not fired before its full 1.5 second charge
+Laser stops tracking for the final dodge window
+Laser fires a white core with a visible flash
+Laser beam is brief and leaves no damage volume behind
+Every configured ability has an executable coroutine: Laser
+Every configured ability has an executable coroutine: Grasp
+Every configured ability has an executable coroutine: Slam
+Every configured ability has an executable coroutine: Stars
+Every configured ability has an executable coroutine: Pursuit
+Every configured ability has an executable coroutine: Sting
+Every configured ability has an executable coroutine: Needles
+Attack has a real warning, strike or recovery effect: Laser
+Attack terminates and releases any weak-point lock: Laser
+Attack has a real warning, strike or recovery effect: Grasp
+Attack terminates and releases any weak-point lock: Grasp
+Attack has a real warning, strike or recovery effect: Slam
+Attack terminates and releases any weak-point lock: Slam
+Attack has a real warning, strike or recovery effect: Stars
+Attack terminates and releases any weak-point lock: Stars
+Attack has a real warning, strike or recovery effect: Pursuit
+Attack terminates and releases any weak-point lock: Pursuit
+Attack has a real warning, strike or recovery effect: Sting
+A missed sting exposes the tail for a counterattack
+Stuck sting takes double health damage (440/440)
+Stuck sting takes double durability damage (102,5/102,5)
+Mobile auto-aim switches from shell to the exposed tail
+Attack terminates and releases any weak-point lock: Sting
+Attack has a real warning, strike or recovery effect: Needles
+Attack terminates and releases any weak-point lock: Needles
+Native boss attack applies player damage through TakeDamage
+Shield still blocks boss attacks (9988/9988)
+Blocked boss attack consumes the existing shield resource
+Zero HP starts transformation without immediate credit
+Transforming and tiny forms cannot collide or damage the player
+Defeat clears every projectile and warning immediately
+Victory waits for the end of the transformation
+Tiny harmless scorpion completes the encounter
+Exactly one boss and one wave are credited
+Guaranteed reward is awarded exactly once
+Victory grants the configured ammunition reward
+Wave enters its normal break and hides boss HUD
+Little scorpion leaves and cleans itself up
+Cleanup cannot duplicate rewards
+Re-entering wave 20 creates a pristine encounter
+Boss label fits its rectangle: Name
+Boss HUD does not intercept combat input: Name
+Boss label fits its rectangle: State
+Boss HUD does not intercept combat input: State
+Boss label fits its rectangle: TailLabel
+Boss HUD does not intercept combat input: TailLabel
+Dedicated boss-wave label is localized
+Boss HUD follows the English language selection
+Touch fire control is available during the encounter
+Boss label fits its rectangle: Name
+Boss HUD does not intercept combat input: Name
+Boss label fits its rectangle: State
+Boss HUD does not intercept combat input: State
+Boss label fits its rectangle: TailLabel
+Boss HUD does not intercept combat input: TailLabel
+Boss HUD switches back to Russian
+Boss label fits its rectangle: Name
+Boss HUD does not intercept combat input: Name
+Boss label fits its rectangle: State
+Boss HUD does not intercept combat input: State
+Boss label fits its rectangle: TailLabel
+Boss HUD does not intercept combat input: TailLabel
+Abandoning the encounter removes every owned effect

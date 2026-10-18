@@ -81,7 +81,7 @@ public static class YandexBuild
             scenes = scenes,
             locationPathName = "Builds/YandexGames",
             target = BuildTarget.WebGL,
-            options = BuildOptions.None
+            options = BuildOptions.CleanBuildCache | BuildOptions.DetailedBuildReport
         });
         if (report.summary.result != BuildResult.Succeeded)
             throw new InvalidOperationException("WebGL build failed: " + report.summary.result);

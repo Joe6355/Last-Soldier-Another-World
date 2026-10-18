@@ -1,0 +1,30 @@
+{
+  "result": "PASS",
+  "spriteParts": 9,
+  "noOverlappingSlices": true,
+  "noClippedOpaqueEdges": true,
+  "sourcePixelsPreserved": true,
+  "audio": [
+    {
+      "path": "Assets/Bosses/Shaula/Audio/laser-charge.wav",
+      "seconds": 1.1,
+      "peak": 0.30130924405652026
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/laser-fire.wav",
+      "seconds": 0.42,
+      "peak": 0.8000122074037904
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/laser-impact.wav",
+      "seconds": 0.4,
+      "peak": 0.6985076448866238
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/needle.wav",
+      "seconds": 0.12,
+      "peak": 0.20697653126621296
+    }
+  ],
+  "scope": "Imported rectangles and PCM integrity; subjective appearance/listening requires playtesting."
+}

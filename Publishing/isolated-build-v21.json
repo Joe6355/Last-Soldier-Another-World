@@ -1,0 +1,9 @@
+{
+  "verifiedPackedSourcePaths": 1151,
+  "mismatches": [],
+  "rootSettingsSHA256": "e9927f7353ae2a3ad8b67f4f1f0d3bd69338f2e5138648b1f8ab28292c757535",
+  "buildSettingsSHA256": "e9927f7353ae2a3ad8b67f4f1f0d3bd69338f2e5138648b1f8ab28292c757535",
+  "buildProject": "Builds/RatingValidation/Project",
+  "buildLog": "Builds/RatingValidation/shaula-v21-webgl-isolated.log",
+  "editorBuildSourcesCompared": true
+}

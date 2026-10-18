@@ -1,0 +1,230 @@
+PASS
+Holy immunity/healing, all enemy classes, mobile targeting, animations, combat, pause and diverse wave rosters passed
+New enemies extend the existing roster without replacing old prefabs
+Early/boss wave path preserved: 1
+Early/boss wave path preserved: 2
+Early/boss wave path preserved: 3
+Early/boss wave path preserved: 4
+Mixed wave includes new holy enemies and skeletons: 5
+All species occur once per shuffled bag: 5
+Wave quota permits a varied roster: 5
+Mixed wave includes new holy enemies and skeletons: 6
+All species occur once per shuffled bag: 6
+Wave quota permits a varied roster: 6
+Mixed wave includes new holy enemies and skeletons: 7
+All species occur once per shuffled bag: 7
+Wave quota permits a varied roster: 7
+Mixed wave includes new holy enemies and skeletons: 8
+All species occur once per shuffled bag: 8
+Wave quota permits a varied roster: 8
+Mixed wave includes new holy enemies and skeletons: 9
+All species occur once per shuffled bag: 9
+Wave quota permits a varied roster: 9
+Early/boss wave path preserved: 10
+Mixed wave includes new holy enemies and skeletons: 11
+All species occur once per shuffled bag: 11
+Wave quota permits a varied roster: 11
+Mixed wave includes new holy enemies and skeletons: 12
+All species occur once per shuffled bag: 12
+Wave quota permits a varied roster: 12
+Mixed wave includes new holy enemies and skeletons: 13
+All species occur once per shuffled bag: 13
+Wave quota permits a varied roster: 13
+Mixed wave includes new holy enemies and skeletons: 14
+All species occur once per shuffled bag: 14
+Wave quota permits a varied roster: 14
+Early/boss wave path preserved: 15
+Mixed wave includes new holy enemies and skeletons: 16
+All species occur once per shuffled bag: 16
+Wave quota permits a varied roster: 16
+Mixed wave includes new holy enemies and skeletons: 17
+All species occur once per shuffled bag: 17
+Wave quota permits a varied roster: 17
+Mixed wave includes new holy enemies and skeletons: 18
+All species occur once per shuffled bag: 18
+Wave quota permits a varied roster: 18
+Mixed wave includes new holy enemies and skeletons: 19
+All species occur once per shuffled bag: 19
+Wave quota permits a varied roster: 19
+Mixed wave includes new holy enemies and skeletons: 20
+All species occur once per shuffled bag: 20
+Wave quota permits a varied roster: 20
+Mixed wave includes new holy enemies and skeletons: 21
+All species occur once per shuffled bag: 21
+Wave quota permits a varied roster: 21
+Mixed wave includes new holy enemies and skeletons: 22
+All species occur once per shuffled bag: 22
+Wave quota permits a varied roster: 22
+Mixed wave includes new holy enemies and skeletons: 23
+All species occur once per shuffled bag: 23
+Wave quota permits a varied roster: 23
+Mixed wave includes new holy enemies and skeletons: 24
+All species occur once per shuffled bag: 24
+Wave quota permits a varied roster: 24
+Mixed wave includes new holy enemies and skeletons: 25
+All species occur once per shuffled bag: 25
+Wave quota permits a varied roster: 25
+Mixed wave includes new holy enemies and skeletons: 26
+All species occur once per shuffled bag: 26
+Wave quota permits a varied roster: 26
+All generated sprites are sliced: HolyOrc
+Small point-filtered source texture before atlas packing: HolyOrc
+New enemy reuses existing health and reward system: HolyOrc
+New enemy matches the scene's character scale: HolyOrc
+All generated sprites are sliced: HolyGhost
+Small point-filtered source texture before atlas packing: HolyGhost
+New enemy reuses existing health and reward system: HolyGhost
+New enemy matches the scene's character scale: HolyGhost
+Holy classification for ammunition 0
+Hit rule HolyMatrixSlimeTrue/type 0: 88
+Holy classification for ammunition 0
+Hit rule HolyMatrixBomber/type 0: 88
+Holy classification for ammunition 0
+Hit rule HolyMatrixSceletSheld/type 0: 88
+Holy classification for ammunition 0
+Hit rule HolyMatrixSceletMag/type 0: 88
+Holy classification for ammunition 0
+Hit rule HolyMatrixHealerEnemy/type 0: 88
+Holy classification for ammunition 0
+Hit rule HolyMatrixHolySlime/type 0: 90
+Holy classification for ammunition 0
+Hit rule HolyMatrixHolyOrc/type 0: 90
+Holy classification for ammunition 0
+Hit rule HolyMatrixHolyGhost/type 0: 90
+Holy classification for ammunition 0
+Hit rule LateWaveSlimeTemplate(Clone)/type 0: 88
+Holy classification for ammunition 0
+Hit rule LateWaveAssassinTemplate(Clone)/type 0: 88
+Holy classification for ammunition 1
+Hit rule HolyMatrixSlimeTrue/type 1: 87
+Holy classification for ammunition 1
+Hit rule HolyMatrixBomber/type 1: 87
+Holy classification for ammunition 1
+Hit rule HolyMatrixSceletSheld/type 1: 87
+Holy classification for ammunition 1
+Hit rule HolyMatrixSceletMag/type 1: 87
+Holy classification for ammunition 1
+Hit rule HolyMatrixHealerEnemy/type 1: 87
+Holy classification for ammunition 1
+Hit rule HolyMatrixHolySlime/type 1: 90
+Holy classification for ammunition 1
+Hit rule HolyMatrixHolyOrc/type 1: 90
+Holy classification for ammunition 1
+Hit rule HolyMatrixHolyGhost/type 1: 90
+Holy classification for ammunition 1
+Hit rule LateWaveSlimeTemplate(Clone)/type 1: 87
+Holy classification for ammunition 1
+Hit rule LateWaveAssassinTemplate(Clone)/type 1: 88
+Poison ticks respect immunity: HolyMatrixSlimeTrue
+Poison ticks respect immunity: HolyMatrixBomber
+Poison ticks respect immunity: HolyMatrixSceletSheld
+Poison ticks respect immunity: HolyMatrixSceletMag
+Poison ticks respect immunity: HolyMatrixHealerEnemy
+Poison ticks respect immunity: HolyMatrixHolySlime
+Poison ticks respect immunity: HolyMatrixHolyOrc
+Poison ticks respect immunity: HolyMatrixHolyGhost
+Poison ticks respect immunity: LateWaveSlimeTemplate(Clone)
+Poison ticks respect immunity: LateWaveAssassinTemplate(Clone)
+Holy classification for ammunition 2
+Hit rule HolyMatrixSlimeTrue/type 2: 92
+Holy classification for ammunition 2
+Hit rule HolyMatrixBomber/type 2: 92
+Holy classification for ammunition 2
+Hit rule HolyMatrixSceletSheld/type 2: 92
+Holy classification for ammunition 2
+Hit rule HolyMatrixSceletMag/type 2: 92
+Holy classification for ammunition 2
+Hit rule HolyMatrixHealerEnemy/type 2: 92
+Holy classification for ammunition 2
+Hit rule HolyMatrixHolySlime/type 2: 88
+Holy classification for ammunition 2
+Hit rule HolyMatrixHolyOrc/type 2: 88
+Holy classification for ammunition 2
+Hit rule HolyMatrixHolyGhost/type 2: 88
+Holy classification for ammunition 2
+Hit rule LateWaveSlimeTemplate(Clone)/type 2: 92
+Holy classification for ammunition 2
+Hit rule LateWaveAssassinTemplate(Clone)/type 2: 92
+Holy classification for ammunition 3
+Hit rule HolyMatrixSlimeTrue/type 3: 88
+Holy classification for ammunition 3
+Hit rule HolyMatrixBomber/type 3: 88
+Holy classification for ammunition 3
+Hit rule HolyMatrixSceletSheld/type 3: 88
+Holy classification for ammunition 3
+Hit rule HolyMatrixSceletMag/type 3: 88
+Holy classification for ammunition 3
+Hit rule HolyMatrixHealerEnemy/type 3: 88
+Holy classification for ammunition 3
+Hit rule HolyMatrixHolySlime/type 3: 90
+Holy classification for ammunition 3
+Hit rule HolyMatrixHolyOrc/type 3: 90
+Holy classification for ammunition 3
+Hit rule HolyMatrixHolyGhost/type 3: 90
+Holy classification for ammunition 3
+Hit rule LateWaveSlimeTemplate(Clone)/type 3: 88
+Holy classification for ammunition 3
+Hit rule LateWaveAssassinTemplate(Clone)/type 3: 88
+Holy damage/healing works with no arrow object in the scene: HolyMatrixSlimeTrue
+Holy damage/healing works with no arrow object in the scene: HolyMatrixBomber
+Holy damage/healing works with no arrow object in the scene: HolyMatrixSceletSheld
+Holy damage/healing works with no arrow object in the scene: HolyMatrixSceletMag
+Holy damage/healing works with no arrow object in the scene: HolyMatrixHealerEnemy
+Holy damage/healing works with no arrow object in the scene: HolyMatrixHolySlime
+Holy damage/healing works with no arrow object in the scene: HolyMatrixHolyOrc
+Holy damage/healing works with no arrow object in the scene: HolyMatrixHolyGhost
+Holy damage/healing works with no arrow object in the scene: LateWaveSlimeTemplate(Clone)
+Holy damage/healing works with no arrow object in the scene: LateWaveAssassinTemplate(Clone)
+Mobile ammunition selection 0
+Auto-aim skips incompatible targets: HolyMatrixSlimeTrue/0
+Auto-aim skips incompatible targets: HolyMatrixBomber/0
+Auto-aim skips incompatible targets: HolyMatrixSceletSheld/0
+Auto-aim skips incompatible targets: HolyMatrixSceletMag/0
+Auto-aim skips incompatible targets: HolyMatrixHealerEnemy/0
+Auto-aim skips incompatible targets: HolyMatrixHolySlime/0
+Auto-aim skips incompatible targets: HolyMatrixHolyOrc/0
+Auto-aim skips incompatible targets: HolyMatrixHolyGhost/0
+Mobile ammunition selection 1
+Auto-aim skips incompatible targets: HolyMatrixSlimeTrue/1
+Auto-aim skips incompatible targets: HolyMatrixBomber/1
+Auto-aim skips incompatible targets: HolyMatrixSceletSheld/1
+Auto-aim skips incompatible targets: HolyMatrixSceletMag/1
+Auto-aim skips incompatible targets: HolyMatrixHealerEnemy/1
+Auto-aim skips incompatible targets: HolyMatrixHolySlime/1
+Auto-aim skips incompatible targets: HolyMatrixHolyOrc/1
+Auto-aim skips incompatible targets: HolyMatrixHolyGhost/1
+Mobile ammunition selection 2
+Auto-aim skips incompatible targets: HolyMatrixSlimeTrue/2
+Auto-aim skips incompatible targets: HolyMatrixBomber/2
+Auto-aim skips incompatible targets: HolyMatrixSceletSheld/2
+Auto-aim skips incompatible targets: HolyMatrixSceletMag/2
+Auto-aim skips incompatible targets: HolyMatrixHealerEnemy/2
+Auto-aim skips incompatible targets: HolyMatrixHolySlime/2
+Auto-aim skips incompatible targets: HolyMatrixHolyOrc/2
+Auto-aim skips incompatible targets: HolyMatrixHolyGhost/2
+Mobile ammunition selection 3
+Auto-aim skips incompatible targets: HolyMatrixSlimeTrue/3
+Auto-aim skips incompatible targets: HolyMatrixBomber/3
+Auto-aim skips incompatible targets: HolyMatrixSceletSheld/3
+Auto-aim skips incompatible targets: HolyMatrixSceletMag/3
+Auto-aim skips incompatible targets: HolyMatrixHealerEnemy/3
+Auto-aim skips incompatible targets: HolyMatrixHolySlime/3
+Auto-aim skips incompatible targets: HolyMatrixHolyOrc/3
+Auto-aim skips incompatible targets: HolyMatrixHolyGhost/3
+Orc plays all four walk frames while approaching
+Orc moves toward player
+Orc plays all four idle frames
+Orc club swing uses all four attack frames
+Orc club deals one hit after its wind-up
+Leaving the club's range during wind-up avoids damage
+Orc plays its four-frame magical disappearance
+Ghost has a four-frame hover loop
+Ghost has a four-frame gliding loop
+Ghost cast uses all four attack frames
+Ghost launches the existing enemy projectile type
+Projectile uses the orb slice, not the whole character
+Ghost projectile stops during pause
+Ghost projectile resumes after pause
+Ghost disappears through all four defeat frames
+Ghost clears its owned projectile on defeat
+Defeated orc is removed after its animation

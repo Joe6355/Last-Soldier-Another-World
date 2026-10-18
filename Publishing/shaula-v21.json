@@ -1,0 +1,101 @@
+{
+  "version": "0.0.0.21",
+  "result": "PASS",
+  "checkedAt": "2026-10-18T17:56:41.267245+05:00",
+  "uploaded": false,
+  "build": {
+    "verifiedPackedSourcePaths": 1151,
+    "mismatches": [],
+    "rootSettingsSHA256": "e9927f7353ae2a3ad8b67f4f1f0d3bd69338f2e5138648b1f8ab28292c757535",
+    "buildSettingsSHA256": "e9927f7353ae2a3ad8b67f4f1f0d3bd69338f2e5138648b1f8ab28292c757535",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/shaula-v21-webgl-isolated.log",
+    "editorBuildSourcesCompared": true
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 140,
+      "output": "Publishing/shaula-v21-checks.txt",
+      "log": "Builds/RatingValidation/shaula-v21-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 368,
+      "output": "Publishing/shaula-v21-crimson-regression.txt",
+      "log": "Builds/RatingValidation/shaula-v21-crimson-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 228,
+      "output": "Publishing/shaula-v21-holy-regression.txt",
+      "log": "Builds/RatingValidation/shaula-v21-holy-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 1071,
+      "output": "Publishing/shaula-v21-localization-regression.txt",
+      "log": "Builds/RatingValidation/shaula-v21-localization-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 365,
+      "output": "Publishing/shaula-v21-atlas-checks.txt",
+      "log": "Builds/RatingValidation/shaula-v21-atlas.log"
+    }
+  ],
+  "nodeTests": {
+    "passed": 10,
+    "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+  },
+  "boss": {
+    "wave": 20,
+    "arena": "normal",
+    "baseHealth": 480,
+    "effectiveWave20Health": 600,
+    "baseTailHealth": 90,
+    "effectiveWave20TailHealth": 112.5,
+    "armorDamageMultiplier": 0.6,
+    "jointDamageMultiplier": 1.35,
+    "tailDamageMultiplier": 1.5,
+    "exposedTailDamageMultiplier": 2,
+    "tailBrokenSeconds": 9,
+    "rageHealthFraction": 0.5,
+    "laserChargeSeconds": 1.5,
+    "laserAimLockSeconds": 0.4,
+    "stingWarningSeconds": 1,
+    "defeatBeforeRewardSeconds": 2.7,
+    "reward": {
+      "coins": 1000,
+      "healingPotions": 3,
+      "ordinaryArrows": 30
+    },
+    "attackCount": 7,
+    "clipStates": 12,
+    "poseCount": 144,
+    "soundEffects": 17,
+    "musicLoops": 2,
+    "bloodEffects": false,
+    "ordinaryArrowRulesPreserved": true,
+    "mobileExposedTailTargeting": true
+  },
+  "atlas": {
+    "textures": 113,
+    "sourceSprites": 1721,
+    "packedSprites": 1721
+  },
+  "previews": [
+    "Publishing/Previews/shaula-v21-laser.png",
+    "Publishing/Previews/shaula-v21-mobile-en.png",
+    "Publishing/Previews/shaula-v21-mobile-ru.png",
+    "Publishing/Previews/shaula-v21-pc-ru.png",
+    "Publishing/Previews/shaula-v21-transformation.png"
+  ],
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": false,
+  "limitations": [
+    "One three-quarter view with a horizontal mirror",
+    "Balance and sound mix need a live PC/Android playtest",
+    "WebGL assembled locally; this run does not upload to Yandex"
+  ]
+}

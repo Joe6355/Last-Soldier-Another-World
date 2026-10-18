@@ -72,7 +72,7 @@ public class ArrowDef : MonoBehaviour
             Destroy(gameObject); // Стены и прочие твёрдые препятствия.
             return;
         }
-        if (!hitEnemies.Add(target.GetInstanceID())) return;
+        if (!hitEnemies.Add(EnemyHitId(target))) return;
         ApplyHit(target);
         if (hitEnemies.Count >= maxEnemyHits) Destroy(gameObject);
     }
@@ -81,6 +81,10 @@ public class ArrowDef : MonoBehaviour
     public static MonoBehaviour FindEnemy(Component source)
     {
         if (source == null) return null;
+        var shaulaZone = source.GetComponentInParent<ShaulaHitZone>();
+        if (shaulaZone != null) return shaulaZone;
+        var shaula = source.GetComponentInParent<ShaulaBoss>();
+        if (shaula != null) return shaula;
         MonoBehaviour target = source.GetComponentInParent<Roberto>();
         if (target == null) target = source.GetComponentInParent<Enemy>();
         if (target == null) target = source.GetComponentInParent<SceletonDef>();
@@ -92,6 +96,9 @@ public class ArrowDef : MonoBehaviour
     }
 
     public virtual bool IsHoly => false;
+
+    private static int EnemyHitId(MonoBehaviour target) => target is ShaulaHitZone zone && zone.boss != null
+        ? zone.boss.GetInstanceID() : target.GetInstanceID();
 
     public static bool CanDamageEnemy(Component target, bool holy)
         => target != null && target.CompareTag("HolyEnemy") == holy;
@@ -110,7 +117,9 @@ public class ArrowDef : MonoBehaviour
     public static void DamageEnemy(MonoBehaviour target, int amount, bool holy = false)
     {
         if (target == null || !target.gameObject.activeInHierarchy || amount <= 0) return;
-        if (target is Roberto assassin)
+        if (target is ShaulaHitZone zone) zone.TakeDamage(amount, holy);
+        else if (target is ShaulaBoss shaula) shaula.TakeDamage(amount, holy);
+        else if (target is Roberto assassin)
         {
             if (holy && !assassin.CompareTag("HolyEnemy")) assassin.RestoreHealth(amount);
             else assassin.TakeDamage(amount);
@@ -144,7 +153,7 @@ public class ArrowDef : MonoBehaviour
             || other.GetComponentInParent<ArrowDef>() != null) return;
         if (triggerProjectile || maxEnemyHits > 1) return;
         var target = FindEnemy(other);
-        if (target != null && hitEnemies.Add(target.GetInstanceID())) ApplyHit(target);
+        if (target != null && hitEnemies.Add(EnemyHitId(target))) ApplyHit(target);
         Destroy(gameObject);
     }
 }

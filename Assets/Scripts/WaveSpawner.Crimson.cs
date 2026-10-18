@@ -39,7 +39,11 @@ public partial class WaveSpawner
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetArenaStatics() => ActiveArena = null;
 
-    private void OnDestroy() { if (ActiveArena == this) ActiveArena = null; }
+    private void OnDestroy()
+    {
+        if (pickerOwner == this) { pickerOwner = null; demoInputFrame = Time.frameCount; }
+        if (ActiveArena == this) ActiveArena = null;
+    }
 
     public static WaveSpawner SavedArena()
     {
@@ -140,6 +144,7 @@ public partial class WaveSpawner
 
     public static GameObject SpawnEnemyLoot(GameObject prefab, Vector3 position, Quaternion rotation)
     {
+        if (GameProgress.IsArenaDemo) return null;
         if (prefab == null) return null;
         var loot = Instantiate(prefab, position, rotation);
         var arena = ActiveArena;
@@ -154,6 +159,7 @@ public partial class WaveSpawner
 
     private void AwardCrimsonWaveLoot()
     {
+        if (GameProgress.IsArenaDemo) return;
         if (!crimsonArena) return;
         if (arenaPlayer == null) arenaPlayer = FindObjectOfType<PlayerController>();
         if (arenaPlayer == null) return;

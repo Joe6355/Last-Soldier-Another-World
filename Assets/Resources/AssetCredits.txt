@@ -136,3 +136,7 @@ Shield, HUD panels, camp tent, altar, outpost and magical bursts drawn with geom
 New holy enemies / Новые святые противники
 Crimson orc and ghost animation sheets generated for this game with OpenAI image generation.
 Атласы анимаций красного орка и призрака созданы для игры с помощью генерации изображений OpenAI.
+
+Shaula / Шаула
+Boss animation sheets generated for this game with OpenAI image generation; original synthesized effects and music, without sampled recordings.
+Анимации босса созданы для игры с помощью генерации изображений OpenAI; эффекты и музыка синтезированы без сторонних записей.

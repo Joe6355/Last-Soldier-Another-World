@@ -10,7 +10,7 @@ using CloudPrefs = RedefineYG.PlayerPrefs;
 // Existing game keys are stored by the SDK's RedefinePlayerPrefs module.
 // This component coordinates startup, legacy migration and save frequency.
 [DefaultExecutionOrder(-31000)]
-public sealed class GameProgress : MonoBehaviour
+public sealed partial class GameProgress : MonoBehaviour
 {
     public const string LeaderboardName = "mmr";
     private const string BackupPrefix = "LastSoldier.Progress.v1.";
@@ -41,6 +41,7 @@ public sealed class GameProgress : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics()
     {
+        demoSnapshot = null; restoringDemo = false;
         instance = null;
         IsReady = AuthPending = CloudAvailable = false;
         Changed = null;
@@ -83,6 +84,7 @@ public sealed class GameProgress : MonoBehaviour
 
     private void LoadProgress()
     {
+        if (IsArenaDemo) return;
         if (!YG2.isSDKEnabled) return;
         string newOwner = CurrentOwner;
         // Environment/profile refreshes must not reload live gameplay data.
@@ -221,12 +223,14 @@ public sealed class GameProgress : MonoBehaviour
 
     public static void RequestSave()
     {
+        if (IsArenaDemo) return;
         if (instance == null || !IsReady || instance.capturing) return;
         instance.localDirty = true;
     }
 
     public static void SaveNow()
     {
+        if (IsArenaDemo) return;
         if (instance == null || !IsReady) return;
         instance.CaptureScene();
         instance.CommitLocal();
@@ -235,6 +239,7 @@ public sealed class GameProgress : MonoBehaviour
 
     public static void BeginAuthorization()
     {
+        if (IsArenaDemo) return;
         if (!IsReady || AuthPending || YG2.player.auth) return;
         SaveNow();
         instance.wasGuest = instance.owner == "guest";
@@ -261,6 +266,7 @@ public sealed class GameProgress : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (IsArenaDemo) return;
         if (!IsReady) return;
         if (Time.unscaledTime >= nextCapture)
         {
@@ -278,6 +284,7 @@ public sealed class GameProgress : MonoBehaviour
 
     private void CaptureScene()
     {
+        if (IsArenaDemo) return;
         if (!IsReady || capturing || Time.frameCount <= captureAfterFrame) return;
         capturing = true;
         try
@@ -294,6 +301,7 @@ public sealed class GameProgress : MonoBehaviour
 
     private void CommitLocal()
     {
+        if (IsArenaDemo) return;
         if (!localDirty || !IsReady) return;
         if (JsonUtility.ToJson(YG2.saves) == lastSnapshot && YG2.saves.idSave > 0)
         {
@@ -311,6 +319,7 @@ public sealed class GameProgress : MonoBehaviour
 
     private void SendCloud()
     {
+        if (IsArenaDemo) return;
         if (!cloudDirty || sending || !CloudAvailable || AuthPending || Time.unscaledTime < nextCloudSave)
             return;
         nextCloudSave = Time.unscaledTime + CloudInterval;
@@ -346,6 +355,7 @@ public sealed class GameProgress : MonoBehaviour
 
     private void SendRating()
     {
+        if (IsArenaDemo) return;
         if (!YG2.player.auth || !CloudAvailable || ratingSending || Time.unscaledTime < nextRating) return;
         var summary = Stats.ReadLeaderboardSummary();
         int score = MmrScore(summary.waves, summary.kills, summary.bonusMmr);
@@ -386,6 +396,7 @@ public sealed class GameProgress : MonoBehaviour
     private void OnApplicationQuit() => SaveNow();
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        RestoreDemoSnapshotAfterSceneLoad();
         captureAfterFrame = Time.frameCount + 1;
         nextCapture = Time.unscaledTime + 5f;
     }

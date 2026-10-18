@@ -1,0 +1,79 @@
+{
+  "version": "0.0.0.23",
+  "result": "PASS",
+  "checkedAt": "2026-10-18T21:02:13.581803+05:00",
+  "uploaded": true,
+  "uploadLimitation": null,
+  "build": {
+    "verifiedPackedSourcePaths": 1168,
+    "mismatches": [],
+    "rootSettingsSHA256": "8383a18c9041d81dda3c4ad31ca7ca17d8e1831496e89e7e59bf3302c5ceed3a",
+    "buildSettingsSHA256": "8383a18c9041d81dda3c4ad31ca7ca17d8e1831496e89e7e59bf3302c5ceed3a",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/shaula-v23-webgl-isolated.log",
+    "oldMotionSheetsPacked": false,
+    "articulatedPartsPacked": true
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 131,
+      "output": "Publishing/shaula-v23-checks.txt",
+      "log": "Builds/RatingValidation/shaula-v23-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 60,
+      "output": "Publishing/shaula-v23-demo-regression.txt",
+      "log": "Builds/RatingValidation/shaula-v23-demo-regression.log"
+    }
+  ],
+  "assets": "Publishing/shaula-v23-assets-checks.json",
+  "previews": [
+    "Publishing/Previews/shaula-v23-attack-grasp.png",
+    "Publishing/Previews/shaula-v23-attack-laser.png",
+    "Publishing/Previews/shaula-v23-attack-needles.png",
+    "Publishing/Previews/shaula-v23-attack-pursuit.png",
+    "Publishing/Previews/shaula-v23-attack-slam.png",
+    "Publishing/Previews/shaula-v23-attack-stars.png",
+    "Publishing/Previews/shaula-v23-attack-sting.png",
+    "Publishing/Previews/shaula-v23-laser-warning.png",
+    "Publishing/Previews/shaula-v23-laser.png",
+    "Publishing/Previews/shaula-v23-mobile-en.png",
+    "Publishing/Previews/shaula-v23-mobile-ru.png",
+    "Publishing/Previews/shaula-v23-pc-ru.png",
+    "Publishing/Previews/shaula-v23-transformation.png",
+    "Publishing/Previews/shaula-v23-walk-00.png",
+    "Publishing/Previews/shaula-v23-walk-01.png",
+    "Publishing/Previews/shaula-v23-walk-02.png",
+    "Publishing/Previews/shaula-v23-walk-03.png",
+    "Publishing/Previews/shaula-v23-walk-04.png",
+    "Publishing/Previews/shaula-v23-walk-05.png",
+    "Publishing/Previews/shaula-v23-walk-06.png",
+    "Publishing/Previews/shaula-v23-walk-07.png"
+  ],
+  "walkPreview": "Publishing/Previews/shaula-v23-walk.gif",
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": true,
+  "humanListeningReviewPerformed": false,
+  "changes": {
+    "articulatedLegs": 8,
+    "tailPlates": 5,
+    "distinctSpriteParts": 9,
+    "laserChargeSeconds": 1.1,
+    "lockedDodgeWindowSeconds": 0.35,
+    "laserVisibleSeconds": 0.22,
+    "healthBar": "bottom, within safe area",
+    "revisedAudioClips": 4
+  },
+  "demoShortcut": "9 -> 20 while on the normal arena",
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "fff1693f080b0a8bdc5f0845d62685f3dd4db4680f20ffcdbf44c79328319808",
+  "archiveBytes": 18055671,
+  "archiveFileId": "14066459",
+  "archiveProcessing": "Ready",
+  "uploadProof": "Publishing/Previews/yandex-version23-20261018.png",
+  "uploadedAt": "2026-10-18T18:20:45.987645+00:00",
+  "browserMenuProof": "Publishing/Previews/yandex-version23-menu-20261018.png",
+  "runtimePath": "623393/jwu5kqh8chd59td80jv7e3wrd73q2b9w"
+}

@@ -1,0 +1,68 @@
+{
+  "version": "0.0.0.22",
+  "result": "PASS",
+  "checkedAt": "2026-10-18T18:47:35.086409+05:00",
+  "uploaded": true,
+  "build": {
+    "verifiedPackedSourcePaths": 1157,
+    "mismatches": [],
+    "rootSettingsSHA256": "001eb3f50a0b932b4ad040c3b3f32dd9c65412939c12009d3806e042d16090a1",
+    "buildSettingsSHA256": "001eb3f50a0b932b4ad040c3b3f32dd9c65412939c12009d3806e042d16090a1",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/arena-demo-v22-webgl-isolated.log",
+    "editorBuildSourcesCompared": true
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 60,
+      "output": "Publishing/arena-demo-v22-checks.txt",
+      "log": "Builds/RatingValidation/arena-demo-v22-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 140,
+      "output": "Publishing/arena-demo-v22-shaula-regression.txt",
+      "log": "Builds/RatingValidation/arena-demo-v22-shaula-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 368,
+      "output": "Publishing/arena-demo-v22-crimson-regression.txt",
+      "log": "Builds/RatingValidation/arena-demo-v22-crimson-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 1087,
+      "output": "Publishing/arena-demo-v22-localization-regression.txt",
+      "log": "Builds/RatingValidation/arena-demo-v22-localization-regression.log"
+    }
+  ],
+  "nodeTests": {
+    "passed": 10
+  },
+  "previews": [
+    "Publishing/Previews/arena-demo-v22-picker-en.png",
+    "Publishing/Previews/arena-demo-v22-picker-ru.png"
+  ],
+  "demo": {
+    "shortcut": "9 or NumPad 9 while on the arena",
+    "shaulaWave": 20,
+    "separateSave": true,
+    "restoreNormalResources": true,
+    "grantsRewards": false,
+    "sendsRating": false,
+    "directSdkSaveBlocked": true,
+    "availableIn": "Unity Editor or LAST_SOLDIER_DEMO",
+    "releaseMustDisable": "LAST_SOLDIER_DEMO"
+  },
+  "physicalKeyboardTestPerformed": false,
+  "browserLaunchVerified": true,
+  "uploadLimitation": null,
+  "archiveFileId": "14064950",
+  "archiveProcessing": "Ready",
+  "archiveSha256": "03f84882fcf0cb37731ede7082181857befc0743c9279f7cdff12971ab690f7e",
+  "uploadProof": "Publishing/Previews/yandex-version22-20261018.png",
+  "browserMenuProof": "Publishing/Previews/yandex-version22-menu-20261018.png",
+  "browserInputLimitation": "Menu loads; native automated canvas click did not visibly start the scene. Wave picker was tested in isolated Unity Play Mode; physical browser keyboard test remains manual."
+}

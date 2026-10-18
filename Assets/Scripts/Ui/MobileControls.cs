@@ -329,7 +329,19 @@ public class MobileControls : MonoBehaviour
         bool hadTarget = !object.ReferenceEquals(autoAimTarget, null);
         if (autoAimTarget != null && IsAimCandidate(autoAimCollider, origin, searchRadius, out var lockedEnemy, out var lockedPoint)
             && lockedEnemy.transform == autoAimTarget)
+        {
+            // A missed sting is a deliberate opening, also usable without precise touch aiming.
+            var shaula = lockedEnemy is ShaulaHitZone zone ? zone.boss : lockedEnemy as ShaulaBoss;
+            if (shaula != null && shaula.TailExposed)
+                foreach (var weak in shaula.GetComponentsInChildren<ShaulaHitZone>())
+                    if (weak.zone == ShaulaHitZone.Zone.Tail)
+                    {
+                        var weakCollider = weak.GetComponent<Collider2D>();
+                        if (IsAimCandidate(weakCollider, origin, searchRadius, out var weakEnemy, out var weakPoint))
+                        { autoAimCollider = weakCollider; autoAimTarget = weakEnemy.transform; return (weakPoint - origin).normalized; }
+                    }
             return (lockedPoint - origin).normalized;
+        }
         if (hadTarget) nextAimSearch = 0f;
         autoAimTarget = null; autoAimCollider = null;
         if (Time.unscaledTime >= nextAimSearch)
@@ -345,6 +357,7 @@ public class MobileControls : MonoBehaviour
                 var collider = aimCandidates[i];
                 if (!IsAimCandidate(collider, origin, searchRadius, out var enemy, out var point)) continue;
                 float distance = (point - origin).sqrMagnitude;
+                if (enemy is ShaulaHitZone zone) distance *= zone.AimWeight;
                 if (distance >= nearest) continue;
                 nearest = distance; autoAimTarget = enemy.transform; autoAimCollider = collider;
             }
@@ -359,6 +372,7 @@ public class MobileControls : MonoBehaviour
         if (collider == null || !collider.enabled || !collider.gameObject.activeInHierarchy) return false;
         enemy = ArrowDef.FindEnemy(collider);
         if (enemy == null || !enemy.isActiveAndEnabled || enemy is SlimeBoss boss && !boss.IsAlive) return false;
+        if (enemy is ShaulaBoss shaula && !shaula.IsAlive || enemy is ShaulaHitZone zone && !zone.IsAlive) return false;
         var bow = player != null ? player.crossbowController : null;
         if (bow != null && !ArrowDef.CanDamageEnemy(enemy, bow.arrowPrefabs[bow.SelectedArrowIndex].GetComponent<ArrowDef>().IsHoly)) return false;
         point = collider.bounds.center;

@@ -91,6 +91,7 @@ public sealed class GameMonetization : MonoBehaviour
 
     private bool BeginDeath(PlayerController player)
     {
+        if (GameProgress.IsArenaDemo) { GameProgress.ExitArenaDemo(); return true; }
         if (deathPanel == null || gameUi == null) return false;
         if (deadPlayer != null) return true;
         deadPlayer = player;
@@ -117,6 +118,7 @@ public sealed class GameMonetization : MonoBehaviour
 
     public bool RequestCoinsForVideo(PlayerController recipient, int amount, System.Action<CoinsRewardResult, int> completed)
     {
+        if (GameProgress.IsArenaDemo) return false;
         if (recipient == null || recipient.hp <= 0 || recipient.IsAwaitingRevive || deadPlayer != null
             || amount <= 0 || recipient.totalCoins > int.MaxValue - amount || IsRewardedAdPending
             || !GameProgress.IsReady || !YG2.isSDKEnabled || YG2.nowAdsShow || YG2.isPauseGame) return false;

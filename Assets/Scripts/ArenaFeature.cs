@@ -297,7 +297,7 @@ public sealed class ArenaFeature : MonoBehaviour
         else if (cooldown <= 0)
         {
             spawner.FillArenaTargets(targets, transform.position, EffectRadius);
-            if (targets.Exists(enemy => !(enemy is Roberto) && !(enemy is SlimeBoss)))
+            if (targets.Exists(enemy => !(enemy is Roberto) && !(enemy is SlimeBoss) && !(enemy is ShaulaBoss)))
             {
                 effectTime = 1f + Level(Upgrade.Roots) * .4f;
                 DamageArea(Level(Upgrade.Roots), EffectRadius, false);
@@ -311,7 +311,7 @@ public sealed class ArenaFeature : MonoBehaviour
         spawner.FillArenaTargets(targets, transform.position, EffectRadius);
         foreach (var enemy in targets)
         {
-            if (enemy is Roberto || enemy is SlimeBoss) continue;
+            if (enemy is Roberto || enemy is SlimeBoss || enemy is ShaulaBoss) continue;
             Vector3 point;
             if (kind == FeatureKind.Roots)
             {

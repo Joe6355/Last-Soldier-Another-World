@@ -68,6 +68,9 @@ namespace YG
 
         public static void SaveProgress()
         {
+            // Draft tests must not persist their disposable save through the
+            // direct RedefinePlayerPrefs.Save path used by audio/settings.
+            if (GameProgress.IsArenaDemo) return;
             if (!_SDKEnabled)
             {
 #if RU_YG2

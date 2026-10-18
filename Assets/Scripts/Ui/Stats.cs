@@ -154,6 +154,7 @@ public class Stats : MonoBehaviour
 
     public void RecordAchievementEvent(AchievementMetric metric, int amount = 1)
     {
+        if (GameProgress.IsArenaDemo) return;
         if (!GameProgress.IsReady || amount <= 0) return;
         switch (metric)
         {
@@ -295,6 +296,7 @@ public class Stats : MonoBehaviour
 
     public void AddCompletedWave()
     {
+        if (GameProgress.IsArenaDemo) return;
         if (completedWaves < int.MaxValue) completedWaves++;
         AwardCrimsonRating(100);
         UpdateUI();
@@ -326,6 +328,7 @@ public class Stats : MonoBehaviour
 
     public void AddEnemyKill(EnemyKind kind = EnemyKind.Other)
     {
+        if (GameProgress.IsArenaDemo) return;
         if (countEnemyDead < int.MaxValue) countEnemyDead++;
         AwardCrimsonRating(1);
         RecordEnemyKind(kind);
@@ -335,6 +338,7 @@ public class Stats : MonoBehaviour
 
     public void AddPlayerDead()
     {
+        if (GameProgress.IsArenaDemo) return;
         countPlayerDead++;
         UpdateUI();
         SaveInfo();
@@ -342,6 +346,7 @@ public class Stats : MonoBehaviour
 
     public void AddBossDead(EnemyKind kind = EnemyKind.Other)
     {
+        if (GameProgress.IsArenaDemo) return;
         if (countBossDead < int.MaxValue) countBossDead++;
         AwardCrimsonRating(1);
         RecordEnemyKind(kind);
@@ -351,6 +356,7 @@ public class Stats : MonoBehaviour
 
     public void AddElitEnemyDead(EnemyKind kind = EnemyKind.Other)
     {
+        if (GameProgress.IsArenaDemo) return;
         if (countElitEnemyDead < int.MaxValue) countElitEnemyDead++;
         AwardCrimsonRating(1);
         RecordEnemyKind(kind);

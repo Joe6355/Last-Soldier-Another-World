@@ -179,10 +179,11 @@ public partial class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
+        UpdateDemoControls();
         if (!playerInsideZone || Time.timeScale == 0f || YG.YG2.isPauseGame) return;  // Игрок ещё не в зоне — ничего не делаем
         if (tutorialWave) { UpdateTutorialUI(); return; }
         hintTime = Mathf.Max(0, hintTime - Time.deltaTime);
-        if (arenaHint != null) arenaHint.gameObject.SetActive(hintTime > 0 && isWaveActive);
+        if (arenaHint != null) arenaHint.gameObject.SetActive(overtime && hintTime > 0 && isWaveActive);
 
         if (isWaveActive)
         {
@@ -212,6 +213,13 @@ public partial class WaveSpawner : MonoBehaviour
                 }
                 UpdateWaveUI(0, currentWave.waveDuration, true);
             }
+            else if (!crimsonArena && currentWaveIndex == 19)
+            {
+                if (bossActivated && shaulaDefeated) { CompleteWave(true); return; }
+                UpdateWaveUI(0, currentWave.waveDuration, true);
+                if (waveTimerText != null) waveTimerText.text = GameLocalization.Text("Босс");
+                if (waveTimerImage != null) waveTimerImage.fillAmount = 0;
+            }
             else
             {
                 // Обычная логика для обычных волн:
@@ -234,6 +242,12 @@ public partial class WaveSpawner : MonoBehaviour
         }
         else if (isBreakActive)
         {
+            if (GameProgress.IsArenaDemo)
+            {
+                UpdateWaveUI(0, 1, false);
+                if (waveTimerText != null) waveTimerText.text = "9";
+                return;
+            }
             breakTimeLeft -= Time.deltaTime;
             if (breakTimeLeft <= 0f)
             {
@@ -287,7 +301,7 @@ public partial class WaveSpawner : MonoBehaviour
         foreach (var feature in arenaFeatures) if (feature != null && feature.Kind == ArenaFeature.FeatureKind.Outpost) outposts++;
         foreach (var feature in arenaFeatures)
             if (feature != null) feature.BeginWave(outposts > 0 && feature.SlotIndex == waveIndex % outposts, restoreArena);
-        hintTime = 7f;
+        hintTime = 0;
         SaveCheckpoint();
 
         // Логика выбора:
@@ -307,6 +321,10 @@ public partial class WaveSpawner : MonoBehaviour
         else if (waveIndex == 14)
         {
             StartCoroutine(ActivateBossWave15());
+        }
+        else if (waveIndex == 19)
+        {
+            StartCoroutine(ActivateShaula());
         }
         else
         {
@@ -581,6 +599,7 @@ public partial class WaveSpawner : MonoBehaviour
 
     public void AbandonRun()
     {
+        if (demoRun && GameProgress.IsArenaDemo) { GameProgress.ExitArenaDemo(); return; }
         playerInsideZone = false;
         ResetSpawnerCompletely();
         HideSpawnerUI();
@@ -588,6 +607,7 @@ public partial class WaveSpawner : MonoBehaviour
 
     public void SaveCheckpoint()
     {
+        if (GameProgress.IsArenaDemo) return;
         if (tutorialWave || TipsManager.IsGuideActive || !IsRunning || waves.Count == 0) return;
         PlayerPrefs.SetInt("ArenaRunActive", 1);
         PlayerPrefs.SetInt("ArenaRunKind", crimsonArena ? 1 : 0);
@@ -628,6 +648,7 @@ public partial class WaveSpawner : MonoBehaviour
         foreach (var enemy in activeEnemies) AddArenaTarget(result, enemy, point, radius);
         if (!crimsonArena && currentWaveIndex == 9) AddArenaTarget(result, bossWave10, point, radius);
         if (!crimsonArena && currentWaveIndex == 14) AddArenaTarget(result, bossWave15, point, radius);
+        if (!crimsonArena && currentWaveIndex == 19 && shaula != null) AddArenaTarget(result, shaula.gameObject, point, radius);
     }
 
     private static void AddArenaTarget(List<MonoBehaviour> result, GameObject enemy, Vector2 point, float radius)
@@ -761,6 +782,8 @@ public partial class WaveSpawner : MonoBehaviour
 
             if (waveNumberText != null)
                 waveNumberText.text = crimsonArena ? GameLocalization.Text("Красная · {0}").Replace("{0}", CurrentWaveNumber.ToString()) : $"Волна {CurrentWaveNumber}";
+            if (GameProgress.IsArenaDemo && waveNumberText != null)
+                waveNumberText.text = GameLocalization.Text("Тест · Волна {0}").Replace("{0}", CurrentWaveNumber.ToString());
         }
 
         if (waveTimerImage != null)
@@ -777,6 +800,7 @@ public partial class WaveSpawner : MonoBehaviour
 
     private void HideDedicatedBosses()
     {
+        HideShaula();
         if (bossWave10 != null) bossWave10.SetActive(false);
         if (bossHPBar10 != null) bossHPBar10.SetActive(false);
         if (bossPlaceholder10 != null) bossPlaceholder10.SetActive(false);

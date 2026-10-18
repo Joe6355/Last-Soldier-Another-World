@@ -1867,6 +1867,70 @@
     {
       "ru": "АРЕНА · {0} / 8",
       "en": "ARENA · {0} / 8"
+    },
+    {
+      "ru": "Шаула",
+      "en": "Shaula"
+    },
+    {
+      "ru": "Шаула · Багровая ярость",
+      "en": "Shaula · Crimson Rage"
+    },
+    {
+      "ru": "Последнее превращение",
+      "en": "Final transformation"
+    },
+    {
+      "ru": "Хвост разрушен · берегись клешней",
+      "en": "Tail broken · watch the claws"
+    },
+    {
+      "ru": "Жало застряло · атакуй хвост!",
+      "en": "Sting stuck · attack the tail!"
+    },
+    {
+      "ru": "Светлые сочленения и хвост — слабые места",
+      "en": "Pale joints and tail are weak points"
+    },
+    {
+      "ru": "Хвост",
+      "en": "Tail"
+    },
+    {
+      "ru": "Босс",
+      "en": "Boss"
+    },
+    {
+      "ru": "Тест волн",
+      "en": "Wave test"
+    },
+    {
+      "ru": "Выбери волну от 1 до {0}. Тест использует копию сохранения: награды, расходники и рейтинг не сохраняются.",
+      "en": "Choose a wave from 1 to {0}. This test uses a copy of your save: rewards, supplies and rating are not saved."
+    },
+    {
+      "ru": "Введи номер от 1 до {0}",
+      "en": "Enter a number from 1 to {0}"
+    },
+    {
+      "ru": "20 — Шаула",
+      "en": "20 — Shaula"
+    },
+    {
+      "ru": "Начать тест",
+      "en": "Start test"
+    },
+    {
+      "ru": "Вернуться в обычную игру",
+      "en": "Return to normal game"
+    },
+    {
+      "ru": "Тест завершён · 9",
+      "en": "Test complete · 9"
+    },
+    {
+      "ru": "Тест · Волна {0}",
+      "en": "Test · Wave {0}"
     }
   ]
 }

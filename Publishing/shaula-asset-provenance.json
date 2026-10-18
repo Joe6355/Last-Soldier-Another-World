@@ -1,0 +1,142 @@
+{
+  "source": "Concepts/Shaula/v2/animations.json",
+  "method": "Slice approved generated raster art; nearest-neighbour scale and common ground pivot; no new drawn pixels",
+  "artSources": {
+    "shaula-normal-sheet.png": "40f2273d506dabdeccf5cd17091cc6601deead37de49bb8af9e7fe66e50cee9d",
+    "shaula-crimson-sheet.png": "c729e47687d3dc9576b6aff4dcf72bba2e7fed3a239236f2d81ca57250a2a184",
+    "shaula-special-normal-sheet.png": "a6dbb847f8005f372eaa9b7891971af4ebbe37a85eaec1bdf4568170bb1d0cd6",
+    "shaula-special-crimson-sheet.png": "17c4641352cdd9322118da2b95bab974ca18cd92775e8d3d35a064d65db17134",
+    "shaula-white-laser-sheet.png": "5a729537ff7e5b9cefe7a23ac3f0b1e039b99bf31671818228083326dd0989d5",
+    "shaula-tailless-sheet.png": "4e35e068a938a1516f6a7dedf4c3bd5b6bd6d80098835bbda808488fd3c5a3d6"
+  },
+  "files": [
+    {
+      "path": "Assets/Bosses/Shaula/Audio/armor-block.wav",
+      "sha256": "7603fdc889f9c92508c2a0f05204a1d42c7ada77553584e1fde803c54d545de7",
+      "metadataSHA256": "463e24850f1abe2ec79b29b577b016c8a4035187666513e0b06a688c961456f0"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/arrival.wav",
+      "sha256": "5a1fc1f962a2b950121be6db698e1c43c2346e14daa6e7ce1d993c3d0052cafe",
+      "metadataSHA256": "c0d674a518143b0361c76c6e41d8f1b5ebef0cac5cd0c74ca043a4cbff254a7d"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/claw-hit.wav",
+      "sha256": "82fd35bb8f0b6992c0775627e37683019c2d6a8cf1f6b9c55730d8061706eec6",
+      "metadataSHA256": "4c6065fccdfdd437617bc222fbb46b7255758decd5bc661d70327213bea32f06"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/claw-ready.wav",
+      "sha256": "7d465c65261b68f9843e5723841685b7178d0c3ac8e5f670da23f5db9809b424",
+      "metadataSHA256": "a2d4f580958a4d84f01abfff0c7cb5d0992d37da7cd7f00740f0935f372285ce"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/ground-slam.wav",
+      "sha256": "ef74a4c3a7fbfba848032183eac500200e50a1a621919a4ca8bbe76fcff43647",
+      "metadataSHA256": "987e17194d71623cb53268927a0bd63186a317f928f4b612da10acb020ec93af"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/laser-charge.wav",
+      "sha256": "b38401d3c5d5c426681e57a72d3cc01ffab81cc78ef904748db138b69af41136",
+      "metadataSHA256": "ff28f4ab910df8b7003acc8751daad4c9137a420e9f27cbedc0eee9c46fe9db0"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/laser-fire.wav",
+      "sha256": "953dbb54f952a273199e4f87076198636da0e2aeb950af21e6b8a8abf298a734",
+      "metadataSHA256": "4d47757e3ba47c111e2c3bf4825fb761585a993c7cb86638b953953eb6d94c02"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/laser-impact.wav",
+      "sha256": "f8a09fb3a350962c0f3222f68f17f6e5bfdda222f69fb830ebc1287ebcc88c07",
+      "metadataSHA256": "dbf0a6e1d24573510bae2b1e3bef391df2e25800a926b40ab35ed6b4ec751b9f"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/music-phase-1.wav",
+      "sha256": "b2130be04a6f012262655e9b3ff017f5c27c3583452b63f640900bf5f860bf0d",
+      "metadataSHA256": "0b3a0e48315f3ab7cba32eb36fc999986f652041be12176a2019c27adcc5bf91"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/music-phase-2.wav",
+      "sha256": "44cef0a9cef62398ee000df65ceb7ceec46dcd1bffe8f2316c591d0c99f090c4",
+      "metadataSHA256": "86d8827bcc7a81f1caf0deece012d03c0c2e31cfad3af9c3ebc03cffeea36c55"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/needle.wav",
+      "sha256": "ab0a38a2565b9334d8d91b52228306eae3e906feecd2d51ef5e93e227e78f796",
+      "metadataSHA256": "685cb6e9923a6f5391bdc2ee05e34c73bcf38fc7881f55f3aa2339ab967f725e"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/rage.wav",
+      "sha256": "e9c5506d855c859f2b61a73ad9e60c5b5f3e40d1adccd80a0e10a9b6a6927bf9",
+      "metadataSHA256": "c39ec8f5dc6d49370cc2706b60e000ff74f58c03027c31060367fbe92d502d89"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/star-cast.wav",
+      "sha256": "de1a14dc7878e381be228b0d4bd1702588102ad42d8d2c1e8f8b62d87f1578f4",
+      "metadataSHA256": "7c711cd59734d998079957f2b9dc4f547d4e08549ec24ef949e593bc42907c87"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/step-a.wav",
+      "sha256": "c71127a55b851dedd5faca4114b3f6027ab156ef5157bfd1eda84b47f3725d45",
+      "metadataSHA256": "4b9bc1720261f8cc2c7c3629691b9b4b9bb38b53ad8fca11a977ed977f4f6632"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/step-b.wav",
+      "sha256": "0e94e8487484959724d31288e6a6f11ae32d2d14a46a8acf97d848b802129d76",
+      "metadataSHA256": "6c9d304f824847fd03b87bef236bc946689020f1c5786caed763d96ef6054c04"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/sting.wav",
+      "sha256": "8da4556dec74521e258e9df6d7ff93786d258d10ad234ed2c5add8f1d8659411",
+      "metadataSHA256": "a3e4f001bd9ab3816422b42b10ab65bf05e2f957dcd22def65bce6bcdbdc39b3"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/tail-break.wav",
+      "sha256": "3234071076b4336ae60ee9bcc4cc439eddb25ea3c0dc0ed2dd8e73d40be86bff",
+      "metadataSHA256": "61a8f917be56c1f81a065abe3d29235c4c4a265ba8e9114140635cc1f7b8365e"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/tail-regrow.wav",
+      "sha256": "0cc4a548d3182c33af69b83cefa8bd081154c7feed5213160fdfa90031ef4cbf",
+      "metadataSHA256": "09d72ed905df1db01e08e46c1cc9b93844acb4dab318a554db06d0669170e90a"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/Audio/transform.wav",
+      "sha256": "a5351693f8f452cb9c71f3841fa07de9d36bcea7bb9e4e4bf14bea6fcd1842a4",
+      "metadataSHA256": "046d5424b4e186f86fa84d59282b4f5342537f91472ebedf97aca8cccc91851c"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/crimson.png",
+      "sha256": "af1afee954450a781caff0ab5225c90a3e591f7394e367abe2902ca4d6a5371b",
+      "metadataSHA256": "9f9b8fb1c024ea52258467ed11b69456d9e2c8bde9a1035bf1763f02d5959b04"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/normal.png",
+      "sha256": "454042a1f33349dd65483b93cfa93923d9e5ed703a455fe608af503992de4384",
+      "metadataSHA256": "92fd1167fc79978d281521776feed4f21f0c02c949cf8c3f70307185b348e82c"
+    },
+    {
+      "path": "Assets/Bosses/Shaula/rig-parts.png",
+      "sha256": "ddf1a790ec0df288cc96487a35077f59cd5ae048daa546547361c0c158f802db",
+      "metadataSHA256": "ae04f9fefffacae06a1850b60d334228d93b0773b96b1455f0bbaeaa6ffa6704",
+      "bytes": 1311379,
+      "pixelSize": [
+        1536,
+        1024
+      ],
+      "spriteRects": 9,
+      "rightsStatus": "generated-for-project",
+      "generationTool": "OpenAI image_gen built-in",
+      "sourceManifest": "Concepts/Shaula/v3/generation.json",
+      "changes": "Generated 9-part puppet atlas; source pixels preserved. Individually measured sprite rectangles; runtime skeletal animation and palette shader."
+    }
+  ],
+  "unityIntegrated": true,
+  "currentPresentation": {
+    "version": "0.0.0.23",
+    "artManifest": "Concepts/Shaula/v3/generation.json",
+    "puppetParts": 9,
+    "oldMotionSheetsReferencedByPrefab": false,
+    "animations": "Runtime articulation driven by traveled distance, charge, strike and recoil"
+  }
+}

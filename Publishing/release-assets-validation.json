@@ -1,5 +1,5 @@
 {
-  "checkedOn": "2026-10-18",
+  "checkedOn": "2026-10-19",
   "result": "TECHNICAL_PASS_RIGHTS_PENDING",
   "pendingProvenancePaths": [
     "Assets/Sprits/allEnemy.png",
@@ -13,19 +13,19 @@
     "Assets/UI/ForestGarrison/Arena/Barrel.png"
   ],
   "archive": "Builds/LastSoldierYandex.zip",
-  "archiveSha256": "a5bb2c5b7bc32d708114da7c96717793d46a693f21463584de48e22923a9e0c6",
+  "archiveSha256": "7a9a7cd0bc1f00847c8107bd92b734c209f70355a81e2a6c84f644787cad3fd8",
   "archiveFileCount": 15,
-  "matchedSourceFiles": 1127,
+  "matchedSourceFiles": 1202,
   "packedAssetsReport": "Publishing/release-packed-assets.json",
-  "packedAssetsReportSha256": "111a7f29d0891898acd6f1012d90fcb228842b0b6d7eabdb19c91faa18c6f3e6",
-  "packedSourceAssets": 1886,
-  "packedRasterPaths": 95,
+  "packedAssetsReportSha256": "d58d72b3a51137ea5678235f40584d1f2a5c45bbb7add2ed6a54c168ac10b4dc",
+  "packedSourceAssets": 1912,
+  "packedRasterPaths": 96,
   "unknownPackedRasterPaths": [],
   "exactSourceProofs": 65,
   "licensedCharacterAtlases": 4,
   "originalProceduralPngs": 12,
   "restoredOriginalPngs": 10,
-  "originalSynthesizedAudioClips": 40,
+  "originalSynthesizedAudioClips": 59,
   "bundledLicenseFiles": [
     "PTSerif-OFL.txt",
     "LiberationSans-OFL.txt",
