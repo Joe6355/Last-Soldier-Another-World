@@ -1,0 +1,21 @@
+{
+  "checkedLocalDate": "2026-10-20",
+  "version": "0.0.0.24",
+  "russian": {
+    "consoleCompletenessPercent": 84,
+    "horizontalVideoPresent": false,
+    "desktopScreenshots": 0,
+    "mobileScreenshots": 2
+  },
+  "english": {
+    "consoleCompletenessPercent": 92,
+    "horizontalVideoPresent": true,
+    "horizontalVideoFileId": "14045080",
+    "videoPlaybackChecked": false,
+    "desktopScreenshots": 2,
+    "mobileScreenshots": 2
+  },
+  "cardChanged": false,
+  "source": "Visible console fields; language and device selectors only",
+  "moderationActionPerformed": false
+}

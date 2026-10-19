@@ -31,6 +31,7 @@ public static class LocalizationChecks
     public static void Run()
     {
         PlayerSettings.companyName = "LastSoldierLocalizationValidation";
+        PlayerSettings.productName = "LocalizationValidation";
         EditorSceneManager.OpenScene("Assets/Scenes/Menu.unity");
         SessionState.SetBool(Flag, true); Attach(); EditorApplication.EnterPlaymode();
     }
@@ -62,6 +63,10 @@ public static class LocalizationChecks
             {
                 case 0:
                     if (YG2.isPauseGame) { YG2.PauseGame(false); return; }
+                    // Repeated runs must not inherit a wave/demo from another isolated check.
+                    RedefineYG.PlayerPrefs.DeleteAll();
+                    RedefineYG.PlayerPrefs.SetInt("GuidedTutorial.v1.Done", 1);
+                    RedefineYG.PlayerPrefs.SetInt("GuidedTutorial.v1.ArenaDone", 1);
                     CatalogChecks();
                     var menu = UnityEngine.Object.FindObjectOfType<MainMenuController>();
                     GameLocalization.SetSelection("en"); menu.ShowSettings();
@@ -157,6 +162,7 @@ public static class LocalizationChecks
                     ui.StartGame(); GameLocalization.SetSelection("en");
                     tutorial = UnityEngine.Object.FindObjectsOfType<TipsManager>().First(value => Get<bool>(value,"guidedTutorial"));
                     tutorial.RestartGuide();
+                    Check(TipsManager.IsGuideActive, "Tutorial replay starts from the isolated camp save");
                     var render = typeof(TipsManager).GetMethod("RenderCurrent",Private);
                     var step = typeof(TipsManager).GetField("step",Private);
                     foreach (bool touch in new[] {false,true})

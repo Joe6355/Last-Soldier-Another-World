@@ -160,6 +160,7 @@ public partial class WaveSpawner : MonoBehaviour
             breakIndicator.SetActive(false);
 
         HideDedicatedBosses();
+        LayoutPairedBossHud();
 
         // The dedicated bosses destroy themselves on death. Preserve inactive
         // templates before waves 10/15 so their later ordinary copies remain available.
@@ -179,6 +180,7 @@ public partial class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
+        LayoutPairedBossHud();
         UpdateDemoControls();
         if (!playerInsideZone || Time.timeScale == 0f || YG.YG2.isPauseGame) return;  // Игрок ещё не в зоне — ничего не делаем
         if (tutorialWave) { UpdateTutorialUI(); return; }

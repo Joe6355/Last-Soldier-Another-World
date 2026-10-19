@@ -109,8 +109,10 @@ public class ArrowDef : MonoBehaviour
         if (target.CompareTag("HolyEnemy") && !IsHoly)
         {
             DamageNumbers.ShowImmune(target.transform);
+            TipsManager.ReportArrowImmunity();
             return;
         }
+        if (IsHoly && !target.CompareTag("HolyEnemy")) TipsManager.ReportHolyHealing();
         DamageEnemy(target, damage, IsHoly);
     }
 

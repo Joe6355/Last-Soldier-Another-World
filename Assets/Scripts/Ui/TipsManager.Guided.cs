@@ -396,7 +396,7 @@ public partial class TipsManager
     }
     private void OnAction(GuideAction action)
     {
-        if (step == GuideStep.Arrow && action == GuideAction.Arrow && player.crossbowController.SelectedArrowIndex == 1) Complete("Выбраны ядовитые стрелы. Они отравляют обычных врагов; каждый тип имеет отдельный запас.");
+        if (step == GuideStep.Arrow && action == GuideAction.Arrow && player.crossbowController.SelectedArrowIndex == 1) Complete("Зелёные стрелы отравляют обычных врагов. Красные святые стрелы ранят только красных врагов, а остальных лечат. У каждого типа свой запас.");
         else if (step == GuideStep.Dash && action == GuideAction.Dash) Complete($"Рывок выполнен. Выносливость: {player.stamina:0} / {player.maxStamina:0}; она восстанавливается сама.");
         else if (step == GuideStep.Shield && action == GuideAction.Shield)
         {

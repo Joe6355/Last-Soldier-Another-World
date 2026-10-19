@@ -1,0 +1,74 @@
+{
+  "version": "0.0.0.25",
+  "result": "PASS",
+  "checkedAt": "2026-10-20T02:19:49.381663+05:00",
+  "uploaded": false,
+  "uploadLimitation": "User requested an archive only; no draft upload in this turn.",
+  "build": {
+    "verifiedPackedSourcePaths": 1174,
+    "mismatches": [],
+    "rootSettingsSHA256": "fa3ec20106b3e7471b273f25749e77c3723c1b0c745bce9d789db0c2cdde0fcf",
+    "buildSettingsSHA256": "fa3ec20106b3e7471b273f25749e77c3723c1b0c745bce9d789db0c2cdde0fcf",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/combat-v25-webgl-isolated.log"
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 401,
+      "output": "Publishing/combat-v25-checks.txt",
+      "log": "Builds/RatingValidation/combat-v25-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 228,
+      "output": "Publishing/combat-v25-holy-regression.txt",
+      "log": "Builds/RatingValidation/combat-v25-holy-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 151,
+      "output": "Publishing/combat-v25-shaula-regression.txt",
+      "log": "Builds/RatingValidation/combat-v25-shaula-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 1104,
+      "output": "Publishing/combat-v25-localization-regression.txt",
+      "log": "Builds/RatingValidation/combat-v25-localization-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 50,
+      "output": "Publishing/combat-v25-tutorial-regression.txt",
+      "log": "Builds/RatingValidation/combat-v25-tutorial-regression.log"
+    }
+  ],
+  "previews": [
+    "Publishing/Previews/combat-v25-mobile-ru.png",
+    "Publishing/Previews/combat-v25-mobile-en.png",
+    "Publishing/Previews/combat-v25-pc-ru.png"
+  ],
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "25a63044ba1ba9ca53840bcc457d66669418230ad1337f8bdb9334170a5e36c1",
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": false,
+  "changes": {
+    "barrelBaseEnemyDamage": 90,
+    "previousBarrelBaseEnemyDamage": 45,
+    "barrelPlayerDamage": 8,
+    "pairedBossHud": "bottom safe area, two stacked panels",
+    "combatHintSeconds": 5,
+    "combatHintGlobalCooldown": 8,
+    "combatHintSameKindCooldown": 30,
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "controls": [
+      "keyboard/mouse",
+      "touch"
+    ]
+  },
+  "manualCheck": "Crimson arena wave 5: paired HP bars, barrels, holy enemies, language switch. Demo shortcut: 9 while in the arena; then select a wave."
+}

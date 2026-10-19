@@ -32,7 +32,8 @@ public sealed class ArenaFeature : MonoBehaviour
     [Header("Взрыв бочки")]
     [SerializeField] private ParticleSystem explosionEffect;
     [SerializeField] private AudioSource explosionAudio;
-    [SerializeField] private int barrelEnemyDamage = 45;
+    public const int DefaultBarrelEnemyDamage = 90;
+    [SerializeField] private int barrelEnemyDamage = DefaultBarrelEnemyDamage;
     private bool explosionAudioPaused;
 
     private readonly List<MonoBehaviour> targets = new List<MonoBehaviour>();

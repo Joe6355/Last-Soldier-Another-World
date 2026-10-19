@@ -114,6 +114,7 @@ public partial class TipsManager
         if (guideRoot == null) return;
         GameLocalization.RefreshAll();
         UpdateGuideGeometry(true);
+        RenderCombatHint();
     }
 
     private void RenderGuide(string title, string body, string counter, string actionLabel,

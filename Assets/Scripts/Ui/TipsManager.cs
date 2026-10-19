@@ -34,6 +34,7 @@ public partial class TipsManager : MonoBehaviour
         displayTipEvent -= displayTip;
         disabeTipEvent -= disableTip;
         DisableGuided();
+        HideCombatHint();
     }
 
     private void displayTip(string message)
@@ -50,6 +51,6 @@ public partial class TipsManager : MonoBehaviour
         anim.SetInteger("state", activeTips);
     }
 
-    private void LateUpdate() => TickGuided();
-    private void OnDestroy() => DestroyGuideView();
+    private void LateUpdate() { TickGuided(); TickCombatHints(); }
+    private void OnDestroy() { DestroyGuideView(); DestroyCombatHint(); }
 }

@@ -211,6 +211,7 @@ public static class CrimsonArenaChecks
                     Check(Get<GameObject>(red, "bossHPBar10").activeSelf && Get<GameObject>(red, "bossHPBar15").activeSelf, "Both paired boss health panels are displayed");
                     Check(!Get<GameObject>(normal, "bossHPBar10").activeSelf && !Get<GameObject>(normal, "bossHPBar15").activeSelf, "Paired bosses never toggle normal arena health panels");
                     foreach (var obj in Enemies(red)) if (obj != null) Freeze(ArrowDef.FindEnemy(obj.transform));
+                    TestCombatPolish();
                     Capture("crimson-v19-boss-pair.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
                     int slimeHp = Hp(slimeBoss), assassinHp = Hp(assassin);
                     Call(red, "EnterOvertime");
@@ -295,6 +296,98 @@ public static class CrimsonArenaChecks
         var summary = Stats.ReadLeaderboardSummary();
         Check(GameProgress.MmrScore(summary.waves, summary.kills, summary.bonusMmr) == stats.Mmr, "Stored leaderboard payload retains red bonus MMR");
         Check(GameProgress.MmrScore(20, 100) == 2100, "Legacy normal arena rating remains unchanged");
+    }
+    static void TestCombatPolish()
+    {
+        float waveDuration = (float)typeof(WaveSpawner).GetProperty("EffectiveWaveDuration", Private).GetValue(red);
+        Call(red, "UpdateWaveUI", waveDuration, waveDuration, true);
+        Call(red, "LayoutPairedBossHud"); Canvas.ForceUpdateCanvases();
+        CheckPairedHud();
+        var barrels = UnityEngine.Object.FindObjectsOfType<ArenaFeature>().Where(f => f.Kind == ArenaFeature.FeatureKind.Barrel).ToArray();
+        Check(barrels.Length > 0 && barrels.All(b => Get<int>(b, "barrelEnemyDamage") == 90), "All arena barrel instances use doubled base damage (90)");
+        var barrel = barrels.First(b => Get<WaveSpawner>(b, "spawner") == red);
+        Check(barrel.BarrelDamage == Mathf.CeilToInt(90 * (float)typeof(WaveSpawner).GetProperty("HealthMultiplier", Private).GetValue(red)),
+            "Blood arena barrel damage retains the difficulty multiplier");
+        var actor = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemy/HolyOrc.prefab"));
+        actor.transform.position = barrel.transform.position;
+        var enemy = actor.GetComponent<Enemy>(); enemy.health = 1000; Freeze(enemy); Enemies(red).Add(actor);
+        var otherEnemies = Enemies(red).Where(o => o != actor).ToArray(); Enemies(red).Clear(); Enemies(red).Add(actor);
+        Call(barrel, "DamageArea", barrel.BarrelDamage, .5f, false);
+        Enemies(red).AddRange(otherEnemies);
+        Check(enemy.health == 1000 - barrel.BarrelDamage, "Actual barrel area damage uses the stronger value, including against holy enemies");
+        actor.transform.position = player.transform.position + Vector3.right * 2;
+        var tips = UnityEngine.Object.FindObjectOfType<TipsManager>();
+        var bow = player.crossbowController;
+        bool numbersEnabled = DamageNumbers.IsEnabled; DamageNumbers.SetEnabled(false);
+        GameLocalization.SetSelection("ru");
+        ResetHint();
+        var arrow = UnityEngine.Object.Instantiate(bow.arrowPrefabs[0]).GetComponent<ArrowDef>();
+        int hp = enemy.health; float scale = Time.timeScale;
+        Call(arrow, "ApplyHit", enemy);
+        Check(enemy.health == hp, "Immunity hint never changes the holy enemy's damage immunity");
+        var hint = Get<RectTransform>(tips, "combatHintRoot"); var text = Get<TMPro.TMP_Text>(tips, "combatHintText");
+        Check(hint != null && hint.gameObject.activeSelf && text.text.Contains("только красные"), "Wrong-arrow hit explains holy immunity even with damage numbers disabled");
+        Check(Time.timeScale == scale && !hint.GetComponent<UnityEngine.UI.Image>().raycastTarget && !text.raycastTarget,
+            "Combat hints do not pause combat or intercept input");
+        float remaining = Get<float>(tips, "combatHintRemaining"); TipsManager.ReportArrowImmunity();
+        Check(Get<float>(tips, "combatHintRemaining") == remaining, "Rapid repeated hits cannot restart the hint timer");
+        Check(hint.anchorMin.y == 1 && hint.anchoredPosition.y < -50, "Combat hint is fixed below the wave HUD");
+        Vector2 hintPosition = hint.anchoredPosition; Vector3 position = player.transform.position;
+        player.transform.position += Vector3.right; Call(tips, "TickCombatHints");
+        Check(hint.anchoredPosition == hintPosition, "Moving the hero does not move or jump the combat hint"); player.transform.position = position;
+        GameLocalization.SetSelection("en"); Check(text.text.StartsWith("Immune!"), "Active combat hint immediately switches to English");
+        var controls = UnityEngine.Object.FindObjectOfType<MobileControls>();
+        YG.YG2.envir.isDesktop = false; YG.YG2.envir.isMobile = true; YG.YG2.envir.deviceType = "mobile";
+        controls.RefreshLayout(); Call(tips, "TickCombatHints"); Call(red, "LayoutPairedBossHud"); Canvas.ForceUpdateCanvases();
+        CheckPairedHud();
+        Check(text.text.Contains("Tap an arrow"), "Mobile immunity hint points at touch arrow selection");
+        text.ForceMeshUpdate(); Check(!text.isTextOverflowing, "English combat hint fits its mobile panel");
+        Capture("combat-v25-mobile-en.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
+        GameLocalization.SetSelection("ru"); text.ForceMeshUpdate(); Check(!text.isTextOverflowing, "Russian combat hint fits its mobile panel");
+        Capture("combat-v25-mobile-ru.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
+        YG.YG2.envir.isDesktop = true; YG.YG2.envir.isMobile = false; YG.YG2.envir.deviceType = "desktop";
+        controls.RefreshLayout(); Call(tips, "TickCombatHints");
+        var counts = Get<int[]>(bow, "arrowCounts"); int holyStock = counts[2]; counts[2] = 0;
+        ResetHint(); TipsManager.ReportArrowImmunity(); Check(text.text.Contains("торговца"), "Empty holy stock explains how to restock"); counts[2] = holyStock;
+        Time.timeScale = 0; Call(tips, "TickCombatHints"); Check(!hint.gameObject.activeSelf, "Combat hint hides while paused");
+        Time.timeScale = scale; ResetHint(); Set(tips, "holyEnemyExplained", false); Set(tips, "nextHolyProbe", 0f);
+        Call(tips, "TickCombatHints"); Check(hint.gameObject.activeSelf && text.text.StartsWith("Красные враги"), "Nearby holy enemy is explained proactively before the first wrong hit");
+        UnityEngine.Object.Destroy(arrow.gameObject);
+        ResetHint();
+        var holyArrow = UnityEngine.Object.Instantiate(bow.arrowPrefabs[2]).GetComponent<ArrowDef>();
+        float oldHealth = Get<float>(slimeBoss, "currentHealth"); Set(slimeBoss, "currentHealth", oldHealth - 10);
+        Call(holyArrow, "ApplyHit", slimeBoss);
+        Check(Get<float>(slimeBoss, "currentHealth") > oldHealth - 10 && text.text.Contains("лечат обычных"),
+            "Holy-arrow healing of an ordinary enemy displays the opposite arrow rule"); Set(slimeBoss, "currentHealth", oldHealth);
+        ResetHint(); TipsManager.ReportHolyArrowsSelected(); Check(text.text.Contains("лечат всех остальных"), "Selecting holy arrows explains their healing restriction");
+        Set(tips, "combatHintRemaining", 0f); Call(tips, "TickCombatHints");
+        Check(!hint.gameObject.activeSelf, "Combat hint expires without a lingering overlay");
+        DamageNumbers.SetEnabled(numbersEnabled);
+        Enemies(red).Remove(actor); UnityEngine.Object.Destroy(actor); UnityEngine.Object.Destroy(holyArrow.gameObject);
+
+        void ResetHint()
+        {
+            Set(tips, "nextCombatHint", 0f); Set(tips, "combatHintRemaining", 0f);
+            Array.Clear(Get<float[]>(tips, "nextCombatHintKind"), 0, 4);
+        }
+    }
+    static void CheckPairedHud()
+    {
+        var first = Get<GameObject>(red, "bossHPBar10").GetComponent<RectTransform>();
+        var second = Get<GameObject>(red, "bossHPBar15").GetComponent<RectTransform>();
+        foreach (var panel in new[] { first, second })
+        {
+            Check(panel.anchorMin.y == 0 && panel.anchorMax.y == 0 && panel.pivot.y == 0, "Paired boss health is bottom anchored: " + panel.name);
+            var corners = new Vector3[4]; panel.GetWorldCorners(corners);
+            var canvas = panel.GetComponentInParent<Canvas>();
+            var uiCamera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            float bottom = RectTransformUtility.WorldToScreenPoint(uiCamera, corners[0]).y;
+            float top = RectTransformUtility.WorldToScreenPoint(uiCamera, corners[1]).y;
+            Check(bottom >= Screen.safeArea.yMin && top < Screen.height * .25f, "Paired boss health stays near the safe bottom: " + panel.name);
+            foreach (var label in panel.GetComponentsInChildren<TMPro.TMP_Text>())
+            { label.ForceMeshUpdate(); Check(!label.isTextOverflowing && !label.raycastTarget, "Paired boss label fits without blocking input: " + label.text); }
+        }
+        Check(second.anchoredPosition.y >= first.anchoredPosition.y + first.rect.height * first.localScale.y, "The two bottom boss health panels never overlap");
     }
     static void Capture(string name, Vector3 point, float size)
     {

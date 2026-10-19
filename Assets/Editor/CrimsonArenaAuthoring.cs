@@ -159,22 +159,22 @@ public static class CrimsonArenaAuthoring
             boss.SetActive(false);
             Set(red, bossField, boss);
             UnityEngine.Object component = slime ? (UnityEngine.Object)boss.GetComponent<SlimeBoss>() : boss.GetComponent<Roberto>();
-            var originalPanel = Get<GameObject>(component, slime ? "bossHpBarObject" : "hpBarContainer");
             var sourceFill = Get<Image>(component, slime ? "bossHpBar" : "hpBar");
             var clone = new GameObject("CrimsonBossHealth" + (slime ? "Slime" : "Assassin"), typeof(RectTransform));
-            clone.transform.SetParent(originalPanel.transform.parent, false);
+            clone.transform.SetParent(Get<Canvas>(UnityEngine.Object.FindObjectOfType<TipsManager>(), "hudCanvas").transform, false);
             var rect = clone.GetComponent<RectTransform>();
-            rect.anchorMin = rect.anchorMax = new Vector2(.5f, slime ? .83f : .77f);
-            rect.pivot = new Vector2(.5f, .5f); rect.anchoredPosition = Vector2.zero; rect.sizeDelta = new Vector2(260, 36);
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, 0);
+            rect.anchoredPosition = new Vector2(0, slime ? 12 : 54); rect.sizeDelta = new Vector2(260, 36);
             rect.localScale = Vector3.one;
             var titleObject = new GameObject("BossName", typeof(RectTransform), typeof(TextMeshProUGUI));
             titleObject.transform.SetParent(rect, false);
             var title = titleObject.GetComponent<TextMeshProUGUI>();
             title.font = Get<TextMeshProUGUI>(normal, "arenaHint").font;
-            title.fontSize = 20; title.alignment = TextAlignmentOptions.Center; title.raycastTarget = false;
+            title.fontSize = 18; title.enableAutoSizing = true; title.fontSizeMin = 14; title.fontSizeMax = 18;
+            title.enableWordWrapping = false; title.alignment = TextAlignmentOptions.Center; title.raycastTarget = false;
             title.color = new Color32(249, 237, 211, 255);
             title.text = slime ? "Король слизней" : "Ассасин";
-            title.rectTransform.anchorMin = new Vector2(0, 0.4f); title.rectTransform.anchorMax = Vector2.one;
+            title.rectTransform.anchorMin = new Vector2(0, .35f); title.rectTransform.anchorMax = Vector2.one;
             title.rectTransform.offsetMin = title.rectTransform.offsetMax = Vector2.zero;
             var trackObject = new GameObject("Track", typeof(RectTransform), typeof(Image));
             trackObject.transform.SetParent(rect, false);
@@ -300,6 +300,44 @@ public static class CrimsonArenaAuthoring
         line.positionCount = points.Count; line.SetPositions(points.ToArray()); line.widthMultiplier = .018f;
         line.sharedMaterial = material; line.startColor = line.endColor = new Color32(216,197,190,145); line.sortingOrder = 3;
     }
+    [MenuItem("Tools/Last Soldier/Polish Arena Combat")]
+    public static void PolishCombat()
+    {
+        var scene = EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");
+        foreach (var feature in UnityEngine.Object.FindObjectsOfType<ArenaFeature>(true))
+            if (feature.Kind == ArenaFeature.FeatureKind.Barrel)
+                SetInt(feature, "barrelEnemyDamage", ArenaFeature.DefaultBarrelEnemyDamage);
+        var prefab = PrefabUtility.LoadPrefabContents("Assets/Prefabs/Arena/Barrel.prefab");
+        SetInt(prefab.GetComponent<ArenaFeature>(), "barrelEnemyDamage", ArenaFeature.DefaultBarrelEnemyDamage);
+        PrefabUtility.SaveAsPrefabAsset(prefab, "Assets/Prefabs/Arena/Barrel.prefab");
+        PrefabUtility.UnloadPrefabContents(prefab);
+        var tips = UnityEngine.Object.FindObjectOfType<TipsManager>();
+        var canvas = Get<Canvas>(tips, "hudCanvas");
+        foreach (var arena in UnityEngine.Object.FindObjectsOfType<WaveSpawner>(true))
+        {
+            if (!arena.IsCrimson) continue;
+            int row = 0;
+            foreach (string field in new[] { "bossHPBar10", "bossHPBar15" })
+            {
+                var panel = Get<GameObject>(arena, field).GetComponent<RectTransform>();
+                panel.SetParent(canvas.transform, false);
+                panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(.5f, 0);
+                panel.anchoredPosition = new Vector2(0, 12 + row++ * 42);
+                panel.sizeDelta = new Vector2(260, 36); panel.localScale = Vector3.one;
+                foreach (var title in panel.GetComponentsInChildren<TMP_Text>(true))
+                {
+                    title.fontSize = 18; title.enableAutoSizing = true; title.fontSizeMin = 14; title.fontSizeMax = 18;
+                    title.enableWordWrapping = false;
+                    title.rectTransform.anchorMin = new Vector2(0, .35f); title.rectTransform.anchorMax = Vector2.one;
+                    title.rectTransform.offsetMin = title.rectTransform.offsetMax = Vector2.zero;
+                }
+            }
+        }
+        EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+        PlayerSettings.bundleVersion = "0.0.0.25";
+        Debug.Log("COMBAT_V25_AUTHORING_PASS: barrel base 90; paired boss HUD bottom; existing arena content retained");
+    }
+
     public static void Inspect()
     {
         EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");

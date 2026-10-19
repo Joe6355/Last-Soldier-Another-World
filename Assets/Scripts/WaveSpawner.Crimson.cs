@@ -13,6 +13,9 @@ public partial class WaveSpawner
     private bool overtime;
     private int crimsonCycle;
     private PlayerController arenaPlayer;
+    private int pairedHudWidth, pairedHudHeight;
+    private Rect pairedHudSafeArea;
+    private Vector2 pairedHudParentSize;
     public static WaveSpawner ActiveArena { get; private set; }
     public bool IsCrimson => crimsonArena;
     public bool IsOvertime => overtime;
@@ -35,6 +38,28 @@ public partial class WaveSpawner
         : 1f + damageBoostPerStep * ReinforcementLevel;
     private float MovementMultiplier => crimsonArena ? 1f + Mathf.Min(.4f, .03f * (CurrentWaveNumber - 1))
         : 1f + movementBoostPerStep * ReinforcementLevel;
+
+    private void LayoutPairedBossHud()
+    {
+        if (!crimsonArena || bossHPBar10 == null || !(bossHPBar10.transform.parent is RectTransform parent)) return;
+        if (pairedHudWidth == Screen.width && pairedHudHeight == Screen.height && pairedHudSafeArea == Screen.safeArea
+            && pairedHudParentSize == parent.rect.size) return;
+        pairedHudWidth = Screen.width; pairedHudHeight = Screen.height;
+        pairedHudSafeArea = Screen.safeArea; pairedHudParentSize = parent.rect.size;
+        float bottom = Screen.height > 0 ? Screen.safeArea.yMin / Screen.height * parent.rect.height : 0;
+        float center = Screen.width > 0 ? (Screen.safeArea.center.x / Screen.width - .5f) * parent.rect.width : 0;
+        float safeWidth = Screen.width > 0 ? Screen.safeArea.width / Screen.width * parent.rect.width : parent.rect.width;
+        float scale = Mathf.Min(1f, safeWidth * .5f / 260f);
+        Place(bossHPBar10, 0); Place(bossHPBar15, 1);
+        void Place(GameObject panel, int row)
+        {
+            if (panel == null || !(panel.transform is RectTransform rect)) return;
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, 0);
+            rect.anchoredPosition = new Vector2(center, bottom + 12 + row * 42 * scale);
+            rect.sizeDelta = new Vector2(260, 36);
+            rect.localScale = new Vector3(scale, scale, 1);
+        }
+    }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetArenaStatics() => ActiveArena = null;

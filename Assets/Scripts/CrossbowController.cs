@@ -186,6 +186,7 @@ public class CrossbowController : Sounds
         selectedArrowIndex = index;
         UpdateArrowTypeIndicator();
         TipsManager.Report(TipsManager.GuideAction.Arrow);
+        if (selectedArrowIndex == 2) TipsManager.ReportHolyArrowsSelected();
         return true;
     }
 

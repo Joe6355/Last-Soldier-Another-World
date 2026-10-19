@@ -4965,7 +4965,7 @@ MonoBehaviour:
   environmentHealth: 4
   explosionEffect: {fileID: 744110436041271868}
   explosionAudio: {fileID: 1473405833407509487}
-  barrelEnemyDamage: 45
+  barrelEnemyDamage: 90
 --- !u!61 &7476799167342484434
 BoxCollider2D:
   m_ObjectHideFlags: 0
