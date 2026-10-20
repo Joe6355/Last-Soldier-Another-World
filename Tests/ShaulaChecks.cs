@@ -38,6 +38,9 @@ public static class ShaulaChecks
     static Vector3 legBefore;
     static readonly List<Vector2> stingPoints = new List<Vector2>();
     static Vector2 stingStart;
+    static SlimeBoss finalSlime;
+    static Roberto finalAssassin;
+    static int finalOrder, finalMirrors;
     static ShaulaChecks() { if (SessionState.GetBool(Flag, false)) Attach(); }
 
     public static void Run()
@@ -49,7 +52,7 @@ public static class ShaulaChecks
     }
     static void Attach()
     {
-        deadline = EditorApplication.timeSinceStartup + 420;
+        deadline = EditorApplication.timeSinceStartup + 600;
         EditorApplication.update -= Tick; EditorApplication.update += Tick;
         Application.logMessageReceived -= Log; Application.logMessageReceived += Log;
     }
@@ -352,7 +355,92 @@ public static class ShaulaChecks
                     Call(wave, "HideShaula"); Next(.1f); break;
                 case 23:
                     Check(wave.Shaula == null && !UnityEngine.Object.FindObjectsOfType<LineRenderer>().Any(l => l.name.StartsWith("Shaula_")), "Abandoning the encounter removes every owned effect");
-                    Finish(true, "Wave-20 encounter, animation data, arrows, armor, tail, phases, all seven attacks, pause, shield, rewards and cleanup passed."); break;
+                    Check(Get<List<WaveConfig>>(wave, "waves").Count == 25 && wave.DemoWaveLimit == 25, "Normal arena and demo selection contain exactly 25 waves");
+                    Check(Get<List<WaveConfig>>(WaveSpawner.FindArena(true), "waves").Count == 26, "Crimson arena keeps its separate 26-wave cycle");
+                    Set(wave, "currentWaveIndex", 9); Call(wave, "StartWave", 9, false); Next(1.3f); break;
+                case 24:
+                    Check(Get<GameObject>(wave, "bossWave10").activeInHierarchy && !Get<GameObject>(wave, "bossWave15").activeSelf && wave.Shaula == null,
+                        "Wave 10 still starts only the slime boss encounter");
+                    Set(wave, "currentWaveIndex", 14); Call(wave, "StartWave", 14, false); Next(1.3f); break;
+                case 25:
+                    Check(Get<GameObject>(wave, "bossWave15").activeInHierarchy && !Get<GameObject>(wave, "bossWave10").activeSelf && wave.Shaula == null,
+                        "Wave 15 still starts only the assassin encounter");
+                    StartFinale(); break;
+                case 100:
+                    boss = wave.Shaula; finalSlime = Get<GameObject>(wave, "bossWave10").GetComponent<SlimeBoss>();
+                    finalAssassin = Get<GameObject>(wave, "bossWave15").GetComponent<Roberto>();
+                    Check(wave.CurrentWaveNumber == 25 && wave.IsFinalBossWave && boss != null && boss.IsAlive && finalSlime.IsAlive && finalAssassin.IsAlive,
+                        "All three real bosses are alive together on final wave 25, order " + finalOrder);
+                    Check(wave.ActiveEnemyCount == 2 && Get<bool>(finalSlime, "arenaBossEncounter") && Get<bool>(finalAssassin, "arenaBossEncounter"),
+                        "The finale uses true boss rewards and no ordinary wave spawner");
+                    Near(boss.MaximumHealth, 1680, "Finale Shaula uses the existing wave-25 reinforcement multiplier");
+                    finalSlime.StopAllCoroutines(); finalSlime.CancelInvoke(); finalSlime.enabled = false;
+                    finalAssassin.StopAllCoroutines(); finalAssassin.CancelInvoke(); finalAssassin.enabled = false; StopBoss();
+                    foreach (var body in new[] { finalSlime.GetComponent<Rigidbody2D>(), finalAssassin.GetComponent<Rigidbody2D>() })
+                        if (body != null) { body.velocity = Vector2.zero; body.simulated = false; }
+                    var targets = new List<MonoBehaviour>(); wave.FillArenaTargets(targets, arenaCenter, 40);
+                    Check(targets.Contains(finalSlime) && targets.Contains(finalAssassin) && targets.Contains(boss), "Auto-aim and area effects see every final boss");
+                    CheckFinalHud(); Capture("finale-v27-pc-ru.png");
+                    GameLocalization.SetSelection("en"); YG.YG2.envir.isDesktop = false; YG.YG2.envir.isMobile = true; YG.YG2.envir.deviceType = "mobile";
+                    UnityEngine.Object.FindObjectOfType<MobileControls>().RefreshLayout(); CheckFinalHud(); Capture("finale-v27-mobile-en.png");
+                    GameLocalization.SetSelection("ru"); CheckFinalHud(); Capture("finale-v27-mobile-ru.png");
+                    YG.YG2.envir.isDesktop = true; YG.YG2.envir.isMobile = false; YG.YG2.envir.deviceType = "desktop";
+                    UnityEngine.Object.FindObjectOfType<MobileControls>().RefreshLayout();
+                    Set(wave, "waveTimeLeft", -1f); Call(wave, "Update"); Check(!wave.IsOvertime && wave.IsCombatActive, "Dedicated finale has no wave timeout penalty");
+                    Check(RedefineYG.PlayerPrefs.GetInt("ArenaWaveIndex", -1) == 24 && RedefineYG.PlayerPrefs.GetInt("ArenaRunCompleted", -1) == 0,
+                        "An unfinished finale saves wave 25 without a completion flag");
+                    bossesBefore = stats.countBossDead; wavesBefore = stats.completedWaves;
+                    healthBefore = boss.Health; tailBefore = Get<float>(finalSlime, "currentHealth"); poseBefore = Get<float>(finalAssassin, "currentHP");
+                    Time.timeScale = 0; pauseDeadline = EditorApplication.timeSinceStartup + .4; phase = 101; wake = 0; frame = Time.frameCount + 4; break;
+                case 101:
+                    if (EditorApplication.timeSinceStartup < pauseDeadline) return;
+                    Check(boss.Health == healthBefore && Get<float>(finalSlime, "currentHealth") == tailBefore && Get<float>(finalAssassin, "currentHP") == poseBefore,
+                        "Pausing the trio preserves all three health values");
+                    Time.timeScale = 2;
+                    if (finalOrder == 0) boss.TakeDamage(10000000);
+                    else KillFinalPair();
+                    Next(3.2f); break;
+                case 102:
+                    Check(wave.IsCombatActive && !wave.IsArenaCleared && stats.completedWaves == wavesBefore,
+                        "Killing only part of the trio never completes wave 25, order " + finalOrder);
+                    Check(stats.countBossDead == bossesBefore + (finalOrder == 0 ? 1 : 2), "Each defeated final boss is credited once before wave victory");
+                    if (finalOrder == 0) KillFinalPair();
+                    else boss.TakeDamage(10000000);
+                    Next(3.3f); break;
+                case 103:
+                    Check(wave.IsArenaCleared && !wave.IsCombatActive && wave.CurrentWaveNumber == 25, "The last boss ends the normal arena on wave 25");
+                    Check(stats.countBossDead == bossesBefore + 3 && stats.completedWaves == wavesBefore + 1, "Final victory awards three bosses and one completed wave exactly once");
+                    Check(wave.TutorialExit.gameObject.activeInHierarchy && !Get<GameObject>(wave, "bossHPBar10").activeSelf
+                        && !Get<GameObject>(wave, "bossHPBar15").activeSelf && !Get<GameObject>(wave, "shaulaHealthPanel").activeSelf,
+                        "Victory opens the free camp portal and hides all boss panels");
+                    Check(RedefineYG.PlayerPrefs.GetInt("ArenaWaveIndex", -1) == 24 && RedefineYG.PlayerPrefs.GetInt("ArenaRunCompleted", 0) == 1,
+                        "Victory checkpoint retains the completed finale instead of wrapping to wave one");
+                    Set(wave, "breakTimeLeft", -1f); Call(wave, "Update"); Call(wave, "NextWave"); Call(wave, "CompleteWave", true);
+                    Check(wave.IsArenaCleared && wave.CurrentWaveNumber == 25 && stats.countBossDead == bossesBefore + 3 && stats.completedWaves == wavesBefore + 1,
+                        "Expired break and duplicate callbacks cannot start wave 26 or duplicate victory");
+                    GameLocalization.SetSelection("en"); Call(wave, "Update");
+                    Check(Get<UnityEngine.UI.Text>(wave, "waveNumberText").text == "Arena cleared" && Get<UnityEngine.UI.Text>(wave, "waveTimerText").text == "Return to camp",
+                        "The completed arena HUD supports English");
+                    GameLocalization.SetSelection("ru"); Call(wave, "Update"); Capture("finale-v27-victory.png");
+                    finalMirrors = player.MirrorCount; GameProgress.SaveNow(); SceneManager.LoadScene("SampleScene");
+                    phase = 104; frame = Time.frameCount + 20; wake = Time.time + .15f; break;
+                case 104:
+                    wave = WaveSpawner.FindArena(false); player = UnityEngine.Object.FindObjectOfType<PlayerController>(); stats = UnityEngine.Object.FindObjectOfType<Stats>(); ui = UnityEngine.Object.FindObjectOfType<Ui>();
+                    if (wave == null || player == null || !wave.IsRunning) return;
+                    Check(wave.IsArenaCleared && wave.CurrentWaveNumber == 25 && wave.Shaula == null && wave.TutorialExit.gameObject.activeInHierarchy,
+                        "Reloading a completed run restores the victory portal without respawning bosses");
+                    Check(stats.countBossDead == bossesBefore + 3 && stats.completedWaves == wavesBefore + 1, "Reloading final victory cannot award more statistics");
+                    Call(wave.TutorialExit.GetComponent<Portal>(), "TryTeleport", player.GetComponent<Collider2D>());
+                    Check(WaveSpawner.ActiveArena == null && !wave.IsRunning && player.MirrorCount == finalMirrors && RedefineYG.PlayerPrefs.GetInt("ArenaRunActive", 1) == 0,
+                        "The victory portal returns home freely and clears the finished run");
+                    if (++finalOrder < 2) { StartFinale(); break; }
+                    player.transform.position = arenaCenter; player.GetComponent<Rigidbody2D>().position = arenaCenter;
+                    Call(wave, "OnTriggerEnter2D", player.GetComponent<Collider2D>());
+                    Check(wave.CurrentWaveNumber == 1 && !wave.IsArenaCleared && wave.IsCombatActive, "A new arena visit starts a fresh run at wave one");
+                    RedefineYG.PlayerPrefs.SetInt("ArenaWaveIndex", 25); Call(wave, "ResetWavesAndStart");
+                    Check(wave.CurrentWaveNumber == 25 && wave.IsFinalBossWave, "A legacy wave-26 checkpoint migrates safely to the new finale");
+                    wave.AbandonRun();
+                    Finish(true, "Wave-20 Shaula, 25-wave normal arena, simultaneous trio, death orders, final victory, reload, portal return and fresh-run progression passed."); break;
             }
         }
         catch (Exception error) { Finish(false, "Phase " + phase + ": " + error); }
@@ -362,6 +450,40 @@ public static class ShaulaChecks
         boss.transform.position = arenaCenter + new Vector3(2, 0, 0);
         player.transform.position = arenaCenter + new Vector3(-4.5f, -1.7f, 0);
         Call(boss, "Face", (Vector2)player.transform.position); Physics2D.SyncTransforms();
+    }
+    static void StartFinale()
+    {
+        foreach (var camera in UnityEngine.Object.FindObjectsOfType<Cinemachine.CinemachineVirtualCamera>()) camera.enabled = false;
+        player.transform.position = arenaCenter + new Vector3(-4.5f, -1.7f, 0); player.GetComponent<Rigidbody2D>().position = player.transform.position;
+        player.hp = player.maxHp; Set(player, "invulnerableUntil", Time.time + 10000);
+        Set(wave, "playerInsideZone", true); typeof(WaveSpawner).GetProperty("ActiveArena").SetValue(null, wave);
+        Call(wave, "ShowSpawnerUI"); Set(wave, "currentWaveIndex", 24); Call(wave, "StartWave", 24, false);
+        phase = 100; wake = Time.time + 1.4f; frame = Time.frameCount + 4;
+    }
+    static void KillFinalPair()
+    {
+        // Assassin resolves zero HP in Update; restore simulation after frozen HUD captures.
+        finalSlime.enabled = finalAssassin.enabled = true;
+        finalSlime.TakeDamage(10000000, false); finalAssassin.TakeDamage(10000000);
+    }
+    static void CheckFinalHud()
+    {
+        Call(wave, "LayoutPairedBossHud"); Canvas.ForceUpdateCanvases();
+        var panels = new[] { Get<GameObject>(wave, "shaulaHealthPanel"), Get<GameObject>(wave, "bossHPBar10"), Get<GameObject>(wave, "bossHPBar15") };
+        Check(panels.All(panel => panel.transform.parent == panels[0].transform.parent), "All final health panels share the same canvas scaling");
+        float top = Screen.safeArea.yMin;
+        foreach (var panel in panels)
+        {
+            Check(panel.activeInHierarchy, "A final boss has a visible health panel: " + panel.name);
+            var rect = panel.GetComponent<RectTransform>(); var corners = new Vector3[4]; rect.GetWorldCorners(corners);
+            var canvas = panel.GetComponentInParent<Canvas>(); var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            float bottom = RectTransformUtility.WorldToScreenPoint(camera, corners[0]).y;
+            float nextTop = RectTransformUtility.WorldToScreenPoint(camera, corners[1]).y;
+            Check(bottom >= top - .5f && nextTop < Screen.height * .3f, "All three panels fit below the arena without overlapping: " + panel.name);
+            top = nextTop;
+            foreach (var text in panel.GetComponentsInChildren<TMPro.TMP_Text>())
+            { text.ForceMeshUpdate(); Check(!text.isTextOverflowing && !text.raycastTarget, "Final boss labels fit and do not block input: " + text.name); }
+        }
     }
     static void StopBoss() { boss.StopAllCoroutines(); Call(boss, "ClearEffects"); Call(boss, "ResetStingMotion"); Call(boss, "SetPose", ShaulaBoss.Pose.Idle); }
     static GameObject[] Effects() => Get<List<GameObject>>(boss, "activeEffects").Where(go => go != null && go.activeSelf).ToArray();

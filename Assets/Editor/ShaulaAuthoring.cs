@@ -14,6 +14,53 @@ public static class ShaulaAuthoring
     [Serializable] public class Clip { public string name; public float[] durations; public bool loop; }
     [Serializable] public class Import { public Frame[] frames; public Clip[] clips; }
 
+    [MenuItem("Tools/Last Soldier/Configure Normal Arena Finale")]
+    public static void ConfigureFinale()
+    {
+        var scene = EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");
+        var normal = UnityEngine.Object.FindObjectsOfType<WaveSpawner>().First(w => !w.IsCrimson);
+        var red = UnityEngine.Object.FindObjectsOfType<WaveSpawner>().First(w => w.IsCrimson);
+        var settings = new SerializedObject(normal);
+        var waves = settings.FindProperty("waves");
+        waves.arraySize = WaveSpawner.NormalWaveLimit;
+        waves.GetArrayElementAtIndex(WaveSpawner.NormalWaveLimit - 1).FindPropertyRelative("maxEnemies").intValue = 0;
+        waves.GetArrayElementAtIndex(WaveSpawner.NormalWaveLimit - 1).FindPropertyRelative("enemyTypes").arraySize = 0;
+        settings.ApplyModifiedPropertiesWithoutUndo();
+        var canvas = Get<GameObject>(normal, "shaulaHealthPanel").GetComponentInParent<Canvas>();
+        foreach (bool slime in new[] { true, false })
+        {
+            string panelField = slime ? "bossHPBar10" : "bossHPBar15";
+            string name = "NormalBossHealth" + (slime ? "Slime" : "Assassin");
+            var panel = Resources.FindObjectsOfTypeAll<RectTransform>().FirstOrDefault(t => t.gameObject.scene == scene && t.name == name)?.gameObject;
+            if (panel == null)
+            {
+                panel = UnityEngine.Object.Instantiate(Get<GameObject>(red, panelField), canvas.transform, false);
+                panel.name = name;
+            }
+            panel.transform.SetParent(canvas.transform, false);
+            var previous = Get<GameObject>(normal, panelField);
+            if (previous != null && previous != panel) previous.SetActive(false);
+            var placeholder = Get<GameObject>(normal, slime ? "bossPlaceholder10" : "bossPlaceholder15");
+            if (placeholder != null) placeholder.SetActive(false);
+            var rect = panel.GetComponent<RectTransform>();
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, 0);
+            rect.anchoredPosition = new Vector2(0, slime ? 12 : 54); rect.localScale = Vector3.one;
+            var fill = panel.transform.Find("Track/Fill").GetComponent<Image>();
+            UnityEngine.Object boss = slime ? (UnityEngine.Object)Get<GameObject>(normal, "bossWave10").GetComponent<SlimeBoss>()
+                : Get<GameObject>(normal, "bossWave15").GetComponent<Roberto>();
+            Set(boss, slime ? "bossHpBarObject" : "hpBarContainer", panel);
+            Set(boss, slime ? "bossHpBar" : "hpBar", fill);
+            Set(normal, panelField, panel);
+            Set(normal, slime ? "pairedSlimeHealth" : "pairedAssassinHealth", fill);
+            Set(normal, slime ? "bossPlaceholder10" : "bossPlaceholder15", null);
+            panel.SetActive(false);
+        }
+        if (normal.TutorialExit != null) Set(normal.TutorialExit.GetComponent<Portal>(), "originArena", normal);
+        PlayerSettings.bundleVersion = "0.0.0.27";
+        EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+        Debug.Log("ARENA_FINALE_AUTHORING_PASS: normal waves=25; final trio HUD; crimson wave list retained");
+    }
+
     [MenuItem("Tools/Last Soldier/Configure Shaula Wave 20")]
     public static void Apply()
     {

@@ -13,26 +13,33 @@ public partial class WaveSpawner
     private ShaulaBoss shaula;
     private bool shaulaDefeated;
     public ShaulaBoss Shaula => shaula;
+    private bool IsShaulaWave => !crimsonArena && (currentWaveIndex == 19 || IsFinalBossWave);
 
     private IEnumerator ActivateShaula()
     {
         shaulaDefeated = false;
         yield return new WaitForSeconds(1);
-        if (!isWaveActive || crimsonArena || currentWaveIndex != 19) yield break;
-        if (shaulaPrefab == null) { Debug.LogError("Wave 20 Shaula prefab is missing."); CompleteWave(false); yield break; }
+        if (!isWaveActive || !IsShaulaWave) yield break;
+        if (!SpawnShaula()) { CompleteWave(false); yield break; }
+        bossActivated = true;
+    }
+    private bool SpawnShaula()
+    {
+        if (shaulaPrefab == null) { Debug.LogError("Shaula prefab is missing."); return false; }
+        shaulaDefeated = false;
         var zone = GetComponent<Collider2D>().bounds;
         Vector3 position = zone.center + new Vector3(0, 3, 0);
         position.z = 0;
         shaula = Instantiate(shaulaPrefab, position, Quaternion.identity);
-        shaula.name = "ShaulaWave20";
+        shaula.name = IsFinalBossWave ? "ShaulaWave25" : "ShaulaWave20";
         shaula.Configure(this, HealthMultiplier, DamageMultiplier, MovementMultiplier, ProjectileSpeedMultiplier,
             shaulaHealthPanel, shaulaHealthFill, shaulaTailFill, shaulaTitle, shaulaState);
         shaula.gameObject.SetActive(true);
-        bossActivated = true;
+        return true;
     }
     public void NotifyShaulaDefeated(ShaulaBoss boss)
     {
-        if (boss == shaula && !crimsonArena && currentWaveIndex == 19 && isWaveActive && boss.VictoryAwarded)
+        if (boss == shaula && IsShaulaWave && isWaveActive && boss.VictoryAwarded)
             shaulaDefeated = true;
     }
     private void HideShaula()

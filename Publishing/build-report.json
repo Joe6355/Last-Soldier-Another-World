@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-20T10:57:46.475242+00:00",
+  "builtAt": "2026-10-20T15:18:15.204845+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 18059414,
-  "unpackedBytes": 18367238,
-  "sha256": "bd2624ad1e7d672eb581c3d3f6e89aa7ba5f0ee8b48d4978902191b36f1b2d38",
+  "zipBytes": 18059108,
+  "unpackedBytes": 18366624,
+  "sha256": "4a3359bf9920c31208015c00f370f76d20701b11e570cfa1eb652aaf76417d92",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "5624dff6f54079b4366d7f360d993ef08b83fd6ed068fd6ac69736f14473cf3a",
-    "Build/YandexGames.framework.js.unityweb": "db53541305d29d499144070e0a953cb2271150c2639e6ed6bb1f1bf42ff697f4",
+    "Build/YandexGames.data.unityweb": "34fb8e74fee4e9ae8ecf5afde9d6c133c6effc582acb2a18d29f2b4b1b988184",
+    "Build/YandexGames.framework.js.unityweb": "ebc95ca8ccc22d3633174ea4e6398d9ac02b0c84ca93dd55c35b4ab3b7e55a16",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "3f33a29b23a17b3b0483fba709fb59d0611aa239380552ad52d4434d1718c2c2",
-    "index.html": "0e32f701ae8a902a3b159b970c9818adc9b37d3dfa4c19482b0e4377a5f6c227",
+    "Build/YandexGames.wasm.unityweb": "2b0ad73363d67bbdadc3960c13156b0328f818b7da14863c01046fe355f39a87",
+    "index.html": "325915090ad0eb79c25e16162976a7c77c2579d53c75511db4d983e250aa9573",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -1021,7 +1021,7 @@
       },
       {
         "path": "Assets/Editor/ShaulaAuthoring.cs",
-        "sha256": "72c2ef131fb35acc569f64d118b7357edb76fc3b32a6404f6e711aa87e109a3d"
+        "sha256": "b3ada75bca68053eda060bc85c196afe8ef7347db2ee045b1212da7a8a19235a"
       },
       {
         "path": "Assets/Editor/ShaulaAuthoring.cs.meta",
@@ -2041,7 +2041,7 @@
       },
       {
         "path": "Assets/Resources/Localization/English.json",
-        "sha256": "f8537da726a8e2458ea9c72980bdba68e9d8bcab12b7f39713870aa3b678bdb5"
+        "sha256": "2be3b6d74302853702f598fad27bc284848688b6e8693eb62427716b06e10a52"
       },
       {
         "path": "Assets/Resources/Localization/English.json.meta",
@@ -2053,7 +2053,7 @@
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "7edafab1e60b0c0aa39439a9fe5681165818a97ff70a05c83e99b22f23553da8"
+        "sha256": "29c183bb1a26b61e2152d14a0ef661952e94c1d41f3d9565967d7cf299cce386"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
@@ -2553,7 +2553,7 @@
       },
       {
         "path": "Assets/Scripts/WaveSpawner.Crimson.cs",
-        "sha256": "ea3af00078d11770222bf279d028847f32d2b529a27dc128b542a161e61be9b7"
+        "sha256": "3fa9900f02e0041cc7246a1fb1fe0bb9d9d042491a3fb4cb44584882783b5dd2"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.Crimson.cs.meta",
@@ -2569,7 +2569,7 @@
       },
       {
         "path": "Assets/Scripts/WaveSpawner.Shaula.cs",
-        "sha256": "43e3c1a11568cda8a38b0cb80850d2a96f58c17d88b05336ae84cdeb76c04c66"
+        "sha256": "658cf5943f2dbb986dfe45f2bc07f31d283384f0a58f9b37810523f62c9d1bfe"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.Shaula.cs.meta",
@@ -2577,7 +2577,7 @@
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs",
-        "sha256": "c765f39d19e7d4398715c792614fba88c9f7805ce47ddca3260e9710c3ea70ba"
+        "sha256": "5a25f23ad222fa9a40239c68e2dc4baf83d09d6712244e692dd6359ed251ae55"
       },
       {
         "path": "Assets/Scripts/WaveSpawner.cs.meta",
@@ -4853,8 +4853,8 @@
       }
     ]
   },
-  "sourceSettingsSha256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
-  "buildSettingsSha256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
+  "sourceSettingsSha256": "7b9ec3351e8cc2efaa006475d0044a2d21ef4db759fca80f8b22167327d51cb6",
+  "buildSettingsSha256": "7b9ec3351e8cc2efaa006475d0044a2d21ef4db759fca80f8b22167327d51cb6",
   "validationLogs": [
     "Builds/RatingValidation/visual-restore-checks.log",
     "Builds/RatingValidation/visual-restoration-runtime-final.log",
@@ -4917,13 +4917,19 @@
     "Builds/RatingValidation/combat-v26-tests.log",
     "Builds/RatingValidation/combat-v26-holy-regression.log",
     "Builds/RatingValidation/combat-v26-shaula-regression.log",
-    "Builds/RatingValidation/combat-v26-localization-regression.log"
+    "Builds/RatingValidation/combat-v26-localization-regression.log",
+    "Builds/RatingValidation/finale-v27-webgl-isolated.log",
+    "Builds/RatingValidation/finale-v27-tests.log",
+    "Builds/RatingValidation/finale-v27-crimson-regression.log",
+    "Builds/RatingValidation/finale-v27-demo-regression.log",
+    "Builds/RatingValidation/finale-v27-holy-regression.log",
+    "Builds/RatingValidation/finale-v27-localization-regression.log"
   ],
-  "uploadedToYandex": true,
+  "uploadedToYandex": false,
   "previousUploadedArchive": {
-    "sha256": "25a63044ba1ba9ca53840bcc457d66669418230ad1337f8bdb9334170a5e36c1",
-    "version": "0.0.0.25",
-    "fileId": "14103477"
+    "sha256": "bd2624ad1e7d672eb581c3d3f6e89aa7ba5f0ee8b48d4978902191b36f1b2d38",
+    "version": "0.0.0.26",
+    "fileId": "14103677"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -5259,8 +5265,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.26",
-  "uploadLimitation": null,
+  "localVersion": "0.0.0.27",
+  "uploadLimitation": "Browser access disabled in Work settings; local browser tool returned Local browser use is disabled in Work settings.",
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
@@ -5545,5 +5551,43 @@
     "physicalPhoneTestPerformed": false,
     "browserLaunchVerified": true,
     "uploadReport": "Publishing/upload-v26-check.json"
+  },
+  "finaleV27": {
+    "report": "Publishing/finale-v27.json",
+    "validations": [
+      {
+        "result": "PASS",
+        "checks": 260,
+        "output": "Publishing/finale-v27-checks.txt",
+        "log": "Builds/RatingValidation/finale-v27-tests.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 398,
+        "output": "Publishing/finale-v27-crimson-regression.txt",
+        "log": "Builds/RatingValidation/finale-v27-crimson-regression.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 60,
+        "output": "Publishing/finale-v27-demo-regression.txt",
+        "log": "Builds/RatingValidation/finale-v27-demo-regression.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 270,
+        "output": "Publishing/finale-v27-holy-regression.txt",
+        "log": "Builds/RatingValidation/finale-v27-holy-regression.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 1096,
+        "output": "Publishing/finale-v27-localization-regression.txt",
+        "log": "Builds/RatingValidation/finale-v27-localization-regression.log"
+      }
+    ],
+    "physicalPhoneTestPerformed": false,
+    "browserLaunchVerified": false,
+    "uploadReport": "Publishing/upload-v27-check.json"
   }
 }

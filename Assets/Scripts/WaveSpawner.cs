@@ -27,6 +27,10 @@ public class WaveConfig
 
 public partial class WaveSpawner : MonoBehaviour
 {
+    public const int NormalWaveLimit = 25;
+    private bool arenaCleared;
+    public bool IsArenaCleared => !crimsonArena && arenaCleared;
+    public bool IsFinalBossWave => !crimsonArena && currentWaveIndex == NormalWaveLimit - 1;
     #region Спавн врагов и UI
 
     [Header("Точки спавна врагов")]
@@ -184,6 +188,7 @@ public partial class WaveSpawner : MonoBehaviour
         UpdateDemoControls();
         if (!playerInsideZone || Time.timeScale == 0f || YG.YG2.isPauseGame) return;  // Игрок ещё не в зоне — ничего не делаем
         if (tutorialWave) { UpdateTutorialUI(); return; }
+        if (IsArenaCleared) { UpdateClearedArenaUI(); return; }
         hintTime = Mathf.Max(0, hintTime - Time.deltaTime);
         if (arenaHint != null) arenaHint.gameObject.SetActive(overtime && hintTime > 0 && isWaveActive);
 
@@ -220,6 +225,18 @@ public partial class WaveSpawner : MonoBehaviour
                 if (bossActivated && shaulaDefeated) { CompleteWave(true); return; }
                 UpdateWaveUI(0, currentWave.waveDuration, true);
                 if (waveTimerText != null) waveTimerText.text = GameLocalization.Text("Босс");
+                if (waveTimerImage != null) waveTimerImage.fillAmount = 0;
+            }
+            else if (IsFinalBossWave)
+            {
+                // Wait for the death/reward sequences, not only for zero HP.
+                if (bossActivated && shaulaDefeated && bossWave10 == null && bossWave15 == null)
+                {
+                    CompleteWave(true);
+                    return;
+                }
+                UpdateWaveUI(0, 1, true);
+                if (waveTimerText != null) waveTimerText.text = GameLocalization.Text("Финал");
                 if (waveTimerImage != null) waveTimerImage.fillAmount = 0;
             }
             else
@@ -276,6 +293,7 @@ public partial class WaveSpawner : MonoBehaviour
         StopAllCoroutines();
         bossActivated = false;
         overtime = false;
+        arenaCleared = false;
         if (waveIndex < 0 || waveIndex >= waves.Count)
         {
             Debug.LogWarning("Нет такой волны: " + waveIndex);
@@ -327,6 +345,10 @@ public partial class WaveSpawner : MonoBehaviour
         else if (waveIndex == 19)
         {
             StartCoroutine(ActivateShaula());
+        }
+        else if (IsFinalBossWave)
+        {
+            StartCoroutine(SpawnPairedBosses());
         }
         else
         {
@@ -498,7 +520,28 @@ public partial class WaveSpawner : MonoBehaviour
             AwardCrimsonWaveLoot();
         }
         StartBreak();
+        if (cleared && IsFinalBossWave) FinishNormalArena();
         SaveCheckpoint();
+    }
+
+    private void FinishNormalArena()
+    {
+        arenaCleared = true;
+        isWaveActive = false;
+        isBreakActive = true;
+        breakTimeLeft = 0;
+        ClearActiveEnemies();
+        HideDedicatedBosses();
+        foreach (var feature in arenaFeatures) if (feature != null) feature.EndRun();
+        if (breakIndicator != null) breakIndicator.SetActive(true);
+        UpdateClearedArenaUI();
+    }
+
+    private void UpdateClearedArenaUI()
+    {
+        if (waveNumberText != null) waveNumberText.text = GameLocalization.Text("Арена пройдена");
+        if (waveTimerText != null) waveTimerText.text = GameLocalization.Text("В лагерь");
+        if (waveTimerImage != null) { waveTimerImage.fillAmount = 1; waveTimerImage.color = new Color32(227, 186, 101, 255); }
     }
 
     private void StartBreak()
@@ -512,13 +555,12 @@ public partial class WaveSpawner : MonoBehaviour
 
     private void NextWave()
     {
+        if (IsArenaCleared) return;
         currentWaveIndex++;
         if (currentWaveIndex >= waves.Count)
         {
-            Debug.Log("Все волны пройдены!");
-            // Можно зациклить или остановить спавн.
-            currentWaveIndex = 0;
-            if (crimsonArena) crimsonCycle++;
+            if (crimsonArena) { currentWaveIndex = 0; crimsonCycle++; }
+            else currentWaveIndex = Mathf.Min(NormalWaveLimit, waves.Count) - 1;
         }
         StartWave(currentWaveIndex);
     }
@@ -573,6 +615,12 @@ public partial class WaveSpawner : MonoBehaviour
             ? Mathf.Clamp(PlayerPrefs.GetInt("ArenaWaveIndex", 0), 0, waves.Count - 1) : 0;
         isWaveActive = false;
         isBreakActive = false;
+        if (!crimsonArena && restore && PlayerPrefs.GetInt("ArenaRunCompleted", 0) == 1)
+        {
+            currentWaveIndex = NormalWaveLimit - 1;
+            ShowArenaPlayer(); FinishNormalArena();
+            return;
+        }
         StartWave(currentWaveIndex, restore);
     }
 
@@ -580,6 +628,8 @@ public partial class WaveSpawner : MonoBehaviour
     {
         if (ActiveArena == this) ActiveArena = null;
         PlayerPrefs.SetInt("ArenaRunActive", 0);
+        PlayerPrefs.SetInt("ArenaRunCompleted", 0);
+        arenaCleared = false;
         overtime = false; crimsonCycle = 0;
         GameProgress.RequestSave();
         StopAllCoroutines();
@@ -613,9 +663,11 @@ public partial class WaveSpawner : MonoBehaviour
         if (tutorialWave || TipsManager.IsGuideActive || !IsRunning || waves.Count == 0) return;
         PlayerPrefs.SetInt("ArenaRunActive", 1);
         PlayerPrefs.SetInt("ArenaRunKind", crimsonArena ? 1 : 0);
+        PlayerPrefs.SetInt("ArenaRunCompleted", IsArenaCleared ? 1 : 0);
         PlayerPrefs.SetInt("CrimsonArenaCycle", crimsonCycle
             + (crimsonArena && isBreakActive && currentWaveIndex == waves.Count - 1 ? 1 : 0));
-        PlayerPrefs.SetInt("ArenaWaveIndex", isBreakActive ? (currentWaveIndex + 1) % waves.Count : currentWaveIndex);
+        PlayerPrefs.SetInt("ArenaWaveIndex", IsArenaCleared ? NormalWaveLimit - 1
+            : isBreakActive ? (currentWaveIndex + 1) % waves.Count : currentWaveIndex);
         if (isBreakActive) ClearArenaCheckpoint();
         else foreach (var feature in arenaFeatures) if (feature != null) feature.SaveCheckpoint();
         var player = FindObjectOfType<PlayerController>();
@@ -650,7 +702,7 @@ public partial class WaveSpawner : MonoBehaviour
         foreach (var enemy in activeEnemies) AddArenaTarget(result, enemy, point, radius);
         if (!crimsonArena && currentWaveIndex == 9) AddArenaTarget(result, bossWave10, point, radius);
         if (!crimsonArena && currentWaveIndex == 14) AddArenaTarget(result, bossWave15, point, radius);
-        if (!crimsonArena && currentWaveIndex == 19 && shaula != null) AddArenaTarget(result, shaula.gameObject, point, radius);
+        if (IsShaulaWave && shaula != null) AddArenaTarget(result, shaula.gameObject, point, radius);
     }
 
     private static void AddArenaTarget(List<MonoBehaviour> result, GameObject enemy, Vector2 point, float radius)

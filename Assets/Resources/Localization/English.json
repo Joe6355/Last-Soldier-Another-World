@@ -1935,6 +1935,18 @@
     {
       "ru": "Зелёные стрелы отравляют обычных врагов. Красные святые стрелы ранят только красных врагов, а остальных лечат. У каждого типа свой запас.",
       "en": "Green arrows poison regular enemies. Red holy arrows hurt only red enemies and heal the others. Each type has its own supply."
+    },
+    {
+      "ru": "Финал",
+      "en": "Finale"
+    },
+    {
+      "ru": "Арена пройдена",
+      "en": "Arena cleared"
+    },
+    {
+      "ru": "В лагерь",
+      "en": "Return to camp"
     }
   ]
 }

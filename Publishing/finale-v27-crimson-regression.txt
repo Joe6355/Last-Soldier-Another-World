@@ -1,0 +1,400 @@
+PASS
+Safe spawning, overtime, red progression, rewards, MMR, paired bosses, checkpoint routing, mirror return and shoreline checks passed
+Two independent arena owners exist
+Red island uses its eight-sided shoreline collider
+New portal is bidirectionally linked
+Safe fallback exists at spawn point Point/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (1)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (2)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (3)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (4)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (5)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (6)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (7)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (8)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (9)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (10)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (11)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (12)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (13)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (14)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (15)/7
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/0
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/1
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/2
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/3
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/4
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/5
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/6
+Fallback is inside arena and at least four units away
+Safe fallback exists at spawn point Point (16)/7
+Fallback is inside arena and at least four units away
+Ordinary spawn is deferred when no safe position exists
+Boss still spawns with only a point at the player
+Bosses are exempt from minimum spawn distance
+Timer expiry keeps this wave active, with no automatic break
+Overtime health x10 for Slime
+Overtime health x10 for Enemy
+Overtime health x10 for SceletonDef
+Overtime health x10 for SceletMag
+Overtime health x10 for HealerEnemy
+Overtime health x10 for Enemy
+Slime future projectiles gain damage x10
+Mage future projectiles gain damage x10
+Bomber contact damage x10
+Already flying projectile damage x10, speed unchanged
+Overtime applies exactly once
+Timeout gives no completion credit
+Later arrivals do not receive a retroactive overtime buff
+1999 MMR blocks red portal without moving player
+Exactly 2000 MMR unlocks red portal
+Red portal routes combat to red owner only; player=(232.63, 10.69, -4.00); destination=(232.63, 12.30, -4.00); offset=(0.00, -1.61); active=Zona; red=True; normal=False; guide=False
+Red wave starts with a pack immediately
+Red opening health x2: Bomber
+Red opening pack respects player exclusion
+Red opening health x2: SceletMag
+Red opening pack respects player exclusion
+Red opening health x2: SlimeMini
+Red opening pack respects player exclusion
+Red opening health x2: HolyOrc
+Red opening pack respects player exclusion
+Red opening health x2: SlimeTrue
+Red opening pack respects player exclusion
+Red opening health x2: HolySlime
+Red opening pack respects player exclusion
+Red opening health x2: HolyGhost
+Red opening pack respects player exclusion
+Red opening health x2: SceletSheld
+Red opening pack respects player exclusion
+Red opening health x2: HealerEnemy
+Red opening pack respects player exclusion
+Opening red wave has 32 enemies at fast spawn rate
+Red population capped at 48 simultaneous actors
+First shuffled pack contains all nine species
+Saved checkpoint selects correct arena
+Old water tiles do not masquerade as safe island ground
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Safe spawn point has visible dry land underneath
+Compact red wave title fits the existing HUD
+Existing world death zones do not overlap the new island interior
+Red health and population increase on the next wave
+Holy ammunition pickup x2
+Ammunition pickup x2: ArrowDrop
+Coin pickup value x2: Money
+Coin pickup value x2: MoneyChest Variant
+Coin pickup value x2: MoneyBronza Variant
+Coin pickup value x2: MoneyGold Variant
+Coin pickup value x2: MoneyObsidian Variant
+Coin pickup value x2: MoneyPlatina Variant
+Coin pickup value x2: MoneySilver Variant
+Red MMR x2 preserves accurate enemy statistics
+Red wave gives 200 MMR with one actual completed wave
+Ordinary red clear grants a guaranteed potion without inventing coins
+Stored leaderboard payload retains red bonus MMR
+Legacy normal arena rating remains unchanged
+Crossing shoreline does not cancel boundary protection
+Death zone returns an out-of-bounds dash to dry land
+Mirror/home return abandons red run synchronously
+Water does not pull a camp return back to the island
+Every fifth red wave brings both bosses alive together
+Paired enemies retain true boss reward classification
+Both paired boss health panels are displayed
+Paired bosses never toggle normal arena health panels
+Paired boss health is bottom anchored: CrimsonBossHealthSlime
+Paired boss health stays near the safe bottom: CrimsonBossHealthSlime
+Paired boss label fits without blocking input: Король слизней
+Paired boss health is bottom anchored: CrimsonBossHealthAssassin
+Paired boss health stays near the safe bottom: CrimsonBossHealthAssassin
+Paired boss label fits without blocking input: Ассасин
+The two bottom boss health panels never overlap
+All arena barrel instances use doubled base damage (90)
+Blood arena barrel damage retains the difficulty multiplier
+Actual barrel area damage uses the stronger value, including against holy enemies
+Removing the large hint does not change holy enemy immunity
+Wrong-arrow hits create no large hint and do not pause combat
+Immunity retains its short world-space label
+Rapid immune hits retain one compact label per enemy
+Disabling numbers hides immune labels without changing hit rules
+A holy hit restores the actual seven health points
+Healing shares the floating-number pool with a green plus sign
+Healing creates no large combat overlay
+Paired boss health is bottom anchored: CrimsonBossHealthSlime
+Paired boss health stays near the safe bottom: CrimsonBossHealthSlime
+Paired boss label fits without blocking input: Король слизней
+Paired boss health is bottom anchored: CrimsonBossHealthAssassin
+Paired boss health stays near the safe bottom: CrimsonBossHealthAssassin
+Paired boss label fits without blocking input: Ассасин
+The two bottom boss health panels never overlap
+The healing plus sign remains readable after changing language
+A capped boss heal displays only the three health points actually restored
+A full-health boss creates no misleading plus-zero number
+The existing numbers setting hides healing labels without disabling the heal
+Reusing a healing label restores the normal damage text and color
+Paired bosses also receive timer penalty once
+Both simultaneous bosses count once each
+Red slime boss guaranteed money is doubled
+Paired wave grants four potions, mirror and 1000 bonus coins
+Wave clear reward cannot be claimed twice
+New arena wave label supports English
+Locked portal supports English

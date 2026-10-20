@@ -16,6 +16,7 @@ public partial class WaveSpawner
     private int pairedHudWidth, pairedHudHeight;
     private Rect pairedHudSafeArea;
     private Vector2 pairedHudParentSize;
+    private bool pairedHudFinalWave;
     public static WaveSpawner ActiveArena { get; private set; }
     public bool IsCrimson => crimsonArena;
     public bool IsOvertime => overtime;
@@ -41,21 +42,24 @@ public partial class WaveSpawner
 
     private void LayoutPairedBossHud()
     {
-        if (!crimsonArena || bossHPBar10 == null || !(bossHPBar10.transform.parent is RectTransform parent)) return;
+        if (bossHPBar10 == null || !(bossHPBar10.transform.parent is RectTransform parent)) return;
         if (pairedHudWidth == Screen.width && pairedHudHeight == Screen.height && pairedHudSafeArea == Screen.safeArea
-            && pairedHudParentSize == parent.rect.size) return;
+            && pairedHudParentSize == parent.rect.size && pairedHudFinalWave == IsFinalBossWave) return;
         pairedHudWidth = Screen.width; pairedHudHeight = Screen.height;
         pairedHudSafeArea = Screen.safeArea; pairedHudParentSize = parent.rect.size;
+        pairedHudFinalWave = IsFinalBossWave;
         float bottom = Screen.height > 0 ? Screen.safeArea.yMin / Screen.height * parent.rect.height : 0;
         float center = Screen.width > 0 ? (Screen.safeArea.center.x / Screen.width - .5f) * parent.rect.width : 0;
         float safeWidth = Screen.width > 0 ? Screen.safeArea.width / Screen.width * parent.rect.width : parent.rect.width;
         float scale = Mathf.Min(1f, safeWidth * .5f / 260f);
+        float shaulaOffset = IsFinalBossWave && shaulaHealthPanel != null
+            ? shaulaHealthPanel.GetComponent<RectTransform>().sizeDelta.y * Mathf.Min(1, parent.rect.width * .5f / 760f) + 8 : 0;
         Place(bossHPBar10, 0); Place(bossHPBar15, 1);
         void Place(GameObject panel, int row)
         {
             if (panel == null || !(panel.transform is RectTransform rect)) return;
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, 0);
-            rect.anchoredPosition = new Vector2(center, bottom + 12 + row * 42 * scale);
+            rect.anchoredPosition = new Vector2(center, bottom + 12 + shaulaOffset + row * 42 * scale);
             rect.sizeDelta = new Vector2(260, 36);
             rect.localScale = new Vector3(scale, scale, 1);
         }
@@ -143,7 +147,11 @@ public partial class WaveSpawner
     private IEnumerator SpawnPairedBosses()
     {
         yield return new WaitForSeconds(1f);
-        if (!IsCombatActive || !IsPairedBossWave) yield break;
+        if (!IsCombatActive || (!IsPairedBossWave && !IsFinalBossWave)) yield break;
+        if (IsFinalBossWave && (regularSlimeTemplate == null || regularAssassinTemplate == null || shaulaPrefab == null))
+        {
+            Debug.LogError("Final wave requires all three boss templates."); CompleteWave(false); yield break;
+        }
         var zone = GetComponent<Collider2D>().bounds;
         foreach (bool slime in new[] { true, false })
         {
@@ -153,17 +161,26 @@ public partial class WaveSpawner
             position.z = source.transform.position.z;
             var boss = Instantiate(source, position, source.transform.rotation);
             boss.SetActive(false);
-            float bossHealth = HealthMultiplier * 1.5f;
+            float bossHealth = HealthMultiplier * (crimsonArena ? 1.5f : 1f);
             if (slime)
                 boss.GetComponent<SlimeBoss>().ConfigureArenaBoss(this, bossHealth, DamageMultiplier,
                     MovementMultiplier, ProjectileSpeedMultiplier, bossHPBar10, pairedSlimeHealth);
             else
                 boss.GetComponent<Roberto>().ConfigureArenaBoss(this, bossHealth, DamageMultiplier,
                     MovementMultiplier, ProjectileSpeedMultiplier, bossHPBar15, pairedAssassinHealth);
+            if (IsFinalBossWave)
+            {
+                var previous = slime ? bossWave10 : bossWave15;
+                if (previous != null) { previous.SetActive(false); Destroy(previous); }
+                boss.name = slime ? "FinalSlimeBoss" : "FinalAssassinBoss";
+                if (slime) bossWave10 = boss; else bossWave15 = boss;
+            }
             activeEnemies.Add(boss);
             boss.SetActive(true);
             EnemyDefeatEffect.PlaySpawn(boss);
         }
+        if (IsFinalBossWave && !SpawnShaula()) { CompleteWave(false); yield break; }
+        LayoutPairedBossHud();
         bossActivated = true;
     }
 

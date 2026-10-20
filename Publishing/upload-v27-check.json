@@ -1,0 +1,14 @@
+{
+  "version": "0.0.0.27",
+  "applicationId": 623393,
+  "checkedAt": "2026-10-20T20:19:27.678961+05:00",
+  "uploaded": false,
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "4a3359bf9920c31208015c00f370f76d20701b11e570cfa1eb652aaf76417d92",
+  "blocker": "Browser access disabled in Work settings; local browser tool returned Local browser use is disabled in Work settings.",
+  "previousConfirmedDraftVersion": "0.0.0.26",
+  "previousConfirmedArchiveFileId": "14103677",
+  "browserLaunchVerified": false,
+  "physicalPhoneTestPerformed": false,
+  "moderationSubmittedThisTurn": false
+}

@@ -269,7 +269,7 @@ public static class HolyEnemyChecks
         for (int i = 0; i < configs.Count; i++)
         {
             Set(wave, "currentWaveIndex", i); bag.Clear();
-            if (i < 4 || i == 9 || i == 14) { Check(configs[i].enemyTypes.Length == 0, "Early/boss wave path preserved: " + (i + 1)); continue; }
+            if (i < 4 || i == 9 || i == 14 || i == 24) { Check(configs[i].enemyTypes.Length == 0, "Early/boss wave path preserved: " + (i + 1)); continue; }
             var indices = configs[i].enemyTypes;
             Check(indices.Contains(7) && indices.Contains(8) && indices.Any(x => x >= 3 && x <= 6), "Mixed wave includes new holy enemies and skeletons: " + (i + 1));
             var firstBag = Enumerable.Range(0, indices.Length).Select(_ => (int)select.Invoke(wave, new object[] { configs[i] })).ToArray();

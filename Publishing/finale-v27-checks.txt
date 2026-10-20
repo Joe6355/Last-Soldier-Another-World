@@ -1,0 +1,262 @@
+PASS
+Wave-20 Shaula, 25-wave normal arena, simultaneous trio, death orders, final victory, reload, portal return and fresh-run progression passed.
+Wave 20 spawns live Shaula
+Wave 20 Shaula has 1400 HP, up from 900 by exactly 500 (1400/1400)
+Wave 20 follows the dedicated encounter path
+Earlier bosses remain dormant
+Red paired waves are unchanged
+Named bottom health panel is visible
+The articulated presentation starts with the encounter
+Nine distinct measured sprite parts are assigned
+All parts share one texture for consistent sampling
+All eight legs have two independently animated segments
+The tail has five articulated plates
+The broken legacy frame sheets are not referenced by the prefab
+The boss uses its transparent, palette-aware sprite shader
+The carapace shader is supported
+All seventeen original sound effects are connected
+Both music loops are connected
+The giant boss never hides the player sprite during close combat
+The assembled adult silhouette retains its giant size
+Every limb stays behind the hero during overlap
+Boss health is anchored inside the bottom of the screen
+Compact boss HUD sits close to the safe bottom edge
+The weak-point explanation is absent from the HUD
+The outpost banner is hidden during the boss wave
+All zones belong to the same ordinary (non-holy) boss
+Collider lookup preserves weak zones and area damage target
+Piercing arrows cannot double-hit the same boss through multiple zones
+Shell reduces direct damage to sixty percent (1388/1388)
+Pale joints take increased damage (1361/1361)
+Tail hit damages main health (1331/1331)
+Tail durability is independently reduced (82,5/82,5)
+Holy arrows heal Shaula instead of damaging her (1341/1341)
+Holy healing through the tail displays a green positive health amount
+Poison ticks reach the new boss through the common damage rules (1336,2/1336,2)
+Physical piercing projectile damages the tail only once across overlapping zones (1318,2/1318,2)
+Physical poison arrow applies its impact and poison tick
+Physical holy arrow heals without losing the boss hit lookup (1311,6/1311,6)
+Walking cadence advances with distance instead of restarting on AI decisions
+Actual walking moves the feet relative to the shell
+Damage is blocked while paused (1311,6/1311,6)
+Animation freezes during pause (0,0635094/0,0635094)
+Ability clock freezes during pause (4,002654/4,002654)
+Shop-style pause keeps the current boss music playing continuously (playing=True, time=2,581315/1,983991, listenerPaused=False)
+Muting effects also silences an already playing boss cue
+Crossing fifty percent starts the permanent crimson phase
+Healing cannot revert the second phase
+Crimson armor never changes the holy classification
+Enough tail damage removes its hit zone
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+Broken tail excludes every ranged/tail action
+A broken tail cannot start a laser warning or projectile
+Regeneration remains warned before the restoration pulse
+Regeneration restores durability and the tail hit zone
+Laser warning shows its complete filled damage lane
+Laser does not fire before its 1.1-second warning
+Laser stops tracking for the final dodge window
+Laser fires a white core with a visible flash
+The discharge has a distinct muzzle flash
+The tail and shell visibly recoil on the laser shot
+Laser beam is brief and leaves no damage volume behind
+Tail strike renders intermediate positions instead of teleporting to the endpoint
+Tail strike has no full-distance jump between consecutive samples
+The animated missed strike still exposes the tail
+Visible stinger and weak-point collider stay together at the end of the strike
+The tail finishes its smooth return and releases the weak point
+The returning tail reaches its resting position
+Normal sky barrage creates eight warned strikes
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+Sky strike warning uses the larger damage radius (1,150002/1,15)
+The actual sky laser is visibly wider and taller
+Crimson sky barrage creates sixteen warned strikes
+Crimson attack tempo is increased
+Crimson movement multiplier is increased
+Crimson volleys contain fourteen needles
+Crimson pursuit has four dashes
+Actual claw dash applies the increased melee damage exactly once (42/42)
+Every configured ability has an executable coroutine: Laser
+Every configured ability has an executable coroutine: Grasp
+Every configured ability has an executable coroutine: Slam
+Every configured ability has an executable coroutine: Stars
+Every configured ability has an executable coroutine: Pursuit
+Every configured ability has an executable coroutine: Sting
+Every configured ability has an executable coroutine: Needles
+Attack has a real warning, strike or recovery effect: Laser
+Attack terminates and releases any weak-point lock: Laser
+Attack has a real warning, strike or recovery effect: Grasp
+Attack terminates and releases any weak-point lock: Grasp
+Attack has a real warning, strike or recovery effect: Slam
+Attack terminates and releases any weak-point lock: Slam
+Attack has a real warning, strike or recovery effect: Stars
+Attack terminates and releases any weak-point lock: Stars
+Attack has a real warning, strike or recovery effect: Pursuit
+Attack terminates and releases any weak-point lock: Pursuit
+Attack has a real warning, strike or recovery effect: Sting
+A missed sting exposes the tail for a counterattack
+Stuck sting takes double health damage (1240/1240)
+Stuck sting takes double durability damage (102,5/102,5)
+Mobile auto-aim switches from shell to the exposed tail
+Attack terminates and releases any weak-point lock: Sting
+Attack has a real warning, strike or recovery effect: Needles
+Attack terminates and releases any weak-point lock: Needles
+Native boss attack applies player damage through TakeDamage
+Shield still blocks boss attacks (9988/9988)
+Blocked boss attack consumes the existing shield resource
+Zero HP starts transformation without immediate credit
+Transforming and tiny forms cannot collide or damage the player
+Defeat clears every projectile and warning immediately
+Victory waits for the end of the transformation
+Tiny harmless scorpion completes the encounter
+Exactly one boss and one wave are credited
+Guaranteed reward is awarded exactly once
+Victory grants the configured ammunition reward
+Wave enters its normal break and hides boss HUD
+Little scorpion leaves and cleans itself up
+Cleanup cannot duplicate rewards
+Re-entering wave 20 creates a pristine encounter
+Boss label fits its rectangle: Name
+Boss HUD does not intercept combat input: Name
+Boss label fits its rectangle: TailLabel
+Boss HUD does not intercept combat input: TailLabel
+Dedicated boss-wave label is localized
+Boss HUD follows the English language selection
+The crimson palette is applied to every articulated part
+Touch fire control is available during the encounter
+Boss label fits its rectangle: Name
+Boss HUD does not intercept combat input: Name
+Boss label fits its rectangle: TailLabel
+Boss HUD does not intercept combat input: TailLabel
+Boss HUD switches back to Russian
+Boss label fits its rectangle: Name
+Boss HUD does not intercept combat input: Name
+Boss label fits its rectangle: TailLabel
+Boss HUD does not intercept combat input: TailLabel
+Abandoning the encounter removes every owned effect
+Normal arena and demo selection contain exactly 25 waves
+Crimson arena keeps its separate 26-wave cycle
+Wave 10 still starts only the slime boss encounter
+Wave 15 still starts only the assassin encounter
+All three real bosses are alive together on final wave 25, order 0
+The finale uses true boss rewards and no ordinary wave spawner
+Finale Shaula uses the existing wave-25 reinforcement multiplier (1680/1680)
+Auto-aim and area effects see every final boss
+All final health panels share the same canvas scaling
+A final boss has a visible health panel: ShaulaHealth
+All three panels fit below the arena without overlapping: ShaulaHealth
+Final boss labels fit and do not block input: Name
+Final boss labels fit and do not block input: TailLabel
+A final boss has a visible health panel: NormalBossHealthSlime
+All three panels fit below the arena without overlapping: NormalBossHealthSlime
+Final boss labels fit and do not block input: BossName
+A final boss has a visible health panel: NormalBossHealthAssassin
+All three panels fit below the arena without overlapping: NormalBossHealthAssassin
+Final boss labels fit and do not block input: BossName
+All final health panels share the same canvas scaling
+A final boss has a visible health panel: ShaulaHealth
+All three panels fit below the arena without overlapping: ShaulaHealth
+Final boss labels fit and do not block input: Name
+Final boss labels fit and do not block input: TailLabel
+A final boss has a visible health panel: NormalBossHealthSlime
+All three panels fit below the arena without overlapping: NormalBossHealthSlime
+Final boss labels fit and do not block input: BossName
+A final boss has a visible health panel: NormalBossHealthAssassin
+All three panels fit below the arena without overlapping: NormalBossHealthAssassin
+Final boss labels fit and do not block input: BossName
+All final health panels share the same canvas scaling
+A final boss has a visible health panel: ShaulaHealth
+All three panels fit below the arena without overlapping: ShaulaHealth
+Final boss labels fit and do not block input: Name
+Final boss labels fit and do not block input: TailLabel
+A final boss has a visible health panel: NormalBossHealthSlime
+All three panels fit below the arena without overlapping: NormalBossHealthSlime
+Final boss labels fit and do not block input: BossName
+A final boss has a visible health panel: NormalBossHealthAssassin
+All three panels fit below the arena without overlapping: NormalBossHealthAssassin
+Final boss labels fit and do not block input: BossName
+Dedicated finale has no wave timeout penalty
+An unfinished finale saves wave 25 without a completion flag
+Pausing the trio preserves all three health values
+Killing only part of the trio never completes wave 25, order 0
+Each defeated final boss is credited once before wave victory
+The last boss ends the normal arena on wave 25
+Final victory awards three bosses and one completed wave exactly once
+Victory opens the free camp portal and hides all boss panels
+Victory checkpoint retains the completed finale instead of wrapping to wave one
+Expired break and duplicate callbacks cannot start wave 26 or duplicate victory
+The completed arena HUD supports English
+Reloading a completed run restores the victory portal without respawning bosses
+Reloading final victory cannot award more statistics
+The victory portal returns home freely and clears the finished run
+All three real bosses are alive together on final wave 25, order 1
+The finale uses true boss rewards and no ordinary wave spawner
+Finale Shaula uses the existing wave-25 reinforcement multiplier (1680/1680)
+Auto-aim and area effects see every final boss
+All final health panels share the same canvas scaling
+A final boss has a visible health panel: ShaulaHealth
+All three panels fit below the arena without overlapping: ShaulaHealth
+Final boss labels fit and do not block input: Name
+Final boss labels fit and do not block input: TailLabel
+A final boss has a visible health panel: NormalBossHealthSlime
+All three panels fit below the arena without overlapping: NormalBossHealthSlime
+Final boss labels fit and do not block input: BossName
+A final boss has a visible health panel: NormalBossHealthAssassin
+All three panels fit below the arena without overlapping: NormalBossHealthAssassin
+Final boss labels fit and do not block input: BossName
+All final health panels share the same canvas scaling
+A final boss has a visible health panel: ShaulaHealth
+All three panels fit below the arena without overlapping: ShaulaHealth
+Final boss labels fit and do not block input: Name
+Final boss labels fit and do not block input: TailLabel
+A final boss has a visible health panel: NormalBossHealthSlime
+All three panels fit below the arena without overlapping: NormalBossHealthSlime
+Final boss labels fit and do not block input: BossName
+A final boss has a visible health panel: NormalBossHealthAssassin
+All three panels fit below the arena without overlapping: NormalBossHealthAssassin
+Final boss labels fit and do not block input: BossName
+All final health panels share the same canvas scaling
+A final boss has a visible health panel: ShaulaHealth
+All three panels fit below the arena without overlapping: ShaulaHealth
+Final boss labels fit and do not block input: Name
+Final boss labels fit and do not block input: TailLabel
+A final boss has a visible health panel: NormalBossHealthSlime
+All three panels fit below the arena without overlapping: NormalBossHealthSlime
+Final boss labels fit and do not block input: BossName
+A final boss has a visible health panel: NormalBossHealthAssassin
+All three panels fit below the arena without overlapping: NormalBossHealthAssassin
+Final boss labels fit and do not block input: BossName
+Dedicated finale has no wave timeout penalty
+An unfinished finale saves wave 25 without a completion flag
+Pausing the trio preserves all three health values
+Killing only part of the trio never completes wave 25, order 1
+Each defeated final boss is credited once before wave victory
+The last boss ends the normal arena on wave 25
+Final victory awards three bosses and one completed wave exactly once
+Victory opens the free camp portal and hides all boss panels
+Victory checkpoint retains the completed finale instead of wrapping to wave one
+Expired break and duplicate callbacks cannot start wave 26 or duplicate victory
+The completed arena HUD supports English
+Reloading a completed run restores the victory portal without respawning bosses
+Reloading final victory cannot award more statistics
+The victory portal returns home freely and clears the finished run
+A new arena visit starts a fresh run at wave one
+A legacy wave-26 checkpoint migrates safely to the new finale

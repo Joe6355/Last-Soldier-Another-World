@@ -1,0 +1,8 @@
+{
+  "verifiedPackedSourcePaths": 1172,
+  "mismatches": [],
+  "rootSettingsSHA256": "7b9ec3351e8cc2efaa006475d0044a2d21ef4db759fca80f8b22167327d51cb6",
+  "buildSettingsSHA256": "7b9ec3351e8cc2efaa006475d0044a2d21ef4db759fca80f8b22167327d51cb6",
+  "buildProject": "Builds/RatingValidation/Project",
+  "buildLog": "Builds/RatingValidation/finale-v27-webgl-isolated.log"
+}
