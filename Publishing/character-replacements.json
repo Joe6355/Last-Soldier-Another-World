@@ -121,7 +121,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/PlayerAll.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 PNG restored at owner request; Unity metadata and animation clips unchanged."
+      "source": "Exact pre-v13 PNG restored at owner request; Unity metadata and animation clips unchanged.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/allEnemy.png",
@@ -725,7 +728,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/allEnemy.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 PNG restored at owner request; Unity metadata and animation clips unchanged."
+      "source": "Exact pre-v13 PNG restored at owner request; Unity metadata and animation clips unchanged.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/Banditka/Beka.png",
@@ -1662,7 +1668,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/Boss/Assassin.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 original restored at explicit owner request."
+      "source": "Exact pre-v13 original restored at explicit owner request.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/Healer.png",
@@ -1720,7 +1729,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/Healer.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 PNG restored at owner request; metadata and animation clips unchanged."
+      "source": "Exact pre-v13 PNG restored at owner request; metadata and animation clips unchanged.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/HealerAtack.png",
@@ -1848,7 +1860,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/HealerAtack.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 PNG restored at owner request; metadata and animation clips unchanged."
+      "source": "Exact pre-v13 PNG restored at owner request; metadata and animation clips unchanged.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/nun-black-NESW.png",
@@ -2032,7 +2047,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/nun-black-NESW.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 PNG restored at owner request; metadata and animation clips unchanged."
+      "source": "Exact pre-v13 PNG restored at owner request; metadata and animation clips unchanged.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/SciDE.png",
@@ -2104,7 +2122,10 @@
       ],
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/SciDE.png",
       "restoredOn": "2026-10-17",
-      "source": "Exact pre-v13 original restored at explicit owner request."
+      "source": "Exact pre-v13 original restored at explicit owner request.",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/ShoperAllAnim.png",

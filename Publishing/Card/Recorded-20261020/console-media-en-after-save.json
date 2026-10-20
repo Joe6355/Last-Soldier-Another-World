@@ -1,0 +1,89 @@
+{
+  "media": [
+    {
+      "fileId": "13935688",
+      "image": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a1314c38c45749cb62b4da380c37/icon1",
+      "videoPending": false
+    },
+    {
+      "fileId": "14044511",
+      "image": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a149cbcd5d31a1816f5bcab3a4db/cover1",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107206",
+      "image": null,
+      "videoPending": true
+    },
+    {
+      "fileId": "14107209",
+      "image": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df79b6814a1e7423d2be3de//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107211",
+      "image": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a15a8df7ce17870bca9049058702//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107212",
+      "image": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a8df9d74b9ca71d8d12822502//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107207",
+      "image": "https://avatars.mds.yandex.net/get-games/2977039/2a000001a15a8df7664902a1fc2f4e2f63e4//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107210",
+      "image": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82339c097c43c48dbf751//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107208",
+      "image": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82d9cedafcfa6153ff728//pjpg928x522",
+      "videoPending": false
+    }
+  ],
+  "screenshots": [
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df79b6814a1e7423d2be3de//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a15a8df7ce17870bca9049058702//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a8df9d74b9ca71d8d12822502//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/2977039/2a000001a15a8df7664902a1fc2f4e2f63e4//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82339c097c43c48dbf751//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82d9cedafcfa6153ff728//pjpg928x522",
+      "width": 928
+    }
+  ],
+  "title": "The Last Soldier: Another World",
+  "videoCount": 0
+}

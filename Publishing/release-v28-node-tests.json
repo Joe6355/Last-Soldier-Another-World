@@ -1,0 +1,9 @@
+{
+  "recordedOn": "2026-10-21",
+  "result": "PASS",
+  "tests": 10,
+  "failures": 0,
+  "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs",
+  "evidence": "TAP output observed during this release preparation",
+  "independentlyExecuted": true
+}

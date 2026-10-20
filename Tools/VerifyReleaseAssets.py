@@ -62,11 +62,19 @@ def main():
     assert not any('EmojiOne' in path or '/Examples & Extras/Textures/' in path for path in packed)
     assert not any('original-audio' in path or 'original-sprites' in path for path in packed)
     pending = []
+    owner_declared = []
     for path in rasters:
         if path in by_path:
             assert sha(path) == by_path[path]['sha256'], path
             if by_path[path]['rightsStatus'] in {'unconfirmed', 'project-created-source-record-pending'}:
                 pending.append(path)
+            if by_path[path]['rightsStatus'] == 'owner-declared-original-art':
+                declaration = read(by_path[path]['ownershipDeclaration'])
+                assert declaration['ownerDeclaredOriginal'] is True
+                assert declaration['independentlyVerifiedOwnership'] is False
+                assert any(item['path'] == path and item['sha256'] == sha(path)
+                           for item in declaration['files']), path
+                owner_declared.append(path)
     assert args.allow_unconfirmed or not pending, 'Unconfirmed provenance: ' + ', '.join(pending)
     assert 'Assets/Resources/AssetCredits.txt' in packed
     required = ['PTSerif-OFL.txt', 'LiberationSans-OFL.txt', 'CC0-1.0.txt', 'CC-BY-3.0.txt',
@@ -76,6 +84,8 @@ def main():
     summary = {
         'checkedOn': date.today().isoformat(), 'result': 'TECHNICAL_PASS_RIGHTS_PENDING' if pending else 'PASS',
         'pendingProvenancePaths': pending,
+        'ownerDeclaredProvenancePaths': owner_declared,
+        'ownerDeclarationIndependentlyVerified': False,
         'archive': release['archive'], 'archiveSha256': release['sha256'],
         'archiveFileCount': len(release['fileHashes']),
         'matchedSourceFiles': len(release['sourceSnapshot']['files']),

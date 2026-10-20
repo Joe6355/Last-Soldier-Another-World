@@ -1,0 +1,66 @@
+{
+  "recordedOn": "2026-10-21",
+  "recordedAt": "2026-10-21T01:51:41.742625+05:00",
+  "source": "Direct human owner message in this chat",
+  "ownerStatement": "2 пункт - пиши что ассеты мои",
+  "scope": "Previously unconfirmed restored PNG assets listed below; known third-party source/license records are retained.",
+  "authorLabel": "Game author / project owner",
+  "ownerDeclaredOriginal": true,
+  "independentlyVerifiedOwnership": false,
+  "files": [
+    {
+      "path": "Assets/Sprits/allEnemy.png",
+      "sha256": "055cdb54d55e91074a8e63f66824163ac25205cf6a11a0d910d34a16450fa27f",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/Boss/Assassin.png",
+      "sha256": "861a60f3f80592c597c1f566a05176b48267c1284759519df5a8bbc70c077ba1",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/Healer.png",
+      "sha256": "1c290f2078a44b5bfce7764271530a2662f8b7c97d27ca6d89ba1f756bb1bab1",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/HealerAtack.png",
+      "sha256": "75c338a3af4e32f810ed665685c68555212719b7f178ab6366e467fd1cd88890",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/nun-black-NESW.png",
+      "sha256": "8ff98d0f387c952ca1dc2918d3e06517792b564d3e629571198cdf863e169ea8",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/PlayerAll.png",
+      "sha256": "c87805b85d1f5a66f2da0ec1640daec46592758fc88075d65cc9b1f8ca6bb122",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/SciDE.png",
+      "sha256": "b33558c8c8d9aafa9f0bf8219d8a87e597afea27e14fe86f6a2f3d739db9176e",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/Sprits/uiEL.png",
+      "sha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    },
+    {
+      "path": "Assets/UI/ForestGarrison/Arena/Barrel.png",
+      "sha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86",
+      "previousRightsStatus": "unconfirmed",
+      "currentRightsStatus": "owner-declared-original-art"
+    }
+  ]
+}

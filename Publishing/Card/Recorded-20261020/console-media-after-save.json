@@ -1,0 +1,88 @@
+{
+  "attachedMedia": [
+    {
+      "fileId": "13935688",
+      "image": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a1314c38c45749cb62b4da380c37/icon1",
+      "videoPending": false
+    },
+    {
+      "fileId": "13935694",
+      "image": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a1314d61dd4019a51350153cad4e/cover1",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107045",
+      "image": null,
+      "videoPending": true
+    },
+    {
+      "fileId": "14107050",
+      "image": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e237b5d6dba1247c1f0a0//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107052",
+      "image": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786eb78de90f74b8be4d51f6//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107053",
+      "image": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e2aa0f7637f6a375a0ae6//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107049",
+      "image": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e330036a827f716ec99af//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107048",
+      "image": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e6fb312db4878403459e6//pjpg928x522",
+      "videoPending": false
+    },
+    {
+      "fileId": "14107051",
+      "image": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e6eecd39327319ae62a0f//pjpg928x522",
+      "videoPending": false
+    }
+  ],
+  "screenshotImages": [
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e237b5d6dba1247c1f0a0//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786eb78de90f74b8be4d51f6//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e2aa0f7637f6a375a0ae6//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e330036a827f716ec99af//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e6fb312db4878403459e6//pjpg928x522",
+      "width": 928
+    },
+    {
+      "height": 522,
+      "loaded": true,
+      "src": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e6eecd39327319ae62a0f//pjpg928x522",
+      "width": 928
+    }
+  ],
+  "videoCount": 0
+}

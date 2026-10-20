@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.0.0.27
+  bundleVersion: 0.0.0.28
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -692,7 +692,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Standalone: PLUGIN_YG_2;YandexGamesPlatform_yg;Storage_yg;Authorization_yg;Leaderboards_yg;EnvirData_yg;RedefinePlayerPrefs_yg;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;StickyAdv_yg
-    WebGL: PLUGIN_YG_2;YandexGamesPlatform_yg;Storage_yg;Authorization_yg;Leaderboards_yg;EnvirData_yg;RedefinePlayerPrefs_yg;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;StickyAdv_yg;LAST_SOLDIER_DEMO
+    WebGL: PLUGIN_YG_2;YandexGamesPlatform_yg;Storage_yg;Authorization_yg;Leaderboards_yg;EnvirData_yg;RedefinePlayerPrefs_yg;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;StickyAdv_yg
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

@@ -113,3 +113,6 @@ Temporary Items
 .apdisk
 
 *.save
+
+# Generated media preview archives
+/Publishing/Card/*.zip

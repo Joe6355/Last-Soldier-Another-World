@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-18",
-  "scope": "Initial 96 raster dependencies plus two additional rasters found by the final Unity BuildReport; replacements and player exclusions recorded. Audio: Publishing/audio-provenance.json. Pre-v13 visual restoration on 2026-10-17: merchant ownership confirmed by owner; other restored PNG provenance remains unconfirmed.",
+  "checkedOn": "2026-10-21",
+  "scope": "Raster dependency and final Unity packed-asset provenance records. Exact known third-party sources and licenses are retained. Nine restored PNGs have the owner's 2026-10-21 authorship declaration; see Publishing/owner-asset-declaration-20261021.json. Audio: Publishing/audio-provenance.json.",
   "dependencyGraph": "Builds/RatingValidation/asset-dependencies.json",
   "method": "Exact public source downloads and ZIP member bytes compared to local files by SHA-256; static GUID reachability is not a Unity build dependency report.",
   "proofs": [
@@ -1100,10 +1100,21 @@
         "Assets\\Anim\\Enemy\\SceletBombIde.anim",
         "Assets\\Anim\\Enemy\\SceletBombRun.anim"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
-      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoration requested for visual compatibility; source or license is not established by this request.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/Banditka/Bandit Faceset.png",
@@ -1237,9 +1248,21 @@
         "Assets\\Anim\\Boss\\Ide.anim",
         "Assets\\Anim\\Boss\\Heal.anim"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 original restored at explicit owner request; source remains unconfirmed"
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": null,
+          "changes": "Exact pre-v13 original restored at explicit owner request; source remains unconfirmed",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false,
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied."
     },
     {
       "path": "Assets/Sprits/Boss/BossSlime/MiniBoss/VeMe attaking/sprite_0.png",
@@ -1972,10 +1995,21 @@
         "Assets\\Anim\\Enemy\\HealerWalk.anim",
         "Assets\\Anim\\Enemy\\HealerHeal.anim"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
-      "rightsNote": "Restoring the requested artwork does not establish its source or license."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoring the requested artwork does not establish its source or license.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/HealerAtack.png",
@@ -1999,10 +2033,21 @@
       "referencedBy": [
         "Assets\\Anim\\Enemy\\HealerHeal.anim"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
-      "rightsNote": "Restoring the requested artwork does not establish its source or license."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoring the requested artwork does not establish its source or license.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/LPCportrait33.png",
@@ -2380,10 +2425,21 @@
         "Assets\\Anim\\Animals\\BabkaIdle.anim",
         "Assets\\Anim\\Animals\\BabkaIvent.anim"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
-      "rightsNote": "Restoring the requested artwork does not establish its source or license."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoring the requested artwork does not establish its source or license.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animations unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/PlayerAll.png",
@@ -2401,10 +2457,21 @@
         "Assets\\Scenes\\SampleScene.unity",
         "Assets\\Scenes\\Menu.unity"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
-      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoration requested for visual compatibility; source or license is not established by this request.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/Sprits/portalRings1.png",
@@ -2528,9 +2595,21 @@
       "referencedBy": [
         "Assets\\Anim\\Enemy\\SceletProstoiMag.anim"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/character-replacements.json",
-      "changes": "Exact pre-v13 original restored at explicit owner request; source remains unconfirmed"
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": null,
+          "changes": "Exact pre-v13 original restored at explicit owner request; source remains unconfirmed",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false,
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied."
     },
     {
       "path": "Assets/Sprits/ShoperAllAnim.png",
@@ -2907,10 +2986,21 @@
         "Assets\\Prefabs\\Arrow\\PoisonArrow.prefab",
         "Assets\\Prefabs\\Arrow\\ArrowDef.prefab"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/interface-sprite-provenance.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
-      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoration requested for visual compatibility; source or license is not established by this request.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
@@ -3075,10 +3165,21 @@
       "referencedBy": [
         "Assets\\Prefabs\\Arena\\Barrel.prefab"
       ],
-      "rightsStatus": "unconfirmed",
+      "rightsStatus": "owner-declared-original-art",
       "replacementManifest": "Publishing/interface-sprite-provenance.json",
-      "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
-      "rightsNote": "Restoration requested for visual compatibility; source or license is not established by this request."
+      "changes": "Exact restored PNG retained; owner authorship declaration registered on 2026-10-21.",
+      "rightsNote": "Recorded as the project owner's authorship declaration; no independent source confirmation was supplied.",
+      "rightsHistory": [
+        {
+          "status": "unconfirmed",
+          "note": "Restoration requested for visual compatibility; source or license is not established by this request.",
+          "changes": "Exact pre-v13 bytes restored at owner request; GUIDs, pivots and animation bindings unchanged",
+          "supersededAt": "2026-10-21T01:51:41.742625+05:00"
+        }
+      ],
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "ownershipEvidence": "Owner stated on 2026-10-21: 2 пункт - пиши что ассеты мои",
+      "independentlyVerifiedOwnership": false
     },
     {
       "path": "Assets/UI/ForestGarrison/Arena/GravityRune.png",
@@ -3335,7 +3436,7 @@
   "statusCounts": {
     "replaced-with-original-procedural-art": 12,
     "confirmed-source-exact-bytes": 53,
-    "unconfirmed": 9,
+    "owner-declared-original-art": 9,
     "replaced-with-licensed-adaptation": 4,
     "owner-confirmed-original-art": 1,
     "confirmed-existing-license": 9,
@@ -3354,5 +3455,6 @@
     "Assets/Sprits/uiEL.png",
     "Assets/UI/ForestGarrison/Arena/Barrel.png"
   ],
-  "finalPackedReport": "Publishing/release-packed-assets.json"
+  "finalPackedReport": "Publishing/release-packed-assets.json",
+  "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json"
 }

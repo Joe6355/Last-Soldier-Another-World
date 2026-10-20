@@ -1,0 +1,23 @@
+{
+  "version": "0.0.0.28",
+  "applicationId": 623393,
+  "checkedAt": "2026-10-20T21:19:59.563Z",
+  "uploaded": true,
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "4eedb17017062c37c2db6640e838046c32d1c61db1ef8dca48e46bceeaf46c17",
+  "archiveFileId": "14108398",
+  "archiveProcessing": "Ready",
+  "archiveLastChangedAtConsole": "02:16:54 21/10/2026",
+  "draftUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "runtimeBuildPath": "623393/qfu2yr914w6g7o9372mvocke5dciz70d",
+  "menuRendered": true,
+  "browserLaunchVerified": true,
+  "gameSceneVerified": false,
+  "physicalKeyboardDemoVerified": false,
+  "compiledDemoDisabledProof": "Publishing/release-v28-demo-compiled-proof.json",
+  "physicalPhoneTestPerformed": false,
+  "moderationSubmittedThisTurn": false,
+  "uploadProof": "Publishing/Previews/yandex-version28-20261021.png",
+  "menuProof": "Publishing/Previews/yandex-version28-menu-20261021.png",
+  "initialDraft404ResolvedByReopeningConsoleLink": true
+}

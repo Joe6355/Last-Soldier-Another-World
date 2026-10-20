@@ -1,0 +1,75 @@
+{
+  "checkedOn": "2026-10-21",
+  "checkedAt": "2026-10-21T00:28:37.706104+05:00",
+  "version": "0.0.0.27",
+  "source": "Fresh console reload, RU/EN tabs, read-only video DOM properties and current project reports",
+  "liveConsole": {
+    "lastChangedAt": "23:31:19 20/10/2026",
+    "ageRating": "6+",
+    "russian": {
+      "videoFileId": "14107045",
+      "videoProcessing": "Ready",
+      "videoPlayback": {
+        "readyState": 4,
+        "currentTime": 0.715642,
+        "duration": 27.021,
+        "paused": false,
+        "error": null
+      },
+      "desktopScreenshots": 6
+    },
+    "english": {
+      "videoFileId": "14107206",
+      "videoProcessing": "Ready",
+      "videoPlayback": {
+        "readyState": 4,
+        "currentTime": 26.105166,
+        "duration": 27.033332,
+        "paused": false,
+        "error": null
+      },
+      "desktopScreenshots": 6,
+      "recordedHudLanguage": "ru"
+    },
+    "submitForModerationEnabled": false,
+    "disabledReasonExposed": false,
+    "platformRestrictionBannerVisible": true,
+    "specificDisabledCauseConfirmed": false,
+    "proof": "Publishing/Previews/yandex-readiness-20261021.png"
+  },
+  "project": {
+    "demoToolsEnabledInWebGLSettings": true,
+    "demoHotkey": "9",
+    "demoSource": "Assets/Scripts/WaveSpawner.Demo.cs",
+    "assetRightsStatus": "TECHNICAL_PASS_RIGHTS_PENDING",
+    "pendingProvenancePaths": [
+      "Assets/Sprits/allEnemy.png",
+      "Assets/Sprits/Boss/Assassin.png",
+      "Assets/Sprits/Healer.png",
+      "Assets/Sprits/HealerAtack.png",
+      "Assets/Sprits/nun-black-NESW.png",
+      "Assets/Sprits/PlayerAll.png",
+      "Assets/Sprits/SciDE.png",
+      "Assets/Sprits/uiEL.png",
+      "Assets/UI/ForestGarrison/Arena/Barrel.png"
+    ]
+  },
+  "existingAutomatedChecks": {
+    "version": "0.0.0.27",
+    "passedAssertions": 2084,
+    "rerunThisTurn": false,
+    "report": "Publishing/finale-v27.json"
+  },
+  "openItems": [
+    "Disable demo wave selection before producing the public release build.",
+    "Resolve recorded provenance for the nine restored PNG files; absence of confirmation is not an established infringement.",
+    "Complete final desktop/Android gameplay, cancelled-reward, revival enemy/timer continuity and sustained-performance checks.",
+    "Recheck the leaderboard; last documented check on 2026-10-20 remained empty. No leaderboard runtime test performed today.",
+    "Submission is unavailable in the live console; exact reason is not exposed. A platform-restrictions banner remains visible."
+  ],
+  "recommendedCardCleanup": "Re-record English card footage with English HUD. The currently approved recording retains Russian gameplay text.",
+  "officialRequirements": "https://yandex.ru/dev/games/doc/ru/concepts/requirements",
+  "translationGuidance": "https://yandex.ru/dev/games/doc/ru/requirements/8/2/3",
+  "gameCodeChanged": false,
+  "moderationSubmitted": false
+}

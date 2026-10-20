@@ -1,0 +1,80 @@
+{
+  "applicationId": 623393,
+  "archiveVersionUnchanged": "0.0.0.27",
+  "language": "ru",
+  "checkedAt": "2026-10-20T23:08:03.653646+05:00",
+  "consoleLastSavedAt": "23:00:16 20/10/2026",
+  "status": "SAVED_VIDEO_PROCESSING_PENDING",
+  "ownerApproved": true,
+  "checkedAfterReload": true,
+  "draftUrl": "https://games.yandex.ru/console/application/623393#application-info-draft",
+  "horizontalVideo": {
+    "file": "Publishing/Card/Recorded-20261020/videos/01-arenas-and-bosses.mp4",
+    "sha256": "1ed19d52742f2dfbe9b18be0fbdb35a523cad4c1cd0de8543f0a551e207f8f13",
+    "fileId": "14107045",
+    "uploaded": true,
+    "persistedAfterReload": true,
+    "processing": "Pending",
+    "playbackVerified": false,
+    "sourceDurationSeconds": 27.04
+  },
+  "desktopScreenshots": {
+    "count": 6,
+    "persistedAfterReload": true,
+    "allPreviewsLoaded": true,
+    "files": [
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/01-shaula.png",
+        "sha256": "9937599808a015e800a82f6e6c4bc8ac1b93a390f0230b262a82537998e2e68f",
+        "fileId": "14107050",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e237b5d6dba1247c1f0a0//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/02-shaula-laser.png",
+        "sha256": "c643d5c2a718a31e8fdb405eb3a09ca86640d75af8e03da88385a45fe3281341",
+        "fileId": "14107052",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786eb78de90f74b8be4d51f6//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/03-final-trio.png",
+        "sha256": "81ce33f39bb5c41578bc24eb7cf32663b5a38099ed2b62c1dbac2647e4fce54c",
+        "fileId": "14107053",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e2aa0f7637f6a375a0ae6//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/04-crimson-arena.png",
+        "sha256": "c8a72601080f157de4806a5b847922623b59224f24ba3a54353e68ef42d7cfb1",
+        "fileId": "14107049",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e330036a827f716ec99af//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/05-merchant.png",
+        "sha256": "b4ad50efe2483ab31de590b0b38e5360e685c647ea0f32f5644abd81e296c9fe",
+        "fileId": "14107048",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e6fb312db4878403459e6//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/06-camp.png",
+        "sha256": "138c8d6a7b186449c9118dc8d4e8378da1b6e9aaaa20fbc1a72e4c4d62515fc3",
+        "fileId": "14107051",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e6eecd39327319ae62a0f//pjpg928x522"
+      }
+    ]
+  },
+  "consoleCompletenessRussianPercent": 92,
+  "saveButtonDisabledAfterReload": true,
+  "mobileScreenshotFieldTouched": false,
+  "englishCardChanged": false,
+  "gameCodeChanged": false,
+  "moderationSubmittedThisTurn": false,
+  "publishedThisTurn": false,
+  "otherTwoVideosUploaded": false,
+  "selection": "Recommended 27-second montage in the single horizontal gameplay-video field; all six desktop screenshots",
+  "platformRestrictionBannerVisible": true,
+  "pendingProcessingCauseConfirmed": false,
+  "proofs": [
+    "Publishing/Previews/yandex-card-screenshots-20261020.png",
+    "Publishing/Previews/yandex-card-video-20261020.png"
+  ],
+  "visibleDomEvidence": "Publishing/Card/Recorded-20261020/console-media-after-save.json"
+}

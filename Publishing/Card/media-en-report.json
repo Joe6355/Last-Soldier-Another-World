@@ -133,5 +133,8 @@
   "captureHelperSnapshot": "Builds/CardCapture/English/capture-helper.cs.txt",
   "sourceVersion": "0.0.0.13",
   "matchingSourceBuildArchiveSha256": "9db4b28e105d55e8f2bde16cfa3d1f4cbd9025b8c443f4bd24b9c48632984bf2",
-  "sourceNote": "Captured from the isolated Unity source copy verified against the asset manifests; capture is not a recording of the WebGL binary in a browser."
+  "sourceNote": "Captured from the isolated Unity source copy verified against the asset manifests; capture is not a recording of the WebGL binary in a browser.",
+  "desktopMediaSupersededOn": "2026-10-20",
+  "currentDesktopMediaReport": "Publishing/Card/Recorded-20261020/upload-report-en.json",
+  "mobileFieldNotModified": true
 }

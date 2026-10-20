@@ -1,0 +1,80 @@
+{
+  "applicationId": 623393,
+  "language": "en",
+  "archiveVersionUnchanged": "0.0.0.27",
+  "checkedAt": "2026-10-20T23:28:57.693364+05:00",
+  "consoleLastSavedAt": "23:23:44 20/10/2026",
+  "status": "SAVED_VIDEO_PROCESSING_PENDING",
+  "ownerRequested": true,
+  "checkedAfterReload": true,
+  "englishTitleConfirmed": "The Last Soldier: Another World",
+  "horizontalVideo": {
+    "file": "Publishing/Card/Recorded-20261020/videos/01-arenas-and-bosses.mp4",
+    "sha256": "1ed19d52742f2dfbe9b18be0fbdb35a523cad4c1cd0de8543f0a551e207f8f13",
+    "fileId": "14107206",
+    "uploaded": true,
+    "persistedAfterReload": true,
+    "processing": "Pending",
+    "playbackVerified": false,
+    "sourceDurationSeconds": 27.04
+  },
+  "desktopScreenshots": {
+    "count": 6,
+    "persistedAfterReload": true,
+    "allPreviewsLoaded": true,
+    "files": [
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/01-shaula.png",
+        "sha256": "9937599808a015e800a82f6e6c4bc8ac1b93a390f0230b262a82537998e2e68f",
+        "fileId": "14107209",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df79b6814a1e7423d2be3de//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/02-shaula-laser.png",
+        "sha256": "c643d5c2a718a31e8fdb405eb3a09ca86640d75af8e03da88385a45fe3281341",
+        "fileId": "14107211",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a15a8df7ce17870bca9049058702//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/03-final-trio.png",
+        "sha256": "81ce33f39bb5c41578bc24eb7cf32663b5a38099ed2b62c1dbac2647e4fce54c",
+        "fileId": "14107212",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a8df9d74b9ca71d8d12822502//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/04-crimson-arena.png",
+        "sha256": "c8a72601080f157de4806a5b847922623b59224f24ba3a54353e68ef42d7cfb1",
+        "fileId": "14107207",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/2977039/2a000001a15a8df7664902a1fc2f4e2f63e4//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/05-merchant.png",
+        "sha256": "b4ad50efe2483ab31de590b0b38e5360e685c647ea0f32f5644abd81e296c9fe",
+        "fileId": "14107210",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82339c097c43c48dbf751//pjpg928x522"
+      },
+      {
+        "file": "Publishing/Card/Recorded-20261020/screenshots/06-camp.png",
+        "sha256": "138c8d6a7b186449c9118dc8d4e8378da1b6e9aaaa20fbc1a72e4c4d62515fc3",
+        "fileId": "14107208",
+        "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82d9cedafcfa6153ff728//pjpg928x522"
+      }
+    ]
+  },
+  "saveButtonDisabledAfterReload": true,
+  "sourceInterfaceLanguage": "ru",
+  "textInRecordingTranslated": false,
+  "mobileScreenshotFieldTouched": false,
+  "englishTextAndCoverChanged": false,
+  "russianCardChangedThisTurn": false,
+  "gameCodeChanged": false,
+  "moderationSubmittedThisTurn": false,
+  "otherTwoVideosUploaded": false,
+  "proofs": [
+    "Publishing/Previews/yandex-card-en-language-20261020.png",
+    "Publishing/Previews/yandex-card-en-video-20261020.png",
+    "Publishing/Previews/yandex-card-en-screenshots-20261020.png"
+  ],
+  "visibleDomEvidence": "Publishing/Card/Recorded-20261020/console-media-en-after-save.json",
+  "previousEnglishMediaEvidence": "Publishing/Card/Recorded-20261020/console-media-en-before.json"
+}

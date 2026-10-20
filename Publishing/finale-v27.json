@@ -2,8 +2,8 @@
   "version": "0.0.0.27",
   "result": "PASS",
   "checkedAt": "2026-10-20T20:18:15.805232+05:00",
-  "uploaded": false,
-  "uploadLimitation": "Browser access disabled in Work settings; local browser tool returned Local browser use is disabled in Work settings.",
+  "uploaded": true,
+  "uploadLimitation": null,
   "build": {
     "verifiedPackedSourcePaths": 1172,
     "mismatches": [],
@@ -53,7 +53,7 @@
   "archive": "Builds/LastSoldierYandex.zip",
   "archiveSHA256": "4a3359bf9920c31208015c00f370f76d20701b11e570cfa1eb652aaf76417d92",
   "physicalPhoneTestPerformed": false,
-  "browserLaunchVerified": false,
+  "browserLaunchVerified": true,
   "changes": {
     "normalArenaWaveCount": 25,
     "crimsonArenaWaveCount": 26,
@@ -79,5 +79,11 @@
     ]
   },
   "manualCheck": "Normal arena: 9 -> 25. Defeat the trio in any order; no wave 26; free camp portal. Reload victory; enter again for a fresh wave one.",
-  "uploadReport": "Publishing/upload-v27-check.json"
+  "uploadReport": "Publishing/upload-v27-check.json",
+  "archiveFileId": "14106266",
+  "archiveProcessing": "Ready",
+  "uploadedCheckedAt": "2026-10-20T21:06:58.654127+05:00",
+  "uploadProof": "Publishing/Previews/yandex-version27-20261020.png",
+  "menuProof": "Publishing/Previews/yandex-version27-menu-20261020.png",
+  "runtimeBuildPath": "623393/i5e5sqltkufunkywjs44cfz2o0hfsjhb"
 }

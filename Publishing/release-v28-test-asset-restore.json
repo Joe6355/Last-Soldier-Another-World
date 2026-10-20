@@ -1,0 +1,36 @@
+{
+  "reason": "PlayMode validations serialize temporary audio settings and dynamic font glyph cache in the isolated project",
+  "restoredFrom": "Current root project; previous uploaded source hashes match root",
+  "files": [
+    {
+      "path": "Assets/Prefabs/Animals/Cow.prefab",
+      "testProjectSHA256": "c548ba5430606803774782f7125313088fe18654f91df575990b707faf5a5d94",
+      "restoredSHA256": "294ea783d685cac411f3eaa6174d61d9d2124376e0ea7c30d032a74024ebe308",
+      "rootModified": false
+    },
+    {
+      "path": "Assets/Prefabs/Animals/chicken.prefab",
+      "testProjectSHA256": "221ca8c0471479dcd5346dfdefff44690cc962ecd8cc4b44d40332c9558a320e",
+      "restoredSHA256": "21f6894e8479307b02bef29ea493501349c9104d21cd394c40abd383b0fb4ae6",
+      "rootModified": false
+    },
+    {
+      "path": "Assets/Prefabs/Enemy/Bomber.prefab",
+      "testProjectSHA256": "8e2bbfb384166e093347c2c18e395991e5d5b55ecd24c39994c3413d731afd90",
+      "restoredSHA256": "2e0dac53b49c024ed9fb9d7c5be0e41132cb250f36a0d384ee60b574bbc572d7",
+      "rootModified": false
+    },
+    {
+      "path": "Assets/Prefabs/Enemy/SceletSheld.prefab",
+      "testProjectSHA256": "6517cb89a21a1344387514874c24ecea205c0e574464c8a5dea4da76b427bd8d",
+      "restoredSHA256": "65718c20c7e15fd6c7db468977740528cc02e592f88d3f8bb06baceb9df07366",
+      "rootModified": false
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+      "testProjectSHA256": "c584b0636056490d83f49c21184aa53a1c91889f60ef41db81268a79ad24c872",
+      "restoredSHA256": "98106785a032665c504bad1dcaf08b3bf58cf0f9fa6df9a7ad260bd3b64ba7bb",
+      "rootModified": false
+    }
+  ]
+}

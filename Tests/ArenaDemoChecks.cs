@@ -59,7 +59,7 @@ public static class ArenaDemoChecks
                     if (SceneManager.GetActiveScene().name != "SampleScene") return;
                     BindScene(); foreach (var guide in UnityEngine.Object.FindObjectsOfType<TipsManager>()) guide.SkipGuide(); ui.StartGame();
                     Check(GameProgress.DemoToolsAvailable, "Editor test tools are available");
-                    Check(PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL).Split(';').Contains("LAST_SOLDIER_DEMO"), "Draft WebGL explicitly includes the demo define");
+                    Check(!PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL).Split(';').Contains("LAST_SOLDIER_DEMO"), "Public WebGL excludes the demo define while Editor tools remain available");
                     Check(!arena.OpenDemoPicker(), "The wave picker cannot open outside an active arena");
                     player.transform.position = arena.GetComponent<Collider2D>().bounds.center + new Vector3(-5, -2, 0);
                     Physics2D.SyncTransforms(); Next(.15f, 4); break;

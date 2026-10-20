@@ -1,0 +1,582 @@
+{
+  "createdOn": "2026-10-20",
+  "uploadedToYandex": true,
+  "moderationSubmitted": false,
+  "status": "Selected montage and six desktop screenshots saved in both Russian and English drafts. English video awaits platform processing; source HUD remains Russian.",
+  "source": {
+    "path": "D:\\видео 1\\Among Us\\Desktop\\Desktop 2026.10.20 - 21.18.27.01.mp4",
+    "bytes": 1367738509,
+    "sha256": "fb0d6fcdea1c011bf72d92b62ea63866f1b24c04744ce837bd3fa66f20ce695f",
+    "durationSeconds": 498.91,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "fps": 120,
+    "audio": {
+      "codec": "AAC",
+      "sampleRate": 48000,
+      "channels": 2
+    }
+  },
+  "requirements": {
+    "checkedOn": "2026-10-20",
+    "source": "https://yandex.ru/dev/games/doc/ru/console/add-new-game/draft",
+    "horizontalVideo": {
+      "aspectRatio": "16:9",
+      "format": "MP4",
+      "minHeight": 400,
+      "maxSeconds": 28,
+      "maxBytes": 100000000
+    },
+    "screenshots": {
+      "aspectRatio": "16:9",
+      "longSideRange": [
+        1280,
+        2560
+      ],
+      "format": "JPEG or 24-bit PNG"
+    }
+  },
+  "processing": {
+    "crop": {
+      "x": 32,
+      "y": 34,
+      "width": 1856,
+      "height": 1044
+    },
+    "output": [
+      1920,
+      1080
+    ],
+    "scale": "Lanczos; same 16:9 aspect ratio",
+    "speed": 1.0,
+    "newVisualsOrGameplayAdded": false,
+    "sourceFileModified": false,
+    "personalFileMetadataStrippedFromVideos": true,
+    "sound": "Original recording, two-pass loudness balance to -18 LUFS / -1.5 dBTP target, short fades at cuts; no added music or voices"
+  },
+  "videos": [
+    {
+      "name": "01-arenas-and-bosses",
+      "label": "Арены и боссы",
+      "duration": 27.0,
+      "segments": [
+        [
+          225.8,
+          4.2
+        ],
+        [
+          117.0,
+          4.0
+        ],
+        [
+          145.0,
+          3.8
+        ],
+        [
+          271.0,
+          5.0
+        ],
+        [
+          199.0,
+          4.0
+        ],
+        [
+          385.0,
+          6.0
+        ]
+      ],
+      "recommended": true,
+      "file": "Publishing/Card/Recorded-20261020/videos/01-arenas-and-bosses.mp4",
+      "bytes": 34054242,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "codec": "H.264",
+      "pixelFormat": "yuv420p",
+      "fps": 60.0,
+      "durationSeconds": 27.04,
+      "expectedFrames": 1620,
+      "audio": {
+        "codec": "AAC",
+        "sampleRate": 48000,
+        "channels": 2,
+        "origin": "Source recording; no added music or voices",
+        "fadeAtCutsSeconds": 0.025,
+        "endFadeSeconds": 0.04,
+        "subjectiveListeningPerformed": false,
+        "originalLevelsDb": {
+          "mean_volume": "-35.4",
+          "max_volume": "-10.0"
+        },
+        "loudnessNormalization": {
+          "file": "Publishing/Card/Recorded-20261020/videos/01-arenas-and-bosses.mp4",
+          "originalAnalysis": {
+            "input_i": "-32.75",
+            "input_tp": "-10.00",
+            "input_lra": "7.50",
+            "input_thresh": "-43.46",
+            "output_i": "-20.14",
+            "output_tp": "-1.50",
+            "output_lra": "4.80",
+            "output_thresh": "-30.62",
+            "normalization_type": "dynamic",
+            "target_offset": "2.14"
+          },
+          "applied": {
+            "input_i": "-32.75",
+            "input_tp": "-10.00",
+            "input_lra": "7.50",
+            "input_thresh": "-43.46",
+            "output_i": "-18.36",
+            "output_tp": "-1.50",
+            "output_lra": "4.50",
+            "output_thresh": "-28.83",
+            "normalization_type": "dynamic",
+            "target_offset": "0.36"
+          },
+          "verifiedEncodedOutput": {
+            "input_i": "-18.09",
+            "input_tp": "-1.37",
+            "input_lra": "4.70",
+            "input_thresh": "-28.51",
+            "output_i": "-18.50",
+            "output_tp": "-1.50",
+            "output_lra": "5.10",
+            "output_thresh": "-29.01",
+            "normalization_type": "dynamic",
+            "target_offset": "0.50"
+          },
+          "videoStreamCopiedWithoutReencoding": true,
+          "targetLufs": -18,
+          "targetTruePeakDb": -1.5
+        }
+      },
+      "fastStart": true,
+      "fullVideoAudioDecode": true,
+      "decodeWarnings": "",
+      "sha256": "1ed19d52742f2dfbe9b18be0fbdb35a523cad4c1cd0de8543f0a551e207f8f13",
+      "decodedFrameCount": 1620,
+      "chatPreview": {
+        "file": "Publishing/Card/Recorded-20261020/previews/01-arenas-and-bosses-preview.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 30,
+        "durationSeconds": 27.04,
+        "bytes": 7810232,
+        "sha256": "26b5b543142b98b1182c0b64b66a45d81f360cda27b7bcb7d5a5ec1bffb0c4ac",
+        "fullVideoAudioDecode": true
+      },
+      "uploadedToYandex": true,
+      "yandexFileId": "14107045",
+      "yandexProcessing": "Pending",
+      "yandexPlaybackVerified": false,
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107045",
+          "report": "Publishing/Card/Recorded-20261020/upload-report.json"
+        },
+        "en": {
+          "fileId": "14107206",
+          "processing": "Pending",
+          "report": "Publishing/Card/Recorded-20261020/upload-report-en.json"
+        }
+      }
+    },
+    {
+      "name": "02-shaula",
+      "label": "Бой с Шаулой",
+      "duration": 25.0,
+      "segments": [
+        [
+          210.2,
+          25.0
+        ]
+      ],
+      "recommended": false,
+      "file": "Publishing/Card/Recorded-20261020/videos/02-shaula.mp4",
+      "bytes": 36943166,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "codec": "H.264",
+      "pixelFormat": "yuv420p",
+      "fps": 60.0,
+      "durationSeconds": 25.1,
+      "expectedFrames": 1500,
+      "audio": {
+        "codec": "AAC",
+        "sampleRate": 48000,
+        "channels": 2,
+        "origin": "Source recording; no added music or voices",
+        "fadeAtCutsSeconds": 0.025,
+        "endFadeSeconds": 0.04,
+        "subjectiveListeningPerformed": false,
+        "originalLevelsDb": {
+          "mean_volume": "-37.9",
+          "max_volume": "-13.2"
+        },
+        "loudnessNormalization": {
+          "file": "Publishing/Card/Recorded-20261020/videos/02-shaula.mp4",
+          "originalAnalysis": {
+            "input_i": "-34.77",
+            "input_tp": "-13.16",
+            "input_lra": "5.50",
+            "input_thresh": "-45.86",
+            "output_i": "-18.37",
+            "output_tp": "-1.50",
+            "output_lra": "4.90",
+            "output_thresh": "-29.36",
+            "normalization_type": "dynamic",
+            "target_offset": "0.37"
+          },
+          "applied": {
+            "input_i": "-34.77",
+            "input_tp": "-13.16",
+            "input_lra": "5.50",
+            "input_thresh": "-45.86",
+            "output_i": "-18.13",
+            "output_tp": "-1.50",
+            "output_lra": "4.90",
+            "output_thresh": "-29.08",
+            "normalization_type": "dynamic",
+            "target_offset": "0.13"
+          },
+          "verifiedEncodedOutput": {
+            "input_i": "-18.39",
+            "input_tp": "-1.30",
+            "input_lra": "4.90",
+            "input_thresh": "-29.26",
+            "output_i": "-17.91",
+            "output_tp": "-1.50",
+            "output_lra": "4.10",
+            "output_thresh": "-28.78",
+            "normalization_type": "dynamic",
+            "target_offset": "-0.09"
+          },
+          "videoStreamCopiedWithoutReencoding": true,
+          "targetLufs": -18,
+          "targetTruePeakDb": -1.5
+        }
+      },
+      "fastStart": true,
+      "fullVideoAudioDecode": true,
+      "decodeWarnings": "",
+      "sha256": "3a1e0f8997bc049460f2bd267eaccb66b7772d909420978e026ee4f109e7bb04",
+      "decodedFrameCount": 1500,
+      "chatPreview": {
+        "file": "Publishing/Card/Recorded-20261020/previews/02-shaula-preview.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 30,
+        "durationSeconds": 25.1,
+        "bytes": 8008702,
+        "sha256": "d21ddd459cd6a7fa637e110674b39350a15e1260f97cca94caceef40f328acf6",
+        "fullVideoAudioDecode": true
+      },
+      "uploadedToYandex": false
+    },
+    {
+      "name": "03-final-trio",
+      "label": "Финал: три босса",
+      "duration": 24.0,
+      "segments": [
+        [
+          374.0,
+          24.0
+        ]
+      ],
+      "recommended": false,
+      "file": "Publishing/Card/Recorded-20261020/videos/03-final-trio.mp4",
+      "bytes": 47062744,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "codec": "H.264",
+      "pixelFormat": "yuv420p",
+      "fps": 60.0,
+      "durationSeconds": 24.08,
+      "expectedFrames": 1440,
+      "audio": {
+        "codec": "AAC",
+        "sampleRate": 48000,
+        "channels": 2,
+        "origin": "Source recording; no added music or voices",
+        "fadeAtCutsSeconds": 0.025,
+        "endFadeSeconds": 0.04,
+        "subjectiveListeningPerformed": false,
+        "originalLevelsDb": {
+          "mean_volume": "-37.5",
+          "max_volume": "-14.5"
+        },
+        "loudnessNormalization": {
+          "file": "Publishing/Card/Recorded-20261020/videos/03-final-trio.mp4",
+          "originalAnalysis": {
+            "input_i": "-35.04",
+            "input_tp": "-14.43",
+            "input_lra": "5.70",
+            "input_thresh": "-45.20",
+            "output_i": "-17.49",
+            "output_tp": "-1.50",
+            "output_lra": "4.20",
+            "output_thresh": "-27.49",
+            "normalization_type": "dynamic",
+            "target_offset": "-0.51"
+          },
+          "applied": {
+            "input_i": "-35.04",
+            "input_tp": "-14.43",
+            "input_lra": "5.70",
+            "input_thresh": "-45.20",
+            "output_i": "-17.91",
+            "output_tp": "-1.50",
+            "output_lra": "4.10",
+            "output_thresh": "-27.93",
+            "normalization_type": "dynamic",
+            "target_offset": "-0.09"
+          },
+          "verifiedEncodedOutput": {
+            "input_i": "-18.06",
+            "input_tp": "-1.03",
+            "input_lra": "4.10",
+            "input_thresh": "-28.06",
+            "output_i": "-17.63",
+            "output_tp": "-1.50",
+            "output_lra": "3.70",
+            "output_thresh": "-27.63",
+            "normalization_type": "dynamic",
+            "target_offset": "-0.37"
+          },
+          "videoStreamCopiedWithoutReencoding": true,
+          "targetLufs": -18,
+          "targetTruePeakDb": -1.5
+        }
+      },
+      "fastStart": true,
+      "fullVideoAudioDecode": true,
+      "decodeWarnings": "",
+      "sha256": "ff2875c5805b7961d62209f4e0b5bff28a296236934e41f01debfe04bf38132a",
+      "decodedFrameCount": 1440,
+      "chatPreview": {
+        "file": "Publishing/Card/Recorded-20261020/previews/03-final-trio-preview.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 30,
+        "durationSeconds": 24.08,
+        "bytes": 9303972,
+        "sha256": "b1fdd1b85ec886e20360d12b9f065cc0e58974fd81dcd4fffea3c2f200bbead8",
+        "fullVideoAudioDecode": true
+      },
+      "uploadedToYandex": false
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "Publishing/Card/Recorded-20261020/screenshots/01-shaula.png",
+      "sourceTimeSeconds": 206.0,
+      "label": "Шаула",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "format": "24-bit PNG",
+      "bytes": 1163728,
+      "sha256": "9937599808a015e800a82f6e6c4bc8ac1b93a390f0230b262a82537998e2e68f",
+      "platform": "desktop",
+      "pixelEdits": "Crop out Yandex header/white recording border, uniform Lanczos resize only; original game HUD retained",
+      "uploadedToYandex": true,
+      "yandexFileId": "14107050",
+      "yandexPreviewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e237b5d6dba1247c1f0a0//pjpg928x522",
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107050"
+        },
+        "en": {
+          "fileId": "14107209",
+          "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df79b6814a1e7423d2be3de//pjpg928x522"
+        }
+      }
+    },
+    {
+      "file": "Publishing/Card/Recorded-20261020/screenshots/02-shaula-laser.png",
+      "sourceTimeSeconds": 200.3,
+      "label": "Небесные лучи Шаулы",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "format": "24-bit PNG",
+      "bytes": 1491306,
+      "sha256": "c643d5c2a718a31e8fdb405eb3a09ca86640d75af8e03da88385a45fe3281341",
+      "platform": "desktop",
+      "pixelEdits": "Crop out Yandex header/white recording border, uniform Lanczos resize only; original game HUD retained",
+      "uploadedToYandex": true,
+      "yandexFileId": "14107052",
+      "yandexPreviewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786eb78de90f74b8be4d51f6//pjpg928x522",
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107052"
+        },
+        "en": {
+          "fileId": "14107211",
+          "previewUrl": "https://avatars.mds.yandex.net/get-games/16511813/2a000001a15a8df7ce17870bca9049058702//pjpg928x522"
+        }
+      }
+    },
+    {
+      "file": "Publishing/Card/Recorded-20261020/screenshots/03-final-trio.png",
+      "sourceTimeSeconds": 385.4,
+      "label": "Финал: три босса",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "format": "24-bit PNG",
+      "bytes": 1289196,
+      "sha256": "81ce33f39bb5c41578bc24eb7cf32663b5a38099ed2b62c1dbac2647e4fce54c",
+      "platform": "desktop",
+      "pixelEdits": "Crop out Yandex header/white recording border, uniform Lanczos resize only; original game HUD retained",
+      "uploadedToYandex": true,
+      "yandexFileId": "14107053",
+      "yandexPreviewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e2aa0f7637f6a375a0ae6//pjpg928x522",
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107053"
+        },
+        "en": {
+          "fileId": "14107212",
+          "previewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a8df9d74b9ca71d8d12822502//pjpg928x522"
+        }
+      }
+    },
+    {
+      "file": "Publishing/Card/Recorded-20261020/screenshots/04-crimson-arena.png",
+      "sourceTimeSeconds": 274.3,
+      "label": "Красная арена",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "format": "24-bit PNG",
+      "bytes": 572132,
+      "sha256": "c8a72601080f157de4806a5b847922623b59224f24ba3a54353e68ef42d7cfb1",
+      "platform": "desktop",
+      "pixelEdits": "Crop out Yandex header/white recording border, uniform Lanczos resize only; original game HUD retained",
+      "uploadedToYandex": true,
+      "yandexFileId": "14107049",
+      "yandexPreviewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e330036a827f716ec99af//pjpg928x522",
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107049"
+        },
+        "en": {
+          "fileId": "14107207",
+          "previewUrl": "https://avatars.mds.yandex.net/get-games/2977039/2a000001a15a8df7664902a1fc2f4e2f63e4//pjpg928x522"
+        }
+      }
+    },
+    {
+      "file": "Publishing/Card/Recorded-20261020/screenshots/05-merchant.png",
+      "sourceTimeSeconds": 18.0,
+      "label": "Торговец",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "format": "24-bit PNG",
+      "bytes": 642805,
+      "sha256": "b4ad50efe2483ab31de590b0b38e5360e685c647ea0f32f5644abd81e296c9fe",
+      "platform": "desktop",
+      "pixelEdits": "Crop out Yandex header/white recording border, uniform Lanczos resize only; original game HUD retained",
+      "uploadedToYandex": true,
+      "yandexFileId": "14107048",
+      "yandexPreviewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a786e6fb312db4878403459e6//pjpg928x522",
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107048"
+        },
+        "en": {
+          "fileId": "14107210",
+          "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82339c097c43c48dbf751//pjpg928x522"
+        }
+      }
+    },
+    {
+      "file": "Publishing/Card/Recorded-20261020/screenshots/06-camp.png",
+      "sourceTimeSeconds": 418.2,
+      "label": "Лагерь",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "format": "24-bit PNG",
+      "bytes": 1039975,
+      "sha256": "138c8d6a7b186449c9118dc8d4e8378da1b6e9aaaa20fbc1a72e4c4d62515fc3",
+      "platform": "desktop",
+      "pixelEdits": "Crop out Yandex header/white recording border, uniform Lanczos resize only; original game HUD retained",
+      "uploadedToYandex": true,
+      "yandexFileId": "14107051",
+      "yandexPreviewUrl": "https://avatars.mds.yandex.net/get-games/14244614/2a000001a15a786e6eecd39327319ae62a0f//pjpg928x522",
+      "yandexFileIdLanguage": "ru",
+      "yandexUploads": {
+        "ru": {
+          "fileId": "14107051"
+        },
+        "en": {
+          "fileId": "14107208",
+          "previewUrl": "https://avatars.mds.yandex.net/get-games/17999008/2a000001a15a8df82d9cedafcfa6153ff728//pjpg928x522"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Desktop capture only; not recorded on a physical phone and not labeled as mobile screenshots",
+    "The in-game Test wave label is retained in boss shots; no HUD retouching performed",
+    "Audio was decoded and levels measured; subjective listening not performed",
+    "Selected files saved in Russian and English draft cards. English upload uses the original Russian game HUD; it is not a translation of the recording. The English video is saved but playback remains pending."
+  ],
+  "preview": "Publishing/Card/Recorded-20261020/previews/screenshots-overview.jpg",
+  "technicalValidation": "PASS: full audio/video decode, exact 60 fps frame count, MP4 H.264/AAC, fast-start, 16:9, individual files below 100 MB and 28 seconds; all screenshots 1920x1080 RGB PNG",
+  "visualReview": "Main montage inspected at every second including first/last frames; other clips sampled every second. Selected screenshots reviewed as overview and key full-size source frames. Original in-game Test label retained.",
+  "completedAt": "2026-10-20T22:49:08.132689+05:00",
+  "approvedByOwner": true,
+  "uploadCheckedAt": "2026-10-20T23:08:03.653646+05:00",
+  "uploadReport": "Publishing/Card/Recorded-20261020/upload-report.json",
+  "uploadedScope": {
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "uniqueVideoCount": 1,
+    "desktopScreenshotsPerCard": 6,
+    "otherVideosRemainLocal": true
+  },
+  "visualProofs": [
+    "Publishing/Previews/yandex-card-screenshots-20261020.png",
+    "Publishing/Previews/yandex-card-video-20261020.png",
+    "Publishing/Previews/yandex-card-en-language-20261020.png",
+    "Publishing/Previews/yandex-card-en-video-20261020.png",
+    "Publishing/Previews/yandex-card-en-screenshots-20261020.png"
+  ],
+  "uploadReports": {
+    "ru": "Publishing/Card/Recorded-20261020/upload-report.json",
+    "en": "Publishing/Card/Recorded-20261020/upload-report-en.json"
+  },
+  "englishUploadCheckedAt": "2026-10-20T23:28:57.693364+05:00"
+}

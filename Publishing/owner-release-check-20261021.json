@@ -1,0 +1,17 @@
+{
+  "recordedOn": "2026-10-21",
+  "recordedAt": "2026-10-21T01:51:41.742625+05:00",
+  "source": "Direct human owner message in this chat",
+  "ownerStatement": "3 пункт - все работает",
+  "contextVersion": "0.0.0.27",
+  "versionExplicitlyNamedByOwner": false,
+  "scope": "Owner reports the previously listed final desktop/Android, rewarded-ad cancellation, revival enemy/timer continuity, saves and sustained-combat checks working.",
+  "reportedWorking": true,
+  "independentlyRetestedByAgent": false,
+  "newReleaseVersion": "0.0.0.28",
+  "newReleasePhysicallyTestedByAgent": false,
+  "leaderboard": {
+    "ownerInstruction": "4 пункт - пока пропускаем",
+    "status": "Deferred at owner request; not marked passed"
+  }
+}

@@ -119,7 +119,10 @@
       "metaSha256": "3cd4e474c73bc834612189353df86b80d3cd6869f5df0938a6157a9271954fde",
       "originalSha256": "b2df898be0f255867ed6ce4796d7390884fb7348c63b9cc6e517a68211a69e9b",
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/Sprits/uiEL.png",
-      "restoredOn": "2026-10-17"
+      "restoredOn": "2026-10-17",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "file": "Assets/Sprits/Map/preview.png",
@@ -160,7 +163,10 @@
       "metaSha256": "34142b7aae3ec39f279c208d5fa1afce5c4790710e762a5b95c472407bf38606",
       "originalSha256": "afaf3a3058237b29920c281a1285bccbbc81a4e525802cedde68dae5e534ad86",
       "restoredFromBackup": "Builds/AssetReplacements/original-sprites/UI/ForestGarrison/Arena/Barrel.png",
-      "restoredOn": "2026-10-17"
+      "restoredOn": "2026-10-17",
+      "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+      "rightsStatus": "owner-declared-original-art",
+      "independentlyVerifiedOwnership": false
     },
     {
       "file": "Assets/UI/ForestGarrison/Arena/Outpost.png",

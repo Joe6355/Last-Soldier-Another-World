@@ -1,0 +1,21 @@
+{
+  "version": "0.0.0.28",
+  "checkedAt": "2026-10-21T02:13:09.173056+05:00",
+  "result": "PASS",
+  "playerCompilerResponse": "Builds/RatingValidation/Project/Library/Bee/artifacts/2000b0aP.dag/Assembly-CSharp.rsp",
+  "playerCompilerResponseSHA256": "6a47b13605d7e93c0b8d57265b369e5ffa1a5804a5affb263a331f79a0715e4d",
+  "demoDefineCompiled": false,
+  "unityEditorDefineCompiled": false,
+  "generatedCpp": "Builds/RatingValidation/Project/Library/Bee/artifacts/WebGL/il2cppOutput/cpp/Assembly-CSharp__5.cpp",
+  "generatedCppSHA256": "8310f1937b6f386d3f6ea20c4205fdc904b467dd7222bb96248815ae333038c7",
+  "compiledGetterBody": "{\n\t{\n\t\treturn (bool)0;\n\t}\n}",
+  "demoAvailabilityReturnsFalse": true,
+  "rootSettingsMatchBuildProject": true,
+  "settingsSHA256": "1f18e3e1ab83694e60a5b9c80d85b334288de3500f56754634ca072d2712fc95",
+  "scope": "Successful linked WebGL release; the compiler define is absent and the generated player getter returns false.",
+  "linkedBuildSucceeded": true,
+  "buildLog": "Builds/RatingValidation/release-v28-webgl-isolated.log",
+  "archiveSHA256": "4eedb17017062c37c2db6640e838046c32d1c61db1ef8dca48e46bceeaf46c17",
+  "linkedWasmFile": "Build/YandexGames.wasm.unityweb",
+  "linkedWasmSHA256": "b4d9772b9b02c1be822e9f65758a6c7dc3abcbc4df5d1b5f6fbe8c58311ee047"
+}

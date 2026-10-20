@@ -112,5 +112,9 @@
     "desktop": 2,
     "mobile": 2
   },
-  "proof": "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg"
+  "proof": "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg",
+  "historicalOnly": true,
+  "currentlySelectedInYandex": false,
+  "supersededOn": "2026-10-20",
+  "supersededBy": "Publishing/Card/Recorded-20261020/media-report.json"
 }

@@ -1,0 +1,69 @@
+{
+  "version": "0.0.0.28",
+  "result": "PASS",
+  "checkedAt": "2026-10-21T02:10:24.485464+05:00",
+  "uploaded": true,
+  "uploadLimitation": null,
+  "build": {
+    "verifiedPackedSourcePaths": 1172,
+    "mismatches": [],
+    "rootSettingsSHA256": "1f18e3e1ab83694e60a5b9c80d85b334288de3500f56754634ca072d2712fc95",
+    "buildSettingsSHA256": "1f18e3e1ab83694e60a5b9c80d85b334288de3500f56754634ca072d2712fc95",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/release-v28-webgl-isolated.log"
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 60,
+      "output": "Publishing/release-v28-demo-checks.txt",
+      "log": "Builds/RatingValidation/release-v28-demo-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 260,
+      "output": "Publishing/release-v28-finale-regression.txt",
+      "log": "Builds/RatingValidation/release-v28-finale-regression.log"
+    }
+  ],
+  "previews": [],
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "4eedb17017062c37c2db6640e838046c32d1c61db1ef8dca48e46bceeaf46c17",
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": true,
+  "changes": {
+    "demoWaveSelectionInWebGL": false,
+    "editorDemoToolsRetained": true,
+    "ownershipDeclaration": "Publishing/owner-asset-declaration-20261021.json",
+    "ownerManualCheck": "Publishing/owner-release-check-20261021.json",
+    "leaderboardDeferredByOwner": true
+  },
+  "manualCheck": "Public WebGL: 9 cannot open the wave picker. Editor retains isolated demo tools. Gameplay checks are owner-reported; no physical phone check performed by the agent for this revision.",
+  "releaseConfigurationProof": "Publishing/release-v28-demo-compiled-proof.json",
+  "nodeTests": {
+    "report": "Publishing/release-v28-node-tests.json",
+    "passed": 10,
+    "failed": 0
+  },
+  "ownerManualCheck": "Publishing/owner-release-check-20261021.json",
+  "assetOwnership": {
+    "report": "Publishing/owner-asset-declaration-20261021.json",
+    "ownerDeclaredOriginalPngs": 9,
+    "independentlyVerified": false,
+    "knownThirdPartyLicenseRecordsRetained": true
+  },
+  "assetValidation": "Publishing/release-assets-validation.json",
+  "leaderboard": {
+    "status": "Deferred at the owner's explicit request; not marked passed",
+    "testedThisTurn": false
+  },
+  "testAssetRestore": "Publishing/release-v28-test-asset-restore.json",
+  "uploadedCheckedAt": "2026-10-20T21:19:59.563Z",
+  "archiveFileId": "14108398",
+  "archiveProcessing": "Ready",
+  "runtimeBuildPath": "623393/qfu2yr914w6g7o9372mvocke5dciz70d",
+  "uploadReport": "Publishing/upload-v28-check.json",
+  "uploadProof": "Publishing/Previews/yandex-version28-20261021.png",
+  "menuProof": "Publishing/Previews/yandex-version28-menu-20261021.png",
+  "moderationSubmitted": false
+}
