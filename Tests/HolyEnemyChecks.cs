@@ -89,6 +89,7 @@ public static class HolyEnemyChecks
                     wave = WaveSpawner.FindArena(false);
                     mobile = UnityEngine.Object.FindObjectOfType<MobileControls>();
                     wave.enabled = false;
+                    DamageNumbers.SetEnabled(true);
                     player.transform.position = new Vector3(1000, 1000, player.transform.position.z);
                     player.GetComponent<Rigidbody2D>().position = player.transform.position;
                     player.crossbowController.canShoot = false;
@@ -118,6 +119,8 @@ public static class HolyEnemyChecks
                     foreach (var actor in actors)
                     {
                         actor.StopAllCoroutines(); actor.CancelInvoke(); SetHealth(actor, 90);
+                        var numbers = UnityEngine.Object.FindObjectOfType<DamageNumbers>();
+                        typeof(DamageNumbers).GetMethod("Clear", Private).Invoke(numbers, null);
                         var arrow = UnityEngine.Object.Instantiate(player.crossbowController.arrowPrefabs[arrowType], Vector3.one * 2000, Quaternion.identity).GetComponent<ArrowDef>();
                         arrow.damage = 2;
                         Check(arrow.IsHoly == (arrowType == 2), "Holy classification for ammunition " + arrowType);
@@ -125,6 +128,13 @@ public static class HolyEnemyChecks
                         bool holy = actor.CompareTag("HolyEnemy");
                         int expected = holy && arrowType != 2 ? 90 : arrowType == 2 && !holy ? 92 : 88 - (arrowType == 1 && !(actor is Roberto) ? 1 : 0);
                         Check(Health(actor) == expected, "Hit rule " + actor.name + "/type " + arrowType + ": " + expected);
+                        var labels = numbers.GetComponentsInChildren<TMPro.TextMeshPro>().Where(t => t.gameObject.activeInHierarchy).ToArray();
+                        if (arrowType == 2 && !holy)
+                        {
+                            Check(labels.Length == 1 && labels[0].text == "+2", "Holy healing shows its actual positive amount: " + actor.name);
+                            Check(labels[0].color.g > labels[0].color.r, "Holy healing is green: " + actor.name);
+                        }
+                        else Check(!labels.Any(t => t.text.StartsWith("+")), "Damage or immunity is never presented as healing: " + actor.name);
                         UnityEngine.Object.Destroy(arrow.gameObject);
                     }
                     Next(3); break;

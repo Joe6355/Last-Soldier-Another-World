@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-19T21:19:48.859950+00:00",
+  "builtAt": "2026-10-20T10:57:46.475242+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 18058731,
-  "unpackedBytes": 18367607,
-  "sha256": "25a63044ba1ba9ca53840bcc457d66669418230ad1337f8bdb9334170a5e36c1",
+  "zipBytes": 18059414,
+  "unpackedBytes": 18367238,
+  "sha256": "bd2624ad1e7d672eb581c3d3f6e89aa7ba5f0ee8b48d4978902191b36f1b2d38",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "7fe2a30f887d47d41bd320bccfb1259ee27dccfbc1192c3dce4078369859c0a1",
-    "Build/YandexGames.framework.js.unityweb": "9ab0b55e7572018294e7f0383891a19f83f196776b975c587764e5508d62dc5c",
+    "Build/YandexGames.data.unityweb": "5624dff6f54079b4366d7f360d993ef08b83fd6ed068fd6ac69736f14473cf3a",
+    "Build/YandexGames.framework.js.unityweb": "db53541305d29d499144070e0a953cb2271150c2639e6ed6bb1f1bf42ff697f4",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "edd28d3cda69ce915f8e356aa2bf5d5b1f4e6a14586d2e1b97e354eced4e91ff",
-    "index.html": "434f332fb9d7c9e9964791ef0660c1b8c05c9634ace2a4d09e115c90ec89e45a",
+    "Build/YandexGames.wasm.unityweb": "3f33a29b23a17b3b0483fba709fb59d0611aa239380552ad52d4434d1718c2c2",
+    "index.html": "0e32f701ae8a902a3b159b970c9818adc9b37d3dfa4c19482b0e4377a5f6c227",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -41,7 +41,7 @@
     "style.css": "8c35d6f31b35049c7958930ac9ccc7f311dcf8dc04c0adb4539caec218000c32"
   },
   "sourceSnapshot": {
-    "matched_files": 1204,
+    "matched_files": 1202,
     "files": [
       {
         "path": "Assets/Anim/Animals/Babka.controller",
@@ -957,7 +957,7 @@
       },
       {
         "path": "Assets/Bosses/Shaula/Shaula.prefab",
-        "sha256": "6274b4d8a418efb64739f997e4cd20bdaf2bc6baad170ec7273ffe5f019e5164"
+        "sha256": "cba17e2bbd1caf2555c2f6b70fece1f05b18a0c1549fd4f04c20f9c88204f944"
       },
       {
         "path": "Assets/Bosses/Shaula/Shaula.prefab.meta",
@@ -1021,7 +1021,7 @@
       },
       {
         "path": "Assets/Editor/ShaulaAuthoring.cs",
-        "sha256": "c806cac12695dc863f2bfa8854e078fd63e1ef0b74a7b4c1505962054ff406c8"
+        "sha256": "72c2ef131fb35acc569f64d118b7357edb76fc3b32a6404f6e711aa87e109a3d"
       },
       {
         "path": "Assets/Editor/ShaulaAuthoring.cs.meta",
@@ -2041,7 +2041,7 @@
       },
       {
         "path": "Assets/Resources/Localization/English.json",
-        "sha256": "9d63e679bd1a1f2baacd5928a679a0e14d547ebd847a644cc613f30ad743d9f2"
+        "sha256": "f8537da726a8e2458ea9c72980bdba68e9d8bcab12b7f39713870aa3b678bdb5"
       },
       {
         "path": "Assets/Resources/Localization/English.json.meta",
@@ -2073,7 +2073,7 @@
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs",
-        "sha256": "ce906ff42e5cdc7accfc657db41565ca0a672ec1225fe790cd9afae3327c6948"
+        "sha256": "341001e97ccb2a33744eac6c9c11c5854d0d777f16d478d835a6ef68e9335b62"
       },
       {
         "path": "Assets/Scripts/ArrowDef.cs.meta",
@@ -2105,7 +2105,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs",
-        "sha256": "e9e60d1e355871f9d78261ae40920551f205c49cf750aaed9814a69b8577c62e"
+        "sha256": "7c18794c8799f05becaad3d0cb5a2292109dc154d87b2ca70f7a374378370e32"
       },
       {
         "path": "Assets/Scripts/Boss/Asasin/Roberto.cs.meta",
@@ -2141,7 +2141,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.cs",
-        "sha256": "3e51b759845f8956ca79b384590174724e1df0254c79ccc57aaf884da9f2b28c"
+        "sha256": "5214053add218786ebba018ded77ee24794918fa1dbbbed02a33d5ea4ecafa13"
       },
       {
         "path": "Assets/Scripts/Boss/Shaula/ShaulaBoss.cs.meta",
@@ -2161,7 +2161,7 @@
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs",
-        "sha256": "381246a1242d8a8c1eacfcb508e93c324c7600b175fc8bb40f69da3a8813138a"
+        "sha256": "cbe06e9b1a8c52e5166cffee7f3e6839a571e9e949091c9c2188f30443df4d9a"
       },
       {
         "path": "Assets/Scripts/Boss/SlimeBoss/SlimeBoss.cs.meta",
@@ -2205,7 +2205,7 @@
       },
       {
         "path": "Assets/Scripts/CrossbowController.cs",
-        "sha256": "53b5dc915ac77f0400a27ecde1703ad72f3c8300232a5ecc22a219eef07905a0"
+        "sha256": "10875c76c151c6b5df68307e5119d9a51379cccff4f5d6fd8ae7b8ae81572c6a"
       },
       {
         "path": "Assets/Scripts/CrossbowController.cs.meta",
@@ -2221,7 +2221,7 @@
       },
       {
         "path": "Assets/Scripts/Enemy.cs",
-        "sha256": "b4446c546b14a623bc1db431c8f65a4c102b113801bd897c08d88699344b33f6"
+        "sha256": "513f192ae4fa95ce057d6ffcf56a1e42c8a414b225340087dd598119ef7d945e"
       },
       {
         "path": "Assets/Scripts/Enemy.cs.meta",
@@ -2253,7 +2253,7 @@
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs",
-        "sha256": "a6bbf3fb0a3179db33a368d562c0bfca20044bccdfb2d7f034dd7ade8a8dba37"
+        "sha256": "156611e4944eb06cf96214f2b69774b1e6f6393729644004fedb31f5171d5a0c"
       },
       {
         "path": "Assets/Scripts/HealerEnemy.cs.meta",
@@ -2357,7 +2357,7 @@
       },
       {
         "path": "Assets/Scripts/SceletMag.cs",
-        "sha256": "aafc0044bb69e5f46e38def9df7276a57a57b2f127be4cf41e522de24f3b5153"
+        "sha256": "99d7af9c37611d8d3f6ee1122d5207d29da11deba55095e048e6d411cfa2964e"
       },
       {
         "path": "Assets/Scripts/SceletMag.cs.meta",
@@ -2365,7 +2365,7 @@
       },
       {
         "path": "Assets/Scripts/SceletonDef.cs",
-        "sha256": "4509f236f5e3918f1adabf33072912093c0241cdb28024b227bc87876543a95c"
+        "sha256": "5e3d7f1ab2b675e779bc75a21c92a337fe0f3e206d48fe2987fc13015fc33c8a"
       },
       {
         "path": "Assets/Scripts/SceletonDef.cs.meta",
@@ -2389,7 +2389,7 @@
       },
       {
         "path": "Assets/Scripts/Slime.cs",
-        "sha256": "d6b1917503e1d7ef1ce1c41d85388b5fec2ee0a50cd53bd1a8870d6f11fb77cc"
+        "sha256": "e954b763650405a0c30cdad7ece53b0000014c4fe961706e91d2cc35cd31222c"
       },
       {
         "path": "Assets/Scripts/Slime.cs.meta",
@@ -2413,7 +2413,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/DamageNumbers.cs",
-        "sha256": "ac56be130a0d55259aa5a8ed6d223a3c7ffc4acdf9197ba2b8a53df9c9dfec6a"
+        "sha256": "7b70c44e6ba9b8b2968970347c1cdcd360530e50f8a8c798541ed9b2341a107b"
       },
       {
         "path": "Assets/Scripts/Ui/DamageNumbers.cs.meta",
@@ -2460,14 +2460,6 @@
         "sha256": "f644b6e75057ed9e7adddc3ca876f1d68206dae3ae7475e139f86e1274eb4a49"
       },
       {
-        "path": "Assets/Scripts/Ui/TipsManager.CombatHints.cs",
-        "sha256": "af979f8e0f1b4b3ff3b0be2961f0de6dc1a360da62ae0725b3e8f3b8d5d0e7f9"
-      },
-      {
-        "path": "Assets/Scripts/Ui/TipsManager.CombatHints.cs.meta",
-        "sha256": "755d63679aa7861c47f5a62ce2102df49b85c9e4e5ec6b92ba6780c6a6decdb3"
-      },
-      {
         "path": "Assets/Scripts/Ui/TipsManager.Guided.cs",
         "sha256": "bddaa9b096d0acf294979d8688217159c1ab30e9488cf9f1756448a281d1571f"
       },
@@ -2477,7 +2469,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.View.cs",
-        "sha256": "012103fedf21041ab39e736cdb2f5175913e63eedc510d5df8be16885c7a9dc7"
+        "sha256": "f522d305bf815bcb67a465df4103c76035dce79823918552c8e4a01062a397a9"
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.View.cs.meta",
@@ -2485,7 +2477,7 @@
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.cs",
-        "sha256": "eb72909709ba839cc6821bc0984b2ecc4a2f3682ed7824b780d1269454e02627"
+        "sha256": "617bf0e3795e490f1a4d82219746528a361c1ae6bff6c6a64b0407a2f142c854"
       },
       {
         "path": "Assets/Scripts/Ui/TipsManager.cs.meta",
@@ -4861,8 +4853,8 @@
       }
     ]
   },
-  "sourceSettingsSha256": "fa3ec20106b3e7471b273f25749e77c3723c1b0c745bce9d789db0c2cdde0fcf",
-  "buildSettingsSha256": "fa3ec20106b3e7471b273f25749e77c3723c1b0c745bce9d789db0c2cdde0fcf",
+  "sourceSettingsSha256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
+  "buildSettingsSha256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
   "validationLogs": [
     "Builds/RatingValidation/visual-restore-checks.log",
     "Builds/RatingValidation/visual-restoration-runtime-final.log",
@@ -4920,13 +4912,18 @@
     "Builds/RatingValidation/combat-v25-holy-regression.log",
     "Builds/RatingValidation/combat-v25-shaula-regression.log",
     "Builds/RatingValidation/combat-v25-localization-regression.log",
-    "Builds/RatingValidation/combat-v25-tutorial-regression.log"
+    "Builds/RatingValidation/combat-v25-tutorial-regression.log",
+    "Builds/RatingValidation/combat-v26-webgl-isolated.log",
+    "Builds/RatingValidation/combat-v26-tests.log",
+    "Builds/RatingValidation/combat-v26-holy-regression.log",
+    "Builds/RatingValidation/combat-v26-shaula-regression.log",
+    "Builds/RatingValidation/combat-v26-localization-regression.log"
   ],
-  "uploadedToYandex": false,
+  "uploadedToYandex": true,
   "previousUploadedArchive": {
-    "sha256": "7a9a7cd0bc1f00847c8107bd92b734c209f70355a81e2a6c84f644787cad3fd8",
-    "version": "0.0.0.24",
-    "fileId": "14066854"
+    "sha256": "25a63044ba1ba9ca53840bcc457d66669418230ad1337f8bdb9334170a5e36c1",
+    "version": "0.0.0.25",
+    "fileId": "14103477"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -4943,11 +4940,11 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.24",
-    "archiveFileId": "14066854",
-    "checkedAt": "2026-10-19T00:30:15.877603+05:00",
+    "version": "0.0.0.26",
+    "archiveFileId": "14103677",
+    "checkedAt": "2026-10-20T16:02:29.489772+05:00",
     "archiveProcessing": "Ready",
-    "archiveLastChangedAtConsole": "00:27:55 19/10/2026",
+    "archiveLastChangedAtConsole": "15:58:58 20/10/2026",
     "platforms": [
       "desktop",
       "Android"
@@ -4958,7 +4955,7 @@
       "ru",
       "en"
     ],
-    "runtimeCheckedVersion": "0.0.0.24",
+    "runtimeCheckedVersion": "0.0.0.26",
     "moderationSubmitted": false,
     "published": false,
     "moderationBlocker": "Submit button still disabled after English media finished processing; disabled property verified in DOM and visible UI. Exact reason not exposed.",
@@ -5101,7 +5098,11 @@
       "Publishing/Previews/yandex-mobile-screens-en-v13-20261017.jpg",
       "Publishing/Previews/yandex-moderation-disabled-v13-20261017.jpg",
       "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg",
-      "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg"
+      "Publishing/Previews/yandex-media-ru-processing-v13-20261017.jpg",
+      "Publishing/Previews/yandex-version25-20261020.png",
+      "Publishing/Previews/yandex-version25-menu-20261020.png",
+      "Publishing/Previews/yandex-version26-20261020.png",
+      "Publishing/Previews/yandex-version26-menu-20261020.png"
     ],
     "leaderboardBridgeCorrection": {
       "source": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
@@ -5157,7 +5158,7 @@
       "platformIncidentConfirmedBySupport": true,
       "latestCheck": "Publishing/leaderboard-recheck-20261017.json"
     },
-    "lastSavedAtConsole": "03:08:28 18/10/2026",
+    "lastSavedAtConsole": "15:58:58 20/10/2026",
     "consoleTimeoutResolvedAfterReload": true,
     "latestReleaseCheck": {
       "checkedAt": "2026-10-16",
@@ -5188,12 +5189,13 @@
     "cardMediaRecordedForVersion": "0.0.0.13",
     "currentRuntimePath": "623393/aoam67bl98pzlegns5np5ky7ohg9q1gb",
     "draftSmokeCheck": {
-      "version": "0.0.0.24",
-      "checkedAt": "2026-10-19T00:30:15.877603+05:00",
+      "version": "0.0.0.26",
+      "checkedAt": "2026-10-20T16:02:29.489772+05:00",
       "menuRendered": true,
       "gameSceneVerified": false,
       "physicalKeyboardDemoVerified": false,
-      "menuProof": "Publishing/Previews/yandex-version24-menu-20261019.png"
+      "menuProof": "Publishing/Previews/yandex-version26-menu-20261020.png",
+      "runtimeBuildPath": "623393/p8lii20gqhcuvi5n7pm21adv5e04iypn"
     },
     "leaderboardLatestCheck": {
       "checkedOn": "2026-10-20",
@@ -5257,8 +5259,8 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.25",
-  "uploadLimitation": "User requested an archive only; no draft upload in this turn.",
+  "localVersion": "0.0.0.26",
+  "uploadLimitation": null,
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
     "result": "Main menu and cloud profile rendered; owner confirmed Play and Settings buttons work",
@@ -5509,6 +5511,39 @@
       }
     ],
     "physicalPhoneTestPerformed": false,
-    "browserLaunchVerified": false
+    "browserLaunchVerified": true,
+    "uploadReport": "Publishing/upload-v25-check.json"
+  },
+  "combatV26": {
+    "report": "Publishing/combat-v26.json",
+    "validations": [
+      {
+        "result": "PASS",
+        "checks": 398,
+        "output": "Publishing/combat-v26-checks.txt",
+        "log": "Builds/RatingValidation/combat-v26-tests.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 275,
+        "output": "Publishing/combat-v26-holy-regression.txt",
+        "log": "Builds/RatingValidation/combat-v26-holy-regression.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 152,
+        "output": "Publishing/combat-v26-shaula-regression.txt",
+        "log": "Builds/RatingValidation/combat-v26-shaula-regression.log"
+      },
+      {
+        "result": "PASS",
+        "checks": 1090,
+        "output": "Publishing/combat-v26-localization-regression.txt",
+        "log": "Builds/RatingValidation/combat-v26-localization-regression.log"
+      }
+    ],
+    "physicalPhoneTestPerformed": false,
+    "browserLaunchVerified": true,
+    "uploadReport": "Publishing/upload-v26-check.json"
   }
 }

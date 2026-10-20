@@ -59,7 +59,7 @@ public static class ShaulaAuthoring
         Set(boss, "effectMaterial", material);
         Set(boss, "musicNormal", Audio("music-phase-1")); Set(boss, "musicCrimson", Audio("music-phase-2"));
         var serialized = new SerializedObject(boss);
-        serialized.FindProperty("maxHealth").floatValue = 720;
+        serialized.FindProperty("maxHealth").floatValue = 1120;
         var shader = AssetDatabase.LoadAssetAtPath<Shader>(Folder + "/Carapace.shader");
         var carapace = AssetDatabase.LoadAssetAtPath<Material>(Folder + "/Carapace.mat");
         if (carapace == null) { carapace = new Material(shader); AssetDatabase.CreateAsset(carapace, Folder + "/Carapace.mat"); }

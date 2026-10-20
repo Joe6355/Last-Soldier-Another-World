@@ -195,7 +195,7 @@ MonoBehaviour:
   musicNormal: {fileID: 8300000, guid: 16617c4710bb9734190a3d9a90d3aa74, type: 3}
   musicCrimson: {fileID: 8300000, guid: a8d28759fd498fd419055d03b336e9a5, type: 3}
   tailZone: {fileID: 5971445237064948295}
-  maxHealth: 720
+  maxHealth: 1120
   maxTailHealth: 90
   moveSpeed: 1.65
   armorMultiplier: 0.6

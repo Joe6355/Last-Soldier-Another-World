@@ -85,7 +85,8 @@ public static class ShaulaChecks
                 case 2:
                     boss = wave.Shaula;
                     Check(boss != null && boss.IsAlive && boss.gameObject.activeInHierarchy, "Wave 20 spawns live Shaula");
-                    Near(boss.MaximumHealth, 900, "Wave 20 Shaula has 900 HP, up from 600");
+                    Near(boss.MaximumHealth, 1400, "Wave 20 Shaula has 1400 HP, up from 900 by exactly 500");
+                    DamageNumbers.SetEnabled(true);
                     Check(wave.CurrentWaveNumber == 20 && wave.ActiveEnemyCount == 0, "Wave 20 follows the dedicated encounter path");
                     Check(!Get<GameObject>(wave, "bossWave10").activeSelf && !Get<GameObject>(wave, "bossWave15").activeSelf, "Earlier bosses remain dormant");
                     Check(Get<ShaulaBoss>(WaveSpawner.FindArena(true), "shaulaPrefab") == null, "Red paired waves are unchanged");
@@ -127,6 +128,9 @@ public static class ShaulaChecks
                     healthBefore = boss.Health; tailBefore = boss.TailHealth; ArrowDef.DamageEnemy(tail, 20);
                     Near(boss.Health, healthBefore - 30, "Tail hit damages main health"); Near(boss.TailHealth, tailBefore - 30, "Tail durability is independently reduced");
                     healthBefore = boss.Health; ArrowDef.DamageEnemy(tail, 10, true); Near(boss.Health, healthBefore + 10, "Holy arrows heal Shaula instead of damaging her");
+                    var healingNumbers = UnityEngine.Object.FindObjectOfType<DamageNumbers>();
+                    Check(healingNumbers.GetComponentsInChildren<TMPro.TextMeshPro>().Any(t => t.text == "+10" && t.color.g > t.color.r),
+                        "Holy healing through the tail displays a green positive health amount");
                     healthBefore = boss.Health; boss.ApplyPoison(4, 2, .08f); Next(.3f); break;
                 case 3:
                     Near(boss.Health, healthBefore - 4.8f, "Poison ticks reach the new boss through the common damage rules");

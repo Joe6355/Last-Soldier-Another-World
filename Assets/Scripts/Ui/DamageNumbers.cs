@@ -64,6 +64,14 @@ public sealed class DamageNumbers : MonoBehaviour
         instance.Display(target, 0, true);
     }
 
+    public static void ShowHealing(Transform target, double previousHealth, double currentHealth)
+    {
+        double healing = currentHealth - previousHealth;
+        if (!IsEnabled || instance == null || !instance.isActiveAndEnabled || target == null || healing <= 0
+            || double.IsNaN(healing) || double.IsInfinity(healing)) return;
+        instance.Display(target, healing, healing: true);
+    }
+
     private Number CreateNumber()
     {
         var label = Instantiate(numberPrefab, transform);
@@ -73,7 +81,7 @@ public sealed class DamageNumbers : MonoBehaviour
         return number;
     }
 
-    private void Display(Transform target, double damage, bool immunity = false)
+    private void Display(Transform target, double damage, bool immunity = false, bool healing = false)
     {
         if (numberPrefab == null) return;
         int sourceId = target.GetInstanceID();
@@ -98,9 +106,10 @@ public sealed class DamageNumbers : MonoBehaviour
         number.active = true;
         number.immunity = immunity;
         number.sourceId = sourceId;
-        number.label.color = immunity ? new Color32(213, 193, 163, 255) : numberPrefab.color;
+        number.label.color = immunity ? new Color32(213, 193, 163, 255)
+            : healing ? new Color32(137, 232, 123, 255) : numberPrefab.color;
         number.label.text = immunity ? (GameLocalization.Language == "en" ? "Immune" : "Иммунитет")
-            : damage.ToString("0.##", CultureInfo.CurrentCulture);
+            : (healing ? "+" : "") + damage.ToString("0.##", CultureInfo.CurrentCulture);
         number.label.alpha = 1;
         number.label.transform.position = number.origin;
         number.label.transform.localScale = Vector3.one * 1.15f;

@@ -23,7 +23,7 @@ public sealed partial class ShaulaBoss : Sounds
     [SerializeField] private AudioClip musicNormal, musicCrimson;
     [SerializeField] private ShaulaHitZone tailZone;
     [Header("Base balance, before wave reinforcement")]
-    [SerializeField, Min(1)] private float maxHealth = 720;
+    [SerializeField, Min(1)] private float maxHealth = 1120;
     [SerializeField, Min(1)] private float maxTailHealth = 90;
     [SerializeField, Min(.1f)] private float moveSpeed = 1.65f;
     [SerializeField, Range(.1f, 1)] private float armorMultiplier = .6f;
@@ -237,7 +237,13 @@ public sealed partial class ShaulaBoss : Sounds
     public void ReceiveHit(int amount, bool holy, ShaulaHitZone.Zone zone, Transform hitPoint)
     {
         if (!CanAct || amount <= 0) return;
-        if (holy) { health = Mathf.Min(maxHealth, health + amount); RefreshHud(); return; }
+        if (holy)
+        {
+            float previousHealingHealth = health;
+            health = Mathf.Min(maxHealth, health + amount);
+            DamageNumbers.ShowHealing(hitPoint != null ? hitPoint : transform, previousHealingHealth, health);
+            RefreshHud(); return;
+        }
         if (zone == ShaulaHitZone.Zone.Tail && !TailIntact) return;
         float multiplier = zone == ShaulaHitZone.Zone.Tail ? TailExposed ? 2f : 1.5f
             : zone == ShaulaHitZone.Zone.Joint ? 1.35f : vulnerableRemaining > 0 ? 1f : armorMultiplier;

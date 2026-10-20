@@ -639,7 +639,9 @@ public class Roberto : Sounds
     public void RestoreHealth(float amount)
     {
         if (currentState == BossState.Dead || amount <= 0) return;
+        float previousHealth = currentHP;
         currentHP = Mathf.Min(maxHP, currentHP + amount);
+        DamageNumbers.ShowHealing(transform, previousHealth, currentHP);
         if (hpBar != null) hpBar.fillAmount = currentHP / maxHP;
     }
 

@@ -1,0 +1,1092 @@
+PASS
+Catalog, live language selection, scenes, achievements, tutorial and shop audio passed
+Complete English catalog loaded
+Placeholders preserved: {0} → {1} монет за захват
+English template resolves: 830 → 831 монет за захват
+Placeholders preserved: {0} → {1} с удержания
+English template resolves: 830 → 831 с удержания
+Placeholders preserved: Построить арбалетную башню / Вторая башня на уровне 3
+English template resolves: Построить арбалетную башню / Вторая башня на уровне 3
+Placeholders preserved: Урон {0} → {1} / Башен: {2} / 2
+English template resolves: Урон 830 → 831 / Башен: 832 / 2
+Placeholders preserved: Дальность {0} → {1}
+English template resolves: Дальность 830 → 831
+Placeholders preserved: Выстрел: {0} → {1} с
+English template resolves: Выстрел: 830 → 831 с
+Placeholders preserved: Открыть руну притяжения / R: поставить · 1 за волну
+English template resolves: Открыть руну притяжения / R: поставить · 1 за волну
+Placeholders preserved: Взрыв: {0} → {1} урона / Одна руна за волну
+English template resolves: Взрыв: 830 → 831 урона / Одна руна за волну
+Placeholders preserved: Радиус {0} → {1}
+English template resolves: Радиус 830 → 831
+Placeholders preserved: Стяжка {0} → {1} с
+English template resolves: Стяжка 830 → 831 с
+Placeholders preserved: Открыть две ловушки из корней / Удержание и шипы
+English template resolves: Открыть две ловушки из корней / Удержание и шипы
+Placeholders preserved: Удержание {0} → {1} с / Радиус {2} → {3} / Шипы: {4} → {5} урона
+English template resolves: Удержание 830 → 831 с / Радиус 832 → 833 / Шипы: 834 → 835 урона
+Placeholders preserved: Восстановить алтарь / Стой рядом 2 с для лечения
+English template resolves: Восстановить алтарь / Стой рядом 2 с для лечения
+Placeholders preserved: Лечение {0} → {1} HP / Восстановление {2} → {3} с
+English template resolves: Лечение 830 → 831 HP / Восстановление 832 → 833 с
+Placeholders preserved: Автоподбор монет и стрел / Радиус 2 · действует постоянно
+English template resolves: Автоподбор монет и стрел / Радиус 2 · действует постоянно
+Placeholders preserved: Монеты и стрелы притягиваются / Действует постоянно
+English template resolves: Монеты и стрелы притягиваются / Действует постоянно
+Placeholders preserved: Сначала открой притяжение / Радиус до 6 · 8 уровней
+English template resolves: Сначала открой притяжение / Радиус до 6 · 8 уровней
+Placeholders preserved: Радиус {0} → {1} / Монеты и стрелы рядом с героем
+English template resolves: Радиус 830 → 831 / Монеты и стрелы рядом с героем
+Placeholders preserved:  / Сначала изучи притяжение лута
+English template resolves:  / Сначала изучи притяжение лута
+Placeholders preserved:  / Сначала построй башню
+English template resolves:  / Сначала построй башню
+Placeholders preserved:  / Сначала открой руну
+English template resolves:  / Сначала открой руну
+Placeholders preserved: {0} / Уровень {1} / {2}
+English template resolves: 830 / Уровень 831 / 832
+Placeholders preserved: +{0} монет
+English template resolves: +830 монет
+Placeholders preserved: Аванпост захвачен
+English template resolves: Аванпост захвачен
+Placeholders preserved: Аванпост · {0} / {1} с
+English template resolves: Аванпост · 830 / 831 с
+Placeholders preserved: Руна · ждёт врага
+English template resolves: Руна · ждёт врага
+Placeholders preserved: Стяжка
+English template resolves: Стяжка
+Placeholders preserved: Арбалетная башня
+English template resolves: Арбалетная башня
+Placeholders preserved: Корни · {0} с
+English template resolves: Корни · 830 с
+Placeholders preserved: Корни
+English template resolves: Корни
+Placeholders preserved: Алтарь · {0} с
+English template resolves: Алтарь · 830 с
+Placeholders preserved: Алтарь · лечение за 2 с
+English template resolves: Алтарь · лечение за 2 с
+Placeholders preserved: Отойди! Взрыв
+English template resolves: Отойди! Взрыв
+Placeholders preserved: Отойди! Яд
+English template resolves: Отойди! Яд
+Placeholders preserved: Обычные стрелы
+English template resolves: Обычные стрелы
+Placeholders preserved: Ядовитые стрелы
+English template resolves: Ядовитые стрелы
+Placeholders preserved: Святые стрелы
+English template resolves: Святые стрелы
+Placeholders preserved: Пробивные стрелы
+English template resolves: Пробивные стрелы
+Placeholders preserved: Обычный режим
+English template resolves: Обычный режим
+Placeholders preserved: Дробовик
+English template resolves: Дробовик
+Placeholders preserved: Автоматический режим
+English template resolves: Автоматический режим
+Placeholders preserved: Неизвестный режим
+English template resolves: Неизвестный режим
+Placeholders preserved: видит игрока
+English template resolves: видит игрока
+Placeholders preserved: Изучено
+English template resolves: Изучено
+Placeholders preserved: Максимум
+English template resolves: Максимум
+Placeholders preserved: {0} монет
+English template resolves: 830 монет
+Placeholders preserved: Лечение {0} → {1} HP / Уровень {2} · +{3} HP
+English template resolves: Лечение 830 → 831 HP / Уровень 832 · +833 HP
+Placeholders preserved: Режим разблокирован
+English template resolves: Режим разблокирован
+Placeholders preserved: 3 стрелы за выстрел / Клавиша 2 после покупки
+English template resolves: 3 стрелы за выстрел / Клавиша 2 после покупки
+Placeholders preserved: Огонь при удержании ЛКМ / Клавиша 3 после покупки
+English template resolves: Огонь при удержании ЛКМ / Клавиша 3 после покупки
+Placeholders preserved: {0} → {1} с
+English template resolves: 830 → 831 с
+Placeholders preserved: {0} → {1} / Уровень {2} · +{3}
+English template resolves: 830 → 831 / Уровень 832 · +833
+Placeholders preserved:  монет
+English template resolves:  монет
+Placeholders preserved: Награда за полный просмотр видео
+English template resolves: Награда за полный просмотр видео
+Placeholders preserved: Восстановление {0} HP · {1}
+English template resolves: Восстановление 830 HP · 831
+Placeholders preserved: Получено
+English template resolves: Получено
+Placeholders preserved: Забрать
+English template resolves: Забрать
+Placeholders preserved: В процессе
+English template resolves: В процессе
+Placeholders preserved: Получено {0} / {1} · Можно забрать: {2}
+English template resolves: Получено 830 / 831 · Можно забрать: 832
+Placeholders preserved: Для наград освободи место в кошельке
+English template resolves: Для наград освободи место в кошельке
+Placeholders preserved: Выполняй цели и забирай монеты здесь. Каждая награда выдаётся один раз
+English template resolves: Выполняй цели и забирай монеты здесь. Каждая награда выдаётся один раз
+Placeholders preserved: Получено +{0} монет
+English template resolves: Получено +830 монет
+Placeholders preserved: Загрузка видео…
+English template resolves: Загрузка видео…
+Placeholders preserved: Видео сейчас недоступно. Попробуй позже
+English template resolves: Видео сейчас недоступно. Попробуй позже
+Placeholders preserved: Получено {0} монет!
+English template resolves: Получено 830 монет!
+Placeholders preserved: Просмотр не завершён. Награда не получена
+English template resolves: Просмотр не завершён. Награда не получена
+Placeholders preserved: Загрузка и просмотр видео…
+English template resolves: Загрузка и просмотр видео…
+Placeholders preserved: Бонус недоступен: достигнут предел монет
+English template resolves: Бонус недоступен: достигнут предел монет
+Placeholders preserved: Ждём подключения рекламы…
+English template resolves: Ждём подключения рекламы…
+Placeholders preserved: Зеркало
+English template resolves: Зеркало
+Placeholders preserved: Зелье лечения
+English template resolves: Зелье лечения
+Placeholders preserved: наборов
+English template resolves: наборов
+Placeholders preserved: набор
+English template resolves: набор
+Placeholders preserved: набора
+English template resolves: набора
+Placeholders preserved: В наборе: {0} шт. · {1} монет / У тебя: {2} шт.
+English template resolves: В наборе: 830 шт. · 831 монет / У тебя: 832 шт.
+Placeholders preserved:  · Лечение {0} HP
+English template resolves:  · Лечение 830 HP
+Placeholders preserved: {0} · {1} шт.
+English template resolves: 830 · 831 шт.
+Placeholders preserved: Итого: {0} монет
+English template resolves: Итого: 830 монет
+Placeholders preserved: Останется: {0}
+English template resolves: Останется: 830
+Placeholders preserved: Можно купить: {0}
+English template resolves: Можно купить: 830
+Placeholders preserved: Товар недоступен
+English template resolves: Товар недоступен
+Placeholders preserved: Нет места для ещё одного набора
+English template resolves: Нет места для ещё одного набора
+Placeholders preserved: Недостаточно монет
+English template resolves: Недостаточно монет
+Placeholders preserved: Русский
+English template resolves: Русский
+Placeholders preserved: Игрок
+English template resolves: Игрок
+Placeholders preserved: Статистика не предоставлена
+English template resolves: Статистика не предоставлена
+Placeholders preserved: Волны: —   Враги: — / Элита: —   Боссы: —
+English template resolves: Волны: —   Враги: — / Элита: —   Боссы: —
+Placeholders preserved: Торговец
+English template resolves: Торговец
+Placeholders preserved: Открыть сундук
+English template resolves: Открыть сундук
+Placeholders preserved: Одиночный
+English template resolves: Одиночный
+Placeholders preserved: Автоогонь
+English template resolves: Автоогонь
+Placeholders preserved: Перетаскивай кнопки. Бой на паузе.
+English template resolves: Перетаскивай кнопки. Бой на паузе.
+Placeholders preserved: Кнопки пересекаются. Выбери свободное место.
+English template resolves: Кнопки пересекаются. Выбери свободное место.
+Placeholders preserved: Первые победы
+English template resolves: Первые победы
+Placeholders preserved: Победить 25 врагов любого типа
+English template resolves: Победить 25 врагов любого типа
+Placeholders preserved: Защитник лагеря
+English template resolves: Защитник лагеря
+Placeholders preserved: Победить 100 врагов любого типа
+English template resolves: Победить 100 врагов любого типа
+Placeholders preserved: Опытный боец
+English template resolves: Опытный боец
+Placeholders preserved: Победить 250 врагов любого типа
+English template resolves: Победить 250 врагов любого типа
+Placeholders preserved: Гроза арены
+English template resolves: Гроза арены
+Placeholders preserved: Победить 500 врагов любого типа
+English template resolves: Победить 500 врагов любого типа
+Placeholders preserved: Тысяча побед
+English template resolves: Тысяча побед
+Placeholders preserved: Победить 1 000 врагов любого типа
+English template resolves: Победить 1 000 врагов любого типа
+Placeholders preserved: Неудержимый
+English template resolves: Неудержимый
+Placeholders preserved: Победить 2 500 врагов любого типа
+English template resolves: Победить 2 500 врагов любого типа
+Placeholders preserved: Легенда гарнизона
+English template resolves: Легенда гарнизона
+Placeholders preserved: Победить 5 000 врагов любого типа
+English template resolves: Победить 5 000 врагов любого типа
+Placeholders preserved: Первые слаймы
+English template resolves: Первые слаймы
+Placeholders preserved: Победить 25 слаймов
+English template resolves: Победить 25 слаймов
+Placeholders preserved: Чистые сапоги
+English template resolves: Чистые сапоги
+Placeholders preserved: Победить 100 слаймов
+English template resolves: Победить 100 слаймов
+Placeholders preserved: Охотник на слизь
+English template resolves: Охотник на слизь
+Placeholders preserved: Победить 250 слаймов
+English template resolves: Победить 250 слаймов
+Placeholders preserved: Гроза слаймов
+English template resolves: Гроза слаймов
+Placeholders preserved: Победить 500 слаймов
+English template resolves: Победить 500 слаймов
+Placeholders preserved: Без следа слизи
+English template resolves: Без следа слизи
+Placeholders preserved: Победить 1 000 слаймов
+English template resolves: Победить 1 000 слаймов
+Placeholders preserved: Кости врозь
+English template resolves: Кости врозь
+Placeholders preserved: Победить 25 скелетов, включая магов
+English template resolves: Победить 25 скелетов, включая магов
+Placeholders preserved: Костолом
+English template resolves: Костолом
+Placeholders preserved: Победить 100 скелетов, включая магов
+English template resolves: Победить 100 скелетов, включая магов
+Placeholders preserved: Враг нежити
+English template resolves: Враг нежити
+Placeholders preserved: Победить 250 скелетов, включая магов
+English template resolves: Победить 250 скелетов, включая магов
+Placeholders preserved: Покой для нежити
+English template resolves: Покой для нежити
+Placeholders preserved: Победить 500 скелетов, включая магов
+English template resolves: Победить 500 скелетов, включая магов
+Placeholders preserved: Опасные противники
+English template resolves: Опасные противники
+Placeholders preserved: Победить 10 элитных врагов
+English template resolves: Победить 10 элитных врагов
+Placeholders preserved: Охотник на элиту
+English template resolves: Охотник на элиту
+Placeholders preserved: Победить 25 элитных врагов
+English template resolves: Победить 25 элитных врагов
+Placeholders preserved: Лучше лучших
+English template resolves: Лучше лучших
+Placeholders preserved: Победить 100 элитных врагов
+English template resolves: Победить 100 элитных врагов
+Placeholders preserved: Первая большая победа
+English template resolves: Первая большая победа
+Placeholders preserved: Победить любого босса
+English template resolves: Победить любого босса
+Placeholders preserved: Пять трофеев
+English template resolves: Пять трофеев
+Placeholders preserved: Победить 5 боссов
+English template resolves: Победить 5 боссов
+Placeholders preserved: Победитель великанов
+English template resolves: Победитель великанов
+Placeholders preserved: Победить 10 боссов
+English template resolves: Победить 10 боссов
+Placeholders preserved: Большая слизь
+English template resolves: Большая слизь
+Placeholders preserved: Победить босса-слайма
+English template resolves: Победить босса-слайма
+Placeholders preserved: Повелитель слизи
+English template resolves: Повелитель слизи
+Placeholders preserved: Победить босса-слайма 5 раз
+English template resolves: Победить босса-слайма 5 раз
+Placeholders preserved: Вижу тебя
+English template resolves: Вижу тебя
+Placeholders preserved: Победить босса-ассасина
+English template resolves: Победить босса-ассасина
+Placeholders preserved: Охотник на тени
+English template resolves: Охотник на тени
+Placeholders preserved: Победить босса-ассасина 5 раз
+English template resolves: Победить босса-ассасина 5 раз
+Placeholders preserved: Первая зачистка
+English template resolves: Первая зачистка
+Placeholders preserved: Полностью зачистить 1 волну
+English template resolves: Полностью зачистить 1 волну
+Placeholders preserved: На страже
+English template resolves: На страже
+Placeholders preserved: Полностью зачистить 5 волн
+English template resolves: Полностью зачистить 5 волн
+Placeholders preserved: Десять рубежей
+English template resolves: Десять рубежей
+Placeholders preserved: Полностью зачистить 10 волн
+English template resolves: Полностью зачистить 10 волн
+Placeholders preserved: Долгая служба
+English template resolves: Долгая служба
+Placeholders preserved: Полностью зачистить 25 волн
+English template resolves: Полностью зачистить 25 волн
+Placeholders preserved: Стойкий гарнизон
+English template resolves: Стойкий гарнизон
+Placeholders preserved: Полностью зачистить 50 волн
+English template resolves: Полностью зачистить 50 волн
+Placeholders preserved: Ветеран другого мира
+English template resolves: Ветеран другого мира
+Placeholders preserved: Полностью зачистить 100 волн
+English template resolves: Полностью зачистить 100 волн
+Placeholders preserved: Запасливый
+English template resolves: Запасливый
+Placeholders preserved: Купить 5 наборов товаров у торговца
+English template resolves: Купить 5 наборов товаров у торговца
+Placeholders preserved: Постоянный покупатель
+English template resolves: Постоянный покупатель
+Placeholders preserved: Купить 25 наборов товаров у торговца
+English template resolves: Купить 25 наборов товаров у торговца
+Placeholders preserved: Снабженец
+English template resolves: Снабженец
+Placeholders preserved: Купить 100 наборов товаров у торговца
+English template resolves: Купить 100 наборов товаров у торговца
+Placeholders preserved: Первое улучшение
+English template resolves: Первое улучшение
+Placeholders preserved: Купить 1 улучшение героя, оружия или арены
+English template resolves: Купить 1 улучшение героя, оружия или арены
+Placeholders preserved: Работа над собой
+English template resolves: Работа над собой
+Placeholders preserved: Купить 5 улучшений героя, оружия или арены
+English template resolves: Купить 5 улучшений героя, оружия или арены
+Placeholders preserved: Новая сила
+English template resolves: Новая сила
+Placeholders preserved: Купить 10 улучшений героя, оружия или арены
+English template resolves: Купить 10 улучшений героя, оружия или арены
+Placeholders preserved: Хорошо подготовлен
+English template resolves: Хорошо подготовлен
+Placeholders preserved: Купить 25 улучшений героя, оружия или арены
+English template resolves: Купить 25 улучшений героя, оружия или арены
+Placeholders preserved: Мастер развития
+English template resolves: Мастер развития
+Placeholders preserved: Купить 50 улучшений героя, оружия или арены
+English template resolves: Купить 50 улучшений героя, оружия или арены
+Placeholders preserved: Тройной залп
+English template resolves: Тройной залп
+Placeholders preserved: Разблокировать дробовик у торговца
+English template resolves: Разблокировать дробовик у торговца
+Placeholders preserved: Без остановки
+English template resolves: Без остановки
+Placeholders preserved: Разблокировать автоогонь у торговца
+English template resolves: Разблокировать автоогонь у торговца
+Placeholders preserved: Второе дыхание
+English template resolves: Второе дыхание
+Placeholders preserved: Использовать зелье лечения
+English template resolves: Использовать зелье лечения
+Placeholders preserved: Полевая медицина
+English template resolves: Полевая медицина
+Placeholders preserved: Использовать 10 зелий лечения
+English template resolves: Использовать 10 зелий лечения
+Placeholders preserved: Всегда в строю
+English template resolves: Всегда в строю
+Placeholders preserved: Использовать 50 зелий лечения
+English template resolves: Использовать 50 зелий лечения
+Placeholders preserved: Новый рубеж
+English template resolves: Новый рубеж
+Placeholders preserved: Захватить аванпост
+English template resolves: Захватить аванпост
+Placeholders preserved: Расширение гарнизона
+English template resolves: Расширение гарнизона
+Placeholders preserved: Захватить 5 аванпостов
+English template resolves: Захватить 5 аванпостов
+Placeholders preserved: Хозяин арены
+English template resolves: Хозяин арены
+Placeholders preserved: Захватить 25 аванпостов
+English template resolves: Захватить 25 аванпостов
+Placeholders preserved: Благословение
+English template resolves: Благословение
+Placeholders preserved: Восстановить здоровье у алтаря
+English template resolves: Восстановить здоровье у алтаря
+Placeholders preserved: Взрывной характер
+English template resolves: Взрывной характер
+Placeholders preserved: Взорвать 10 бочек
+English template resolves: Взорвать 10 бочек
+Placeholders preserved: Волны: {0}    Враги: {1} / Элита: {2}    Боссы: {3}    Поражения: {4}
+English template resolves: Волны: 830    Враги: 831 / Элита: 832    Боссы: 833    Поражения: 834
+Placeholders preserved: Ты на арене. Здесь начинается учебная волна 0 — обычные волны пока ждут.
+English template resolves: Ты на арене. Здесь начинается учебная волна 0 — обычные волны пока ждут.
+Placeholders preserved: Ты вернулся в лагерь бесплатно. Зеркала: {0} → {1}.
+English template resolves: Ты вернулся в лагерь бесплатно. Зеркала: 830 → 831.
+Placeholders preserved: Ты управляешь героем. Движение помогает уходить от атак и собирать добычу.
+English template resolves: Ты управляешь героем. Движение помогает уходить от атак и собирать добычу.
+Placeholders preserved: Стрелы закончились. Их можно пополнить у торговца; этот шаг можно пройти позже.
+English template resolves: Стрелы закончились. Их можно пополнить у торговца; этот шаг можно пройти позже.
+Placeholders preserved: Стрелы закончились. Пополни их у торговца; учебный бой можно пропустить.
+English template resolves: Стрелы закончились. Пополни их у торговца; учебный бой можно пропустить.
+Placeholders preserved: Действие уже выполнено. Продолжим обучение.
+English template resolves: Действие уже выполнено. Продолжим обучение.
+Placeholders preserved: Зелье восстанавливает здоровье. Сейчас упражнение недоступно: пополни зелья у торговца.
+English template resolves: Зелье восстанавливает здоровье. Сейчас упражнение недоступно: пополни зелья у торговца.
+Placeholders preserved: Зеркало возвращает в лагерь. Удерживай E до заполнения полосы; урон или отпускание прерывают перенос.
+English template resolves: Зеркало возвращает в лагерь. Удерживай E до заполнения полосы; урон или отпускание прерывают перенос.
+Placeholders preserved: Зеркала закончились. Купи их у торговца. Для переноса нужно удерживать кнопку.
+English template resolves: Зеркала закончились. Купи их у торговца. Для переноса нужно удерживать кнопку.
+Placeholders preserved: Для двух наборов нужны монеты и место в запасе. Здесь выбирается количество и показана общая цена.
+English template resolves: Для двух наборов нужны монеты и место в запасе. Здесь выбирается количество и показана общая цена.
+Placeholders preserved: Улучшения покупаются за монеты. Здоровье увеличивает максимум HP; сейчас покупка недоступна.
+English template resolves: Улучшения покупаются за монеты. Здоровье увеличивает максимум HP; сейчас покупка недоступна.
+Placeholders preserved: Портал арены не настроен. Урок можно пропустить.
+English template resolves: Портал арены не настроен. Урок можно пропустить.
+Placeholders preserved: Волна 0 зачищена. В обычном бою зачистка даёт MMR и начинается перерыв. Сейчас открылся бесплатный портал в лагерь.
+English template resolves: Волна 0 зачищена. В обычном бою зачистка даёт MMR и начинается перерыв. Сейчас открылся бесплатный портал в лагерь.
+Placeholders preserved: Цель поражена. Попаданий: {0}. Стрелы расходуются при выстреле; урон показан над целью.
+English template resolves: Цель поражена. Попаданий: 830. Стрелы расходуются при выстреле; урон показан над целью.
+Placeholders preserved: +10 монет. В кошельке: {0}. Добыча нужна для покупки снаряжения.
+English template resolves: +10 монет. В кошельке: 830. Добыча нужна для покупки снаряжения.
+Placeholders preserved: Добыча собирается при приближении. Повторный урок не выдаёт монеты.
+English template resolves: Добыча собирается при приближении. Повторный урок не выдаёт монеты.
+Placeholders preserved: Выбраны ядовитые стрелы. Они отравляют обычных врагов; каждый тип имеет отдельный запас.
+English template resolves: Выбраны ядовитые стрелы. Они отравляют обычных врагов; каждый тип имеет отдельный запас.
+Placeholders preserved: Рывок выполнен. Выносливость: {0} / {1}; она восстанавливается сама.
+English template resolves: Рывок выполнен. Выносливость: 830 / 831; она восстанавливается сама.
+Placeholders preserved: Щит поднят. Он поглощает урон, расходует запас щита и замедляет героя.
+English template resolves: Щит поднят. Он поглощает урон, расходует запас щита и замедляет героя.
+Placeholders preserved: Зелье использовано. Здоровье: {0} → {1}. Осталось зелий: {2}.
+English template resolves: Зелье использовано. Здоровье: 830 → 831. Осталось зелий: 832.
+Placeholders preserved: В быстрых предметах находится зеркало. Удерживай его кнопку до заполнения полосы переноса.
+English template resolves: В быстрых предметах находится зеркало. Удерживай его кнопку до заполнения полосы переноса.
+Placeholders preserved: Ты снова в лагере. Потрачено одно зеркало; осталось: {0}.
+English template resolves: Ты снова в лагере. Потрачено одно зеркало; осталось: 830.
+Placeholders preserved: Торговец открыт. Во время торговли бой на паузе. Здесь есть товары, улучшения, арена, бонусы и достижения.
+English template resolves: Торговец открыт. Во время торговли бой на паузе. Здесь есть товары, улучшения, арена, бонусы и достижения.
+Placeholders preserved: Открылось окно покупки. Цена набора и общий итог видны до подтверждения.
+English template resolves: Открылось окно покупки. Цена набора и общий итог видны до подтверждения.
+Placeholders preserved: Куплено {0} стрел за {1} монет. Запас: {2}.
+English template resolves: Куплено 830 стрел за 831 монет. Запас: 832.
+Placeholders preserved: Открыты улучшения героя. Карточки показывают текущий параметр, прирост и цену.
+English template resolves: Открыты улучшения героя. Карточки показывают текущий параметр, прирост и цену.
+Placeholders preserved: Здоровье улучшено. Максимум: {0} HP. Покупка и новый уровень сохранены.
+English template resolves: Здоровье улучшено. Максимум: 830 HP. Покупка и новый уровень сохранены.
+Placeholders preserved: Добро пожаловать!
+English template resolves: Добро пожаловать!
+Placeholders preserved: Движение
+English template resolves: Движение
+Placeholders preserved: Первый бой
+English template resolves: Первый бой
+Placeholders preserved: Собери добычу
+English template resolves: Собери добычу
+Placeholders preserved: Выбор стрел
+English template resolves: Выбор стрел
+Placeholders preserved: Рывок
+English template resolves: Рывок
+Placeholders preserved: Защита
+English template resolves: Защита
+Placeholders preserved: Быстрые предметы
+English template resolves: Быстрые предметы
+Placeholders preserved: Возвращение в лагерь
+English template resolves: Возвращение в лагерь
+Placeholders preserved: Познакомься с торговцем
+English template resolves: Познакомься с торговцем
+Placeholders preserved: Покупка стрел
+English template resolves: Покупка стрел
+Placeholders preserved: Количество и цена
+English template resolves: Количество и цена
+Placeholders preserved: Улучшения героя
+English template resolves: Улучшения героя
+Placeholders preserved: Стань сильнее
+English template resolves: Стань сильнее
+Placeholders preserved: Теперь на арену!
+English template resolves: Теперь на арену!
+Placeholders preserved: Портал на арену
+English template resolves: Портал на арену
+Placeholders preserved: Учебная волна 0
+English template resolves: Учебная волна 0
+Placeholders preserved: Зачисти волну
+English template resolves: Зачисти волну
+Placeholders preserved: Добыча после боя
+English template resolves: Добыча после боя
+Placeholders preserved: Между волнами
+English template resolves: Между волнами
+Placeholders preserved: Бесплатно в лагерь
+English template resolves: Бесплатно в лагерь
+Placeholders preserved: Обучение завершено!
+English template resolves: Обучение завершено!
+Placeholders preserved: Повторим управление, магазин и учебную волну 0. Припасы повторно не выдаются; покупки расходуют твои монеты.
+English template resolves: Повторим управление, магазин и учебную волну 0. Припасы повторно не выдаются; покупки расходуют твои монеты.
+Placeholders preserved: Покажу лагерь, управление и арену. Для первого урока получишь 200 монет и недостающие припасы. Обычные волны пока ждут.
+English template resolves: Покажу лагерь, управление и арену. Для первого урока получишь 200 монет и недостающие припасы. Обычные волны пока ждут.
+Placeholders preserved: Потяни левый джойстик и пройди немного. Герой движется в выбранную сторону.
+English template resolves: Потяни левый джойстик и пройди немного. Герой движется в выбранную сторону.
+Placeholders preserved: Нажми W, A, S или D и пройди немного. Движение помогает уходить от врагов.
+English template resolves: Нажми W, A, S или D и пройди немного. Движение помогает уходить от врагов.
+Placeholders preserved: Коснись «Огонь» — выстрел с автонаводкой. Зажми и веди палец для ручного прицела, отпусти для выстрела.
+English template resolves: Коснись «Огонь» — выстрел с автонаводкой. Зажми и веди палец для ручного прицела, отпусти для выстрела.
+Placeholders preserved: Наведи мышь на учебного слайма и нажми левую кнопку мыши.
+English template resolves: Наведи мышь на учебного слайма и нажми левую кнопку мыши.
+Placeholders preserved:  / Попадания: {0} / 3. Цель не атакует.
+English template resolves:  / Попадания: 830 / 3. Цель не атакует.
+Placeholders preserved: Джойстиком подойди к золотой монете. Добыча пополняет кошелёк.
+English template resolves: Джойстиком подойди к золотой монете. Добыча пополняет кошелёк.
+Placeholders preserved: Подойди к золотой монете с помощью WASD. Добыча пополняет кошелёк.
+English template resolves: Подойди к золотой монете с помощью WASD. Добыча пополняет кошелёк.
+Placeholders preserved: Нажми зелёную стрелу. Тип меняет эффект выстрела; количество указано под иконкой.
+English template resolves: Нажми зелёную стрелу. Тип меняет эффект выстрела; количество указано под иконкой.
+Placeholders preserved: Нажимай Q до выбора ядовитых стрел. Тип и запас показаны слева вверху.
+English template resolves: Нажимай Q до выбора ядовитых стрел. Тип и запас показаны слева вверху.
+Placeholders preserved: Нажми «Рывок». Он быстро перемещает героя и тратит выносливость.
+English template resolves: Нажми «Рывок». Он быстро перемещает героя и тратит выносливость.
+Placeholders preserved: Направь мышь в нужную сторону и нажми Shift. Рывок тратит выносливость.
+English template resolves: Направь мышь в нужную сторону и нажми Shift. Рывок тратит выносливость.
+Placeholders preserved: Нажми «Щит», чтобы поднять его. Повторное нажатие опускает щит.
+English template resolves: Нажми «Щит», чтобы поднять его. Повторное нажатие опускает щит.
+Placeholders preserved: Удерживай Space, чтобы поднять щит. Он поглощает урон и замедляет движение.
+English template resolves: Удерживай Space, чтобы поднять щит. Он поглощает урон и замедляет движение.
+Placeholders preserved: Для упражнения немного снизилось HP. Нажми кнопку зелья — здоровье восстановится.
+English template resolves: Для упражнения немного снизилось HP. Нажми кнопку зелья — здоровье восстановится.
+Placeholders preserved: Для упражнения немного снизилось HP. Нажми H — зелье восстановит здоровье.
+English template resolves: Для упражнения немного снизилось HP. Нажми H — зелье восстановит здоровье.
+Placeholders preserved: Нажми «•••», чтобы открыть быстрые предметы. Здесь находится зеркало переноса.
+English template resolves: Нажми «•••», чтобы открыть быстрые предметы. Здесь находится зеркало переноса.
+Placeholders preserved: Удерживай кнопку зеркала до заполнения полоски. Это вернёт тебя в лагерь.
+English template resolves: Удерживай кнопку зеркала до заполнения полоски. Это вернёт тебя в лагерь.
+Placeholders preserved: Удерживай E до заполнения полоски. Это вернёт тебя в лагерь.
+English template resolves: Удерживай E до заполнения полоски. Это вернёт тебя в лагерь.
+Placeholders preserved: Нажми плашку «Торговец». Магазин откроется, бой остановится.
+English template resolves: Нажми плашку «Торговец». Магазин откроется, бой остановится.
+Placeholders preserved: Нажми плашку «Торговец» мышкой или клавишу F. Магазин откроется на паузе.
+English template resolves: Нажми плашку «Торговец» мышкой или клавишу F. Магазин откроется на паузе.
+Placeholders preserved: Нажми цену обычных стрел. Откроется выбор количества наборов.
+English template resolves: Нажми цену обычных стрел. Откроется выбор количества наборов.
+Placeholders preserved: Выбрано 2 набора: {0} стрел за {1} монет. Нажми «Купить»; деньги спишутся, стрелы пополнятся.
+English template resolves: Выбрано 2 набора: 830 стрел за 831 монет. Нажми «Купить»; деньги спишутся, стрелы пополнятся.
+Placeholders preserved: Выбери 2 набора ползунком или кнопкой «+». Сейчас: {0} набор(а), {1} стрел за {2} монет.
+English template resolves: Выбери 2 набора ползунком или кнопкой «+». Сейчас: 830 набор(а), 831 стрел за 832 монет.
+Placeholders preserved: Нажми вкладку «Улучшения». Здесь повышаются характеристики героя и оружия.
+English template resolves: Нажми вкладку «Улучшения». Здесь повышаются характеристики героя и оружия.
+Placeholders preserved: Нажми цену в карточке «Здоровье». Покупка увеличит максимум HP; новый уровень сохранится.
+English template resolves: Нажми цену в карточке «Здоровье». Покупка увеличит максимум HP; новый уровень сохранится.
+Placeholders preserved: Лагерь освоен. Теперь покажу настоящий портал на арену, учебную волну 0 и бесплатный возврат между волнами.
+English template resolves: Лагерь освоен. Теперь покажу настоящий портал на арену, учебную волну 0 и бесплатный возврат между волнами.
+Placeholders preserved: Иди джойстиком к отмеченному порталу «АРЕНА» и зайди внутрь. Указатель у края экрана ведёт к нему.
+English template resolves: Иди джойстиком к отмеченному порталу «АРЕНА» и зайди внутрь. Указатель у края экрана ведёт к нему.
+Placeholders preserved: Иди по указателю с помощью WASD к порталу «АРЕНА» и зайди внутрь. Нажимать F не нужно.
+English template resolves: Иди по указателю с помощью WASD к порталу «АРЕНА» и зайди внутрь. Нажимать F не нужно.
+Placeholders preserved: Ты на боевой арене. Сверху — номер волны и её состояние. В волне 0 встретишь трёх слаймов; урок безопасен и не даёт MMR. Начнём?
+English template resolves: Ты на боевой арене. Сверху — номер волны и её состояние. В волне 0 встретишь трёх слаймов; урок безопасен и не даёт MMR. Начнём?
+Placeholders preserved: Двигайся джойстиком, коснись «Огонь» для автонаводки. Зажми и веди палец для ручного прицела, отпусти — выстрел.
+English template resolves: Двигайся джойстиком, коснись «Огонь» для автонаводки. Зажми и веди палец для ручного прицела, отпусти — выстрел.
+Placeholders preserved: Двигайся WASD, целься мышью и стреляй ЛКМ.
+English template resolves: Двигайся WASD, целься мышью и стреляй ЛКМ.
+Placeholders preserved:  Слаймы приближаются: отходи от них. / Побеждено: {0} / 3.
+English template resolves:  Слаймы приближаются: отходи от них. / Побеждено: 830 / 3.
+Placeholders preserved: После зачистки подойди джойстиком к монете. Добыча нужна для улучшений и снаряжения.
+English template resolves: После зачистки подойди джойстиком к монете. Добыча нужна для улучшений и снаряжения.
+Placeholders preserved: После зачистки подойди к монете с помощью WASD. Добыча нужна для улучшений и снаряжения.
+English template resolves: После зачистки подойди к монете с помощью WASD. Добыча нужна для улучшений и снаряжения.
+Placeholders preserved: Между волнами идёт перерыв: портал «В ЛАГЕРЬ» открыт. Войди в него — зеркало не потратится. В обычной игре успей до конца таймера; учебный перерыв ждёт тебя.
+English template resolves: Между волнами идёт перерыв: портал «В ЛАГЕРЬ» открыт. Войди в него — зеркало не потратится. В обычной игре успей до конца таймера; учебный перерыв ждёт тебя.
+Placeholders preserved: Иди джойстиком
+English template resolves: Иди джойстиком
+Placeholders preserved: Иди с помощью WASD
+English template resolves: Иди с помощью WASD
+Placeholders preserved:  в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.
+English template resolves:  в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.
+Placeholders preserved: Ты знаешь путь на арену и бесплатный выход между волнами. Снова войди в портал «АРЕНА» — начнётся настоящая волна 1. Повторить обучение можно в меню.
+English template resolves: Ты знаешь путь на арену и бесплатный выход между волнами. Снова войди в портал «АРЕНА» — начнётся настоящая волна 1. Повторить обучение можно в меню.
+Placeholders preserved: АРЕНА · {0} / 7
+English template resolves: АРЕНА · 830 / 7
+Placeholders preserved: НАСТАВНИК ЛАГЕРЯ
+English template resolves: НАСТАВНИК ЛАГЕРЯ
+Placeholders preserved: ЛАГЕРЬ · {0} / 14
+English template resolves: ЛАГЕРЬ · 830 / 14
+Placeholders preserved: Начать обучение
+English template resolves: Начать обучение
+Placeholders preserved: Покажи портал
+English template resolves: Покажи портал
+Placeholders preserved: Начать волну 0
+English template resolves: Начать волну 0
+Placeholders preserved: Готово
+English template resolves: Готово
+Placeholders preserved: Пропустить шаг
+English template resolves: Пропустить шаг
+Placeholders preserved: Дальше
+English template resolves: Дальше
+Placeholders preserved: Пропустить
+English template resolves: Пропустить
+Placeholders preserved: АРЕНА
+English template resolves: АРЕНА
+Placeholders preserved: ЛАГЕРЬ
+English template resolves: ЛАГЕРЬ
+Placeholders preserved:  / {0} м
+English template resolves:  / 830 м
+Placeholders preserved: Загрузка рейтинга…
+English template resolves: Загрузка рейтинга…
+Placeholders preserved: Общий рейтинг
+English template resolves: Общий рейтинг
+Placeholders preserved: Рейтинг пока пуст
+English template resolves: Рейтинг пока пуст
+Placeholders preserved: Рейтинг недоступен
+English template resolves: Рейтинг недоступен
+Placeholders preserved: Гость
+English template resolves: Гость
+Placeholders preserved: Волна 0
+English template resolves: Волна 0
+Placeholders preserved: Перерыв
+English template resolves: Перерыв
+Placeholders preserved: Враги: {0}
+English template resolves: Враги: 830
+Placeholders preserved: Готов
+English template resolves: Готов
+Placeholders preserved: Волна {0}
+English template resolves: Волна 830
+Placeholders preserved: Тестовое видео
+English template resolves: Тестовое видео
+Placeholders preserved: Тестовая реклама
+English template resolves: Тестовая реклама
+Placeholders preserved: В этом APK используется симуляция рекламы
+English template resolves: В этом APK используется симуляция рекламы
+Placeholders preserved: Получить награду
+English template resolves: Получить награду
+Placeholders preserved: Закрыть
+English template resolves: Закрыть
+Placeholders preserved: Закрыть без награды
+English template resolves: Закрыть без награды
+Placeholders preserved: Подождите 
+English template resolves: Подождите 
+Placeholders preserved:  сек.
+English template resolves:  сек.
+Placeholders preserved: Проверка завершена
+English template resolves: Проверка завершена
+Placeholders preserved: Волна 
+English template resolves: Волна 
+Placeholders preserved:  сохранена. 
+English template resolves:  сохранена. 
+Placeholders preserved: Посмотрите видео, чтобы продолжить с полным здоровьем
+English template resolves: Посмотрите видео, чтобы продолжить с полным здоровьем
+Placeholders preserved: Здоровье восстановлено. Продолжаем…
+English template resolves: Здоровье восстановлено. Продолжаем…
+Placeholders preserved: Видео сейчас недоступно. Попробуйте позже или вернитесь в лагерь
+English template resolves: Видео сейчас недоступно. Попробуйте позже или вернитесь в лагерь
+Placeholders preserved: Просмотр не завершён. Можно попробовать ещё раз или вернуться в лагерь
+English template resolves: Просмотр не завершён. Можно попробовать ещё раз или вернуться в лагерь
+Placeholders preserved: Войти в Яндекс
+English template resolves: Войти в Яндекс
+Placeholders preserved: Вход через Яндекс ID…
+English template resolves: Вход через Яндекс ID…
+Placeholders preserved: Загрузка сохранения…
+English template resolves: Загрузка сохранения…
+Placeholders preserved: Облачное сохранение
+English template resolves: Облачное сохранение
+Placeholders preserved: Вход сохранит прогресс в облаке
+English template resolves: Вход сохранит прогресс в облаке
+Placeholders preserved: Сохранение на этом устройстве
+English template resolves: Сохранение на этом устройстве
+Placeholders preserved: Рейтинг
+English template resolves: Рейтинг
+Placeholders preserved: Личный результат
+English template resolves: Личный результат
+Placeholders preserved: Играть
+English template resolves: Играть
+Placeholders preserved: БАННЕР /  / Яндекс Игры / Только в меню
+English template resolves: БАННЕР /  / Яндекс Игры / Только в меню
+Placeholders preserved: ЛЕСНОЙ ГАРНИЗОН
+English template resolves: ЛЕСНОЙ ГАРНИЗОН
+Placeholders preserved: Последний / солдат
+English template resolves: Последний / солдат
+Placeholders preserved: Цифры урона
+English template resolves: Цифры урона
+Placeholders preserved: Волн пройдено
+English template resolves: Волн пройдено
+Placeholders preserved: Другой мир
+English template resolves: Другой мир
+Placeholders preserved: Во время настройки бой на паузе
+English template resolves: Во время настройки бой на паузе
+Placeholders preserved: Настройки
+English template resolves: Настройки
+Placeholders preserved: Настройка доступна в игре: / Меню → Настроить кнопки
+English template resolves: Настройка доступна в игре: / Меню → Настроить кнопки
+Placeholders preserved: Кнопки на экране
+English template resolves: Кнопки на экране
+Placeholders preserved: Врагов побеждено
+English template resolves: Врагов побеждено
+Placeholders preserved: Меню
+English template resolves: Меню
+Placeholders preserved: Эффекты
+English template resolves: Эффекты
+Placeholders preserved: Щит
+English template resolves: Щит
+Placeholders preserved: Тип стрел
+English template resolves: Тип стрел
+Placeholders preserved: Стрельба
+English template resolves: Стрельба
+Placeholders preserved: Скрыть курсор
+English template resolves: Скрыть курсор
+Placeholders preserved: Звук
+English template resolves: Звук
+Placeholders preserved: Мышь
+English template resolves: Мышь
+Placeholders preserved: Управление
+English template resolves: Управление
+Placeholders preserved: Показать курсор
+English template resolves: Показать курсор
+Placeholders preserved: Назад
+English template resolves: Назад
+Placeholders preserved: Режим стрельбы
+English template resolves: Режим стрельбы
+Placeholders preserved: Музыка
+English template resolves: Музыка
+Placeholders preserved: Зелье
+English template resolves: Зелье
+Placeholders preserved: +5 к максимуму HP
+English template resolves: +5 к максимуму HP
+Placeholders preserved: Скорость полёта
+English template resolves: Скорость полёта
+Placeholders preserved: +500 монет
+English template resolves: +500 монет
+Placeholders preserved: Урон стрел
+English template resolves: Урон стрел
+Placeholders preserved: Сбросить
+English template resolves: Сбросить
+Placeholders preserved: Поверни телефон
+English template resolves: Поверни телефон
+Placeholders preserved: МЕСТО ПОКАЗА: полноэкранная реклама после возврата в лагерь
+English template resolves: МЕСТО ПОКАЗА: полноэкранная реклама после возврата в лагерь
+Placeholders preserved: Обучение
+English template resolves: Обучение
+Placeholders preserved: 0 монет
+English template resolves: 0 монет
+Placeholders preserved: В ЛАГЕРЬ
+English template resolves: В ЛАГЕРЬ
+Placeholders preserved: Размер кнопок
+English template resolves: Размер кнопок
+Placeholders preserved: Прозрачность
+English template resolves: Прозрачность
+Placeholders preserved: Оружие
+English template resolves: Оружие
+Placeholders preserved: Улучшения
+English template resolves: Улучшения
+Placeholders preserved: Наборы
+English template resolves: Наборы
+Placeholders preserved: Усиль героя для следующих волн
+English template resolves: Усиль героя для следующих волн
+Placeholders preserved: Расположение кнопок
+English template resolves: Расположение кнопок
+Placeholders preserved: Пробивные
+English template resolves: Пробивные
+Placeholders preserved: Обзор
+English template resolves: Обзор
+Placeholders preserved: Лагерь
+English template resolves: Лагерь
+Placeholders preserved: Перезарядка
+English template resolves: Перезарядка
+Placeholders preserved: Обычные
+English template resolves: Обычные
+Placeholders preserved: Для боя нужен горизонтальный экран / Игра продолжится после поворота
+English template resolves: Для боя нужен горизонтальный экран / Игра продолжится после поворота
+Placeholders preserved: Отмена
+English template resolves: Отмена
+Placeholders preserved: Касание — автонаводка · удержание — ручной прицел / Отпусти для выстрела · автоогонь стреляет при удержании
+English template resolves: Касание — автонаводка · удержание — ручной прицел / Отпусти для выстрела · автоогонь стреляет при удержании
+Placeholders preserved: Радиус притяжения
+English template resolves: Радиус притяжения
+Placeholders preserved: Поражение
+English template resolves: Поражение
+Placeholders preserved: Текущая волна сохранится. Видео вернёт полное здоровье
+English template resolves: Текущая волна сохранится. Видео вернёт полное здоровье
+Placeholders preserved: Притяжение лута
+English template resolves: Притяжение лута
+Placeholders preserved: БОНУС ТОРГОВЦА
+English template resolves: БОНУС ТОРГОВЦА
+Placeholders preserved: 500 монет
+English template resolves: 500 монет
+Placeholders preserved: Сброс
+English template resolves: Сброс
+Placeholders preserved: Быстрый захват
+English template resolves: Быстрый захват
+Placeholders preserved: 350 монет
+English template resolves: 350 монет
+Placeholders preserved: 200 монет
+English template resolves: 200 монет
+Placeholders preserved: Бонусы
+English template resolves: Бонусы
+Placeholders preserved: +10 к максимуму
+English template resolves: +10 к максимуму
+Placeholders preserved: +5 к запасу щита
+English template resolves: +5 к запасу щита
+Placeholders preserved: Щ
+English template resolves: Щ
+Placeholders preserved: Огонь
+English template resolves: Огонь
+Placeholders preserved: +0,05 к скорости
+English template resolves: +0,05 к скорости
+Placeholders preserved: Здоровье
+English template resolves: Здоровье
+Placeholders preserved: Воин света "Роберто"
+English template resolves: Воин света "Роберто"
+Placeholders preserved: Сохранить
+English template resolves: Сохранить
+Placeholders preserved: Арена
+English template resolves: Арена
+Placeholders preserved: Товары
+English template resolves: Товары
+Placeholders preserved: +0,5 к урону
+English template resolves: +0,5 к урону
+Placeholders preserved: Меняй расположение, / размер и прозрачность
+English template resolves: Меняй расположение, / размер и прозрачность
+Placeholders preserved: Продолжить
+English template resolves: Продолжить
+Placeholders preserved: Посмотри видео и получи монеты / на снаряжение и улучшения
+English template resolves: Посмотри видео и получи монеты / на снаряжение и улучшения
+Placeholders preserved: Вернуться в лагерь
+English template resolves: Вернуться в лагерь
+Placeholders preserved: Выносливость
+English template resolves: Выносливость
+Placeholders preserved: Скорость
+English template resolves: Скорость
+Placeholders preserved: Герой
+English template resolves: Герой
+Placeholders preserved: Продолжить за видео
+English template resolves: Продолжить за видео
+Placeholders preserved: Настроить кнопки
+English template resolves: Настроить кнопки
+Placeholders preserved: Снаряжение и развитие героя
+English template resolves: Снаряжение и развитие героя
+Placeholders preserved: Святые
+English template resolves: Святые
+Placeholders preserved: Аванпост: стой в круге, чтобы получить монеты
+English template resolves: Аванпост: стой в круге, чтобы получить монеты
+Placeholders preserved: Купить
+English template resolves: Купить
+Placeholders preserved: Смотреть видео
+English template resolves: Смотреть видео
+Placeholders preserved: Ядовитые
+English template resolves: Ядовитые
+Placeholders preserved: Достижения
+English template resolves: Достижения
+Placeholders preserved: Пауза
+English template resolves: Пауза
+Placeholders preserved: Награда аванпоста
+English template resolves: Награда аванпоста
+Placeholders preserved: Алтарь хранителя
+English template resolves: Алтарь хранителя
+Placeholders preserved: Статистика
+English template resolves: Статистика
+Placeholders preserved: ЛУЧШИЕ ИГРОКИ
+English template resolves: ЛУЧШИЕ ИГРОКИ
+Placeholders preserved: Волны: 0    Враги: 0 / Элита: 0    Боссы: 0    Поражения: 0
+English template resolves: Волны: 0    Враги: 0 / Элита: 0    Боссы: 0    Поражения: 0
+Placeholders preserved: ЛИЧНЫЙ РЕЗУЛЬТАТ
+English template resolves: ЛИЧНЫЙ РЕЗУЛЬТАТ
+Placeholders preserved: Язык
+English template resolves: Язык
+Placeholders preserved: Авто
+English template resolves: Авто
+Placeholders preserved: Автоматически
+English template resolves: Автоматически
+Placeholders preserved: Поверните телефон
+English template resolves: Поверните телефон
+Placeholders preserved: Для игры нужен альбомный режим.
+English template resolves: Для игры нужен альбомный режим.
+Placeholders preserved: Последний солдат: другой мир
+English template resolves: Последний солдат: другой мир
+Placeholders preserved: {0} набор
+English template resolves: 830 набор
+Placeholders preserved: {0} набора
+English template resolves: 830 набора
+Placeholders preserved: {0} наборов
+English template resolves: 830 наборов
+Placeholders preserved: Уровень {0} / {1}
+English template resolves: Уровень 830 / 831
+Placeholders preserved: Уровень {0} · +{1}
+English template resolves: Уровень 830 · +831
+Placeholders preserved: Попадания: {0} / 3. Цель не атакует.
+English template resolves: Попадания: 830 / 3. Цель не атакует.
+Placeholders preserved: {0} / Попадания: {1} / 3. Цель не атакует.
+English template resolves: 830 / Попадания: 831 / 3. Цель не атакует.
+Placeholders preserved: {0} Слаймы приближаются: отходи от них. / Побеждено: {1} / 3.
+English template resolves: 830 Слаймы приближаются: отходи от них. / Побеждено: 831 / 3.
+Placeholders preserved: {0} в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.
+English template resolves: 830 в отмеченный портал «В ЛАГЕРЬ». Это бесплатный выход во время перерыва. Во время боя портал закрыт — для отступления нужно зеркало.
+Placeholders preserved: Волна {0} сохранена. {1}
+English template resolves: Волна 830 сохранена. 831
+Placeholders preserved: Подождите {0} сек.
+English template resolves: Подождите 830 сек.
+Placeholders preserved: В наборе: {0} шт. · {1} монет / У тебя: {2} шт. · Лечение {3} HP
+English template resolves: В наборе: 830 шт. · 831 монет / У тебя: 832 шт. · Лечение 833 HP
+Placeholders preserved: Та же волна · полное здоровье
+English template resolves: Та же волна · полное здоровье
+Placeholders preserved: Здоровье: 25 HP · монеты: 50%
+English template resolves: Здоровье: 25 HP · монеты: 50%
+Placeholders preserved: Набор · 3 стрелы / До 3 врагов за выстрел
+English template resolves: Набор · 3 стрелы / До 3 врагов за выстрел
+Placeholders preserved: Набор · 3 стрелы
+English template resolves: Набор · 3 стрелы
+Placeholders preserved: Возвращение в лагерь · 1
+English template resolves: Возвращение в лагерь · 1
+Placeholders preserved: Набор · 5 стрел
+English template resolves: Набор · 5 стрел
+Placeholders preserved: Набор · 1 стрела
+English template resolves: Набор · 1 стрела
+Placeholders preserved: Последний солдат · другой мир
+English template resolves: Последний солдат · другой мир
+Placeholders preserved: Место · Игрок
+English template resolves: Место · Игрок
+Placeholders preserved: Медаль · MMR
+English template resolves: Медаль · MMR
+Placeholders preserved: {0} м
+English template resolves: 830 м
+Placeholders preserved: Авторы ассетов
+English template resolves: Авторы ассетов
+Placeholders preserved: Лицензии графики и звука
+English template resolves: Лицензии графики и звука
+Placeholders preserved: Красная арена
+English template resolves: Красная арена
+Placeholders preserved: Требуется {0} MMR
+English template resolves: Требуется 830 MMR
+Placeholders preserved: Время вышло! Враги: здоровье и урон ×10
+English template resolves: Время вышло! Враги: здоровье и урон ×10
+Placeholders preserved: Враги ×10
+English template resolves: Враги ×10
+Placeholders preserved: Красная арена · Волна {0}
+English template resolves: Красная арена · Волна 830
+Placeholders preserved: Красная · {0}
+English template resolves: Красная · 830
+Placeholders preserved: Король слизней
+English template resolves: Король слизней
+Placeholders preserved: Ассасин
+English template resolves: Ассасин
+Placeholders preserved: Красный портал — арена для прокачанного героя. Вход от 2000 MMR. Здоровье и урон врагов ×2, монеты и MMR ×2. Каждая пятая волна — два босса вместе.
+English template resolves: Красный портал — арена для прокачанного героя. Вход от 2000 MMR. Здоровье и урон врагов ×2, монеты и MMR ×2. Каждая пятая волна — два босса вместе.
+Placeholders preserved: АРЕНА · {0} / 8
+English template resolves: АРЕНА · 830 / 8
+Placeholders preserved: Шаула
+English template resolves: Шаула
+Placeholders preserved: Шаула · Багровая ярость
+English template resolves: Шаула · Багровая ярость
+Placeholders preserved: Последнее превращение
+English template resolves: Последнее превращение
+Placeholders preserved: Хвост разрушен · берегись клешней
+English template resolves: Хвост разрушен · берегись клешней
+Placeholders preserved: Жало застряло · атакуй хвост!
+English template resolves: Жало застряло · атакуй хвост!
+Placeholders preserved: Светлые сочленения и хвост — слабые места
+English template resolves: Светлые сочленения и хвост — слабые места
+Placeholders preserved: Хвост
+English template resolves: Хвост
+Placeholders preserved: Босс
+English template resolves: Босс
+Placeholders preserved: Тест волн
+English template resolves: Тест волн
+Placeholders preserved: Выбери волну от 1 до {0}. Тест использует копию сохранения: награды, расходники и рейтинг не сохраняются.
+English template resolves: Выбери волну от 1 до 830. Тест использует копию сохранения: награды, расходники и рейтинг не сохраняются.
+Placeholders preserved: Введи номер от 1 до {0}
+English template resolves: Введи номер от 1 до 830
+Placeholders preserved: 20 — Шаула
+English template resolves: 20 — Шаула
+Placeholders preserved: Начать тест
+English template resolves: Начать тест
+Placeholders preserved: Вернуться в обычную игру
+English template resolves: Вернуться в обычную игру
+Placeholders preserved: Тест завершён · 9
+English template resolves: Тест завершён · 9
+Placeholders preserved: Тест · Волна {0}
+English template resolves: Тест · Волна 830
+Placeholders preserved: Зелёные стрелы отравляют обычных врагов. Красные святые стрелы ранят только красных врагов, а остальных лечат. У каждого типа свой запас.
+English template resolves: Зелёные стрелы отравляют обычных врагов. Красные святые стрелы ранят только красных врагов, а остальных лечат. У каждого типа свой запас.
+Automatic follows SDK English
+Automatic follows SDK Russian
+Unsupported SDK languages use English
+Regional fallback follows Yandex language guidance
+Manual Russian overrides SDK
+Nested reward message translated
+Pack quantity and count translated
+Composite arena upgrade translated
+Existing TMP value translated immediately
+Dynamic prices translated
+Russian restores original dynamic value
+Player names are excluded from translation
+Explicit English overrides SDK
+Language choice is saved locally
+Main settings translated
+One selector in main settings
+Main-menu language and credits stay outside the banner strip
+Language card contains its complete control: LanguageTitle
+Language card controls do not overlap: LanguageTitle
+Language card contains its complete control: Choose_auto
+Language card controls do not overlap: Choose_auto
+Language card contains its complete control: Choose_ru
+Language card controls do not overlap: Choose_ru
+Language card contains its complete control: Choose_en
+Language card controls do not overlap: Choose_en
+Language card contains its complete control: AssetCredits
+Language card controls do not overlap: AssetCredits
+Asset credits do not block settings on entry
+Asset credits open inside the existing settings
+Bundled attribution is readable plain text without external navigation
+Asset credits heading follows English selection
+Closing attribution returns to settings
+Reopened placeholder uses the selected language
+Reopened placeholder uses the selected language
+Reopened placeholder uses the selected language
+Reopened placeholder uses the selected language
+English survives scene switch
+One selector in in-game settings
+Language card contains its complete control: LanguageTitle
+Language card controls do not overlap: LanguageTitle
+Language card contains its complete control: Choose_auto
+Language card controls do not overlap: Choose_auto
+Language card contains its complete control: Choose_ru
+Language card controls do not overlap: Choose_ru
+Language card contains its complete control: Choose_en
+Language card controls do not overlap: Choose_en
+Language card contains its complete control: AssetCredits
+Language card controls do not overlap: AssetCredits
+Gameplay music is playing before trade
+Merchant pauses combat and GameplayAPI
+Merchant leaves background music playing
+Music advances while the shop is open
+All supplies and item descriptions translated
+Quantity dialog translated
+All 50 achievement cards translated
+Visible hero upgrades translated
+Weapon and arrow upgrades translated: 0
+Weapon and arrow upgrades translated: 1
+Weapon and arrow upgrades translated: 2
+Weapon and arrow upgrades translated: 3
+Arena upgrades translated
+Video bonus translated
+SDK interruption pauses music and combat during trade
+SDK resume restores shop music while combat remains paused
+Music still plays after SDK resume
+Closing trade resumes combat without restarting music
+Ordinary pause keeps its previous music behaviour
+Switching back restores Russian serialized labels
+Tutorial replay starts from the isolated camp save
+Tutorial translated: Welcome PC
+Tutorial translated: Move PC
+Tutorial translated: Fire PC
+Tutorial translated: Loot PC
+Tutorial translated: Arrow PC
+Tutorial translated: Dash PC
+Tutorial translated: Shield PC
+Tutorial translated: Heal PC
+Tutorial translated: Utilities PC
+Tutorial translated: Mirror PC
+Tutorial translated: Merchant PC
+Tutorial translated: Goods PC
+Tutorial translated: Quantity PC
+Tutorial translated: UpgradeTab PC
+Tutorial translated: Health PC
+Tutorial translated: Finished PC
+Tutorial translated: ArenaPortal PC
+Tutorial translated: ArenaIntro PC
+Tutorial translated: ArenaCombat PC
+Tutorial translated: ArenaLoot PC
+Tutorial translated: ArenaBreak PC
+Tutorial translated: ArenaReturn PC
+Tutorial translated: ArenaFinished PC
+Tutorial translated: CrimsonArena PC
+Tutorial translated: Welcome touch
+Tutorial translated: Move touch
+Tutorial translated: Fire touch
+Tutorial translated: Loot touch
+Tutorial translated: Arrow touch
+Tutorial translated: Dash touch
+Tutorial translated: Shield touch
+Tutorial translated: Heal touch
+Tutorial translated: Utilities touch
+Tutorial translated: Mirror touch
+Tutorial translated: Merchant touch
+Tutorial translated: Goods touch
+Tutorial translated: Quantity touch
+Tutorial translated: UpgradeTab touch
+Tutorial translated: Health touch
+Tutorial translated: Finished touch
+Tutorial translated: ArenaPortal touch
+Tutorial translated: ArenaIntro touch
+Tutorial translated: ArenaCombat touch
+Tutorial translated: ArenaLoot touch
+Tutorial translated: ArenaBreak touch
+Tutorial translated: ArenaReturn touch
+Tutorial translated: ArenaFinished touch
+Tutorial translated: CrimsonArena touch
+English tutorial body fits its card on mobile
+Live tutorial overlay remains visible
+English tutorial body fits its card on desktop
+Live tutorial overlay remains visible

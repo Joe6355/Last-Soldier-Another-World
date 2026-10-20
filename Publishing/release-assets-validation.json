@@ -13,9 +13,9 @@
     "Assets/UI/ForestGarrison/Arena/Barrel.png"
   ],
   "archive": "Builds/LastSoldierYandex.zip",
-  "archiveSha256": "25a63044ba1ba9ca53840bcc457d66669418230ad1337f8bdb9334170a5e36c1",
+  "archiveSha256": "bd2624ad1e7d672eb581c3d3f6e89aa7ba5f0ee8b48d4978902191b36f1b2d38",
   "archiveFileCount": 15,
-  "matchedSourceFiles": 1204,
+  "matchedSourceFiles": 1202,
   "packedAssetsReport": "Publishing/release-packed-assets.json",
   "packedAssetsReportSha256": "d58d72b3a51137ea5678235f40584d1f2a5c45bbb7add2ed6a54c168ac10b4dc",
   "packedSourceAssets": 1912,

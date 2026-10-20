@@ -1,0 +1,69 @@
+{
+  "version": "0.0.0.26",
+  "result": "PASS",
+  "checkedAt": "2026-10-20T15:57:47.177649+05:00",
+  "uploaded": true,
+  "uploadLimitation": null,
+  "build": {
+    "verifiedPackedSourcePaths": 1172,
+    "mismatches": [],
+    "rootSettingsSHA256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
+    "buildSettingsSHA256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/combat-v26-webgl-isolated.log"
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "checks": 398,
+      "output": "Publishing/combat-v26-checks.txt",
+      "log": "Builds/RatingValidation/combat-v26-tests.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 275,
+      "output": "Publishing/combat-v26-holy-regression.txt",
+      "log": "Builds/RatingValidation/combat-v26-holy-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 152,
+      "output": "Publishing/combat-v26-shaula-regression.txt",
+      "log": "Builds/RatingValidation/combat-v26-shaula-regression.log"
+    },
+    {
+      "result": "PASS",
+      "checks": 1090,
+      "output": "Publishing/combat-v26-localization-regression.txt",
+      "log": "Builds/RatingValidation/combat-v26-localization-regression.log"
+    }
+  ],
+  "previews": [
+    "Publishing/Previews/combat-v26-mobile-ru.png",
+    "Publishing/Previews/combat-v26-mobile-en.png",
+    "Publishing/Previews/combat-v26-pc-ru.png"
+  ],
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "bd2624ad1e7d672eb581c3d3f6e89aa7ba5f0ee8b48d4978902191b36f1b2d38",
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": true,
+  "changes": {
+    "largeCombatHintRemoved": true,
+    "healingNumbers": "green + actual restored HP",
+    "damageNumbersToggleAlsoControlsHealing": true,
+    "shaulaPrefabBaseHealth": 1120,
+    "shaulaWave20Health": 1400,
+    "shaulaWave20PreviousHealth": 900,
+    "languages": [
+      "ru",
+      "en"
+    ]
+  },
+  "manualCheck": "Holy arrow into ordinary enemies: green +HP; wrong arrow into holy enemies: short immunity label only. Wave 20 Shaula: 1400 HP.",
+  "uploadReport": "Publishing/upload-v26-check.json",
+  "archiveFileId": "14103677",
+  "archiveProcessing": "Ready",
+  "uploadedCheckedAt": "2026-10-20T16:02:29.489772+05:00",
+  "uploadProof": "Publishing/Previews/yandex-version26-20261020.png",
+  "menuProof": "Publishing/Previews/yandex-version26-menu-20261020.png"
+}

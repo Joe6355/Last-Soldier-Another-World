@@ -1,0 +1,8 @@
+{
+  "verifiedPackedSourcePaths": 1172,
+  "mismatches": [],
+  "rootSettingsSHA256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
+  "buildSettingsSHA256": "90c7ec80b9fefcb192913eeefda7fa9330d0799c79fdd8e530011ff2ca084aa5",
+  "buildProject": "Builds/RatingValidation/Project",
+  "buildLog": "Builds/RatingValidation/combat-v26-webgl-isolated.log"
+}

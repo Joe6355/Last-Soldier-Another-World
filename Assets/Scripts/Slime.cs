@@ -209,7 +209,13 @@ public class Slime : Sounds
     {
         double previousHealth = health;
         if (deathHandled || amount <= 0) return;
-        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
+        if (isHolyArrow && !CompareTag("HolyEnemy"))
+        {
+            double previousHealingHealth = health;
+            Heal(amount);
+            DamageNumbers.ShowHealing(transform, previousHealingHealth, health);
+            return;
+        }
         if (trainingTarget)
         {
             if (amount <= 0) return;

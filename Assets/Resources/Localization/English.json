@@ -1933,34 +1933,6 @@
       "en": "Test · Wave {0}"
     },
     {
-      "ru": "Красные враги — святые. Их ранят только красные святые стрелы.",
-      "en": "Red enemies are holy. Only red holy arrows can hurt them."
-    },
-    {
-      "ru": "Иммунитет! Красного врага ранят только красные святые стрелы.",
-      "en": "Immune! Only red holy arrows can hurt a red enemy."
-    },
-    {
-      "ru": "Красные стрелы лечат обычных врагов. Для них выбери обычные, зелёные или пробивные.",
-      "en": "Red arrows heal regular enemies. Use normal, green or piercing arrows against them."
-    },
-    {
-      "ru": "Красные стрелы ранят святых красных врагов, но лечат всех остальных.",
-      "en": "Red arrows hurt holy red enemies, but heal all other enemies."
-    },
-    {
-      "ru": "Нет святых стрел? Пополни запас у торговца.",
-      "en": "Out of holy arrows? Restock at the merchant."
-    },
-    {
-      "ru": "Нажми нужный тип стрел справа.",
-      "en": "Tap an arrow type on the right."
-    },
-    {
-      "ru": "Q — сменить тип стрел.",
-      "en": "Q — switch arrow type."
-    },
-    {
       "ru": "Зелёные стрелы отравляют обычных врагов. Красные святые стрелы ранят только красных врагов, а остальных лечат. У каждого типа свой запас.",
       "en": "Green arrows poison regular enemies. Red holy arrows hurt only red enemies and heal the others. Each type has its own supply."
     }

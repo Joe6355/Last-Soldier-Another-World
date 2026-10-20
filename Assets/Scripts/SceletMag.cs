@@ -267,7 +267,13 @@ public class SceletMag : Sounds
     public void TakeDamage(int amount, bool isHolyArrow)
     {
         if (deathHandled || amount <= 0) return;
-        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
+        if (isHolyArrow && !CompareTag("HolyEnemy"))
+        {
+            double previousHealingHealth = health;
+            Heal(amount);
+            DamageNumbers.ShowHealing(transform, previousHealingHealth, health);
+            return;
+        }
         double previousHealth = health;
         health -= amount;
         PlaySound(sounds[0], volume: 1, destroyed: true);

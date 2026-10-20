@@ -252,7 +252,13 @@ public class Enemy : Sounds
     public void TakeDamage(int amount, bool isHolyArrow)
     {
         if (deathHandled || amount <= 0) return;
-        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
+        if (isHolyArrow && !CompareTag("HolyEnemy"))
+        {
+            double previousHealingHealth = health;
+            Heal(amount);
+            DamageNumbers.ShowHealing(transform, previousHealingHealth, health);
+            return;
+        }
         double previousHealth = health;
         health -= amount;
 

@@ -255,7 +255,13 @@ public class SlimeBoss : Sounds
     public void TakeDamage(int amount, bool isHolyArrow)
     {
         if (isDead || amount <= 0) return;
-        if (isHolyArrow && !CompareTag("HolyEnemy")) { Heal(amount); return; }
+        if (isHolyArrow && !CompareTag("HolyEnemy"))
+        {
+            double previousHealingHealth = currentHealth;
+            Heal(amount);
+            DamageNumbers.ShowHealing(transform, previousHealingHealth, currentHealth);
+            return;
+        }
         double previousHealth = currentHealth;
         isAggroed = true;
         currentHealth -= amount;

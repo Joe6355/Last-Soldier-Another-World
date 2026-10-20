@@ -1,0 +1,18 @@
+{
+  "version": "0.0.0.26",
+  "applicationId": 623393,
+  "checkedAt": "2026-10-20T16:02:29.489772+05:00",
+  "uploaded": true,
+  "archiveFileId": "14103677",
+  "archiveProcessing": "Ready",
+  "archiveLastChangedAtConsole": "15:58:58 20/10/2026",
+  "archiveSHA256": "bd2624ad1e7d672eb581c3d3f6e89aa7ba5f0ee8b48d4978902191b36f1b2d38",
+  "draftUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "runtimeBuildPath": "623393/p8lii20gqhcuvi5n7pm21adv5e04iypn",
+  "menuRendered": true,
+  "gameSceneVerified": false,
+  "physicalPhoneTestPerformed": false,
+  "moderationSubmittedThisTurn": false,
+  "uploadProof": "Publishing/Previews/yandex-version26-20261020.png",
+  "menuProof": "Publishing/Previews/yandex-version26-menu-20261020.png"
+}

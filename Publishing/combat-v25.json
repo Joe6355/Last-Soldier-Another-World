@@ -2,8 +2,8 @@
   "version": "0.0.0.25",
   "result": "PASS",
   "checkedAt": "2026-10-20T02:19:49.381663+05:00",
-  "uploaded": false,
-  "uploadLimitation": "User requested an archive only; no draft upload in this turn.",
+  "uploaded": true,
+  "uploadLimitation": null,
   "build": {
     "verifiedPackedSourcePaths": 1174,
     "mismatches": [],
@@ -52,7 +52,7 @@
   "archive": "Builds/LastSoldierYandex.zip",
   "archiveSHA256": "25a63044ba1ba9ca53840bcc457d66669418230ad1337f8bdb9334170a5e36c1",
   "physicalPhoneTestPerformed": false,
-  "browserLaunchVerified": false,
+  "browserLaunchVerified": true,
   "changes": {
     "barrelBaseEnemyDamage": 90,
     "previousBarrelBaseEnemyDamage": 45,
@@ -70,5 +70,11 @@
       "touch"
     ]
   },
-  "manualCheck": "Crimson arena wave 5: paired HP bars, barrels, holy enemies, language switch. Demo shortcut: 9 while in the arena; then select a wave."
+  "manualCheck": "Crimson arena wave 5: paired HP bars, barrels, holy enemies, language switch. Demo shortcut: 9 while in the arena; then select a wave.",
+  "uploadReport": "Publishing/upload-v25-check.json",
+  "archiveFileId": "14103477",
+  "archiveProcessing": "Ready",
+  "uploadedCheckedAt": "2026-10-20T15:32:36.991482+05:00",
+  "uploadProof": "Publishing/Previews/yandex-version25-20261020.png",
+  "menuProof": "Publishing/Previews/yandex-version25-menu-20261020.png"
 }

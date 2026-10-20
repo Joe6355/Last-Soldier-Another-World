@@ -316,60 +316,54 @@ public static class CrimsonArenaChecks
         Enemies(red).AddRange(otherEnemies);
         Check(enemy.health == 1000 - barrel.BarrelDamage, "Actual barrel area damage uses the stronger value, including against holy enemies");
         actor.transform.position = player.transform.position + Vector3.right * 2;
-        var tips = UnityEngine.Object.FindObjectOfType<TipsManager>();
         var bow = player.crossbowController;
-        bool numbersEnabled = DamageNumbers.IsEnabled; DamageNumbers.SetEnabled(false);
-        GameLocalization.SetSelection("ru");
-        ResetHint();
+        var numbers = UnityEngine.Object.FindObjectOfType<DamageNumbers>();
+        bool numbersEnabled = DamageNumbers.IsEnabled; DamageNumbers.SetEnabled(true);
+        Call(numbers, "Clear"); GameLocalization.SetSelection("ru");
         var arrow = UnityEngine.Object.Instantiate(bow.arrowPrefabs[0]).GetComponent<ArrowDef>();
         int hp = enemy.health; float scale = Time.timeScale;
         Call(arrow, "ApplyHit", enemy);
-        Check(enemy.health == hp, "Immunity hint never changes the holy enemy's damage immunity");
-        var hint = Get<RectTransform>(tips, "combatHintRoot"); var text = Get<TMPro.TMP_Text>(tips, "combatHintText");
-        Check(hint != null && hint.gameObject.activeSelf && text.text.Contains("только красные"), "Wrong-arrow hit explains holy immunity even with damage numbers disabled");
-        Check(Time.timeScale == scale && !hint.GetComponent<UnityEngine.UI.Image>().raycastTarget && !text.raycastTarget,
-            "Combat hints do not pause combat or intercept input");
-        float remaining = Get<float>(tips, "combatHintRemaining"); TipsManager.ReportArrowImmunity();
-        Check(Get<float>(tips, "combatHintRemaining") == remaining, "Rapid repeated hits cannot restart the hint timer");
-        Check(hint.anchorMin.y == 1 && hint.anchoredPosition.y < -50, "Combat hint is fixed below the wave HUD");
-        Vector2 hintPosition = hint.anchoredPosition; Vector3 position = player.transform.position;
-        player.transform.position += Vector3.right; Call(tips, "TickCombatHints");
-        Check(hint.anchoredPosition == hintPosition, "Moving the hero does not move or jump the combat hint"); player.transform.position = position;
-        GameLocalization.SetSelection("en"); Check(text.text.StartsWith("Immune!"), "Active combat hint immediately switches to English");
-        var controls = UnityEngine.Object.FindObjectOfType<MobileControls>();
-        YG.YG2.envir.isDesktop = false; YG.YG2.envir.isMobile = true; YG.YG2.envir.deviceType = "mobile";
-        controls.RefreshLayout(); Call(tips, "TickCombatHints"); Call(red, "LayoutPairedBossHud"); Canvas.ForceUpdateCanvases();
-        CheckPairedHud();
-        Check(text.text.Contains("Tap an arrow"), "Mobile immunity hint points at touch arrow selection");
-        text.ForceMeshUpdate(); Check(!text.isTextOverflowing, "English combat hint fits its mobile panel");
-        Capture("combat-v25-mobile-en.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
-        GameLocalization.SetSelection("ru"); text.ForceMeshUpdate(); Check(!text.isTextOverflowing, "Russian combat hint fits its mobile panel");
-        Capture("combat-v25-mobile-ru.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
-        YG.YG2.envir.isDesktop = true; YG.YG2.envir.isMobile = false; YG.YG2.envir.deviceType = "desktop";
-        controls.RefreshLayout(); Call(tips, "TickCombatHints");
-        var counts = Get<int[]>(bow, "arrowCounts"); int holyStock = counts[2]; counts[2] = 0;
-        ResetHint(); TipsManager.ReportArrowImmunity(); Check(text.text.Contains("торговца"), "Empty holy stock explains how to restock"); counts[2] = holyStock;
-        Time.timeScale = 0; Call(tips, "TickCombatHints"); Check(!hint.gameObject.activeSelf, "Combat hint hides while paused");
-        Time.timeScale = scale; ResetHint(); Set(tips, "holyEnemyExplained", false); Set(tips, "nextHolyProbe", 0f);
-        Call(tips, "TickCombatHints"); Check(hint.gameObject.activeSelf && text.text.StartsWith("Красные враги"), "Nearby holy enemy is explained proactively before the first wrong hit");
-        UnityEngine.Object.Destroy(arrow.gameObject);
-        ResetHint();
-        var holyArrow = UnityEngine.Object.Instantiate(bow.arrowPrefabs[2]).GetComponent<ArrowDef>();
+        Check(enemy.health == hp, "Removing the large hint does not change holy enemy immunity");
+        Check(GameObject.Find("CombatHint") == null && Time.timeScale == scale,
+            "Wrong-arrow hits create no large hint and do not pause combat");
+        Check(Labels().Length == 1 && !Labels()[0].text.StartsWith("+"), "Immunity retains its short world-space label");
+        Call(arrow, "ApplyHit", enemy);
+        Check(Labels().Length == 1, "Rapid immune hits retain one compact label per enemy");
+        DamageNumbers.SetEnabled(false); Call(arrow, "ApplyHit", enemy);
+        Check(Labels().Length == 0 && enemy.health == hp, "Disabling numbers hides immune labels without changing hit rules");
+        DamageNumbers.SetEnabled(true);
+        var holyArrow = UnityEngine.Object.Instantiate(bow.arrowPrefabs[2]).GetComponent<ArrowDef>(); holyArrow.damage = 7;
         float oldHealth = Get<float>(slimeBoss, "currentHealth"); Set(slimeBoss, "currentHealth", oldHealth - 10);
         Call(holyArrow, "ApplyHit", slimeBoss);
-        Check(Get<float>(slimeBoss, "currentHealth") > oldHealth - 10 && text.text.Contains("лечат обычных"),
-            "Holy-arrow healing of an ordinary enemy displays the opposite arrow rule"); Set(slimeBoss, "currentHealth", oldHealth);
-        ResetHint(); TipsManager.ReportHolyArrowsSelected(); Check(text.text.Contains("лечат всех остальных"), "Selecting holy arrows explains their healing restriction");
-        Set(tips, "combatHintRemaining", 0f); Call(tips, "TickCombatHints");
-        Check(!hint.gameObject.activeSelf, "Combat hint expires without a lingering overlay");
-        DamageNumbers.SetEnabled(numbersEnabled);
-        Enemies(red).Remove(actor); UnityEngine.Object.Destroy(actor); UnityEngine.Object.Destroy(holyArrow.gameObject);
+        Check(Get<float>(slimeBoss, "currentHealth") == oldHealth - 3, "A holy hit restores the actual seven health points");
+        Check(Labels().Length == 1 && Labels()[0].text == "+7" && Labels()[0].color.g > Labels()[0].color.r,
+            "Healing shares the floating-number pool with a green plus sign");
+        Check(GameObject.Find("CombatHint") == null, "Healing creates no large combat overlay");
+        var controls = UnityEngine.Object.FindObjectOfType<MobileControls>();
+        YG.YG2.envir.isDesktop = false; YG.YG2.envir.isMobile = true; YG.YG2.envir.deviceType = "mobile";
+        controls.RefreshLayout(); Call(red, "LayoutPairedBossHud"); Canvas.ForceUpdateCanvases(); CheckPairedHud();
+        Capture("combat-v26-mobile-ru.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
+        GameLocalization.SetSelection("en");
+        Check(Labels().Any(t => t.text == "+7"), "The healing plus sign remains readable after changing language");
+        Capture("combat-v26-mobile-en.png", red.GetComponent<Collider2D>().bounds.center + new Vector3(0,2,-6), 7);
+        GameLocalization.SetSelection("ru");
+        YG.YG2.envir.isDesktop = true; YG.YG2.envir.isMobile = false; YG.YG2.envir.deviceType = "desktop";
+        controls.RefreshLayout();
+        Call(numbers, "Clear"); Set(slimeBoss, "currentHealth", oldHealth - 3); Call(holyArrow, "ApplyHit", slimeBoss);
+        Check(Get<float>(slimeBoss, "currentHealth") == oldHealth && Labels().Single().text == "+3",
+            "A capped boss heal displays only the three health points actually restored");
+        Call(numbers, "Clear"); Call(holyArrow, "ApplyHit", slimeBoss);
+        Check(Labels().Length == 0, "A full-health boss creates no misleading plus-zero number");
+        Set(slimeBoss, "currentHealth", oldHealth - 10); DamageNumbers.SetEnabled(false); Call(holyArrow, "ApplyHit", slimeBoss);
+        Check(Get<float>(slimeBoss, "currentHealth") == oldHealth - 3 && Labels().Length == 0,
+            "The existing numbers setting hides healing labels without disabling the heal");
+        DamageNumbers.SetEnabled(true); DamageNumbers.Show(enemy.transform, 100, 98);
+        Check(Labels().Single().text == "2" && Labels()[0].color == Get<TMPro.TextMeshPro>(numbers, "numberPrefab").color,
+            "Reusing a healing label restores the normal damage text and color");
+        Set(slimeBoss, "currentHealth", oldHealth); DamageNumbers.SetEnabled(numbersEnabled);
+        Enemies(red).Remove(actor); UnityEngine.Object.Destroy(actor); UnityEngine.Object.Destroy(arrow.gameObject); UnityEngine.Object.Destroy(holyArrow.gameObject);
 
-        void ResetHint()
-        {
-            Set(tips, "nextCombatHint", 0f); Set(tips, "combatHintRemaining", 0f);
-            Array.Clear(Get<float[]>(tips, "nextCombatHintKind"), 0, 4);
-        }
+        TMPro.TextMeshPro[] Labels() => numbers.GetComponentsInChildren<TMPro.TextMeshPro>().Where(t => t.gameObject.activeInHierarchy).ToArray();
     }
     static void CheckPairedHud()
     {
