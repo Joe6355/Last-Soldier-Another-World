@@ -1,0 +1,23 @@
+{
+  "version": "0.0.0.29",
+  "applicationId": 623393,
+  "checkedAt": "2026-10-21T16:04:07.175Z",
+  "uploaded": true,
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "5c52bab55fbcfb551c30be3a178f68ace0b5529b63dd805695e6865165e0c097",
+  "archiveFileId": "14128905",
+  "archiveProcessing": "Ready",
+  "archiveLastChangedAtConsole": "21:00:22 21/10/2026",
+  "draftUrl": "https://yandex.ru/games/app/623393?draft=true&lang=ru",
+  "runtimeBuildPath": "623393/u7qiumhgvynpr4y9i9ym9rhuekdl9xbs",
+  "menuRendered": true,
+  "browserLaunchVerified": true,
+  "gameSceneVerified": false,
+  "gameSceneVerifiedInUnity": true,
+  "physicalPhoneTestPerformed": false,
+  "moderationSubmittedThisTurn": false,
+  "uploadProof": "Publishing/Previews/yandex-version29-20261021.png",
+  "menuProof": "Publishing/Previews/yandex-version29-menu-20261021.png",
+  "initialDraft404ResolvedAfterProcessing": true,
+  "browserInputLimitation": "Automated clicks did not transition from the menu; game scene integrity was verified by Unity before the build."
+}

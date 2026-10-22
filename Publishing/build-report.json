@@ -1,11 +1,11 @@
 {
   "archive": "Builds/LastSoldierYandex.zip",
-  "builtAt": "2026-10-20T21:10:23.826710+00:00",
+  "builtAt": "2026-10-21T15:53:31.071713+00:00",
   "unityVersion": "2022.3.47f1",
   "buildResult": "Succeeded",
-  "zipBytes": 18054512,
-  "unpackedBytes": 18367224,
-  "sha256": "4eedb17017062c37c2db6640e838046c32d1c61db1ef8dca48e46bceeaf46c17",
+  "zipBytes": 18054677,
+  "unpackedBytes": 18366729,
+  "sha256": "5c52bab55fbcfb551c30be3a178f68ace0b5529b63dd805695e6865165e0c097",
   "files": [
     "Build/YandexGames.data.unityweb",
     "Build/YandexGames.framework.js.unityweb",
@@ -24,11 +24,11 @@
     "style.css"
   ],
   "fileHashes": {
-    "Build/YandexGames.data.unityweb": "f433e1dc2548ffbeaeba01cdfef1b5ddf4f0e10701472666bd4b0eb13f58217b",
-    "Build/YandexGames.framework.js.unityweb": "277f3bce5f109805ba68bd4586659111e4954e5f9fa02b42ea3c1bd1a38313d7",
+    "Build/YandexGames.data.unityweb": "665378d0bedb6b470feb2f10abc1064b4d4fb1a5b1555b75f9e6ee8aa8d0ef7d",
+    "Build/YandexGames.framework.js.unityweb": "48bd45d8e5d0667241f156a89bf4833df5bb73f090431f8cb0520440c44d51bd",
     "Build/YandexGames.loader.js": "cc62f6eb95c3d6723669537804b4010787528ec5986ac9a92cf15dfcafa633b2",
-    "Build/YandexGames.wasm.unityweb": "b4d9772b9b02c1be822e9f65758a6c7dc3abcbc4df5d1b5f6fbe8c58311ee047",
-    "index.html": "79c9d9be26bf11e1d5ff9b92be343a1ddb22277cb43812c2c650c26d42f56cf8",
+    "Build/YandexGames.wasm.unityweb": "4fa439c7cd43fc33a4801ffb41e4fac0642d3c4bffd631e6133e9679e9b12989",
+    "index.html": "f5099b096b1ca012d95b994649d6bea9d4454f555d3ae816c36a27d68f380aa6",
     "StreamingAssets/ThirdParty/CC-BY-3.0.txt": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
     "StreamingAssets/ThirdParty/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
     "StreamingAssets/ThirdParty/CC-BY-SA-3.0.txt": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f",
@@ -2053,7 +2053,7 @@
       },
       {
         "path": "Assets/Scenes/SampleScene.unity",
-        "sha256": "29c183bb1a26b61e2152d14a0ef661952e94c1d41f3d9565967d7cf299cce386"
+        "sha256": "8c04de668757c9b90950840014aac32c07bc2447b37b9a5d10761324bc717435"
       },
       {
         "path": "Assets/Scripts/AddHolyArrow.cs",
@@ -4853,8 +4853,8 @@
       }
     ]
   },
-  "sourceSettingsSha256": "1f18e3e1ab83694e60a5b9c80d85b334288de3500f56754634ca072d2712fc95",
-  "buildSettingsSha256": "1f18e3e1ab83694e60a5b9c80d85b334288de3500f56754634ca072d2712fc95",
+  "sourceSettingsSha256": "98488b6de9d6ccf9994b0110bcc2f1d14bdb77708b368c607a76717ce8591e58",
+  "buildSettingsSha256": "98488b6de9d6ccf9994b0110bcc2f1d14bdb77708b368c607a76717ce8591e58",
   "validationLogs": [
     "Builds/RatingValidation/visual-restore-checks.log",
     "Builds/RatingValidation/visual-restoration-runtime-final.log",
@@ -4926,13 +4926,14 @@
     "Builds/RatingValidation/finale-v27-localization-regression.log",
     "Builds/RatingValidation/release-v28-webgl-isolated.log",
     "Builds/RatingValidation/release-v28-demo-tests.log",
-    "Builds/RatingValidation/release-v28-finale-regression.log"
+    "Builds/RatingValidation/release-v28-finale-regression.log",
+    "Builds/RatingValidation/release-v29-webgl-isolated.log"
   ],
   "uploadedToYandex": true,
   "previousUploadedArchive": {
-    "sha256": "4a3359bf9920c31208015c00f370f76d20701b11e570cfa1eb652aaf76417d92",
-    "version": "0.0.0.27",
-    "fileId": "14106266"
+    "sha256": "4eedb17017062c37c2db6640e838046c32d1c61db1ef8dca48e46bceeaf46c17",
+    "version": "0.0.0.28",
+    "fileId": "14108398"
   },
   "localBrowserSmoke": {
     "checkedAt": "2026-10-13",
@@ -4949,11 +4950,11 @@
   },
   "yandexDraft": {
     "applicationId": 623393,
-    "version": "0.0.0.28",
-    "archiveFileId": "14108398",
-    "checkedAt": "2026-10-20T21:19:59.563Z",
+    "version": "0.0.0.29",
+    "archiveFileId": "14128905",
+    "checkedAt": "2026-10-21T16:04:07.175Z",
     "archiveProcessing": "Ready",
-    "archiveLastChangedAtConsole": "02:16:54 21/10/2026",
+    "archiveLastChangedAtConsole": "21:00:22 21/10/2026",
     "platforms": [
       "desktop",
       "Android"
@@ -4964,7 +4965,7 @@
       "ru",
       "en"
     ],
-    "runtimeCheckedVersion": "0.0.0.28",
+    "runtimeCheckedVersion": "0.0.0.29",
     "moderationSubmitted": false,
     "published": false,
     "moderationBlocker": "Submit-for-moderation button disabled after both current videos became playable. No reason in button title/ARIA; platform restriction banner still visible. Specific cause not established.",
@@ -5140,7 +5141,9 @@
       "Publishing/Previews/yandex-card-en-video-20261020.png",
       "Publishing/Previews/yandex-card-en-screenshots-20261020.png",
       "Publishing/Previews/yandex-version28-20261021.png",
-      "Publishing/Previews/yandex-version28-menu-20261021.png"
+      "Publishing/Previews/yandex-version28-menu-20261021.png",
+      "Publishing/Previews/yandex-version29-20261021.png",
+      "Publishing/Previews/yandex-version29-menu-20261021.png"
     ],
     "leaderboardBridgeCorrection": {
       "source": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/Editor/CopyCode/LB_js.js",
@@ -5196,7 +5199,7 @@
       "platformIncidentConfirmedBySupport": true,
       "latestCheck": "Publishing/leaderboard-recheck-20261017.json"
     },
-    "lastSavedAtConsole": "02:16:54 21/10/2026",
+    "lastSavedAtConsole": "21:00:22 21/10/2026",
     "consoleTimeoutResolvedAfterReload": true,
     "latestReleaseCheck": {
       "checkedAt": "2026-10-16",
@@ -5222,20 +5225,18 @@
     "ageRatingObservationNote": "6+ observed and preserved on 2026-10-17; new code removes boss bodies and uses neutral defeat text. Moderation decision not guaranteed.",
     "platformPanelStatus": "Technical maintenance: come back later or choose another navigation section",
     "platformPanelProof": "Publishing/Previews/yandex-panel-maintenance-v13-20261017.jpg",
-    "uploadProof": "Publishing/Previews/yandex-version28-20261021.png",
+    "uploadProof": "Publishing/Previews/yandex-version29-20261021.png",
     "moderationStatusCheckedVersion": "0.0.0.27",
     "cardMediaRecordedForVersion": "0.0.0.13",
-    "currentRuntimePath": "623393/qfu2yr914w6g7o9372mvocke5dciz70d",
+    "currentRuntimePath": "623393/u7qiumhgvynpr4y9i9ym9rhuekdl9xbs",
     "draftSmokeCheck": {
-      "version": "0.0.0.28",
-      "checkedAt": "2026-10-20T21:19:59.563Z",
+      "version": "0.0.0.29",
+      "checkedAt": "2026-10-21T16:04:07.175Z",
       "menuRendered": true,
       "gameSceneVerified": false,
-      "physicalKeyboardDemoVerified": false,
       "physicalPhoneTestPerformed": false,
-      "compiledDemoDisabled": true,
-      "menuProof": "Publishing/Previews/yandex-version28-menu-20261021.png",
-      "runtimeBuildPath": "623393/qfu2yr914w6g7o9372mvocke5dciz70d"
+      "menuProof": "Publishing/Previews/yandex-version29-menu-20261021.png",
+      "runtimeBuildPath": "623393/u7qiumhgvynpr4y9i9ym9rhuekdl9xbs"
     },
     "leaderboardLatestCheck": {
       "checkedOn": "2026-10-20",
@@ -5253,7 +5254,7 @@
     },
     "lastMediaUploadCheckedAt": "2026-10-20T23:28:57.693364+05:00",
     "moderationStatusCheckedAt": "2026-10-21T00:28:37.706104+05:00",
-    "latestReleaseReadiness": "Publishing/release-v28.json"
+    "latestReleaseReadiness": "Publishing/release-v29.json"
   },
   "packagedAt": "2026-10-16T07:27:00.296260+00:00",
   "postBuildPackagingHistory": [
@@ -5302,7 +5303,7 @@
     "firstAttemptRootCauseConfirmed": false,
     "report": "Publishing/pc-v10-load-check.json"
   },
-  "localVersion": "0.0.0.28",
+  "localVersion": "0.0.0.29",
   "uploadLimitation": null,
   "desktopVersion11Validation": {
     "checkedAt": "2026-10-17",
@@ -5694,5 +5695,20 @@
     "checkedAt": "2026-10-21T02:13:09.173056+05:00",
     "status": "Deferred by owner; unresolved status retained",
     "testedThisTurn": false
+  },
+  "releaseV29": {
+    "report": "Publishing/release-v29.json",
+    "validations": [
+      {
+        "result": "PASS",
+        "scope": "Both enabled scenes load without a placed 100000-coin pickup; normal 100-coin prefab, game player, version and release defines checked",
+        "log": "Builds/RatingValidation/release-v29-webgl-isolated.log"
+      }
+    ],
+    "physicalPhoneTestPerformed": false,
+    "browserLaunchVerified": true,
+    "coinCheck": "Publishing/release-v29-coin-check.json",
+    "nodeTests": "Publishing/release-v29-node-tests.json",
+    "uploadReport": "Publishing/upload-v29-check.json"
   }
 }

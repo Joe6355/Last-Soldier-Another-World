@@ -1,5 +1,5 @@
 {
-  "checkedOn": "2026-10-21",
+  "checkedOn": "2026-10-22",
   "result": "PASS",
   "pendingProvenancePaths": [],
   "ownerDeclaredProvenancePaths": [
@@ -15,7 +15,7 @@
   ],
   "ownerDeclarationIndependentlyVerified": false,
   "archive": "Builds/LastSoldierYandex.zip",
-  "archiveSha256": "4eedb17017062c37c2db6640e838046c32d1c61db1ef8dca48e46bceeaf46c17",
+  "archiveSha256": "5c52bab55fbcfb551c30be3a178f68ace0b5529b63dd805695e6865165e0c097",
   "archiveFileCount": 15,
   "matchedSourceFiles": 1202,
   "packedAssetsReport": "Publishing/release-packed-assets.json",

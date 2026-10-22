@@ -35545,11 +35545,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253027227}
   m_CullTransparentMesh: 1
---- !u!4 &257748903 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-  m_PrefabInstance: {fileID: 1897600980}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &257970171
 GameObject:
   m_ObjectHideFlags: 0
@@ -263019,7 +263014,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 257748903}
   - {fileID: 1402267412}
   - {fileID: 1190132010}
   - {fileID: 575142580}
@@ -312756,71 +312750,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897536188}
   m_CullTransparentMesh: 1
---- !u!1001 &1897600980
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1148885467}
-    m_Modifications:
-    - target: {fileID: 3303375326117892162, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_Name
-      value: MoneyObsidian Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525056626132409933, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718835704932078367, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: lifeTime
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718835704932078367, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
-      propertyPath: coinValue
-      value: 100000
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8c14ef9dadba70546a1be3855caacd6b, type: 3}
 --- !u!1 &1899906383
 GameObject:
   m_ObjectHideFlags: 0

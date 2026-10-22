@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0.29",
+  "checkedAt": "2026-10-21T20:54:10.363025+05:00",
+  "result": "PASS",
+  "removedPrefabInstance": 1897600980,
+  "removedTransform": 257748903,
+  "removedCoinValue": 100000,
+  "sceneSHA256": "8c04de668757c9b90950840014aac32c07bc2447b37b9a5d10761324bc717435",
+  "bothEnabledScenesLoaded": true,
+  "remainingGameSceneCoins": 7,
+  "normalObsidianCoinValue": 100,
+  "publicDemoDefineCompiled": false,
+  "playerCompilerResponseSHA256": "6a47b13605d7e93c0b8d57265b369e5ffa1a5804a5affb263a331f79a0715e4d",
+  "buildLog": "Builds/RatingValidation/release-v29-webgl-isolated.log"
+}

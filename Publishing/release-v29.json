@@ -1,0 +1,49 @@
+{
+  "version": "0.0.0.29",
+  "result": "PASS",
+  "checkedAt": "2026-10-21T20:53:31.837511+05:00",
+  "uploaded": true,
+  "uploadLimitation": null,
+  "build": {
+    "verifiedPackedSourcePaths": 1172,
+    "mismatches": [],
+    "rootSettingsSHA256": "98488b6de9d6ccf9994b0110bcc2f1d14bdb77708b368c607a76717ce8591e58",
+    "buildSettingsSHA256": "98488b6de9d6ccf9994b0110bcc2f1d14bdb77708b368c607a76717ce8591e58",
+    "buildProject": "Builds/RatingValidation/Project",
+    "buildLog": "Builds/RatingValidation/release-v29-webgl-isolated.log"
+  },
+  "validations": [
+    {
+      "result": "PASS",
+      "scope": "Both enabled scenes load without a placed 100000-coin pickup; normal 100-coin prefab, game player, version and release defines checked",
+      "log": "Builds/RatingValidation/release-v29-webgl-isolated.log"
+    }
+  ],
+  "previews": [],
+  "archive": "Builds/LastSoldierYandex.zip",
+  "archiveSHA256": "5c52bab55fbcfb551c30be3a178f68ace0b5529b63dd805695e6865165e0c097",
+  "physicalPhoneTestPerformed": false,
+  "browserLaunchVerified": true,
+  "changes": {
+    "placedTestCoinRemoved": true,
+    "removedCoinValue": 100000,
+    "scene": "Assets/Scenes/SampleScene.unity",
+    "normalCoinRewardsUnchanged": true,
+    "demoWaveSelectionInWebGL": false
+  },
+  "manualCheck": "Reload the draft and enter the camp: the placed test coin is absent. Existing account balances are preserved.",
+  "coinCheck": "Publishing/release-v29-coin-check.json",
+  "nodeTests": "Publishing/release-v29-node-tests.json",
+  "assetValidation": "Publishing/release-assets-validation.json",
+  "limitations": [
+    "Previously collected test coins remain in saved balances.",
+    "No physical phone test performed by the agent for this version."
+  ],
+  "uploadReport": "Publishing/upload-v29-check.json",
+  "archiveFileId": "14128905",
+  "archiveProcessing": "Ready",
+  "runtimeBuildPath": "623393/u7qiumhgvynpr4y9i9ym9rhuekdl9xbs",
+  "uploadProof": "Publishing/Previews/yandex-version29-20261021.png",
+  "menuProof": "Publishing/Previews/yandex-version29-menu-20261021.png",
+  "moderationSubmitted": false
+}

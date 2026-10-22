@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "passed": 10,
+  "failed": 0,
+  "command": "node --test Tests/yandex-sdk.test.cjs Tests/webgl-orientation.test.cjs"
+}

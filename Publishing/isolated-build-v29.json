@@ -1,0 +1,8 @@
+{
+  "verifiedPackedSourcePaths": 1172,
+  "mismatches": [],
+  "rootSettingsSHA256": "98488b6de9d6ccf9994b0110bcc2f1d14bdb77708b368c607a76717ce8591e58",
+  "buildSettingsSHA256": "98488b6de9d6ccf9994b0110bcc2f1d14bdb77708b368c607a76717ce8591e58",
+  "buildProject": "Builds/RatingValidation/Project",
+  "buildLog": "Builds/RatingValidation/release-v29-webgl-isolated.log"
+}
