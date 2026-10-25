@@ -92,7 +92,7 @@ namespace YG
             if (!nowAdsShow && isTimerAdvCompleted)
             {
                 onAdvNotification?.Invoke();
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !LAST_SOLDIER_RUSTORE
                 if (infoYG.Simulation.testFailAds)
                 {
                     Message("Error Interstitial Adv simulation");

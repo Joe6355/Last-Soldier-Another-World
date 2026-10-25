@@ -63,6 +63,9 @@ public class TopPlayersPanel : MonoBehaviour
 
     public void LoadTopPlayers()
     {
+#if LAST_SOLDIER_RUSTORE
+        return;
+#else
         if (!GameProgress.IsReady || waiting || contentParent == null || !contentParent.gameObject.activeInHierarchy || Time.unscaledTime < nextRefresh) return;
         waiting = true;
         deadline = Time.unscaledTime + 12f;
@@ -70,6 +73,7 @@ public class TopPlayersPanel : MonoBehaviour
         ShowPlaceholders();
         ShowStatus("Загрузка рейтинга…");
         YG2.GetLeaderboard(GameProgress.LeaderboardName, 15, 1, "small");
+#endif
     }
 
     private void OnLeaderboard(LBData data)

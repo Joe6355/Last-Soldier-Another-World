@@ -1,0 +1,14 @@
+Last Soldier: Another World — RuStore
+Data notice, 25 October 2026
+
+The developer publishes this version as Joe6355. Support and data contact: dudin1918@mail.ru.
+
+The game works without registration. This version has no Yandex sign-in, shared online leaderboard or developer-operated profile server. Progress, settings, coins, inventory, achievements and game statistics remain on your device. There is no cloud transfer of saves or purchasing for real money.
+
+To remove local data, clear the app data in Android settings or uninstall the app. This removes your progress. No separate game account is created.
+
+The game uses Yandex Mobile Ads SDK, including its AppMetrica component. To load and measure advertising, the SDK may process technical information about the device, network and ad events. The game sets no consent for personalization, enables age-restricted data collection and disables location tracking. The Google Advertising ID permission is excluded from the manifest. These settings do not mean that no technical network data is processed.
+
+Advertising provider policies: https://yandex.ru/legal/confidential/ and https://yandex.ru/legal/partner_ch/. Advertising is loaded after this notice is acknowledged and requires internet access. Local gameplay remains available offline, but ad rewards are unavailable.
+
+You can reopen this notice in settings. Support opens your email app; a message is sent only by your action. For data questions, contact dudin1918@mail.ru. Do not send passwords or other secrets.

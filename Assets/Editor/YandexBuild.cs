@@ -6,7 +6,7 @@ using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public static class YandexBuild
+public static partial class YandexBuild
 {
     [Serializable] private sealed class PackedAssetList { public string[] paths; }
     public const string AndroidTestVersion = "1.0.7";

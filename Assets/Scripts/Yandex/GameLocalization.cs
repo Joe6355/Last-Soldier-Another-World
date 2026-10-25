@@ -104,9 +104,19 @@ public sealed class GameLocalization : MonoBehaviour
         foreach (var root in scene.GetRootGameObjects())
         {
             foreach (var menu in root.GetComponentsInChildren<MainMenuController>(true))
+            {
                 LanguageSelector.Install(menu.SettingsPanel);
+#if LAST_SOLDIER_RUSTORE
+                RuStoreMenu.Install(menu.SettingsPanel);
+#endif
+            }
             foreach (var ui in root.GetComponentsInChildren<Ui>(true))
+            {
                 LanguageSelector.Install(ui.SettingsPanel);
+#if LAST_SOLDIER_RUSTORE
+                RuStoreMenu.Install(ui.SettingsPanel);
+#endif
+            }
         }
         RefreshAll();
     }

@@ -1,6 +1,10 @@
 # Last-Soldier-Another-World
 
-**Последний солдат: другой мир** — проект игры на Unity **2022.3.47f1**, подготовка к публикации в Яндекс Играх. Черновик: [623393](https://games.yandex.ru/console/application/623393#application-info-draft).
+**Последний солдат: другой мир** — отдельная Android-ветка `codex/rustore-release`, Unity **2022.3.62f2**. Первый релиз содержит рекламу и локальные сохранения; Яндекс-вход и общий онлайн-рейтинг исключены по решению владельца. Сервер и домен не требуются. Публичные рекламные блоки ещё нужно активировать; публикация в RuStore не выполнена.
+
+Сборка и настройки: [SETUP](Publishing/RuStore/SETUP.md). Решение по серверу: [HOSTING](Publishing/RuStore/HOSTING.md). Выполненные проверки и оставшиеся этапы: [VALIDATION](Publishing/RuStore/VALIDATION.md).
+
+Оригинальная версия для Яндекс Игр остаётся в `main`. Дальнейшие разделы с WebGL-командами относятся к ней; черновик [623393](https://games.yandex.ru/console/application/623393#application-info-draft).
 
 ## Запуск
 

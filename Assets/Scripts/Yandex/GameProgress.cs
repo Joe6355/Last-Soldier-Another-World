@@ -113,7 +113,11 @@ public sealed partial class GameProgress : MonoBehaviour
         }
         else if (backup != null)
             YG2.saves = backup;
-        else if (cloudEmpty && cloudReadOk && AuthPending && wasGuest)
+        else if (AuthPending && wasGuest && (cloudEmpty && cloudReadOk
+#if LAST_SOLDIER_RUSTORE
+            || cloudState == 0
+#endif
+            ))
             YG2.saves = ReadBackup("guest") ?? new SavesYG();
         else
             YG2.saves = new SavesYG();
@@ -149,7 +153,7 @@ public sealed partial class GameProgress : MonoBehaviour
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         return GameCloudStatus_js();
-#elif UNITY_EDITOR
+#elif UNITY_EDITOR && !LAST_SOLDIER_RUSTORE
         return 1; // SDK simulation; no request is made to Yandex.
 #else
         return 0;
@@ -239,6 +243,9 @@ public sealed partial class GameProgress : MonoBehaviour
 
     public static void BeginAuthorization()
     {
+#if LAST_SOLDIER_RUSTORE
+        return;
+#else
         if (IsArenaDemo) return;
         if (!IsReady || AuthPending || YG2.player.auth) return;
         SaveNow();
@@ -246,12 +253,13 @@ public sealed partial class GameProgress : MonoBehaviour
         AuthPending = true;
         IsReady = false;
         Changed?.Invoke();
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !LAST_SOLDIER_RUSTORE
         YG2.infoYG.Authorization.authorized = true;
         YG2.player.name = YG2.infoYG.Authorization.playerName;
         YG2.OpenAuthDialog();
 #else
         YG2.OpenAuthDialog();
+#endif
 #endif
     }
 
@@ -355,16 +363,19 @@ public sealed partial class GameProgress : MonoBehaviour
 
     private void SendRating()
     {
+#if !LAST_SOLDIER_RUSTORE
         if (IsArenaDemo) return;
-        if (!YG2.player.auth || !CloudAvailable || ratingSending || Time.unscaledTime < nextRating) return;
+        bool ratingAvailable = CloudAvailable;
+        if (!YG2.player.auth || !ratingAvailable || ratingSending || Time.unscaledTime < nextRating) return;
         var summary = Stats.ReadLeaderboardSummary();
         int score = MmrScore(summary.waves, summary.kills, summary.bonusMmr);
         if (score == 0 || score == submittedRating) return;
         nextRating = Time.unscaledTime + 30f;
         ratingSending = true;
         YG2.SetLeaderboard(LeaderboardName, score, JsonUtility.ToJson(summary));
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !LAST_SOLDIER_RUSTORE
         RatingSaved(score.ToString());
+#endif
 #endif
     }
 

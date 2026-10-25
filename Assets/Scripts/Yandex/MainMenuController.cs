@@ -21,8 +21,14 @@ public sealed class MainMenuController : MonoBehaviour
     private bool loading;
     public GameObject SettingsPanel => settingsPanel;
 
-    private void OnEnable() => GameProgress.Changed += Refresh;
-    private void OnDisable() => GameProgress.Changed -= Refresh;
+    private void OnEnable()
+    {
+        GameProgress.Changed += Refresh;
+    }
+    private void OnDisable()
+    {
+        GameProgress.Changed -= Refresh;
+    }
     private void Start()
     {
         Time.timeScale = 1f;
@@ -46,6 +52,11 @@ public sealed class MainMenuController : MonoBehaviour
             : "Вход сохранит прогресс в облаке";
         if (GameProgress.IsReady && !GameProgress.CloudAvailable)
             statusText.text = "Сохранение на этом устройстве";
+#if LAST_SOLDIER_RUSTORE
+        authButton.gameObject.SetActive(false);
+        if (ratingButton != null) ratingButton.gameObject.SetActive(false);
+        if (GameProgress.IsReady) statusText.text = "Сохранение на этом устройстве";
+#endif
         if (GameProgress.IsReady) YG2.GameReadyAPI();
     }
 
@@ -62,6 +73,9 @@ public sealed class MainMenuController : MonoBehaviour
 
     public void ShowRating()
     {
+#if LAST_SOLDIER_RUSTORE
+        return;
+#else
         if (!GameProgress.IsReady || loading || ratingPanel == null) return;
         GameProgress.SaveNow();
         if (menuPanel != null) menuPanel.SetActive(false);
@@ -69,6 +83,7 @@ public sealed class MainMenuController : MonoBehaviour
         if (profilePanel != null) profilePanel.SetActive(false);
         if (settingsPanel != null) settingsPanel.SetActive(false);
         ratingPanel.SetActive(true);
+#endif
     }
 
     public void CloseRating()
@@ -99,8 +114,14 @@ public sealed class MainMenuController : MonoBehaviour
 
     private void Update()
     {
+#if LAST_SOLDIER_RUSTORE
+        if (RuStoreMenu.HandleBack()) return;
+#endif
         if (YG2.isPauseGame || !Input.GetKeyDown(KeyCode.Escape)) return;
         if (settingsPanel != null && settingsPanel.activeSelf) CloseSettings();
         else if (ratingPanel != null && ratingPanel.activeSelf) CloseRating();
+#if LAST_SOLDIER_RUSTORE
+        else if (GameProgress.IsReady) RuStoreMenu.ConfirmExit();
+#endif
     }
 }

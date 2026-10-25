@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-10-25T18:25:09.038667+05:00",
+  "scope": "Source review, existing APK, asset records and existing JavaScript tests. No new Android build, device test, network trace or RuStore Console inspection.",
+  "currentProjectVersion": "0.0.0.29",
+  "editorVersion": "2022.3.47f1",
+  "apk": {
+    "path": "Builds/Android/last-soldier-android-test.apk",
+    "bytes": 60921208,
+    "lastWriteTime": "2026-10-12T02:50:01.371110+05:00",
+    "sha256": "71c424f28b79a69f388e3dad65373bce590813a3c53b6d0242a318536b815403",
+    "packageName": "com.joe6355.lastsoldier.test",
+    "versionCode": 8,
+    "versionName": "1.0.7",
+    "engineVersionInBinary": "2022.3.47f1",
+    "minSdk": 23,
+    "targetSdk": 34,
+    "permissions": [
+      "android.permission.INTERNET"
+    ],
+    "debuggable": true,
+    "signatureV1Valid": true,
+    "signatureV2Valid": true,
+    "signer": "C=US, O=Android, CN=Android Debug",
+    "certificateSHA256": "59ad5f75e7ae06cf4d098b160a4090654970413ed51dea37dd12ef5a4311a843",
+    "zipCrcValid": true,
+    "abis": ["arm64-v8a", "armeabi-v7a"],
+    "arm64Libraries": [
+      {
+        "path": "lib/arm64-v8a/lib_burst_generated.so",
+        "loadSegmentAlignments": [
+          4096,
+          4096,
+          4096,
+          4096
+        ],
+        "aligned16KiB": false
+      },
+      {
+        "path": "lib/arm64-v8a/libil2cpp.so",
+        "loadSegmentAlignments": [
+          4096,
+          4096,
+          4096,
+          4096
+        ],
+        "aligned16KiB": false
+      },
+      {
+        "path": "lib/arm64-v8a/libmain.so",
+        "loadSegmentAlignments": [
+          4096,
+          4096,
+          4096,
+          4096
+        ],
+        "aligned16KiB": false
+      },
+      {
+        "path": "lib/arm64-v8a/libunity.so",
+        "loadSegmentAlignments": [
+          4096,
+          4096,
+          4096,
+          4096
+        ],
+        "aligned16KiB": false
+      }
+    ],
+    "launcherIcon": "Default Unity icon, visually inspected from res/mipmap-mdpi-v4/app_icon.png"
+  },
+  "sourceSnapshot": {
+    "files": 1202,
+    "exactMatches": 1201,
+    "byteMismatches": [
+      {
+        "path": "Assets/Scenes/SampleScene.unity",
+        "newlineOnly": true
+      }
+    ],
+    "strictVerifierResult": "FAIL: scene line endings differ",
+    "remainingVerifierResult": "PASS",
+    "normalization": "Only SampleScene.unity CRLF/LF is accepted; original verifier and report are unchanged."
+  },
+  "assets": {
+    "resultWithDocumentedSourceNormalization": "PASS",
+    "pendingProvenancePaths": [],
+    "ownerDeclaredPaths": [
+      "Assets/Sprits/allEnemy.png",
+      "Assets/Sprits/Boss/Assassin.png",
+      "Assets/Sprits/Healer.png",
+      "Assets/Sprits/HealerAtack.png",
+      "Assets/Sprits/nun-black-NESW.png",
+      "Assets/Sprits/PlayerAll.png",
+      "Assets/Sprits/SciDE.png",
+      "Assets/Sprits/uiEL.png",
+      "Assets/UI/ForestGarrison/Arena/Barrel.png"
+    ],
+    "ownershipIndependentlyVerified": false,
+    "unknownPackedRasterPaths": []
+  },
+  "catalogIcon": {
+    "path": "Publishing/Card/icon.png",
+    "width": 512,
+    "height": 512,
+    "bytes": 278018,
+    "pngColorType": 2,
+    "sha256": "621cf7ea5ff4a4bf129d17d6e5e4f926870808629ed4b297c24ee66703084146"
+  },
+  "tests": {
+    "yandexSdkExitCode": 0,
+    "orientationExitCode": 0,
+    "orientationTests": 9,
+    "scope": "WebGL bridge mocks and browser orientation; not native Android validation."
+  },
+  "logsDirectory": "Builds/RuStoreAudit-20261025",
+  "notConfirmed": [
+    "Fresh release APK compilation",
+    "Runtime on 16 KiB device",
+    "Physical Android gameplay/performance",
+    "Runtime network/data collection",
+    "RuStore account/card/package availability",
+    "Full content age classification"
+  ],
+  "sources": [
+    "https://www.rustore.ru/help/developers/publishing-and-verifying-apps/requirement-apps",
+    "https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication",
+    "https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication/new-version-app/declare-app-permissions/how-to-declare-permissions",
+    "https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication/new-version-app/content-warnings",
+    "https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication/new-version-app/age-restrictions",
+    "https://www.rustore.ru/help/developers/developer-account/registration-developer",
+    "https://www.rustore.ru/help/guides/payments",
+    "https://unity.com/security/sept-2025-01",
+    "https://unity.com/releases/editor/whats-new/2022.3.62f2",
+    "https://developer.android.com/guide/practices/page-sizes",
+    "https://ads.yandex.com/helpcenter/ru/dev/unity/quick-start"
+  ]
+}

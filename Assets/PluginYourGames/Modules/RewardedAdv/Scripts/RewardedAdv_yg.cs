@@ -30,7 +30,7 @@ namespace YG
 
                 YGInsides.currentRewardID = id;
                 onAdvNotification?.Invoke();
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR || LAST_SOLDIER_RUSTORE
                 Message("Rewarded Ad Show");
                 iPlatform.RewardedAdvShow(id);
 #else

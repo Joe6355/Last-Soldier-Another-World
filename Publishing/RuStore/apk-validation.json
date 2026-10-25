@@ -1,0 +1,158 @@
+{
+  "apk": "last-soldier-rustore-qa.apk",
+  "bytes": 55194096,
+  "sha256": "8e2ba217245acb03b3e9ca5325753c9e597568320a9a2ddcc2bbeb256ce33a2d",
+  "checks": [
+    {
+      "name": "Dedicated RuStore package",
+      "passed": true
+    },
+    {
+      "name": "Version code is positive",
+      "passed": true
+    },
+    {
+      "name": "Android API 26 / target 35",
+      "passed": true
+    },
+    {
+      "name": "Non-debuggable",
+      "passed": true
+    },
+    {
+      "name": "Custom release certificate",
+      "passed": true
+    },
+    {
+      "name": "APK v2 signature",
+      "passed": true
+    },
+    {
+      "name": "Advertising ID permission excluded",
+      "passed": true
+    },
+    {
+      "name": "No dangerous location/storage/microphone/camera permissions",
+      "passed": true
+    },
+    {
+      "name": "Backup disabled",
+      "passed": true
+    },
+    {
+      "name": "Cleartext disabled",
+      "passed": true
+    },
+    {
+      "name": "No sign-in activity in the local-only release",
+      "passed": true
+    },
+    {
+      "name": "ZIP CRC integrity",
+      "passed": true
+    },
+    {
+      "name": "LoginSDK and native sign-in bridge excluded",
+      "passed": true
+    },
+    {
+      "name": "lib/arm64-v8a/lib_burst_generated.so ELF / ZIP 16 KiB",
+      "passed": true
+    },
+    {
+      "name": "lib/arm64-v8a/libil2cpp.so ELF / ZIP 16 KiB",
+      "passed": true
+    },
+    {
+      "name": "lib/arm64-v8a/libmain.so ELF / ZIP 16 KiB",
+      "passed": true
+    },
+    {
+      "name": "lib/arm64-v8a/libunity.so ELF / ZIP 16 KiB",
+      "passed": true
+    },
+    {
+      "name": "ARM64 native code exists",
+      "passed": true
+    },
+    {
+      "name": "Patched Unity 2022.3.62f2",
+      "passed": true
+    }
+  ],
+  "arm64Libraries": [
+    {
+      "name": "lib/arm64-v8a/lib_burst_generated.so",
+      "loadAlignments": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "compressed": true,
+      "zipDataOffset": 6016088,
+      "zip16KiBAligned": true
+    },
+    {
+      "name": "lib/arm64-v8a/libil2cpp.so",
+      "loadAlignments": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "compressed": true,
+      "zipDataOffset": 6040724,
+      "zip16KiBAligned": true
+    },
+    {
+      "name": "lib/arm64-v8a/libmain.so",
+      "loadAlignments": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "compressed": true,
+      "zipDataOffset": 14971856,
+      "zip16KiBAligned": true
+    },
+    {
+      "name": "lib/arm64-v8a/libunity.so",
+      "loadAlignments": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "compressed": true,
+      "zipDataOffset": 14974461,
+      "zip16KiBAligned": true
+    }
+  ],
+  "package": "com.joe6355.lastsoldier.rustore",
+  "versionCode": "1",
+  "versionName": "1.0.0",
+  "minSdk": 26,
+  "targetSdk": 35,
+  "permissions": [
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.INTERNET",
+    "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+    "com.joe6355.lastsoldier.rustore.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ],
+  "certificateSha256": "c7e11b46942079442915a9166802fc96f3d529cd3edf6b081ab948136da195bc",
+  "signatureVerification": [
+    "Verified using v1 scheme (JAR signing): false",
+    "Verified using v2 scheme (APK Signature Scheme v2): true",
+    "Verified using v3 scheme (APK Signature Scheme v3): false",
+    "Verified using v3.1 scheme (APK Signature Scheme v3.1): false",
+    "Verified using v4 scheme (APK Signature Scheme v4): false"
+  ],
+  "result": "PASS",
+  "limitations": [
+    "Static APK inspection only",
+    "No real-device or live advertising verification",
+    "Local saves; sign-in and shared leaderboard excluded"
+  ]
+}

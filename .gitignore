@@ -116,3 +116,17 @@ Temporary Items
 
 # Generated media preview archives
 /Publishing/Card/*.zip
+
+# RuStore release signing and service data are local secrets.
+*.keystore
+*.jks
+*.env
+.env
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+Services/RuStoreLeaderboard/data/
+Assets/Resources/RuStoreSettings.local.json
+__pycache__/
+/Assets/PluginYourGames/Editor/BuildLogYG2.txt
+/Assets/PluginYourGames/Editor/BuildLogYG2.txt.meta

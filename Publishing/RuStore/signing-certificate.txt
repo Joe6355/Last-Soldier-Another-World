@@ -1,0 +1,4 @@
+Package: com.joe6355.lastsoldier.rustore
+Certificate SHA-256: C7:E1:1B:46:94:20:79:44:29:15:A9:16:68:02:FC:96:F3:D5:29:CD:3E:DF:6B:08:1A:B9:48:13:6D:A1:95:BC
+Alias: lastsoldier-rustore
+Public fingerprint only. Back up the ignored signing key and password separately.

@@ -1947,6 +1947,34 @@
     {
       "ru": "В лагерь",
       "en": "Return to camp"
+    },
+    {
+      "ru": "Конфиденциальность",
+      "en": "Privacy"
+    },
+    {
+      "ru": "Поддержка",
+      "en": "Support"
+    },
+    {
+      "ru": "Конфиденциальность и реклама",
+      "en": "Privacy and advertising"
+    },
+    {
+      "ru": "Полная политика",
+      "en": "Full policy"
+    },
+    {
+      "ru": "Подтверждение",
+      "en": "Confirmation"
+    },
+    {
+      "ru": "Подтвердить",
+      "en": "Confirm"
+    },
+    {
+      "ru": "Выйти из игры? Прогресс будет сохранён.",
+      "en": "Exit the game? Your progress will be saved."
     }
   ]
 }

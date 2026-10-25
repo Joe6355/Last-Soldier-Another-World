@@ -89,6 +89,9 @@ public partial class Ui : MonoBehaviour
 
     private void Update()
     {
+#if LAST_SOLDIER_RUSTORE
+        if (RuStoreMenu.HandleBack()) return;
+#endif
         UpdateEncounterMusic();
         if (mobileOrientationPaused && playerController != null && GameProgress.IsReady && !YG.YG2.isPauseGame && Time.timeScale > 0f) PauseGame();
         if (orientationResumePending && playerController != null && GameProgress.IsReady && !YG.YG2.isPauseGame)
