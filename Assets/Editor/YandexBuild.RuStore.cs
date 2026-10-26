@@ -75,7 +75,9 @@ public static partial class YandexBuild
             PlayerSettings.SetPlatformIcons(NamedBuildTarget.Android, kind, icons);
         }
         AssetDatabase.SaveAssets();
-        Debug.Log("RUSTORE_CONFIGURED: " + (qa ? "QA with vendor demo ads; not for publication" : "Production"));
+        Debug.Log("RUSTORE_CONFIGURED: " + (qa
+            ? (settings.useTestAds ? "QA with vendor demo IDs; not for publication" : "QA with publisher IDs; not for publication")
+            : "Production"));
     }
 
     private static void ConfigureRuStoreToolchain()

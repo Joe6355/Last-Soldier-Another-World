@@ -18,5 +18,5 @@ Ad dismissal restores normal gameplay and audio
 Granted reward is in the saved progress
 Closing before reward grants nothing and remains playable
 Privacy and support entry points exist in game settings
-Production guard rejects a build using demo ads and missing services
+Production guard rejects vendor demo IDs
 Settings contain privacy and support without an account entry point

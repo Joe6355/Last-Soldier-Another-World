@@ -1,7 +1,7 @@
 Last Soldier: Another World — RuStore
-Data notice, 25 October 2026
+Data notice, 26 October 2026
 
-The developer publishes this version as Joe6355. Support and data contact: dudin1918@mail.ru.
+Data operator: Sergey Dudin (Дудин Сергей). Support and data contact: dudin1918@mail.ru.
 
 The game works without registration. This version has no Yandex sign-in, shared online leaderboard or developer-operated profile server. Progress, settings, coins, inventory, achievements and game statistics remain on your device. There is no cloud transfer of saves or purchasing for real money.
 

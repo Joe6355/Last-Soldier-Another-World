@@ -127,9 +127,12 @@ public static class RuStoreChecks
                     RuStoreMenu.Close(); RuStoreMenu.OpenPrivacy(false); Capture("privacy-en.png"); RuStoreMenu.Close();
                     Check(ui.SettingsPanel.transform.Find("RuStoreLinks") != null, "Privacy and support entry points exist in game settings");
                     GameLocalization.SetSelection("ru");
+                    var demoSettings = UnityEngine.Object.Instantiate(RuStoreSettings.Load());
+                    demoSettings.useTestAds = true;
                     bool rejected = false;
-                    try { YandexBuild.ValidateRuStoreRelease(RuStoreSettings.Load()); } catch (InvalidOperationException) { rejected = true; }
-                    Check(rejected, "Production guard rejects a build using demo ads and missing services");
+                    try { YandexBuild.ValidateRuStoreRelease(demoSettings); } catch (InvalidOperationException) { rejected = true; }
+                    UnityEngine.Object.Destroy(demoSettings);
+                    Check(rejected, "Production guard rejects vendor demo IDs");
                     Check(ui.SettingsPanel.transform.Find("RuStoreLinks/Account") == null,
                         "Settings contain privacy and support without an account entry point");
                     Finish(true, "Local startup, hidden online features, privacy UI, coin persistence and native ad callbacks passed with vendor Editor stubs; real Android ads remain unverified."); break;

@@ -15,10 +15,10 @@ MonoBehaviour:
   packageName: com.joe6355.lastsoldier.rustore
   versionName: 1.0.0
   versionCode: 1
-  rewardedAdUnitId:
-  interstitialAdUnitId:
-  bannerAdUnitId:
+  rewardedAdUnitId: R-M-20283319-1
+  interstitialAdUnitId: R-M-20283319-2
+  bannerAdUnitId: R-M-20283319-3
   supportEmail: dudin1918@mail.ru
   privacyUrl: https://github.com/Joe6355/Last-Soldier-Another-World/blob/codex/rustore-release/Publishing/RuStore/privacy-policy.md
-  useTestAds: 1
-  releasePrivacyReviewed: 0
+  useTestAds: 0
+  releasePrivacyReviewed: 1
