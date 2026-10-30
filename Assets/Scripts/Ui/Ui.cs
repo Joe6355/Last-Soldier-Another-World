@@ -68,7 +68,11 @@ public partial class Ui : MonoBehaviour
         }
         // Привязываем кнопки
         playButton.onClick.AddListener(StartGame);
+#if LAST_SOLDIER_RUSTORE
+        if (ratingButton != null) ratingButton.gameObject.SetActive(false);
+#else
         ratingButton.onClick.AddListener(ShowRating);
+#endif
 
         BindAudioSettings();
 
@@ -219,6 +223,9 @@ public partial class Ui : MonoBehaviour
 
     public void ShowRating()
     {
+#if LAST_SOLDIER_RUSTORE
+        return;
+#else
         if (ratingPanel == null || YG.YG2.isPauseGame || playerController.IsAwaitingRevive) return;
         isMenuOpen = true;
         menuPanel.SetActive(true);
@@ -226,6 +233,7 @@ public partial class Ui : MonoBehaviour
         PauseGame();
         FindObjectOfType<Stats>()?.UpdateUI();
         ratingPanel.SetActive(true);
+#endif
     }
 
     public void CloseRating()

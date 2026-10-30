@@ -87,6 +87,11 @@ public static class RuStoreChecks
                     monetization = UnityEngine.Object.FindObjectOfType<GameMonetization>();
                     foreach (var guide in UnityEngine.Object.FindObjectsOfType<TipsManager>()) guide.SkipGuide();
                     ui.StartGame();
+                    ui.ToggleMenu();
+                    Check(!Get<Button>(ui, "ratingButton").gameObject.activeSelf, "Pause menu hides the shared leaderboard entry");
+                    ui.ShowRating();
+                    Check(!Get<GameObject>(ui, "ratingPanel").activeSelf, "Pause menu cannot reopen the disabled shared leaderboard");
+                    ui.StartGame();
                     Check(UnityEngine.Object.FindObjectOfType<MobileControls>().UseTouch, "Native mobile control layout remains available");
                     Capture("camp-mobile.png");
                     coins = player.totalCoins;
@@ -102,8 +107,15 @@ public static class RuStoreChecks
                     client = Get<object>(ad, "_client");
                     resultCompleted = false;
                     Check(monetization.RequestCoinsForVideo(player, 500, (value, amount) => { result = value; resultCompleted = true; }), "Loaded rewarded ad is requested once");
-                    Emit("OnAdShown", EventArgs.Empty); Next(); break;
+                    // Native AdActivity can suspend Unity before its queued OnAdShown runs.
+                    Set(RuStoreAds.Instance, "showDeadline", Time.unscaledTime - 1f);
+                    Emit("OnAdShown", EventArgs.Empty);
+                    Call(RuStoreAds.Instance, "Update");
+                    Check(Get<RewardedAd>(RuStoreAds.Instance, "activeRewarded") == ad,
+                        "Expired show deadline waits for queued SDK callbacks before cancelling a native ad");
+                    Next(); break;
                 case 3:
+                    Check(Get<bool>(RuStoreAds.Instance, "adShown"), "Queued SDK shown callback survives an expired deadline on resume");
                     Check(YG2.isPauseGame && YG2.nowRewardAdv && AudioListener.pause, "Real adapter pauses gameplay while an ad is shown");
                     Emit("OnRewarded", new Reward(1, "reward")); Emit("OnRewarded", new Reward(1, "reward")); Next(); break;
                 case 4:
@@ -122,6 +134,25 @@ public static class RuStoreChecks
                     Emit("OnAdShown", EventArgs.Empty); Emit("OnAdDismissed", EventArgs.Empty); Next(); break;
                 case 7:
                     Check(resultCompleted && result == GameMonetization.CoinsRewardResult.Cancelled && player.totalCoins == coins, "Closing before reward grants nothing and remains playable");
+                    Call(RuStoreAds.Instance, "LoadRewarded"); Next(); break;
+                case 8:
+                    ad = Get<RewardedAd>(RuStoreAds.Instance, "rewarded"); if (ad == null) return;
+                    resultCompleted = false;
+                    monetization.RequestCoinsForVideo(player, 500, (value, amount) => { result = value; resultCompleted = true; });
+                    Call(RuStoreAds.Instance, "OnApplicationFocus", false);
+                    Call(RuStoreAds.Instance, "OnApplicationPause", true);
+                    Set(RuStoreAds.Instance, "showDeadline", Time.unscaledTime - 1f);
+                    Call(RuStoreAds.Instance, "LateUpdate");
+                    Check(Get<RewardedAd>(RuStoreAds.Instance, "activeRewarded") == ad,
+                        "Native activity suspension does not consume the show timeout");
+                    Call(RuStoreAds.Instance, "OnApplicationPause", false);
+                    Call(RuStoreAds.Instance, "OnApplicationFocus", true);
+                    Check(Get<float>(RuStoreAds.Instance, "showDeadline") > Time.unscaledTime,
+                        "Returning from the native activity gives queued callbacks time to arrive");
+                    Set(RuStoreAds.Instance, "showDeadline", Time.unscaledTime - 1f);
+                    Call(RuStoreAds.Instance, "LateUpdate");
+                    Check(resultCompleted && result == GameMonetization.CoinsRewardResult.Unavailable && player.totalCoins == coins
+                        && !YG2.nowAdsShow && !YG2.isPauseGame, "Missing SDK response still times out without granting coins or leaving the game paused");
                     ui.ShowSettings();
                     RuStoreMenu.OpenPrivacy(false); GameLocalization.SetSelection("en");
                     RuStoreMenu.Close(); RuStoreMenu.OpenPrivacy(false); Capture("privacy-en.png"); RuStoreMenu.Close();
@@ -135,7 +166,7 @@ public static class RuStoreChecks
                     Check(rejected, "Production guard rejects vendor demo IDs");
                     Check(ui.SettingsPanel.transform.Find("RuStoreLinks/Account") == null,
                         "Settings contain privacy and support without an account entry point");
-                    Finish(true, "Local startup, hidden online features, privacy UI, coin persistence and native ad callbacks passed with vendor Editor stubs; real Android ads remain unverified."); break;
+                    Finish(true, "Local startup, hidden online features, privacy UI, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately."); break;
             }
         }
         catch (Exception error) { Finish(false, "Phase " + phase + ": " + error); }
@@ -144,6 +175,7 @@ public static class RuStoreChecks
     static T Get<T>(object obj, string field) => (T)obj.GetType().GetField(field, Fields).GetValue(obj);
     static void Set(object obj, string field, object value) => obj.GetType().GetField(field, Fields).SetValue(obj, value);
     static void Call(object obj, string method) => obj.GetType().GetMethod(method, Fields).Invoke(obj, null);
+    static void Call(object obj, string method, bool value) => obj.GetType().GetMethod(method, Fields).Invoke(obj, new object[] { value });
     static void Emit(string eventName, object value)
     { ((Delegate)client.GetType().GetField(eventName, Fields).GetValue(client)).DynamicInvoke(client, value); }
     static void Click(string root, string name) => GameObject.Find(root).GetComponentsInChildren<Button>(true).First(button => button.name == name).onClick.Invoke();

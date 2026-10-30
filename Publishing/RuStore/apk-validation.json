@@ -1,7 +1,7 @@
 {
   "apk": "last-soldier-rustore.apk",
-  "bytes": 55207056,
-  "sha256": "ba107e59d5d7b615feb2ded43f59a343f250fe378aba2f18a0d5728c10765171",
+  "bytes": 55208096,
+  "sha256": "c11ea2030b7a371dd344ee4222c8bd84906df30564675d66f3d786277ec4217b",
   "checks": [
     {
       "name": "Dedicated RuStore package",
@@ -114,7 +114,7 @@
         16384
       ],
       "compressed": true,
-      "zipDataOffset": 14972366,
+      "zipDataOffset": 14971308,
       "zip16KiBAligned": true
     },
     {
@@ -126,13 +126,13 @@
         16384
       ],
       "compressed": true,
-      "zipDataOffset": 14974971,
+      "zipDataOffset": 14973913,
       "zip16KiBAligned": true
     }
   ],
   "package": "com.joe6355.lastsoldier.rustore",
-  "versionCode": "1",
-  "versionName": "1.0.0",
+  "versionCode": "4",
+  "versionName": "1.0.2",
   "minSdk": 26,
   "targetSdk": 35,
   "permissions": [

@@ -1,22 +1,29 @@
 PASS
-Local startup, hidden online features, privacy UI, coin persistence and native ad callbacks passed with vendor Editor stubs; real Android ads remain unverified.
+Local startup, hidden online features, privacy UI, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately.
 Start as guest without requiring sign-in
 Privacy sheet pauses combat and sound
 Full local privacy document has scrollable content
 Notice acknowledgement closes overlay and persists
 Disabled sign-in leaves the local game ready
 Sign-in and shared leaderboard buttons are absent from the first release
+Pause menu hides the shared leaderboard entry
+Pause menu cannot reopen the disabled shared leaderboard
 Native mobile control layout remains available
 Reward request enters the existing game callback path
 Unavailable ad releases SDK pause and reports failure without a fake video
 Unavailable ad grants no coins
 Loaded rewarded ad is requested once
+Expired show deadline waits for queued SDK callbacks before cancelling a native ad
+Queued SDK shown callback survives an expired deadline on resume
 Real adapter pauses gameplay while an ad is shown
 Duplicate vendor reward callbacks grant exactly one coin reward
 Dismissal completes the granted game reward
 Ad dismissal restores normal gameplay and audio
 Granted reward is in the saved progress
 Closing before reward grants nothing and remains playable
+Native activity suspension does not consume the show timeout
+Returning from the native activity gives queued callbacks time to arrive
+Missing SDK response still times out without granting coins or leaving the game paused
 Privacy and support entry points exist in game settings
 Production guard rejects vendor demo IDs
 Settings contain privacy and support without an account entry point
