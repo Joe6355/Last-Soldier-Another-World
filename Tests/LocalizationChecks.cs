@@ -253,6 +253,9 @@ public static class LocalizationChecks
         UnityEngine.Object.Destroy(textObject);
     }
     private static void Capture(string filename)
+        => CaptureView(Path.GetFullPath("../" + filename), 1280, 720);
+
+    public static void CaptureView(string filename, int width, int height, Action verify = null)
     {
         GameLocalization.RefreshAll();
         var cameras = UnityEngine.Object.FindObjectsOfType<Camera>().Where(camera => camera.enabled).OrderBy(camera => camera.depth).ToArray();
@@ -262,18 +265,21 @@ public static class LocalizationChecks
         var worldCameras = canvases.Select(canvas => canvas.worldCamera).ToArray();
         var distances = canvases.Select(canvas => canvas.planeDistance).ToArray();
         var targets = cameras.Select(camera => camera.targetTexture).ToArray();
-        var target = new RenderTexture(1280,720,24); target.Create();
+        var target = new RenderTexture(width,height,24); target.Create();
         for (int i=0;i<canvases.Length;i++) if (modes[i] == RenderMode.ScreenSpaceOverlay)
         { canvases[i].renderMode=RenderMode.ScreenSpaceCamera; canvases[i].worldCamera=cameraForUi; canvases[i].planeDistance=5f; }
         foreach (var camera in cameras) camera.targetTexture=target;
         Canvas.ForceUpdateCanvases(); foreach (var camera in cameras) camera.Render();
         var previous=RenderTexture.active; RenderTexture.active=target;
-        var texture=new Texture2D(1280,720,TextureFormat.RGB24,false);
-        texture.ReadPixels(new Rect(0,0,1280,720),0,0); texture.Apply();
-        File.WriteAllBytes(Path.GetFullPath("../"+filename),texture.EncodeToPNG()); RenderTexture.active=previous;
+        var texture=new Texture2D(width,height,TextureFormat.RGB24,false);
+        texture.ReadPixels(new Rect(0,0,width,height),0,0); texture.Apply();
+        File.WriteAllBytes(filename,texture.EncodeToPNG()); RenderTexture.active=previous;
+        Exception failure = null;
+        try { verify?.Invoke(); } catch (Exception error) { failure = error; }
         for (int i=0;i<cameras.Length;i++) cameras[i].targetTexture=targets[i];
         for (int i=0;i<canvases.Length;i++) { canvases[i].renderMode=modes[i]; canvases[i].worldCamera=worldCameras[i]; canvases[i].planeDistance=distances[i]; }
         UnityEngine.Object.Destroy(texture); target.Release(); UnityEngine.Object.Destroy(target);
+        if (failure != null) throw failure;
     }
     private static void Finish(bool success, string message)
     {

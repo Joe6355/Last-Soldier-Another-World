@@ -33,6 +33,9 @@ public sealed class MainMenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         AudioListener.pause = false;
+#if LAST_SOLDIER_RUSTORE
+        RuStoreMenu.ConfigureMainMenu(menuPanel, titlePanel, profilePanel, settingsPanel, playButton);
+#endif
         Refresh();
         // The menu is usable only after profile and progress initialization.
         if (GameProgress.IsReady) YG2.GameReadyAPI();

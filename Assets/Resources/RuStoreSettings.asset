@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RuStoreSettings
   m_EditorClassIdentifier:
   packageName: com.joe6355.lastsoldier.rustore
-  versionName: 1.0.2
-  versionCode: 4
+  versionName: 1.0.3
+  versionCode: 5
   rewardedAdUnitId: R-M-20283319-1
   interstitialAdUnitId: R-M-20283319-2
   bannerAdUnitId: R-M-20283319-3

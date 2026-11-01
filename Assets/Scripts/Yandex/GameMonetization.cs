@@ -44,7 +44,7 @@ public sealed class GameMonetization : MonoBehaviour
         YG2.onRewardAdv += OnReward;
         YG2.onCloseRewardedAdv += OnRewardClosed;
         YG2.onErrorRewardedAdv += OnRewardError;
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR || LAST_SOLDIER_RUSTORE
         if (editorBannerPreview != null) editorBannerPreview.SetActive(false);
         if (editorInterstitialMarker != null) editorInterstitialMarker.SetActive(false);
 #endif
@@ -77,7 +77,7 @@ public sealed class GameMonetization : MonoBehaviour
                 if (panel != null && panel.activeInHierarchy) showBanner = true;
         showBanner &= !YG2.nowAdsShow && deadPlayer == null
             && (mobileControls == null || !mobileControls.IsControlsSettingsOpen);
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !LAST_SOLDIER_RUSTORE
         if (editorBannerPreview != null) editorBannerPreview.SetActive(showBanner);
 #endif
         if (YG2.isSDKEnabled && showBanner != bannerVisible)

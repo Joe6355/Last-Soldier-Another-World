@@ -10,6 +10,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 using YG;
@@ -79,6 +80,7 @@ public static class RuStoreChecks
                     Check(!Get<Button>(menu, "authButton").gameObject.activeSelf && !Get<Button>(menu, "ratingButton").gameObject.activeSelf,
                         "Sign-in and shared leaderboard buttons are absent from the first release");
                     Capture("menu-local.png");
+                    CheckMenuLayouts(menu.gameObject.scene, menu.SettingsPanel, menu.ShowSettings, menu.CloseSettings);
                     UnityEngine.Object.FindObjectOfType<MainMenuController>().Play(); Next(); break;
                 case 1:
                     if (SceneManager.GetActiveScene().name != "SampleScene") return;
@@ -91,6 +93,7 @@ public static class RuStoreChecks
                     Check(!Get<Button>(ui, "ratingButton").gameObject.activeSelf, "Pause menu hides the shared leaderboard entry");
                     ui.ShowRating();
                     Check(!Get<GameObject>(ui, "ratingPanel").activeSelf, "Pause menu cannot reopen the disabled shared leaderboard");
+                    CheckMenuLayouts(ui.gameObject.scene, ui.SettingsPanel, ui.ShowSettings, ui.CloseSettings);
                     ui.StartGame();
                     Check(UnityEngine.Object.FindObjectOfType<MobileControls>().UseTouch, "Native mobile control layout remains available");
                     Capture("camp-mobile.png");
@@ -172,6 +175,82 @@ public static class RuStoreChecks
         catch (Exception error) { Finish(false, "Phase " + phase + ": " + error); }
     }
     static void Next() { phase++; frame = Time.frameCount + 8; }
+    static void CheckMenuLayouts(Scene scene, GameObject settings, Action openSettings, Action closeSettings)
+    {
+        Directory.CreateDirectory("Builds/RuStoreValidation/Previews");
+        foreach (var size in new[] { new Vector2Int(854, 393), new Vector2Int(1280, 720), new Vector2Int(1024, 768), new Vector2Int(2400, 1080) })
+        foreach (string language in new[] { "ru", "en" })
+        {
+            GameLocalization.SetSelection(language);
+            string prefix = "Builds/RuStoreValidation/Previews/mobile-" + scene.name + "-" + size.x + "x" + size.y + "-" + language;
+            CaptureLayout(prefix + ".png", size, scene);
+            var viewport = UnityEngine.Object.FindObjectsOfType<RectTransform>()
+                .First(value => value.gameObject.scene == scene && value.name == (scene.name == "Menu" ? "RuStoreBannerSafeContent" : "RuStorePauseSafeContent"));
+            var min = viewport.anchorMin; var max = viewport.anchorMax;
+            // Simulate a cutout and a loaded bottom banner without making ad requests.
+            viewport.anchorMin = new Vector2(.055f, scene.name == "Menu" ? .17f : .03f);
+            viewport.anchorMax = new Vector2(.975f, .98f);
+            CaptureLayout(prefix + "-insets.png", size, scene);
+            viewport.anchorMin = min; viewport.anchorMax = max;
+            openSettings();
+            CaptureLayout(prefix + "-settings.png", size, scene, screen: settings.transform);
+            // Use the real serialized Back handler, not a direct hide of the panel.
+            settings.transform.Find("BackTyMenu").GetComponent<Button>().onClick.Invoke();
+            Check(!settings.activeSelf, "Settings Back returns to menu: " + scene.name + " " + size + " " + language);
+            if (scene.name == "SampleScene")
+            {
+                var mobile = UnityEngine.Object.FindObjectOfType<MobileControls>();
+                Get<Button>(mobile, "pauseControlsSettingsButton").onClick.Invoke();
+                Check(mobile.IsControlsSettingsOpen && Time.timeScale == 0, "Control customization opens from pause without resuming combat");
+                CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent");
+                Get<Button>(mobile, "closeControlsSettingsButton").onClick.Invoke();
+                Check(settings.activeSelf && !mobile.IsControlsSettingsOpen, "Control customization Back returns to settings");
+            }
+            closeSettings();
+        }
+        GameLocalization.SetSelection("ru");
+    }
+    static void CaptureLayout(string filename, Vector2Int size, Scene scene, string rootName = null, Transform screen = null)
+    {
+        LocalizationChecks.CaptureView(Path.GetFullPath(filename), size.x, size.y, () =>
+        {
+            var root = screen ?? UnityEngine.Object.FindObjectsOfType<RectTransform>()
+                .First(value => value.gameObject.scene == scene && value.name == (rootName ?? (scene.name == "Menu" ? "RuStoreBannerSafeContent" : "RuStorePauseSafeContent")));
+            var controls = root.GetComponentsInChildren<Selectable>().Where(value => value.isActiveAndEnabled).ToArray();
+            var bounds = new Dictionary<Selectable, Rect>();
+            foreach (var control in controls)
+            {
+                var canvas = control.GetComponentInParent<Canvas>();
+                var camera = canvas.rootCanvas.worldCamera;
+                var corners = new Vector3[4]; ((RectTransform)control.transform).GetWorldCorners(corners);
+                var points = corners.Select(value => RectTransformUtility.WorldToScreenPoint(camera, value)).ToArray();
+                var rect = Rect.MinMaxRect(points.Min(value => value.x), points.Min(value => value.y), points.Max(value => value.x), points.Max(value => value.y));
+                Check(rect.xMin >= -1 && rect.yMin >= -1 && rect.xMax <= size.x + 1 && rect.yMax <= size.y + 1,
+                    "Touch target is inside viewport: " + control.name + " " + filename);
+                Check(rect.height >= size.y * .095f, "Touch target has usable height: " + control.name + " " + filename);
+                bounds[control] = rect;
+                foreach (float x in new[] { .2f, .5f, .8f })
+                {
+                    var pointer = new PointerEventData(EventSystem.current) { position = new Vector2(Mathf.Lerp(rect.xMin, rect.xMax, x), rect.center.y) };
+                    var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(pointer, hits);
+                    Check(hits.Count > 0 && hits[0].gameObject.transform.IsChildOf(control.transform),
+                        "Touch reaches intended control: " + control.name + " " + x + " " + filename);
+                }
+                foreach (var text in control.GetComponentsInChildren<TMP_Text>().Where(value => value.isActiveAndEnabled))
+                {
+                    text.ForceMeshUpdate();
+                    Check(!text.isTextOverflowing, "Button label is not clipped: " + text.text + " " + filename);
+                }
+            }
+            for (int i = 0; i < controls.Length; i++) for (int j = i + 1; j < controls.Length; j++)
+                Check(!bounds[controls[i]].Overlaps(bounds[controls[j]]), "Touch targets do not overlap: " + controls[i].name + "/" + controls[j].name + " " + filename);
+            foreach (var text in root.GetComponentsInChildren<TMP_Text>().Where(value => value.isActiveAndEnabled))
+            {
+                text.ForceMeshUpdate();
+                Check(!text.isTextOverflowing, "Menu text fits: " + text.name + " " + filename);
+            }
+        });
+    }
     static T Get<T>(object obj, string field) => (T)obj.GetType().GetField(field, Fields).GetValue(obj);
     static void Set(object obj, string field, object value) => obj.GetType().GetField(field, Fields).SetValue(obj, value);
     static void Call(object obj, string method) => obj.GetType().GetMethod(method, Fields).Invoke(obj, null);
@@ -192,7 +271,7 @@ public static class RuStoreChecks
         PlayerSettings.companyName = SessionState.GetString(Flag + ".company", "Joe6355");
         PlayerSettings.productName = SessionState.GetString(Flag + ".product", "Последний солдат — проверка");
         Directory.CreateDirectory("Builds/RuStoreValidation");
-        File.WriteAllText("Builds/RuStoreValidation/editor-checks.txt", (success ? "PASS" : "FAIL") + "\n" + message + "\n" + string.Join("\n", checks));
+        File.WriteAllText("Builds/RuStoreValidation/editor-checks.txt", (success ? "PASS" : "FAIL") + "\n" + message + "\nAssertions: " + checks.Count + "\n" + string.Join("\n", checks));
         EditorApplication.Exit(success ? 0 : 1);
     }
 }

@@ -12,7 +12,9 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static bool savedAudioPause;
     private static int consumedBackFrame = -1;
     private static RectTransform menuViewport;
-    private static int previousInset = -1;
+    private static RectTransform pauseViewport;
+    private static RectTransform controlsViewport;
+    private static int bannerInset;
     private bool firstNoticeChecked;
     public static bool IsOverlayOpen => overlay != null;
 
@@ -24,10 +26,14 @@ public sealed class RuStoreMenu : MonoBehaviour
         Button(root, "Support", "Поддержка", .70f, .02f, 1f, .98f, OpenSupport);
         var host = RuStoreAds.Instance.gameObject;
         if (host.GetComponent<RuStoreMenu>() == null) host.AddComponent<RuStoreMenu>();
+        ConfigureSettings(settings.transform);
         GameLocalization.Register(root.gameObject);
     }
     private void Update()
     {
+        FitSafeArea(menuViewport, bannerInset);
+        FitSafeArea(pauseViewport, 0);
+        FitSafeArea(controlsViewport, 0);
         if (!firstNoticeChecked && SceneManager.GetActiveScene().buildIndex == 0 && GameProgress.IsReady)
         {
             firstNoticeChecked = true;
@@ -46,12 +52,12 @@ public sealed class RuStoreMenu : MonoBehaviour
         if (panel == null) return;
         string suffix = GameLocalization.Language == "en" ? "-en" : "";
         var policy = Resources.Load<TextAsset>("RuStorePrivacy" + suffix) ?? Resources.Load<TextAsset>("RuStorePrivacy");
-        var scroll = Node(panel, "Scroll", .04f, .20f, .96f, .84f);
+        var scroll = Node(panel, "Scroll", .04f, .23f, .96f, .84f);
         scroll.gameObject.AddComponent<Image>().color = new Color32(20, 42, 36, 255);
         scroll.gameObject.AddComponent<RectMask2D>();
         var content = Node(scroll, "Content", 0, 0, 1, 1);
         content.pivot = new Vector2(.5f, 1f);
-        var text = Text(content, "Policy", policy != null ? policy.text : "Политика недоступна. Связь: dudin1918@mail.ru", 21);
+        var text = Text(content, "Policy", policy != null ? policy.text : "Политика недоступна. Связь: dudin1918@mail.ru", 26);
         text.alignment = TextAlignmentOptions.TopLeft; text.enableAutoSizing = false;
         text.margin = new Vector4(14, 8, 14, 8);
         GameLocalization.Protect(text);
@@ -61,10 +67,10 @@ public sealed class RuStoreMenu : MonoBehaviour
         var rect = scroll.gameObject.AddComponent<ScrollRect>();
         rect.viewport = scroll; rect.content = content; rect.horizontal = false;
         rect.movementType = ScrollRect.MovementType.Clamped; rect.scrollSensitivity = 30;
-        Button(panel, "Support", "Поддержка", .05f, .04f, .35f, .14f, OpenSupport);
-        Button(panel, "ReadOnline", "Полная политика", .37f, .04f, .67f, .14f,
+        Button(panel, "Support", "Поддержка", .05f, .03f, .35f, .19f, OpenSupport);
+        Button(panel, "ReadOnline", "Полная политика", .37f, .03f, .67f, .19f,
             () => Application.OpenURL(RuStoreSettings.Load().privacyUrl));
-        Button(panel, "Continue", firstLaunch ? "Продолжить" : "Закрыть", .69f, .04f, .95f, .14f, () =>
+        Button(panel, "Continue", firstLaunch ? "Продолжить" : "Закрыть", .69f, .03f, .95f, .19f, () =>
         {
             PlayerPrefs.SetInt(RuStoreAds.PrivacyNoticeKey, 1); PlayerPrefs.Save(); Close();
         });
@@ -125,27 +131,212 @@ public sealed class RuStoreMenu : MonoBehaviour
     {
         var rect = Node(parent, name, left, bottom, right, top); rect.gameObject.AddComponent<Image>().color = new Color32(62, 91, 69, 255);
         var button = rect.gameObject.AddComponent<UnityEngine.UI.Button>(); button.onClick.AddListener(() => action());
-        Text(rect, "Label", caption, 23);
+        Text(rect, "Label", caption, 28);
     }
     public static void SetBannerInset(int pixels)
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0) { menuViewport = null; previousInset = -1; return; }
-        if (menuViewport == null)
+        bannerInset = SceneManager.GetActiveScene().buildIndex == 0 ? Mathf.Max(0, pixels) : 0;
+        FitSafeArea(menuViewport, bannerInset);
+    }
+
+    public static void ConfigureMainMenu(GameObject menu, GameObject title, GameObject profile, GameObject settings,
+        UnityEngine.UI.Button play)
+    {
+        var canvas = menu.GetComponentInParent<Canvas>().rootCanvas;
+        // The WebGL layout reserves a right-hand ad column. Native banners sit below the content.
+        var scaler = canvas.GetComponent<CanvasScaler>();
+        if (scaler != null) scaler.matchWidthOrHeight = 1f;
+        Place(canvas.transform.Find("ForestBackground"), 0, 0, 1, 1);
+        Place(canvas.transform.Find("ForestShade"), 0, 0, 1, 1);
+        menuViewport = Node(canvas.transform, "RuStoreBannerSafeContent", 0, 0, 1, 1);
+        foreach (var panel in new[] { menu, title, profile, settings })
+            if (panel != null) panel.transform.SetParent(menuViewport, false);
+        FitSafeArea(menuViewport, bannerInset);
+        Place(menu.transform, .06f, .10f, .48f, .49f);
+        Place(play.transform, 0, .54f, 1, .96f);
+        Place(menu.transform.Find("ForestSettingsButton"), 0, .04f, 1, .46f);
+        Font(play.transform, 56);
+        Font(menu.transform.Find("ForestSettingsButton"), 52);
+        Place(title.transform, .06f, .56f, .49f, .93f);
+        Font(title.transform.Find("GameTitle"), 94);
+        Font(title.transform.Find("ForestWorldTitle"), 54);
+        Place(profile.transform, .55f, .12f, .94f, .90f);
+        ConfigureProfile(profile.transform);
+    }
+
+    public static void ConfigurePauseMenu(GameObject menu, UnityEngine.UI.Button play)
+    {
+        // Leave both backdrops full-screen; only interactive content follows the safe area.
+        var children = new Transform[menu.transform.childCount];
+        for (int i = 0; i < children.Length; i++) children[i] = menu.transform.GetChild(i);
+        pauseViewport = Node(menu.transform, "RuStorePauseSafeContent", 0, 0, 1, 1);
+        foreach (var child in children)
+            if (child.name != "ForestShade") child.SetParent(pauseViewport, false);
+        Place(menu.transform.Find("ForestShade"), 0, 0, 1, 1);
+        FitSafeArea(pauseViewport, 0);
+        Place(play.transform, .06f, .55f, .48f, .70f);
+        Place(pauseViewport.Find("Setings"), .06f, .36f, .48f, .51f);
+        Place(pauseViewport.Find("PauseControlsSettings"), .06f, .17f, .48f, .32f);
+        Font(play.transform, 54);
+        Font(pauseViewport.Find("Setings"), 48);
+        Font(pauseViewport.Find("PauseControlsSettings"), 44);
+        Place(pauseViewport.Find("ForestPauseTitle"), .06f, .78f, .48f, .95f);
+        Place(pauseViewport.Find("ForestPauseSubtitle"), .06f, .71f, .48f, .77f);
+        Font(pauseViewport.Find("ForestPauseTitle"), 86);
+        Font(pauseViewport.Find("ForestPauseSubtitle"), 34);
+        var profile = pauseViewport.Find("ForestProfile");
+        Place(profile, .54f, .27f, .94f, .92f);
+        ConfigureProfile(profile);
+        Place(pauseViewport.Find("ReplayTutorial"), .54f, .07f, .94f, .22f);
+        Font(pauseViewport.Find("ReplayTutorial"), 44);
+    }
+
+    private static void ConfigureProfile(Transform profile)
+    {
+        if (profile == null) return;
+        Place(profile.Find("Hero"), .40f, .74f, .60f, .95f);
+        Place(profile.Find("ProfileName"), .06f, .63f, .94f, .73f);
+        Place(profile.Find("ProfileSubtitle"), .06f, .54f, .94f, .62f);
+        Place(profile.Find("ProfileMedal"), .16f, .34f, .38f, .53f);
+        Place(profile.Find("ProfileMmr"), .44f, .40f, .90f, .53f);
+        Place(profile.Find("MmrCaption"), .44f, .32f, .90f, .40f);
+        Place(profile.Find("Waves"), .06f, .18f, .48f, .30f);
+        Place(profile.Find("Kills"), .52f, .18f, .94f, .30f);
+        Place(profile.Find("WavesCaption"), .04f, .10f, .49f, .18f);
+        Place(profile.Find("KillsCaption"), .51f, .10f, .96f, .18f);
+        Place(profile.Find("ProgressStatus"), .04f, .01f, .96f, .09f);
+        foreach (string name in new[] { "ProfileName", "ProfileMmr", "Waves", "Kills" }) Font(profile.Find(name), 52);
+        foreach (string name in new[] { "ProfileSubtitle", "MmrCaption", "WavesCaption", "KillsCaption", "ProgressStatus" }) Font(profile.Find(name), 34);
+    }
+
+    public static void ConfigureControlsSettings(GameObject settings)
+    {
+        var dialog = settings.transform.Find("SettingsDialog");
+        var toolbar = settings.transform.Find("LayoutToolbar");
+        controlsViewport = Node(settings.transform, "RuStoreControlsSafeContent", 0, 0, 1, 1);
+        dialog.SetParent(controlsViewport, false); toolbar.SetParent(controlsViewport, false);
+        FitSafeArea(controlsViewport, 0);
+        Place(dialog, .03f, .03f, .97f, .97f); Font(dialog, 44);
+        Place(dialog.Find("Title"), .05f, .83f, .73f, .98f); Font(dialog.Find("Title"), 56);
+        Place(dialog.Find("Close"), .76f, .83f, .95f, .98f);
+        Place(dialog.Find("SizeLabel"), .05f, .65f, .25f, .79f);
+        Place(dialog.Find("SizeValue"), .80f, .65f, .95f, .79f);
+        Place(dialog.Find("Size"), .28f, .61f, .77f, .80f);
+        Place(dialog.Find("OpacityLabel"), .05f, .39f, .25f, .53f);
+        Place(dialog.Find("OpacityValue"), .80f, .39f, .95f, .53f);
+        Place(dialog.Find("Opacity"), .28f, .35f, .77f, .54f);
+        Place(dialog.Find("EditLayout"), .05f, .14f, .62f, .31f);
+        Place(dialog.Find("ResetControls"), .66f, .14f, .95f, .31f);
+        Place(dialog.Find("Hint"), .05f, .02f, .95f, .12f); Font(dialog.Find("Hint"), 34);
+        foreach (var slider in dialog.GetComponentsInChildren<Slider>(true)) ConfigureSliderTouchArea(slider);
+        Place(toolbar, .04f, .75f, .96f, .99f); Font(toolbar, 36);
+        Place(toolbar.Find("Title"), .02f, .48f, .40f, .98f);
+        Place(toolbar.Find("Hint"), .02f, .02f, .98f, .33f); Font(toolbar.Find("Hint"), 30);
+        Place(toolbar.Find("Save"), .42f, .38f, .60f, .98f);
+        Place(toolbar.Find("Cancel"), .62f, .38f, .80f, .98f);
+        Place(toolbar.Find("Reset"), .82f, .38f, .98f, .98f);
+    }
+
+    private static void ConfigureSettings(Transform settings)
+    {
+        Place(settings, 0, 0, 1, 1);
+        Place(settings.Find("BackTyMenu"), .04f, .85f, .23f, .98f);
+        Place(settings.Find("ForestSettingsTitle"), .27f, .85f, .96f, .98f);
+        Font(settings.Find("BackTyMenu"), 42);
+        Font(settings.Find("ForestSettingsTitle"), 58);
+        var audio = settings.Find("ForestAudioSection");
+        Place(audio, .04f, .34f, .48f, .82f);
+        Place(audio.Find("Heading"), .07f, .84f, .93f, .99f);
+        Place(audio.Find("МузыкаCaption"), .07f, .69f, .72f, .83f);
+        Place(audio.Find("МузыкаValue"), .74f, .69f, .93f, .83f);
+        Place(audio.Find("SoungsSlider"), .07f, .44f, .93f, .68f);
+        Place(audio.Find("ЭффектыCaption"), .07f, .28f, .72f, .43f);
+        Place(audio.Find("ЭффектыValue"), .74f, .28f, .93f, .43f);
+        Place(audio.Find("EffectSlider"), .07f, .03f, .93f, .27f);
+        Font(audio, 40);
+        foreach (string name in new[] { "Kursorchic", "KursorchicOn", "KursorchicOff" })
+            if (audio.Find(name) != null) audio.Find(name).gameObject.SetActive(false);
+        foreach (var slider in audio.GetComponentsInChildren<Slider>(true))
+            ConfigureSliderTouchArea(slider);
+        var controls = settings.Find("ForestControlsSection");
+        Place(controls, .52f, .50f, .96f, .82f);
+        Place(controls.Find("Heading"), .07f, .82f, .93f, .99f);
+        Font(controls, 36);
+        var card = controls.Find("MobileControlsCard");
+        Place(card, 0, 0, 1, .82f);
+        if (card != null)
         {
-            var menu = FindObjectOfType<MainMenuController>(); if (menu == null) return;
-            var canvas = menu.GetComponentInParent<Canvas>() ?? menu.GetComponentInChildren<Canvas>(true)
-                ?? Array.Find(FindObjectsOfType<Canvas>(), candidate => candidate.isRootCanvas && candidate.gameObject.scene == menu.gameObject.scene);
-            if (canvas == null) return;
-            var children = new Transform[canvas.transform.childCount];
-            for (int i = 0; i < children.Length; i++) children[i] = canvas.transform.GetChild(i);
-            menuViewport = Node(canvas.transform, "RuStoreBannerSafeContent", 0, 0, 1, 1);
-            foreach (var child in children) child.SetParent(menuViewport, false);
-            previousInset = -1;
+            var heading = card.Find("ControlsTitle"); if (heading != null) heading.gameObject.SetActive(false);
+            Place(card.Find("ControlsDescription"), .07f, .49f, .93f, .98f);
+            Place(card.Find("MobileControlsSettings"), .07f, .02f, .93f, .47f);
+            Place(card.Find("ControlsHint"), .07f, .02f, .93f, .47f);
         }
-        if (previousInset == pixels) return;
-        previousInset = pixels;
-        float inset = pixels > 0 ? (pixels + Screen.safeArea.yMin + 12f) / Mathf.Max(1, Screen.height) : 0;
-        menuViewport.anchorMin = new Vector2(0, Mathf.Clamp(inset, 0, .30f));
+        var language = settings.Find("LanguageSelector");
+        Place(language, .52f, .18f, .96f, .47f);
+        Place(language.Find("LanguageTitle"), .04f, .64f, .96f, .96f);
+        Place(language.Find("Choose_auto"), .04f, .09f, .33f, .59f);
+        Place(language.Find("Choose_ru"), .355f, .09f, .645f, .59f);
+        Place(language.Find("Choose_en"), .67f, .09f, .96f, .59f);
+        Font(language, 38);
+        var credits = language.Find("AssetCredits");
+        if (credits != null) { credits.SetParent(settings, false); Place(credits, .04f, .02f, .31f, .15f); Font(credits, 36); }
+        var creditsPanel = settings.Find("AssetCreditsPanel");
+        Place(creditsPanel, .02f, .02f, .98f, .98f);
+        if (creditsPanel != null)
+        {
+            Font(creditsPanel.Find("Title"), 44);
+            Place(creditsPanel.Find("CloseCredits"), .76f, .84f, .97f, .98f);
+            Font(creditsPanel.Find("CloseCredits"), 38);
+            Place(creditsPanel.Find("CreditsScroll"), .03f, .03f, .97f, .80f);
+            var body = creditsPanel.GetComponentInChildren<ScrollRect>(true).content.GetComponent<TMP_Text>();
+            body.fontSize = 34;
+        }
+        var damage = settings.Find("DamageNumbersSetting");
+        Place(damage, .04f, .18f, .48f, .31f); Font(damage, 38);
+        var links = settings.Find("RuStoreLinks");
+        Place(links, .35f, .02f, .96f, .15f); Font(links, 36);
+        var replay = settings.Find("ReplayTutorial");
+        // This action remains directly available in the pause menu.
+        if (replay != null) replay.gameObject.SetActive(false);
+    }
+
+    private static void FitSafeArea(RectTransform viewport, int adHeight)
+    {
+        if (viewport == null) return;
+        var safe = Screen.safeArea;
+        float width = Mathf.Max(1, Screen.width), height = Mathf.Max(1, Screen.height);
+        float bottom = safe.yMin + (adHeight > 0 ? adHeight + 12f : 0);
+        viewport.anchorMin = new Vector2(safe.xMin / width, Mathf.Min(bottom / height, .30f));
+        viewport.anchorMax = new Vector2(safe.xMax / width, safe.yMax / height);
+        viewport.offsetMin = viewport.offsetMax = Vector2.zero;
+    }
+    private static void ConfigureSliderTouchArea(Slider slider)
+    {
+        var touchArea = slider.GetComponent<Image>() ?? slider.gameObject.AddComponent<Image>();
+        touchArea.color = Color.clear; touchArea.raycastTarget = true;
+        if (slider.handleRect == null) return;
+        var area = slider.handleRect.parent as RectTransform;
+        area.anchorMin = new Vector2(area.anchorMin.x, 0);
+        area.anchorMax = new Vector2(area.anchorMax.x, 1);
+        area.offsetMin = area.offsetMax = Vector2.zero;
+        slider.handleRect.sizeDelta = new Vector2(56, 0);
+        slider.handleRect.anchorMin = new Vector2(slider.handleRect.anchorMin.x, .08f);
+        slider.handleRect.anchorMax = new Vector2(slider.handleRect.anchorMax.x, .92f);
+    }
+    private static void Place(Transform target, float left, float bottom, float right, float top)
+    {
+        var rect = target as RectTransform; if (rect == null) return;
+        rect.anchorMin = new Vector2(left, bottom); rect.anchorMax = new Vector2(right, top);
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+    }
+    private static void Font(Transform target, float size)
+    {
+        if (target == null) return;
+        foreach (var text in target.GetComponentsInChildren<TMP_Text>(true))
+        {
+            text.enableAutoSizing = true; text.fontSize = text.fontSizeMax = size;
+            text.fontSizeMin = size * .70f;
+        }
     }
 }
 #endif

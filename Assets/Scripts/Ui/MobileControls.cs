@@ -168,6 +168,9 @@ public class MobileControls : MonoBehaviour
         sizeSlider.onValueChanged.AddListener(SetControlSize);
         opacitySlider.onValueChanged.AddListener(SetControlOpacity);
         initialized = true;
+#if LAST_SOLDIER_RUSTORE
+        RuStoreMenu.ConfigureControlsSettings(controlsSettingsPanel);
+#endif
         RefreshLayout();
         ApplySavedLayout(); ApplyAppearance();
     }
