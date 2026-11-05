@@ -85,3 +85,45 @@ QA 1.0.2 / code 4, Unity 2022.3.62f2, Yandex Mobile Ads 8.6.0. Временны�
 Затем выполнен холодный запуск главного меню: `LaunchState: COLD`, `Status: ok`. На телефоне оставлена обычная 1.0.3; `dumpsys package` подтвердил `versionCode=5`, `versionName=1.0.3`. Остальные файлы доказательств и Editor-предпросмотры — [mobile-ui-validation.md](mobile-ui-validation.md).
 
 Оценка удобства UI владельцем, оба положения телефона и ручные касания остальных кнопок остаются проверкой перед публикацией. Новый APK сохранён только в отдельном черновике RuStore; на модерацию не отправлен. Сценарии видео из раздела выше этим прогоном не проверялись.
+
+## Повторная проверка награды — 06.11.2026
+
+На физическом Android проверена установленная production 1.0.3 / code 5. Использован уже работающий сервер ADB на порту 5037; сервер 5038 не видел USB-устройство. Холодный запуск обычной игры завершился `Status: ok`, в журнале — `Init Game Success`.
+
+Временно установлена подписанная QA 1.0.3 обновлением `install -r --no-incremental`. Использован существующий `RuStoreDeviceRewardCheck` в режиме настоящего merchant rewarded; тест не менялся, SDK callbacks не подставлялись. Исходный баланс — 2000. Журнал `Builds/RuStoreValidation/device-reward-normal-close-20261106.log`:
+
+```text
+11-06 00:35:12.963 [RuStoreDeviceCheck] BEFORE coins=2000
+11-06 00:35:14.515 [RuStoreAds] Rewarded requested
+11-06 00:44:36.731 [RuStoreAds] Rewarded shown
+11-06 00:44:36.749 [RuStoreAds] Rewarded earned
+11-06 00:44:36.765 Собрано монеток: 2500
+11-06 00:44:36.781 [RuStoreAds] Rewarded closed: granted
+11-06 00:44:36.792 [RuStoreDeviceCheck] CALLBACK result=Granted granted=500
+11-06 00:44:36.820 [RuStoreDeviceCheck] PASS before=2000 after=2500 granted=500 result=Granted
+```
+
+Время взято из Android logcat; `shown` означает обработку очереди SDK в Unity после возврата, а не начало показа видео.
+
+### Предел проверки закрытия
+
+Обычный `uiautomator dump` не смог дождаться idle. Существующий `LegacyProbe#testDump` заработал после добавления системной `/system/framework/android.test.base.jar` в аргументы `uiautomator runtest`; повторная установка отдельного UI-приложения не потребовалась. Проба читает только accessibility-деревья пакета игры, без изображений. Временный JAR `/data/local/tmp/lastsoldier-ui-probe-20261106.jar` после проверки удалён.
+
+Сначала в дереве был `pageIndex: 1`, Android Back рекламу не закрыл. Владелец сообщил, что нажал кнопку закрытия. Следующий дамп показал ещё открытую финальную карточку `pageIndex: 2` с кнопкой «Скачать» и отдельным верхним правым элементом. После ADB-нажатия этого элемента активным окном оказался Chrome; его содержимое не считывалось. Выполнено возвращение в Unity через `am start`, затем доставлены приведённые callbacks и награда. Дампы: `ad-ui-elements-20261106.txt`, `ad-ui-after-back-20261106.txt`, `ad-ui-after-user-close-20261106.txt`.
+
+Это подтверждает реальную награду и восстановление игры после возврата, но **не подтверждает полностью автоматическое штатное закрытие без перехода в браузер**. Отмена без награды, ошибка, видеовоскрешение и прослушивание звука после видео остаются непроверенными на Android.
+
+### Восстановление обычной сборки
+
+Восстановлен исходный production APK 1.0.3 / code 5, SHA-256 `6bed2126ed83e99e2a3a34bddc7f84596c054d217e112338d1133828b770757f`, установка — `Success`, запуск — `COLD`, `Status: ok`. После ADB-касания «Играть» в `production-reward-persistence-20261106.log`:
+
+```text
+11-06 00:46:18.983 ApplicationInfo com.joe6355.lastsoldier.rustore version 1.0.3
+11-06 00:46:22.079 Init Game Success
+11-06 00:47:17.486 Монеты игрока: 2500
+11-06 00:47:17.494 Gameplay Start
+11-06 00:48:12.103 Gameplay Stop
+11-06 00:48:12.116 Cursor State Updated: Visible=True, MenuOpen=True
+```
+
+На телефоне оставлена обычная игра с открытым меню паузы для проверки UI владельцем. Снимки экрана, зеркалирование и управление окнами ПК не использовались. Изменений игрового кода, сборки нового production APK и действий в RuStore в этом прогоне не было.
