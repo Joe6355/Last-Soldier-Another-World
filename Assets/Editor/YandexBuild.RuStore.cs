@@ -5,8 +5,11 @@ using UnityEditor;
 using UnityEditor.Android;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public static partial class YandexBuild
 {
@@ -115,6 +118,57 @@ public static partial class YandexBuild
     [MenuItem("Tools/Last Soldier/RuStore/Export release Gradle project")]
     public static void BuildRuStoreRelease() => BuildRuStore(false);
 
+    [MenuItem("Tools/Last Soldier/RuStore/Prepare controls preview")]
+    public static void PrepareRuStoreControlsPreview()
+    {
+        const string scenePath = "Assets/Scenes/SampleScene.unity";
+        var sourceScene = SceneManager.GetSceneByPath(scenePath);
+        bool opened = !sourceScene.IsValid() || !sourceScene.isLoaded;
+        if (opened) sourceScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
+        var previewScene = EditorSceneManager.NewPreviewScene();
+        GameObject preview = null;
+        try
+        {
+            var source = sourceScene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<MobileControls>(true)).Single();
+            preview = UnityEngine.Object.Instantiate(source.gameObject);
+            preview.name = "RuStoreControlsPreview";
+            preview.SetActive(false);
+            SceneManager.MoveGameObjectToScene(preview, previewScene);
+            // Reuse the game's serialized touch controls and editor, with no scene/gameplay references.
+            foreach (var component in preview.GetComponentsInChildren<Component>(true))
+            {
+                if (component == null) continue;
+                var serialized = new SerializedObject(component);
+                var property = serialized.GetIterator();
+                while (property.Next(true))
+                {
+                    if (property.propertyType != SerializedPropertyType.ObjectReference) continue;
+                    var value = property.objectReferenceValue;
+                    var transform = value is Component child ? child.transform : value is GameObject node ? node.transform : null;
+                    if (transform != null && transform != preview.transform && !transform.IsChildOf(preview.transform))
+                        property.objectReferenceValue = null;
+                }
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+            }
+            var mobile = new SerializedObject(preview.GetComponent<MobileControls>());
+            mobile.FindProperty("menuPreview").boolValue = true;
+            mobile.ApplyModifiedPropertiesWithoutUndo();
+            foreach (var canvas in preview.GetComponentsInChildren<Canvas>(true))
+            { canvas.overrideSorting = true; canvas.sortingOrder = 32001; }
+            var rootCanvas = preview.GetComponent<Canvas>();
+            rootCanvas.overrideSorting = true; rootCanvas.sortingOrder = 32000;
+            (preview.GetComponent<Image>() ?? preview.AddComponent<Image>()).color = new Color32(12, 31, 26, 255);
+            PrefabUtility.SaveAsPrefabAsset(preview, "Assets/Resources/RuStoreControlsPreview.prefab");
+            Debug.Log("RUSTORE_CONTROLS_PREVIEW_READY: existing mobile editor without gameplay references");
+        }
+        finally
+        {
+            if (preview != null) UnityEngine.Object.DestroyImmediate(preview);
+            EditorSceneManager.ClosePreviewScene(previewScene);
+            if (opened) EditorSceneManager.CloseScene(sourceScene, true);
+        }
+    }
+
     private static void BuildRuStore(bool qa)
     {
         var symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android).Split(';');
@@ -123,6 +177,7 @@ public static partial class YandexBuild
         if (symbols.Contains("LAST_SOLDIER_DEMO") || symbols.Contains("LAST_SOLDIER_ANDROID_TEST") || symbols.Contains("YandexGamesPlatform_yg"))
             throw new InvalidOperationException("RuStore must not include browser, test-ad or demo platform defines");
         ConfigureRuStore(qa);
+        PrepareRuStoreControlsPreview();
         GameSpriteAtlas.Synchronize();
         Directory.CreateDirectory("Builds/RuStore");
         string[] embeddedKeys = { "SdkUseEmbedded", "NdkUseEmbedded", "JdkUseEmbedded", "GradleUseEmbedded" };

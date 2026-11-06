@@ -32,9 +32,12 @@ public static class RuStoreChecks
     static bool resultCompleted;
     static GameMonetization.CoinsRewardResult result;
     static string previousCompany, previousProduct;
+    static string layoutKey;
+    static float layoutX, layoutY;
     static RuStoreChecks() { if (SessionState.GetBool(Flag, false)) Attach(); }
     public static void Run()
     {
+        YandexBuild.PrepareRuStoreControlsPreview();
         previousCompany = PlayerSettings.companyName; previousProduct = PlayerSettings.productName;
         SessionState.SetString(Flag + ".company", previousCompany); SessionState.SetString(Flag + ".product", previousProduct);
         PlayerSettings.companyName = "LastSoldierRuStoreValidation";
@@ -50,7 +53,7 @@ public static class RuStoreChecks
     }
     static void Attach()
     {
-        deadline = EditorApplication.timeSinceStartup + 210;
+        deadline = EditorApplication.timeSinceStartup + 420;
         EditorApplication.update -= Tick; EditorApplication.update += Tick;
         Application.logMessageReceived -= Log; Application.logMessageReceived += Log;
     }
@@ -79,6 +82,8 @@ public static class RuStoreChecks
                     var menu = UnityEngine.Object.FindObjectOfType<MainMenuController>();
                     Check(!Get<Button>(menu, "authButton").gameObject.activeSelf && !Get<Button>(menu, "ratingButton").gameObject.activeSelf,
                         "Sign-in and shared leaderboard buttons are absent from the first release");
+                    CheckLocalNickname(menu.gameObject.scene);
+                    CheckMenuControlsSave();
                     Capture("menu-local.png");
                     CheckMenuLayouts(menu.gameObject.scene, menu.SettingsPanel, menu.ShowSettings, menu.CloseSettings);
                     UnityEngine.Object.FindObjectOfType<MainMenuController>().Play(); Next(); break;
@@ -87,6 +92,15 @@ public static class RuStoreChecks
                     player = UnityEngine.Object.FindObjectOfType<PlayerController>();
                     ui = UnityEngine.Object.FindObjectOfType<Ui>();
                     monetization = UnityEngine.Object.FindObjectOfType<GameMonetization>();
+                    var gameplayControls = UnityEngine.Object.FindObjectOfType<MobileControls>();
+                    Check(Mathf.Approximately(Get<Slider>(gameplayControls, "sizeSlider").value, 1.1f)
+                        && Mathf.Approximately(Get<Slider>(gameplayControls, "opacitySlider").value, .73f),
+                        "Gameplay loads appearance saved by the main-menu controls editor");
+                    var movement = Get<RectTransform[]>(gameplayControls, "editableControls")[0];
+                    var area = Get<RectTransform>(gameplayControls, "safeArea");
+                    Check(Mathf.Abs(movement.anchoredPosition.x / area.rect.width - layoutX) < .001f
+                        && Mathf.Abs(movement.anchoredPosition.y / area.rect.height - layoutY) < .001f,
+                        "Gameplay uses the exact normalized layout saved in the main menu");
                     foreach (var guide in UnityEngine.Object.FindObjectsOfType<TipsManager>()) guide.SkipGuide();
                     ui.StartGame();
                     ui.ToggleMenu();
@@ -175,6 +189,57 @@ public static class RuStoreChecks
         catch (Exception error) { Finish(false, "Phase " + phase + ": " + error); }
     }
     static void Next() { phase++; frame = Time.frameCount + 8; }
+    static void CheckLocalNickname(Scene scene)
+    {
+        Check(!GameProgress.SetLocalNickname(" \n\t "), "Blank local names are rejected");
+        Check(GameProgress.NormalizeLocalNickname(new string('я', 24)).Length == GameProgress.LocalNicknameLimit,
+            "Local name length is bounded");
+        Check(GameProgress.NormalizeLocalNickname(new string('x', 19) + "😀").Length == 19,
+            "Local name truncation does not split a surrogate pair");
+        Check(GameProgress.SetLocalNickname("  Сохранить  ") && GameProgress.LocalNickname == "Сохранить", "Local name is trimmed and saved");
+        var display = UnityEngine.Object.FindObjectsOfType<UserDisplay>().First(value => value.gameObject.scene == scene
+            && Get<TextMeshProUGUI>(value, "profileNameText") != null);
+        var label = Get<TextMeshProUGUI>(display, "profileNameText");
+        GameLocalization.SetSelection("en"); GameLocalization.RefreshAll();
+        Check(label.text == "Сохранить" && !label.richText && !YG2.player.auth, "Custom names are not translated, interpreted as markup or treated as authentication");
+        GameLocalization.SetSelection("ru");
+        Check(GameProgress.SetLocalNickname("<b>Имя</b>") && label.text == "<b>Имя</b>" && !label.richText,
+            "Profile shows name markup literally");
+        label.GetComponent<Button>().onClick.Invoke();
+        var input = GameObject.Find("RuStoreDialog/Panel/Nickname").GetComponent<TMP_InputField>();
+        input.text = "Солдат тест"; Click("RuStoreDialog", "SaveNickname");
+        Check(!RuStoreMenu.IsOverlayOpen && label.text == "Солдат тест"
+            && UnityEngine.PlayerPrefs.GetString("LastSoldier.RuStore.Nickname.v1") == label.text,
+            "Profile name opens the editor and Save refreshes the persistent local display");
+    }
+    static void CheckMenuControlsSave()
+    {
+        RuStoreMenu.OpenMainControls();
+        var preview = UnityEngine.Object.FindObjectOfType<MobileControls>();
+        Check(preview != null && preview.IsControlsSettingsOpen && !preview.CanControl
+            && UnityEngine.Object.FindObjectOfType<PlayerController>() == null, "Menu controls editor opens without a gameplay scene or combat input");
+        preview.ResetControls();
+        Get<Slider>(preview, "sizeSlider").value = 1.1f;
+        Get<Slider>(preview, "opacitySlider").value = .73f;
+        preview.BeginLayoutEdit();
+        var movement = Get<RectTransform[]>(preview, "editableControls")[0];
+        var before = movement.anchoredPosition;
+        var center = RectTransformUtility.WorldToScreenPoint(null, movement.position);
+        Check(preview.BeginControlDrag(movement, center), "Main-menu preview uses the existing control drag handler");
+        preview.DragControl(center + new Vector2(18, 10)); preview.EndControlDrag();
+        Check(movement.anchoredPosition != before, "A menu layout drag changes the preview position");
+        LocalizationChecks.CaptureView(Path.GetFullPath("Builds/RuStoreValidation/Previews/main-controls-layout.png"), 1280, 720);
+        preview.EndLayoutEdit(true);
+        layoutKey = "MobileControls.v2." + movement.name;
+        layoutX = UnityEngine.PlayerPrefs.GetFloat(layoutKey + ".X");
+        layoutY = UnityEngine.PlayerPrefs.GetFloat(layoutKey + ".Y");
+        preview.BeginLayoutEdit(); before = movement.anchoredPosition;
+        preview.ResetLayout(); preview.EndLayoutEdit(false);
+        Check(movement.anchoredPosition == before && Mathf.Approximately(UnityEngine.PlayerPrefs.GetFloat(layoutKey + ".X"), layoutX),
+            "Cancelling a menu layout edit restores the saved layout without overwriting it");
+        preview.CloseControlsSettings();
+        Check(!RuStoreMenu.IsOverlayOpen, "Closing the preview releases its modal state");
+    }
     static void CheckMenuLayouts(Scene scene, GameObject settings, Action openSettings, Action closeSettings)
     {
         Directory.CreateDirectory("Builds/RuStoreValidation/Previews");
@@ -192,23 +257,91 @@ public static class RuStoreChecks
             viewport.anchorMax = new Vector2(.975f, .98f);
             CaptureLayout(prefix + "-insets.png", size, scene);
             viewport.anchorMin = min; viewport.anchorMax = max;
+            var stats = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<Stats>(true))
+                .First(value => Get<Image>(value, "profileMedal") != null);
+            Get<Image>(stats, "profileMedal").GetComponent<Button>().onClick.Invoke();
+            var medals = GameObject.Find("RuStoreDialog/Panel/Medals").transform;
+            Check(medals.childCount == Stats.MedalCount, "Medal click shows all eight medals: " + scene.name);
+            for (int index = 0; index < Stats.MedalCount; index++)
+            {
+                Check(medals.GetChild(index).Find("Icon").GetComponent<Image>().sprite == stats.MedalForMmr(Stats.MedalMinimumMmr(index)),
+                    "Catalog uses the existing medal sprite and threshold: " + index);
+                Check(Stats.MedalIndexForMmr(Stats.MedalMinimumMmr(index)) == index
+                    && (index == 0 || Stats.MedalIndexForMmr(Stats.MedalMinimumMmr(index) - 1) == index - 1),
+                    "Medal threshold and previous value remain correct: " + index);
+            }
+            CaptureLayout(prefix + "-medals.png", size, scene, screen: medals.parent);
+            Click("RuStoreDialog", "CloseMedals");
+            var profileName = Get<Image>(stats, "profileMedal").transform.parent.Find("ProfileName");
+            profileName.GetComponent<Button>().onClick.Invoke();
+            var namePanel = GameObject.Find("RuStoreDialog/Panel").transform;
+            var oldName = GameProgress.LocalNickname;
+            namePanel.Find("Nickname").GetComponent<TMP_InputField>().text = "Другое имя";
+            CaptureLayout(prefix + "-nickname.png", size, scene, screen: namePanel);
+            Click("RuStoreDialog", "Cancel");
+            Check(GameProgress.LocalNickname == oldName, "Cancelling the name editor leaves the stored name unchanged");
             openSettings();
             CaptureLayout(prefix + "-settings.png", size, scene, screen: settings.transform);
             // Use the real serialized Back handler, not a direct hide of the panel.
             settings.transform.Find("BackTyMenu").GetComponent<Button>().onClick.Invoke();
             Check(!settings.activeSelf, "Settings Back returns to menu: " + scene.name + " " + size + " " + language);
-            if (scene.name == "SampleScene")
+            if (scene.name == "Menu")
+            {
+                Click("RuStoreBannerSafeContent", "MainControlsSettings");
+                var preview = UnityEngine.Object.FindObjectOfType<MobileControls>();
+                Check(preview.IsControlsSettingsOpen && SceneManager.GetActiveScene() == scene, "Control customization is directly available in the main menu");
+                CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent");
+                CheckLayoutTouches(preview, prefix, size);
+                Get<Button>(preview, "closeControlsSettingsButton").onClick.Invoke();
+                openSettings();
+                settings.transform.Find("ForestControlsSection/MobileControlsCard/MobileControlsSettings").GetComponent<Button>().onClick.Invoke();
+                preview = UnityEngine.Object.FindObjectOfType<MobileControls>();
+                Check(preview.IsControlsSettingsOpen, "Main-menu settings open the same controls editor");
+                Get<Button>(preview, "closeControlsSettingsButton").onClick.Invoke();
+                Check(settings.activeSelf && !RuStoreMenu.IsOverlayOpen, "Closing menu controls returns to the original settings screen");
+            }
+            else if (scene.name == "SampleScene")
             {
                 var mobile = UnityEngine.Object.FindObjectOfType<MobileControls>();
                 Get<Button>(mobile, "pauseControlsSettingsButton").onClick.Invoke();
                 Check(mobile.IsControlsSettingsOpen && Time.timeScale == 0, "Control customization opens from pause without resuming combat");
                 CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent");
+                CheckLayoutTouches(mobile, prefix, size);
                 Get<Button>(mobile, "closeControlsSettingsButton").onClick.Invoke();
                 Check(settings.activeSelf && !mobile.IsControlsSettingsOpen, "Control customization Back returns to settings");
             }
             closeSettings();
         }
         GameLocalization.SetSelection("ru");
+    }
+    static void CheckLayoutTouches(MobileControls mobile, string prefix, Vector2Int size)
+    {
+        mobile.BeginLayoutEdit();
+        LocalizationChecks.CaptureView(Path.GetFullPath(prefix + "-layout.png"), size.x, size.y, () =>
+        {
+            foreach (var rect in Get<RectTransform[]>(mobile, "editableControls").Where(value => value.gameObject.activeInHierarchy))
+            {
+                var buttons = rect.GetComponentsInChildren<Button>().Where(value => value.isActiveAndEnabled).ToArray();
+                var targets = buttons.Length > 0 ? buttons.Select(value => value.GetComponent<RectTransform>()).ToArray() : new[] { rect };
+                foreach (var target in targets)
+                {
+                    var canvas = rect.GetComponentInParent<Canvas>().rootCanvas;
+                    var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+                    var corners = new Vector3[4]; target.GetWorldCorners(corners);
+                    Vector2 point = RectTransformUtility.WorldToScreenPoint(camera, (corners[0] + corners[2]) * .5f);
+                    var pointer = new PointerEventData(EventSystem.current) { position = point };
+                    var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(pointer, hits);
+                    Check(hits.Count > 0 && hits[0].gameObject.transform.IsChildOf(target),
+                        "Layout toolbar leaves the draggable control accessible: " + rect.name + "/" + target.name + " " + prefix
+                        + "; hit=" + (hits.Count > 0 ? hits[0].gameObject.name : "none"));
+                }
+            }
+            foreach (var text in Get<GameObject>(mobile, "layoutToolbar").GetComponentsInChildren<TMP_Text>())
+            {
+                text.ForceMeshUpdate(); Check(!text.isTextOverflowing, "Layout toolbar text fits: " + text.text + " " + prefix);
+            }
+        });
+        mobile.EndLayoutEdit(false);
     }
     static void CaptureLayout(string filename, Vector2Int size, Scene scene, string rootName = null, Transform screen = null)
     {

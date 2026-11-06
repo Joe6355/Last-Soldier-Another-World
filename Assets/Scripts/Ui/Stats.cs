@@ -37,6 +37,17 @@ public class Stats : MonoBehaviour
     public int completedWaves;
     public int TotalKills => (int)Math.Min(int.MaxValue, (long)countEnemyDead + countElitEnemyDead + countBossDead);
     public int Mmr => GameProgress.MmrScore(completedWaves, TotalKills, PlayerPrefs.GetInt("CrimsonMmrBonus", 0));
+    private static readonly int[] medalThresholds = { 0, 100, 500, 1000, 2500, 5000, 10000, 20000 };
+    private static readonly string[] medalNames = { "Бронза", "Серебро", "Золото", "Алмаз", "Изумруд", "Сапфир", "Аметист", "Рубин" };
+    public static int MedalCount => medalThresholds.Length;
+    public static int MedalMinimumMmr(int index) => medalThresholds[index];
+    public static string MedalName(int index) => medalNames[index];
+    public static int MedalIndexForMmr(int mmr)
+    {
+        for (int i = medalThresholds.Length - 1; i > 0; i--)
+            if (mmr >= medalThresholds[i]) return i;
+        return 0;
+    }
 
     public enum EnemyKind { Other, Slime, Skeleton, SlimeBoss, Assassin }
     public enum AchievementMetric
@@ -202,7 +213,14 @@ public class Stats : MonoBehaviour
 
     private void OnEnable() => GameProgress.Changed += RefreshFromSave;
     private void OnDisable() => GameProgress.Changed -= RefreshFromSave;
-    private void Start() => RefreshFromSave();
+    private void Start()
+    {
+        RefreshFromSave();
+#if LAST_SOLDIER_RUSTORE
+        RuStoreMenu.BindMedal(profileMedal, this);
+        if (LvlMedalki != profileMedal) RuStoreMenu.BindMedal(LvlMedalki, this);
+#endif
+    }
 
     private void RefreshFromSave()
     {
@@ -284,14 +302,11 @@ public class Stats : MonoBehaviour
 
     public Sprite MedalForMmr(int mmr)
     {
-        if (mmr >= 20000) return rubyMedal;
-        if (mmr >= 10000) return amethystMedal;
-        if (mmr >= 5000) return sapphireMedal;
-        if (mmr >= 2500) return emeraldMedal;
-        if (mmr >= 1000) return diamondMedal;
-        if (mmr >= 500) return goldMedal;
-        if (mmr >= 100) return silverMedal;
-        return bronzeMedal;
+        return MedalIndexForMmr(mmr) switch
+        {
+            7 => rubyMedal, 6 => amethystMedal, 5 => sapphireMedal, 4 => emeraldMedal,
+            3 => diamondMedal, 2 => goldMedal, 1 => silverMedal, _ => bronzeMedal
+        };
     }
 
     public void AddCompletedWave()

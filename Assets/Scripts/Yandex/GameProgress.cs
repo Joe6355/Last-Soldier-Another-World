@@ -23,6 +23,31 @@ public sealed partial class GameProgress : MonoBehaviour
     public static bool CloudAvailable { get; private set; }
     public static event Action Changed;
     public static event Action<string> LeaderboardLoadFailed;
+#if LAST_SOLDIER_RUSTORE
+    private const string LocalNicknameKey = "LastSoldier.RuStore.Nickname.v1";
+    public const int LocalNicknameLimit = 20;
+    public static string LocalNickname => UnityEngine.PlayerPrefs.GetString(LocalNicknameKey, "");
+    public static string LocalDisplayName => string.IsNullOrEmpty(LocalNickname) ? GameLocalization.Text("Солдат") : LocalNickname;
+    public static string NormalizeLocalNickname(string value)
+    {
+        var clean = new System.Text.StringBuilder();
+        foreach (char character in value ?? "")
+            if (!char.IsControl(character)) clean.Append(character);
+        string name = clean.ToString().Trim();
+        if (name.Length <= LocalNicknameLimit) return name;
+        int length = char.IsHighSurrogate(name[LocalNicknameLimit - 1]) ? LocalNicknameLimit - 1 : LocalNicknameLimit;
+        return name.Substring(0, length).TrimEnd();
+    }
+    public static bool SetLocalNickname(string value)
+    {
+        string name = NormalizeLocalNickname(value);
+        if (!IsReady || name.Length == 0) return false;
+        UnityEngine.PlayerPrefs.SetString(LocalNicknameKey, name);
+        UnityEngine.PlayerPrefs.Save();
+        Changed?.Invoke();
+        return true;
+    }
+#endif
     private bool localDirty, cloudDirty, sending, capturing, wasGuest;
     private float nextCloudSave, nextCapture;
     private string owner;

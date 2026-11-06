@@ -18,6 +18,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
     private float nextPoll, deadline;
     private bool completed;
     private bool menuMode;
+    private string originalNickname;
     private PlayerController player;
     private GameMonetization.CoinsRewardResult result;
 
@@ -118,33 +119,58 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                         + " privacyAck=" + UnityEngine.PlayerPrefs.GetInt(RuStoreAds.PrivacyNoticeKey, 0));
                     // Dismiss only the test overlay; do not write privacy acknowledgement.
                     if (RuStoreMenu.IsOverlayOpen) RuStoreMenu.Close();
+                    originalNickname = GameProgress.LocalNickname;
                     ValidateMenu(GameObject.Find("RuStoreBannerSafeContent").transform, "main");
-                    menu.ShowSettings(); phase++; break;
+                    GameObject.Find("RuStoreBannerSafeContent").GetComponentsInChildren<Button>()
+                        .Single(button => button.name == "MainControlsSettings").onClick.Invoke(); phase++; break;
                 case 1:
-                    ValidateMenu(menu.SettingsPanel.transform, "main settings");
-                    menu.CloseSettings(); menu.Play(); phase++; break;
+                    var menuControls = FindObjectOfType<MobileControls>();
+                    if (menuControls == null || !menuControls.IsControlsSettingsOpen || menuControls.CanControl || FindObjectOfType<PlayerController>() != null)
+                        throw new Exception("Main controls preview did not remain separate from gameplay");
+                    ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "main controls");
+                    menuControls.CloseControlsSettings(); menu.ShowSettings(); phase++; break;
                 case 2:
+                    ValidateMenu(menu.SettingsPanel.transform, "main settings");
+                    menu.SettingsPanel.transform.Find("ForestControlsSection/MobileControlsCard/MobileControlsSettings")
+                        .GetComponent<Button>().onClick.Invoke(); phase++; break;
+                case 3:
+                    FindObjectOfType<MobileControls>().CloseControlsSettings(); menu.CloseSettings();
+                    RuStoreMenu.OpenNickname(); phase++; break;
+                case 4:
+                    ValidateMenu(GameObject.Find("RuStoreDialog/Panel").transform, "name dialog");
+                    GameObject.Find("RuStoreDialog").GetComponentsInChildren<Button>().Single(button => button.name == "Cancel").onClick.Invoke();
+                    if (GameProgress.LocalNickname != originalNickname) throw new Exception("Name cancel changed the local profile");
+                    var statistics = FindObjectOfType<Stats>();
+                    var medal = (Image)typeof(Stats).GetField("profileMedal", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(statistics);
+                    medal.GetComponent<Button>().onClick.Invoke(); phase++; break;
+                case 5:
+                    ValidateMenu(GameObject.Find("RuStoreDialog/Panel").transform, "medal catalog");
+                    var cards = GameObject.Find("RuStoreDialog/Panel/Medals").transform;
+                    if (cards.childCount != Stats.MedalCount || cards.GetComponentsInChildren<Image>().Count(image => image.name == "Icon" && image.sprite != null) != Stats.MedalCount)
+                        throw new Exception("Medal catalog is incomplete");
+                    RuStoreMenu.Close(); menu.Play(); phase++; break;
+                case 6:
                     if (SceneManager.GetActiveScene().buildIndex != 1 || ui == null) return;
                     player = FindObjectOfType<PlayerController>();
                     coinsBefore = player.totalCoins;
                     Debug.Log("[RuStoreMenuCheck] BEFORE coins=" + coinsBefore);
                     ui.StartGame(); ui.ToggleMenu(); phase++; break;
-                case 3:
+                case 7:
                     ValidateMenu(GameObject.Find("RuStorePauseSafeContent").transform, "pause");
                     ui.ShowSettings(); phase++; break;
-                case 4:
+                case 8:
                     ValidateMenu(ui.SettingsPanel.transform, "pause settings");
                     FindObjectOfType<MobileControls>().OpenControlsSettings(); phase++; break;
-                case 5:
+                case 9:
                     var mobile = FindObjectOfType<MobileControls>();
                     if (!mobile.IsControlsSettingsOpen) throw new Exception("Control settings did not open");
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "controls");
                     mobile.CloseControlsSettings(); ui.CloseSettings(); ui.StartGame();
-                    if (ui.IsMenuOpen || Time.timeScale <= 0 || player.totalCoins != coinsBefore)
+                    if (ui.IsMenuOpen || Time.timeScale <= 0 || player.totalCoins != coinsBefore || GameProgress.LocalNickname != originalNickname)
                         throw new Exception("Resume or unchanged coin balance check failed");
                     ui.ToggleMenu();
                     Debug.Log("[RuStoreMenuCheck] PASS before=" + coinsBefore + " after=" + player.totalCoins
-                        + " paused=" + ui.IsMenuOpen + "; typed UI handlers, no screen capture or ad request");
+                        + " paused=" + ui.IsMenuOpen + " nicknameUnchanged=True; typed UI handlers, no screen capture or ad request");
                     phase = 100; break;
             }
         }

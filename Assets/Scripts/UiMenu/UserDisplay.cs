@@ -16,7 +16,11 @@ public class UserDisplay : MonoBehaviour
     private void Start() => Refresh();
     private void Refresh()
     {
+#if LAST_SOLDIER_RUSTORE
+        string name = GameProgress.LocalDisplayName;
+#else
         string name = YG2.player.auth ? YG2.player.name : GameLocalization.Text("Гость");
+#endif
         if (userInfoText != null) { userInfoText.richText = false; userInfoText.text = name; }
         if (profileNameText != null) { profileNameText.richText = false; profileNameText.text = name; }
     }

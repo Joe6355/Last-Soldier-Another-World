@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public sealed class RuStoreMenu : MonoBehaviour
 {
     private static GameObject overlay;
+    private static MobileControls controlsPreview;
     private static float savedTimeScale;
     private static bool savedAudioPause;
     private static int consumedBackFrame = -1;
@@ -16,7 +17,7 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static RectTransform controlsViewport;
     private static int bannerInset;
     private bool firstNoticeChecked;
-    public static bool IsOverlayOpen => overlay != null;
+    public static bool IsOverlayOpen => overlay != null || controlsPreview != null;
 
     public static void Install(GameObject settings)
     {
@@ -44,7 +45,79 @@ public sealed class RuStoreMenu : MonoBehaviour
     {
         if (consumedBackFrame == Time.frameCount) return true;
         if (!IsOverlayOpen || !Input.GetKeyDown(KeyCode.Escape)) return false;
+        if (controlsPreview != null)
+        {
+            if (controlsPreview.IsEditingLayout) controlsPreview.EndLayoutEdit(false);
+            else controlsPreview.CloseControlsSettings();
+            consumedBackFrame = Time.frameCount; return true;
+        }
         Close(); consumedBackFrame = Time.frameCount; return true;
+    }
+    public static void OpenMainControls()
+    {
+        if (!GameProgress.IsReady || IsOverlayOpen || YG.YG2.nowAdsShow) return;
+        controlsPreview = MobileControls.OpenMenuSettings(() => controlsPreview = null);
+    }
+    public static void OpenNickname()
+    {
+        var panel = Open("Имя игрока"); if (panel == null) return;
+        Text(Node(panel, "Hint", .07f, .65f, .93f, .82f), "Text", "Имя хранится только на этом устройстве", 32);
+        var fieldRect = Node(panel, "Nickname", .10f, .41f, .90f, .60f);
+        fieldRect.gameObject.AddComponent<Image>().color = new Color32(12, 32, 27, 255);
+        var field = fieldRect.gameObject.AddComponent<TMP_InputField>();
+        var viewport = Node(fieldRect, "Viewport", .03f, .08f, .97f, .92f);
+        viewport.gameObject.AddComponent<RectMask2D>();
+        var value = Text(viewport, "Value", "", 42);
+        value.alignment = TextAlignmentOptions.MidlineLeft; value.enableAutoSizing = false;
+        var placeholder = Text(viewport, "Placeholder", "Введите ник", 40);
+        placeholder.alignment = TextAlignmentOptions.MidlineLeft;
+        placeholder.color = new Color32(170, 179, 161, 255);
+        field.textViewport = viewport; field.textComponent = value; field.placeholder = placeholder;
+        field.lineType = TMP_InputField.LineType.SingleLine;
+        field.characterLimit = GameProgress.LocalNicknameLimit;
+        field.text = GameProgress.LocalNickname;
+        GameLocalization.Protect(value);
+        Text(Node(panel, "Limit", .10f, .29f, .90f, .38f), "Text", "До 20 символов", 28);
+        Button(panel, "Cancel", "Отмена", .10f, .06f, .47f, .22f, Close);
+        UnityEngine.UI.Button save = null;
+        Action submit = () => { if (GameProgress.SetLocalNickname(field.text)) Close(); };
+        save = Button(panel, "SaveNickname", "Сохранить", .53f, .06f, .90f, .22f, submit);
+        save.interactable = GameProgress.NormalizeLocalNickname(field.text).Length > 0;
+        field.onValueChanged.AddListener(text => save.interactable = GameProgress.NormalizeLocalNickname(text).Length > 0);
+        field.onSubmit.AddListener(_ => submit());
+        GameLocalization.Register(panel.gameObject);
+        field.ActivateInputField();
+    }
+    public static void BindMedal(Image medal, Stats statistics)
+    {
+        if (medal == null) return;
+        medal.raycastTarget = true; medal.preserveAspect = true;
+        var button = medal.GetComponent<UnityEngine.UI.Button>() ?? medal.gameObject.AddComponent<UnityEngine.UI.Button>();
+        button.targetGraphic = medal; button.transition = Selectable.Transition.None;
+        button.onClick.AddListener(() => OpenMedals(statistics));
+    }
+    public static void OpenMedals(Stats statistics)
+    {
+        if (statistics == null) return;
+        var panel = Open("Медали"); if (panel == null) return;
+        int mmr = statistics.Mmr, current = Stats.MedalIndexForMmr(mmr);
+        Text(Node(panel, "Summary", .04f, .79f, .96f, .86f), "Text",
+            "Ваш MMR: " + mmr.ToString("N0"), 30);
+        var grid = Node(panel, "Medals", .04f, .22f, .96f, .77f);
+        for (int i = 0; i < Stats.MedalCount; i++)
+        {
+            int column = i % 4, row = i / 4;
+            var card = Node(grid, "Medal_" + i, column * .25f + .007f, .51f - row * .50f,
+                (column + 1) * .25f - .007f, .99f - row * .50f);
+            card.gameObject.AddComponent<Image>().color = i == current ? new Color32(70, 101, 67, 255) : new Color32(18, 40, 33, 255);
+            var icon = Node(card, "Icon", .29f, .42f, .71f, .96f).gameObject.AddComponent<Image>();
+            icon.sprite = statistics.MedalForMmr(Stats.MedalMinimumMmr(i)); icon.preserveAspect = true; icon.raycastTarget = false;
+            Text(Node(card, "Name", .03f, .20f, .97f, .42f), "Text", Stats.MedalName(i), 32);
+            Text(Node(card, "Threshold", .03f, .02f, .97f, .20f), "Text", "от " + Stats.MedalMinimumMmr(i).ToString("N0") + " MMR", 26);
+        }
+        Text(Node(panel, "Current", .04f, .045f, .63f, .18f), "Text", "Текущая медаль: " + Stats.MedalName(current), 28);
+        Button(panel, "CloseMedals", "Закрыть", .67f, .04f, .96f, .18f, Close);
+        GameLocalization.Register(panel.gameObject);
     }
     public static void OpenPrivacy(bool firstLaunch)
     {
@@ -105,8 +178,13 @@ public sealed class RuStoreMenu : MonoBehaviour
     }
     public static void Close()
     {
+        if (controlsPreview != null)
+        {
+            var preview = controlsPreview; controlsPreview = null;
+            preview.CloseControlsSettings();
+        }
         if (overlay == null) return;
-        Destroy(overlay); overlay = null;
+        overlay.SetActive(false); Destroy(overlay); overlay = null;
         Time.timeScale = savedTimeScale; AudioListener.pause = savedAudioPause;
     }
     private static void OpenSupport()
@@ -127,11 +205,12 @@ public sealed class RuStoreMenu : MonoBehaviour
         text.fontSize = text.fontSizeMax = size; text.fontSizeMin = 13; text.enableAutoSizing = true;
         text.color = new Color32(245, 239, 219, 255); text.alignment = TextAlignmentOptions.Center; return text;
     }
-    private static void Button(Transform parent, string name, string caption, float left, float bottom, float right, float top, Action action)
+    private static UnityEngine.UI.Button Button(Transform parent, string name, string caption, float left, float bottom, float right, float top, Action action)
     {
         var rect = Node(parent, name, left, bottom, right, top); rect.gameObject.AddComponent<Image>().color = new Color32(62, 91, 69, 255);
         var button = rect.gameObject.AddComponent<UnityEngine.UI.Button>(); button.onClick.AddListener(() => action());
         Text(rect, "Label", caption, 28);
+        return button;
     }
     public static void SetBannerInset(int pixels)
     {
@@ -152,16 +231,29 @@ public sealed class RuStoreMenu : MonoBehaviour
         foreach (var panel in new[] { menu, title, profile, settings })
             if (panel != null) panel.transform.SetParent(menuViewport, false);
         FitSafeArea(menuViewport, bannerInset);
-        Place(menu.transform, .06f, .10f, .48f, .49f);
-        Place(play.transform, 0, .54f, 1, .96f);
-        Place(menu.transform.Find("ForestSettingsButton"), 0, .04f, 1, .46f);
+        Place(menu.transform, .06f, .07f, .48f, .56f);
+        Place(play.transform, 0, .70f, 1, .99f);
+        Place(menu.transform.Find("ForestSettingsButton"), 0, .36f, 1, .65f);
+        Button(menu.transform, "MainControlsSettings", "Настроить кнопки", 0, .02f, 1, .31f, OpenMainControls);
         Font(play.transform, 56);
         Font(menu.transform.Find("ForestSettingsButton"), 52);
-        Place(title.transform, .06f, .56f, .49f, .93f);
+        Font(menu.transform.Find("MainControlsSettings"), 42);
+        var mobileCard = settings.transform.Find("ForestControlsSection/MobileControlsCard");
+        if (mobileCard != null)
+        {
+            var hint = mobileCard.Find("ControlsHint"); if (hint != null) hint.gameObject.SetActive(false);
+            var description = mobileCard.Find("ControlsDescription")?.GetComponent<TMP_Text>();
+            if (description != null) description.text = "Размер, прозрачность\nи расположение кнопок";
+            Button(mobileCard, "MobileControlsSettings", "Настроить кнопки", .07f, .02f, .93f, .47f, OpenMainControls);
+            Font(mobileCard.Find("MobileControlsSettings"), 36);
+        }
+        Place(title.transform, .06f, .60f, .49f, .94f);
         Font(title.transform.Find("GameTitle"), 94);
         Font(title.transform.Find("ForestWorldTitle"), 54);
         Place(profile.transform, .55f, .12f, .94f, .90f);
         ConfigureProfile(profile.transform);
+        GameLocalization.Register(menu);
+        GameLocalization.Register(settings);
     }
 
     public static void ConfigurePauseMenu(GameObject menu, UnityEngine.UI.Button play)
@@ -194,12 +286,21 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static void ConfigureProfile(Transform profile)
     {
         if (profile == null) return;
-        Place(profile.Find("Hero"), .40f, .74f, .60f, .95f);
-        Place(profile.Find("ProfileName"), .06f, .63f, .94f, .73f);
-        Place(profile.Find("ProfileSubtitle"), .06f, .54f, .94f, .62f);
-        Place(profile.Find("ProfileMedal"), .16f, .34f, .38f, .53f);
-        Place(profile.Find("ProfileMmr"), .44f, .40f, .90f, .53f);
-        Place(profile.Find("MmrCaption"), .44f, .32f, .90f, .40f);
+        Place(profile.Find("Hero"), .40f, .79f, .60f, .97f);
+        var profileName = profile.Find("ProfileName");
+        Place(profileName, .06f, .60f, .94f, .76f);
+        if (profileName != null)
+        {
+            var label = profileName.GetComponent<TextMeshProUGUI>(); label.raycastTarget = true;
+            var rename = profileName.GetComponent<UnityEngine.UI.Button>() ?? profileName.gameObject.AddComponent<UnityEngine.UI.Button>();
+            rename.targetGraphic = label; rename.onClick.AddListener(OpenNickname);
+        }
+        Place(profile.Find("ProfileSubtitle"), .06f, .52f, .94f, .60f);
+        var subtitle = profile.Find("ProfileSubtitle")?.GetComponent<TMP_Text>();
+        if (subtitle != null) subtitle.text = "Нажми на имя, чтобы изменить";
+        Place(profile.Find("ProfileMedal"), .12f, .31f, .40f, .51f);
+        Place(profile.Find("ProfileMmr"), .44f, .39f, .90f, .51f);
+        Place(profile.Find("MmrCaption"), .44f, .31f, .90f, .39f);
         Place(profile.Find("Waves"), .06f, .18f, .48f, .30f);
         Place(profile.Find("Kills"), .52f, .18f, .94f, .30f);
         Place(profile.Find("WavesCaption"), .04f, .10f, .49f, .18f);
@@ -229,12 +330,14 @@ public sealed class RuStoreMenu : MonoBehaviour
         Place(dialog.Find("ResetControls"), .66f, .14f, .95f, .31f);
         Place(dialog.Find("Hint"), .05f, .02f, .95f, .12f); Font(dialog.Find("Hint"), 34);
         foreach (var slider in dialog.GetComponentsInChildren<Slider>(true)) ConfigureSliderTouchArea(slider);
-        Place(toolbar, .04f, .75f, .96f, .99f); Font(toolbar, 36);
+        Place(toolbar, .04f, .75f, .74f, .99f); Font(toolbar, 36);
         Place(toolbar.Find("Title"), .02f, .48f, .40f, .98f);
+        toolbar.Find("Title").GetComponent<TMP_Text>().text = "Расположение\nкнопок";
         Place(toolbar.Find("Hint"), .02f, .02f, .98f, .33f); Font(toolbar.Find("Hint"), 30);
         Place(toolbar.Find("Save"), .42f, .38f, .60f, .98f);
         Place(toolbar.Find("Cancel"), .62f, .38f, .80f, .98f);
         Place(toolbar.Find("Reset"), .82f, .38f, .98f, .98f);
+        foreach (string name in new[] { "Save", "Cancel", "Reset" }) Font(toolbar.Find(name), 40);
     }
 
     private static void ConfigureSettings(Transform settings)

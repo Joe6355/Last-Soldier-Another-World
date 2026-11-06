@@ -264,11 +264,26 @@ public static class LocalizationChecks
         var modes = canvases.Select(canvas => canvas.renderMode).ToArray();
         var worldCameras = canvases.Select(canvas => canvas.worldCamera).ToArray();
         var distances = canvases.Select(canvas => canvas.planeDistance).ToArray();
+        var scalers = canvases.Select(canvas => canvas.GetComponent<CanvasScaler>()).ToArray();
+        var scalerEnabled = scalers.Select(scaler => scaler != null && scaler.enabled).ToArray();
+        var scales = canvases.Select(canvas => canvas.scaleFactor).ToArray();
         var targets = cameras.Select(camera => camera.targetTexture).ToArray();
         var target = new RenderTexture(width,height,24); target.Create();
         for (int i=0;i<canvases.Length;i++) if (modes[i] == RenderMode.ScreenSpaceOverlay)
         { canvases[i].renderMode=RenderMode.ScreenSpaceCamera; canvases[i].worldCamera=cameraForUi; canvases[i].planeDistance=5f; }
         foreach (var camera in cameras) camera.targetTexture=target;
+        // RenderTexture changes do not run CanvasScaler.Update between captures.
+        // Apply its screen-size rule for this target, including fixed-position touch controls.
+        for (int i = 0; i < canvases.Length; i++)
+        {
+            var scaler = scalers[i];
+            if (scaler == null || scaler.uiScaleMode != CanvasScaler.ScaleMode.ScaleWithScreenSize) continue;
+            scaler.enabled = false;
+            float widthRatio = width / scaler.referenceResolution.x, heightRatio = height / scaler.referenceResolution.y;
+            canvases[i].scaleFactor = scaler.screenMatchMode == CanvasScaler.ScreenMatchMode.Expand ? Mathf.Min(widthRatio, heightRatio)
+                : scaler.screenMatchMode == CanvasScaler.ScreenMatchMode.Shrink ? Mathf.Max(widthRatio, heightRatio)
+                : Mathf.Pow(2f, Mathf.Lerp(Mathf.Log(widthRatio, 2f), Mathf.Log(heightRatio, 2f), scaler.matchWidthOrHeight));
+        }
         Canvas.ForceUpdateCanvases(); foreach (var camera in cameras) camera.Render();
         var previous=RenderTexture.active; RenderTexture.active=target;
         var texture=new Texture2D(width,height,TextureFormat.RGB24,false);
@@ -277,7 +292,12 @@ public static class LocalizationChecks
         Exception failure = null;
         try { verify?.Invoke(); } catch (Exception error) { failure = error; }
         for (int i=0;i<cameras.Length;i++) cameras[i].targetTexture=targets[i];
-        for (int i=0;i<canvases.Length;i++) { canvases[i].renderMode=modes[i]; canvases[i].worldCamera=worldCameras[i]; canvases[i].planeDistance=distances[i]; }
+        for (int i=0;i<canvases.Length;i++)
+        {
+            canvases[i].renderMode=modes[i]; canvases[i].worldCamera=worldCameras[i]; canvases[i].planeDistance=distances[i];
+            canvases[i].scaleFactor = scales[i];
+            if (scalers[i] != null) scalers[i].enabled = scalerEnabled[i];
+        }
         UnityEngine.Object.Destroy(texture); target.Release(); UnityEngine.Object.Destroy(target);
         if (failure != null) throw failure;
     }

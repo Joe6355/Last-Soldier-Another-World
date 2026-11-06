@@ -60,11 +60,32 @@ public class MobileControls : MonoBehaviour
     private RectTransform draggedControl;
     private Vector2[] editSnapshot;
     private const string PreferencePrefix = "MobileControls.v2.";
+    private string LayoutInstructions => IsMenuPreview ? "Перетаскивай кнопки и нажми «Сохранить»." : "Перетаскивай кнопки. Бой на паузе.";
     private static readonly Color PanelColor = new Color32(35, 68, 59, 235);
     private static readonly Color GoldColor = new Color32(227, 186, 101, 255);
     private bool focused = true, applicationPaused;
     private bool touchWasEnabled;
     private Vector2 walletMin, walletMax, walletPosition, progressPosition;
+#if LAST_SOLDIER_RUSTORE
+    [SerializeField] private bool menuPreview;
+    private System.Action previewClosed;
+    private bool IsMenuPreview => menuPreview;
+    public static MobileControls OpenMenuSettings(System.Action closed)
+    {
+        var source = Resources.Load<MobileControls>("RuStoreControlsPreview");
+        if (source == null) throw new System.InvalidOperationException("Prepare the RuStore controls preview before building");
+        var preview = Instantiate(source);
+        preview.previewClosed = closed;
+        preview.gameObject.SetActive(true);
+        Canvas.ForceUpdateCanvases();
+        preview.InitializeSettings();
+        preview.OpenControlsSettings();
+        GameLocalization.Register(preview.gameObject);
+        return preview;
+    }
+#else
+    private bool IsMenuPreview => false;
+#endif
 
     private void Awake()
     {
@@ -81,7 +102,7 @@ public class MobileControls : MonoBehaviour
 
     public static bool IsTouchDevice => Application.isMobilePlatform || YG2.envir.isMobile || YG2.envir.isTablet;
     public bool UseTouch => IsTouchDevice;
-    private bool CanUseGameplayUi => GameProgress.IsReady && focused && !applicationPaused
+    private bool CanUseGameplayUi => !IsMenuPreview && GameProgress.IsReady && focused && !applicationPaused
         && !YG2.isPauseGame && !YG2.nowAdsShow && Time.timeScale > 0f
         && player != null && player.crossbowController != null && player.hp > 0f && !player.IsAwaitingRevive && !gameUi.IsMobileOrientationPaused
         && !gameUi.IsMenuOpen && !gameUi.IsTradeOpen && !editingLayout;
@@ -143,19 +164,27 @@ public class MobileControls : MonoBehaviour
 
     private void Start()
     {
-        dashButton.onClick.AddListener(Dash);
-        healButton.onClick.AddListener(Heal);
-        modeButton.onClick.AddListener(SwitchMode);
-        interactButton.onClick.AddListener(Interact);
-        pauseButton.onClick.AddListener(OpenPause);
-        utilityButton.onClick.AddListener(ToggleUtilities);
-        for (int i = 0; i < directArrowButtons.Length; i++)
+        if (!IsMenuPreview)
         {
-            int index = i;
-            directArrowButtons[i].onClick.AddListener(() => SelectArrows(index));
+            dashButton.onClick.AddListener(Dash);
+            healButton.onClick.AddListener(Heal);
+            modeButton.onClick.AddListener(SwitchMode);
+            interactButton.onClick.AddListener(Interact);
+            pauseButton.onClick.AddListener(OpenPause);
+            utilityButton.onClick.AddListener(ToggleUtilities);
+            for (int i = 0; i < directArrowButtons.Length; i++)
+            {
+                int index = i;
+                directArrowButtons[i].onClick.AddListener(() => SelectArrows(index));
+            }
+            if (controlsSettingsButton != null) controlsSettingsButton.onClick.AddListener(OpenControlsSettings);
+            if (pauseControlsSettingsButton != null) pauseControlsSettingsButton.onClick.AddListener(OpenControlsFromPause);
         }
-        controlsSettingsButton.onClick.AddListener(OpenControlsSettings);
-        if (pauseControlsSettingsButton != null) pauseControlsSettingsButton.onClick.AddListener(OpenControlsFromPause);
+        InitializeSettings();
+    }
+    private void InitializeSettings()
+    {
+        if (initialized) return;
         closeControlsSettingsButton.onClick.AddListener(CloseControlsSettings);
         editLayoutButton.onClick.AddListener(BeginLayoutEdit);
         resetControlsButton.onClick.AddListener(ResetControls);
@@ -193,6 +222,19 @@ public class MobileControls : MonoBehaviour
     public void RefreshLayout()
     {
         bool touch = UseTouch;
+        if (IsMenuPreview)
+        {
+            var previewArea = Screen.safeArea;
+            safeArea.anchorMin = new Vector2(previewArea.xMin / Mathf.Max(1, Screen.width), previewArea.yMin / Mathf.Max(1, Screen.height));
+            safeArea.anchorMax = new Vector2(previewArea.xMax / Mathf.Max(1, Screen.width), previewArea.yMax / Mathf.Max(1, Screen.height));
+            safeArea.offsetMin = safeArea.offsetMax = Vector2.zero;
+            if (initialized && safeArea.rect.size != layoutDimensions)
+            { ApplySavedLayout(); layoutDimensions = safeArea.rect.size; }
+            gameplayControls.SetActive(editingLayout);
+            interactButton.gameObject.SetActive(editingLayout);
+            rotateHint.SetActive(false);
+            return;
+        }
         if (touchWasEnabled != touch)
         {
             ResetInput();
@@ -412,10 +454,10 @@ public class MobileControls : MonoBehaviour
 
     public void OpenControlsSettings()
     {
-        if (!UseTouch || !gameUi.IsMenuOpen || !gameSettingsPanel.activeInHierarchy) return;
+        if (!UseTouch || !IsMenuPreview && (!gameUi.IsMenuOpen || !gameSettingsPanel.activeInHierarchy)) return;
         ResetInput(); controlsSettingsPanel.SetActive(true);
         controlsSettingsDialog.SetActive(true); settingsBackdrop.SetActive(true); layoutToolbar.SetActive(false);
-        gameSettingsPanel.SetActive(false); gameMenuPanel.SetActive(false);
+        if (!IsMenuPreview) { gameSettingsPanel.SetActive(false); gameMenuPanel.SetActive(false); }
         ApplyAppearance();
     }
     public void CloseControlsSettings()
@@ -423,6 +465,13 @@ public class MobileControls : MonoBehaviour
         bool wasOpen = controlsSettingsPanel.activeSelf;
         if (editingLayout) EndLayoutEdit(false);
         controlsSettingsPanel.SetActive(false); SaveAppearance(); ResetInput();
+#if LAST_SOLDIER_RUSTORE
+        if (IsMenuPreview)
+        {
+            var closed = previewClosed; previewClosed = null;
+            gameObject.SetActive(false); Destroy(gameObject); closed?.Invoke(); return;
+        }
+#endif
         if (wasOpen && gameUi.IsMenuOpen)
         { gameMenuPanel.SetActive(true); gameSettingsPanel.SetActive(true); }
     }
@@ -434,7 +483,7 @@ public class MobileControls : MonoBehaviour
         for (int i = 0; i < editableControls.Length; i++) editSnapshot[i] = editableControls[i].anchoredPosition;
         editingLayout = true; draggedControl = null;
         controlsSettingsDialog.SetActive(false); settingsBackdrop.SetActive(false); layoutToolbar.SetActive(true);
-        layoutHint.text = "Перетаскивай кнопки. Бой на паузе.";
+        layoutHint.text = LayoutInstructions;
         gameplayControls.SetActive(true); interactButton.gameObject.SetActive(true);
         ApplyAppearance();
     }
@@ -479,7 +528,7 @@ public class MobileControls : MonoBehaviour
             layoutHint.text = "Кнопки пересекаются. Выбери свободное место.";
             draggedControl = null; return;
         }
-        layoutHint.text = "Перетаскивай кнопки. Бой на паузе.";
+        layoutHint.text = LayoutInstructions;
         draggedControl = null;
     }
     private static Rect ScreenBounds(RectTransform rect)

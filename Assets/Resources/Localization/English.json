@@ -1975,6 +1975,90 @@
     {
       "ru": "Выйти из игры? Прогресс будет сохранён.",
       "en": "Exit the game? Your progress will be saved."
+    },
+    {
+      "ru": "Солдат",
+      "en": "Soldier"
+    },
+    {
+      "ru": "Нажми на имя, чтобы изменить",
+      "en": "Tap your name to change it"
+    },
+    {
+      "ru": "Имя игрока",
+      "en": "Player name"
+    },
+    {
+      "ru": "Имя хранится только на этом устройстве",
+      "en": "Your name is saved only on this device"
+    },
+    {
+      "ru": "Введите ник",
+      "en": "Enter a nickname"
+    },
+    {
+      "ru": "До 20 символов",
+      "en": "Up to 20 characters"
+    },
+    {
+      "ru": "Медали",
+      "en": "Medals"
+    },
+    {
+      "ru": "Ваш MMR: {0}",
+      "en": "Your MMR: {0}"
+    },
+    {
+      "ru": "Текущая медаль: {0}",
+      "en": "Current medal: {0}"
+    },
+    {
+      "ru": "от {0} MMR",
+      "en": "from {0} MMR"
+    },
+    {
+      "ru": "Бронза",
+      "en": "Bronze"
+    },
+    {
+      "ru": "Серебро",
+      "en": "Silver"
+    },
+    {
+      "ru": "Золото",
+      "en": "Gold"
+    },
+    {
+      "ru": "Алмаз",
+      "en": "Diamond"
+    },
+    {
+      "ru": "Изумруд",
+      "en": "Emerald"
+    },
+    {
+      "ru": "Сапфир",
+      "en": "Sapphire"
+    },
+    {
+      "ru": "Аметист",
+      "en": "Amethyst"
+    },
+    {
+      "ru": "Рубин",
+      "en": "Ruby"
+    },
+    {
+      "ru": "Размер, прозрачность\nи расположение кнопок",
+      "en": "Size, opacity and\nbutton positions"
+    },
+    {
+      "ru": "Перетаскивай кнопки и нажми «Сохранить».",
+      "en": "Drag the buttons, then tap Save."
+    },
+    {
+      "ru": "Расположение\nкнопок",
+      "en": "Button\nlayout"
     }
   ]
 }
