@@ -36,7 +36,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
         using (var intent = activity.Call<AndroidJavaObject>("getIntent"))
             menuMode = intent.Call<bool>("getBooleanExtra", "lastsoldier_ui_check", false);
         deadline = Time.realtimeSinceStartup + 300f;
-        Debug.Log(menuMode ? "[RuStoreMenuCheck] Started: menu geometry and existing handlers; no ad request or coin mutation"
+        Debug.Log(menuMode ? "[RuStoreMenuCheck] Started: menu geometry and existing handlers; no fullscreen ad request or coin mutation"
             : "[RuStoreDeviceCheck] Started: real native merchant reward, no simulated callbacks");
     }
     private void Update()
@@ -115,10 +115,8 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
             {
                 case 0:
                     if (menu == null) return;
-                    Debug.Log("[RuStoreMenuCheck] screen=" + Screen.width + "x" + Screen.height + " safe=" + Screen.safeArea
-                        + " privacyAck=" + UnityEngine.PlayerPrefs.GetInt(RuStoreAds.PrivacyNoticeKey, 0));
-                    // Dismiss only the test overlay; do not write privacy acknowledgement.
-                    if (RuStoreMenu.IsOverlayOpen) RuStoreMenu.Close();
+                    Debug.Log("[RuStoreMenuCheck] screen=" + Screen.width + "x" + Screen.height + " safe=" + Screen.safeArea);
+                    if (RuStoreMenu.IsOverlayOpen) throw new Exception("Unexpected startup modal");
                     originalNickname = GameProgress.LocalNickname;
                     ValidateMenu(GameObject.Find("RuStoreBannerSafeContent").transform, "main");
                     GameObject.Find("RuStoreBannerSafeContent").GetComponentsInChildren<Button>()
@@ -128,11 +126,24 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     if (menuControls == null || !menuControls.IsControlsSettingsOpen || menuControls.CanControl || FindObjectOfType<PlayerController>() != null)
                         throw new Exception("Main controls preview did not remain separate from gameplay");
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "main controls");
+                    ValidateBackdrop(Field<GameObject>(menuControls, "settingsBackdrop").transform);
                     CheckMenuLayoutRoundTrip(menuControls); menu.ShowSettings(); phase++; break;
                 case 2:
                     ValidateMenu(menu.SettingsPanel.transform, "main settings");
-                    menu.SettingsPanel.transform.Find("ForestControlsSection/MobileControlsCard/MobileControlsSettings")
-                        .GetComponent<Button>().onClick.Invoke(); phase++; break;
+                    ValidateBackdrop(menu.SettingsPanel.transform);
+                    if (menu.SettingsPanel.GetComponentsInChildren<Button>(true).Any(button => button.name == "Privacy"
+                        || button.name == "Support" || button.name == "AssetCredits")) throw new Exception("Removed settings links are still present");
+                    menu.SettingsPanel.transform.Find("RuStoreSettingsSafeContent/About").GetComponent<Button>().onClick.Invoke();
+                    phase = 10; break;
+                case 10:
+                    ValidateMenu(GameObject.Find("RuStoreDialog/Panel").transform, "About");
+                    ValidateBackdrop(GameObject.Find("RuStoreDialog").transform);
+                    var documents = GameObject.Find("RuStoreDialog/Panel/Scroll/Documents").GetComponent<TMP_Text>();
+                    if (!documents.text.Contains("CC BY") || !documents.text.Contains("dudin1918@mail.ru"))
+                        throw new Exception("About is missing the local policy or attribution");
+                    GameObject.Find("RuStoreDialog/Panel/CloseAbout").GetComponent<Button>().onClick.Invoke();
+                    menu.SettingsPanel.transform.Find("RuStoreSettingsSafeContent/ForestControlsSection/MobileControlsCard/MobileControlsSettings")
+                        .GetComponent<Button>().onClick.Invoke(); phase = 3; break;
                 case 3:
                     FindObjectOfType<MobileControls>().CloseControlsSettings(); menu.CloseSettings();
                     RuStoreMenu.OpenNickname(); phase++; break;
@@ -148,6 +159,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     var cards = GameObject.Find("RuStoreDialog/Panel/Medals").transform;
                     if (cards.childCount != Stats.MedalCount || cards.GetComponentsInChildren<Image>().Count(image => image.name == "Icon" && image.sprite != null) != Stats.MedalCount)
                         throw new Exception("Medal catalog is incomplete");
+                    if (Stats.MedalName(3) != "Платина") throw new Exception("Fourth medal is not Platinum");
                     RuStoreMenu.Close(); menu.Play(); phase++; break;
                 case 6:
                     if (SceneManager.GetActiveScene().buildIndex != 1 || ui == null) return;
@@ -160,17 +172,19 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     ui.ShowSettings(); phase++; break;
                 case 8:
                     ValidateMenu(ui.SettingsPanel.transform, "pause settings");
+                    ValidateBackdrop(ui.SettingsPanel.transform);
                     FindObjectOfType<MobileControls>().OpenControlsSettings(); phase++; break;
                 case 9:
                     var mobile = FindObjectOfType<MobileControls>();
                     if (!mobile.IsControlsSettingsOpen) throw new Exception("Control settings did not open");
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "controls");
+                    ValidateBackdrop(Field<GameObject>(mobile, "settingsBackdrop").transform);
                     mobile.CloseControlsSettings(); ui.CloseSettings(); ui.StartGame();
                     if (ui.IsMenuOpen || Time.timeScale <= 0 || player.totalCoins != coinsBefore || GameProgress.LocalNickname != originalNickname)
                         throw new Exception("Resume or unchanged coin balance check failed");
                     ui.ToggleMenu();
                     Debug.Log("[RuStoreMenuCheck] PASS before=" + coinsBefore + " after=" + player.totalCoins
-                        + " paused=" + ui.IsMenuOpen + " nicknameUnchanged=True; typed UI handlers, no screen capture or ad request");
+                        + " paused=" + ui.IsMenuOpen + " nicknameUnchanged=True; typed UI handlers, no screen capture or fullscreen ad request");
                     phase = 100; break;
             }
         }
@@ -178,6 +192,16 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
     }
     private static T Field<T>(object owner, string name) => (T)owner.GetType()
         .GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
+    private static void ValidateBackdrop(Transform backdrop)
+    {
+        if (backdrop.GetComponent<Image>().color.a < .999f) throw new Exception("Menu fill is translucent");
+        var corners = new Vector3[4]; ((RectTransform)backdrop).GetWorldCorners(corners);
+        var points = corners.Select(value => RectTransformUtility.WorldToScreenPoint(null, value)).ToArray();
+        if (points.Min(value => value.x) > 1 || points.Min(value => value.y) > 1
+            || points.Max(value => value.x) < Screen.width - 1 || points.Max(value => value.y) < Screen.height - 1)
+            throw new Exception("Menu backdrop does not cover the complete screen");
+        Debug.Log("[RuStoreBackdropCheck] PASS full screen " + backdrop.name + "; content safe=" + Screen.safeArea);
+    }
     private static void CheckMenuLayoutRoundTrip(MobileControls preview)
     {
         var editable = Field<RectTransform[]>(preview, "editableControls");

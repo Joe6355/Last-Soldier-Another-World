@@ -69,14 +69,20 @@ public static class RuStoreChecks
             {
                 case 0:
                     YG2.envir.isMobile = true;
-                    UnityEngine.PlayerPrefs.DeleteKey(RuStoreAds.PrivacyNoticeKey);
+                    UnityEngine.PlayerPrefs.DeleteKey("LastSoldier.RuStore.PrivacyNotice.v1");
                     Check(!YG2.player.auth, "Start as guest without requiring sign-in");
-                    RuStoreMenu.OpenPrivacy(true);
-                    Check(Time.timeScale == 0 && AudioListener.pause, "Privacy sheet pauses combat and sound");
-                    Check(GameObject.Find("RuStoreDialog/Panel/Scroll/Content/Policy") != null, "Full local privacy document has scrollable content");
-                    Capture("privacy-ru.png");
-                    Click("RuStoreDialog", "Continue");
-                    Check(!RuStoreMenu.IsOverlayOpen && UnityEngine.PlayerPrefs.GetInt(RuStoreAds.PrivacyNoticeKey) == 1, "Notice acknowledgement closes overlay and persists");
+                    Check(!RuStoreMenu.IsOverlayOpen, "Startup has no forced document modal");
+                    Call(RuStoreAds.Instance, "Update");
+                    Check(Get<bool>(RuStoreAds.Instance, "initialized"), "Contextual ads initialize without a removed notice gate");
+                    RuStoreMenu.OpenAbout();
+                    Check(Time.timeScale == 0 && AudioListener.pause, "About dialog pauses combat and sound");
+                    var documents = GameObject.Find("RuStoreDialog/Panel/Scroll/Documents").GetComponent<TMP_Text>();
+                    Check(documents.text.Contains("dudin1918@mail.ru") && documents.text.Contains("CC BY") && !documents.richText,
+                        "About includes the offline data policy and original attribution as plain text");
+                    Capture("about-ru.png");
+                    Click("RuStoreDialog", "CloseAbout");
+                    Check(!RuStoreMenu.IsOverlayOpen && !UnityEngine.PlayerPrefs.HasKey("LastSoldier.RuStore.PrivacyNotice.v1"),
+                        "About closes without inventing a privacy acknowledgement");
                     GameProgress.BeginAuthorization();
                     Check(!GameProgress.AuthPending && GameProgress.IsReady && !YG2.player.auth, "Disabled sign-in leaves the local game ready");
                     var menu = UnityEngine.Object.FindObjectOfType<MainMenuController>();
@@ -181,9 +187,10 @@ public static class RuStoreChecks
                     Check(resultCompleted && result == GameMonetization.CoinsRewardResult.Unavailable && player.totalCoins == coins
                         && !YG2.nowAdsShow && !YG2.isPauseGame, "Missing SDK response still times out without granting coins or leaving the game paused");
                     ui.ShowSettings();
-                    RuStoreMenu.OpenPrivacy(false); GameLocalization.SetSelection("en");
-                    RuStoreMenu.Close(); RuStoreMenu.OpenPrivacy(false); Capture("privacy-en.png"); RuStoreMenu.Close();
-                    Check(ui.SettingsPanel.transform.Find("RuStoreLinks") != null, "Privacy and support entry points exist in game settings");
+                    GameLocalization.SetSelection("en");
+                    RuStoreMenu.OpenAbout(); Capture("about-en.png"); RuStoreMenu.Close();
+                    Check(ui.SettingsPanel.GetComponentsInChildren<Button>(true).All(button => button.name != "Privacy"
+                        && button.name != "Support" && button.name != "AssetCredits"), "Separate privacy, support and credits buttons are absent");
                     GameLocalization.SetSelection("ru");
                     var demoSettings = UnityEngine.Object.Instantiate(RuStoreSettings.Load());
                     demoSettings.useTestAds = true;
@@ -191,9 +198,9 @@ public static class RuStoreChecks
                     try { YandexBuild.ValidateRuStoreRelease(demoSettings); } catch (InvalidOperationException) { rejected = true; }
                     UnityEngine.Object.Destroy(demoSettings);
                     Check(rejected, "Production guard rejects vendor demo IDs");
-                    Check(ui.SettingsPanel.transform.Find("RuStoreLinks/Account") == null,
-                        "Settings contain privacy and support without an account entry point");
-                    Finish(true, "Local startup, hidden online features, privacy UI, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately."); break;
+                    Check(ui.SettingsPanel.GetComponentsInChildren<Button>(true).Count(button => button.name == "About") == 1,
+                        "Settings have one compact document entry point");
+                    Finish(true, "Local startup without forced documents, full-screen menus, profile controls, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately."); break;
             }
         }
         catch (Exception error) { Finish(false, "Phase " + phase + ": " + error); }
@@ -272,6 +279,9 @@ public static class RuStoreChecks
             Get<Image>(stats, "profileMedal").GetComponent<Button>().onClick.Invoke();
             var medals = GameObject.Find("RuStoreDialog/Panel/Medals").transform;
             Check(medals.childCount == Stats.MedalCount, "Medal click shows all eight medals: " + scene.name);
+            GameLocalization.RefreshAll();
+            Check(medals.Find("Medal_3/Name/Text").GetComponent<TMP_Text>().text == (language == "en" ? "Platinum" : "Платина"),
+                "Fourth medal is displayed as Platinum in the selected language");
             for (int index = 0; index < Stats.MedalCount; index++)
             {
                 Check(medals.GetChild(index).Find("Icon").GetComponent<Image>().sprite == stats.MedalForMmr(Stats.MedalMinimumMmr(index)),
@@ -280,31 +290,45 @@ public static class RuStoreChecks
                     && (index == 0 || Stats.MedalIndexForMmr(Stats.MedalMinimumMmr(index) - 1) == index - 1),
                     "Medal threshold and previous value remain correct: " + index);
             }
-            CaptureLayout(prefix + "-medals.png", size, scene, screen: medals.parent);
+            CaptureLayout(prefix + "-medals.png", size, scene, screen: medals.parent, backdrop: medals.parent.parent);
             Click("RuStoreDialog", "CloseMedals");
             var profileName = Get<Image>(stats, "profileMedal").transform.parent.Find("ProfileName");
             profileName.GetComponent<Button>().onClick.Invoke();
             var namePanel = GameObject.Find("RuStoreDialog/Panel").transform;
             var oldName = GameProgress.LocalNickname;
             namePanel.Find("Nickname").GetComponent<TMP_InputField>().text = "Другое имя";
-            CaptureLayout(prefix + "-nickname.png", size, scene, screen: namePanel);
+            CaptureLayout(prefix + "-nickname.png", size, scene, screen: namePanel, backdrop: namePanel.parent);
             Click("RuStoreDialog", "Cancel");
             Check(GameProgress.LocalNickname == oldName, "Cancelling the name editor leaves the stored name unchanged");
             openSettings();
-            CaptureLayout(prefix + "-settings.png", size, scene, screen: settings.transform);
+            CaptureLayout(prefix + "-settings.png", size, scene, screen: settings.transform, backdrop: settings.transform);
+            var settingsContent = settings.transform.Find("RuStoreSettingsSafeContent").GetComponent<RectTransform>();
+            min = settingsContent.anchorMin; max = settingsContent.anchorMax;
+            foreach (bool leftCutout in new[] { true, false })
+            {
+                settingsContent.anchorMin = new Vector2(leftCutout ? .055f : 0, scene.name == "Menu" ? .17f : .03f);
+                settingsContent.anchorMax = new Vector2(leftCutout ? 1 : .945f, .98f);
+                CaptureLayout(prefix + (leftCutout ? "-settings-left-cutout.png" : "-settings-right-cutout.png"), size, scene,
+                    screen: settings.transform, backdrop: settings.transform);
+            }
+            settingsContent.anchorMin = min; settingsContent.anchorMax = max;
+            settingsContent.Find("About").GetComponent<Button>().onClick.Invoke();
+            var about = GameObject.Find("RuStoreDialog/Panel").transform;
+            CaptureLayout(prefix + "-about.png", size, scene, screen: about, backdrop: about.parent);
+            Click("RuStoreDialog", "CloseAbout");
             // Use the real serialized Back handler, not a direct hide of the panel.
-            settings.transform.Find("BackTyMenu").GetComponent<Button>().onClick.Invoke();
+            settingsContent.Find("BackTyMenu").GetComponent<Button>().onClick.Invoke();
             Check(!settings.activeSelf, "Settings Back returns to menu: " + scene.name + " " + size + " " + language);
             if (scene.name == "Menu")
             {
                 Click("RuStoreBannerSafeContent", "MainControlsSettings");
                 var preview = UnityEngine.Object.FindObjectOfType<MobileControls>();
                 Check(preview.IsControlsSettingsOpen && SceneManager.GetActiveScene() == scene, "Control customization is directly available in the main menu");
-                CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent");
+                CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent", backdrop: Get<GameObject>(preview, "settingsBackdrop").transform);
                 CheckLayoutTouches(preview, prefix, size);
                 Get<Button>(preview, "closeControlsSettingsButton").onClick.Invoke();
                 openSettings();
-                settings.transform.Find("ForestControlsSection/MobileControlsCard/MobileControlsSettings").GetComponent<Button>().onClick.Invoke();
+                settingsContent.Find("ForestControlsSection/MobileControlsCard/MobileControlsSettings").GetComponent<Button>().onClick.Invoke();
                 preview = UnityEngine.Object.FindObjectOfType<MobileControls>();
                 Check(preview.IsControlsSettingsOpen, "Main-menu settings open the same controls editor");
                 Get<Button>(preview, "closeControlsSettingsButton").onClick.Invoke();
@@ -315,7 +339,7 @@ public static class RuStoreChecks
                 var mobile = UnityEngine.Object.FindObjectOfType<MobileControls>();
                 Get<Button>(mobile, "pauseControlsSettingsButton").onClick.Invoke();
                 Check(mobile.IsControlsSettingsOpen && Time.timeScale == 0, "Control customization opens from pause without resuming combat");
-                CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent");
+                CaptureLayout(prefix + "-controls.png", size, scene, "RuStoreControlsSafeContent", backdrop: Get<GameObject>(mobile, "settingsBackdrop").transform);
                 CheckLayoutTouches(mobile, prefix, size);
                 Get<Button>(mobile, "closeControlsSettingsButton").onClick.Invoke();
                 Check(settings.activeSelf && !mobile.IsControlsSettingsOpen, "Control customization Back returns to settings");
@@ -353,12 +377,29 @@ public static class RuStoreChecks
         });
         mobile.EndLayoutEdit(false);
     }
-    static void CaptureLayout(string filename, Vector2Int size, Scene scene, string rootName = null, Transform screen = null)
+    static void CaptureLayout(string filename, Vector2Int size, Scene scene, string rootName = null, Transform screen = null, Transform backdrop = null)
     {
         LocalizationChecks.CaptureView(Path.GetFullPath(filename), size.x, size.y, () =>
         {
             var root = screen ?? UnityEngine.Object.FindObjectsOfType<RectTransform>()
                 .First(value => value.gameObject.scene == scene && value.name == (rootName ?? (scene.name == "Menu" ? "RuStoreBannerSafeContent" : "RuStorePauseSafeContent")));
+            if (backdrop != null)
+            {
+                Check(backdrop.GetComponent<Image>().color.a >= .999f, "Menu fill is opaque: " + filename);
+                var corners = new Vector3[4]; ((RectTransform)backdrop).GetWorldCorners(corners);
+                var camera = backdrop.GetComponentInParent<Canvas>().rootCanvas.worldCamera;
+                var points = corners.Select(value => RectTransformUtility.WorldToScreenPoint(camera, value)).ToArray();
+                Check(points.Min(value => value.x) <= 1 && points.Min(value => value.y) <= 1
+                    && points.Max(value => value.x) >= size.x - 1 && points.Max(value => value.y) >= size.y - 1,
+                    "Backdrop covers every edge independently of cutout and banner insets: " + filename);
+                foreach (float x in new[] { 1f, size.x - 1f })
+                {
+                    var hits = new List<RaycastResult>();
+                    EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = new Vector2(x, size.y * .5f) }, hits);
+                    Check(hits.Count > 0 && (hits[0].gameObject.transform == backdrop || hits[0].gameObject.transform.IsChildOf(backdrop)),
+                        "Menu backdrop blocks touches at the screen edge: " + x + " " + filename);
+                }
+            }
             var controls = root.GetComponentsInChildren<Selectable>().Where(value => value.isActiveAndEnabled).ToArray();
             var bounds = new Dictionary<Selectable, Rect>();
             foreach (var control in controls)

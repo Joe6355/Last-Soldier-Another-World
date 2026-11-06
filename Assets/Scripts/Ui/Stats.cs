@@ -38,7 +38,7 @@ public class Stats : MonoBehaviour
     public int TotalKills => (int)Math.Min(int.MaxValue, (long)countEnemyDead + countElitEnemyDead + countBossDead);
     public int Mmr => GameProgress.MmrScore(completedWaves, TotalKills, PlayerPrefs.GetInt("CrimsonMmrBonus", 0));
     private static readonly int[] medalThresholds = { 0, 100, 500, 1000, 2500, 5000, 10000, 20000 };
-    private static readonly string[] medalNames = { "Бронза", "Серебро", "Золото", "Алмаз", "Изумруд", "Сапфир", "Аметист", "Рубин" };
+    private static readonly string[] medalNames = { "Бронза", "Серебро", "Золото", "Платина", "Изумруд", "Сапфир", "Аметист", "Рубин" };
     public static int MedalCount => medalThresholds.Length;
     public static int MedalMinimumMmr(int index) => medalThresholds[index];
     public static string MedalName(int index) => medalNames[index];

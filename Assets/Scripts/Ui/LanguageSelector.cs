@@ -46,6 +46,7 @@ public sealed class LanguageSelector : MonoBehaviour
             Stretch(label.rectTransform, .03f, .04f, .97f, .96f);
             label.fontSize = 22;
         }
+#if !LAST_SOLDIER_RUSTORE
         var credits = selector.MakeButton(host.transform, "AssetCredits", "Авторы ассетов", title.font,
             () => selector.creditsPanel.SetActive(true));
         Stretch(credits.GetComponent<RectTransform>(), .08f, .04f, .92f, .16f);
@@ -53,6 +54,7 @@ public sealed class LanguageSelector : MonoBehaviour
         var creditsLabel = credits.GetComponentInChildren<TMP_Text>();
         creditsLabel.fontSize = creditsLabel.fontSizeMax = 18;
         selector.MakeCreditsPanel(settings.transform, title.font);
+#endif
         selector.Refresh();
         GameLocalization.Register(host);
     }

@@ -70,7 +70,7 @@ public partial class Ui : MonoBehaviour
         playButton.onClick.AddListener(StartGame);
 #if LAST_SOLDIER_RUSTORE
         if (ratingButton != null) ratingButton.gameObject.SetActive(false);
-        RuStoreMenu.ConfigurePauseMenu(menuPanel, playButton);
+        RuStoreMenu.ConfigurePauseMenu(menuPanel, settingsPanel, playButton);
 #else
         ratingButton.onClick.AddListener(ShowRating);
 #endif

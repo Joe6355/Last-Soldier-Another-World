@@ -21,7 +21,6 @@ public sealed class RuStoreAds : MonoBehaviour
     private float nextInitialize, nextRewardLoad, nextInterLoad, showDeadline;
     private string rewardId;
     private const float ShowTimeoutSeconds = 15f;
-    public const string PrivacyNoticeKey = "LastSoldier.RuStore.PrivacyNotice.v1";
     private static RuStoreSettings Settings => RuStoreSettings.Load();
     public static RuStoreAds Instance
     {
@@ -39,7 +38,7 @@ public sealed class RuStoreAds : MonoBehaviour
     private static string Unit(string production, string demo) => Settings != null && Settings.useTestAds ? demo : production;
     private void Update()
     {
-        if (!initialized && Time.unscaledTime >= nextInitialize && PlayerPrefs.GetInt(PrivacyNoticeKey, 0) == 1) Initialize();
+        if (!initialized && Time.unscaledTime >= nextInitialize) Initialize();
         if (!initialized) return;
         if (rewarded == null && activeRewarded == null && !rewardLoading && Time.unscaledTime >= nextRewardLoad) LoadRewarded();
         if (interstitial == null && activeInterstitial == null && !interLoading && Time.unscaledTime >= nextInterLoad) LoadInterstitial();

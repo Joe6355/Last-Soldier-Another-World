@@ -17,20 +17,18 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static RectTransform menuViewport;
     private static RectTransform pauseViewport;
     private static RectTransform controlsViewport;
+    private static RectTransform mainSettingsViewport;
+    private static RectTransform pauseSettingsViewport;
     private static int bannerInset;
-    private bool firstNoticeChecked;
     public static bool IsOverlayOpen => overlay != null || controlsPreview != null;
 
     public static void Install(GameObject settings)
     {
-        if (settings == null || settings.transform.Find("RuStoreLinks") != null) return;
-        var root = Node(settings.transform, "RuStoreLinks", .02f, .015f, .61f, .105f);
-        Button(root, "Privacy", "Конфиденциальность", .00f, .02f, .67f, .98f, () => OpenPrivacy(false));
-        Button(root, "Support", "Поддержка", .70f, .02f, 1f, .98f, OpenSupport);
+        if (settings == null || settings.transform.Find("RuStoreSettingsSafeContent") != null) return;
         var host = RuStoreAds.Instance.gameObject;
         if (host.GetComponent<RuStoreMenu>() == null) host.AddComponent<RuStoreMenu>();
         ConfigureSettings(settings.transform);
-        GameLocalization.Register(root.gameObject);
+        GameLocalization.Register(settings);
     }
     private void Update()
     {
@@ -42,11 +40,8 @@ public sealed class RuStoreMenu : MonoBehaviour
         FitSafeArea(menuViewport, bannerInset);
         FitSafeArea(pauseViewport, 0);
         FitSafeArea(controlsViewport, 0);
-        if (!firstNoticeChecked && SceneManager.GetActiveScene().buildIndex == 0 && GameProgress.IsReady)
-        {
-            firstNoticeChecked = true;
-            if (PlayerPrefs.GetInt(RuStoreAds.PrivacyNoticeKey, 0) != 1 && !IsOverlayOpen) OpenPrivacy(true);
-        }
+        FitSafeArea(mainSettingsViewport, bannerInset);
+        FitSafeArea(pauseSettingsViewport, 0);
     }
     public static bool HandleBack()
     {
@@ -136,34 +131,32 @@ public sealed class RuStoreMenu : MonoBehaviour
         Button(panel, "CloseMedals", "Закрыть", .67f, .04f, .96f, .18f, Close);
         GameLocalization.Register(panel.gameObject);
     }
-    public static void OpenPrivacy(bool firstLaunch)
+    public static void OpenAbout()
     {
-        var panel = Open("Конфиденциальность и реклама");
+        var panel = Open("Об игре");
         if (panel == null) return;
         string suffix = GameLocalization.Language == "en" ? "-en" : "";
         var policy = Resources.Load<TextAsset>("RuStorePrivacy" + suffix) ?? Resources.Load<TextAsset>("RuStorePrivacy");
+        var credits = Resources.Load<TextAsset>("AssetCredits");
         var scroll = Node(panel, "Scroll", .04f, .23f, .96f, .84f);
         scroll.gameObject.AddComponent<Image>().color = new Color32(20, 42, 36, 255);
         scroll.gameObject.AddComponent<RectMask2D>();
-        var content = Node(scroll, "Content", 0, 0, 1, 1);
-        content.pivot = new Vector2(.5f, 1f);
-        var text = Text(content, "Policy", policy != null ? policy.text : "Политика недоступна. Связь: dudin1918@mail.ru", 26);
+        string version = GameLocalization.Language == "en" ? "Version " : "Версия ";
+        var text = Text(scroll, "Documents", version + Application.version + "\n\n"
+            + (policy != null ? policy.text : "dudin1918@mail.ru") + "\n\n" + (credits != null ? credits.text : ""), 26);
         text.alignment = TextAlignmentOptions.TopLeft; text.enableAutoSizing = false;
         text.margin = new Vector4(14, 8, 14, 8);
         GameLocalization.Protect(text);
-        Canvas.ForceUpdateCanvases();
-        content.sizeDelta = new Vector2(0, Mathf.Max(scroll.rect.height, text.GetPreferredValues(text.text, scroll.rect.width, 0).y + 32));
-        content.anchorMin = new Vector2(0, 1); content.anchorMax = new Vector2(1, 1); content.anchoredPosition = Vector2.zero;
+        var content = text.rectTransform;
+        content.anchorMin = new Vector2(0, 1); content.anchorMax = Vector2.one;
+        content.pivot = new Vector2(.5f, 1); content.anchoredPosition = Vector2.zero;
+        text.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         var rect = scroll.gameObject.AddComponent<ScrollRect>();
         rect.viewport = scroll; rect.content = content; rect.horizontal = false;
         rect.movementType = ScrollRect.MovementType.Clamped; rect.scrollSensitivity = 30;
-        Button(panel, "Support", "Поддержка", .05f, .03f, .35f, .19f, OpenSupport);
-        Button(panel, "ReadOnline", "Полная политика", .37f, .03f, .67f, .19f,
+        Button(panel, "ReadOnline", "Документы", .05f, .03f, .47f, .19f,
             () => Application.OpenURL(RuStoreSettings.Load().privacyUrl));
-        Button(panel, "Continue", firstLaunch ? "Продолжить" : "Закрыть", .69f, .03f, .95f, .19f, () =>
-        {
-            PlayerPrefs.SetInt(RuStoreAds.PrivacyNoticeKey, 1); PlayerPrefs.Save(); Close();
-        });
+        Button(panel, "CloseAbout", "Закрыть", .53f, .03f, .95f, .19f, Close);
         GameLocalization.Register(panel.gameObject);
     }
     public static void ConfirmExit() => Confirm("Выйти из игры? Прогресс будет сохранён.", () => { GameProgress.SaveNow(); Application.Quit(); });
@@ -185,7 +178,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         var canvas = overlay.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 32000;
         var scaler = overlay.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1280, 720); scaler.matchWidthOrHeight = .5f;
-        overlay.AddComponent<Image>().color = new Color32(8, 20, 17, 238);
+        overlay.AddComponent<Image>().color = new Color32(8, 20, 17, 255);
         var safe = Screen.safeArea;
         var panel = Node(overlay.transform, "Panel", Mathf.Max(.02f, safe.xMin / Screen.width), Mathf.Max(.03f, safe.yMin / Screen.height),
             Mathf.Min(.98f, safe.xMax / Screen.width), Mathf.Min(.97f, safe.yMax / Screen.height));
@@ -204,11 +197,6 @@ public sealed class RuStoreMenu : MonoBehaviour
         if (overlay == null) return;
         overlay.SetActive(false); Destroy(overlay); overlay = null;
         Time.timeScale = savedTimeScale; AudioListener.pause = savedAudioPause;
-    }
-    private static void OpenSupport()
-    {
-        var settings = RuStoreSettings.Load();
-        Application.OpenURL("mailto:" + settings.supportEmail + "?subject=" + Uri.EscapeDataString("Последний солдат RuStore " + Application.version));
     }
     private static RectTransform Node(Transform parent, string name, float left, float bottom, float right, float top)
     {
@@ -234,6 +222,7 @@ public sealed class RuStoreMenu : MonoBehaviour
     {
         bannerInset = SceneManager.GetActiveScene().buildIndex == 0 ? Mathf.Max(0, pixels) : 0;
         FitSafeArea(menuViewport, bannerInset);
+        FitSafeArea(mainSettingsViewport, bannerInset);
     }
 
     public static void ConfigureMainMenu(GameObject menu, GameObject title, GameObject profile, GameObject settings,
@@ -246,7 +235,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         Place(canvas.transform.Find("ForestBackground"), 0, 0, 1, 1);
         Place(canvas.transform.Find("ForestShade"), 0, 0, 1, 1);
         menuViewport = Node(canvas.transform, "RuStoreBannerSafeContent", 0, 0, 1, 1);
-        foreach (var panel in new[] { menu, title, profile, settings })
+        foreach (var panel in new[] { menu, title, profile })
             if (panel != null) panel.transform.SetParent(menuViewport, false);
         FitSafeArea(menuViewport, bannerInset);
         Place(menu.transform, .06f, .07f, .48f, .56f);
@@ -256,7 +245,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         Font(play.transform, 56);
         Font(menu.transform.Find("ForestSettingsButton"), 52);
         Font(menu.transform.Find("MainControlsSettings"), 42);
-        var mobileCard = settings.transform.Find("ForestControlsSection/MobileControlsCard");
+        var mobileCard = settings.transform.Find("RuStoreSettingsSafeContent/ForestControlsSection/MobileControlsCard");
         if (mobileCard != null)
         {
             var hint = mobileCard.Find("ControlsHint"); if (hint != null) hint.gameObject.SetActive(false);
@@ -274,14 +263,15 @@ public sealed class RuStoreMenu : MonoBehaviour
         GameLocalization.Register(settings);
     }
 
-    public static void ConfigurePauseMenu(GameObject menu, UnityEngine.UI.Button play)
+    public static void ConfigurePauseMenu(GameObject menu, GameObject settings, UnityEngine.UI.Button play)
     {
         // Leave both backdrops full-screen; only interactive content follows the safe area.
+        Place(menu.transform, 0, 0, 1, 1);
         var children = new Transform[menu.transform.childCount];
         for (int i = 0; i < children.Length; i++) children[i] = menu.transform.GetChild(i);
         pauseViewport = Node(menu.transform, "RuStorePauseSafeContent", 0, 0, 1, 1);
         foreach (var child in children)
-            if (child.name != "ForestShade") child.SetParent(pauseViewport, false);
+            if (child.name != "ForestShade" && child != settings.transform) child.SetParent(pauseViewport, false);
         Place(menu.transform.Find("ForestShade"), 0, 0, 1, 1);
         FitSafeArea(pauseViewport, 0);
         Place(play.transform, .06f, .55f, .48f, .70f);
@@ -330,6 +320,11 @@ public sealed class RuStoreMenu : MonoBehaviour
 
     public static void ConfigureControlsSettings(GameObject settings)
     {
+        Place(settings.transform, 0, 0, 1, 1);
+        var backdrop = settings.transform.Find("Backdrop");
+        Place(backdrop, 0, 0, 1, 1);
+        var background = backdrop.GetComponent<Image>();
+        var color = background.color; color.a = 1f; background.color = color;
         var dialog = settings.transform.Find("SettingsDialog");
         var toolbar = settings.transform.Find("LayoutToolbar");
         controlsViewport = Node(settings.transform, "RuStoreControlsSafeContent", 0, 0, 1, 1);
@@ -361,12 +356,24 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static void ConfigureSettings(Transform settings)
     {
         Place(settings, 0, 0, 1, 1);
+        var background = settings.GetComponent<Image>();
+        if (background != null) { var color = background.color; color.a = 1f; background.color = color; }
+        var children = new Transform[settings.childCount];
+        for (int i = 0; i < children.Length; i++) children[i] = settings.GetChild(i);
+        var content = Node(settings, "RuStoreSettingsSafeContent", 0, 0, 1, 1);
+        foreach (var child in children) child.SetParent(content, false);
+        if (settings.gameObject.scene.name == "Menu") mainSettingsViewport = content;
+        else pauseSettingsViewport = content;
+        FitSafeArea(content, settings.gameObject.scene.name == "Menu" ? bannerInset : 0);
+        settings = content;
         Place(settings.Find("BackTyMenu"), .04f, .85f, .23f, .98f);
-        Place(settings.Find("ForestSettingsTitle"), .27f, .85f, .96f, .98f);
+        Place(settings.Find("ForestSettingsTitle"), .27f, .85f, .74f, .98f);
+        Button(settings, "About", "Об игре", .78f, .85f, .96f, .98f, OpenAbout);
         Font(settings.Find("BackTyMenu"), 42);
+        Font(settings.Find("About"), 42);
         Font(settings.Find("ForestSettingsTitle"), 58);
         var audio = settings.Find("ForestAudioSection");
-        Place(audio, .04f, .34f, .48f, .82f);
+        Place(audio, .04f, .27f, .48f, .81f);
         Place(audio.Find("Heading"), .07f, .84f, .93f, .99f);
         Place(audio.Find("МузыкаCaption"), .07f, .69f, .72f, .83f);
         Place(audio.Find("МузыкаValue"), .74f, .69f, .93f, .83f);
@@ -380,7 +387,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         foreach (var slider in audio.GetComponentsInChildren<Slider>(true))
             ConfigureSliderTouchArea(slider);
         var controls = settings.Find("ForestControlsSection");
-        Place(controls, .52f, .50f, .96f, .82f);
+        Place(controls, .52f, .43f, .96f, .81f);
         Place(controls.Find("Heading"), .07f, .82f, .93f, .99f);
         Font(controls, 36);
         var card = controls.Find("MobileControlsCard");
@@ -393,29 +400,14 @@ public sealed class RuStoreMenu : MonoBehaviour
             Place(card.Find("ControlsHint"), .07f, .02f, .93f, .47f);
         }
         var language = settings.Find("LanguageSelector");
-        Place(language, .52f, .18f, .96f, .47f);
+        Place(language, .52f, .05f, .96f, .39f);
         Place(language.Find("LanguageTitle"), .04f, .64f, .96f, .96f);
         Place(language.Find("Choose_auto"), .04f, .09f, .33f, .59f);
         Place(language.Find("Choose_ru"), .355f, .09f, .645f, .59f);
         Place(language.Find("Choose_en"), .67f, .09f, .96f, .59f);
         Font(language, 38);
-        var credits = language.Find("AssetCredits");
-        if (credits != null) { credits.SetParent(settings, false); Place(credits, .04f, .02f, .31f, .15f); Font(credits, 36); }
-        var creditsPanel = settings.Find("AssetCreditsPanel");
-        Place(creditsPanel, .02f, .02f, .98f, .98f);
-        if (creditsPanel != null)
-        {
-            Font(creditsPanel.Find("Title"), 44);
-            Place(creditsPanel.Find("CloseCredits"), .76f, .84f, .97f, .98f);
-            Font(creditsPanel.Find("CloseCredits"), 38);
-            Place(creditsPanel.Find("CreditsScroll"), .03f, .03f, .97f, .80f);
-            var body = creditsPanel.GetComponentInChildren<ScrollRect>(true).content.GetComponent<TMP_Text>();
-            body.fontSize = 34;
-        }
         var damage = settings.Find("DamageNumbersSetting");
-        Place(damage, .04f, .18f, .48f, .31f); Font(damage, 38);
-        var links = settings.Find("RuStoreLinks");
-        Place(links, .35f, .02f, .96f, .15f); Font(links, 36);
+        Place(damage, .04f, .05f, .48f, .23f); Font(damage, 38);
         var replay = settings.Find("ReplayTutorial");
         // This action remains directly available in the pause menu.
         if (replay != null) replay.gameObject.SetActive(false);
