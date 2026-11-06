@@ -86,7 +86,17 @@ public static class RuStoreChecks
                     CheckMenuControlsSave();
                     Capture("menu-local.png");
                     CheckMenuLayouts(menu.gameObject.scene, menu.SettingsPanel, menu.ShowSettings, menu.CloseSettings);
-                    UnityEngine.Object.FindObjectOfType<MainMenuController>().Play(); Next(); break;
+                    RuStoreMenu.OpenNickname();
+                    var keyboardInput = GameObject.Find("RuStoreDialog/Panel/Nickname").GetComponent<TMP_InputField>();
+                    keyboardInput.text = "Проверка клавиатуры";
+                    keyboardInput.onSubmit.Invoke(keyboardInput.text);
+                    Check(RuStoreMenu.IsOverlayOpen && keyboardInput.isActiveAndEnabled
+                        && GameProgress.LocalNickname == keyboardInput.text,
+                        "Native keyboard submit saves the name without disabling TMP inside its callback");
+                    phase = 10; frame = Time.frameCount + 2; break;
+                case 10:
+                    Check(!RuStoreMenu.IsOverlayOpen, "Keyboard-submitted name dialog closes on the following frame");
+                    UnityEngine.Object.FindObjectOfType<MainMenuController>().Play(); phase = 1; frame = Time.frameCount + 8; break;
                 case 1:
                     if (SceneManager.GetActiveScene().name != "SampleScene") return;
                     player = UnityEngine.Object.FindObjectOfType<PlayerController>();

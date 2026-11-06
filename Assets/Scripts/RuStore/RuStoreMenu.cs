@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public sealed class RuStoreMenu : MonoBehaviour
 {
     private static GameObject overlay;
+    private static GameObject deferredClose;
+    private static int deferredCloseFrame;
     private static MobileControls controlsPreview;
     private static float savedTimeScale;
     private static bool savedAudioPause;
@@ -32,6 +34,11 @@ public sealed class RuStoreMenu : MonoBehaviour
     }
     private void Update()
     {
+        if (deferredClose != null && Time.frameCount > deferredCloseFrame)
+        {
+            var expected = deferredClose; deferredClose = null;
+            if (overlay == expected) Close();
+        }
         FitSafeArea(menuViewport, bannerInset);
         FitSafeArea(pauseViewport, 0);
         FitSafeArea(controlsViewport, 0);
@@ -80,11 +87,21 @@ public sealed class RuStoreMenu : MonoBehaviour
         Text(Node(panel, "Limit", .10f, .29f, .90f, .38f), "Text", "До 20 символов", 28);
         Button(panel, "Cancel", "Отмена", .10f, .06f, .47f, .22f, Close);
         UnityEngine.UI.Button save = null;
-        Action submit = () => { if (GameProgress.SetLocalNickname(field.text)) Close(); };
-        save = Button(panel, "SaveNickname", "Сохранить", .53f, .06f, .90f, .22f, submit);
+        void Submit(bool fromKeyboard)
+        {
+            if (!GameProgress.SetLocalNickname(field.text)) return;
+            if (fromKeyboard)
+            {
+                // TMP still reads its native keyboard after onSubmit returns.
+                // Keep the field alive until the next frame finishes that callback.
+                deferredClose = overlay; deferredCloseFrame = Time.frameCount;
+            }
+            else Close();
+        }
+        save = Button(panel, "SaveNickname", "Сохранить", .53f, .06f, .90f, .22f, () => Submit(false));
         save.interactable = GameProgress.NormalizeLocalNickname(field.text).Length > 0;
         field.onValueChanged.AddListener(text => save.interactable = GameProgress.NormalizeLocalNickname(text).Length > 0);
-        field.onSubmit.AddListener(_ => submit());
+        field.onSubmit.AddListener(_ => Submit(true));
         GameLocalization.Register(panel.gameObject);
         field.ActivateInputField();
     }
@@ -178,6 +195,7 @@ public sealed class RuStoreMenu : MonoBehaviour
     }
     public static void Close()
     {
+        deferredClose = null;
         if (controlsPreview != null)
         {
             var preview = controlsPreview; controlsPreview = null;

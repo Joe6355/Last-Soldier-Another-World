@@ -128,7 +128,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     if (menuControls == null || !menuControls.IsControlsSettingsOpen || menuControls.CanControl || FindObjectOfType<PlayerController>() != null)
                         throw new Exception("Main controls preview did not remain separate from gameplay");
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "main controls");
-                    menuControls.CloseControlsSettings(); menu.ShowSettings(); phase++; break;
+                    CheckMenuLayoutRoundTrip(menuControls); menu.ShowSettings(); phase++; break;
                 case 2:
                     ValidateMenu(menu.SettingsPanel.transform, "main settings");
                     menu.SettingsPanel.transform.Find("ForestControlsSection/MobileControlsCard/MobileControlsSettings")
@@ -175,6 +175,60 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
             }
         }
         catch (Exception error) { Fail("phase=" + phase + " " + error); }
+    }
+    private static T Field<T>(object owner, string name) => (T)owner.GetType()
+        .GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
+    private static void CheckMenuLayoutRoundTrip(MobileControls preview)
+    {
+        var editable = Field<RectTransform[]>(preview, "editableControls");
+        var movement = editable[0];
+        string positionKey = "MobileControls.v2." + movement.name;
+        string[] keys = new[] { "MobileControls.v2.Size", "MobileControls.v2.Opacity" }
+            .Concat(editable.SelectMany(rect => new[] { "MobileControls.v2." + rect.name + ".X", "MobileControls.v2." + rect.name + ".Y" })).ToArray();
+        bool[] present = keys.Select(UnityEngine.PlayerPrefs.HasKey).ToArray();
+        float[] original = keys.Select(key => UnityEngine.PlayerPrefs.GetFloat(key)).ToArray();
+        try
+        {
+            var size = Field<Slider>(preview, "sizeSlider");
+            var opacity = Field<Slider>(preview, "opacitySlider");
+            float expectedSize = Mathf.Approximately(size.value, 1.1f) ? 1f : 1.1f;
+            float expectedOpacity = Mathf.Approximately(opacity.value, .73f) ? .82f : .73f;
+            size.value = expectedSize; opacity.value = expectedOpacity;
+            preview.BeginLayoutEdit();
+            Canvas.ForceUpdateCanvases();
+            Vector2 before = movement.anchoredPosition;
+            Vector2 center = RectTransformUtility.WorldToScreenPoint(null, movement.position);
+            foreach (var delta in new[] { new Vector2(12, 0), new Vector2(-12, 0), new Vector2(0, 12), new Vector2(0, -12) })
+            {
+                if (!preview.BeginControlDrag(movement, center)) throw new Exception("Menu control drag was rejected");
+                preview.DragControl(center + delta); preview.EndControlDrag();
+                if (movement.anchoredPosition != before) break;
+            }
+            if (movement.anchoredPosition == before) throw new Exception("No valid nearby menu layout position");
+            preview.EndLayoutEdit(true);
+            float x = UnityEngine.PlayerPrefs.GetFloat(positionKey + ".X"), y = UnityEngine.PlayerPrefs.GetFloat(positionKey + ".Y");
+            preview.CloseControlsSettings();
+            RuStoreMenu.OpenMainControls();
+            preview = FindObjectOfType<MobileControls>();
+            var area = Field<RectTransform>(preview, "safeArea");
+            movement = Field<RectTransform[]>(preview, "editableControls")[0];
+            if (!Mathf.Approximately(Field<Slider>(preview, "sizeSlider").value, expectedSize)
+                || !Mathf.Approximately(Field<Slider>(preview, "opacitySlider").value, expectedOpacity)
+                || Mathf.Abs(movement.anchoredPosition.x / area.rect.width - x) > .001f
+                || Mathf.Abs(movement.anchoredPosition.y / area.rect.height - y) > .001f)
+                throw new Exception("Saved menu controls did not survive closing and reopening");
+            Debug.Log("[RuStoreLayoutCheck] PASS size, opacity and dragged position survive menu reopen; restoring original preferences");
+        }
+        finally
+        {
+            if (RuStoreMenu.IsOverlayOpen) RuStoreMenu.Close();
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (present[i]) UnityEngine.PlayerPrefs.SetFloat(keys[i], original[i]);
+                else UnityEngine.PlayerPrefs.DeleteKey(keys[i]);
+            }
+            UnityEngine.PlayerPrefs.Save();
+        }
     }
     private static void ValidateMenu(Transform root, string label)
     {
