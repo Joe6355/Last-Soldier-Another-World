@@ -63,6 +63,10 @@ public class PlayerController : Sounds
     [SerializeField] private Text coinValueText;
     [SerializeField] private TextMeshProUGUI[] additionalCoinTexts;
     public int totalCoins = 0;
+    private int displayedCoins = int.MinValue, displayedPotions = int.MinValue, displayedMirrors = int.MinValue;
+    private (int, int) displayedHealth = (int.MinValue, int.MinValue);
+    private (int, int) displayedShield = (int.MinValue, int.MinValue);
+    private (int, int) displayedStamina = (int.MinValue, int.MinValue);
 
     public CrossbowController crossbowController;
     [SerializeField] private MobileControls mobileControls;
@@ -201,9 +205,17 @@ public class PlayerController : Sounds
 
     private void UpdateHudValues()
     {
-        if (hpValueText != null) hpValueText.text = $"{Mathf.CeilToInt(hp)} / {Mathf.CeilToInt(maxHp)}";
-        if (shieldValueText != null) shieldValueText.text = $"{Mathf.CeilToInt(shieldValue)} / {Mathf.CeilToInt(shieldMaxValue)}";
-        if (staminaValueText != null) staminaValueText.text = $"{Mathf.CeilToInt(stamina)} / {Mathf.CeilToInt(maxStamina)}";
+        SetHudValue(hpValueText, hp, maxHp, ref displayedHealth);
+        SetHudValue(shieldValueText, shieldValue, shieldMaxValue, ref displayedShield);
+        SetHudValue(staminaValueText, stamina, maxStamina, ref displayedStamina);
+    }
+
+    private static void SetHudValue(TMP_Text text, float current, float maximum, ref (int, int) displayed)
+    {
+        var value = (Mathf.CeilToInt(current), Mathf.CeilToInt(maximum));
+        if (text == null || displayed == value) return;
+        displayed = value;
+        text.SetText("{0:0} / {1:0}", value.Item1, value.Item2);
     }
 
     private void FixedUpdate()
@@ -522,12 +534,25 @@ public class PlayerController : Sounds
 
     private void UpdateCoinText()
     {
-        coinValueText.text = totalCoins.ToString("N0");
-        if (additionalCoinTexts != null)
-            foreach (var text in additionalCoinTexts)
-                if (text != null) text.text = totalCoins.ToString("N0") + " монет";
-        textCountPotionHeal.text = potionCount.ToString();
-        mirrorCountText.text = mirrorRemainder.ToString();
+        if (displayedCoins != totalCoins)
+        {
+            displayedCoins = totalCoins;
+            string value = totalCoins.ToString("N0");
+            if (coinValueText != null) coinValueText.text = value;
+            if (additionalCoinTexts != null)
+                foreach (var text in additionalCoinTexts)
+                    if (text != null) text.text = value + " монет";
+        }
+        if (displayedPotions != potionCount)
+        {
+            displayedPotions = potionCount;
+            if (textCountPotionHeal != null) textCountPotionHeal.text = potionCount.ToString();
+        }
+        if (displayedMirrors != mirrorRemainder)
+        {
+            displayedMirrors = mirrorRemainder;
+            if (mirrorCountText != null) mirrorCountText.text = mirrorRemainder.ToString();
+        }
     }
 
     // ===========================

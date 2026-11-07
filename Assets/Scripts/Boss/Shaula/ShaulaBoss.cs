@@ -302,7 +302,12 @@ public sealed partial class ShaulaBoss : Sounds
         if (!GameProgress.IsArenaDemo)
         {
             FindObjectOfType<Stats>()?.AddBossDead();
-            player.AddCoin(coinReward); player.AddPoitonHeal(3); player.crossbowController.AddArrows(0, 30);
+#if LAST_SOLDIER_RUSTORE
+            player.AddCoin((int)System.Math.Min(int.MaxValue, (long)coinReward * 2));
+#else
+            player.AddCoin(coinReward);
+#endif
+            player.AddPoitonHeal(3); player.crossbowController.AddArrows(0, 30);
         }
         owner.NotifyShaulaDefeated(this);
         if (healthPanel != null) healthPanel.SetActive(false);

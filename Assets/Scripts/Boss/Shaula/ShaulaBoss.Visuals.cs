@@ -22,6 +22,7 @@ public sealed partial class ShaulaBoss
     private float stingExtension;
     private Rect lastHudSafeArea;
     private int lastHudWidth, lastHudHeight;
+    private float lastHudInterfaceScale;
     private bool rigReady;
     private NoiseSettings impactNoise;
     private readonly List<CinemachineBasicMultiChannelPerlin> impactChannels = new List<CinemachineBasicMultiChannelPerlin>();
@@ -151,15 +152,22 @@ public sealed partial class ShaulaBoss
     { if (rigRenderers != null) foreach (var renderer in rigRenderers) renderer.color = new Color(1, 1, 1, alpha); }
     private void LayoutBossHud()
     {
-        if (healthPanel == null || (lastHudWidth == Screen.width && lastHudHeight == Screen.height && lastHudSafeArea == Screen.safeArea)) return;
+#if LAST_SOLDIER_RUSTORE
+        float interfaceScale = RuStoreMenu.InterfaceScale;
+#else
+        const float interfaceScale = 1f;
+#endif
+        if (healthPanel == null || (lastHudWidth == Screen.width && lastHudHeight == Screen.height && lastHudSafeArea == Screen.safeArea
+            && lastHudInterfaceScale == interfaceScale)) return;
         lastHudWidth = Screen.width; lastHudHeight = Screen.height; lastHudSafeArea = Screen.safeArea;
+        lastHudInterfaceScale = interfaceScale;
         var rect = healthPanel.GetComponent<RectTransform>();
         var parent = rect.parent as RectTransform;
         if (parent == null) return;
         rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, 0);
         float safeBottom = Screen.height > 0 ? Screen.safeArea.yMin / Screen.height * parent.rect.height : 0;
         rect.anchoredPosition = new Vector2(0, safeBottom + 12);
-        float scale = Mathf.Min(1, parent.rect.width * .5f / 760f);
+        float scale = Mathf.Min(interfaceScale, parent.rect.width * .5f / 760f);
         rect.localScale = new Vector3(scale, scale, 1);
     }
     private Vector2 RigMuzzle => stinger != null ? (Vector2)stinger.transform.TransformPoint(new Vector3(0, -.35f / stinger.transform.localScale.y, 0)) : TailPoint;

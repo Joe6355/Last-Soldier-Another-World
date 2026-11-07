@@ -66,6 +66,16 @@ public class MobileControls : MonoBehaviour
     private bool focused = true, applicationPaused;
     private bool touchWasEnabled;
     private Vector2 walletMin, walletMax, walletPosition, progressPosition;
+    private int[] displayedArrowCounts;
+    private int displayedArrow = -1, displayedPotions = -1, displayedMirrors = -1, displayedMode = -1;
+    private bool displayedMerchant, interactionLabelReady;
+    private Button mirrorButton;
+    private TextMeshProUGUI shieldLabel;
+    private bool? displayedShieldLatched;
+    private Rect appliedSafeArea;
+    private int appliedScreenWidth = -1, appliedScreenHeight = -1;
+    private bool appliedHudTouch;
+    private float appliedHudScale = float.NaN;
 #if LAST_SOLDIER_RUSTORE
     [SerializeField] private bool menuPreview;
     private System.Action previewClosed;
@@ -89,6 +99,10 @@ public class MobileControls : MonoBehaviour
 
     private void Awake()
     {
+        displayedArrowCounts = new int[directArrowCounts.Length];
+        for (int i = 0; i < displayedArrowCounts.Length; i++) displayedArrowCounts[i] = int.MinValue;
+        if (mirror != null) mirrorButton = mirror.GetComponent<Button>();
+        if (shieldIndicator != null) shieldLabel = shieldIndicator.GetComponentInChildren<TextMeshProUGUI>();
         gameCamera = Camera.main;
         if (player != null) lastMovementDirection = -(Vector2)player.transform.up;
         lastFacingDirection = lastMovementDirection;
@@ -215,19 +229,20 @@ public class MobileControls : MonoBehaviour
         if (!CanControl) return;
         if (shield.ConsumePress()) shieldLatched = !shieldLatched && player.ShieldValue > 0f;
         if (shieldLatched && player.ShieldValue <= 0f) shieldLatched = false;
-        shieldIndicator.color = shieldLatched ? GoldColor : PanelColor;
-        shieldIndicator.GetComponentInChildren<TextMeshProUGUI>().color = shieldLatched
-            ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        if (displayedShieldLatched != shieldLatched)
+        {
+            displayedShieldLatched = shieldLatched;
+            shieldIndicator.color = shieldLatched ? GoldColor : PanelColor;
+            if (shieldLabel != null) shieldLabel.color = shieldLatched
+                ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+        }
     }
     public void RefreshLayout()
     {
         bool touch = UseTouch;
+        bool safeChanged = RefreshSafeArea();
         if (IsMenuPreview)
         {
-            var previewArea = Screen.safeArea;
-            safeArea.anchorMin = new Vector2(previewArea.xMin / Mathf.Max(1, Screen.width), previewArea.yMin / Mathf.Max(1, Screen.height));
-            safeArea.anchorMax = new Vector2(previewArea.xMax / Mathf.Max(1, Screen.width), previewArea.yMax / Mathf.Max(1, Screen.height));
-            safeArea.offsetMin = safeArea.offsetMax = Vector2.zero;
             if (initialized && safeArea.rect.size != layoutDimensions)
             { ApplySavedLayout(); layoutDimensions = safeArea.rect.size; }
             gameplayControls.SetActive(editingLayout);
@@ -258,14 +273,22 @@ public class MobileControls : MonoBehaviour
         bool portrait = touch && pixels.height > pixels.width;
         gameUi.SetMobileOrientationPause(portrait);
         rotateHint.SetActive(portrait);
-        var area = Screen.safeArea;
-        var min = new Vector2(area.xMin / Mathf.Max(1, Screen.width), area.yMin / Mathf.Max(1, Screen.height));
-        var max = new Vector2(area.xMax / Mathf.Max(1, Screen.width), area.yMax / Mathf.Max(1, Screen.height));
-        safeArea.anchorMin = Vector2.Max(Vector2.zero, min); safeArea.anchorMax = Vector2.Min(Vector2.one, max);
-        safeArea.offsetMin = safeArea.offsetMax = Vector2.zero;
-        hudSafeArea.anchorMin = touch ? safeArea.anchorMin : Vector2.zero;
-        hudSafeArea.anchorMax = touch ? safeArea.anchorMax : Vector2.one;
-        hudSafeArea.offsetMin = hudSafeArea.offsetMax = Vector2.zero;
+#if LAST_SOLDIER_RUSTORE
+        float hudScale = RuStoreMenu.InterfaceScale;
+#else
+        const float hudScale = 1f;
+#endif
+        if (safeChanged || appliedHudTouch != touch || appliedHudScale != hudScale)
+        {
+            appliedHudTouch = touch; appliedHudScale = hudScale;
+#if LAST_SOLDIER_RUSTORE
+            RuStoreMenu.FitHud(hudSafeArea, touch);
+#else
+            hudSafeArea.anchorMin = touch ? safeArea.anchorMin : Vector2.zero;
+            hudSafeArea.anchorMax = touch ? safeArea.anchorMax : Vector2.one;
+            hudSafeArea.offsetMin = hudSafeArea.offsetMax = Vector2.zero;
+#endif
+        }
         if (initialized && safeArea.rect.size != layoutDimensions)
         {
             ApplySavedLayout();
@@ -284,22 +307,52 @@ public class MobileControls : MonoBehaviour
         bool merchant = shop.IsPlayerInRange || trainer.IsPlayerInRange;
         var chest = touch ? AvailableChest() : null;
         interactButton.gameObject.SetActive(editing || CanUseGameplayUi && !portrait && (merchant || chest != null));
-        interactLabel.text = merchant ? "Торговец" : "Открыть сундук";
+        if (!interactionLabelReady || displayedMerchant != merchant)
+        {
+            interactionLabelReady = true; displayedMerchant = merchant;
+            interactLabel.text = merchant ? "Торговец" : "Открыть сундук";
+        }
         if (!active) return;
         dashButton.interactable = player.CanDash;
         healButton.interactable = player.PotionCount > 0 && player.hp < player.maxHp;
-        mirror.GetComponent<Button>().interactable = player.MirrorCount > 0;
+        if (mirrorButton != null) mirrorButton.interactable = player.MirrorCount > 0;
         var bow = player.crossbowController;
         for (int i = 0; i < directArrowCounts.Length; i++)
         {
-            directArrowCounts[i].text = CrossbowController.FormatArrowCount(bow.GetArrowCount(i));
-            directArrowSelection[i].color = i == bow.SelectedArrowIndex ? GoldColor : PanelColor;
-            directArrowCounts[i].color = i == bow.SelectedArrowIndex
-                ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+            int count = bow.GetArrowCount(i);
+            if (displayedArrowCounts[i] != count)
+            {
+                displayedArrowCounts[i] = count;
+                directArrowCounts[i].text = CrossbowController.FormatArrowCount(count);
+            }
+            if (displayedArrow != bow.SelectedArrowIndex)
+            {
+                directArrowSelection[i].color = i == bow.SelectedArrowIndex ? GoldColor : PanelColor;
+                directArrowCounts[i].color = i == bow.SelectedArrowIndex
+                    ? new Color32(20, 43, 38, 255) : new Color32(244, 240, 223, 255);
+            }
         }
-        healCountLabel.text = player.PotionCount.ToString("N0");
-        mirrorCountLabel.text = player.MirrorCount.ToString("N0");
-        modeLabel.text = bow.ShootingMode == 1 ? "Одиночный" : bow.ShootingMode == 2 ? "Дробовик" : "Автоогонь";
+        displayedArrow = bow.SelectedArrowIndex;
+        if (displayedPotions != player.PotionCount)
+        { displayedPotions = player.PotionCount; healCountLabel.text = displayedPotions.ToString("N0"); }
+        if (displayedMirrors != player.MirrorCount)
+        { displayedMirrors = player.MirrorCount; mirrorCountLabel.text = displayedMirrors.ToString("N0"); }
+        if (displayedMode != bow.ShootingMode)
+        {
+            displayedMode = bow.ShootingMode;
+            modeLabel.text = displayedMode == 1 ? "Одиночный" : displayedMode == 2 ? "Дробовик" : "Автоогонь";
+        }
+    }
+    private bool RefreshSafeArea()
+    {
+        var area = Screen.safeArea;
+        int width = Screen.width, height = Screen.height;
+        if (appliedSafeArea == area && appliedScreenWidth == width && appliedScreenHeight == height) return false;
+        appliedSafeArea = area; appliedScreenWidth = width; appliedScreenHeight = height;
+        safeArea.anchorMin = Vector2.Max(Vector2.zero, new Vector2(area.xMin / Mathf.Max(1, width), area.yMin / Mathf.Max(1, height)));
+        safeArea.anchorMax = Vector2.Min(Vector2.one, new Vector2(area.xMax / Mathf.Max(1, width), area.yMax / Mathf.Max(1, height)));
+        safeArea.offsetMin = safeArea.offsetMax = Vector2.zero;
+        return true;
     }
     private Chest AvailableChest()
     {

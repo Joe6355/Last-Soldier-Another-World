@@ -1,0 +1,5 @@
+method	iterations	allocatedBytes	elapsedMs
+UpdateHudValues	10000	-1	0.516
+UpdateCoinText	10000	-1	0.022
+UpdateUI	10000	-1	2.621
+RefreshLayout	10000	-1	25.583

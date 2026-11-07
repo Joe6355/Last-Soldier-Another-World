@@ -17,6 +17,7 @@ public partial class WaveSpawner
     private Rect pairedHudSafeArea;
     private Vector2 pairedHudParentSize;
     private bool pairedHudFinalWave;
+    private float pairedHudInterfaceScale;
     public static WaveSpawner ActiveArena { get; private set; }
     public bool IsCrimson => crimsonArena;
     public bool IsOvertime => overtime;
@@ -43,17 +44,23 @@ public partial class WaveSpawner
     private void LayoutPairedBossHud()
     {
         if (bossHPBar10 == null || !(bossHPBar10.transform.parent is RectTransform parent)) return;
+#if LAST_SOLDIER_RUSTORE
+        float interfaceScale = RuStoreMenu.InterfaceScale;
+#else
+        const float interfaceScale = 1f;
+#endif
         if (pairedHudWidth == Screen.width && pairedHudHeight == Screen.height && pairedHudSafeArea == Screen.safeArea
-            && pairedHudParentSize == parent.rect.size && pairedHudFinalWave == IsFinalBossWave) return;
+            && pairedHudParentSize == parent.rect.size && pairedHudFinalWave == IsFinalBossWave && pairedHudInterfaceScale == interfaceScale) return;
         pairedHudWidth = Screen.width; pairedHudHeight = Screen.height;
         pairedHudSafeArea = Screen.safeArea; pairedHudParentSize = parent.rect.size;
         pairedHudFinalWave = IsFinalBossWave;
+        pairedHudInterfaceScale = interfaceScale;
         float bottom = Screen.height > 0 ? Screen.safeArea.yMin / Screen.height * parent.rect.height : 0;
         float center = Screen.width > 0 ? (Screen.safeArea.center.x / Screen.width - .5f) * parent.rect.width : 0;
         float safeWidth = Screen.width > 0 ? Screen.safeArea.width / Screen.width * parent.rect.width : parent.rect.width;
-        float scale = Mathf.Min(1f, safeWidth * .5f / 260f);
+        float scale = Mathf.Min(interfaceScale, safeWidth * .5f / 260f);
         float shaulaOffset = IsFinalBossWave && shaulaHealthPanel != null
-            ? shaulaHealthPanel.GetComponent<RectTransform>().sizeDelta.y * Mathf.Min(1, parent.rect.width * .5f / 760f) + 8 : 0;
+            ? shaulaHealthPanel.GetComponent<RectTransform>().sizeDelta.y * Mathf.Min(interfaceScale, safeWidth * .5f / 760f) + 8 : 0;
         Place(bossHPBar10, 0); Place(bossHPBar15, 1);
         void Place(GameObject panel, int row)
         {
@@ -190,9 +197,22 @@ public partial class WaveSpawner
         if (prefab == null) return null;
         var loot = Instantiate(prefab, position, rotation);
         var arena = ActiveArena;
-        if (arena != null && arena.IsCrimson && arena.ContainsArenaPoint(position))
+        bool crimson = arena != null && arena.IsCrimson && arena.ContainsArenaPoint(position);
+        if (loot.TryGetComponent<Coin>(out var coin))
         {
-            if (loot.TryGetComponent<Coin>(out var coin)) coin.ScaleReward(2);
+#if LAST_SOLDIER_RUSTORE
+            // 4/3 as many coins, each worth 3/2 as much: expected mob income x2.
+            // Instantiate from the prefab so the extra coin is scaled exactly once.
+            int numerator = crimson ? 6 : 3;
+            coin.ScaleReward(numerator, 2);
+            if (Random.Range(0, 3) == 0)
+                Instantiate(prefab, position, rotation).GetComponent<Coin>().ScaleReward(numerator, 2);
+#else
+            if (crimson) coin.ScaleReward(2);
+#endif
+        }
+        if (crimson)
+        {
             if (loot.TryGetComponent<AddHolyArrow>(out var arrows)) arrows.ScaleReward(2);
             if (loot.TryGetComponent<NewArrow>(out var otherArrows)) otherArrows.ScaleReward(2);
         }

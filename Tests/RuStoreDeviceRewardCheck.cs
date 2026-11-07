@@ -124,9 +124,11 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                 case 0:
                     if (menu == null) return;
                     Debug.Log("[RuStoreMenuCheck] screen=" + Screen.width + "x" + Screen.height + " safe=" + Screen.safeArea);
+                    Debug.Log("[RuStoreFrameCheck] target=" + Application.targetFrameRate + "; refresh=" + Screen.currentResolution.refreshRateRatio.value);
                     if (RuStoreMenu.IsOverlayOpen) throw new Exception("Unexpected startup modal");
                     originalNickname = GameProgress.LocalNickname;
                     ValidateMenu(GameObject.Find("RuStoreBannerSafeContent").transform, "main");
+                    CheckInterfaceScale(GameObject.Find("RuStoreBannerSafeContent").transform, "main");
                     GameObject.Find("RuStoreBannerSafeContent").GetComponentsInChildren<Button>()
                         .Single(button => button.name == "MainControlsSettings").onClick.Invoke(); phase++; break;
                 case 1:
@@ -138,6 +140,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     CheckMenuLayoutRoundTrip(menuControls); menu.ShowSettings(); phase++; break;
                 case 2:
                     ValidateMenu(menu.SettingsPanel.transform, "main settings");
+                    CheckInterfaceScale(menu.SettingsPanel.transform, "main settings");
                     ValidateBackdrop(menu.SettingsPanel.transform);
                     if (menu.SettingsPanel.GetComponentsInChildren<Button>(true).Any(button => button.name == "Privacy"
                         || button.name == "Support" || button.name == "AssetCredits")) throw new Exception("Removed settings links are still present");
@@ -164,6 +167,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     medal.GetComponent<Button>().onClick.Invoke(); phase++; break;
                 case 5:
                     ValidateMenu(GameObject.Find("RuStoreDialog/Panel").transform, "medal catalog");
+                    CheckInterfaceScale(GameObject.Find("RuStoreDialog/Panel").transform, "medal catalog");
                     var cards = GameObject.Find("RuStoreDialog/Panel/Medals").transform;
                     if (cards.childCount != Stats.MedalCount || cards.GetComponentsInChildren<Image>().Count(image => image.name == "Icon" && image.sprite != null) != Stats.MedalCount)
                         throw new Exception("Medal catalog is incomplete");
@@ -177,15 +181,26 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     ui.StartGame(); ui.ToggleMenu(); phase++; break;
                 case 7:
                     ValidateMenu(GameObject.Find("RuStorePauseSafeContent").transform, "pause");
+                    CheckInterfaceScale(GameObject.Find("RuStorePauseSafeContent").transform, "pause", FindObjectOfType<MobileControls>());
                     ui.ShowSettings(); phase++; break;
                 case 8:
                     ValidateMenu(ui.SettingsPanel.transform, "pause settings");
+                    CheckInterfaceScale(ui.SettingsPanel.transform, "pause settings", FindObjectOfType<MobileControls>());
                     ValidateBackdrop(ui.SettingsPanel.transform);
+                    var deathPanel = Field<GameObject>(FindObjectOfType<GameMonetization>(), "deathPanel");
+                    bool deathWasVisible = deathPanel.activeSelf;
+                    try
+                    {
+                        deathPanel.SetActive(true);
+                        CheckInterfaceScale(deathPanel.transform, "death menu", FindObjectOfType<MobileControls>());
+                    }
+                    finally { deathPanel.SetActive(deathWasVisible); }
                     FindObjectOfType<MobileControls>().OpenControlsSettings(); phase++; break;
                 case 9:
                     var mobile = FindObjectOfType<MobileControls>();
                     if (!mobile.IsControlsSettingsOpen) throw new Exception("Control settings did not open");
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "controls");
+                    CheckInterfaceScale(GameObject.Find("RuStoreControlsSafeContent").transform, "controls", mobile);
                     ValidateBackdrop(Field<GameObject>(mobile, "settingsBackdrop").transform);
                     mobile.CloseControlsSettings(); ui.CloseSettings(); ui.StartGame();
                     if (ui.IsMenuOpen || Time.timeScale <= 0 || player.totalCoins != coinsBefore || GameProgress.LocalNickname != originalNickname)
@@ -279,7 +294,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
             var rect = ScreenBounds(control.transform);
             var safe = Screen.safeArea;
             if (rect.xMin < safe.xMin - 1 || rect.yMin < safe.yMin - 1 || rect.xMax > safe.xMax + 1 || rect.yMax > safe.yMax + 1
-                || rect.height < Screen.height * .085f) throw new Exception(label + "/" + control.name + " invalid touch area " + rect);
+                || rect.height < Screen.height * .085f * Mathf.Min(1f, RuStoreMenu.InterfaceScale)) throw new Exception(label + "/" + control.name + " invalid touch area " + rect);
             count++;
             Debug.Log("[RuStoreMenuCheck] TARGET " + label + "/" + control.name + " " + rect);
         }
@@ -290,6 +305,44 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
         }
         if (count == 0) throw new Exception(label + " has no visible controls");
         Debug.Log("[RuStoreMenuCheck] OK " + label + " controls=" + count);
+    }
+    private static void CheckInterfaceScale(Transform root, string label, MobileControls controls = null)
+    {
+        const string key = "LastSoldier.RuStore.InterfaceScale.v1";
+        bool hadKey = UnityEngine.PlayerPrefs.HasKey(key);
+        float original = RuStoreMenu.InterfaceScale;
+        var buttons = controls != null ? Field<RectTransform[]>(controls, "editableControls") : Array.Empty<RectTransform>();
+        var sizes = buttons.Select(rect => rect.sizeDelta).ToArray();
+        var positions = buttons.Select(rect => rect.anchoredPosition).ToArray();
+        var scales = buttons.Select(rect => rect.localScale).ToArray();
+        try
+        {
+            foreach (float value in new[] { .8f, 1f, 1.2f })
+            {
+                var slider = root.GetComponentsInChildren<Slider>(true).FirstOrDefault(s => s.name == "ScaleSlider");
+                if (slider != null) slider.value = Mathf.RoundToInt(value * 100);
+                else RuStoreMenu.SetInterfaceScale(value);
+                if (!Mathf.Approximately(UnityEngine.PlayerPrefs.GetFloat(key, 1f), value)) throw new Exception("Interface scale did not save");
+                ValidateMenu(root, label + " scale=" + value);
+                if (controls != null)
+                {
+                    controls.RefreshLayout();
+                    var hud = Field<RectTransform>(controls, "hudSafeArea");
+                    if (hud != null && !Mathf.Approximately(hud.localScale.x, value)) throw new Exception("HUD scale did not update");
+                    for (int i = 0; i < buttons.Length; i++)
+                        if (buttons[i].sizeDelta != sizes[i] || buttons[i].anchoredPosition != positions[i] || buttons[i].localScale != scales[i])
+                            throw new Exception("Interface scale changed touch controls: " + buttons[i].name);
+                }
+            }
+            Debug.Log("[RuStoreScaleCheck] PASS " + label + " 80/100/120%; touch controls independent; restoring preferences");
+        }
+        finally
+        {
+            RuStoreMenu.SetInterfaceScale(original);
+            if (!hadKey) UnityEngine.PlayerPrefs.DeleteKey(key);
+            UnityEngine.PlayerPrefs.Save();
+            if (controls != null) controls.RefreshLayout();
+        }
     }
 }
 #endif

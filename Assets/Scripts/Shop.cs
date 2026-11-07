@@ -117,6 +117,10 @@ public class Shop : Sounds
     private void Start()
     {
         panelShop.SetActive(false);
+#if LAST_SOLDIER_RUSTORE
+        RuStoreMenu.ConfigurePanel(panelShop, "RuStoreShopSafeContent");
+        RuStoreMenu.ConfigurePurchaseDialog(quantityPanel);
+#endif
 
         crossbowController = FindObjectOfType<CrossbowController>();
         if (crossbowController == null)

@@ -20,6 +20,7 @@ public partial class TipsManager
     private Vector2 guideLastScreenSize;
     private bool guideLastTouch;
     private float guideLastCanvasScale = -1f;
+    private float guideLastInterfaceScale = -1f;
     private float guideCardWidth, guideCardHeight, guideScale = 1f;
     private bool guideCardPlaced, guideSkipPlaced;
     private Rect guideCardDestination, guideSkipBounds;
@@ -219,8 +220,13 @@ public partial class TipsManager
         var dimensions = new Vector2(Screen.width, Screen.height);
         bool touch = MobileControls.IsTouchDevice;
         float canvasScale = guideCanvas.scaleFactor;
+#if LAST_SOLDIER_RUSTORE
+        float interfaceScale = RuStoreMenu.InterfaceScale;
+#else
+        const float interfaceScale = 1f;
+#endif
         bool geometryChanged = dimensions != guideLastScreenSize || guideLastSafeArea != Screen.safeArea
-            || touch != guideLastTouch || !Mathf.Approximately(canvasScale, guideLastCanvasScale);
+            || touch != guideLastTouch || !Mathf.Approximately(canvasScale, guideLastCanvasScale) || guideLastInterfaceScale != interfaceScale;
         if (!force && !geometryChanged) return;
         if (geometryChanged)
         {
@@ -231,15 +237,21 @@ public partial class TipsManager
         guideLastSafeArea = Screen.safeArea;
         guideLastTouch = touch;
         guideLastCanvasScale = canvasScale;
+        guideLastInterfaceScale = interfaceScale;
         // Touch text keeps the same apparent size on 854x393 and 2400x1080 phones.
         float density = touch ? Mathf.Clamp(Screen.safeArea.height / 393f, 1f, 3f) : 1f;
         guideScale = Mathf.Max(.01f, canvasScale / density);
         bool compact = touch || Screen.height < 550;
-        float unit = 1f / guideScale;
+        float layoutUnit = 1f / guideScale;
+        float unit = interfaceScale * layoutUnit;
         Rect safe = GuideScreenRect(Screen.safeArea);
         guideCardWidth = Mathf.Max(150f * unit, Mathf.Min(safe.width - 24f * unit, (compact ? 330f : 430f) * unit));
-        if ((touch || Screen.width < 800) && (shop == null || !shop.IsOpen))
-            guideCardWidth = Mathf.Min(guideCardWidth, safe.width * .5f - 92f * unit);
+        bool reserveControls = true;
+#if LAST_SOLDIER_RUSTORE
+        reserveControls = !guideWelcome;
+#endif
+        if (reserveControls && (touch || Screen.width < 800) && (shop == null || !shop.IsOpen))
+            guideCardWidth = Mathf.Min(guideCardWidth, safe.width * .5f - 92f * layoutUnit);
         bool narrow = guideCardWidth < 240f * unit;
         float bodyFont = (compact ? 15f : 19f) * unit;
         float bodyWidth = guideCardWidth - 28f * unit;
@@ -252,7 +264,7 @@ public partial class TipsManager
         float bodyHeight = Mathf.Clamp(preferredBodyHeight, Mathf.Min(bodySpace, (compact ? 36f : 42f) * unit), bodySpace);
         guideBodyText.enableAutoSizing = preferredBodyHeight > bodySpace;
         guideBodyText.fontSizeMax = bodyFont;
-        guideBodyText.fontSizeMin = (compact ? 13f : 16f) * unit;
+        guideBodyText.fontSizeMin = (compact ? 13f : 16f) * unit / Mathf.Max(1f, interfaceScale);
         guideCardHeight = Mathf.Min(safe.height - 24f * unit, header + bodyHeight + footer);
         float portraitSize = (narrow ? 32f : compact ? 44f : 54f) * unit;
         GuidePlace(guidePortrait.rectTransform, new Rect(12f * unit, guideCardHeight - portraitSize - 10f * unit, portraitSize, portraitSize));

@@ -291,7 +291,14 @@ public class SlimeBoss : Sounds
             else stats.AddBossDead(Stats.EnemyKind.SlimeBoss);
         }
 
-        if ((!regularEnemy || arenaBossEncounter) && playerController != null) playerController.AddCoin(bossKillBonus * (waveOwner != null ? waveOwner.RewardMultiplier : 1));
+        if ((!regularEnemy || arenaBossEncounter) && playerController != null)
+        {
+            long reward = (long)bossKillBonus * (waveOwner != null ? waveOwner.RewardMultiplier : 1);
+#if LAST_SOLDIER_RUSTORE
+            reward *= 2;
+#endif
+            playerController.AddCoin((int)System.Math.Min(int.MaxValue, reward));
+        }
         DropLoot();
         Destroy(gameObject);
         PlaySound(sounds[0], volume: 1, destroyed: true);

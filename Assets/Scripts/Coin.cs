@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Coin: Sounds
 {
-    [SerializeField] private int coinValue = 1; //ñêîëüêî äàåò ìîíåòêà ïðè ñáîðå
-    [SerializeField] private int lifeTime = 15;//âðåìÿ æèçíè ìîíåòêè
+    [SerializeField] private int coinValue = 1; //ÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð´Ð°ÐµÑ‚ Ð¼Ð¾Ð½ÐµÑ‚ÐºÐ° Ð¿Ñ€Ð¸ ÑÐ±Ð¾Ñ€Ðµ
+    [SerializeField] private int lifeTime = 15;//Ð²Ñ€ÐµÐ¼Ñ Ð¶Ð¸Ð·Ð½Ð¸ Ð¼Ð¾Ð½ÐµÑ‚ÐºÐ¸
     private Rigidbody2D rb;
     private PlayerController lootPlayer;
+    private static PlayerController sceneLootPlayer;
     private bool collected;
     private bool beingAttracted;
     private bool trainingCoin;
@@ -23,16 +24,22 @@ public class Coin: Sounds
         if (rb != null) Stop();
     }
     public int rotSpeed = 1;   
-    public void ScaleReward(int multiplier)
+    public void ScaleReward(int multiplier, int divisor = 1)
     {
-        coinValue = (int)System.Math.Min(int.MaxValue, (long)coinValue * Mathf.Max(1, multiplier));
+        divisor = Mathf.Max(1, divisor);
+        long scaled = (long)coinValue * Mathf.Max(1, multiplier);
+        // Random rounding preserves the expected reward even for a one-coin drop.
+        long rounded = scaled / divisor;
+        if (scaled % divisor > 0 && Random.Range(0, divisor) < scaled % divisor) rounded++;
+        coinValue = (int)System.Math.Min(int.MaxValue, rounded);
     }
 
     private void Start()
     {
           
         rb = GetComponent<Rigidbody2D>();
-        lootPlayer = FindObjectOfType<PlayerController>();
+        if (sceneLootPlayer == null) sceneLootPlayer = FindObjectOfType<PlayerController>();
+        lootPlayer = sceneLootPlayer;
         if (trainingCoin)
         {
             Stop();

@@ -37,6 +37,9 @@ public sealed class GameMonetization : MonoBehaviour
 
     private void Start()
     {
+#if LAST_SOLDIER_RUSTORE
+        RuStoreMenu.ConfigureDeathMenu(deathPanel, returnButton);
+#endif
         player = FindObjectOfType<PlayerController>();
         mobileControls = FindObjectOfType<MobileControls>();
         if (continueButton != null && continueButton.onClick.GetPersistentEventCount() == 0) continueButton.onClick.AddListener(ContinueForVideo);

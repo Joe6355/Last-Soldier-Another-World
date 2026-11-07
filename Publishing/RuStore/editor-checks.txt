@@ -1,29 +1,22 @@
 PASS
-Local startup, hidden online features, privacy UI, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately.
-Start as guest without requiring sign-in
-Privacy sheet pauses combat and sound
-Full local privacy document has scrollable content
-Notice acknowledgement closes overlay and persists
-Disabled sign-in leaves the local game ready
-Sign-in and shared leaderboard buttons are absent from the first release
-Pause menu hides the shared leaderboard entry
-Pause menu cannot reopen the disabled shared leaderboard
-Native mobile control layout remains available
-Reward request enters the existing game callback path
-Unavailable ad releases SDK pause and reports failure without a fake video
-Unavailable ad grants no coins
-Loaded rewarded ad is requested once
-Expired show deadline waits for queued SDK callbacks before cancelling a native ad
-Queued SDK shown callback survives an expired deadline on resume
-Real adapter pauses gameplay while an ad is shown
-Duplicate vendor reward callbacks grant exactly one coin reward
-Dismissal completes the granted game reward
-Ad dismissal restores normal gameplay and audio
-Granted reward is in the saved progress
-Closing before reward grants nothing and remains playable
-Native activity suspension does not consume the show timeout
-Returning from the native activity gives queued callbacks time to arrive
-Missing SDK response still times out without granting coins or leaving the game paused
-Privacy and support entry points exist in game settings
-Production guard rejects vendor demo IDs
-Settings contain privacy and support without an account entry point
+Local startup without forced documents, full-screen menus, profile controls, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately.
+Assertions: 41376
+Unrelated vendor Editor update warnings: 2; Editor resumes: 1
+
+Coverage:
+- Four viewport sizes, Russian/English, 80/100/120 percent UI scale.
+- Cutout insets, loaded-banner reservation, opaque full-screen backdrops, touch hit tests.
+- Independent joystick/button size, opacity and positions; reopen and persistence.
+- Health/inventory/statistics refresh after changes and local nickname/medals.
+- All six coin denominations, 900 rolls each, ordinary and Crimson arenas.
+- Merchant goods, upgrades, bonuses, achievements and quantity dialog.
+- Death menu, all tutorial text and boss HUD scaling.
+- Unavailable, cancelled, duplicate, queued and late native-ad callbacks via vendor Editor stubs.
+
+Full local result: Builds/RuStoreValidation/editor-full-checks-1.0.8-20261108.txt
+Full local result SHA-256: a6f76d446bf4eacba56cc51ad38f591f553e217311a479e134cc3b4f421e6f02
+Source: Tests/RuStoreChecks.cs; Tests/LocalizationChecks.cs supplies Editor rendering.
+Device checks use Tests/RuStoreDeviceRewardCheck.cs and are reported separately.
+The vendor Editor update request emitted two network errors; those exact Editor-only messages are excluded.
+All other errors remain fatal. The batch Editor resumes after this unrelated automatic pause.
+Game frames stay enabled in the unfocused disposable batch Editor; production still pauses in background.

@@ -1,0 +1,26 @@
+{
+  "method": "FPS = (unique frame count - 1) / elapsed actual-present seconds",
+  "scope": "One observed game scenario; not a battle or sustained thermal benchmark.",
+  "runs": [
+    {
+      "source": "fps-before-cold-camp-1.0.7-20261108.txt",
+      "uniqueFrames": 526,
+      "durationSeconds": 8.7794,
+      "averageFps": 59.8,
+      "medianFrameMs": 16.707,
+      "p95FrameMs": 16.742,
+      "maxFrameMs": 25.066,
+      "gapsOverOneSecond": 0
+    },
+    {
+      "source": "fps-after-cold-camp-1.0.8-20261108.txt",
+      "uniqueFrames": 872,
+      "durationSeconds": 7.8438,
+      "averageFps": 111.04,
+      "medianFrameMs": 8.355,
+      "p95FrameMs": 16.706,
+      "maxFrameMs": 25.047,
+      "gapsOverOneSecond": 0
+    }
+  ]
+}

@@ -35,6 +35,7 @@ public class Stats : MonoBehaviour
     public int countElitEnemyDead;   // Убито элитных врагов
 
     public int completedWaves;
+    private (int, int, int, int, int, int)? displayedStats;
     public int TotalKills => (int)Math.Min(int.MaxValue, (long)countEnemyDead + countElitEnemyDead + countBossDead);
     public int Mmr => GameProgress.MmrScore(completedWaves, TotalKills, PlayerPrefs.GetInt("CrimsonMmrBonus", 0));
     private static readonly int[] medalThresholds = { 0, 100, 500, 1000, 2500, 5000, 10000, 20000 };
@@ -274,6 +275,10 @@ public class Stats : MonoBehaviour
     /// </summary>
     public void UpdateUI()
     {
+        int mmr = Mmr;
+        var values = (countEnemyDead, countPlayerDead, countBossDead, countElitEnemyDead, completedWaves, mmr);
+        if (displayedStats.HasValue && displayedStats.Value == values) return;
+        displayedStats = values;
         if (texts != null && texts.Length >= 4)
         {
             texts[0].text = countEnemyDead.ToString();
@@ -282,22 +287,22 @@ public class Stats : MonoBehaviour
             texts[3].text = countElitEnemyDead.ToString();
         }
         if (summaryText != null) summaryText.text = FormatSummary(completedWaves, TotalKills, countElitEnemyDead, countBossDead, countPlayerDead);
-        if (mmrText != null) mmrText.text = "MMR " + Mmr.ToString("N0");
+        if (mmrText != null) mmrText.text = "MMR " + mmr.ToString("N0");
         if (profileWavesText != null) profileWavesText.text = completedWaves.ToString("N0");
         if (profileKillsText != null) profileKillsText.text = TotalKills.ToString("N0");
-        if (profileMmrText != null) profileMmrText.text = Mmr.ToString("N0");
-        if (profileMedal != null) profileMedal.sprite = MedalForMmr(Mmr);
+        if (profileMmrText != null) profileMmrText.text = mmr.ToString("N0");
+        if (profileMedal != null) profileMedal.sprite = MedalForMmr(mmr);
 
-        CheckMedal();
+        CheckMedal(mmr);
     }
 
     /// <summary>
     /// Логика выбора медали.
     /// Изменяет LvlMedalki.sprite в зависимости от MMR.
     /// </summary>
-    private void CheckMedal()
+    private void CheckMedal(int mmr)
     {
-        if (LvlMedalki != null) LvlMedalki.sprite = MedalForMmr(Mmr);
+        if (LvlMedalki != null) LvlMedalki.sprite = MedalForMmr(mmr);
     }
 
     public Sprite MedalForMmr(int mmr)
