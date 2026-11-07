@@ -320,6 +320,10 @@ public sealed class RuStoreMenu : MonoBehaviour
 
     public static void ConfigureControlsSettings(GameObject settings)
     {
+        // The serialized editor lives under MobileControls.SafeArea. Its backdrop
+        // must follow the full canvas; only dialog content should follow the cutout.
+        var canvas = settings.transform.parent.GetComponentInParent<Canvas>().rootCanvas;
+        settings.transform.SetParent(canvas.transform, false);
         Place(settings.transform, 0, 0, 1, 1);
         var backdrop = settings.transform.Find("Backdrop");
         Place(backdrop, 0, 0, 1, 1);

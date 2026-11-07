@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using YG;
 
 // Copy into a temporary runtime Assets folder for an explicit QA build only.
-// Default mode uses the real merchant request; an explicit intent extra checks menus instead.
+// Explicit intent extras select menu checks or the real merchant request; the launcher stays idle.
 // Neither mode emits SDK events or adds coins itself.
 [DefaultExecutionOrder(1000)]
 public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
@@ -31,10 +31,18 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
     }
     private void Start()
     {
+        bool rewardMode;
         using (var unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         using (var activity = unity.GetStatic<AndroidJavaObject>("currentActivity"))
         using (var intent = activity.Call<AndroidJavaObject>("getIntent"))
+        {
             menuMode = intent.Call<bool>("getBooleanExtra", "lastsoldier_ui_check", false);
+            rewardMode = intent.Call<bool>("getBooleanExtra", "lastsoldier_reward_check", false);
+        }
+        if (!menuMode && !rewardMode)
+        {
+            phase = 100; Debug.Log("[RuStoreDeviceCheck] Idle: explicit test intent required"); return;
+        }
         deadline = Time.realtimeSinceStartup + 300f;
         Debug.Log(menuMode ? "[RuStoreMenuCheck] Started: menu geometry and existing handlers; no fullscreen ad request or coin mutation"
             : "[RuStoreDeviceCheck] Started: real native merchant reward, no simulated callbacks");
@@ -192,15 +200,23 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
     }
     private static T Field<T>(object owner, string name) => (T)owner.GetType()
         .GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
+    private static Rect ScreenBounds(Transform target)
+    {
+        var corners = new Vector3[4]; ((RectTransform)target).GetWorldCorners(corners);
+        var canvas = target.GetComponentInParent<Canvas>().rootCanvas;
+        var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+        var points = corners.Select(value => RectTransformUtility.WorldToScreenPoint(camera, value)).ToArray();
+        return Rect.MinMaxRect(points.Min(value => value.x), points.Min(value => value.y),
+            points.Max(value => value.x), points.Max(value => value.y));
+    }
     private static void ValidateBackdrop(Transform backdrop)
     {
         if (backdrop.GetComponent<Image>().color.a < .999f) throw new Exception("Menu fill is translucent");
-        var corners = new Vector3[4]; ((RectTransform)backdrop).GetWorldCorners(corners);
-        var points = corners.Select(value => RectTransformUtility.WorldToScreenPoint(null, value)).ToArray();
-        if (points.Min(value => value.x) > 1 || points.Min(value => value.y) > 1
-            || points.Max(value => value.x) < Screen.width - 1 || points.Max(value => value.y) < Screen.height - 1)
-            throw new Exception("Menu backdrop does not cover the complete screen");
-        Debug.Log("[RuStoreBackdropCheck] PASS full screen " + backdrop.name + "; content safe=" + Screen.safeArea);
+        var bounds = ScreenBounds(backdrop);
+        if (bounds.xMin > 1 || bounds.yMin > 1 || bounds.xMax < Screen.width - 1 || bounds.yMax < Screen.height - 1)
+            throw new Exception("Menu backdrop does not cover the complete screen: " + backdrop.name
+                + "; bounds=" + bounds + "; screen=" + Screen.width + "x" + Screen.height);
+        Debug.Log("[RuStoreBackdropCheck] PASS full screen " + backdrop.name + "; bounds=" + bounds + "; content safe=" + Screen.safeArea);
     }
     private static void CheckMenuLayoutRoundTrip(MobileControls preview)
     {
@@ -260,12 +276,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
         int count = 0;
         foreach (var control in root.GetComponentsInChildren<Selectable>().Where(value => value.isActiveAndEnabled))
         {
-            var corners = new Vector3[4]; ((RectTransform)control.transform).GetWorldCorners(corners);
-            var canvas = control.GetComponentInParent<Canvas>().rootCanvas;
-            var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
-            var points = corners.Select(value => RectTransformUtility.WorldToScreenPoint(camera, value)).ToArray();
-            var rect = Rect.MinMaxRect(points.Min(value => value.x), points.Min(value => value.y),
-                points.Max(value => value.x), points.Max(value => value.y));
+            var rect = ScreenBounds(control.transform);
             var safe = Screen.safeArea;
             if (rect.xMin < safe.xMin - 1 || rect.yMin < safe.yMin - 1 || rect.xMax > safe.xMax + 1 || rect.yMax > safe.yMax + 1
                 || rect.height < Screen.height * .085f) throw new Exception(label + "/" + control.name + " invalid touch area " + rect);

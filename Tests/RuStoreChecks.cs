@@ -350,6 +350,19 @@ public static class RuStoreChecks
     }
     static void CheckLayoutTouches(MobileControls mobile, string prefix, Vector2Int size)
     {
+        var safe = Get<RectTransform>(mobile, "safeArea");
+        var min = safe.anchorMin; var max = safe.anchorMax;
+        try
+        {
+            foreach (bool leftCutout in new[] { true, false })
+            {
+                safe.anchorMin = new Vector2(leftCutout ? .055f : 0, .03f);
+                safe.anchorMax = new Vector2(leftCutout ? 1 : .945f, .98f);
+                CaptureLayout(prefix + (leftCutout ? "-controls-left-cutout.png" : "-controls-right-cutout.png"), size,
+                    mobile.gameObject.scene, "RuStoreControlsSafeContent", backdrop: Get<GameObject>(mobile, "settingsBackdrop").transform);
+            }
+        }
+        finally { safe.anchorMin = min; safe.anchorMax = max; }
         mobile.BeginLayoutEdit();
         LocalizationChecks.CaptureView(Path.GetFullPath(prefix + "-layout.png"), size.x, size.y, () =>
         {
