@@ -36,6 +36,8 @@ public static class RuStoreChecks
     static string previousCompany, previousProduct;
     static string layoutKey;
     static float layoutX, layoutY;
+    const string StatusLayoutKey = "MobileControls.v2.CombatStatus";
+    static Vector2 statusPositionInMenu;
     static RuStoreChecks() { if (SessionState.GetBool(Flag, false)) Attach(); }
     public static void Run() => Run(false);
     public static void RunHudProfile() => Run(true);
@@ -163,6 +165,9 @@ public static class RuStoreChecks
                     Check(Mathf.Abs(movement.anchoredPosition.x / area.rect.width - layoutX) < .001f
                         && Mathf.Abs(movement.anchoredPosition.y / area.rect.height - layoutY) < .001f,
                         "Gameplay uses the exact normalized layout saved in the main menu");
+                    var statusBounds = ScreenBounds(Get<RectTransform>(gameplayControls, "combatStatus"));
+                    Check(Vector2.Distance(new Vector2(statusBounds.xMin / Screen.width, statusBounds.yMax / Screen.height),
+                        statusPositionInMenu) <= .002f, "Gameplay displays the status where it was dragged in the main menu");
                     foreach (var guide in UnityEngine.Object.FindObjectsOfType<TipsManager>()) guide.SkipGuide();
                     ui.StartGame();
                     ui.ToggleMenu();
@@ -407,20 +412,22 @@ public static class RuStoreChecks
         var status = Get<RectTransform>(controls, "combatStatus");
         var wallet = Get<RectTransform>(controls, "wallet");
         var mirror = Get<RectTransform>(controls, "mirrorProgress");
-        var buttons = Get<RectTransform[]>(controls, "editableControls");
+        var buttons = Get<RectTransform[]>(controls, "editableControls").Where(rect => rect != status).ToArray();
         var sizes = buttons.Select(rect => rect.sizeDelta).ToArray();
         var positions = buttons.Select(rect => rect.anchoredPosition).ToArray();
         var scales = buttons.Select(rect => rect.localScale).ToArray();
         RuStoreMenu.SetInterfaceScale(1f); controls.RefreshLayout(); Canvas.ForceUpdateCanvases();
         var walletPosition = ScreenPoint(wallet, Vector2.zero);
         var mirrorPosition = ScreenPoint(mirror, Vector2.zero);
+        Rect originalStatusBounds = ScreenBounds(status);
+        Rect viewport = ScreenBounds((RectTransform)status.GetComponentInParent<Canvas>().rootCanvas.transform);
         float statusWidth = ScreenBounds(status).width;
         Rect originalHudBounds = ScreenBounds(hud);
         foreach (float scale in new[] { .8f, 1f, 1.2f })
         {
             RuStoreMenu.SetInterfaceScale(scale); controls.RefreshLayout(); Canvas.ForceUpdateCanvases();
             Check(SameBounds(ScreenBounds(hud), originalHudBounds), "HUD safe area does not shrink or drift at " + scale);
-            CheckStatusCorner();
+            CheckStatusAnchor(originalStatusBounds.xMin, originalStatusBounds.yMax);
             Check(Vector2.Distance(ScreenPoint(wallet, Vector2.zero), walletPosition) <= .5f
                 && Vector2.Distance(ScreenPoint(mirror, Vector2.zero), mirrorPosition) <= .5f,
                 "Wallet and mirror HUD keep their positions at " + scale);
@@ -433,20 +440,56 @@ public static class RuStoreChecks
             {
                 SetViewportArea(hud, new Vector2(leftCutout ? .055f : 0f, .03f), new Vector2(leftCutout ? 1f : .945f, .98f));
                 Canvas.ForceUpdateCanvases();
-                CheckStatusCorner();
+                CheckStatusAnchor(originalStatusBounds.xMin, originalStatusBounds.yMax);
             }
             SetViewportArea(hud, min, max);
             Capture("hud-scale-" + Mathf.RoundToInt(scale * 100) + ".png");
 
-            void CheckStatusCorner()
+            void CheckStatusAnchor(float x, float y)
             {
-                Rect hudBounds = ScreenBounds(hud), statusBounds = ScreenBounds(status);
-                Check(Mathf.Abs(statusBounds.xMin - hudBounds.xMin) <= .5f && Mathf.Abs(statusBounds.yMax - hudBounds.yMax) <= .5f,
-                    "Combat status meets the top-left safe edge at " + scale);
-                Check(Mathf.Abs(statusBounds.width - statusWidth * scale) <= .5f, "Combat status resizes around the safe corner");
+                Rect statusBounds = ScreenBounds(status);
+                Check(Mathf.Abs(statusBounds.xMin - x) <= .5f && Mathf.Abs(statusBounds.yMax - y) <= .5f,
+                    "Combat status keeps its saved display position at " + scale);
+                Check(Mathf.Abs(statusBounds.width - statusWidth * scale) <= .5f, "Combat status resizes around its top-left corner");
             }
         }
         RuStoreMenu.SetInterfaceScale(1f); controls.RefreshLayout();
+        var statusX = UnityEngine.PlayerPrefs.GetFloat(StatusLayoutKey + ".X");
+        var statusY = UnityEngine.PlayerPrefs.GetFloat(StatusLayoutKey + ".Y");
+        bool hasStatus = UnityEngine.PlayerPrefs.HasKey(StatusLayoutKey + ".X");
+        try
+        {
+            UnityEngine.PlayerPrefs.DeleteKey(StatusLayoutKey + ".X");
+            UnityEngine.PlayerPrefs.DeleteKey(StatusLayoutKey + ".Y");
+            Call(controls, "ApplySavedLayout");
+            Vector2 min = hud.anchorMin, max = hud.anchorMax;
+            try
+            {
+                SetViewportArea(hud, new Vector2(.055f, 0), Vector2.one);
+                Canvas.ForceUpdateCanvases();
+                Check(Mathf.Abs(ScreenBounds(status).xMin - viewport.xMin) <= .5f
+                    && Mathf.Abs(ScreenBounds(status).yMax - viewport.yMax) <= .5f
+                    && ScreenBounds(hud).xMin > viewport.xMin + 1f,
+                    "Default combat status touches the physical top-left even when the HUD safe area has an inset");
+                LocalizationChecks.CaptureView(Path.GetFullPath("Builds/RuStoreValidation/Previews/hud-full-edge.png"),
+                    Screen.width, Screen.height, () =>
+                    {
+                        var hits = new List<RaycastResult>();
+                        EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = ScreenBounds(status).center }, hits);
+                        Check(!hits.Any(hit => hit.gameObject.transform.IsChildOf(status)), "Combat status passes taps through during gameplay");
+                    });
+            }
+            finally { SetViewportArea(hud, min, max); }
+        }
+        finally
+        {
+            if (hasStatus)
+            {
+                UnityEngine.PlayerPrefs.SetFloat(StatusLayoutKey + ".X", statusX);
+                UnityEngine.PlayerPrefs.SetFloat(StatusLayoutKey + ".Y", statusY);
+            }
+            Call(controls, "ApplySavedLayout");
+        }
     }
     static void CheckShopScaling()
     {
@@ -531,17 +574,53 @@ public static class RuStoreChecks
         Check(preview.BeginControlDrag(movement, center), "Main-menu preview uses the existing control drag handler");
         preview.DragControl(center + new Vector2(18, 10)); preview.EndControlDrag();
         Check(movement.anchoredPosition != before, "A menu layout drag changes the preview position");
+        var status = Get<RectTransform>(preview, "combatStatus");
+        Canvas.ForceUpdateCanvases();
+        var statusBounds = ScreenBounds(status);
+        Check(status.gameObject.activeInHierarchy && Mathf.Abs(statusBounds.xMin) <= .5f
+            && Mathf.Abs(statusBounds.yMax - Screen.height) <= .5f, "Main-menu preview starts with the status at the actual display corner");
+        // Use the Editor's rendered view for raycasting; the batch overlay is not drawn on screen.
+        LocalizationChecks.CaptureView(Path.GetFullPath("Builds/RuStoreValidation/Previews/main-status-layout.png"),
+            Screen.width, Screen.height, () => DragStatus(status, new Vector2(Screen.width * .04f, -Screen.height * .28f)));
+        var movedStatus = ScreenBounds(status);
+        Check(movedStatus.xMin > statusBounds.xMin && movedStatus.yMax < statusBounds.yMax,
+            "The visible panel responds to pointer dragging in the main menu");
+        statusPositionInMenu = new Vector2(movedStatus.xMin / Screen.width, movedStatus.yMax / Screen.height);
         LocalizationChecks.CaptureView(Path.GetFullPath("Builds/RuStoreValidation/Previews/main-controls-layout.png"), 1280, 720);
         preview.EndLayoutEdit(true);
         layoutKey = "MobileControls.v2." + movement.name;
         layoutX = UnityEngine.PlayerPrefs.GetFloat(layoutKey + ".X");
         layoutY = UnityEngine.PlayerPrefs.GetFloat(layoutKey + ".Y");
         preview.BeginLayoutEdit(); before = movement.anchoredPosition;
+        var savedStatus = status.anchoredPosition;
         preview.ResetLayout(); preview.EndLayoutEdit(false);
         Check(movement.anchoredPosition == before && Mathf.Approximately(UnityEngine.PlayerPrefs.GetFloat(layoutKey + ".X"), layoutX),
             "Cancelling a menu layout edit restores the saved layout without overwriting it");
+        Check(status.anchoredPosition == savedStatus && Mathf.Abs(UnityEngine.PlayerPrefs.GetFloat(StatusLayoutKey + ".X") - statusPositionInMenu.x) < .001f,
+            "Cancelling a reset preserves the HUD position");
         preview.CloseControlsSettings();
         Check(!RuStoreMenu.IsOverlayOpen, "Closing the preview releases its modal state");
+        RuStoreMenu.OpenMainControls();
+        preview = UnityEngine.Object.FindObjectOfType<MobileControls>();
+        preview.BeginLayoutEdit();
+        Canvas.ForceUpdateCanvases();
+        Check(SameBounds(ScreenBounds(Get<RectTransform>(preview, "combatStatus")), movedStatus),
+            "Reopening the main-menu editor reloads the moved status");
+        preview.EndLayoutEdit(false); preview.CloseControlsSettings();
+    }
+    static void DragStatus(RectTransform status, Vector2 delta)
+    {
+        var pointer = new PointerEventData(EventSystem.current) { position = ScreenBounds(status).center, pointerId = -1 };
+        var hits = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, hits);
+        Check(hits.Count > 0 && hits[0].gameObject.transform.IsChildOf(status),
+            "Pointer hits the panel in the layout editor at " + pointer.position + "; hits=" + string.Join(", ", hits
+                .Take(5).Select(hit => hit.gameObject.name + "/" + hit.module.name + "/" + hit.sortingOrder)));
+        var target = hits[0].gameObject;
+        ExecuteEvents.ExecuteHierarchy(target, pointer, ExecuteEvents.pointerDownHandler);
+        pointer.position += delta;
+        ExecuteEvents.ExecuteHierarchy(target, pointer, ExecuteEvents.dragHandler);
+        ExecuteEvents.ExecuteHierarchy(target, pointer, ExecuteEvents.pointerUpHandler);
     }
     static void CheckMenuLayouts(Scene scene, GameObject settings, Action openSettings, Action closeSettings)
     {
@@ -667,6 +746,9 @@ public static class RuStoreChecks
         }
         finally { safe.anchorMin = min; safe.anchorMax = max; }
         mobile.BeginLayoutEdit();
+        // Verify the toolbar against the default layout, independent of an offset
+        // dragged earlier at the Editor's real Game View resolution.
+        mobile.ResetLayout();
         LocalizationChecks.CaptureView(Path.GetFullPath(prefix + "-layout.png"), size.x, size.y, () =>
         {
             foreach (var rect in Get<RectTransform[]>(mobile, "editableControls").Where(value => value.gameObject.activeInHierarchy))

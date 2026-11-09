@@ -31,6 +31,10 @@ public class TouchControl : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
     public bool IsRepeating => kind == Kind.Fire && IsHeld && !layoutDrag && layoutOwner != null
         && automaticPress && layoutOwner.AutomaticSelected && Time.unscaledTime - pressedAt >= .18f;
 
+#if LAST_SOLDIER_RUSTORE
+    internal void BindLayout(MobileControls owner) { kind = Kind.Layout; layoutOwner = owner; }
+#endif
+
     private void Awake()
     {
         if (baseVisual != null) basePosition = baseVisual.anchoredPosition;

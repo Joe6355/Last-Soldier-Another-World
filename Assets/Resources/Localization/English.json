@@ -2069,6 +2069,22 @@
       "en": "Button\nlayout"
     },
     {
+      "ru": "Расположение",
+      "en": "Edit layout"
+    },
+    {
+      "ru": "Раскладка",
+      "en": "Layout"
+    },
+    {
+      "ru": "Перетащи кнопки и плашку.",
+      "en": "Drag buttons and the status panel."
+    },
+    {
+      "ru": "Выбери свободное место.",
+      "en": "Choose a free spot."
+    },
+    {
       "ru": "Масштаб\nинтерфейса",
       "en": "Interface\nscale"
     },

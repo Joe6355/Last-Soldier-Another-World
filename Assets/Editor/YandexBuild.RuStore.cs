@@ -134,6 +134,11 @@ public static partial class YandexBuild
             preview.name = "RuStoreControlsPreview";
             preview.SetActive(false);
             SceneManager.MoveGameObjectToScene(preview, previewScene);
+            var sourceStatus = (RectTransform)new SerializedObject(source).FindProperty("combatStatus").objectReferenceValue;
+            var status = UnityEngine.Object.Instantiate(sourceStatus, preview.transform, false);
+            status.name = sourceStatus.name;
+            status.SetAsFirstSibling();
+            status.gameObject.SetActive(false);
             // Reuse the game's serialized touch controls and editor, with no scene/gameplay references.
             foreach (var component in preview.GetComponentsInChildren<Component>(true))
             {
@@ -152,6 +157,8 @@ public static partial class YandexBuild
             }
             var mobile = new SerializedObject(preview.GetComponent<MobileControls>());
             mobile.FindProperty("menuPreview").boolValue = true;
+            mobile.FindProperty("combatStatus").objectReferenceValue = status;
+            mobile.FindProperty("previewStatusReferenceWidth").floatValue = sourceStatus.GetComponentInParent<CanvasScaler>().referenceResolution.x;
             mobile.ApplyModifiedPropertiesWithoutUndo();
             foreach (var canvas in preview.GetComponentsInChildren<Canvas>(true))
             { canvas.overrideSorting = true; canvas.sortingOrder = 32001; }

@@ -473,18 +473,24 @@ public sealed class RuStoreMenu : MonoBehaviour
         Place(dialog.Find("OpacityValue"), .80f, .39f, .95f, .53f);
         Place(dialog.Find("Opacity"), .28f, .35f, .77f, .54f);
         Place(dialog.Find("EditLayout"), .05f, .14f, .62f, .31f);
+        dialog.Find("EditLayout").GetComponentInChildren<TMP_Text>().text = "Расположение";
         Place(dialog.Find("ResetControls"), .66f, .14f, .95f, .31f);
         Place(dialog.Find("Hint"), .05f, .02f, .95f, .12f); Font(dialog.Find("Hint"), 32);
         dialog.Find("Hint").GetComponent<TMP_Text>().text = "Касание — автонаводка. Удержание — прицел.";
         foreach (var slider in dialog.GetComponentsInChildren<Slider>(true)) ConfigureSliderTouchArea(slider);
-        Place(toolbar, .04f, .75f, .74f, .99f); Font(toolbar, 36);
-        Place(toolbar.Find("Title"), .02f, .48f, .40f, .98f);
-        toolbar.Find("Title").GetComponent<TMP_Text>().text = "Расположение\nкнопок";
+        Place(toolbar, .34f, .75f, .89f, .99f); Font(toolbar, 36);
+        Place(toolbar.Find("Title"), .02f, .48f, .34f, .98f);
+        toolbar.Find("Title").GetComponent<TMP_Text>().text = "Раскладка";
         Place(toolbar.Find("Hint"), .02f, .02f, .98f, .33f); Font(toolbar.Find("Hint"), 30);
-        Place(toolbar.Find("Save"), .42f, .38f, .60f, .98f);
+        Place(toolbar.Find("Save"), .35f, .38f, .60f, .98f);
         Place(toolbar.Find("Cancel"), .62f, .38f, .80f, .98f);
         Place(toolbar.Find("Reset"), .82f, .38f, .98f, .98f);
-        foreach (string name in new[] { "Save", "Cancel", "Reset" }) Font(toolbar.Find(name), 40);
+        foreach (string name in new[] { "Save", "Cancel", "Reset" })
+        {
+            var action = toolbar.Find(name);
+            Font(action, 40);
+            action.GetComponentInChildren<TMP_Text>().enableWordWrapping = false;
+        }
         RegisterWindows(controlsViewport);
     }
 

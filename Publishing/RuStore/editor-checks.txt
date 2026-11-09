@@ -1,12 +1,13 @@
 PASS
 Local startup without forced documents, full-screen menus, profile controls, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately.
-Assertions: 41470
-Unrelated vendor Editor update warnings: 2; Editor resumes: 1
+Assertions: 41526
+Unrelated vendor Editor update warnings: 0; Editor resumes: 0
 
 Coverage:
 - Four viewport sizes, Russian/English, 80/100/120 percent UI scale.
 - Cutout insets, loaded-banner reservation, opaque full-screen backdrops, touch hit tests.
-- Combat status stays flush with the top-left safe corner, including both simulated landscape cutouts.
+- The default combat status touches the display corner even with a left inset; the saved custom anchor survives both simulated cutouts.
+- The status panel receives drag input in the layout editor, reloads after saving, appears in gameplay at the same position and passes taps through outside the editor.
 - Menu and shop windows, wallet, mirror HUD and the scale slider track keep their anchors at 80/100/120 percent.
 - Independent joystick/button size, opacity and positions; reopen and persistence.
 - Health/inventory/statistics refresh after changes and local nickname/medals.
@@ -15,10 +16,9 @@ Coverage:
 - Death menu, all tutorial text and boss HUD scaling.
 - Unavailable, cancelled, duplicate, queued and late native-ad callbacks via vendor Editor stubs.
 
-Full local result: Builds/RuStoreValidation/editor-window-anchor-after-20261109.txt
-Full local result SHA-256: be5cdab82a1583751410fce8bca86f7e7f419818fe59bdc101053d9f2c8e7729
+Full local result: Builds/RuStoreValidation/editor-status-layout-1.0.10.txt
+Full local result SHA-256: eaa44b2f9a7ec6abace41a2ade8540173b88749ff51ba5031283846093b6a507
 Source: Tests/RuStoreChecks.cs; Tests/LocalizationChecks.cs supplies Editor rendering.
 Device checks use Tests/RuStoreDeviceRewardCheck.cs and are reported separately.
-The vendor Editor update request emitted two network errors; those exact Editor-only messages are excluded.
-All other errors remain fatal. The batch Editor resumes after this unrelated automatic pause.
+Runtime errors remain fatal. The only excluded messages are from the vendor's Editor-only update checker; none were reported in this run.
 Game frames stay enabled in the unfocused disposable batch Editor; production still pauses in background.

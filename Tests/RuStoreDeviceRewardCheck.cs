@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
@@ -19,6 +20,8 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
     private bool completed;
     private bool menuMode;
     private string originalNickname;
+    private System.Collections.IEnumerator layoutRoundTrip;
+    private Vector2 statusBeforeDrag;
     private PlayerController player;
     private GameMonetization.CoinsRewardResult result;
 
@@ -137,7 +140,11 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                         throw new Exception("Main controls preview did not remain separate from gameplay");
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "main controls");
                     ValidateBackdrop(Field<GameObject>(menuControls, "settingsBackdrop").transform);
-                    CheckMenuLayoutRoundTrip(menuControls); menu.ShowSettings(); phase++; break;
+                    layoutRoundTrip = CheckMenuLayoutRoundTrip(menuControls); phase = 11; break;
+                case 11:
+                    if (layoutRoundTrip.MoveNext()) break;
+                    layoutRoundTrip = null;
+                    menu.ShowSettings(); phase = 2; break;
                 case 2:
                     ValidateMenu(menu.SettingsPanel.transform, "main settings");
                     CheckInterfaceScale(menu.SettingsPanel.transform, "main settings");
@@ -202,7 +209,19 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     ValidateMenu(GameObject.Find("RuStoreControlsSafeContent").transform, "controls");
                     CheckInterfaceScale(GameObject.Find("RuStoreControlsSafeContent").transform, "controls", mobile);
                     ValidateBackdrop(Field<GameObject>(mobile, "settingsBackdrop").transform);
-                    mobile.CloseControlsSettings(); ui.CloseSettings(); ui.StartGame();
+                    mobile.BeginLayoutEdit();
+                    statusBeforeDrag = Field<RectTransform>(mobile, "combatStatus").anchoredPosition;
+                    mobile.ResetLayout();
+                    phase = 12; break;
+                case 12:
+                    var editing = FindObjectOfType<MobileControls>();
+                    var status = Field<RectTransform>(editing, "combatStatus");
+                    CheckStatusAtEdge(status);
+                    DragStatusFromEdge(status);
+                    editing.EndLayoutEdit(false);
+                    if (status.anchoredPosition != statusBeforeDrag || status.GetComponent<CanvasGroup>().blocksRaycasts)
+                        throw new Exception("Cancelling the status edit did not restore the original passive HUD");
+                    editing.CloseControlsSettings(); ui.CloseSettings(); ui.StartGame();
                     if (ui.IsMenuOpen || Time.timeScale <= 0 || player.totalCoins != coinsBefore || GameProgress.LocalNickname != originalNickname)
                         throw new Exception("Resume or unchanged coin balance check failed");
                     ui.ToggleMenu();
@@ -233,10 +252,11 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                 + "; bounds=" + bounds + "; screen=" + Screen.width + "x" + Screen.height);
         Debug.Log("[RuStoreBackdropCheck] PASS full screen " + backdrop.name + "; bounds=" + bounds + "; content safe=" + Screen.safeArea);
     }
-    private static void CheckMenuLayoutRoundTrip(MobileControls preview)
+    private static System.Collections.IEnumerator CheckMenuLayoutRoundTrip(MobileControls preview)
     {
         var editable = Field<RectTransform[]>(preview, "editableControls");
         var movement = editable[0];
+        var status = Field<RectTransform>(preview, "combatStatus");
         string positionKey = "MobileControls.v2." + movement.name;
         string[] keys = new[] { "MobileControls.v2.Size", "MobileControls.v2.Opacity" }
             .Concat(editable.SelectMany(rect => new[] { "MobileControls.v2." + rect.name + ".X", "MobileControls.v2." + rect.name + ".Y" })).ToArray();
@@ -250,6 +270,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
             float expectedOpacity = Mathf.Approximately(opacity.value, .73f) ? .82f : .73f;
             size.value = expectedSize; opacity.value = expectedOpacity;
             preview.BeginLayoutEdit();
+            preview.ResetLayout();
             Canvas.ForceUpdateCanvases();
             Vector2 before = movement.anchoredPosition;
             Vector2 center = RectTransformUtility.WorldToScreenPoint(null, movement.position);
@@ -260,6 +281,10 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                 if (movement.anchoredPosition != before) break;
             }
             if (movement.anchoredPosition == before) throw new Exception("No valid nearby menu layout position");
+            // Unity assigns UI raycast depths when the newly visible panel is rendered.
+            yield return null;
+            CheckStatusAtEdge(status);
+            var savedStatusBounds = DragStatusFromEdge(status);
             preview.EndLayoutEdit(true);
             float x = UnityEngine.PlayerPrefs.GetFloat(positionKey + ".X"), y = UnityEngine.PlayerPrefs.GetFloat(positionKey + ".Y");
             preview.CloseControlsSettings();
@@ -272,7 +297,14 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                 || Mathf.Abs(movement.anchoredPosition.x / area.rect.width - x) > .001f
                 || Mathf.Abs(movement.anchoredPosition.y / area.rect.height - y) > .001f)
                 throw new Exception("Saved menu controls did not survive closing and reopening");
-            Debug.Log("[RuStoreLayoutCheck] PASS size, opacity and dragged position survive menu reopen; restoring original preferences");
+            preview.BeginLayoutEdit();
+            Canvas.ForceUpdateCanvases();
+            var reopenedStatusBounds = ScreenBounds(Field<RectTransform>(preview, "combatStatus"));
+            if (Vector2.Distance(reopenedStatusBounds.min, savedStatusBounds.min) > 1f
+                || Vector2.Distance(reopenedStatusBounds.max, savedStatusBounds.max) > 1f)
+                throw new Exception("Saved status position did not survive closing and reopening");
+            preview.EndLayoutEdit(false);
+            Debug.Log("[RuStoreLayoutCheck] PASS size, opacity, button and status positions survive menu reopen; restoring original preferences");
         }
         finally
         {
@@ -284,6 +316,34 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
             }
             UnityEngine.PlayerPrefs.Save();
         }
+    }
+    private static void CheckStatusAtEdge(RectTransform status)
+    {
+        Canvas.ForceUpdateCanvases();
+        var bounds = ScreenBounds(status);
+        if (Mathf.Abs(bounds.xMin) > 1f || Mathf.Abs(bounds.yMax - Screen.height) > 1f)
+            throw new Exception("Default status is not at the physical display edge: " + bounds);
+        Debug.Log("[RuStoreStatusCheck] PASS display edge=" + bounds + "; safe=" + Screen.safeArea);
+    }
+    private static Rect DragStatusFromEdge(RectTransform status)
+    {
+        var bounds = ScreenBounds(status);
+        var pointer = new PointerEventData(EventSystem.current) { position = bounds.center, pointerId = -1 };
+        var hits = new System.Collections.Generic.List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, hits);
+        if (hits.Count == 0 || !hits[0].gameObject.transform.IsChildOf(status))
+            throw new Exception("Status raycast depth=" + status.GetComponent<Graphic>().depth + "; hits="
+                + string.Join(", ", hits.Take(5).Select(hit => hit.gameObject.name + "/" + hit.depth)));
+        var target = hits[0].gameObject;
+        ExecuteEvents.ExecuteHierarchy(target, pointer, ExecuteEvents.pointerDownHandler);
+        pointer.position += new Vector2(Screen.width * .04f, -Screen.height * .28f);
+        ExecuteEvents.ExecuteHierarchy(target, pointer, ExecuteEvents.dragHandler);
+        ExecuteEvents.ExecuteHierarchy(target, pointer, ExecuteEvents.pointerUpHandler);
+        var moved = ScreenBounds(status);
+        if (moved.xMin <= bounds.xMin + 1f || moved.yMax >= bounds.yMax - 1f)
+            throw new Exception("Pointer drag did not move the status panel");
+        Debug.Log("[RuStoreStatusCheck] PASS draggable panel at " + moved);
+        return moved;
     }
     private static void ValidateMenu(Transform root, string label)
     {
@@ -311,11 +371,12 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
         const string key = "LastSoldier.RuStore.InterfaceScale.v1";
         bool hadKey = UnityEngine.PlayerPrefs.HasKey(key);
         float original = RuStoreMenu.InterfaceScale;
-        var buttons = controls != null ? Field<RectTransform[]>(controls, "editableControls") : Array.Empty<RectTransform>();
+        var status = controls != null ? Field<RectTransform>(controls, "combatStatus") : null;
+        var buttons = controls != null ? Field<RectTransform[]>(controls, "editableControls").Where(rect => rect != status).ToArray()
+            : Array.Empty<RectTransform>();
         var sizes = buttons.Select(rect => rect.sizeDelta).ToArray();
         var positions = buttons.Select(rect => rect.anchoredPosition).ToArray();
         var scales = buttons.Select(rect => rect.localScale).ToArray();
-        var status = controls != null ? Field<RectTransform>(controls, "combatStatus") : null;
         var wallet = controls != null ? Field<RectTransform>(controls, "wallet") : null;
         var viewport = root.Find("RuStoreSettingsSafeContent") ?? root.Find("RuStoreDeathSafeContent") ?? root;
         var windows = root.parent != null && root.parent.name == "RuStoreDialog"
@@ -326,7 +387,10 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         var anchors = windows.Select(ScreenPivot).ToArray();
         var walletPosition = wallet != null ? ScreenPivot(wallet) : Vector2.zero;
-        float statusWidthAt100 = status != null ? ScreenBounds(status).width / original : 0f;
+        Rect originalStatusBounds = status != null ? ScreenBounds(status) : default;
+        float statusWidthAt100 = originalStatusBounds.width / original;
+        // At the default anchor scaling never requires clamping. For a custom
+        // anchor near the far edges, expect only enough movement to stay visible.
         Rect originalTrack = track != null ? ScreenBounds(track) : default;
         try
         {
@@ -352,9 +416,12 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                     if (status != null)
                     {
                         var bounds = ScreenBounds(status);
-                        if (Mathf.Abs(bounds.xMin - Screen.safeArea.xMin) > 1f || Mathf.Abs(bounds.yMax - Screen.safeArea.yMax) > 1f
+                        const string statusKey = "MobileControls.v2.CombatStatus";
+                        float expectedLeft = Mathf.Min(UnityEngine.PlayerPrefs.GetFloat(statusKey + ".X") * Screen.width, Screen.width - bounds.width);
+                        float expectedTop = Mathf.Max((1f + UnityEngine.PlayerPrefs.GetFloat(statusKey + ".Y")) * Screen.height, bounds.height);
+                        if (Mathf.Abs(bounds.xMin - expectedLeft) > 1f || Mathf.Abs(bounds.yMax - expectedTop) > 1f
                             || Mathf.Abs(bounds.width - statusWidthAt100 * value) > 1f)
-                            throw new Exception("Combat status has a gap or incorrect size at " + value + "; bounds=" + bounds);
+                            throw new Exception("Combat status moved or scaled incorrectly at " + value + "; bounds=" + bounds);
                     }
                     if (wallet != null && Vector2.Distance(ScreenPivot(wallet), walletPosition) > .5f)
                         throw new Exception("Interface scale moved the wallet");
@@ -363,7 +430,7 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
                             throw new Exception("Interface scale changed touch controls: " + buttons[i].name);
                 }
             }
-            Debug.Log("[RuStoreScaleCheck] PASS " + label + " 80/100/120%; window anchors and slider fixed; combat status flush with safe corner when present");
+            Debug.Log("[RuStoreScaleCheck] PASS " + label + " 80/100/120%; window, slider and status anchors verified");
         }
         finally
         {

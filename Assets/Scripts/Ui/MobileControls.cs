@@ -55,17 +55,27 @@ public class MobileControls : MonoBehaviour
     private float nextAimSearch, controlSize = 1f, controlOpacity = .82f;
     private bool shieldLatched, editingLayout, initialized;
 #if LAST_SOLDIER_RUSTORE
+    private Canvas statusCanvas;
+    private RectTransform statusHome, statusViewport;
+    private CanvasGroup statusInput;
+    private int statusSiblingIndex;
     private Vector2 statusPivot;
     private (Transform window, Vector3 originalScale)[] hudWindows;
-#else
-    private Vector3 statusScale;
+    private float appliedPreviewWidth;
 #endif
+    private Vector3 statusScale;
     private Vector2 statusPosition;
     private Vector2 layoutDimensions, dragStartPoint, dragStartPosition;
     private RectTransform draggedControl;
     private Vector2[] editSnapshot;
     private const string PreferencePrefix = "MobileControls.v2.";
-    private string LayoutInstructions => IsMenuPreview ? "Перетаскивай кнопки и нажми «Сохранить»." : "Перетаскивай кнопки. Бой на паузе.";
+#if LAST_SOLDIER_RUSTORE
+    private const string LayoutInstructions = "Перетащи кнопки и плашку.";
+    private const string LayoutOverlap = "Выбери свободное место.";
+#else
+    private const string LayoutInstructions = "Перетаскивай кнопки. Бой на паузе.";
+    private const string LayoutOverlap = "Кнопки пересекаются. Выбери свободное место.";
+#endif
     private static readonly Color PanelColor = new Color32(35, 68, 59, 235);
     private static readonly Color GoldColor = new Color32(227, 186, 101, 255);
     private bool focused = true, applicationPaused;
@@ -83,6 +93,7 @@ public class MobileControls : MonoBehaviour
     private float appliedHudScale = float.NaN;
 #if LAST_SOLDIER_RUSTORE
     [SerializeField] private bool menuPreview;
+    [SerializeField] private float previewStatusReferenceWidth;
     private System.Action previewClosed;
     private bool IsMenuPreview => menuPreview;
     public static MobileControls OpenMenuSettings(System.Action closed)
@@ -114,10 +125,20 @@ public class MobileControls : MonoBehaviour
         if (combatStatus != null)
         {
             statusPosition = combatStatus.anchoredPosition;
+            statusScale = combatStatus.localScale;
 #if LAST_SOLDIER_RUSTORE
             statusPivot = combatStatus.pivot;
-#else
-            statusScale = combatStatus.localScale;
+            statusHome = (RectTransform)combatStatus.parent;
+            statusSiblingIndex = combatStatus.GetSiblingIndex();
+            statusCanvas = combatStatus.GetComponentInParent<Canvas>().rootCanvas;
+            statusViewport = (RectTransform)statusCanvas.transform;
+            statusInput = combatStatus.gameObject.AddComponent<CanvasGroup>();
+            statusInput.blocksRaycasts = false;
+            combatStatus.GetComponent<Image>().raycastTarget = true;
+            combatStatus.gameObject.AddComponent<TouchControl>().BindLayout(this);
+            System.Array.Resize(ref editableControls, editableControls.Length + 1);
+            System.Array.Resize(ref defaultPositions, defaultPositions.Length + 1);
+            editableControls[editableControls.Length - 1] = combatStatus;
 #endif
         }
 #if LAST_SOLDIER_RUSTORE
@@ -265,10 +286,14 @@ public class MobileControls : MonoBehaviour
     {
         bool touch = UseTouch;
         bool safeChanged = RefreshSafeArea();
+        RefreshHud(touch, safeChanged);
+        if (initialized && safeArea.rect.size != layoutDimensions)
+        {
+            ApplySavedLayout();
+            layoutDimensions = safeArea.rect.size;
+        }
         if (IsMenuPreview)
         {
-            if (initialized && safeArea.rect.size != layoutDimensions)
-            { ApplySavedLayout(); layoutDimensions = safeArea.rect.size; }
             gameplayControls.SetActive(editingLayout);
             interactButton.gameObject.SetActive(editingLayout);
             rotateHint.SetActive(false);
@@ -279,19 +304,16 @@ public class MobileControls : MonoBehaviour
             ResetInput();
             foreach (var hint in desktopHints) if (hint != null) hint.SetActive(!touch);
             if (combatEquipment != null) combatEquipment.SetActive(!touch);
+#if !LAST_SOLDIER_RUSTORE
             if (combatStatus != null)
             {
-#if LAST_SOLDIER_RUSTORE
-                combatStatus.pivot = touch ? new Vector2(0, 1) : statusPivot;
-                combatStatus.anchoredPosition = touch ? Vector2.zero : statusPosition;
-#else
                 combatStatus.localScale = touch ? statusScale * 1.35f : statusScale;
                 combatStatus.anchoredPosition = touch
                     ? new Vector2(combatStatus.rect.width * combatStatus.localScale.x * .5f + 12,
                         -combatStatus.rect.height * combatStatus.localScale.y * .5f - 12)
                     : statusPosition;
-#endif
             }
+#endif
             wallet.anchorMin = touch ? new Vector2(.78f, 1) : walletMin;
             wallet.anchorMax = touch ? new Vector2(.78f, 1) : walletMax;
             wallet.anchoredPosition = touch ? new Vector2(0, -50) : walletPosition;
@@ -302,30 +324,6 @@ public class MobileControls : MonoBehaviour
         bool portrait = touch && pixels.height > pixels.width;
         gameUi.SetMobileOrientationPause(portrait);
         rotateHint.SetActive(portrait);
-#if LAST_SOLDIER_RUSTORE
-        float hudScale = RuStoreMenu.InterfaceScale;
-#else
-        const float hudScale = 1f;
-#endif
-        if (safeChanged || appliedHudTouch != touch || appliedHudScale != hudScale)
-        {
-            appliedHudTouch = touch; appliedHudScale = hudScale;
-            hudSafeArea.anchorMin = touch ? safeArea.anchorMin : Vector2.zero;
-            hudSafeArea.anchorMax = touch ? safeArea.anchorMax : Vector2.one;
-            hudSafeArea.offsetMin = hudSafeArea.offsetMax = Vector2.zero;
-#if LAST_SOLDIER_RUSTORE
-            foreach (var (window, originalScale) in hudWindows)
-            {
-                float scale = touch && window == combatStatus ? hudScale * 1.35f : hudScale;
-                window.localScale = new Vector3(originalScale.x * scale, originalScale.y * scale, originalScale.z);
-            }
-#endif
-        }
-        if (initialized && safeArea.rect.size != layoutDimensions)
-        {
-            ApplySavedLayout();
-            layoutDimensions = safeArea.rect.size;
-        }
         if (controlsSettingsButton != null) controlsSettingsButton.gameObject.SetActive(touch);
         if (pauseControlsSettingsButton != null) pauseControlsSettingsButton.gameObject.SetActive(touch);
         if (desktopControlBindings != null) desktopControlBindings.SetActive(!touch);
@@ -374,6 +372,50 @@ public class MobileControls : MonoBehaviour
             displayedMode = bow.ShootingMode;
             modeLabel.text = displayedMode == 1 ? "Одиночный" : displayedMode == 2 ? "Дробовик" : "Автоогонь";
         }
+    }
+    private void RefreshHud(bool touch, bool safeChanged)
+    {
+#if LAST_SOLDIER_RUSTORE
+        float hudScale = RuStoreMenu.InterfaceScale;
+        float previewWidth = IsMenuPreview && statusViewport != null ? statusViewport.rect.width : 0f;
+        safeChanged |= previewWidth != appliedPreviewWidth;
+        appliedPreviewWidth = previewWidth;
+#else
+        const float hudScale = 1f;
+#endif
+        if (!safeChanged && appliedHudTouch == touch && appliedHudScale == hudScale) return;
+        appliedHudTouch = touch; appliedHudScale = hudScale;
+        if (hudSafeArea != null)
+        {
+            hudSafeArea.anchorMin = touch ? safeArea.anchorMin : Vector2.zero;
+            hudSafeArea.anchorMax = touch ? safeArea.anchorMax : Vector2.one;
+            hudSafeArea.offsetMin = hudSafeArea.offsetMax = Vector2.zero;
+        }
+#if LAST_SOLDIER_RUSTORE
+        if (hudWindows != null)
+            foreach (var (window, originalScale) in hudWindows)
+                if (window != combatStatus)
+                    window.localScale = new Vector3(originalScale.x * hudScale, originalScale.y * hudScale, originalScale.z);
+
+        if (combatStatus == null) return;
+        // The passive status HUD may use the display edge. Buttons still avoid the cutout.
+        var parent = touch ? statusViewport : statusHome;
+        if (combatStatus.parent != parent)
+        {
+            combatStatus.SetParent(parent, false);
+            combatStatus.SetSiblingIndex(touch ? statusHome.GetSiblingIndex() : statusSiblingIndex);
+        }
+        combatStatus.pivot = touch ? new Vector2(0, 1) : statusPivot;
+        float scale = touch ? hudScale * 1.35f : hudScale;
+        if (previewStatusReferenceWidth > 0f && previewWidth > 0f) scale *= previewWidth / previewStatusReferenceWidth;
+        combatStatus.localScale = new Vector3(statusScale.x * scale, statusScale.y * scale, statusScale.z);
+        if (!touch) combatStatus.anchoredPosition = statusPosition;
+        else if (statusViewport.rect.width > 0f && statusViewport.rect.height > 0f)
+        {
+            if (!editingLayout) LoadPosition(combatStatus, Vector2.zero);
+            ClampControl(combatStatus);
+        }
+#endif
     }
     private bool RefreshSafeArea()
     {
@@ -590,7 +632,8 @@ public class MobileControls : MonoBehaviour
         foreach (var rect in editableControls)
         {
             if (source != rect && !source.IsChildOf(rect)) continue;
-            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(safeArea, screenPoint, null, out dragStartPoint)) return false;
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)rect.parent,
+                screenPoint, LayoutCamera(rect), out dragStartPoint)) return false;
             draggedControl = rect; dragStartPosition = rect.anchoredPosition; return true;
         }
         return false;
@@ -598,59 +641,104 @@ public class MobileControls : MonoBehaviour
     public void DragControl(Vector2 screenPoint)
     {
         if (!editingLayout || draggedControl == null) return;
-        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(safeArea, screenPoint, null, out var point)) return;
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)draggedControl.parent,
+            screenPoint, LayoutCamera(draggedControl), out var point)) return;
         draggedControl.anchoredPosition = dragStartPosition + point - dragStartPoint;
         ClampControl(draggedControl);
     }
     public void EndControlDrag()
     {
         if (draggedControl == null) return;
-        foreach (var rect in editableControls)
+        var bounds = ScreenBounds(draggedControl, LayoutCamera(draggedControl));
+        bool blocked = UsesInterfaceScale(draggedControl) && ScreenBounds((RectTransform)layoutToolbar.transform,
+            LayoutCamera(null)).Overlaps(bounds);
+        for (int i = 0; !blocked && i < editableControls.Length; i++)
         {
+            var rect = editableControls[i];
             if (rect == draggedControl || !rect.gameObject.activeInHierarchy) continue;
-            if (!ScreenBounds(rect).Overlaps(ScreenBounds(draggedControl))) continue;
-            draggedControl.anchoredPosition = dragStartPosition;
-            layoutHint.text = "Кнопки пересекаются. Выбери свободное место.";
-            draggedControl = null; return;
+            blocked = ScreenBounds(rect, LayoutCamera(rect)).Overlaps(bounds);
         }
-        layoutHint.text = LayoutInstructions;
+        if (blocked) draggedControl.anchoredPosition = dragStartPosition;
+        layoutHint.text = blocked ? LayoutOverlap : LayoutInstructions;
         draggedControl = null;
     }
-    private static Rect ScreenBounds(RectTransform rect)
+    private bool UsesInterfaceScale(RectTransform rect)
     {
-        var points = new Vector3[4]; rect.GetWorldCorners(points);
-        return Rect.MinMaxRect(points[0].x, points[0].y, points[2].x, points[2].y);
+#if LAST_SOLDIER_RUSTORE
+        return rect != null && rect == combatStatus;
+#else
+        return false;
+#endif
+    }
+    private RectTransform LayoutArea(RectTransform rect)
+    {
+#if LAST_SOLDIER_RUSTORE
+        if (UsesInterfaceScale(rect)) return statusViewport;
+#endif
+        return safeArea;
+    }
+    private Canvas LayoutCanvas(RectTransform rect)
+    {
+#if LAST_SOLDIER_RUSTORE
+        if (UsesInterfaceScale(rect)) return statusCanvas;
+#endif
+        return canvas;
+    }
+    private Camera LayoutCamera(RectTransform rect)
+    {
+        var root = LayoutCanvas(rect);
+        return root.renderMode == RenderMode.ScreenSpaceOverlay ? null : root.worldCamera;
+    }
+    private static Rect ScreenBounds(RectTransform rect, Camera camera)
+    {
+        var min = RectTransformUtility.WorldToScreenPoint(camera, rect.TransformPoint(rect.rect.min));
+        var max = RectTransformUtility.WorldToScreenPoint(camera, rect.TransformPoint(rect.rect.max));
+        return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
     }
     private void ClampControl(RectTransform rect)
     {
-        var bounds = ScreenBounds(rect); var area = ScreenBounds(safeArea);
+        var camera = LayoutCamera(rect);
+        var bounds = ScreenBounds(rect, camera); var area = ScreenBounds(LayoutArea(rect), camera);
+        float margin = UsesInterfaceScale(rect) ? 0f : 6f;
         Vector2 offset = Vector2.zero;
-        if (bounds.xMin < area.xMin + 6) offset.x += area.xMin + 6 - bounds.xMin;
-        if (bounds.xMax > area.xMax - 6) offset.x -= bounds.xMax - area.xMax + 6;
-        if (bounds.yMin < area.yMin + 6) offset.y += area.yMin + 6 - bounds.yMin;
-        if (bounds.yMax > area.yMax - 6) offset.y -= bounds.yMax - area.yMax + 6;
-        rect.anchoredPosition += offset / Mathf.Max(.01f, canvas.scaleFactor);
+        if (bounds.xMin < area.xMin + margin) offset.x += area.xMin + margin - bounds.xMin;
+        if (bounds.xMax > area.xMax - margin) offset.x -= bounds.xMax - area.xMax + margin;
+        if (bounds.yMin < area.yMin + margin) offset.y += area.yMin + margin - bounds.yMin;
+        if (bounds.yMax > area.yMax - margin) offset.y -= bounds.yMax - area.yMax + margin;
+        if (offset != Vector2.zero) rect.anchoredPosition += offset / Mathf.Max(.01f, LayoutCanvas(rect).scaleFactor);
+    }
+    private void LoadPosition(RectTransform rect, Vector2 defaultPosition)
+    {
+        string key = PreferencePrefix + rect.name;
+        var area = LayoutArea(rect).rect;
+        rect.anchoredPosition = UnityEngine.PlayerPrefs.HasKey(key + ".X")
+            ? new Vector2(UnityEngine.PlayerPrefs.GetFloat(key + ".X") * area.width,
+                UnityEngine.PlayerPrefs.GetFloat(key + ".Y") * area.height)
+            : defaultPosition;
     }
     private void ApplySavedLayout()
     {
         if (!initialized || safeArea.rect.width <= 0 || safeArea.rect.height <= 0 || editingLayout) return;
         for (int i = 0; i < editableControls.Length; i++)
         {
-            var rect = editableControls[i]; string key = PreferencePrefix + rect.name;
-            rect.anchoredPosition = UnityEngine.PlayerPrefs.HasKey(key + ".X")
-                ? new Vector2(UnityEngine.PlayerPrefs.GetFloat(key + ".X") * safeArea.rect.width,
-                    UnityEngine.PlayerPrefs.GetFloat(key + ".Y") * safeArea.rect.height)
-                : defaultPositions[i];
-            rect.localScale = Vector3.one * controlSize; ClampControl(rect);
+            var rect = editableControls[i];
+            if (UsesInterfaceScale(rect) && !UseTouch) continue;
+            LoadPosition(rect, defaultPositions[i]);
+            if (!UsesInterfaceScale(rect)) rect.localScale = Vector3.one * controlSize;
+            ClampControl(rect);
         }
     }
     private void SaveLayout()
     {
-        foreach (var rect in editableControls)
+        for (int i = 0; i < editableControls.Length; i++)
         {
+            var rect = editableControls[i];
+            // A temporary clamp at a larger interface scale should not overwrite the saved anchor.
+            if (UsesInterfaceScale(rect) && editSnapshot != null && rect.anchoredPosition == editSnapshot[i]) continue;
             string key = PreferencePrefix + rect.name;
-            UnityEngine.PlayerPrefs.SetFloat(key + ".X", rect.anchoredPosition.x / Mathf.Max(1f, safeArea.rect.width));
-            UnityEngine.PlayerPrefs.SetFloat(key + ".Y", rect.anchoredPosition.y / Mathf.Max(1f, safeArea.rect.height));
+            var area = LayoutArea(rect).rect;
+            UnityEngine.PlayerPrefs.SetFloat(key + ".X", rect.anchoredPosition.x / Mathf.Max(1f, area.width));
+            UnityEngine.PlayerPrefs.SetFloat(key + ".Y", rect.anchoredPosition.y / Mathf.Max(1f, area.height));
         }
         UnityEngine.PlayerPrefs.Save();
     }
@@ -677,8 +765,16 @@ public class MobileControls : MonoBehaviour
     private void SetControlOpacity(float value) { controlOpacity = value; ApplyAppearance(); SaveAppearance(); }
     private void ApplyAppearance()
     {
+#if LAST_SOLDIER_RUSTORE
+        if (statusInput != null)
+        {
+            statusInput.blocksRaycasts = editingLayout;
+            if (IsMenuPreview) combatStatus.gameObject.SetActive(editingLayout);
+        }
+#endif
         foreach (var rect in editableControls)
         {
+            if (UsesInterfaceScale(rect)) continue;
             rect.localScale = Vector3.one * controlSize;
             var group = rect.GetComponent<CanvasGroup>();
             if (group != null) group.alpha = editingLayout ? 1f : controlOpacity;
