@@ -1,11 +1,13 @@
 PASS
 Local startup without forced documents, full-screen menus, profile controls, coin persistence and queued native ad callbacks passed with vendor Editor stubs; device results are recorded separately.
-Assertions: 41376
+Assertions: 41470
 Unrelated vendor Editor update warnings: 2; Editor resumes: 1
 
 Coverage:
 - Four viewport sizes, Russian/English, 80/100/120 percent UI scale.
 - Cutout insets, loaded-banner reservation, opaque full-screen backdrops, touch hit tests.
+- Combat status stays flush with the top-left safe corner, including both simulated landscape cutouts.
+- Menu and shop windows, wallet, mirror HUD and the scale slider track keep their anchors at 80/100/120 percent.
 - Independent joystick/button size, opacity and positions; reopen and persistence.
 - Health/inventory/statistics refresh after changes and local nickname/medals.
 - All six coin denominations, 900 rolls each, ordinary and Crimson arenas.
@@ -13,8 +15,8 @@ Coverage:
 - Death menu, all tutorial text and boss HUD scaling.
 - Unavailable, cancelled, duplicate, queued and late native-ad callbacks via vendor Editor stubs.
 
-Full local result: Builds/RuStoreValidation/editor-full-checks-1.0.8-20261108.txt
-Full local result SHA-256: a6f76d446bf4eacba56cc51ad38f591f553e217311a479e134cc3b4f421e6f02
+Full local result: Builds/RuStoreValidation/editor-window-anchor-after-20261109.txt
+Full local result SHA-256: be5cdab82a1583751410fce8bca86f7e7f419818fe59bdc101053d9f2c8e7729
 Source: Tests/RuStoreChecks.cs; Tests/LocalizationChecks.cs supplies Editor rendering.
 Device checks use Tests/RuStoreDeviceRewardCheck.cs and are reported separately.
 The vendor Editor update request emitted two network errors; those exact Editor-only messages are excluded.

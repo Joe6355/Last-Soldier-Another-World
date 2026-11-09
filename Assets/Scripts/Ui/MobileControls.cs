@@ -54,7 +54,12 @@ public class MobileControls : MonoBehaviour
     private float shotFacingUntil;
     private float nextAimSearch, controlSize = 1f, controlOpacity = .82f;
     private bool shieldLatched, editingLayout, initialized;
+#if LAST_SOLDIER_RUSTORE
+    private Vector2 statusPivot;
+    private (Transform window, Vector3 originalScale)[] hudWindows;
+#else
     private Vector3 statusScale;
+#endif
     private Vector2 statusPosition;
     private Vector2 layoutDimensions, dragStartPoint, dragStartPosition;
     private RectTransform draggedControl;
@@ -106,7 +111,26 @@ public class MobileControls : MonoBehaviour
         gameCamera = Camera.main;
         if (player != null) lastMovementDirection = -(Vector2)player.transform.up;
         lastFacingDirection = lastMovementDirection;
-        if (combatStatus != null) { statusScale = combatStatus.localScale; statusPosition = combatStatus.anchoredPosition; }
+        if (combatStatus != null)
+        {
+            statusPosition = combatStatus.anchoredPosition;
+#if LAST_SOLDIER_RUSTORE
+            statusPivot = combatStatus.pivot;
+#else
+            statusScale = combatStatus.localScale;
+#endif
+        }
+#if LAST_SOLDIER_RUSTORE
+        if (hudSafeArea != null)
+        {
+            hudWindows = new (Transform, Vector3)[hudSafeArea.childCount];
+            for (int i = 0; i < hudWindows.Length; i++)
+            {
+                var window = hudSafeArea.GetChild(i);
+                hudWindows[i] = (window, window.localScale);
+            }
+        }
+#endif
         foreach (var rect in editableControls)
             if (rect != null) layoutTouches.AddRange(rect.GetComponentsInChildren<TouchControl>(true));
         if (wallet == null || mirrorProgress == null) return;
@@ -257,11 +281,16 @@ public class MobileControls : MonoBehaviour
             if (combatEquipment != null) combatEquipment.SetActive(!touch);
             if (combatStatus != null)
             {
+#if LAST_SOLDIER_RUSTORE
+                combatStatus.pivot = touch ? new Vector2(0, 1) : statusPivot;
+                combatStatus.anchoredPosition = touch ? Vector2.zero : statusPosition;
+#else
                 combatStatus.localScale = touch ? statusScale * 1.35f : statusScale;
                 combatStatus.anchoredPosition = touch
                     ? new Vector2(combatStatus.rect.width * combatStatus.localScale.x * .5f + 12,
                         -combatStatus.rect.height * combatStatus.localScale.y * .5f - 12)
                     : statusPosition;
+#endif
             }
             wallet.anchorMin = touch ? new Vector2(.78f, 1) : walletMin;
             wallet.anchorMax = touch ? new Vector2(.78f, 1) : walletMax;
@@ -281,12 +310,15 @@ public class MobileControls : MonoBehaviour
         if (safeChanged || appliedHudTouch != touch || appliedHudScale != hudScale)
         {
             appliedHudTouch = touch; appliedHudScale = hudScale;
-#if LAST_SOLDIER_RUSTORE
-            RuStoreMenu.FitHud(hudSafeArea, touch);
-#else
             hudSafeArea.anchorMin = touch ? safeArea.anchorMin : Vector2.zero;
             hudSafeArea.anchorMax = touch ? safeArea.anchorMax : Vector2.one;
             hudSafeArea.offsetMin = hudSafeArea.offsetMax = Vector2.zero;
+#if LAST_SOLDIER_RUSTORE
+            foreach (var (window, originalScale) in hudWindows)
+            {
+                float scale = touch && window == combatStatus ? hudScale * 1.35f : hudScale;
+                window.localScale = new Vector3(originalScale.x * scale, originalScale.y * scale, originalScale.z);
+            }
 #endif
         }
         if (initialized && safeArea.rect.size != layoutDimensions)

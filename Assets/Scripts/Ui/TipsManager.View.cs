@@ -225,10 +225,10 @@ public partial class TipsManager
 #else
         const float interfaceScale = 1f;
 #endif
-        bool geometryChanged = dimensions != guideLastScreenSize || guideLastSafeArea != Screen.safeArea
-            || touch != guideLastTouch || !Mathf.Approximately(canvasScale, guideLastCanvasScale) || guideLastInterfaceScale != interfaceScale;
-        if (!force && !geometryChanged) return;
-        if (geometryChanged)
+        bool viewportChanged = dimensions != guideLastScreenSize || guideLastSafeArea != Screen.safeArea
+            || touch != guideLastTouch || !Mathf.Approximately(canvasScale, guideLastCanvasScale);
+        if (!force && !viewportChanged && guideLastInterfaceScale == interfaceScale) return;
+        if (viewportChanged)
         {
             guideCardPlaced = guideSkipPlaced = false;
             guideHandDirection = -1;

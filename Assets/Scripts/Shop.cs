@@ -118,7 +118,8 @@ public class Shop : Sounds
     {
         panelShop.SetActive(false);
 #if LAST_SOLDIER_RUSTORE
-        RuStoreMenu.ConfigurePanel(panelShop, "RuStoreShopSafeContent");
+        // The purchase shade covers the whole shop while the dialog scales inside it.
+        RuStoreMenu.ConfigurePanel(panelShop, "RuStoreShopSafeContent", quantityPanel != null ? quantityPanel.transform : null);
         RuStoreMenu.ConfigurePurchaseDialog(quantityPanel);
 #endif
 

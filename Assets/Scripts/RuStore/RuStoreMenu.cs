@@ -23,12 +23,29 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static int bannerInset;
     private const string InterfaceScaleKey = "LastSoldier.RuStore.InterfaceScale.v1";
     private static float? interfaceScale;
-    private static RectTransform hudViewport;
     private static readonly List<RectTransform> panelViewports = new List<RectTransform>();
+    private static readonly List<WindowLayout> windows = new List<WindowLayout>();
     private static readonly List<Slider> scaleSliders = new List<Slider>();
     private static (Rect, int, int, int, float)? viewportLayout;
     public static float InterfaceScale => interfaceScale ?? (interfaceScale = ReadInterfaceScale()).Value;
     public static bool IsOverlayOpen => overlay != null || controlsPreview != null;
+
+    private readonly struct WindowLayout
+    {
+        public readonly RectTransform Rect;
+        private readonly Vector2 min, max;
+        private readonly Vector3 originalScale;
+
+        public WindowLayout(RectTransform rect)
+        {
+            Rect = rect;
+            min = rect.anchorMin;
+            max = rect.anchorMax;
+            originalScale = rect.localScale;
+        }
+
+        public void Resize(float scale) => ResizeWindow(Rect, min, max, originalScale, scale);
+    }
 
     private static float ReadInterfaceScale()
     {
@@ -48,8 +65,12 @@ public sealed class RuStoreMenu : MonoBehaviour
             slider.SetValueWithoutNotify(Mathf.RoundToInt(InterfaceScale * 100));
             slider.transform.parent.Find("Value/Text").GetComponent<TMP_Text>().text = Mathf.RoundToInt(InterfaceScale * 100) + "%";
         }
+        for (int i = windows.Count - 1; i >= 0; i--)
+        {
+            if (windows[i].Rect == null) windows.RemoveAt(i);
+            else windows[i].Resize(InterfaceScale);
+        }
         RefreshViewports();
-        if (hudViewport != null) FitHud(hudViewport, MobileControls.IsTouchDevice);
     }
 
     public static void Install(GameObject settings)
@@ -82,23 +103,31 @@ public sealed class RuStoreMenu : MonoBehaviour
         if (overlay != null)
         {
             var safe = Screen.safeArea;
-            FitScaledArea(overlay.transform.Find("Panel") as RectTransform,
+            ResizeWindow(overlay.transform.Find("Panel") as RectTransform,
                 new Vector2(Mathf.Max(.02f, safe.xMin / Screen.width), Mathf.Max(.03f, safe.yMin / Screen.height)),
-                new Vector2(Mathf.Min(.98f, safe.xMax / Screen.width), Mathf.Min(.97f, safe.yMax / Screen.height)));
+                new Vector2(Mathf.Min(.98f, safe.xMax / Screen.width), Mathf.Min(.97f, safe.yMax / Screen.height)),
+                Vector3.one, InterfaceScale);
         }
         for (int i = panelViewports.Count - 1; i >= 0; i--)
             if (panelViewports[i] == null) panelViewports.RemoveAt(i);
             else FitSafeArea(panelViewports[i], 0);
     }
 
-    public static void FitHud(RectTransform viewport, bool touch)
+    private static void RegisterWindow(RectTransform rect)
     {
-        hudViewport = viewport;
-        if (touch) FitSafeArea(viewport, 0);
-        else FitScaledArea(viewport, Vector2.zero, Vector2.one);
+        var layout = new WindowLayout(rect);
+        windows.Add(layout);
+        layout.Resize(InterfaceScale);
     }
 
-    public static void ConfigurePanel(GameObject panel, string contentName)
+    private static void RegisterWindows(Transform viewport, Transform unscaledChild = null)
+    {
+        windows.RemoveAll(window => window.Rect == null);
+        foreach (Transform child in viewport)
+            if (child != unscaledChild && child is RectTransform rect) RegisterWindow(rect);
+    }
+
+    public static void ConfigurePanel(GameObject panel, string contentName, Transform unscaledChild = null)
     {
         if (panel == null || panel.transform.Find(contentName) != null) return;
         var children = new Transform[panel.transform.childCount];
@@ -106,6 +135,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         var content = Node(panel.transform, contentName, 0, 0, 1, 1);
         foreach (var child in children) child.SetParent(content, false);
         panelViewports.Add(content); FitSafeArea(content, 0);
+        RegisterWindows(content, unscaledChild);
     }
     public static void ConfigureDeathMenu(GameObject panel, UnityEngine.UI.Button returnButton)
     {
@@ -135,6 +165,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         Place(dialog.Find("PurchaseConfirm"), .06f, .03f, .58f, .17f);
         Place(dialog.Find("PurchaseCancel"), .62f, .03f, .94f, .17f);
         Place(dialog.Find("TutorialQuantityControls"), .04f, .40f, .96f, .71f);
+        RegisterWindow((RectTransform)dialog);
     }
     public static bool HandleBack()
     {
@@ -355,6 +386,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         Font(title.transform.Find("ForestWorldTitle"), 54);
         Place(profile.transform, .55f, .12f, .94f, .90f);
         ConfigureProfile(profile.transform);
+        RegisterWindows(menuViewport);
         GameLocalization.Register(menu);
         GameLocalization.Register(settings);
     }
@@ -385,6 +417,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         ConfigureProfile(profile);
         Place(pauseViewport.Find("ReplayTutorial"), .54f, .07f, .94f, .22f);
         Font(pauseViewport.Find("ReplayTutorial"), 44);
+        RegisterWindows(pauseViewport);
     }
 
     private static void ConfigureProfile(Transform profile)
@@ -452,6 +485,7 @@ public sealed class RuStoreMenu : MonoBehaviour
         Place(toolbar.Find("Cancel"), .62f, .38f, .80f, .98f);
         Place(toolbar.Find("Reset"), .82f, .38f, .98f, .98f);
         foreach (string name in new[] { "Save", "Cancel", "Reset" }) Font(toolbar.Find(name), 40);
+        RegisterWindows(controlsViewport);
     }
 
     private static void ConfigureSettings(Transform settings)
@@ -525,6 +559,8 @@ public sealed class RuStoreMenu : MonoBehaviour
         var replay = settings.Find("ReplayTutorial");
         // This action remains directly available in the pause menu.
         if (replay != null) replay.gameObject.SetActive(false);
+        // Keep the scale control's track in place while the player drags its handle.
+        RegisterWindows(settings, scaleRow);
     }
 
     private static void FitSafeArea(RectTransform viewport, int adHeight)
@@ -533,23 +569,25 @@ public sealed class RuStoreMenu : MonoBehaviour
         var safe = Screen.safeArea;
         float width = Mathf.Max(1, Screen.width), height = Mathf.Max(1, Screen.height);
         float bottom = safe.yMin + (adHeight > 0 ? adHeight + 12f : 0);
-        FitScaledArea(viewport, new Vector2(safe.xMin / width, Mathf.Min(bottom / height, .30f)),
+        FitViewportBounds(viewport, new Vector2(safe.xMin / width, Mathf.Min(bottom / height, .30f)),
             new Vector2(safe.xMax / width, safe.yMax / height));
     }
-    private static void FitScaledArea(RectTransform viewport, Vector2 min, Vector2 max)
+    private static void FitViewportBounds(RectTransform viewport, Vector2 min, Vector2 max)
     {
-        if (viewport == null) return;
-        // Keep backgrounds and touch controls outside this foreground transform.
-        // Larger text/fixed-size HUD elements use more virtual pixels, while stretched panels still fit.
-        float scale = InterfaceScale, fit = Mathf.Min(1f, 1f / scale);
-        Vector2 center = (min + max) * .5f, half = (max - min) * (.5f * fit);
-        min = center - half; max = center + half;
         if (viewport.anchorMin != min) viewport.anchorMin = min;
         if (viewport.anchorMax != max) viewport.anchorMax = max;
         if (viewport.offsetMin != Vector2.zero) viewport.offsetMin = Vector2.zero;
         if (viewport.offsetMax != Vector2.zero) viewport.offsetMax = Vector2.zero;
-        var localScale = new Vector3(scale, scale, 1f);
-        if (viewport.localScale != localScale) viewport.localScale = localScale;
+    }
+    private static void ResizeWindow(RectTransform window, Vector2 min, Vector2 max, Vector3 originalScale, float scale)
+    {
+        // Keep the window's own pivot in its authored slot. Above 100%, give its
+        // stretched content fewer layout units so it still fits the same slot.
+        Vector2 pivot = min + Vector2.Scale(max - min, window.pivot);
+        float fit = Mathf.Min(1f, 1f / scale);
+        window.anchorMin = pivot + (min - pivot) * fit;
+        window.anchorMax = pivot + (max - pivot) * fit;
+        window.localScale = new Vector3(originalScale.x * scale, originalScale.y * scale, originalScale.z);
     }
     private static void ConfigureSliderTouchArea(Slider slider)
     {

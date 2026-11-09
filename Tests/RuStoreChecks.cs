@@ -291,7 +291,7 @@ public static class RuStoreChecks
             {
                 RuStoreMenu.SetInterfaceScale(scale); GameLocalization.SetSelection(language);
                 deathPanel.SetActive(true); GameLocalization.RefreshAll();
-                Check(Mathf.Approximately(deathPanel.transform.Find("RuStoreDeathSafeContent").localScale.x, scale),
+                Check(Mathf.Approximately(deathPanel.transform.Find("RuStoreDeathSafeContent/DeathDialog").localScale.x, scale),
                     "Death menu uses the interface scale without changing its reward handlers");
                 CaptureLayout("Builds/RuStoreValidation/Previews/death-" + language + "-scale" + Mathf.RoundToInt(scale * 100) + ".png",
                     new Vector2Int(1280, 720), player.gameObject.scene, screen:deathPanel.transform);
@@ -404,18 +404,47 @@ public static class RuStoreChecks
     static void CheckHudScaling(MobileControls controls)
     {
         var hud = Get<RectTransform>(controls, "hudSafeArea");
+        var status = Get<RectTransform>(controls, "combatStatus");
+        var wallet = Get<RectTransform>(controls, "wallet");
+        var mirror = Get<RectTransform>(controls, "mirrorProgress");
         var buttons = Get<RectTransform[]>(controls, "editableControls");
         var sizes = buttons.Select(rect => rect.sizeDelta).ToArray();
         var positions = buttons.Select(rect => rect.anchoredPosition).ToArray();
         var scales = buttons.Select(rect => rect.localScale).ToArray();
+        RuStoreMenu.SetInterfaceScale(1f); controls.RefreshLayout(); Canvas.ForceUpdateCanvases();
+        var walletPosition = ScreenPoint(wallet, Vector2.zero);
+        var mirrorPosition = ScreenPoint(mirror, Vector2.zero);
+        float statusWidth = ScreenBounds(status).width;
+        Rect originalHudBounds = ScreenBounds(hud);
         foreach (float scale in new[] { .8f, 1f, 1.2f })
         {
-            RuStoreMenu.SetInterfaceScale(scale); controls.RefreshLayout();
-            Check(Mathf.Approximately(hud.localScale.x, scale), "HUD uses the saved interface scale");
+            RuStoreMenu.SetInterfaceScale(scale); controls.RefreshLayout(); Canvas.ForceUpdateCanvases();
+            Check(SameBounds(ScreenBounds(hud), originalHudBounds), "HUD safe area does not shrink or drift at " + scale);
+            CheckStatusCorner();
+            Check(Vector2.Distance(ScreenPoint(wallet, Vector2.zero), walletPosition) <= .5f
+                && Vector2.Distance(ScreenPoint(mirror, Vector2.zero), mirrorPosition) <= .5f,
+                "Wallet and mirror HUD keep their positions at " + scale);
             Check(Mathf.Approximately(UnityEngine.PlayerPrefs.GetFloat("LastSoldier.RuStore.InterfaceScale.v1"), scale), "Interface scale persists locally");
             for (int i = 0; i < buttons.Length; i++) Check(buttons[i].sizeDelta == sizes[i] && buttons[i].anchoredPosition == positions[i]
                 && buttons[i].localScale == scales[i], "Interface scale leaves touch controls independent: " + buttons[i].name);
+            // Simulate both landscape cutouts without changing the Editor display.
+            Vector2 min = hud.anchorMin, max = hud.anchorMax;
+            foreach (bool leftCutout in new[] { true, false })
+            {
+                SetViewportArea(hud, new Vector2(leftCutout ? .055f : 0f, .03f), new Vector2(leftCutout ? 1f : .945f, .98f));
+                Canvas.ForceUpdateCanvases();
+                CheckStatusCorner();
+            }
+            SetViewportArea(hud, min, max);
             Capture("hud-scale-" + Mathf.RoundToInt(scale * 100) + ".png");
+
+            void CheckStatusCorner()
+            {
+                Rect hudBounds = ScreenBounds(hud), statusBounds = ScreenBounds(status);
+                Check(Mathf.Abs(statusBounds.xMin - hudBounds.xMin) <= .5f && Mathf.Abs(statusBounds.yMax - hudBounds.yMax) <= .5f,
+                    "Combat status meets the top-left safe edge at " + scale);
+                Check(Mathf.Abs(statusBounds.width - statusWidth * scale) <= .5f, "Combat status resizes around the safe corner");
+            }
         }
         RuStoreMenu.SetInterfaceScale(1f); controls.RefreshLayout();
     }
@@ -427,8 +456,14 @@ public static class RuStoreChecks
         Check(shop.IsOpen, "Existing merchant opens through the trade handler");
         var panel = Get<GameObject>(shop, "panelShop");
         var content = panel.transform.Find("RuStoreShopSafeContent");
+        var title = content.Find("ForestShopTitle");
+        var quantityDialog = Get<GameObject>(shop, "quantityPanel").transform.Find("QuantityDialog");
         try
         {
+            CheckWindowPositions(null, title, content.Find("ForestWallet"), content.Find("GoodsTab"));
+            shop.BuyItem(0);
+            Check(shop.IsQuantityOpen, "Purchase quantity dialog opens before the scale check");
+            CheckWindowPositions(null, quantityDialog);
             foreach (float scale in new[] { .8f, 1f, 1.2f })
             foreach (string language in new[] { "ru", "en" })
             foreach (var size in new[] { new Vector2Int(854, 393), new Vector2Int(1280, 720) })
@@ -442,7 +477,8 @@ public static class RuStoreChecks
                     string name = "Builds/RuStoreValidation/Previews/shop-" + tab.name + "-" + size.x + "-" + language + "-scale" + Mathf.RoundToInt(scale * 100) + ".png";
                     LocalizationChecks.CaptureView(Path.GetFullPath(name), size.x, size.y, () =>
                     {
-                        Check(Mathf.Approximately(content.localScale.x, scale), "Merchant and trainer use the saved interface scale");
+                        Check(Mathf.Approximately(title.localScale.x, scale) && Mathf.Approximately(quantityDialog.localScale.x, scale),
+                            "Merchant and purchase dialog use the saved interface scale");
                         foreach (var text in panel.GetComponentsInChildren<TMP_Text>().Where(t => t.isActiveAndEnabled))
                         { text.ForceMeshUpdate(); Check(!text.isTextOverflowing, "Merchant text fits: " + text.name + " " + name); }
                     });
@@ -510,6 +546,18 @@ public static class RuStoreChecks
     static void CheckMenuLayouts(Scene scene, GameObject settings, Action openSettings, Action closeSettings)
     {
         Directory.CreateDirectory("Builds/RuStoreValidation/Previews");
+        var menuViewport = UnityEngine.Object.FindObjectsOfType<RectTransform>()
+            .First(value => value.gameObject.scene == scene && value.name == (scene.name == "Menu" ? "RuStoreBannerSafeContent" : "RuStorePauseSafeContent"));
+        CheckWindowPositions(null, menuViewport.Cast<Transform>().Where(child => child.gameObject.activeSelf).ToArray());
+        openSettings();
+        var settingsViewport = settings.transform.Find("RuStoreSettingsSafeContent");
+        var scaleControl = settingsViewport.Find("InterfaceScale/ScaleSlider").GetComponent<Slider>();
+        CheckWindowPositions(scaleControl, settingsViewport.Find("ForestAudioSection"), settingsViewport.Find("ForestControlsSection"),
+            settingsViewport.Find("LanguageSelector"));
+        settingsViewport.Find("About").GetComponent<Button>().onClick.Invoke();
+        CheckWindowPositions(null, GameObject.Find("RuStoreDialog/Panel").transform);
+        Click("RuStoreDialog", "CloseAbout");
+        closeSettings();
         foreach (var size in new[] { new Vector2Int(854, 393), new Vector2Int(1280, 720), new Vector2Int(1024, 768), new Vector2Int(2400, 1080) })
         foreach (string language in new[] { "ru", "en" })
         foreach (float scale in new[] { .8f, 1f, 1.2f })
@@ -646,8 +694,51 @@ public static class RuStoreChecks
         mobile.EndLayoutEdit(false);
     }
     static void SetViewportArea(RectTransform viewport, Vector2 min, Vector2 max)
-        => typeof(RuStoreMenu).GetMethod("FitScaledArea", BindingFlags.Static | BindingFlags.NonPublic)
+        => typeof(RuStoreMenu).GetMethod("FitViewportBounds", BindingFlags.Static | BindingFlags.NonPublic)
             .Invoke(null, new object[] { viewport, min, max });
+    static void CheckWindowPositions(Slider slider, params Transform[] windows)
+    {
+        float original = RuStoreMenu.InterfaceScale;
+        void Apply(float scale)
+        {
+            if (slider != null) slider.value = Mathf.RoundToInt(scale * 100);
+            else RuStoreMenu.SetInterfaceScale(scale);
+            Canvas.ForceUpdateCanvases();
+        }
+        try
+        {
+            Apply(1f);
+            var positions = windows.Select(window => ScreenPoint((RectTransform)window, Vector2.zero)).ToArray();
+            var track = slider != null ? slider.handleRect.parent as RectTransform : null;
+            Rect trackBounds = track != null ? ScreenBounds(track) : default;
+            foreach (float scale in new[] { .8f, 1.2f, 1f })
+            {
+                Apply(scale);
+                for (int i = 0; i < windows.Length; i++)
+                    Check(Vector2.Distance(ScreenPoint((RectTransform)windows[i], Vector2.zero), positions[i]) <= .5f,
+                        "Window anchor remains at the same screen position at " + scale + ": " + windows[i].name);
+                if (track != null)
+                {
+                    Check(SameBounds(ScreenBounds(track), trackBounds),
+                        "Scale slider track remains stationary while changing scale");
+                }
+            }
+        }
+        finally { Apply(original); }
+    }
+    static Vector2 ScreenPoint(RectTransform rect, Vector2 point)
+    {
+        var canvas = rect.GetComponentInParent<Canvas>().rootCanvas;
+        var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+        return RectTransformUtility.WorldToScreenPoint(camera, rect.TransformPoint(point));
+    }
+    static Rect ScreenBounds(RectTransform rect)
+    {
+        Vector2 min = ScreenPoint(rect, rect.rect.min), max = ScreenPoint(rect, rect.rect.max);
+        return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+    }
+    static bool SameBounds(Rect a, Rect b)
+        => Vector2.Distance(a.min, b.min) <= .5f && Vector2.Distance(a.max, b.max) <= .5f;
     static void CaptureLayout(string filename, Vector2Int size, Scene scene, string rootName = null, Transform screen = null, Transform backdrop = null)
     {
         LocalizationChecks.CaptureView(Path.GetFullPath(filename), size.x, size.y, () =>

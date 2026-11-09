@@ -315,26 +315,55 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
         var sizes = buttons.Select(rect => rect.sizeDelta).ToArray();
         var positions = buttons.Select(rect => rect.anchoredPosition).ToArray();
         var scales = buttons.Select(rect => rect.localScale).ToArray();
+        var status = controls != null ? Field<RectTransform>(controls, "combatStatus") : null;
+        var wallet = controls != null ? Field<RectTransform>(controls, "wallet") : null;
+        var viewport = root.Find("RuStoreSettingsSafeContent") ?? root.Find("RuStoreDeathSafeContent") ?? root;
+        var windows = root.parent != null && root.parent.name == "RuStoreDialog"
+            ? new[] { root }
+            : viewport.Cast<Transform>().Where(child => child is RectTransform && child.gameObject.activeInHierarchy).ToArray();
+        var slider = root.GetComponentsInChildren<Slider>(true).FirstOrDefault(s => s.name == "ScaleSlider");
+        var track = slider != null ? slider.handleRect.parent : null;
+        Canvas.ForceUpdateCanvases();
+        var anchors = windows.Select(ScreenPivot).ToArray();
+        var walletPosition = wallet != null ? ScreenPivot(wallet) : Vector2.zero;
+        float statusWidthAt100 = status != null ? ScreenBounds(status).width / original : 0f;
+        Rect originalTrack = track != null ? ScreenBounds(track) : default;
         try
         {
             foreach (float value in new[] { .8f, 1f, 1.2f })
             {
-                var slider = root.GetComponentsInChildren<Slider>(true).FirstOrDefault(s => s.name == "ScaleSlider");
                 if (slider != null) slider.value = Mathf.RoundToInt(value * 100);
                 else RuStoreMenu.SetInterfaceScale(value);
                 if (!Mathf.Approximately(UnityEngine.PlayerPrefs.GetFloat(key, 1f), value)) throw new Exception("Interface scale did not save");
                 ValidateMenu(root, label + " scale=" + value);
+                for (int i = 0; i < windows.Length; i++)
+                    if (Vector2.Distance(ScreenPivot(windows[i]), anchors[i]) > .5f)
+                        throw new Exception("Interface scale moved " + windows[i].name + " at " + value);
+                if (track != null)
+                {
+                    var bounds = ScreenBounds(track);
+                    if (Vector2.Distance(bounds.min, originalTrack.min) > .5f || Vector2.Distance(bounds.max, originalTrack.max) > .5f)
+                        throw new Exception("Interface scale moved the slider track");
+                }
                 if (controls != null)
                 {
                     controls.RefreshLayout();
-                    var hud = Field<RectTransform>(controls, "hudSafeArea");
-                    if (hud != null && !Mathf.Approximately(hud.localScale.x, value)) throw new Exception("HUD scale did not update");
+                    Canvas.ForceUpdateCanvases();
+                    if (status != null)
+                    {
+                        var bounds = ScreenBounds(status);
+                        if (Mathf.Abs(bounds.xMin - Screen.safeArea.xMin) > 1f || Mathf.Abs(bounds.yMax - Screen.safeArea.yMax) > 1f
+                            || Mathf.Abs(bounds.width - statusWidthAt100 * value) > 1f)
+                            throw new Exception("Combat status has a gap or incorrect size at " + value + "; bounds=" + bounds);
+                    }
+                    if (wallet != null && Vector2.Distance(ScreenPivot(wallet), walletPosition) > .5f)
+                        throw new Exception("Interface scale moved the wallet");
                     for (int i = 0; i < buttons.Length; i++)
                         if (buttons[i].sizeDelta != sizes[i] || buttons[i].anchoredPosition != positions[i] || buttons[i].localScale != scales[i])
                             throw new Exception("Interface scale changed touch controls: " + buttons[i].name);
                 }
             }
-            Debug.Log("[RuStoreScaleCheck] PASS " + label + " 80/100/120%; touch controls independent; restoring preferences");
+            Debug.Log("[RuStoreScaleCheck] PASS " + label + " 80/100/120%; window anchors and slider fixed; combat status flush with safe corner when present");
         }
         finally
         {
@@ -343,6 +372,11 @@ public sealed class RuStoreDeviceRewardCheck : MonoBehaviour
             UnityEngine.PlayerPrefs.Save();
             if (controls != null) controls.RefreshLayout();
         }
+    }
+    private static Vector2 ScreenPivot(Transform target)
+    {
+        var canvas = target.GetComponentInParent<Canvas>().rootCanvas;
+        return RectTransformUtility.WorldToScreenPoint(canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera, target.position);
     }
 }
 #endif
