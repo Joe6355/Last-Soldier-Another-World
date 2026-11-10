@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: RuStoreSettings
   m_EditorClassIdentifier:
   packageName: com.joe6355.lastsoldier.rustore
-  versionName: 1.0.12
-  versionCode: 14
-  profileAvatar: {fileID: 21300000, guid: bd33779d8770b254a934a6a2cb1c8b7f, type: 3}
+  versionName: 1.0.13
+  versionCode: 15
   rewardedAdUnitId: R-M-20283319-1
   interstitialAdUnitId: R-M-20283319-2
   bannerAdUnitId: R-M-20283319-3

@@ -6,7 +6,6 @@ public sealed class RuStoreSettings : ScriptableObject
     public string packageName = "com.joe6355.lastsoldier.rustore";
     public string versionName = "1.0.0";
     public int versionCode = 1;
-    public Sprite profileAvatar;
     public string rewardedAdUnitId = "";
     public string interstitialAdUnitId = "";
     public string bannerAdUnitId = "";
