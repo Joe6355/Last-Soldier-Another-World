@@ -423,7 +423,11 @@ public sealed class RuStoreMenu : MonoBehaviour
     private static void ConfigureProfile(Transform profile)
     {
         if (profile == null) return;
-        Place(profile.Find("Hero"), .40f, .79f, .60f, .97f);
+        var hero = profile.Find("Hero");
+        Place(hero, .40f, .79f, .60f, .97f);
+        var heroImage = hero?.GetComponent<Image>();
+        var avatar = RuStoreSettings.Load()?.profileAvatar;
+        if (heroImage != null && avatar != null) heroImage.sprite = avatar;
         var profileName = profile.Find("ProfileName");
         Place(profileName, .06f, .60f, .94f, .76f);
         if (profileName != null)
