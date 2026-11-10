@@ -65,7 +65,6 @@ public static partial class YandexBuild
         PlayerSettings.Android.keyaliasPass = PlayerSettings.Android.keystorePass;
 
         const string iconPath = "Assets/UI/ForestGarrison/RuStoreIcon.png";
-        File.Copy("Publishing/Card/icon.png", iconPath, true);
         AssetDatabase.ImportAsset(iconPath, ImportAssetOptions.ForceSynchronousImport);
         var icon = AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath);
         var sizes = PlayerSettings.GetIconSizesForTargetGroup(BuildTargetGroup.Android, IconKind.Any);
