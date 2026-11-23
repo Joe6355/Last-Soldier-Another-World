@@ -15,6 +15,11 @@ using YG;
 public sealed class GameLocalization : MonoBehaviour
 {
     private const string PreferenceKey = "LastSoldier.Language";
+#if LAST_SOLDIER_RUSTORE
+    private const string DefaultSelection = "ru";
+#else
+    private const string DefaultSelection = "auto";
+#endif
     private static GameLocalization instance;
     private static readonly Dictionary<string, string> translations = new Dictionary<string, string>();
     private static readonly Dictionary<string, string> cache = new Dictionary<string, string>();
@@ -22,7 +27,7 @@ public sealed class GameLocalization : MonoBehaviour
     private static readonly HashSet<int> protectedTexts = new HashSet<int>();
     private static readonly Dictionary<int, Binding> bindings = new Dictionary<int, Binding>();
     private static readonly List<int> deadBindings = new List<int>();
-    private static string selection = "auto", language = "ru";
+    private static string selection = DefaultSelection, language = "ru";
     private float nextCleanup;
     public static string Selection => selection;
     public static string Language => language;
@@ -55,7 +60,7 @@ public sealed class GameLocalization : MonoBehaviour
     {
         instance = null;
         translations.Clear(); cache.Clear(); templates.Clear(); protectedTexts.Clear(); bindings.Clear(); deadBindings.Clear();
-        selection = "auto"; language = "ru"; Changed = null;
+        selection = DefaultSelection; language = "ru"; Changed = null;
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -70,7 +75,7 @@ public sealed class GameLocalization : MonoBehaviour
     {
         instance = this;
         LoadCatalog();
-        selection = NormalizeSelection(UnityEngine.PlayerPrefs.GetString(PreferenceKey, "auto"));
+        selection = NormalizeSelection(UnityEngine.PlayerPrefs.GetString(PreferenceKey, DefaultSelection));
 #if UNITY_WEBGL && !UNITY_EDITOR
         string browserChoice = GameLocalePreference_js();
         if (!string.IsNullOrEmpty(browserChoice)) selection = NormalizeSelection(browserChoice);
@@ -141,7 +146,12 @@ public sealed class GameLocalization : MonoBehaviour
     }
     private static void ResolveLanguage()
     {
-        language = Resolve(selection, YG2.isSDKEnabled ? YG2.envir.language : null, Application.systemLanguage);
+#if LAST_SOLDIER_RUSTORE
+        string sdkLanguage = null;
+#else
+        string sdkLanguage = YG2.isSDKEnabled ? YG2.envir.language : null;
+#endif
+        language = Resolve(selection, sdkLanguage, Application.systemLanguage);
         cache.Clear();
 #if UNITY_WEBGL && !UNITY_EDITOR
         GameLocaleSelection_js(selection, language);
